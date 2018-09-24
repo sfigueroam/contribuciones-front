@@ -2,11 +2,12 @@
 
 # compiled output
 /dist
+/documentation
 /tmp
 /out-tsc
 
 # dependencies
-/node_modules
+**/node_modules
 
 # IDEs and editors
 /.idea
@@ -29,10 +30,14 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
+/package
 /typings
+package-lock.json
+test-results.xml
+tslint.xml
+*.log
+*.tar
+*.tgz
 
 # System Files
 .DS_Store
