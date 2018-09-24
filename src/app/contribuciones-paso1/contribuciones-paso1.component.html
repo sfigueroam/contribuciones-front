@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="property" *ngFor="let p of properties">
+    <h3>{{p.address}}</h3>
+    <div class="col s12 m6 l6" *ngFor="let c of p.contributions">
+      <mz-card [hoverable]="true">
+        <mz-card-title>
+          {{c.name}}
+          <small>{{c.identification}}</small>
+          <div class="contribution-price">$ {{c.selectedTotal() | number}}</div>
+        </mz-card-title>
+        <mz-card-content>
+          <div *ngFor="let y of getYears(c)">
+            <h5>Año {{y}}</h5>
+            <ul>
+              <li *ngFor="let q of c.quotes.get(y)">{{q.number}}</li>
+            </ul>
+          </div>
+        </mz-card-content>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div>
+        <mz-card-action>
+          <a>VER DETALLES</a>
+        </mz-card-action>
+      </mz-card>
+    </div>
+  </div>
+</div>
