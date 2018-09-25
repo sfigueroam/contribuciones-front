@@ -20,13 +20,13 @@
         </div>
         <div class="card-tabs">
           <ul class="tabs">
-            <li class="tab active" *ngFor="let y of getYears(c)">
-              <a href="#{{y}}">Año {{y}}</a>
+            <li class="tab" *ngFor="let y of getYears(c)">
+              <a class="active" href="#year{{y}}">Año {{y}}</a>
             </li>
           </ul>
         </div>
-        <div class="card-content grey lighten-4">
-          <div *ngFor="let y of getYears(c)" id="{{y}}" >
+        <div class="card-content grey lighten-5">
+          <div *ngFor="let y of getYears(c)" id="year{{y}}" >
             <ul>
               <li *ngFor="let q of c.quotes.get(y)">{{q.number}}</li>
             </ul>

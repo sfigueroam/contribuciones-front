@@ -42,6 +42,24 @@ export class ContribucionesPaso1Component implements OnInit {
                   amount: 15000
                 })
               ])
+              .set(2017, [
+                new Quote({
+                  number: 1,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 4
+                  }),
+                  amount: 15000
+                }),
+                new Quote({
+                  number: 2,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 11
+                  }),
+                  amount: 15000
+                })
+              ])
           }),
           new Contribution({
             icon: 'directions_car',
