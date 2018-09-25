@@ -1,19 +1,22 @@
-<header>
-  <mz-navbar>
-    <a href="#" class="brand-logo">&nbsp;TGR</a>
-    <mz-navbar-item-container>
-      <mz-navbar-item><a routerLink="/contribuciones">Contribuciones</a></mz-navbar-item>
-      <mz-navbar-item><a routerLink="/certificados">Certificados</a></mz-navbar-item>
-    </mz-navbar-item-container>
-    <mz-navbar-item-container align="right">
-      <mz-navbar-item><a href="#">
-        <!--i mz-icon-mdi
-           icon="puzzle"
-        size="tiny">
-        </i--> Cuenta
-      </a></mz-navbar-item>
-    </mz-navbar-item-container>
-  </mz-navbar>
+<header class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Logo</a>
+      <ul id="nav-mobile1" class="left hide-on-med-and-down">
+        <li><a routerLink="/contribuciones">Contribuciones</a></li>
+        <li><a routerLink="/certificados">Certificados</a></li>
+      </ul>
+      <ul id="nav-mobile2" class="right hide-on-med-and-down">
+        <li>
+          <a href="#">
+            <span>
+              <i class="material-icons">account_circle</i>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>
 <main>
   <div class="container">
