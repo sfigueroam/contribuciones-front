@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../modelo';
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-contribuciones-paso1',
   templateUrl: './contribuciones-paso1.component.html',
   styleUrls: ['./contribuciones-paso1.component.scss']
 })
-export class ContribucionesPaso1Component implements OnInit {
+export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
 
   properties: Property[];
 
@@ -19,6 +20,14 @@ export class ContribucionesPaso1Component implements OnInit {
 
   selectQuote(q: Quote): void {
     q.selected = !q.selected;
+  }
+
+  ngAfterViewInit() {
+    const elem = document.querySelector('.tabs');
+
+    M.Tabs.init(elem, {
+      swipeable: true
+    });
   }
 
   ngOnInit() {
