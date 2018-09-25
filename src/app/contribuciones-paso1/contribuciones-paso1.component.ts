@@ -11,6 +11,9 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
 
   properties: Property[];
   showAll: boolean;
+  instance: M;
+
+  @ViewChildren('tabs') viewChildren : QueryList<ElementRef>;
 
   constructor() {
     this.showAll = true;
@@ -26,6 +29,9 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
         p.hideExpired();
       }
     }
+
+    console.log(this.viewChildren);
+
   }
 
   total(): number {
@@ -45,6 +51,16 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    /*var tabs: any = this.viewChildren.toArray();
+    console.log(tabs);
+
+    var element: []any;
+    for (const p of tabs) {
+      element.push(p.ElementRef);
+    }
+
+    this.instance = M.Tabs.getInstance(tabs);*/
+
     M.AutoInit();
   }
 
@@ -289,14 +305,6 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
             quotes: new Map<number, Quote[]>()
               .set(2018, [
                 new Quote({
-                  number: 1,
-                  expiration: new Expiration({
-                    day: 20,
-                    month: 4
-                  }),
-                  amount: 6000
-                }),
-                new Quote({
                   number: 2,
                   expiration: new Expiration({
                     day: 20,
@@ -330,6 +338,9 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   }
 
   getYears(c: Contribution) {
-    return Array.from(c.quotes.keys());
+    let years: any [] = Array.from(c.quotes.keys());
+    return years.filter(
+    (y) => c.activeQuotes(y).length !== 0
+    );
   }
 }
