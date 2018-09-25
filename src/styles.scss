@@ -10,7 +10,3 @@ $secondary-text-color: color("grey", "darken-1") !default;
 $divider-color:        color("grey", "darken-1") !default;
 
 @import "~materialize-css/sass/materialize";
-
-.ilike-blue-container {
-  @extend .blue, .lighten-4;
-}

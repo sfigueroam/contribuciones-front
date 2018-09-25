@@ -17,8 +17,16 @@
           <div class="contribution-price right">$ {{c.selectedTotal() | number}}</div>
           <div class="card-title contribution-title truncate">{{c.name}}</div>
           <div class="contribution-subtitle">{{c.identification}}</div>
-          <div *ngFor="let y of getYears(c)">
-            <h5>Año {{y}}</h5>
+        </div>
+        <div class="card-tabs">
+          <ul class="tabs">
+            <li class="tab active" *ngFor="let y of getYears(c)">
+              <a href="#{{y}}">Año {{y}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-content grey lighten-4">
+          <div *ngFor="let y of getYears(c)" id="{{y}}" >
             <ul>
               <li *ngFor="let q of c.quotes.get(y)">{{q.number}}</li>
             </ul>

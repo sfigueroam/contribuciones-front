@@ -1,16 +1,16 @@
-@import "~materialize-css/sass/components/color-variables";
+@import "../../styles";
 
 .contribution-title {
-  color: color("blue", "darken-4");
+  color: $primary-color;
   margin-bottom: 0px;
 }
 
 .contribution-subtitle {
-  color: #757575;
+  color: $secondary-text-color;
 }
 
 .contribution-price {
-  color: #ef6c00;
+  color: $accent-color;
   font-size: 17px;
 }
 
