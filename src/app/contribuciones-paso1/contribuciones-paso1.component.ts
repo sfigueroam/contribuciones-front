@@ -4,7 +4,7 @@ import {Contribution, Expiration, Property, Quote} from '../modelo';
 @Component({
   selector: 'app-contribuciones-paso1',
   templateUrl: './contribuciones-paso1.component.html',
-  styleUrls: ['./contribuciones-paso1.component.css']
+  styleUrls: ['./contribuciones-paso1.component.scss']
 })
 export class ContribucionesPaso1Component implements OnInit {
 
