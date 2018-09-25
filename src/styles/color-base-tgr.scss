@@ -1,4 +1,4 @@
-@import "~materialize-css/sass/components/color-variables";
+@import "../../node_modules/materialize-css/sass/components/color-variables";
 
 $primary-color-dark:   color("blue", "darken-4") !default;
 $primary-color:        color("blue", "darken-2") !default;
@@ -9,4 +9,4 @@ $primary-text-color:   color("grey", "darken-3") !default;
 $secondary-text-color: color("grey", "darken-1") !default;
 $divider-color:        color("grey", "darken-1") !default;
 
-@import "~materialize-css/sass/materialize";
+
