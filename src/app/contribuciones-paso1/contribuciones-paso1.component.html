@@ -1,52 +1,59 @@
-<div class="row">
-  <div class="right">
-    <div class="switch quote_type">
-      <label class="valign-wrapper">
-        <span class="black-text quote_type_text">Todas</span>
-        <input type="checkbox">
-        <span class="lever"></span>
-        <span class="orange-text text-darken-2 quote_type_text">Vencidas</span>
-      </label>
-    </div>
-  </div>
+<div class="container container-with-footer">
   <div class="property" *ngFor="let p of properties">
+    <div class="property-price right">$ {{p.selectedTotal() | number}}</div>
     <h5>{{p.address}}</h5>
-    <div class="col s12 m12 l6 xl4" *ngFor="let c of p.contributions">
-      <div class="card hoverable">
-        <div class="card-content">
-          <div class="contribution-price right">$ {{c.selectedTotal() | number}}</div>
-          <div class="card-title contribution-title truncate">{{c.name}}</div>
-          <div class="contribution-subtitle">{{c.identification}}</div>
-        </div>
-        <div class="card-tabs">
-          <ul class="tabs">
-            <li class="tab" *ngFor="let y of getYears(c)">
-              <a class="active" href="#{{c.identification}}year{{y}}">Año {{y}}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="card-content grey lighten-5 padding-3">
-          <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}" >
-            <ul class="collection no-margin">
-              <li class="collection-item clickable" *ngFor="let q of c.quotes.get(y)" (click)="selectQuote(q)">
-                <div class="row no-margin">
-                  <div class="col s1 quote-number">{{q.number}}</div>
-                  <div class="col s6 quote-amount">{{q.amount | number}}</div>
-                  <div class="col s2 offset-s1 quote-expiration center-align">{{q.expiration.day}}/{{q.expiration.month}}</div>
-                  <a class="secondary-content clickable"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a>
-                </div>
+    <div class="row">
+      <div class="col s12 m12 l6 xl4" *ngFor="let c of p.contributions">
+        <div class="card hoverable">
+          <div class="card-content">
+            <div class="contribution-price right">$ {{c.selectedTotal() | number}}</div>
+            <div class="card-title contribution-title truncate">{{c.name}}</div>
+            <div class="contribution-subtitle">{{c.identification}}</div>
+          </div>
+          <div class="card-tabs">
+            <ul class="tabs" #tabs>
+              <li class="tab" *ngFor="let y of getYears(c)">
+                <a class="active" href="#{{c.identification}}year{{y}}">Año {{y}}</a>
               </li>
             </ul>
           </div>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-        <div class="card-action">
-          <a class="waves-effect waves-teal btn-flat activator">VER DETALLES</a>
+          <div class="card-content grey lighten-5 padding-3">
+            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}">
+              <ul class="collection no-margin">
+                <li class="collection-item clickable" *ngFor="let q of c.activeQuotes(y)" (click)="selectQuote(q)">
+                  <div class="row no-margin" [ngClass]="{'quote-expired': q.expired(y)}">
+                    <div class="col s1 quote-number">{{q.number}}</div>
+                    <div class="col s6 quote-amount">{{q.amount | number}}</div>
+                    <div class="col s2 offset-s1 quote-expiration center-align">
+                      {{q.expiration.day}}/{{q.expiration.month}}
+                    </div>
+                    <a class="secondary-content clickable"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="page-footer payment-footer">
+  <div class="footer-copyright">
+    <div class="container">
+      <span class="quotes-types">
+        <label>
+        <input name="group1" type="radio" [checked]="showAll" (click)="changeQuotes(true)"/>
+        <span>Todas</span>
+        </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label>
+        <input name="group1" type="radio" [checked]="!showAll" (click)="changeQuotes(false)"/>
+        <span>Vencidas</span>
+        </label>
+      </span>
+      <span class="grey-text text-lighten-4 right">
+        <a class="btn btn-small">pagar $ {{total() | number}}</a></span>
     </div>
   </div>
 </div>

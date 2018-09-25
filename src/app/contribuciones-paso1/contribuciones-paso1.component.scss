@@ -1,5 +1,15 @@
 @import "../../styles/color-base-tgr";
 
+.container-with-footer {
+  margin-bottom: 100px;
+}
+
+.property-price {
+  font-size: 19px;
+  margin-right: 11px;
+  color: $secondary-text-color;
+}
+
 .contribution-title {
   color: $primary-color;
   margin-bottom: 0px;
@@ -11,9 +21,16 @@
 }
 
 .contribution-price {
-  color: $accent-color;
+  color: $primary-color-light;
   font-size: 17px;
   margin-top: 5px;
+}
+
+.property {
+  h5 {
+    color: $secondary-text-color;
+    padding: 0px 10px;
+  }
 }
 
 .quote_type .quote_type_text {
@@ -38,6 +55,37 @@
   color: $secondary-text-color;
 }
 
-.quote-icon {
+.quote-expired {
   color: $accent-color;
+
+  i {
+    color: $accent-color;
+  }
+
+  .quote-expiration {
+    font-weight: bold;
+  }
+}
+
+.quote-icon {
+  color: $primary-color-light;
+}
+
+.payment-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.quotes-types {
+  label {
+    color: white;
+  }
+  [type="radio"] + span:before, [type="radio"] + span:after {
+    border: 2px solid white;
+  }
+  [type="radio"]:checked + span:after {
+    background-color: white;
+  }
 }

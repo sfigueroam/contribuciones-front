@@ -1,12 +1,14 @@
 @import "../../node_modules/materialize-css/sass/components/color-variables";
 
-$primary-color-dark:   color("blue", "darken-4") !default;
-$primary-color:        color("blue", "darken-2") !default;
-$primary-color-light:  color("light-blue", "darken-3") !default;
-$primary-color-text:   #FFFFFF;
-$accent-color:         color("orange", "darken-2") !default;
-$primary-text-color:   color("grey", "darken-3") !default;
+$primary-color-dark: color("blue", "darken-4") !default;
+$primary-color: color("blue", "darken-2") !default;
+$primary-color-light: color("light-blue", "darken-3") !default;
+$primary-color-text: #FFFFFF;
+$accent-color: color("orange", "darken-2") !default;
+$primary-text-color: color("grey", "darken-3") !default;
 $secondary-text-color: color("grey", "darken-1") !default;
-$divider-color:        color("grey", "darken-1") !default;
+$divider-color: color("grey", "darken-1") !default;
 
-
+$button-raised-background: color("blue", "base") !default;
+$button-floating-color: color("indigo", "darken-1") !default;
+$button-flat-color: color("brown", "darken-1") !default;
