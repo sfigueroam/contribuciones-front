@@ -1,2 +1,10 @@
 @import "color-base-tgr";
 @import "../../node_modules/materialize-css/sass/materialize";
+
+.no-margin {
+  margin: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}

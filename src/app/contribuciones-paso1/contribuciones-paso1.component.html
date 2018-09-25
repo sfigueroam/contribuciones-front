@@ -19,31 +19,26 @@
           <div class="contribution-subtitle">{{c.identification}}</div>
         </div>
         <div class="card-tabs">
-          <ul class="tabs tabs-fixed-width">
-            <li class="tab"><a href="#test4">Test 1</a></li>
-            <li class="tab"><a class="active" href="#test5">Test 2</a></li>
-            <li class="tab"><a href="#test6">Test 3</a></li>
-          </ul>
-        </div>
-        <div class="card-content grey lighten-4">
-          <div id="test4">Test 1</div>
-          <div id="test5">Test 2</div>
-          <div id="test6">Test 3</div>
-        </div>
-        <!--div class="card-tabs">
-          <ul class="tabs tabs-fixed-width">
+          <ul class="tabs">
             <li class="tab" *ngFor="let y of getYears(c)">
-              <a class="active" href="#year{{y}}">Año {{y}}</a>
+              <a class="active" href="#{{c.identification}}year{{y}}">Año {{y}}</a>
             </li>
           </ul>
         </div>
-        <div class="card-content grey lighten-5">
-          <div *ngFor="let y of getYears(c)" id="year{{y}}" >
-            <ul>
-              <li *ngFor="let q of c.quotes.get(y)">{{q.number}}</li>
+        <div class="card-content grey lighten-5 padding-3">
+          <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}" >
+            <ul class="collection no-margin">
+              <li class="collection-item clickable" *ngFor="let q of c.quotes.get(y)" (click)="selectQuote(q)">
+                <div class="row no-margin">
+                  <div class="col s1 quote-number">{{q.number}}</div>
+                  <div class="col s6 quote-amount">{{q.amount | number}}</div>
+                  <div class="col s2 offset-s1 quote-expiration center-align">{{q.expiration.day}}/{{q.expiration.month}}</div>
+                  <a class="secondary-content clickable"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a>
+                </div>
+              </li>
             </ul>
           </div>
-        </div-->
+        </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
           <p>Here is some more information about this product that is only revealed once clicked on.</p>

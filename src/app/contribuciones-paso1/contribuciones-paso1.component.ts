@@ -13,6 +13,14 @@ export class ContribucionesPaso1Component implements OnInit {
   constructor() {
   }
 
+  quoteIcon(q: Quote): string {
+    return q.selected ? 'check_box' : 'check_box_outline_blank';
+  }
+
+  selectQuote(q: Quote): void {
+    q.selected = !q.selected;
+  }
+
   ngOnInit() {
     this.properties = [
       new Property({
@@ -67,23 +75,23 @@ export class ContribucionesPaso1Component implements OnInit {
             identification: '00395-312',
             quotes: new Map<number, Quote[]>()
               .set(2018, [
-              new Quote({
-                number: 1,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 4,
+                new Quote({
+                  number: 1,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 4,
+                  }),
+                  amount: 5000
                 }),
-                amount: 5000
-              }),
-              new Quote({
-                number: 2,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 11,
-                }),
-                amount: 5000
-              })
-            ])
+                new Quote({
+                  number: 2,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 11,
+                  }),
+                  amount: 5000
+                })
+              ])
           }),
           new Contribution({
             icon: 'layers',
@@ -91,23 +99,23 @@ export class ContribucionesPaso1Component implements OnInit {
             identification: '00395-701',
             quotes: new Map<number, Quote[]>()
               .set(2018, [
-              new Quote({
-                number: 1,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 4
+                new Quote({
+                  number: 1,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 4
+                  }),
+                  amount: 6000
                 }),
-                amount: 6000
-              }),
-              new Quote({
-                number: 2,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 11
-                }),
-                amount: 6000
-              })
-            ])
+                new Quote({
+                  number: 2,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 11
+                  }),
+                  amount: 6000
+                })
+              ])
           }),
           new Contribution({
             icon: 'business',
@@ -115,23 +123,23 @@ export class ContribucionesPaso1Component implements OnInit {
             identification: '00395-684',
             quotes: new Map<number, Quote[]>()
               .set(2018, [
-              new Quote({
-                number: 1,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 4
+                new Quote({
+                  number: 1,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 4
+                  }),
+                  amount: 15000
                 }),
-                amount: 15000
-              }),
-              new Quote({
-                number: 2,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 11
-                }),
-                amount: 15000
-              })
-            ])
+                new Quote({
+                  number: 2,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 11
+                  }),
+                  amount: 15000
+                })
+              ])
           }),
           new Contribution({
             icon: 'directions_car',
@@ -139,23 +147,23 @@ export class ContribucionesPaso1Component implements OnInit {
             identification: '00395-312',
             quotes: new Map<number, Quote[]>()
               .set(2018, [
-              new Quote({
-                number: 1,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 4
+                new Quote({
+                  number: 1,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 4
+                  }),
+                  amount: 5000
                 }),
-                amount: 5000
-              }),
-              new Quote({
-                number: 2,
-                expiration: new Expiration({
-                  day: 20,
-                  month: 11
-                }),
-                amount: 5000
-              })
-            ])
+                new Quote({
+                  number: 2,
+                  expiration: new Expiration({
+                    day: 20,
+                    month: 11
+                  }),
+                  amount: 5000
+                })
+              ])
           })
         ]
       }),

@@ -7,13 +7,37 @@
 
 .contribution-subtitle {
   color: $secondary-text-color;
+  margin-bottom: 0px;
 }
 
 .contribution-price {
   color: $accent-color;
   font-size: 17px;
+  margin-top: 5px;
 }
 
 .quote_type .quote_type_text {
   font-size: 18px;
+}
+
+.padding-3 {
+  padding: 5px;
+}
+
+.quote-number {
+  min-width: 15px;
+}
+
+.quote-amount {
+  min-width: 100px;
+  text-align: right;
+}
+
+.quote-expiration {
+  padding-left: 5px;
+  color: $secondary-text-color;
+}
+
+.quote-icon {
+  color: $accent-color;
 }
