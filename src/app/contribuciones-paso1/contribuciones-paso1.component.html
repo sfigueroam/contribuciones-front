@@ -19,7 +19,19 @@
           <div class="contribution-subtitle">{{c.identification}}</div>
         </div>
         <div class="card-tabs">
-          <ul class="tabs">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a href="#test4">Test 1</a></li>
+            <li class="tab"><a class="active" href="#test5">Test 2</a></li>
+            <li class="tab"><a href="#test6">Test 3</a></li>
+          </ul>
+        </div>
+        <div class="card-content grey lighten-4">
+          <div id="test4">Test 1</div>
+          <div id="test5">Test 2</div>
+          <div id="test6">Test 3</div>
+        </div>
+        <!--div class="card-tabs">
+          <ul class="tabs tabs-fixed-width">
             <li class="tab" *ngFor="let y of getYears(c)">
               <a class="active" href="#year{{y}}">Año {{y}}</a>
             </li>
@@ -31,7 +43,7 @@
               <li *ngFor="let q of c.quotes.get(y)">{{q.number}}</li>
             </ul>
           </div>
-        </div>
+        </div-->
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
           <p>Here is some more information about this product that is only revealed once clicked on.</p>
