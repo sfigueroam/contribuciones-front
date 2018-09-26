@@ -52,7 +52,7 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // M.AutoInit();
     const instance = M.TapTarget.init(this.propertyAdd.nativeElement);
-    instance.open();
+    //instance.open();
     for (const e of this.tabList.toArray()) {
       M.Tabs.init(e.nativeElement);
     }

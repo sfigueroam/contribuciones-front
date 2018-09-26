@@ -25,22 +25,28 @@
             </ul>
           </div>
           <div class="card-content grey lighten-5 padding-3">
-            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}" >
-              <ul class="collection no-margin" *ngIf="c.activeQuotes(y).length > 0;else sinDeuda">
-                <li class="collection-item clickable" *ngFor="let q of c.activeQuotes(y)" (click)="selectQuote(q)">
-                  <div class="row no-margin" [ngClass]="{'quote-expired': q.expired(y)}">
-                    <div class="col s1 quote-number">{{q.number}}</div>
-                    <div class="col s6 quote-amount">$ {{q.amount | number}}</div>
-                    <div class="col s2 offset-s1 quote-expiration center-align">
-                      {{q.expiration.day}}/{{q.expiration.month}}
-                    </div>
-                    <a class="secondary-content clickable"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a>
-                  </div>
-                </li>
-              </ul>
+            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}">
+              <table *ngIf="c.activeQuotes(y).length > 0;else sinDeuda" class="highlight">
+                <thead>
+                <tr>
+                  <th></th>
+                  <th><label>Cuota</label></th>
+                  <th><label>Vence</label></th>
+                  <th><label>Monto</label></th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let q of c.activeQuotes(y)" [ngClass]="{'quote-expired': q.expired(y)}">
+                    <td><a class="secondary-content clickable" (click)="selectQuote(q)"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a></td>
+                    <td class="quote-number center-align">{{q.number}}</td>
+                    <td class="quote-expiration center-align">{{q.expiration.day}}/{{q.expiration.month}}</td>
+                    <td class="quote-amount ">$ {{q.amount | number}}</td>
+                  </tr>
+                </tbody>
+              </table>
               <ng-template #sinDeuda>
                 <ul class="collection no-margin">
-                  <li class="collection-item center-align" >
+                  <li class="collection-item center-align">
                     <label class="not-quotes">Sin deudas {{!showAll?'vencidas':''}}</label>
                   </li>
                 </ul>
