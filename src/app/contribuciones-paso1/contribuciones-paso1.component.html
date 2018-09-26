@@ -1,3 +1,10 @@
+<a id="property-add" class="property-add btn-floating btn-large right white-text"><i class="material-icons">add</i></a>
+<div class="tap-target" data-target="property-add" #tapTarget>
+  <div class="tap-target-content">
+    <h5>Agregar Propiedades</h5>
+    <p>Hemos encontrado nuevas propiedades disponibles para pago asociadas a tu rut</p>
+  </div>
+</div>
 <div class="container container-with-footer">
   <div class="property" *ngFor="let p of properties">
     <div class="property-price right">$ {{p.selectedTotal() | number}}</div>
@@ -20,10 +27,10 @@
           <div class="card-content grey lighten-5 padding-3">
             <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}">
               <ul class="collection no-margin">
-                <li class="collection-item clickable" *ngFor="let q of c.activeQuotes(y)" (click)="selectQuote(q)">
-                  <div class="row no-margin" [ngClass]="{'quote-expired': q.expired(y)}">
+                <li class="collection-item clickable scale-transition" *ngFor="let q of c.activeQuotes(y)" (click)="selectQuote(q)">
+                  <div class="row no-margin" [class.quote-expired]="q.expired(y)">
                     <div class="col s1 quote-number">{{q.number}}</div>
-                    <div class="col s6 quote-amount">{{q.amount | number}}</div>
+                    <div class="col s6 quote-amount">$ {{q.amount | number}}</div>
                     <div class="col s2 offset-s1 quote-expiration center-align">
                       {{q.expiration.day}}/{{q.expiration.month}}
                     </div>
@@ -41,7 +48,11 @@
 <div class="page-footer payment-footer">
   <div class="footer-copyright">
     <div class="container">
-      <span class="quotes-types">
+      <span>
+        <div class="chip quote-type" [class.selected]="showAll" (click)="changeQuotes(true)">Todas</div>
+        <div class="chip quote-type" [class.selected]="!showAll" (click)="changeQuotes(false)">Vencidas</div>
+      </span>
+      <!--span class="quotes-types">
         <label>
         <input name="group1" type="radio" [checked]="showAll" (click)="changeQuotes(true)"/>
         <span>Todas</span>
@@ -51,7 +62,7 @@
         <input name="group1" type="radio" [checked]="!showAll" (click)="changeQuotes(false)"/>
         <span>Vencidas</span>
         </label>
-      </span>
+      </span-->
       <span class="grey-text text-lighten-4 right">
         <a class="btn btn-small">pagar $ {{total() | number}}</a></span>
     </div>

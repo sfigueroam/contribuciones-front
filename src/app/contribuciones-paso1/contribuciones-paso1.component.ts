@@ -12,6 +12,9 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   properties: Property[];
   showAll: boolean;
 
+  @ViewChild('tapTarget')
+  propertyAdd: ElementRef;
+
   constructor() {
     this.showAll = true;
   }
@@ -46,6 +49,8 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     M.AutoInit();
+    const instance = M.TapTarget.getInstance(this.propertyAdd.nativeElement);
+    instance.open();
   }
 
   ngOnInit() {
@@ -66,7 +71,7 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
                     day: 20,
                     month: 4
                   }),
-                  amount: 15000
+                  amount: 15000100
                 }),
                 new Quote({
                   number: 2,
@@ -74,7 +79,7 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
                     day: 20,
                     month: 11
                   }),
-                  amount: 15000
+                  amount: 15000200
                 })
               ])
               .set(2017, [

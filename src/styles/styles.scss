@@ -1,6 +1,12 @@
 @import "color-base-tgr";
 @import "../../node_modules/materialize-css/sass/materialize";
 
+@import "../styles/color-base-tgr";
+
+body {
+  background-color: color("grey", "lighten-3");
+}
+
 .no-margin {
   margin: 0;
 }

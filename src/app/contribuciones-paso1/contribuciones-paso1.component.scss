@@ -10,6 +10,27 @@
   color: $secondary-text-color;
 }
 
+.property-add {
+  background-color: color("blue", "base");
+  position: fixed;
+  right: 23px;
+  bottom: 45px;
+  margin-bottom: 0;
+  z-index: 997;
+
+  i {
+    color: white;
+  }
+}
+
+.tap-target {
+  background-color: color("blue", "lighten-1");
+}
+
+.tap-target-content {
+  color: white;
+}
+
 .contribution-title {
   color: $primary-color;
   margin-bottom: 0px;
@@ -88,4 +109,15 @@
   [type="radio"]:checked + span:after {
     background-color: white;
   }
+}
+
+.quote-type {
+  cursor: pointer;
+  background-color: color("blue", "darken-2");
+  color: color("grey", "lighten-3");
+}
+
+.quote-type.selected {
+  background-color: color("blue", "lighten-1");
+  color: white;
 }
