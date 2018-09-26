@@ -1,5 +1,56 @@
 @import "../../styles/color-base-tgr";
 
+table.quotes-table {
+  background-color: color("white", "base");
+}
+
+thead tr {
+  border-bottom: 1px solid grey;
+  border-color: color("grey", "lighten-2");
+  th {
+    padding: 1px;
+    label {
+      color: color("blue", "darken-2");
+      font-size: 10px;
+    }
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+tr {
+  border-bottom: none;
+}
+tr.visible {
+  border-bottom: 1px solid;
+  border-color: color("grey", "lighten-2");
+}
+tr, td {
+  padding: 0;
+}
+tr td div {
+  max-height: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: max-height 0.3s, padding 0.3s;
+}
+tr.visible td div {
+  max-height: 100px;
+  padding: 10px 10px;
+  transition: max-height 0.6s, padding 0.6s;
+}
+
+.table-container {
+  border: 1px solid color("grey", "lighten-2");
+}
+
+.year-container {
+  border-top: 1px solid;
+  border-color: color("blue", "lighten-4");
+}
+
 .container-with-footer {
   margin-bottom: 100px;
 }
@@ -32,7 +83,7 @@
 }
 
 .contribution-title {
-  color: $primary-color;
+  color: $primary-text-color;
   margin-bottom: 0px;
 }
 
@@ -42,7 +93,7 @@
 }
 
 .contribution-price {
-  color: $primary-color-light;
+  color: $secondary-text-color;
   font-size: 17px;
   margin-top: 5px;
 }
@@ -62,30 +113,10 @@
   padding: 5px;
 }
 
-.quote-number {
-  min-width: 15px;
-}
 
 .quote-amount {
   min-width: 100px;
-  text-align: left;
-}
-
-.quote-expiration {
-  padding-left: 5px;
-  color: $secondary-text-color;
-}
-
-.quote-expired {
-  color: $accent-color;
-
-  i {
-    color: $accent-color;
-  }
-
-  .quote-expiration {
-    font-weight: bold;
-  }
+  text-align: right;
 }
 
 .quote-icon {

@@ -24,23 +24,25 @@
               </li>
             </ul>
           </div>
-          <div class="card-content grey lighten-5 padding-3">
-            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}">
-              <table *ngIf="c.activeQuotes(y).length > 0;else sinDeuda" class="highlight">
+          <div class="card-content grey lighten-4 padding-3 year-container">
+            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}" class="table-container">
+              <table *ngIf="c.activeQuotes(y).length > 0;else sinDeuda" class="quotes-table white highlight">
                 <thead>
                 <tr>
                   <th></th>
-                  <th><label>Cuota</label></th>
-                  <th><label>Vence</label></th>
-                  <th><label>Monto</label></th>
+                  <th class="center-align"><label>CUOTA</label></th>
+                  <th class="center-align"><label>VENCE</label></th>
+                  <th class="center-align"><label>MONTO</label></th>
                 </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let q of c.activeQuotes(y)" [ngClass]="{'quote-expired': q.expired(y)}">
-                    <td><a class="secondary-content clickable" (click)="selectQuote(q)"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a></td>
-                    <td class="quote-number center-align">{{q.number}}</td>
-                    <td class="quote-expiration center-align">{{q.expiration.day}}/{{q.expiration.month}}</td>
-                    <td class="quote-amount ">$ {{q.amount | number}}</td>
+                  <tr *ngFor="let q of c.quotes.get(y)" class="clickable" [class.visible]="q.visible" (click)="selectQuote(q)">
+                    <td>
+                      <div><a class="secondary-content clickable"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a></div>
+                    </td>
+                    <td class="center-align"><div>{{q.number}}</div></td>
+                    <td class="center-align"><div>{{q.expiration.day}}/{{q.expiration.month}}</div></td>
+                    <td class="quote-amount"><div>$ {{q.amount | number}}</div></td>
                   </tr>
                 </tbody>
               </table>

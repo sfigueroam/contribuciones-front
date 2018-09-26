@@ -50,7 +50,7 @@ export class Contribution {
 
   activeQuotes(year: number): Quote[] {
     return this.quotes.get(year).filter(
-      q => q.active
+      q => q.visible
     );
   }
 
@@ -134,20 +134,20 @@ export class Quote {
   expiration: Expiration;
   amount: number;
   selected: boolean;
-  active: boolean;
+  visible: boolean;
 
   show(): void {
-    this.active = true;
+    this.visible = true;
   }
 
   hide(): void {
     this.selected = false;
-    this.active = false;
+    this.visible = false;
   }
 
   public constructor(init?: Partial<Quote>) {
     this.selected = true;
-    this.active = true;
+    this.visible = true;
     Object.assign(this, init);
   }
 
