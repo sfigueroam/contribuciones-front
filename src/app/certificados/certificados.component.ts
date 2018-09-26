@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-certificados',
@@ -8,12 +7,12 @@ import * as M from 'materialize-css';
 })
 export class CertificadosComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
-    // M.AutoInit();
   }
 }
