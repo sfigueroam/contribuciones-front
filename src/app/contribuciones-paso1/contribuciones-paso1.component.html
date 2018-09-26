@@ -25,10 +25,10 @@
             </ul>
           </div>
           <div class="card-content grey lighten-5 padding-3">
-            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}">
-              <ul class="collection no-margin">
-                <li class="collection-item clickable scale-transition" *ngFor="let q of c.activeQuotes(y)" (click)="selectQuote(q)">
-                  <div class="row no-margin" [class.quote-expired]="q.expired(y)">
+            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}" >
+              <ul class="collection no-margin" *ngIf="c.activeQuotes(y).length > 0;else sinDeuda">
+                <li class="collection-item clickable" *ngFor="let q of c.activeQuotes(y)" (click)="selectQuote(q)">
+                  <div class="row no-margin" [ngClass]="{'quote-expired': q.expired(y)}">
                     <div class="col s1 quote-number">{{q.number}}</div>
                     <div class="col s6 quote-amount">$ {{q.amount | number}}</div>
                     <div class="col s2 offset-s1 quote-expiration center-align">
@@ -38,6 +38,13 @@
                   </div>
                 </li>
               </ul>
+              <ng-template #sinDeuda>
+                <ul class="collection no-margin">
+                  <li class="collection-item center-align" >
+                    <label class="not-quotes">Sin deudas {{!showAll?'vencidas':''}}</label>
+                  </li>
+                </ul>
+              </ng-template>
             </div>
           </div>
         </div>
@@ -46,23 +53,12 @@
   </div>
 </div>
 <div class="page-footer payment-footer">
-  <div class="footer-copyright">
+  <div class="footer-contribution">
     <div class="container">
       <span>
         <div class="chip quote-type" [class.selected]="showAll" (click)="changeQuotes(true)">Todas</div>
         <div class="chip quote-type" [class.selected]="!showAll" (click)="changeQuotes(false)">Vencidas</div>
       </span>
-      <!--span class="quotes-types">
-        <label>
-        <input name="group1" type="radio" [checked]="showAll" (click)="changeQuotes(true)"/>
-        <span>Todas</span>
-        </label>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <label>
-        <input name="group1" type="radio" [checked]="!showAll" (click)="changeQuotes(false)"/>
-        <span>Vencidas</span>
-        </label>
-      </span-->
       <span class="grey-text text-lighten-4 right">
         <a class="btn btn-small">pagar $ {{total() | number}}</a></span>
     </div>

@@ -110,6 +110,14 @@
     background-color: white;
   }
 }
+.not-quotes{
+  font-size: 17px;
+  color: $secondary-text-color;
+}
+.footer-contribution{
+  display: flex;
+  padding: 10px 10px;
+}
 
 .quote-type {
   cursor: pointer;

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../modelo';
 import * as M from 'materialize-css';
 
@@ -21,7 +21,6 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
 
   changeQuotes(all: boolean) {
     this.showAll = all;
-    console.log(this.showAll);
     for (const p of this.properties) {
       if (this.showAll) {
         p.showAll();
@@ -294,14 +293,6 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
             quotes: new Map<number, Quote[]>()
               .set(2018, [
                 new Quote({
-                  number: 1,
-                  expiration: new Expiration({
-                    day: 20,
-                    month: 4
-                  }),
-                  amount: 6000
-                }),
-                new Quote({
                   number: 2,
                   expiration: new Expiration({
                     day: 20,
@@ -337,4 +328,5 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   getYears(c: Contribution) {
     return Array.from(c.quotes.keys());
   }
+
 }
