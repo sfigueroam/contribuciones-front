@@ -1,0 +1,28 @@
+<header>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo center">TGR</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="left hide-on-med-and-down">
+          <li><a routerLink="/contribuciones">Contribuciones</a></li>
+          <li><a routerLink="/certificados">Certificados</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a href="#">
+            <span>
+              <i class="material-icons">account_circle</i>
+            </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <ul #sidenav class="sidenav" id="mobile-demo">
+    <li><a routerLink="/contribuciones">Contribuciones</a></li>
+    <li><a routerLink="/certificados">Certificados</a></li>
+    <li><a routerLink="/certificados">Logout</a></li>
+  </ul>
+</header>

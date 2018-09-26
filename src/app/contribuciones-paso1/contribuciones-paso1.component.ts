@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../modelo';
 import * as M from 'materialize-css';
 
