@@ -37,8 +37,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let q of c.quotes.get(y)" class="clickable" [class.visible]="q.visible" (click)="selectQuote(q)">
-                    <td>
-                      <div><a class="secondary-content clickable"><i class="material-icons quote-icon">{{quoteIcon(q)}}</i></a></div>
+                    <td class="center-align">
+                      <div><a class="secondary-content clickable"><i class="valign-wrapper material-icons quote-icon">{{quoteIcon(q)}}</i></a></div>
                     </td>
                     <td class="center-align"><div>{{q.number}}</div></td>
                     <td class="center-align"><div>{{q.expiration.day}}/{{q.expiration.month}}</div></td>

@@ -11,7 +11,7 @@ thead tr {
     padding: 1px;
     label {
       color: color("blue", "darken-2");
-      font-size: 10px;
+      font-size: 11px;
     }
   }
 }
@@ -64,8 +64,8 @@ tr.visible td div {
 .property-add {
   background-color: color("blue", "base");
   position: fixed;
-  right: 23px;
-  bottom: 45px;
+  right: 17px;
+  bottom: 70px;
   margin-bottom: 0;
   z-index: 997;
 
@@ -124,6 +124,7 @@ tr.visible td div {
 }
 
 .payment-footer {
+  padding-top: 3px;
   position: fixed;
   bottom: 0;
   left: 0;
