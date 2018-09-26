@@ -13,7 +13,7 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   showAll: boolean;
   instance: M;
 
-  @ViewChildren('tabs') viewChildren : QueryList<ElementRef>;
+  @ViewChildren('tabs') viewChildren: QueryList<ElementRef>;
 
   constructor() {
     this.showAll = true;
@@ -21,7 +21,6 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
 
   changeQuotes(all: boolean) {
     this.showAll = all;
-    console.log(this.showAll);
     for (const p of this.properties) {
       if (this.showAll) {
         p.showAll();
@@ -30,9 +29,37 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
       }
     }
 
-    console.log(this.viewChildren);
+    //console.log(this.viewChildren);
+/*
+    var tabs: any = this.viewChildren.toArray();
+    for (const p of tabs) {
+      for (const c of p.nativeElement.children) {
+        let dd = c.classList;
+        console.log(dd.length);
+        for (const clazz of dd) {
+          console.log(clazz);
+        }
 
-  }
+        if(c.hasChildNodes()){
+          console.log(c.children);
+        }
+      }
+
+      console.log("cambio");
+    }
+*/
+
+  /*  setTimeout( () => {
+      var tabs: any = this.viewChildren.toArray();
+      for (const p of tabs) {
+        let instance = M.Tabs.getInstance(p.nativeElement);
+        instance.destroy();
+        console.log(instance);
+      }
+
+      M.AutoInit();
+    }, 100 );
+ */ }
 
   total(): number {
     let _total = 0;
@@ -52,15 +79,15 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     /*var tabs: any = this.viewChildren.toArray();
-    console.log(tabs);
-
-    var element: []any;
+    var tabsList: any[] = [];
     for (const p of tabs) {
-      element.push(p.ElementRef);
+      tabsList.push(p.nativeElement);
+      console.log(p.nativeElement);
     }
+    this.instance = M.AutoInit();
+    //this.instance = M.Tabs.init(tabsList, {});
 
-    this.instance = M.Tabs.getInstance(tabs);*/
-
+    console.log(this.instance);*/
     M.AutoInit();
   }
 
@@ -338,9 +365,7 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   }
 
   getYears(c: Contribution) {
-    let years: any [] = Array.from(c.quotes.keys());
-    return years.filter(
-    (y) => c.activeQuotes(y).length !== 0
-    );
+    return Array.from(c.quotes.keys());
   }
+
 }

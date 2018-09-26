@@ -12,14 +12,14 @@
           </div>
           <div class="card-tabs">
             <ul class="tabs" #tabs>
-              <li class="tab" *ngFor="let y of getYears(c)">
+              <li class="tab" *ngFor="let y of getYears(c)" >
                 <a class="active" href="#{{c.identification}}year{{y}}">Año {{y}}</a>
               </li>
             </ul>
           </div>
           <div class="card-content grey lighten-5 padding-3">
-            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}">
-              <ul class="collection no-margin">
+            <div *ngFor="let y of getYears(c)" id="{{c.identification}}year{{y}}" >
+              <ul class="collection no-margin" *ngIf="c.activeQuotes(y).length > 0;else sinDeuda">
                 <li class="collection-item clickable" *ngFor="let q of c.activeQuotes(y)" (click)="selectQuote(q)">
                   <div class="row no-margin" [ngClass]="{'quote-expired': q.expired(y)}">
                     <div class="col s1 quote-number">{{q.number}}</div>
@@ -31,6 +31,13 @@
                   </div>
                 </li>
               </ul>
+              <ng-template #sinDeuda>
+                <ul class="collection no-margin">
+                  <li class="collection-item center-align" >
+                    <label class="not-quotes">Sin deudas {{!showAll?'vencidas':''}}</label>
+                  </li>
+                </ul>
+              </ng-template>
             </div>
           </div>
         </div>
