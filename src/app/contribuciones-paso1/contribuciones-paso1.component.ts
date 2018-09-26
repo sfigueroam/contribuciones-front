@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../modelo';
 import * as M from 'materialize-css';
 
@@ -14,6 +14,9 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
 
   @ViewChild('tapTarget')
   propertyAdd: ElementRef;
+
+  @ViewChildren('tabs')
+  tabList: QueryList<ElementRef>;
 
   constructor() {
     this.showAll = true;
@@ -47,9 +50,12 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    M.AutoInit();
-    const instance = M.TapTarget.getInstance(this.propertyAdd.nativeElement);
+    // M.AutoInit();
+    const instance = M.TapTarget.init(this.propertyAdd.nativeElement);
     instance.open();
+    for (const e of this.tabList.toArray()) {
+      M.Tabs.init(e.nativeElement);
+    }
   }
 
   ngOnInit() {

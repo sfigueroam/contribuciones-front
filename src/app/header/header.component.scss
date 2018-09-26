@@ -1,0 +1,22 @@
+@import "../../styles/color-base-tgr";
+
+.sidenav {
+  background-color: color("blue", "darken-2");
+  color: white;
+
+  li a {
+    color: white;
+  }
+}
+
+.sidenav-icon {
+  height: 79px;
+}
+
+.sidenav-link {
+  background-color: color("blue", "darken-3");
+}
+
+.sidenav-link.active {
+  background-color: color("blue", "base");
+}

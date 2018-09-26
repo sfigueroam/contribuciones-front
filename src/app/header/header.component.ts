@@ -4,13 +4,15 @@ import * as M from 'materialize-css';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, AfterViewInit{
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sidenav') viewChildren: ElementRef;
+  instance: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -20,8 +22,14 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     console.log(this.viewChildren.nativeElement);
 
     M.AutoInit();
-    let instance = M.Sidenav.init(this.viewChildren.nativeElement, {});
-    console.log(instance);
+    this.instance = M.Sidenav.init(this.viewChildren.nativeElement, {
+      inDuration: 500,
+      outDuration: 500
+    });
+  }
+
+  closeSidenavbar(): void {
+    this.instance.close();
   }
 
 }
