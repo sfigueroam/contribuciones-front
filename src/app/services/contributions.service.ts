@@ -1,65 +1,17 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {Contribution, Expiration, Property, Quote} from '../modelo';
-import * as M from 'materialize-css';
+import {Injectable} from '@angular/core';
+import {Contribution, Expiration, Property, Quote} from '../modulos/modelo';
 
-@Component({
-  selector: 'app-contribuciones-paso1',
-  templateUrl: './contribuciones-paso1.component.html',
-  styleUrls: ['./contribuciones-paso1.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
-
-  properties: Property[];
-  showAll: boolean;
-
-  @ViewChild('tapTarget')
-  propertyAdd: ElementRef;
-
-  @ViewChildren('tabs')
-  tabList: QueryList<ElementRef>;
+export class ContributionsService {
 
   constructor() {
-    this.showAll = true;
   }
 
-  changeQuotes(all: boolean) {
-    this.showAll = all;
-    for (const p of this.properties) {
-      if (this.showAll) {
-        p.showAll();
-      } else {
-        p.hideExpired();
-      }
-    }
-  }
+  getContributions(): Property [] {
 
-  total(): number {
-    let _total = 0;
-    for (const p of this.properties) {
-      _total += p.selectedTotal();
-    }
-    return _total;
-  }
-
-  quoteIcon(q: Quote): string {
-    return q.selected ? 'check_box' : 'check_box_outline_blank';
-  }
-
-  selectQuote(q: Quote): void {
-    q.selected = !q.selected;
-  }
-
-  ngAfterViewInit() {
-    // M.AutoInit();
-    const instance = M.TapTarget.init(this.propertyAdd.nativeElement);
-    // instance.open();
-    for (const e of this.tabList.toArray()) {
-      M.Tabs.init(e.nativeElement);
-    }
-  }
-
-  ngOnInit() {
-    this.properties = [
+    let properties = [
       new Property({
         address: 'Avenida Presidente José Batlle y Ordoñez 3786',
         location: 'Macul',
@@ -329,10 +281,7 @@ export class ContribucionesPaso1Component implements OnInit, AfterViewInit {
         ]
       })
     ];
-  }
+    return properties;
 
-  getYears(c: Contribution) {
-    return Array.from(c.quotes.keys());
   }
-
 }

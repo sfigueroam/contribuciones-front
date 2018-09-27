@@ -1,22 +1,29 @@
 import {BrowserModule} from '@angular/platform-browser';
 import { LOCALE_ID, NgModule} from '@angular/core';
 
-import {AppComponent} from './app.component';
-import {ContribucionesPaso1Component} from './contribuciones-paso1/contribuciones-paso1.component';
+import {AppComponent} from './components/app.component';
+import {ListadoComponent} from './components/contribuciones/listado/listado.component';
 import {AppRoutingModule} from './app-routing.module';
-import {CertificadosComponent} from './certificados/certificados.component';
-import { HeaderComponent } from './header/header.component';
+import {CertificadosComponent} from './components/certificados/certificados.component';
+import { HeaderComponent } from './components/header/header.component';
 import localeEs from '@angular/common/locales/es-CL';
 import {registerLocaleData} from '@angular/common';
+import {ContributionsService} from './services/contributions.service';
+import { PagarComponent } from './components/contribuciones/pagar/pagar.component';
+import { RespuestaComponent } from './components/contribuciones/respuesta/respuesta.component';
+
 
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [
     AppComponent,
-    ContribucionesPaso1Component,
+    ListadoComponent,
     CertificadosComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListadoComponent,
+    PagarComponent,
+    RespuestaComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,8 @@ registerLocaleData(localeEs, 'es');
     {
       provide: LOCALE_ID,
       useValue: 'es-CL'
-    }
+    },
+    ContributionsService
   ],
   bootstrap: [AppComponent]
 })
