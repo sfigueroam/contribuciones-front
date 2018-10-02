@@ -11,6 +11,7 @@ import {registerLocaleData} from '@angular/common';
 import {ContributionsService} from './services/contributions.service';
 import { PagarComponent } from './components/contribuciones/pagar/pagar.component';
 import { RespuestaComponent } from './components/contribuciones/respuesta/respuesta.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 
@@ -23,7 +24,8 @@ registerLocaleData(localeEs, 'es');
     HeaderComponent,
     ListadoComponent,
     PagarComponent,
-    RespuestaComponent
+    RespuestaComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,11 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import * as M from 'materialize-css';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('sidenav') viewChildren: ElementRef;
-  instance: any;
+export class HeaderComponent implements OnInit {
 
   constructor() {
   }
@@ -17,19 +13,5 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-
-    console.log(this.viewChildren.nativeElement);
-
-    M.AutoInit();
-    this.instance = M.Sidenav.init(this.viewChildren.nativeElement, {
-      inDuration: 500,
-      outDuration: 500
-    });
-  }
-
-  closeSidenavbar(): void {
-    this.instance.close();
-  }
 
 }

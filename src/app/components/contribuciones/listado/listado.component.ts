@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../../../modulos/modelo';
-import * as M from 'materialize-css';
 import {ContributionsService} from '../../../services/contributions.service';
 
 @Component({
@@ -54,11 +53,11 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     // M.AutoInit();
-    const instance = M.TapTarget.init(this.propertyAdd.nativeElement);
+    /*const instance = M.TapTarget.init(this.propertyAdd.nativeElement);
     // instance.open();
     for (const e of this.tabList.toArray()) {
       M.Tabs.init(e.nativeElement);
-    }
+    }*/
   }
 
   ngOnInit() {
