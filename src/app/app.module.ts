@@ -5,13 +5,13 @@ import {AppComponent} from './components/app.component';
 import {ListadoComponent} from './components/contribuciones/listado/listado.component';
 import {AppRoutingModule} from './app-routing.module';
 import {CertificadosComponent} from './components/certificados/certificados.component';
-import { HeaderComponent } from './components/header/header.component';
 import localeEs from '@angular/common/locales/es-CL';
 import {registerLocaleData} from '@angular/common';
 import {ContributionsService} from './services/contributions.service';
 import { PagarComponent } from './components/contribuciones/pagar/pagar.component';
 import { RespuestaComponent } from './components/contribuciones/respuesta/respuesta.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 
 
@@ -21,11 +21,11 @@ registerLocaleData(localeEs, 'es');
     AppComponent,
     ListadoComponent,
     CertificadosComponent,
-    HeaderComponent,
     ListadoComponent,
     PagarComponent,
     RespuestaComponent,
-    MenuComponent
+    MenuComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
