@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {Contribution, Expiration, Property, Quote} from '../../../modulos/modelo';
+import {Contribution, Property, Quote} from '../../../modulos/modelo';
 import {ContributionsService} from '../../../services/contributions.service';
+import {DetallePagoComponent} from '../../modal/detalle-pago/detalle-pago.component';
 
 @Component({
   selector: 'app-listado',
@@ -18,6 +19,10 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('tabs')
   tabList: QueryList<ElementRef>;
+
+
+  @ViewChild('detallePago')
+  detallePago: DetallePagoComponent;
 
   constructor(private propertiesService: ContributionsService) {
     this.showAll = true;
@@ -66,6 +71,13 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   getYears(c: Contribution) {
     return Array.from(c.quotes.keys());
+  }
+
+  openDialog(){
+    this.detallePago.showDialog();
+  }
+  public closeDialog(){
+    this.detallePago.closeDialog();
   }
 
 }

@@ -12,6 +12,7 @@ import { PagarComponent } from './components/contribuciones/pagar/pagar.componen
 import { RespuestaComponent } from './components/contribuciones/respuesta/respuesta.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { DetallePagoComponent } from './components/modal/detalle-pago/detalle-pago.component';
 
 
 
@@ -25,7 +26,8 @@ registerLocaleData(localeEs, 'es');
     PagarComponent,
     RespuestaComponent,
     MenuComponent,
-    LandingComponent
+    LandingComponent,
+    DetallePagoComponent
   ],
   imports: [
     BrowserModule,
