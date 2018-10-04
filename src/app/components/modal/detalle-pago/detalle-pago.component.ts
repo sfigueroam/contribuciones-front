@@ -3,7 +3,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 @Component({
   selector: 'app-detalle-pago',
   templateUrl: './detalle-pago.component.html',
-  styleUrls: ['./detalle-pago.component.css']
+  styleUrls: ['./detalle-pago.component.scss']
 })
 export class DetallePagoComponent implements OnInit {
 
@@ -24,4 +24,7 @@ export class DetallePagoComponent implements OnInit {
     this.dialog.nativeElement.showModal();
   }
 
+  siguiente() {
+
+  }
 }

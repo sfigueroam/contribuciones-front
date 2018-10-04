@@ -76,8 +76,5 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   openDialog(){
     this.detallePago.showDialog();
   }
-  public closeDialog(){
-    this.detallePago.closeDialog();
-  }
 
 }
