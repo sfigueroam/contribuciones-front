@@ -1,3 +1,27 @@
-.active-menu{
-  background: mediumpurple;
+.tgr-header {
+	background-color: #fff
+}
+.tgr-header .material-icons{
+    color: #767777 !important;
+}
+.tgr-header .mdl-navigation__link {
+    color: #757575;
+    font-weight: 700;
+    font-size: 14px;
+}
+.tgr-logo-image {
+	height: 30px;
+	width: auto;
+}
+.tgr-header .active-menu {
+	background-color: #0C2D65;
+	color: #fff;
+}
+.tgr-header .mdl-navigation__link:hover {
+	background-color: #DF2A33;
+	color: #fff;
+}
+.tgr-header .active-menu:hover {
+	background-color: #0C2D65;
+	color: #fff;
 }

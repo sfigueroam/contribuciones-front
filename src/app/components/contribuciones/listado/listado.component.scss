@@ -1,165 +1,30 @@
-/*@import "../../../../styles/color-base-tgr";
-
-table.quotes-table {
-  background-color: white;
+.tgr-list-section {
+    padding: 36px 0;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-thead tr {
-  border-bottom: 1px solid grey;
-  border-color: color("grey", "lighten-2");
-  th {
-    padding: 1px;
-    label {
-      color: color("blue", "darken-2");
-      font-size: 11px;
-    }
-  }
+.tgr-total {
+  position: absolute;
+  right: 8px;
+  top: 8px;
 }
-
-table {
-  border-collapse: collapse;
+.tgr-section-title {
+  position: relative;
 }
-tr {
-  border-bottom: none;
+.tgr-card__title {
+  margin: 0;
+  padding: 0 0 10px 0;
 }
-tr.visible {
-  border-bottom: 1px solid;
-  border-color: color("grey", "lighten-2");
+.tgr-card__title h6 {
+  margin: 0;
 }
-tr, td {
-  padding: 0;
+.tgr-card__subtitle-text {
+  padding-left: 34px;
 }
-tr td div {
-  max-height: 0;
-  padding: 0 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition: max-height 0.3s, padding 0.3s;
+.tgr-100 {
+  width: 100%
 }
-tr.visible td div {
-  max-height: 100px;
-  padding: 10px 10px;
-  transition: max-height 0.6s, padding 0.6s;
-}
-
-.table-container {
-  border: 1px solid color("grey", "lighten-2");
-}
-
-.year-container {
-  border-top: 1px solid;
-  border-color: color("blue", "lighten-4");
-}
-
-.container-with-footer {
-  margin-bottom: 100px;
-}
-
-.property-price {
-  font-size: 19px;
-  margin-right: 11px;
-  color: $secondary-text-color;
-}
-
-.property-add {
-  background-color: color("blue", "base");
-  position: fixed;
-  right: 17px;
-  bottom: 70px;
-  margin-bottom: 0;
-  z-index: 997;
-
-  i {
-    color: white;
-  }
-}
-
-.tap-target {
-  background-color: color("blue", "lighten-1");
-}
-
-.tap-target-content {
-  color: white;
-}
-
-.contribution-title {
-  color: $primary-text-color;
-  margin-bottom: 0px;
-}
-
-.contribution-subtitle {
-  color: $secondary-text-color;
-  margin-bottom: 0px;
-}
-
-.contribution-price {
-  color: $secondary-text-color;
-  font-size: 17px;
-  margin-top: 5px;
-}
-
-.property {
-  h5 {
-    color: $secondary-text-color;
-    padding: 0px 10px;
-  }
-}
-
-.quote_type .quote_type_text {
-  font-size: 18px;
-}
-
-.padding-3 {
-  padding: 5px;
-}
-
-
-.quote-amount {
-  min-width: 100px;
-  text-align: right;
-}
-
-.quote-icon {
-  color: $primary-color-light;
-}
-
-.payment-footer {
-  padding-top: 3px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.tgr-card-container .mdl-data-table{
   width: 100%;
 }
-
-.quotes-types {
-  label {
-    color: white;
-  }
-  [type="radio"] + span:before, [type="radio"] + span:after {
-    border: 2px solid white;
-  }
-  [type="radio"]:checked + span:after {
-    background-color: white;
-  }
-}
-.not-quotes{
-  font-size: 17px;
-  color: $secondary-text-color;
-}
-.footer-contribution{
-  display: flex;
-  padding: 10px 10px;
-}
-
-.quote-type {
-  cursor: pointer;
-  background-color: color("blue", "darken-2");
-  color: color("grey", "lighten-3");
-}
-
-.quote-type.selected {
-  background-color: color("blue", "lighten-1");
-  color: white;
-}
-
-*/
