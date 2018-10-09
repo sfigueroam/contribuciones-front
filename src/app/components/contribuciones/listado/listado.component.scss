@@ -12,6 +12,10 @@
 .tgr-section-title {
   padding-left: 17px;
   position: relative;
+  padding-top: 30px;
+}
+.tgr-section-title:first-child {
+  padding-top: 0px;
 }
 .tgr-section-title--address {
   margin-right: 140px;
@@ -172,7 +176,7 @@
   .tgr-section-title {
     font-size: 18px;    
     font-weight: bold;
-    line-height: 1.2;
+    line-height: 1.2;    
   }
 }
 .tgr-tr--late {
