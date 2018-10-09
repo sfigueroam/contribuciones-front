@@ -7,7 +7,7 @@
 .tgr-total {
   position: absolute;
   right: 19px;
-  top: 0;
+  top: 30px;
 }
 .tgr-section-title {
   padding-left: 17px;
@@ -16,6 +16,9 @@
 }
 .tgr-section-title:first-child {
   padding-top: 0px;
+}
+ .tgr-total:nth-child(2) {
+  top: 0 ;
 }
 .tgr-section-title--address {
   margin-right: 140px;
