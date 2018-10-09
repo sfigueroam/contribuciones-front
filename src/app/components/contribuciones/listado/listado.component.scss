@@ -121,7 +121,7 @@
   top: 0;
   bottom: 0;
   background: rgba(255,255,255,.9);
-  z-index: 9999;
+  z-index: 899;
 }
 .wait > .tgr-cell-wait {
   display: block;
@@ -135,6 +135,82 @@
   text-align: center;
   color: #666;
 }
+
+.tgr-tr--late {
+  background: #F9D2D4;
+  border-bottom-color: #F4B4B7;
+}
+.tgr-tr--late:hover{
+  background: #F4B4B7;
+}
+.tgr-actions {
+  background: #fff;
+  bottom: 0;
+  display: block;
+  left:0;
+  min-height: 80px;
+  position: fixed;    
+  right: 0;
+  z-index: 900;
+}
+.tgr-actions:before {
+  background: linear-gradient(to top,#666,#888);
+   content: " ";
+  display: block;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+.tgr-actions__contet{
+  max-width: 1210px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tgr-add {
+  margin: -30px auto 0;
+  text-align: center;
+  width: 130px;
+}
+.tgr-add__label {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #666;
+}
+.tgr-select {
+  float: left;
+  border: 2px solid #4285f4;  
+  padding: 6px 16px 16px 16px;
+  margin-top: -26px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+.tgr-select__label {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #666;
+}
+.tgr-select .mdl-radio {
+  margin-right: 24px;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.tgr-pay {
+  float: right;
+  overflow: hidden;
+}
+.tgr-pay .mdl-button {
+  float: right;
+}
+.tgr-pay__label {
+  float: left;
+  background: #4285f4;
+  color: #fff; 
+  border-radius: 4px;  
+  padding: 8px 16px;
+  margin-right: 16px;
+}
+
 @media (max-width: 1080px){
   .tgr-list-section .mdl-data-table td,
   .tgr-list-section .mdl-data-table th {
@@ -208,12 +284,6 @@
     line-height: 1.2;    
   }
 }
-.tgr-tr--late {
-  background: #F9D2D4;
-  border-bottom-color: #F4B4B7;
-}
-.tgr-tr--late:hover{
-  background: #F4B4B7;
-}
+
     
 
