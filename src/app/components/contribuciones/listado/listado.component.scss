@@ -6,10 +6,11 @@
 }
 .tgr-total {
   position: absolute;
-  right: 8px;
-  top: 8px;
+  right: 19px;
+  top: 0;
 }
 .tgr-section-title {
+  padding-left: 17px;
   position: relative;
 }
 .tgr-card__title {
@@ -27,4 +28,60 @@
 }
 .tgr-card-container .mdl-data-table{
   width: 100%;
+}
+
+
+.tgr-price {
+  float: right;
+}
+.tgr-price__cost {
+  font-weight: bold;
+}
+.tgr-card__head {
+  
+}
+.tgr-card__header{
+  color: #fff;
+  background: #283593;
+  padding: 16px;
+  max-height:24px;
+}
+.tgr-card__title {
+  font-size:16px;
+  margin: 0;
+}
+.tgr-card__title .material-icons{
+  float: left;
+  line-height: 1;  
+  margin-right: 4px;
+  margin-top: -3px;
+}
+.tgr-card__title--text{
+  font-size:16px;
+}
+.tgr-card__subtitle {
+  margin-bottom: 0;
+  padding-left: 16px;
+  padding-top: 16px;
+}
+.tgr-card__tag {
+  color: #283593;
+  font-weight: bold;
+}
+.tgr-price__desc {
+  line-height: 1.2;
+  margin-bottom: 0;
+  padding-right: 16px;
+  padding-top: 10px;
+  text-align: right;
+  
+}
+.tgr-card__desc--tag{
+  color: #283593;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.tgr-card__desc--price {
+  color: #666;
+  padding-right: 3px;
 }

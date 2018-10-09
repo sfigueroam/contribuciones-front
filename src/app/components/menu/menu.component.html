@@ -13,12 +13,21 @@
       
       <span class="mdl-layout-title  ">TGR</span>
       <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <i class="mdl-layout-icon  material-icons">face</i>
+      <div class="mdl-layout-spacer"></div>      
+      <button id="demo-menu-lower-right"
+              class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="mdl-layout-icon  material-icons">face</i>
+      </button>
+
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+          for="demo-menu-lower-right">
+        <li class="mdl-menu__item">Ingresar</li>
+        <li class="mdl-menu__item">Registrarse</li>
+      </ul>
 
     </div>
   </header>
-  <div class="mdl-layout__drawer ">
+  <div class="mdl-layout__drawer mdl-layout--small-screen-only">
     <span class="tgr-title mdl-layout-title">
             <img class="tgr-logo-image" src="assets/tgr-logo.svg">
       </span>
