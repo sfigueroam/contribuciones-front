@@ -13,6 +13,9 @@
   padding-left: 17px;
   position: relative;
 }
+.tgr-section-title--address {
+  margin-right: 140px;
+}
 .tgr-card__title {
   margin: 0;
   padding: 0 0 10px 0;
@@ -33,6 +36,7 @@
 
 .tgr-price {
   float: right;
+  padding-left: 10px;
 }
 .tgr-price__cost {
   font-weight: bold;
@@ -54,10 +58,13 @@
   float: left;
   line-height: 1;  
   margin-right: 4px;
-  margin-top: -3px;
+  margin-top: -6px;
+  margin-bottom:20px;
 }
 .tgr-card__title--text{
+  display: block;
   font-size:16px;
+  line-height: 1;
 }
 .tgr-card__subtitle {
   margin-bottom: 0;
@@ -85,3 +92,84 @@
   color: #666;
   padding-right: 3px;
 }
+.tgr-list-section  .mdl-shadow--2dp {
+  box-shadow: none;
+}
+.tgr-list-section .mdl-data-table {
+  border: none;
+}
+@media (max-width: 1080px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+@media (max-width: 1000px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+@media (max-width: 950px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
+@media (max-width: 890px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+@media (max-width: 839px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+@media (max-width: 740px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+@media (max-width: 670px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+@media (max-width: 620px){
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 3px;
+    padding-right: 3px;
+
+  }
+}
+@media (max-width: 605px){
+  .tgr-list-section .mdl-cell--4-col,
+  .tgr-list-section .mdl-cell--4-col-tablet.mdl-cell--4-col-tablet {
+    width: calc(100% - 16px);
+  } 
+  .tgr-list-section .mdl-data-table td,
+  .tgr-list-section .mdl-data-table th {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .tgr-section-title {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: bold;
+  }
+}
+    
+
