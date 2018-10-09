@@ -42,12 +42,11 @@
   font-weight: bold;
 }
 .tgr-card__head {
-  
-}
-.tgr-card__header{
-  color: #fff;
-  background: #283593;
+  color: #fff; 
+  background: #2E4A7A;
   padding: 16px;
+}
+.tgr-card__header{   
   max-height:24px;
 }
 .tgr-card__title {
@@ -59,7 +58,7 @@
   line-height: 1;  
   margin-right: 4px;
   margin-top: -6px;
-  margin-bottom:20px;
+  margin-bottom: 16px;
 }
 .tgr-card__title--text{
   display: block;
@@ -68,28 +67,24 @@
 }
 .tgr-card__subtitle {
   margin-bottom: 0;
-  padding-left: 16px;
-  padding-top: 16px;
+  padding-top: 10px;
 }
 .tgr-card__tag {
-  color: #283593;
   font-weight: bold;
 }
 .tgr-price__desc {
   line-height: 1.2;
   margin-bottom: 0;
-  padding-right: 16px;
-  padding-top: 10px;
+  padding-top: 4px;
   text-align: right;
   
 }
 .tgr-card__desc--tag{
-  color: #283593;
   font-size: 12px;
   text-transform: uppercase;
 }
 .tgr-card__desc--price {
-  color: #666;
+  color: #C0C0B3;
   padding-right: 3px;
 }
 .tgr-list-section  .mdl-shadow--2dp {
@@ -166,9 +161,9 @@
     padding-right: 18px;
   }
   .tgr-section-title {
-    font-size: 18px;
-    line-height: 1.2;
+    font-size: 18px;    
     font-weight: bold;
+    line-height: 1.2;
   }
 }
     
