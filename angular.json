@@ -8,7 +8,8 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,13 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/materialize-css/dist/css/materialize.min.css",
-              "node_modules/@mdi/font/css/materialdesignicons.min.css",
-              "src/styles/styles.scss"
+              "src/styles/styles.scss",
+              "node_modules/material-design-lite/dist/material.blue-light_blue.min.css"
             ],
-            "scripts": [
-              "./node_modules/materialize-css/dist/js/materialize.js"
-            ]
+            "scripts": ["node_modules/material-design-lite/material.min.js"]
           },
           "configurations": {
             "production": {
