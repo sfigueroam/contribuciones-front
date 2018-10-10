@@ -27,7 +27,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   constructor(private propertiesService: ContributionsService) {
     this.showAll = true;
     this.properties = this.propertiesService.getContributions();
-    propertiesService.getBienesRaices();
+    console.log(propertiesService.getBienesRaices());
   }
 
   changeQuotes(all: boolean) {

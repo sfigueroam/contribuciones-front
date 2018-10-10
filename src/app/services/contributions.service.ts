@@ -1,13 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../modulos/modelo';
 import {Dammy} from '../modulos/Dammy';
+import {Rol} from '../domain/Rol';
+import {Cuota} from '../domain/Cuota';
+import {Propiedades} from '../domain/Propiedades';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContributionsService {
 
-  constructor(private dammy: Dammy) {
+  dammy: Dammy = new Dammy()
+
+  propiedades: Propiedades[];
+  constructor() {
   }
 
   getContributions(): Property [] {
@@ -286,8 +292,46 @@ export class ContributionsService {
 
   }
 
-  getBienesRaices(): any{
-    console.log(this.dammy.getBienRaiz());
-    return "";
+  getBienesRaices(): Propiedades {
+
+    this.propiedades = new Propiedades();
+
+    let bienesRaices =  this.getBienRaiz().curout;
+    for (let i = 0; i < bienesRaices.length; i++) {
+      let rol: Rol = new Rol(bienesRaices[i]);
+
+      let deudas = this.getDeudas(rol.rolId).listaDeudaRol;
+
+      let cuotasTmp: Cuota[] = [];
+      let year: number = -1;
+      for (let j = 0; j < deudas.length; j ++){
+        let cuota: Cuota = new Cuota(deudas[j]);
+
+        if(year !== -1 && year !== cuota.fechaVencimiento.getFullYear()){
+          rol.pushCuota(cuotasTmp, year);
+          cuotasTmp = [];
+        }
+        cuotasTmp.push(cuota);
+        year = cuota.fechaVencimiento.getFullYear();
+
+        if(j+1 === deudas.length){
+          rol.pushCuota(cuotasTmp, year);
+        }
+      }
+
+      this.propiedades.addRol(rol);
+    }
+
+    return this.propiedades;
+  }
+
+  private getBienRaiz(): any {
+    return this.dammy.getBienRaiz();
+  }
+
+  private getDeudas(rol: number): any {
+    return this.dammy.getDeudas();
   }
 }
+
+

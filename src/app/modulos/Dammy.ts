@@ -5,6 +5,19 @@ export class Dammy {
       {
         'comuna': 'PUDAHUEL',
         'destPropiedad': 'SITIO ERIAZO',
+        'dirPostal': 'MAC IVER            440    OF1002       ',
+        'dirPredial': 'AMERICO VESPUCIO OTE1353                ',
+        'direccion': 'AMERICO VESPUCIO OTE1353                ',
+        'idComuna': 13111,
+        'idDestPropiedad': 'W',
+        'rol': 8201011003,
+        'rolComunaSiiCod': 82,
+        'rolId': 1011,
+        'subrolId': 3
+      },
+      {
+        'comuna': 'PUDAHUEL',
+        'destPropiedad': 'SITIO ERIAZO',
         'dirPostal': 'PANAMERICANA NORTE  5291                ',
         'dirPredial': 'AV A VESPUCIO OTE   1345                ',
         'direccion': 'AV A VESPUCIO OTE   1345                ',
@@ -93,6 +106,10 @@ export class Dammy {
 
   public getBienRaiz(): any {
     return this.bienRaiz;
+  }
+
+  public getDeudas(): any {
+    return this.deudasRol;
   }
 
 }
