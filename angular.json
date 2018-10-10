@@ -25,7 +25,7 @@
             ],
             "styles": [
               "src/styles/styles.scss",
-              "node_modules/material-design-lite/dist/material.blue-light_blue.min.css"
+              "node_modules/material-design-lite/dist/material.indigo-blue.min.css"
             ],
             "scripts": ["node_modules/material-design-lite/material.min.js"]
           },

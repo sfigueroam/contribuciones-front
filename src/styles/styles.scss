@@ -1,0 +1,23 @@
+.tgr-header .mdl-layout__drawer-button{
+    color: #767777 !important;
+}
+@media (max-width: 1080px){
+  .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{
+    padding-left: 0;
+  }
+}
+@media (max-width: 839px){
+  .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{
+    padding-left: 24px;
+  }
+}
+@media (max-width: 740px){
+  .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{
+    padding-left: 0;
+  }
+}
+@media (max-width: 605px){
+  .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{
+    padding-left: 24px;
+  }
+}
