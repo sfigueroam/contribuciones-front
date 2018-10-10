@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../modulos/modelo';
+import {Dammy} from '../modulos/Dammy';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContributionsService {
 
-  constructor() {
+  constructor(private dammy: Dammy) {
   }
 
   getContributions(): Property [] {
@@ -283,5 +284,10 @@ export class ContributionsService {
     ];
     return properties;
 
+  }
+
+  getBienesRaices(): any{
+    console.log(this.dammy.getBienRaiz());
+    return "";
   }
 }
