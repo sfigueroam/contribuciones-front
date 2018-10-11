@@ -21,7 +21,8 @@
 .tgr-section-title:first-child .tgr-total {
   top: 0 ;
 }
-.tgr--has-late:hover .tgr-section-desc {
+.tgr--has-late:hover .tgr-section-desc,
+.mdl-cell:hover .tgr-button-delete {
   display: block;
 }
 .tgr-section-desc {
@@ -70,7 +71,7 @@
   width: 100%;
 }
 .tgr-card__header ~ .tgr-price{
-  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .tgr-price {
   float: right;
@@ -147,6 +148,13 @@
   bottom: 0;
   background: rgba(255,255,255,.9);
   z-index: 1001;
+}
+.tgr-button-delete {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 64px;
+  z-index: 99;
 }
 .wait > .tgr-cell-wait {
   display: block;
