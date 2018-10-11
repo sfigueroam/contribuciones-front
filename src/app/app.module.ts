@@ -17,6 +17,7 @@ import {AgregarNuevaComponent} from './components/contribuciones/propiedades/agr
 import {SugeridasComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas.component';
 import { PropiedadesComponent } from './components/contribuciones/propiedades/propiedades/propiedades.component';
 import { ConfirmacionComponent } from './components/certificados/confirmacion/confirmacion.component';
+import {NgxMasonryModule} from 'ngx-masonry';
 
 
 
@@ -39,7 +40,8 @@ registerLocaleData(localeEs, 'es');
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxMasonryModule
   ],
   providers: [
     {
