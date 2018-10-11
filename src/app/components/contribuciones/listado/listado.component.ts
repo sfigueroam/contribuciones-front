@@ -15,9 +15,10 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   masonryOptions: NgxMasonryOptions = {
     transitionDuration: '0.8s',
     gutter: 20,
-    resize: true,
+    resize: false,
     initLayout: true,
-    fitWidth: true
+    fitWidth: false,
+    containerStyle: null
   };
 
   constructor() {
