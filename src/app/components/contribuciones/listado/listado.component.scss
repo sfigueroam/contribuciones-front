@@ -5,6 +5,16 @@
     margin-right: auto;
     overflow: hidden;
 }
+.tgr-card-container {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+.mdl-card {
+  width: calc(33% - 20px);
+  margin-bottom: 20px;
+}
 .tgr-total {
   position: absolute;
   right: 19px;
@@ -242,10 +252,7 @@
   padding: 8px 16px;
   margin-right: 16px;
 }
-.tgr-card-container {
-  display: block;
-  flex-flow: row nowrap;
-}
+
 .tgr-card-container .mdl-cell {
   display: block;
   float: left;
