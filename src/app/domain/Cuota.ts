@@ -23,5 +23,4 @@ export class Cuota {
     let fec = fecha.split('-');
     return new Date( fec[2] + '-' + fec[1] + '-' + fec[0] + 'T00:00:00');
   }
-
 }
