@@ -1,8 +1,9 @@
 .tgr-list-section {
-    padding: 36px 0;
+    padding: 36px 0 140px;
     max-width: 1240px;
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
 }
 .tgr-total {
   position: absolute;
@@ -39,8 +40,6 @@
 .tgr-card-container .mdl-data-table{
   width: 100%;
 }
-
-
 .tgr-price {
   float: right;
   padding-left: 10px;
@@ -83,8 +82,7 @@
   line-height: 1.2;
   margin-bottom: 0;
   padding-top: 4px;
-  text-align: right;
-  
+  text-align: right;  
 }
 .tgr-card__desc--tag{
   font-size: 12px;
@@ -109,7 +107,6 @@
 .tgr-monto{
   width: 26%
 }
-
 .mdl-cell {
   position: relative;
 }
@@ -135,7 +132,6 @@
   text-align: center;
   color: #666;
 }
-
 .tgr-tr--late {
   background: #F9D2D4;
   border-bottom-color: #F4B4B7;
@@ -210,7 +206,17 @@
   padding: 8px 16px;
   margin-right: 16px;
 }
-
+.tgr-card-container {
+  display: block;
+  flex-flow: row nowrap;
+}
+.tgr-card-container .mdl-cell {
+  display: block;
+  float: left;
+}
+.tgr-section-title {
+  clear: left;
+}
 @media (max-width: 1080px){
   .tgr-list-section .mdl-data-table td,
   .tgr-list-section .mdl-data-table th {
