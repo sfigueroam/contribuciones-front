@@ -1,3 +1,5 @@
+@import '../../../../styles/colors';
+
 .tgr-list-section {
     padding: 36px 0 140px;
     max-width: 1240px;
@@ -29,7 +31,7 @@
   background: rgba(255,245,245, .9);
   color: #666;
   display:none;
-  font-size: 12px;  
+  font-size: 12px;
   padding: 5px;
   position: absolute;
   top: 52px;
@@ -43,13 +45,13 @@
   display: inline-block;
   float: left;
   line-height: 1.2;
-  padding-left: 4px;  
+  padding-left: 4px;
   width: calc(100% - 40px);
 }
 .tgr-section-title--address {
   margin-right: 140px;
 }
-.tgr-card__title {    
+.tgr-card__title {
   font-size:16px;
   margin: 0;
   padding: 0;
@@ -82,18 +84,18 @@
   font-weight: bold;
 }
 .tgr-card__head {
-  color: #fff; 
-  background: #2E4A7A;
+  color: #fff;
+  background: $color-primary;
   overflow: hidden;
   padding: 16px;
   padding-bottom: 10px;
 }
-.tgr-card__header{   
+.tgr-card__header{
   max-height:24px;
 }
 .tgr-card__title .material-icons {
   float: left;
-  line-height: 1;  
+  line-height: 1;
   margin-right: 4px;
   margin-top: -6px;
   margin-bottom: -6px;
@@ -111,7 +113,7 @@
   line-height: 1.2;
   margin-bottom: 0;
   padding-top: 4px;
-  text-align: right;  
+  text-align: right;
 }
 .tgr-card__desc--tag{
   font-size: 12px;
@@ -169,11 +171,11 @@
   color: #666;
 }
 .tgr-tr--late {
-  background: #F9D2D4;
-  border-bottom-color: #F4B4B7;
+  background: $color-warning-background;
+  border-bottom-color: $color-warning-text;
 }
 .tgr-tr--late:hover{
-  background: #F4B4B7;
+  background: $color-warning-text-hover;
 }
 .tgr-actions {
   background: #fff;
@@ -181,7 +183,7 @@
   display: block;
   left:0;
   min-height: 80px;
-  position: fixed;    
+  position: fixed;
   right: 0;
   z-index: 900;
 }
@@ -211,7 +213,7 @@
 }
 .tgr-select {
   float: left;
-  border: 2px solid #4285f4;  
+  border: 2px solid #4285f4;
   padding: 6px 16px 16px 16px;
   margin-top: -26px;
   margin-bottom: 16px;
@@ -237,8 +239,8 @@
 .tgr-pay__label {
   float: left;
   background: #4285f4;
-  color: #fff; 
-  border-radius: 4px;  
+  color: #fff;
+  border-radius: 4px;
   padding: 8px 16px;
   margin-right: 16px;
 }
@@ -314,18 +316,18 @@
   .tgr-list-section .mdl-cell--4-col,
   .tgr-list-section .mdl-cell--4-col-tablet.mdl-cell--4-col-tablet {
     width: calc(100% - 16px);
-  } 
+  }
   .tgr-list-section .mdl-data-table td,
   .tgr-list-section .mdl-data-table th {
     padding-left: 18px;
     padding-right: 18px;
   }
   .tgr-section-title {
-    font-size: 18px;    
+    font-size: 18px;
     font-weight: bold;
-    line-height: 1.2;    
+    line-height: 1.2;
   }
 }
 
-    
+
 
