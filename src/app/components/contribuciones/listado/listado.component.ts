@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {Contribution, Property, Quote} from '../../../modulos/modelo';
-import {ContributionsService} from '../../../services/contributions.service';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DetallePagoComponent} from '../../modal/detalle-pago/detalle-pago.component';
+import {NgxMasonryOptions} from 'ngx-masonry';
 
 @Component({
   selector: 'app-listado',
@@ -10,71 +9,27 @@ import {DetallePagoComponent} from '../../modal/detalle-pago/detalle-pago.compon
 })
 export class ListadoComponent implements OnInit, AfterViewInit {
 
-  properties: Property[];
-  showAll: boolean;
-
-
-  @ViewChild('tapTarget')
-  propertyAdd: ElementRef;
-
-  @ViewChildren('tabs')
-  tabList: QueryList<ElementRef>;
-
-
   @ViewChild('detallePago')
   detallePago: DetallePagoComponent;
 
-  constructor(private propertiesService: ContributionsService) {
-    this.showAll = true;
-    this.properties = this.propertiesService.getContributions();
-  }
+  masonryOptions: NgxMasonryOptions = {
+    transitionDuration: '0.8s',
+    gutter: 20,
+    resize: true,
+    initLayout: true,
+    fitWidth: true
+  };
 
-  changeQuotes(all: boolean) {
-    this.showAll = all;
-    for (const p of this.properties) {
-      if (this.showAll) {
-        p.showAll();
-      } else {
-        p.hideExpired();
-      }
-    }
-  }
-
-  total(): number {
-    let _total = 0;
-    for (const p of this.properties) {
-      _total += p.selectedTotal();
-    }
-    return _total;
-  }
-
-  quoteIcon(q: Quote): string {
-    return q.selected ? 'check_box' : 'check_box_outline_blank';
-  }
-
-  selectQuote(q: Quote): void {
-    q.selected = !q.selected;
+  constructor() {
   }
 
   ngAfterViewInit() {
-    // M.AutoInit();
-    /*const instance = M.TapTarget.init(this.propertyAdd.nativeElement);
-    // instance.open();
-    for (const e of this.tabList.toArray()) {
-      M.Tabs.init(e.nativeElement);
-    }*/
   }
 
   ngOnInit() {
-
   }
 
-  getYears(c: Contribution) {
-    return Array.from(c.quotes.keys());
-  }
-
-  openDialog(){
+  openDialog() {
     this.detallePago.showDialog();
   }
-
 }
