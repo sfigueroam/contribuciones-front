@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Contribution, Expiration, Property, Quote} from '../modulos/modelo';
-import {Dammy} from '../modulos/Dammy';
+import {Dummy} from '../modulos/Dummy';
 import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
 import {Propiedades} from '../domain/Propiedades';
@@ -10,7 +10,7 @@ import {Propiedades} from '../domain/Propiedades';
 })
 export class ContributionsService {
 
-  dammy: Dammy = new Dammy()
+  dummy: Dummy = new Dummy()
 
   propiedades: Propiedades[];
   constructor() {
@@ -327,11 +327,11 @@ export class ContributionsService {
   }
 
   private getBienRaiz(): any {
-    return this.dammy.getBienRaiz();
+    return this.dummy.getBienRaiz();
   }
 
   private getDeudas(rol: number): any {
-    return this.dammy.getDeudas();
+    return this.dummy.getDeudas();
   }
 
 }

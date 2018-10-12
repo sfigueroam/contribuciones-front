@@ -1,4 +1,4 @@
-export class Dammy {
+export class Dummy {
 
   bienRaiz: any = {
     'curout': [
@@ -92,6 +92,22 @@ export class Dammy {
         'multa': 0,
         'nroRol': 8201011034,
         'numeroCuota': '4-2009',
+        'reajuste': 100413,
+        'saldoOriginal': 329223,
+        'saldoPesos': 670984,
+        'tipoDeuda': '2'
+      },
+      {
+        'clasificacion': 'S',
+        'codigoBarra': '10100500033218103103013712',
+        'condonacion': 65,
+        'fechaVencimiento': '30-11-2018',
+        'folio': '821011409',
+        'interes': 689566,
+        'montoCondonacion': 448218,
+        'multa': 0,
+        'nroRol': 8201011034,
+        'numeroCuota': '4-2012',
         'reajuste': 100413,
         'saldoOriginal': 329223,
         'saldoPesos': 670984,

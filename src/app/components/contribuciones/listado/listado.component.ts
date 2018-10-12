@@ -2,15 +2,16 @@ import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, View
 import {Contribution, Property, Quote} from '../../../modulos/modelo';
 import {ContributionsService} from '../../../services/contributions.service';
 import {DetallePagoComponent} from '../../modal/detalle-pago/detalle-pago.component';
+import {Propiedades} from '../../../domain/Propiedades';
 
 @Component({
   selector: 'app-listado',
   templateUrl: './listado-desarrollo.component.html',
   styleUrls: ['./listado.component.scss']
 })
-export class ListadoComponent implements OnInit, AfterViewInit {
+export class ListadoComponent implements OnInit {
 
-  properties: Property[];
+  properties: Propiedades[] = [];
   showAll: boolean;
 
 
@@ -26,53 +27,14 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   constructor(private propertiesService: ContributionsService) {
     this.showAll = true;
-    this.properties = this.propertiesService.getContributions();
+    this.properties = this.propertiesService.getBienesRaices();
     console.log(propertiesService.getBienesRaices());
-  }
-
-  changeQuotes(all: boolean) {
-    this.showAll = all;
-    for (const p of this.properties) {
-      if (this.showAll) {
-        p.showAll();
-      } else {
-        p.hideExpired();
-      }
-    }
-  }
-
-  total(): number {
-    let _total = 0;
-    for (const p of this.properties) {
-      _total += p.selectedTotal();
-    }
-    return _total;
-  }
-
-  quoteIcon(q: Quote): string {
-    return q.selected ? 'check_box' : 'check_box_outline_blank';
-  }
-
-  selectQuote(q: Quote): void {
-    q.selected = !q.selected;
-  }
-
-  ngAfterViewInit() {
-    // M.AutoInit();
-    /*const instance = M.TapTarget.init(this.propertyAdd.nativeElement);
-    // instance.open();
-    for (const e of this.tabList.toArray()) {
-      M.Tabs.init(e.nativeElement);
-    }*/
   }
 
   ngOnInit() {
 
   }
 
-  getYears(c: Contribution) {
-    return Array.from(c.quotes.keys());
-  }
 
   openDialog(){
     this.detallePago.showDialog();

@@ -21,6 +21,17 @@ export class Cuota {
 
   formatDate(fecha){
     let fec = fecha.split('-');
-    return new Date( fec[2] + '-' + fec[1] + '-' + fec[0] + 'T00:00:00');
+    return new Date(fec[2], fec[1], fec[0], 0,0,0);
+  }
+  getYear(): any {
+    this.fechaVencimiento.getFullYear();
+  }
+
+
+  isVencida(): boolean{
+    let date = new Date();
+    date.setHours(0, 0, 0, 0, );
+    let diff = date.getTime() - this.fechaVencimiento.getTime();
+    return  (diff > 0);
   }
 }

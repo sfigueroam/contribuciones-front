@@ -18,6 +18,7 @@ import {SugeridasComponent} from './components/contribuciones/propiedades/sugeri
 import {PropiedadesComponent} from './components/contribuciones/propiedades/propiedades/propiedades.component';
 import {ConfirmacionComponent} from './components/certificados/confirmacion/confirmacion.component';
 import {MDLInitDirective} from './services/mdl-init.service';
+import { LeadingZeroPipe } from './pipe/leading-zero.pipe';
 
 
 registerLocaleData(localeEs, 'es');
@@ -36,7 +37,8 @@ registerLocaleData(localeEs, 'es');
     AgregarNuevaComponent,
     PropiedadesComponent,
     ConfirmacionComponent,
-    MDLInitDirective
+    MDLInitDirective,
+    LeadingZeroPipe
   ],
   imports: [
     BrowserModule,

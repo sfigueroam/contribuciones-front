@@ -25,4 +25,12 @@ export class Rol {
     if(this.cuotas === undefined) this.cuotas = new Map<number, Cuota[]>();
     this.cuotas.set(year, cuota);
   }
+
+  getYaers(): number[]{
+    return Array.from(this.cuotas.keys());
+  }
+
+  getCuotas(year): Cuota[]{
+    return this.cuotas.get(year);
+  }
 }

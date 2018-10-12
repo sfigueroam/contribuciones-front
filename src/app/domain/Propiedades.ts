@@ -15,4 +15,5 @@ export class Propiedades {
     this.rol.push(rolArg);
   }
 
+
 }
