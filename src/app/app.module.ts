@@ -15,8 +15,9 @@ import {LandingComponent} from './components/landing/landing.component';
 import {DetallePagoComponent} from './components/modal/detalle-pago/detalle-pago.component';
 import {AgregarNuevaComponent} from './components/contribuciones/propiedades/agregar-nueva/agregar-nueva.component';
 import {SugeridasComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas.component';
-import {PropiedadesComponent} from './components/contribuciones/propiedades/propiedades/propiedades.component';
-import {ConfirmacionComponent} from './components/certificados/confirmacion/confirmacion.component';
+import { PropiedadesComponent } from './components/contribuciones/propiedades/propiedades/propiedades.component';
+import { ConfirmacionComponent } from './components/certificados/confirmacion/confirmacion.component';
+import {NgxMasonryModule} from 'ngx-masonry';
 import {MDLInitDirective} from './services/mdl-init.service';
 import { LeadingZeroPipe } from './pipe/leading-zero.pipe';
 
@@ -42,7 +43,8 @@ registerLocaleData(localeEs, 'es');
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxMasonryModule
   ],
   providers: [
     {

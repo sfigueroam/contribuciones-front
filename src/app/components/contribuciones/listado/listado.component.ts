@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Contribution, Property, Quote} from '../../../modulos/modelo';
 import {ContributionsService} from '../../../services/contributions.service';
 import {DetallePagoComponent} from '../../modal/detalle-pago/detalle-pago.component';
 import {Propiedades} from '../../../domain/Propiedades';
 import {NodeDef} from '@angular/core/src/view';
+import {NgxMasonryOptions} from 'ngx-masonry';
 
 @Component({
   selector: 'app-listado',
@@ -16,11 +17,15 @@ export class ListadoComponent implements OnInit {
   showAll: boolean;
 
 
-  @ViewChild('tapTarget')
-  propertyAdd: ElementRef;
-
-  @ViewChildren('tabs')
-  tabList: QueryList<ElementRef>;
+  masonryOptions: NgxMasonryOptions = {
+    transitionDuration: '0.8s',
+    gutter: 20,
+    resize: true,
+    initLayout: true,
+    fitWidth: true,
+    containerStyle: null,
+    percentPosition: true,
+  };
 
 
   @ViewChild('detallePago')
@@ -48,8 +53,7 @@ export class ListadoComponent implements OnInit {
 */
   }
 
-  openDialog(){
+  openDialog() {
     this.detallePago.showDialog();
   }
-
 }

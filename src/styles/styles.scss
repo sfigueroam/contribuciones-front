@@ -1,3 +1,14 @@
+@import 'colors';
+@import '../../node_modules/material-design-lite/src/material-design-lite';
+
+html, body {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.mdl-layout {
+  background: $gray-backgorund;
+}
+
 .tgr-header .mdl-layout__drawer-button{
     color: #767777 !important;
 }
