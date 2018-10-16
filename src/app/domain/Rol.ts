@@ -15,7 +15,8 @@ export class Rol {
   rolId: number;
   subrolId: number;
   cuotas: Map<number, Cuota[]>;
-  checkedAllCuotas: boolean[number] = [];
+  checkedAllCuotas: boolean[] = [];
+  showMsgCuotasVencidas: boolean;
 
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
@@ -29,7 +30,7 @@ export class Rol {
     this.checkedAllCuotas[year] = true;
   }
 
-  getYaers(): number[] {
+  getYaers(): any[] {
     return Array.from(this.cuotas.keys());
   }
 
@@ -49,7 +50,7 @@ export class Rol {
 
   }
 
-  clickCheckedAll(year: number): boolean {
+  clickCheckedAll(year: number): void {
     let checkedCuotaAll = !this.checkedAllCuotas[year];
     let subCuota: Cuota[] = this.cuotas.get(year);
     for (let i = 0; i < subCuota.length; i++) {
@@ -57,5 +58,29 @@ export class Rol {
     }
     this.checkedAllCuotas[year] = checkedCuotaAll;
   }
+
+  isShowMsgCuotasVencidas(): boolean {
+    if(this.showMsgCuotasVencidas === undefined){
+      let years = this.getYaers();
+      for(let i = 0; i < years.length; i++ ){
+        let cuotas = this.getCuotas(years[i]);
+        for(let j = 0; j < cuotas.length; j++ ){
+          if(cuotas[j].isVencida()){
+            this.showMsgCuotasVencidas = true;
+            return this.showMsgCuotasVencidas;
+          }
+        }
+      }
+      if(this.showMsgCuotasVencidas === undefined){
+        this.showMsgCuotasVencidas = false;
+      }
+    }
+    return this.showMsgCuotasVencidas;
+  }
+
+  clickHideMsgCuotasVencidas(){
+    this.showMsgCuotasVencidas = false;
+  }
+
 }
 

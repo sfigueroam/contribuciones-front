@@ -298,31 +298,40 @@ export class ContributionsService {
 
     let bienesRaices =  this.getBienRaiz().curout;
 
-    // Recorre los roles
-    for (let i = 0; i < bienesRaices.length; i++) {
-      let prop: Propiedades = new Propiedades();
-      let rol: Rol = new Rol(bienesRaices[i]);
-      let deudas = this.getDeudas(rol.rol).listaDeudaRol;
-      let cuotasTmp: Cuota[] = [];
-      let year: number = -1;
+    let propiedadesTmp: Propiedades[] = this.agruparRoles(bienesRaices);
 
-      // Recorre las Cuotas
-      for (let j = 0; j < deudas.length; j ++){
-        let cuota: Cuota = new Cuota(deudas[j]);
-        if(year !== -1 && year !== cuota.fechaVencimiento.getFullYear()){
-          rol.pushCuota(cuotasTmp, year);
-          cuotasTmp = [];
-        }
-        cuotasTmp.push(cuota);
-        year = cuota.fechaVencimiento.getFullYear();
-        if(j+1 === deudas.length){
-          rol.pushCuota(cuotasTmp, year);
+    // Recorre los roles
+    let keyPropiedades = Object.keys(propiedadesTmp);
+    console.log('keys', keyPropiedades);
+
+    for (let p = 0; p < keyPropiedades.length; p++) {
+      let prop: Propiedades = propiedadesTmp[keyPropiedades[p]];
+      for (let i = 0; i < prop.rol.length; i++) {
+        //let rol: Rol = new Rol(bienesRaices[i]);
+        let deudas = this.getDeudas(prop.rol[i].rol).listaDeudaRol;
+        console.log('deudas', deudas);
+        let cuotasTmp: Cuota[] = [];
+        let year: number = -1;
+
+        // Recorre las Cuotas
+        for (let j = 0; j < deudas.length; j++) {
+          let cuota: Cuota = new Cuota(deudas[j]);
+          if (year !== -1 && year !== cuota.fechaVencimiento.getFullYear()) {
+            prop.rol[i].pushCuota(cuotasTmp, year);
+            cuotasTmp = [];
+          }
+          cuotasTmp.push(cuota);
+          year = cuota.fechaVencimiento.getFullYear();
+          if (j + 1 === deudas.length) {
+            prop.rol[i].pushCuota(cuotasTmp, year);
+          }
         }
       }
-      prop.addRol(rol);
-      this.propiedades.push(prop);
+      propiedadesTmp[p] = prop;
     }
 
+
+    this.propiedades = propiedadesTmp;
     return this.propiedades;
   }
 
@@ -332,6 +341,20 @@ export class ContributionsService {
 
   private getDeudas(rol: number): any {
     return this.dummy.getDeudas(rol);
+  }
+
+  private agruparRoles(bienesRaices: any): Propiedades[]{
+    let propiedades: Propiedades[] = [];
+
+    for (let i = 0; i < bienesRaices.length; i++) {
+      let key = bienesRaices[i].rolComunaSiiCod + '-' + bienesRaices[i].rolId;
+      let rol: Rol = new Rol(bienesRaices[i]);
+      if(propiedades[key] === undefined){ propiedades[key] = new Propiedades(); }
+      propiedades[key].addRol(rol);
+
+    }
+    return propiedades;
+
   }
 
 }
