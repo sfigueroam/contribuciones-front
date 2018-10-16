@@ -1,23 +1,29 @@
 @import '../../../../styles/colors';
 
+.tgr-section-title--address {
+  color: $gray-text;
+  font-size: 26px;
+  font-weight: 300;
+}
 .tgr-list-section {
-    padding: 36px 0 140px;
-    max-width: 1240px;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
+  padding: 36px 0 140px;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
 }
 .tgr-card-container {
-    max-width: 1240px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
-.mdl-card {
-  width: calc(33% - 20px);
+ngxMasonryItem {
+  width: 376px;
   margin-bottom: 20px;
 }
 .tgr-total {
+  font-size: 30px;
   position: absolute;
   right: 19px;
   top: 30px;
@@ -34,18 +40,20 @@
   top: 0 ;
 }
 .tgr--has-late:hover .tgr-section-desc,
-.mdl-cell:hover .tgr-button-delete {
+.mdl-card:hover .tgr-button-delete {
   display: block;
 }
 .tgr-section-desc {
-  background: rgba(255,245,245, .9);
-  color: #666;
+  background: $color-dark;
+  border-radius: 10px;
+  color: #fff;
   display:none;
-  font-size: 12px;
-  padding: 5px;
+  font-size: 14px;
+  left: 6px;
+  padding: 16px;
   position: absolute;
+  right: 6px;
   top: 52px;
-  width: 65%;
   z-index: 1000;
 }
 .tgr-section-desc .material-icons {
@@ -56,7 +64,10 @@
   float: left;
   line-height: 1.2;
   padding-left: 4px;
-  width: calc(100% - 40px);
+  width: calc(100% - 68px);
+}
+.tgr-section-desc .mdl-button {
+  color: $color-pink;
 }
 .tgr-section-title--address {
   margin-right: 140px;
@@ -71,6 +82,7 @@
   margin: 0;
 }
 .tgr-card__subtitle {
+  color: $color-violet-text;
   margin-bottom: 0;
 }
 .tgr-card__subtitle-text {
@@ -91,11 +103,13 @@
   padding-left: 10px;
 }
 .tgr-price__cost {
-  font-weight: bold;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 13px;
 }
 .tgr-card__head {
-  color: #fff;
-  background: $color-primary;
+  color: $color-primary;
+  background: $gray-card-backgorund;
   overflow: hidden;
   padding: 16px;
   padding-bottom: 10px;
@@ -113,11 +127,12 @@
 }
 .tgr-card__title--text{
   display: block;
-  font-size:16px;
-  line-height: 1;
+  font-size:18px;
+  font-weight: 500;
+  line-height: 16px;
 }
 .tgr-card__tag {
-  font-weight: bold;
+  font-weight: 500;
 }
 .tgr-price__desc {
   line-height: 1.2;
@@ -125,12 +140,13 @@
   padding-top: 4px;
   text-align: right;
 }
-.tgr-card__desc--tag{
-  font-size: 12px;
-  text-transform: uppercase;
+.tgr-card__desc--tag {
+  color: $color-violet-text;
+  font-size: 14px;
+  font-weight: 500;
 }
 .tgr-card__desc--price {
-  color: #C0C0B3;
+  color: $color-primary;
   padding-right: 3px;
 }
 .tgr-list-section  .mdl-shadow--2dp {
@@ -181,30 +197,18 @@
   color: #666;
 }
 .tgr-tr--late {
-  background: $color-warning-background;
-  border-bottom-color: $color-warning-text;
-}
-.tgr-tr--late:hover{
-  background: $color-warning-text-hover;
+  color: #FF1744;
 }
 .tgr-actions {
   background: #fff;
   bottom: 0;
+  box-shadow: 5px -4px 45px 0px rgba(153,153,153,.8);
   display: block;
   left:0;
   min-height: 80px;
   position: fixed;
   right: 0;
   z-index: 900;
-}
-.tgr-actions:before {
-  background: linear-gradient(to top,#666,#888);
-   content: " ";
-  display: block;
-  height: 4px;
-  left: 0;
-  position: absolute;
-  right: 0;
 }
 .tgr-actions__contet{
   max-width: 1210px;
@@ -223,7 +227,6 @@
 }
 .tgr-select {
   float: left;
-  border: 2px solid #4285f4;
   padding: 6px 16px 16px 16px;
   margin-top: -26px;
   margin-bottom: 16px;
@@ -244,12 +247,12 @@
   overflow: hidden;
 }
 .tgr-pay .mdl-button {
+  color: #fff;
   float: right;
 }
 .tgr-pay__label {
   float: left;
-  background: #4285f4;
-  color: #fff;
+  color:$color-selected;
   border-radius: 4px;
   padding: 8px 16px;
   margin-right: 16px;
@@ -261,6 +264,43 @@
 }
 .tgr-section-title {
   clear: left;
+}
+.filter {
+    height: 48px;
+    line-height: 48px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.filter li {
+  display: inline-block;
+  float: none;
+  height: inherit;  
+  line-height: inherit;
+  margin-right: 10px;
+  position: relative;      
+}
+.filter a {
+  background: $color-violet-light;
+  border-radius: 32px;
+  border: 1px solid $color-violet;
+  color: $color-80;
+  cursor: pointer;
+  display: block;  
+  font-size: 1rem;
+  line-height: 32px;
+  padding: 0 15px;
+  text-decoration: none;
+  transition: background-color .3s;
+} 
+.filter .active a {
+  background: $color-violet;
+  color: #fff;
+}
+.tgr-list-section .mdl-data-table th {
+  color: #000;
+}
+.mdl-data-table tbody tr.is-selected{
+  background: $color-pink;
 }
 @media (max-width: 1080px){
   .tgr-list-section .mdl-data-table td,
