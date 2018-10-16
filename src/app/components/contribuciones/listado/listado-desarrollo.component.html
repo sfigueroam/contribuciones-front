@@ -41,17 +41,27 @@
           </div>
 
           <div class="mdl-tabs__panel " [class.is-active]="i === 0" id="a{{year}}-panel" *ngFor="let year of rol.getYaers(); let i = index;">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
               <thead>
               <tr>
-                <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
+                <th (click)="rol.clickCheckedAll(year)" >
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" [class.is-checked]="rol.isCheckedAllCuotasForYear(year)" for="table-header-{{year}}-{{rol.rol}}">
+                    <input type="checkbox" id="table-header-{{year}}-{{rol.rol}}" class="mdl-checkbox__input" [attr.checked]="rol.isCheckedAllCuotasForYear(year)"  />
+                  </label>
+                </th>
+                <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota {{rol.isCheckedAllCuotasForYear(year)}}</th>
                 <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
                 <th class="tgr-monto">Monto</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let cuota of rol.getCuotas(year)" [class.tgr-tr--late]="cuota.isVencida()">
-                <td class="mdl-data-table__cell--non-numeric">{{cuota.numeroCuota | slice:0:1}}</td>
+              <tr *ngFor="let cuota of rol.getCuotas(year); let j = index;" [class.tgr-tr--late]="cuota.isVencida()" (click)="cuota.clickChecked()">
+                <td>
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " [class.is-checked]="cuota.isChecked()"  for="{{year}}-{{rol.rol}}-{{j}}" >
+                    <input type="checkbox" id="{{year}}-{{rol.rol}}-{{j}}" class="mdl-checkbox__input" [attr.checked]="cuota.isChecked()" />
+                  </label>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">{{cuota.numeroCuota | slice:0:1}} {{cuota.isChecked()}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
                 <td>$15.000</td>
               </tr>

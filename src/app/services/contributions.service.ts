@@ -302,7 +302,7 @@ export class ContributionsService {
     for (let i = 0; i < bienesRaices.length; i++) {
       let prop: Propiedades = new Propiedades();
       let rol: Rol = new Rol(bienesRaices[i]);
-      let deudas = this.getDeudas(rol.rolId).listaDeudaRol;
+      let deudas = this.getDeudas(rol.rol).listaDeudaRol;
       let cuotasTmp: Cuota[] = [];
       let year: number = -1;
 
@@ -331,7 +331,7 @@ export class ContributionsService {
   }
 
   private getDeudas(rol: number): any {
-    return this.dummy.getDeudas();
+    return this.dummy.getDeudas(rol);
   }
 
 }
