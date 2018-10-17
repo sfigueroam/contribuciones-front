@@ -14,9 +14,10 @@ export class ContributionsService {
 
   propiedades: Propiedad[];
   constructor() {
+    this.initBienesRaices();
   }
 
-  getContributions(): Property [] {
+  /*getContributions(): Property [] {
 
     let properties = [
       new Property({
@@ -291,8 +292,12 @@ export class ContributionsService {
     return properties;
 
   }
-
+  */
   getBienesRaices(): Propiedad[] {
+    return this.propiedades;
+
+  }
+  initBienesRaices(): void{
 
     this.propiedades = [];
 
@@ -332,7 +337,7 @@ export class ContributionsService {
 
 
     this.propiedades = propiedadesTmp;
-    return this.propiedades;
+
   }
 
   private getBienRaiz(): any {
