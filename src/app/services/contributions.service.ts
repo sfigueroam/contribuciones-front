@@ -3,7 +3,7 @@ import {Contribution, Expiration, Property, Quote} from '../modulos/modelo';
 import {Dummy} from '../modulos/Dummy';
 import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
-import {Propiedades} from '../domain/Propiedades';
+import {Propiedad} from '../domain/Propiedad';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class ContributionsService {
 
   dummy: Dummy = new Dummy()
 
-  propiedades: Propiedades[];
+  propiedades: Propiedad[];
   constructor() {
   }
 
@@ -292,20 +292,20 @@ export class ContributionsService {
 
   }
 
-  getBienesRaices(): Propiedades[] {
+  getBienesRaices(): Propiedad[] {
 
     this.propiedades = [];
 
     let bienesRaices =  this.getBienRaiz().curout;
 
-    let propiedadesTmp: Propiedades[] = this.agruparRoles(bienesRaices);
+    let propiedadesTmp: Propiedad[] = this.agruparRoles(bienesRaices);
 
     // Recorre los roles
     let keyPropiedades = Object.keys(propiedadesTmp);
     console.log('keys', keyPropiedades);
 
     for (let p = 0; p < keyPropiedades.length; p++) {
-      let prop: Propiedades = propiedadesTmp[keyPropiedades[p]];
+      let prop: Propiedad = propiedadesTmp[keyPropiedades[p]];
       for (let i = 0; i < prop.rol.length; i++) {
         //let rol: Rol = new Rol(bienesRaices[i]);
         let deudas = this.getDeudas(prop.rol[i].rol).listaDeudaRol;
@@ -343,13 +343,13 @@ export class ContributionsService {
     return this.dummy.getDeudas(rol);
   }
 
-  private agruparRoles(bienesRaices: any): Propiedades[]{
-    let propiedades: Propiedades[] = [];
+  private agruparRoles(bienesRaices: any): Propiedad[]{
+    let propiedades: Propiedad[] = [];
 
     for (let i = 0; i < bienesRaices.length; i++) {
       let key = bienesRaices[i].rolComunaSiiCod + '-' + bienesRaices[i].rolId;
       let rol: Rol = new Rol(bienesRaices[i]);
-      if(propiedades[key] === undefined){ propiedades[key] = new Propiedades(); }
+      if(propiedades[key] === undefined){ propiedades[key] = new Propiedad(); }
       propiedades[key].addRol(rol);
 
     }

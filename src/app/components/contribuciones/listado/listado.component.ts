@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ContributionsService} from '../../../services/contributions.service';
 import {DetallePagoComponent} from '../../modal/detalle-pago/detalle-pago.component';
-import {Propiedades} from '../../../domain/Propiedades';
+import {Propiedad} from '../../../domain/Propiedad';
 import {NgxMasonryOptions} from 'ngx-masonry';
 
 @Component({
@@ -11,7 +11,7 @@ import {NgxMasonryOptions} from 'ngx-masonry';
 })
 export class ListadoComponent implements OnInit, AfterViewInit{
 
-  properties: Propiedades[] = [];
+  properties: Propiedad[] = [];
   showAll: boolean;
 
 

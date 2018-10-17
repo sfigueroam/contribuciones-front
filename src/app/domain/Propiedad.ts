@@ -1,7 +1,7 @@
 import {Rol} from './Rol';
 import {isNumeric} from 'rxjs/internal-compatibility';
 
-export class Propiedades {
+export class Propiedad {
 
   public rol: Rol[];
   public direccion: string;
