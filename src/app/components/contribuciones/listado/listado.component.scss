@@ -274,10 +274,10 @@ ngxMasonryItem {
 .filter li {
   display: inline-block;
   float: none;
-  height: inherit;  
+  height: inherit;
   line-height: inherit;
   margin-right: 10px;
-  position: relative;      
+  position: relative;
 }
 .filter a {
   background: $color-violet-light;
@@ -285,13 +285,13 @@ ngxMasonryItem {
   border: 1px solid $color-violet;
   color: $color-80;
   cursor: pointer;
-  display: block;  
+  display: block;
   font-size: 1rem;
   line-height: 32px;
   padding: 0 15px;
   text-decoration: none;
   transition: background-color .3s;
-} 
+}
 .filter .active a {
   background: $color-violet;
   color: #fff;
