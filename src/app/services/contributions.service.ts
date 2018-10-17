@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Dummy} from '../modulos/Dummy';
+import {Dummy} from '../modulos/dummy';
 import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
 import {Propiedad} from '../domain/Propiedad';
