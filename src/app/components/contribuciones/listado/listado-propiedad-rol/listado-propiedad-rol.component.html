@@ -25,23 +25,25 @@
         <span class="tgr-card__desc--price">-$4.000</span>
       </p>
     </div>
-    <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol:</span> {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId |
-      leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
+    <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol:</span>
+      {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
     <div class="tgr-section-desc" *ngIf="rol.isShowMsgCuotasVencidas()">
       <div class="tgr-section-desc--text">
         Se hará un descuento mayor mientras más cuotas atrasadas se paguen
       </div>
-      <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="rol.clickHideMsgCuotasVencidas()">ok</button>
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="rol.clickHideMsgCuotasVencidas()">ok
+      </button>
     </div>
   </div>
 
-
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
-      <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="i === 0" *ngFor="let year of rol.getYaers(); let i = index;">{{year}}</a>
+      <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="i === 0"
+         *ngFor="let year of rol.getYaers(); let i = index;">{{year}}</a>
     </div>
 
-    <div class="mdl-tabs__panel " [class.is-active]="i === 0" id="a{{year}}-panel"  *ngFor="let year of rol.getYaers(); let i = index;">
+    <div class="mdl-tabs__panel " [class.is-active]="i === 0" id="a{{year}}-panel"
+         *ngFor="let year of rol.getYaers(); let i = index;">
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
         <tr>
