@@ -1,8 +1,10 @@
+@import '../../../styles/colors';
+
 .tgr-header {
 	background-color: #fff
 }
 .tgr-header .material-icons{
-    color: #767777 !important;
+    color: $color-primary-dark !important;
 }
 .tgr-header .mdl-navigation__link {
     color: #757575;
@@ -14,14 +16,14 @@
 	width: auto;
 }
 .tgr-header .active-menu {
-	background-color: #0C2D65;
+	background-color: $color-primary-dark;
 	color: #fff;
 }
 .tgr-header .mdl-navigation__link:hover {
-	background-color: #DF2A33;
+	background-color: $color-primary-contrast;
 	color: #fff;
 }
 .tgr-header .active-menu:hover {
-	background-color: #0C2D65;
+	background-color: $color-primary-dark;
 	color: #fff;
 }
