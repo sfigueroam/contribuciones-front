@@ -33,5 +33,10 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.onResize.emit();
+    // TODO eliminar este workaround
+    setTimeout(
+      () => {this.onResize.emit();},
+      500
+    );
   }
 }
