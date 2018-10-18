@@ -1,4 +1,15 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-propiedad-rol.component';
 
@@ -7,7 +18,11 @@ import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-pro
   templateUrl: './listado-propiedad.component.html',
   styleUrls: ['./listado-propiedad.component.scss']
 })
-export class ListadoPropiedadComponent implements OnInit, AfterViewInit {
+export class ListadoPropiedadComponent implements AfterViewChecked {
+
+  ngAfterViewChecked(): void {
+    this.resizeAllGridItems();
+  }
 
   @Input()
   propiedad: Propiedad;
@@ -21,13 +36,6 @@ export class ListadoPropiedadComponent implements OnInit, AfterViewInit {
   constructor() {
   }
 
-  ngAfterViewInit() {
-    this.resizeAllGridItems();
-  }
-
-  ngOnInit() {
-  }
-
   private resizeGridItem(item: ElementRef): void {
     const rowHeight = parseInt(getComputedStyle(this.grid.nativeElement).getPropertyValue('grid-auto-rows'), 10);
     const rowGap = parseInt(getComputedStyle(this.grid.nativeElement).getPropertyValue('grid-row-gap'), 10);
@@ -38,8 +46,11 @@ export class ListadoPropiedadComponent implements OnInit, AfterViewInit {
 
   resizeAllGridItems(): void {
     console.log('try', 1);
-    this.items.forEach(
-      (item) => this.resizeGridItem(item)
-    );
+    if (this.items) {
+      console.log('try', 2);
+      this.items.forEach(
+        (item) => this.resizeGridItem(item)
+      );
+    }
   }
 }

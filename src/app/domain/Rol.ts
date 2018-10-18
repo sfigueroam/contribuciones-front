@@ -29,7 +29,7 @@ export class Rol {
     this.checkedAllCuotas[year] = true;
   }
 
-  getYears(): any[] {
+  getYears(): number[] {
     return Array.from(this.cuotas.keys()).sort();
   }
 

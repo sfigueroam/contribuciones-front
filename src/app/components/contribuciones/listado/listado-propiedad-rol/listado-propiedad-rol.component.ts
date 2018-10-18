@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rol} from '../../../../domain/Rol';
 
 @Component({
@@ -6,7 +6,7 @@ import {Rol} from '../../../../domain/Rol';
   templateUrl: './listado-propiedad-rol.component.html',
   styleUrls: ['./listado-propiedad-rol.component.scss']
 })
-export class ListadoPropiedadRolComponent implements OnInit {
+export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   @Input()
   rol: Rol;
@@ -14,13 +14,24 @@ export class ListadoPropiedadRolComponent implements OnInit {
   @Output()
   onResize: EventEmitter<any> = new EventEmitter();
 
+  selectedYear: number;
+
   constructor() {
   }
 
   ngOnInit() {
+    this.selectedYear = this.rol.getYears()[0];
+  }
+
+  isActive(year: number): boolean {
+    return year === this.selectedYear;
   }
 
   activateTab(year: number) {
+    this.selectedYear = year;
+  }
+
+  ngAfterViewChecked(): void {
     this.onResize.emit();
   }
 }

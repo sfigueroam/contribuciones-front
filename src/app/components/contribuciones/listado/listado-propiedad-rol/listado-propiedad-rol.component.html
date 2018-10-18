@@ -1,4 +1,4 @@
-<div class="content tgr-content mdl-shadow--3dp">
+<div class="content tgr-content mdl-shadow--3dp" (resize)="resized()" (change)="resized()">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-js-spinner is-active">
     </div>
@@ -36,11 +36,11 @@
 
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
-      <a href="#a{{year}}-panel" class="mdl-tabs__tab" (click)="activateTab(year)"
+      <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="isActive(year)" (click)="activateTab(year)"
          *ngFor="let year of rol.getYears()">{{year}}</a>
     </div>
 
-    <div class="mdl-tabs__panel " [class.is-active]="i === 0" id="a{{year}}-panel"
+    <div class="mdl-tabs__panel " [class.is-active]="isActive(year)" id="a{{year}}-panel"
          *ngFor="let year of rol.getYears(); let i = index;">
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
