@@ -1,14 +1,13 @@
 @import '../../../../styles/colors';
 
-.grid {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-  grid-auto-rows: 20px;
-}
-
-.tgr-section-title--address {
+// zona titulo direccion
+.tgr-section-title {
   color: $gray-text;
+  padding-bottom: 18px;
+  padding-top: 30px;
+  position: relative;
+}
+.tgr-section-title--address {
   font-size: 26px;
   font-weight: 300;
 }
@@ -25,20 +24,12 @@
   margin-right: auto;
   position: relative;
 }
-ngxMasonryItem {
-  width: 376px;
-  margin-bottom: 20px;
-}
+
 .tgr-total {
   font-size: 30px;
   position: absolute;
-  right: 19px;
+  right: 0;
   top: 30px;
-}
-.tgr-section-title {
-  padding-left: 17px;
-  position: relative;
-  padding-top: 30px;
 }
 .tgr-section-title:first-child {
   padding-top: 0px;
@@ -46,166 +37,11 @@ ngxMasonryItem {
 .tgr-section-title:first-child .tgr-total {
   top: 0 ;
 }
-.tgr--has-late:hover .tgr-section-desc,
-.mdl-card:hover .tgr-button-delete {
-  display: block;
-}
-.tgr-section-desc {
-  background: $color-dark;
-  border-radius: 10px;
-  color: #fff;
-  display:none;
-  font-size: 14px;
-  left: 6px;
-  padding: 16px;
-  position: absolute;
-  right: 6px;
-  top: 52px;
-  z-index: 1000;
-}
-.tgr-section-desc .material-icons {
-  float: left;
-}
-.tgr-section-desc--text {
-  display: inline-block;
-  float: left;
-  line-height: 1.2;
-  padding-left: 4px;
-  width: calc(100% - 68px);
-}
-.tgr-section-desc .mdl-button {
-  color: $color-pink;
-}
-.tgr-section-title--address {
-  margin-right: 140px;
-}
-.tgr-card__title {
-  font-size:16px;
-  margin: 0;
-  padding: 0;
-  //padding-bottom: 10px;
-}
-.tgr-card__title h6 {
-  margin: 0;
-}
-.tgr-card__subtitle {
-  color: $color-violet-text;
-  margin-bottom: 0;
-}
-.tgr-card__subtitle-text {
-  padding-left: 34px;
-}
-.tgr-100 {
-  width: 100%
-}
-.tgr-card-container .mdl-data-table{
-  width: 100%;
-}
-.tgr-card__header ~ .tgr-price{
-  padding-bottom: 10px;
-}
-.tgr-price {
-  float: right;
-  line-height: 1;
-  padding-left: 10px;
-}
-.tgr-price__cost {
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 13px;
-}
-.tgr-card__head {
-  color: $color-primary;
-  background: $gray-card-backgorund;
-  overflow: hidden;
-  padding: 16px;
-  padding-bottom: 10px;
-}
-.tgr-card__header{
-  max-height:24px;
-}
-.tgr-card__title .material-icons {
-  float: left;
-  line-height: 1;
-  margin-right: 4px;
-  margin-top: -6px;
-  margin-bottom: -6px;
-  //margin-bottom: 16px;
-}
-.tgr-card__title--text{
-  display: block;
-  font-size:18px;
-  font-weight: 500;
-  line-height: 16px;
-}
-.tgr-card__tag {
-  font-weight: 500;
-}
-.tgr-price__desc {
-  line-height: 1.2;
-  margin-bottom: 0;
-  padding-top: 4px;
-  text-align: right;
-}
-.tgr-card__desc--tag {
-  color: $color-violet-text;
-  font-size: 14px;
-  font-weight: 500;
-}
-.tgr-card__desc--price {
-  color: $color-primary;
-  padding-right: 3px;
-}
-.tgr-list-section  .mdl-shadow--2dp {
-  box-shadow: none;
-}
-.tgr-list-section .mdl-data-table {
-  border: none;
-}
-.tgr-cuota{
-  width: 18%
-}
-.tgr-vence{
-  width: 42%
-}
-.tgr-monto{
-  width: 26%
-}
-.mdl-cell {
-  position: relative;
-}
-.tgr-cell-wait {
-  display:none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(255,255,255,.9);
-  z-index: 1001;
-}
-.tgr-button-delete {
-  display: none;
-  position: absolute;
-  right: 10px;
-  top: 64px;
-  z-index: 99;
-}
-.wait > .tgr-cell-wait {
-  display: block;
-}
-.tgr-cell-wait .mdl-spinner {
-  left: calc(50% - 20px);
-  margin-top: 20%;
-}
-.tgr-cell-wait__feedback {
-  padding: 5px 32px;
-  text-align: center;
-  color: #666;
-}
-.tgr-tr--late {
-  color: #FF1744;
-}
+// zona titulo direccion
+
+
+
+// zona aciones
 .tgr-actions {
   background: #fff;
   bottom: 0;

@@ -1,7 +1,9 @@
-<div appMdlInit class="tgr-section-title mdl-typography--display-1-color-contrast" (resize)="resizeAllGridItems()">
-  <div class="tgr-section-title--address">{{propiedad.direccion}} - <small>{{propiedad.rol[0].comuna}}</small></div>
+<div appMdlInit class="tgr-section-grid" (resize)="resizeAllGridItems()">
+	<div class="tgr-section-title">
+		<div class="tgr-section-title--address">{{propiedad.direccion}} - <small>{{propiedad.rol[0].comuna}}</small></div>
   <div class="tgr-total">$50.000</div>
+	</div>
   <div class="grid tgr-card-container" #grid>
-    <app-listado-propiedad-rol *ngFor="let rol of propiedad.rol" [rol]="rol" (onResize)="resizeAllGridItems()"></app-listado-propiedad-rol>
+    <app-listado-propiedad-rol class="tgr-rol" *ngFor="let rol of propiedad.rol" [rol]="rol" (onResize)="resizeAllGridItems()"></app-listado-propiedad-rol>
   </div>
 </div>
