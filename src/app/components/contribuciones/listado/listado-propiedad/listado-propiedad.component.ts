@@ -22,16 +22,13 @@ export class ListadoPropiedadComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.grid);
-    console.log(this.items);
-
     this.resizeAllGridItems();
   }
 
   ngOnInit() {
   }
 
-  resizeGridItem(item: ElementRef): void {
+  private resizeGridItem(item: ElementRef): void {
     const rowHeight = parseInt(getComputedStyle(this.grid.nativeElement).getPropertyValue('grid-auto-rows'), 10);
     const rowGap = parseInt(getComputedStyle(this.grid.nativeElement).getPropertyValue('grid-row-gap'), 10);
     const rowSpan = Math.ceil((item.nativeElement.querySelector('.content').getBoundingClientRect().height + rowGap)
@@ -40,6 +37,7 @@ export class ListadoPropiedadComponent implements OnInit, AfterViewInit {
   }
 
   resizeAllGridItems(): void {
+    console.log('try', 1);
     this.items.forEach(
       (item) => this.resizeGridItem(item)
     );

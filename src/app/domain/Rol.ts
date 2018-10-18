@@ -29,8 +29,8 @@ export class Rol {
     this.checkedAllCuotas[year] = true;
   }
 
-  getYaers(): any[] {
-    return Array.from(this.cuotas.keys());
+  getYears(): any[] {
+    return Array.from(this.cuotas.keys()).sort();
   }
 
   getCuotas(year): Cuota[] {
@@ -60,7 +60,7 @@ export class Rol {
 
   isShowMsgCuotasVencidas(): boolean {
     if (this.showMsgCuotasVencidas === undefined) {
-      let years = this.getYaers();
+      let years = this.getYears();
       for (let i = 0; i < years.length; i++) {
         let cuotas = this.getCuotas(years[i]);
         for (let j = 0; j < cuotas.length; j++) {

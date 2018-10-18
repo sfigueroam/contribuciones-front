@@ -17,7 +17,6 @@ import {AgregarNuevaComponent} from './components/contribuciones/propiedades/agr
 import {SugeridasComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas.component';
 import {PropiedadesComponent} from './components/contribuciones/propiedades/propiedades/propiedades.component';
 import {ConfirmacionComponent} from './components/certificados/confirmacion/confirmacion.component';
-import {NgMasonryGridModule} from 'ng-masonry-grid';
 import { ListadoPropiedadComponent } from './components/contribuciones/listado/listado-propiedad/listado-propiedad.component';
 import { ListadoPropiedadRolComponent } from './components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
 import { LeadingZeroPipe } from './pipe/leading-zero.pipe';
@@ -48,8 +47,7 @@ registerLocaleData(localeEs, 'es');
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    NgMasonryGridModule
+    AppRoutingModule
   ],
   providers: [
     {

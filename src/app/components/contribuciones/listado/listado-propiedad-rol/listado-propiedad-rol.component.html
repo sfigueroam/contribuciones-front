@@ -15,9 +15,7 @@
       </div>
       <p class="tgr-card__title">
         <i class="material-icons">directions_car</i>
-        <span class="tgr-card__title--text">
-                     {{rol.destPropiedad | titlecase}}
-                   </span>
+        <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
     </div>
     <div class="tgr-price">
       <p class="tgr-price__desc">
@@ -38,12 +36,12 @@
 
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
-      <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="i === 0"
-         *ngFor="let year of rol.getYaers(); let i = index;">{{year}}</a>
+      <a href="#a{{year}}-panel" class="mdl-tabs__tab" (click)="activateTab(year)"
+         *ngFor="let year of rol.getYears()">{{year}}</a>
     </div>
 
     <div class="mdl-tabs__panel " [class.is-active]="i === 0" id="a{{year}}-panel"
-         *ngFor="let year of rol.getYaers(); let i = index;">
+         *ngFor="let year of rol.getYears(); let i = index;">
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
         <tr>

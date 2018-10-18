@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rol} from '../../../../domain/Rol';
 
 @Component({
@@ -11,8 +11,16 @@ export class ListadoPropiedadRolComponent implements OnInit {
   @Input()
   rol: Rol;
 
-  constructor() { }
+  @Output()
+  onResize: EventEmitter<any> = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  activateTab(year: number) {
+    this.onResize.emit();
   }
 }
