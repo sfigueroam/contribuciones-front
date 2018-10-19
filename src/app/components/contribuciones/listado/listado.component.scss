@@ -52,6 +52,10 @@
   position: fixed;
   right: 0;
   z-index: 900;
+  @media (max-width: 1260px){
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 .tgr-actions__contet{
   max-width: 1240px;
@@ -167,6 +171,10 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  @media (max-width: 1260px){
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 .tgr-target {
   bottom: -134px;
