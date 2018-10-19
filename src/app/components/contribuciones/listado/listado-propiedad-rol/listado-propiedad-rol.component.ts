@@ -1,6 +1,7 @@
 import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rol} from '../../../../domain/Rol';
 import {Cuota} from '../../../../domain/Cuota';
+import {TipoCuota} from '../../../../domain/TipoCuota';
 
 @Component({
   selector: 'app-listado-propiedad-rol',
@@ -14,6 +15,8 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   @Output()
   resize: EventEmitter<any> = new EventEmitter();
+  @Output()
+  change: EventEmitter<any> = new EventEmitter();
 
   showSuggestion: boolean;
   selectedYear: number;
@@ -36,22 +39,32 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   selectAllNone(year: number): void {
     if (this.selectedIconMap.get(year) === 'check_box') {
-      this.rol.checkNone(year);
-      this.updateYear(year);
+      this.rol.seleccionar(TipoCuota.NINGUNA, year);
     } else {
-      this.rol.checkAll(year);
-      this.updateYear(year);
+      this.rol.seleccionar(TipoCuota.TODAS, year);
     }
+    this.updateYear(year);
   }
 
-  updateYear(year: number): void {
-    if (this.rol.allChecked(year)) {
-      this.selectedIconMap.set(year, 'check_box');
-    } else if (this.rol.noneChecked(year)) {
-      this.selectedIconMap.set(year, 'check_box_outline_blank');
+  updateYear(aYear?: number): void {
+    let yearList = [];
+    if (aYear) {
+      yearList.push(aYear);
     } else {
-      this.selectedIconMap.set(year, 'indeterminate_check_box');
+      yearList = this.rol.getYears();
     }
+
+    for (const year of yearList) {
+      if (this.rol.allChecked(year)) {
+        this.selectedIconMap.set(year, 'check_box');
+      } else if (this.rol.noneChecked(year)) {
+        this.selectedIconMap.set(year, 'check_box_outline_blank');
+      } else {
+        this.selectedIconMap.set(year, 'indeterminate_check_box');
+      }
+    }
+
+    this.change.emit();
   }
 
   checkCuota(year: number, cuota: Cuota) {
@@ -72,9 +85,11 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   }
 
   cuotaIcon(cuota: Cuota): string {
-    if (cuota.checked) {
-      return 'check_box';
-    }
-    return 'check_box_outline_blank';
+    return cuota.checked ? 'check_box' : 'check_box_outline_blank';
+  }
+
+  seleccionar(tipo: TipoCuota): void {
+    this.rol.seleccionar(tipo);
+    this.updateYear();
   }
 }

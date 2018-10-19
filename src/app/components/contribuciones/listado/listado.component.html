@@ -2,92 +2,6 @@
   <app-listado-propiedad *ngFor="let propiedad of propiedades" [propiedad]="propiedad"></app-listado-propiedad>
 </div>
 
-<!-- <div class="tgr-list-section">
-  <div class="tgr-section-grid">
-    
-    <div class="tgr-section-title">
-      <div class="tgr-section-title--address">Avenida Presidente José Batlle y Ordoñez 3786 - <small>Ñuñoa</small></div>
-    <div class="tgr-total">$40.000</div>
-    </div>
-
-    <div class="grid tgr-card-container">
-      <div class="tgr-rol tgr-rol-maqueta">        
-      <div class="content tgr-content mdl-shadow--3dp">
-        <div class="tgr-cell-wait">
-          <div class="mdl-spinner mdl-js-spinner is-active">
-          </div>
-          <h5 class="tgr-cell-wait__feedback">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
-        </div>
-        <button
-          class="tgr-button-delete mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
-          <i class="material-icons">delete</i>
-        </button>
-        <div class="tgr-card__head">
-          <div class="tgr-card__header">
-            <div class="tgr-price">
-              <span class="tgr-price__cost">$15.000</span>
-            </div>
-            <p class="tgr-card__title">
-              <i class="material-icons">business</i>
-              <span class="tgr-card__title--text">Departamento 54</span>
-          </div>
-          <div class="tgr-price">
-            <p class="tgr-price__desc">
-              <span class="tgr-card__desc--tag">Dscto:</span><br>
-              <span class="tgr-card__desc--price">-$4.000</span>
-            </p>
-          </div>
-          <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-            Macul 00395-684</p>
-          <div class="tgr-section-desc">
-            <div class="tgr-section-desc--text">
-              Se hará un descuento mayor mientras más cuotas atrasadas se paguen
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect">ok
-            </button>
-          </div>
-        </div>      
-        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-          <div class="mdl-tabs__panel is-active" id="a2018-panel">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-              <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
-                <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
-                <th class="tgr-monto">Monto</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr class="tgr-tr--late">
-                <td class="mdl-data-table__cell--non-numeric">1</td>
-                <td class="mdl-data-table__cell--non-numeric">20/abril</td>
-                <td>$15.000</td>
-              </tr>
-              <tr class="tgr-tr--late">
-                <td class="mdl-data-table__cell--non-numeric">1</td>
-                <td class="mdl-data-table__cell--non-numeric">20/junio</td>
-                <td>$15.000</td>
-              </tr>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric">1</td>
-                <td class="mdl-data-table__cell--non-numeric">20/septiembre</td>
-                <td>$15.000</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      </div>
-    </div>
-  </div>
- 
-</div> -->
-
-
-
-
 <div class="tgr-actions">
   <div class="tgr-actions__contet">
     <div class="tgr-pay">
@@ -100,13 +14,13 @@
     </div>
     <div class="tgr-select">
       <div class="tgr-select__label">
-        Filtrar cuotas:
+        Seleccionar:
       </div>
       <ul class="filter">
-        <li class=""><a><i class="material-icons">done</i>Todas</a></li>
-        <li class=""><a><i class="material-icons">done</i>Vencidas</a></li>
-        <li class=""><a><i class="material-icons">done</i>Vigentes</a></li>
-        <li class="active"><a><i class="material-icons">done</i>Ninguna</a></li>
+        <li [class.active]="seleccionada === tipo.TODAS"><a (click)="seleccionar(tipo.TODAS)"><i class="material-icons">done</i>Todas</a></li>
+        <li [class.active]="seleccionada === tipo.VENCIDAS"><a (click)="seleccionar(tipo.VENCIDAS)"><i class="material-icons">done</i>Vencidas</a></li>
+        <li [class.active]="seleccionada === tipo.VIGENTES"><a (click)="seleccionar(tipo.VIGENTES)"><i class="material-icons">done</i>Vigentes</a></li>
+        <li [class.active]="seleccionada === tipo.NINGUNA"><a (click)="seleccionar(tipo.NINGUNA)"><i class="material-icons">done</i>Ninguna</a></li>
       </ul>
     </div>
   </div>
@@ -115,12 +29,15 @@
   <div class="tgr-target-wrapper">
     <div class="tgr-target">
       <div class="tgr-target-content">
-        <h5 class="tgr-target-text">Tenemos <strong>roles</strong> <br>
+        <h5 class="tgr-target-text">Encontramos <strong>2 roles</strong> <br>
           asociados a tu RUT <br>
           <strong class="tgr-target-here">Agrégalos aquí</strong>
+          <br>
+          <br>
+          <a><small>ENTENDIDO</small></a>
         </h5>
       </div>
-    </div>    
+    </div>
   </div>
 </div>
 <div class="tgr-add">

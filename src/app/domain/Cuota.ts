@@ -14,11 +14,13 @@ export class Cuota {
   saldoPesos: number;
   tipoDeuda: string;
   checked: boolean;
+  expired: boolean;
 
   public constructor(init?: Partial<Cuota>) {
     Object.assign(this, init);
     this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
     this.checked = true;
+    this.expired = this.isExpired();
   }
 
   private formatDate(fecha) {
@@ -30,9 +32,9 @@ export class Cuota {
     this.fechaVencimiento.getFullYear();
   }
 
-  isExpired(): boolean {
+  private isExpired(): boolean {
     const date = new Date();
-    date.setHours(0, 0, 0, 0,);
+    date.setHours(0, 0, 0, 0);
     return (date.getTime() - this.fechaVencimiento.getTime() > 0);
   }
 

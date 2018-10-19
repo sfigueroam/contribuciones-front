@@ -1,4 +1,5 @@
 import {Cuota} from './Cuota';
+import {TipoCuota} from './TipoCuota';
 
 export class Rol {
 
@@ -23,7 +24,7 @@ export class Rol {
   hasExpiredQuotes(): boolean {
     for (const year of Array.from(this.cuotas.keys())) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.isExpired()) {
+        if (cuota.expired) {
           return true;
         }
       }
@@ -51,20 +52,6 @@ export class Rol {
     return true;
   }
 
-  // Marca todas las cuotas de un ano como seleccionadas
-  checkAll(year: number): void {
-    for (const cuota of Array.from(this.cuotas.get(year).values())) {
-      cuota.checked = true;
-    }
-  }
-
-  // Marca todas las cuotas de un ano como de sseleccionadas
-  checkNone(year: number): void {
-    for (const cuota of Array.from(this.cuotas.get(year).values())) {
-      cuota.checked = false;
-    }
-  }
-
   pushCuota(cuota: Cuota[], year: number): void {
     if (this.cuotas === undefined) {
       this.cuotas = new Map<number, Cuota[]>();
@@ -79,5 +66,28 @@ export class Rol {
 
   getCuotas(year): Cuota[] {
     return this.cuotas.get(year);
+  }
+
+  seleccionar(tipo: TipoCuota, aYear?: number) {
+    let yearList = [];
+    if (aYear) {
+      yearList.push(aYear);
+    } else {
+      yearList = this.getYears();
+    }
+
+    for (const year of yearList) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (tipo === TipoCuota.TODAS) {
+          cuota.checked = true;
+        } else if (tipo === TipoCuota.NINGUNA) {
+          cuota.checked = false;
+        } else if (tipo === TipoCuota.VENCIDAS) {
+          cuota.checked = cuota.expired;
+        } else if (tipo === TipoCuota.VIGENTES) {
+          cuota.checked = !cuota.expired;
+        }
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-propiedad-rol.component';
+import {TipoCuota} from '../../../../domain/TipoCuota';
 
 @Component({
   selector: 'app-listado-propiedad',
@@ -8,6 +9,22 @@ import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-pro
   styleUrls: ['./listado-propiedad.component.scss']
 })
 export class ListadoPropiedadComponent implements AfterViewInit {
+
+  @Input()
+  propiedad: Propiedad;
+
+  @ViewChild('grid')
+  grid: ElementRef;
+
+  @ViewChildren(ListadoPropiedadRolComponent, {read: ElementRef})
+  rolElementRefList: QueryList<ElementRef>;
+
+  @ViewChildren(ListadoPropiedadRolComponent)
+  rolComponentList: QueryList<ListadoPropiedadRolComponent>;
+
+  constructor() {
+  }
+
   ngAfterViewInit(): void {
     // TODO eliminar este workaround
     setTimeout(
@@ -18,16 +35,12 @@ export class ListadoPropiedadComponent implements AfterViewInit {
     );
   }
 
-  @Input()
-  propiedad: Propiedad;
-
-  @ViewChild('grid')
-  grid: ElementRef;
-
-  @ViewChildren(ListadoPropiedadRolComponent, {read: ElementRef})
-  items: QueryList<ElementRef>;
-
-  constructor() {
+  seleccionar(tipo: TipoCuota): void {
+    if (this.rolComponentList) {
+      this.rolComponentList.forEach(
+        (rolComponent) => rolComponent.seleccionar(tipo)
+      );
+    }
   }
 
   private resizeGridItem(item: ElementRef): void {
@@ -39,8 +52,8 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   }
 
   resizeAllGridItems(): void {
-    if (this.items) {
-      this.items.forEach(
+    if (this.rolElementRefList) {
+      this.rolElementRefList.forEach(
         (item) => this.resizeGridItem(item)
       );
     }

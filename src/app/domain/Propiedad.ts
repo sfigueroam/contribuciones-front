@@ -23,7 +23,7 @@ export class Propiedad {
   private splitNombre(fullName: string): string {
     let slimName = '';
     for (let i = 0; i < fullName.length; i++) {
-      let character = fullName.charAt(i);
+      const character = fullName.charAt(i);
 
       if (!isNumeric(character)) {
         slimName += character;
