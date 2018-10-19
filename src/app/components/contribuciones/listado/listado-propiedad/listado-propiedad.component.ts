@@ -1,15 +1,4 @@
-import {
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren
-} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-propiedad-rol.component';
 
@@ -18,10 +7,15 @@ import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-pro
   templateUrl: './listado-propiedad.component.html',
   styleUrls: ['./listado-propiedad.component.scss']
 })
-export class ListadoPropiedadComponent implements AfterViewChecked {
-
-  ngAfterViewChecked(): void {
-    this.resizeAllGridItems();
+export class ListadoPropiedadComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    // TODO eliminar este workaround
+    setTimeout(
+      () => {
+        this.resizeAllGridItems();
+      },
+      500
+    );
   }
 
   @Input()
@@ -45,9 +39,7 @@ export class ListadoPropiedadComponent implements AfterViewChecked {
   }
 
   resizeAllGridItems(): void {
-    console.log('try', 1);
     if (this.items) {
-      console.log('try', 2);
       this.items.forEach(
         (item) => this.resizeGridItem(item)
       );

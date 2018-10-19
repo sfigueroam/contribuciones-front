@@ -21,8 +21,8 @@ export class Cuota {
     this.checked = true;
   }
 
-  formatDate(fecha) {
-    let fec = fecha.split('-');
+  private formatDate(fecha) {
+    const fec = fecha.split('-');
     return new Date(fec[2], fec[1], fec[0], 0, 0, 0);
   }
 
@@ -30,19 +30,13 @@ export class Cuota {
     this.fechaVencimiento.getFullYear();
   }
 
-
-  isVencida(): boolean {
-    let date = new Date();
+  isExpired(): boolean {
+    const date = new Date();
     date.setHours(0, 0, 0, 0,);
-    let diff = date.getTime() - this.fechaVencimiento.getTime();
-    return (diff > 0);
+    return (date.getTime() - this.fechaVencimiento.getTime() > 0);
   }
 
   isChecked(): boolean {
     return this.checked;
-  }
-
-  clickChecked(): void {
-    this.checked = !this.checked;
   }
 }

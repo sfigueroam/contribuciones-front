@@ -1,4 +1,4 @@
-<div class="content tgr-content mdl-shadow--3dp" (resize)="resized()" (change)="resized()">
+<div class="content tgr-content mdl-shadow--3dp">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-js-spinner is-active">
     </div>
@@ -25,11 +25,11 @@
     </div>
     <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
       {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
-    <div class="tgr-section-desc" *ngIf="rol.isShowMsgCuotasVencidas()">
+    <div class="tgr-section-desc" *ngIf="showSuggestion">
       <div class="tgr-section-desc--text">
         Se hará un descuento mayor mientras más cuotas atrasadas se paguen
       </div>
-      <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="rol.clickHideMsgCuotasVencidas()">ok
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="showSuggestion = false;">ok
       </button>
     </div>
   </div>
@@ -45,29 +45,19 @@
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
         <tr>
-          <th (click)="rol.clickCheckedAll(year)">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select"
-                   [class.is-checked]="rol.isCheckedAllCuotasForYear(year)"
-                   for="table-header-{{year}}-{{rol.rol}}">
-              <input type="checkbox" id="table-header-{{year}}-{{rol.rol}}" class="mdl-checkbox__input"
-                     [attr.checked]="rol.isCheckedAllCuotasForYear(year)"/>
-            </label>
+          <th (click)="selectAllNone(year)">
+            <i class="material-icons">{{ selectedIconMap.get(year) }}</i>
           </th>
-          <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota {{rol.isCheckedAllCuotasForYear(year)}}
-          </th>
+          <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
           <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
           <th class="tgr-monto">Monto</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let cuota of rol.getCuotas(year); let j = index;" [class.tgr-tr--late]="cuota.isVencida()"
-            (click)="cuota.clickChecked()">
+        <tr *ngFor="let cuota of rol.getCuotas(year); let j = index;" [class.tgr-tr--late]="cuota.isExpired()"
+            (click)="checkCuota(year, cuota)">
           <td>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect "
-                   [class.is-checked]="cuota.isChecked()" for="{{year}}-{{rol.rol}}-{{j}}">
-              <input type="checkbox" id="{{year}}-{{rol.rol}}-{{j}}" class="mdl-checkbox__input"
-                     [attr.checked]="cuota.isChecked()"/>
-            </label>
+            <i class="material-icons">{{cuotaIcon(cuota)}}</i>
           </td>
           <td class="mdl-data-table__cell--non-numeric">{{cuota.numeroCuota | slice:0:1}} {{cuota.isChecked()}}
           </td>

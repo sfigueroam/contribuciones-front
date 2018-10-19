@@ -1,5 +1,5 @@
+
 @import 'colors';
-@import '../../node_modules/material-design-lite/src/material-design-lite';
 
 html, body {
   font-family: 'Roboto', sans-serif !important;
@@ -16,7 +16,7 @@ html, body {
   background: $color-violet;
 }
 .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after{
-  background: $color-violet; 
+  background: $color-violet;
 }
 .tgr-card-container .mdl-data-table{
   width: 100%;

@@ -4,6 +4,6 @@
   <div class="tgr-total">$50.000</div>
 	</div>
   <div class="grid tgr-card-container" #grid>
-    <app-listado-propiedad-rol class="tgr-rol" *ngFor="let rol of propiedad.rol" [rol]="rol" (onResize)="resizeAllGridItems()"></app-listado-propiedad-rol>
+    <app-listado-propiedad-rol class="tgr-rol" *ngFor="let rol of propiedad.rol" [rol]="rol" (resize)="resizeAllGridItems()"></app-listado-propiedad-rol>
   </div>
 </div>
