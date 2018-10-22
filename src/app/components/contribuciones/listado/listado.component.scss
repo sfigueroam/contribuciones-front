@@ -230,6 +230,14 @@
   right: 0;
   z-index: 899;
 }
+.trg-tap {
+  visibility: hidden;    
+  transition: visibility 0s .3s;
+}
+.trg-tap.open {
+  visibility: visible;
+  transition: visibility 0s;
+}
 .tgr-target-wrapper {
   max-width: 1240px;
   margin-left: auto;
@@ -263,6 +271,9 @@
   @media (max-width: 820px){
     bottom: 113px;
   }
+}
+.tgr-target-wave--button{
+  background: transparent;
 }
 .tgr-target-wave .mdl-button.mdl-button--colored{
   background: $button-primary-color;
