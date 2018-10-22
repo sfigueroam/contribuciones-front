@@ -1,5 +1,5 @@
 import {Cuota} from './Cuota';
-import {Quote} from '../modulos/modelo';
+import {TipoCuota} from './TipoCuota';
 
 export class Rol {
 
@@ -15,72 +15,185 @@ export class Rol {
   rolId: number;
   subrolId: number;
   cuotas: Map<number, Cuota[]>;
-  checkedAllCuotas: boolean[] = [];
-  showMsgCuotasVencidas: boolean;
 
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
   }
 
-
-  pushCuota(cuota: Cuota[], year: number): void {
-    if (this.cuotas === undefined) this.cuotas = new Map<number, Cuota[]>();
-
-    this.cuotas.set(year, cuota);
-    this.checkedAllCuotas[year] = true;
+  // Revisa si existe alguna cuota vencida
+  hasExpiredQuotes(): boolean {
+    for (const year of Array.from(this.cuotas.keys())) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.expired) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
-  getYaers(): any[] {
-    return Array.from(this.cuotas.keys());
+  // Revisa si todas las cuotas de un ano estan seleccionadas
+  allChecked(year: number): boolean {
+    for (const cuota of Array.from(this.cuotas.get(year).values())) {
+      if (!cuota.checked) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Revisa si todas las cuotas de un ano estan des seleccionadas
+  noneChecked(year: number): boolean {
+    for (const cuota of Array.from(this.cuotas.get(year).values())) {
+      if (cuota.checked) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  pushCuota(cuota: Cuota[], year: number): void {
+    if (this.cuotas === undefined) {
+      this.cuotas = new Map<number, Cuota[]>();
+    }
+
+    this.cuotas.set(year, cuota);
+  }
+
+  getYears(): number[] {
+    return Array.from(this.cuotas.keys()).sort();
   }
 
   getCuotas(year): Cuota[] {
     return this.cuotas.get(year);
   }
 
-  isCheckedAllCuotasForYear(year: number): boolean {
-    this.checkedAllCuotas[year] = true;
-    let subCuota: Cuota[] = this.cuotas.get(year);
-    for (let i = 0; i < subCuota.length; i++) {
-      if (!subCuota[i].checked) {
-        this.checkedAllCuotas[year] = false;
-      }
+  seleccionar(tipo: TipoCuota, aYear?: number) {
+    let yearList = [];
+    if (aYear) {
+      yearList.push(aYear);
+    } else {
+      yearList = this.getYears();
     }
-    return this.checkedAllCuotas[year];
 
-  }
-
-  clickCheckedAll(year: number): void {
-    let checkedCuotaAll = !this.checkedAllCuotas[year];
-    let subCuota: Cuota[] = this.cuotas.get(year);
-    for (let i = 0; i < subCuota.length; i++) {
-      subCuota[i].checked = checkedCuotaAll;
-    }
-    this.checkedAllCuotas[year] = checkedCuotaAll;
-  }
-
-  isShowMsgCuotasVencidas(): boolean {
-    if(this.showMsgCuotasVencidas === undefined){
-      let years = this.getYaers();
-      for(let i = 0; i < years.length; i++ ){
-        let cuotas = this.getCuotas(years[i]);
-        for(let j = 0; j < cuotas.length; j++ ){
-          if(cuotas[j].isVencida()){
-            this.showMsgCuotasVencidas = true;
-            return this.showMsgCuotasVencidas;
-          }
+    for (const year of yearList) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (tipo === TipoCuota.TODAS) {
+          cuota.checked = true;
+        } else if (tipo === TipoCuota.NINGUNA) {
+          cuota.checked = false;
+        } else if (tipo === TipoCuota.VENCIDAS) {
+          cuota.checked = cuota.expired;
+        } else if (tipo === TipoCuota.VIGENTES) {
+          cuota.checked = !cuota.expired;
         }
       }
-      if(this.showMsgCuotasVencidas === undefined){
-        this.showMsgCuotasVencidas = false;
+    }
+  }
+
+  calcularTipo(): Array<TipoCuota> {
+    const result = new Array();
+
+    let total = 0;
+    let vencidas = 0;
+    let seleccionadas = 0;
+    let seleccionadasVencidas = 0;
+
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        total++;
+        if (cuota.expired) {
+          vencidas++;
+          if (cuota.checked) {
+            seleccionadasVencidas++;
+          }
+        }
+        if (cuota.checked) {
+          seleccionadas++;
+        }
       }
     }
-    return this.showMsgCuotasVencidas;
+
+    if (seleccionadas === seleccionadasVencidas && seleccionadas === vencidas) {
+      result.push(TipoCuota.VENCIDAS);
+    }
+    if (seleccionadasVencidas === 0 && seleccionadas === (total - vencidas)) {
+      result.push(TipoCuota.VIGENTES);
+    }
+    if (total === seleccionadas) {
+      result.push(TipoCuota.TODAS);
+    }
+    if (seleccionadas === 0) {
+      result.push(TipoCuota.NINGUNA);
+    }
+    return result;
   }
 
-  clickHideMsgCuotasVencidas(){
-    this.showMsgCuotasVencidas = false;
+  cuotasSeleccionadas(): Cuota[] {
+    const cuotas = [];
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          cuotas.push(cuota);
+        }
+      }
+    }
+    return cuotas;
   }
 
+  calcularTotalCondonado(): number {
+    let total = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          total += cuota.saldoPesos;
+        }
+      }
+    }
+    return total;
+  }
+
+  calcularTotal(): number {
+    let total = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          total += cuota.saldoPesos + cuota.montoCondonacion;
+        }
+      }
+    }
+    return total;
+  }
+
+  calcularCondonacion() {
+    let condonacion = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          condonacion += cuota.montoCondonacion;
+        }
+      }
+    }
+    return condonacion;
+  }
+
+  cantidadCuotas() {
+    let cantidad = 0;
+    for (const year of this.getYears()) {
+      cantidad += this.cuotas.get(year).length;
+    }
+    return cantidad;
+  }
+
+  cantidadCuotasSeleccionadas() {
+    let cantidad = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          cantidad++;
+        }
+      }
+    }
+    return cantidad;
+  }
 }
-

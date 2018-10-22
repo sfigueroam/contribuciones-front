@@ -1,0 +1,283 @@
+@import '../../../../../styles/colors';
+
+.tgr-content {
+	background: #fff;
+  border-radius: 4px;
+  position: relative;
+}
+
+// encabezado card
+.tgr-card__head {
+  border-bottom: 2px solid $color-filter;
+  color: $color-primary;
+  padding: 20px 16px 29px 16px;
+}
+.tgr-card__header{
+  max-height:24px;
+}
+
+// condonacion
+.tgr-section-desc {
+  // background: $color-dark;
+  // border-radius: 10px;
+  // color: #fff;
+  display:none;
+  // font-size: 14px;
+  // left: 6px;
+  // padding: 16px;
+  // position: absolute;
+  // right: 6px;
+  // top: 52px;
+  // z-index: 1000;
+}
+// .tgr-section-desc--text {
+//   display: inline-block;
+//   float: left;
+//   line-height: 1.2;
+//   padding-left: 4px;
+//   width: calc(100% - 68px);
+// }
+// .tgr-section-desc .mdl-button {
+//   color: $color-pink;
+// }
+
+.tgr-card__title {
+  font-size:16px;
+  margin: 0;
+  padding: 0;
+}
+.tgr-card__title .material-icons {
+  color: $color-violet;
+}
+.tgr-card__title h6 {
+  margin: 0;
+}
+.tgr-card__subtitle {
+  margin-bottom: 0;
+  margin-top: 2px;
+}
+.tgr-card__tag {
+  color: $color-violet;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.tgr-card__subtitle-text {
+  padding-left: 34px;
+}
+.tgr-100 {
+  width: 100%
+}
+.tgr-card-container .mdl-data-table{
+  width: 100%;
+  border: none;
+}
+.tgr-card__header ~ .tgr-price{
+  padding-bottom: 10px;
+}
+.tgr-price {
+  float: right;
+  line-height: 1;
+  padding-left: 10px;
+}
+.tgr-price__cost {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 13px;
+}
+.tgr-card__title .material-icons {
+  float: left;
+  line-height: 1;
+  margin-right: 4px;
+  margin-top: -6px;
+  margin-bottom: -6px;
+  //margin-bottom: 16px;
+}
+.tgr-card__title--text{
+  display: block;
+  font-size:18px;
+  font-weight: 500;
+  line-height: 16px;
+}
+.tgr-price__desc {
+  line-height: 1.2;
+  margin-bottom: 0;
+  padding-top: 4px;
+  text-align: right;
+}
+.tgr-card__desc--tag {
+  color: $tgr-text-colored;
+  font-size: 14px;
+  font-weight: 500;
+}
+.tgr-card__desc--price {
+  color: $tgr-text-colored;
+  display: block;
+  margin-top: 2px;
+}
+.tgr-list-section  .mdl-shadow--2dp {
+  box-shadow: none;
+}
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+  color: $color-primary;
+}
+
+.tgr-list-section .mdl-data-table {
+  border: none;
+}
+.tgr-cuota{
+  width: 18%
+}
+.tgr-vence{
+  width: 42%
+}
+.tgr-monto{
+  width: 26%
+}
+.mdl-cell {
+  position: relative;
+}
+
+// capa de espera
+.tgr-cell-wait {
+  display:none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: $color-advice-background;
+  z-index: 800;
+}
+.tgr-cell-delete {
+  display:none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: $color-advice-background;
+  z-index: 800;
+}
+.tgr-delete-link {
+  display: block;
+  text-align: center;
+}
+.tgr-delete-link a{
+  color: $color-primary-contrast;
+}
+.wait > .tgr-cell-wait {
+  display: block;
+}
+.tgr-cell-wait .mdl-spinner {
+  left: calc(50% - 20px);
+  margin-top: 20%;
+}
+.tgr-cell-wait__feedback {
+  padding: 5px 32px;
+  text-align: center;
+  color: #666;
+}
+.tgr-tr--late {
+  color: $color-primary-contrast;
+}
+.checked .material-icons {
+  color: $color-filter;
+}
+.unchecked .material-icons,
+.indeterminate_check_box .material-icons {
+  color: $gray-filter;
+}
+.checked .material-icons:before{
+  content: "check_box";
+}
+.unchecked .material-icons:before{
+  content: "check_box_outline_blank";
+}
+.indeterminate_check_box .material-icons:before{
+  content: "indeterminate_check_box";
+}
+.mdl-data-table td {
+  text-align: left;
+}
+.mdl-data-table td:last-child {
+  text-align: right;
+}
+tr.checked {
+  background: $color-selected-row;
+}
+.tgr-th-icon {
+  position: relative;
+}
+.tgr-th-icon .material-icons:before {
+  top: 13px;
+  position: absolute;
+  left: 24px;
+}
+
+// Celdas tablas
+.tgr-list-section .mdl-data-table td,
+.tgr-list-section .mdl-data-table th {
+  @media (max-width: 1080px) {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  @media (max-width: 1000px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (max-width: 950px) {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  @media (max-width: 890px) {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  @media (max-width: 839px) {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  @media (max-width: 740px) {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  @media (max-width: 670px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (max-width: 620px) {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  @media (max-width: 605px) {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,42 +2,50 @@
 /* ==========  Custom Colors  ========== */
 /* ===================================== */
 
-$color-warning-text: #F4B4B7;
-$color-warning-text-hover: #F4B4B7;
-$color-warning-background: #F9D2D4;
-$color-advice-background: rgba(255,245,245, .9);
-$gray-backgorund: #EBEBEB;
-$gray-card-backgorund: #CBCEE0;
-$gray-text: #333;
-$color-80: rgba(0,0,0,.8);
-$color-violet: #5F5FC4;
-$color-violet-light: #E8EAF6;
-$color-violet-text: #7E86BE;
-$color-violet-light-dark: #001064;
-$color-dark: #202020;
-$color-pink: #FFEBEE;
-$color-selected: #4D4D4D;
+$color-warning-text : #F4B4B7;
+$color-warning-text-hover : #F4B4B7;
+$color-warning-background : #F9D2D4;
+$color-advice-background : rgba(197,211,242,.9);
+$gray-backgorund : #f0f0f0;
+$gray-card-backgorund : #CBCEE0;
+$gray-text : #666;
+$gray-text-dark : #444;
+$gray-light : #E0E0E0;
+$gray-filter : #747474;
+$color-80 : rgba(0,0,0,.8);
+$color-violet : #5F5FC4;
+$color-violet-light : #E8EAF6;
+$color-violet-text : #7E86BE;
+$color-violet-light-dark : #001064;
+$color-dark : #202020;
+$color-pink : #FFEBEE;
+$color-selected : #4D4D4D;
+$color-filter : #3F51B5;
+$color-light : #EAF0FD;
+$tgr-text-colored : #ff6800;
+$color-selected-row : #F5F6FB;
 
 /* ======================================= */
 /* ==========  Material Colors  ========== */
 /* ======================================= */
 
-$color-primary: #283593;
-//$color-primary-dark: '';
-$color-accent: #a47f3c;
-$color-primary-contrast: #FF1744;
-//$color-accent-contrast: '';
+$color-primary : #283593;
+$color-primary-dark : #001064;
+//$color-accent : '';
+$color-primary-contrast : #dd0117;
+
+//$color-accent-contrast : '';
 
 /* ==========  Typography  ========== */
-//$text-color-primary: '';
-//$text-link-color: '';
+//$text-color-primary : '';
+//$text-link-color : '';
 
 /* ==========  Components  ========== */
 
 /* ==========  Standard Buttons  ========== */
 
-$button-primary-color: $color-primary-contrast;
-//$button-secondary-color: '';
+$button-primary-color : #448aff;
+//$button-secondary-color : '';
 //$button-hover-color: '';
 //$button-active-color: '';
 //$button-focus-color: '';

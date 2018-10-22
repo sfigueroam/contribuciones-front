@@ -1,5 +1,5 @@
+
 @import 'colors';
-@import '../../node_modules/material-design-lite/src/material-design-lite';
 
 html, body {
   font-family: 'Roboto', sans-serif !important;
@@ -11,6 +11,16 @@ html, body {
 
 .tgr-header .mdl-layout__drawer-button{
     color: #767777 !important;
+}
+.mdl-tabs__tab .mdl-tabs__ripple-container .mdl-ripple {
+  background: $color-violet;
+}
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after{
+  background: $color-violet;
+}
+.tgr-card-container .mdl-data-table{
+  width: 100%;
+  border: none;
 }
 @media (max-width: 1080px){
   .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{

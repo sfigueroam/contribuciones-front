@@ -1,0 +1,11 @@
+@import "../listado.component";
+
+.grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(376px,1fr));
+  grid-auto-rows: 0;
+  @media (max-width: 408px){
+  	grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+  }
+}
