@@ -67,9 +67,9 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
     for (const year of yearList) {
       if (this.rol.allChecked(year)) {
-        this.selectedIconMap.set(year, 'check_box');
+        this.selectedIconMap.set(year, 'checked');
       } else if (this.rol.noneChecked(year)) {
-        this.selectedIconMap.set(year, 'check_box_outline_blank');
+        this.selectedIconMap.set(year, 'unchecked');
       } else {
         this.selectedIconMap.set(year, 'indeterminate_check_box');
       }
@@ -95,7 +95,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   }
 
   cuotaIcon(cuota: Cuota): string {
-    return cuota.checked ? 'check_box' : 'check_box_outline_blank';
+    return cuota.checked ? 'checked' : 'unchecked';
   }
 
   seleccionar(tipo: TipoCuota): void {

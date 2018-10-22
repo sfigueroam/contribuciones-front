@@ -16,7 +16,16 @@
               (click)="openDialog()">Pagar $ {{total | number}}
       </button>
     </div>
-    <div class="tgr-select">
+     <div class="tgr-select tgr-select--select mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <select class="mdl-textfield__input" id="octane" name="octane">
+        <option value="85">Todas</option>
+        <option value="87">Vencidas</option>
+        <option value="89">Vigentes</option>
+        <option value="91">Ninguna</option>
+      </select>
+      <label class="tgr-select__label mdl-textfield__label" for="octane">Seleccionar:</label>
+    </div>
+    <div class="tgr-select tgr-select--buttons">
       <div class="tgr-select__label">
         Seleccionar:
       </div>
@@ -29,7 +38,7 @@
     </div>
   </div>
 </div>
-<div class="tgr-add" *ngIf="false">
+<div class="tgr-add">
   <div class="tgr-target-wrapper">
     <div class="tgr-target">
       <div class="tgr-target-content">
@@ -38,7 +47,7 @@
           <strong class="tgr-target-here">Agrégalos aquí</strong>
           <br>
           <br>
-          <a><small>ENTENDIDO</small></a>
+          <a class="tgr-close">ENTENDIDO</a>
         </h5>
       </div>
     </div>

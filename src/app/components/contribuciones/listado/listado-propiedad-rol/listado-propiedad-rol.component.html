@@ -1,13 +1,13 @@
 <div class="content tgr-content mdl-shadow--3dp">
   <div class="tgr-cell-wait">
-    <div class="mdl-spinner mdl-js-spinner is-active">
+    <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
     <h5 class="tgr-cell-wait__feedback">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
   </div>
-  <button
-    class="tgr-button-delete mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
-    <i class="material-icons">delete</i>
-  </button>
+  <div class="tgr-cell-delete">
+    <h5 class="tgr-cell-wait__feedback">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+    <p class="tgr-delete-link"><a href="">Eliminar</a> este ROL de tu cuenta</p>
+  </div>
   <div class="tgr-card__head">
     <div class="tgr-card__header">
       <div class="tgr-price">
@@ -19,7 +19,7 @@
     </div>
     <div class="tgr-price">
       <p class="tgr-price__desc">
-        <span class="tgr-card__desc--tag">Dscto:</span><br>
+        <span class="tgr-card__desc--tag">Descuento</span><br>
         <span class="tgr-card__desc--price">-$4.000</span>
       </p>
     </div>
@@ -45,8 +45,8 @@
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
         <tr>
-          <th (click)="selectAllNone(year)">
-            <i class="material-icons">{{ selectedIconMap.get(year) }}</i>
+          <th (click)="selectAllNone(year)" class="tgr-th-icon {{ selectedIconMap.get(year) }}">
+            <i class="material-icons"></i>
           </th>
           <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
           <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
@@ -54,15 +54,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let cuota of rol.getCuotas(year); let j = index;" [class.tgr-tr--late]="cuota.isExpired()"
+        <tr class="{{cuotaIcon(cuota)}}" *ngFor="let cuota of rol.getCuotas(year)"
             (click)="checkCuota(year, cuota)">
           <td>
-            <i class="material-icons">{{cuotaIcon(cuota)}}</i>
+            <i class="material-icons"></i>
           </td>
-          <td class="mdl-data-table__cell--non-numeric">{{cuota.numeroCuota | slice:0:1}} {{cuota.isChecked()}}
+          <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.numeroCuota | slice:0:1}} <!-- {{cuota.isChecked()}} -->
           </td>
-          <td class="mdl-data-table__cell--non-numeric">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-          <td>$ {{cuota.saldoPesos | number}}</td>
+          <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{cuota.saldoPesos | number}}</td>
         </tr>
         </tbody>
       </table>

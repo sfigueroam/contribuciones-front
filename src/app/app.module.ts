@@ -21,7 +21,7 @@ import { ListadoPropiedadComponent } from './components/contribuciones/listado/l
 import { ListadoPropiedadRolComponent } from './components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
 import { LeadingZeroPipe } from './pipe/leading-zero.pipe';
 import { MDLInitDirective } from './services/mdlinit.directive';
-import {TipoCuota} from './domain/FiltroCuota';
+
 
 
 registerLocaleData(localeEs, 'es');
