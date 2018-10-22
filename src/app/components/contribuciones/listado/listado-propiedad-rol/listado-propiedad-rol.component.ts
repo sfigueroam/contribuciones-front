@@ -26,6 +26,9 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   tipos: Array<TipoCuota>;
   total: number;
+  condonacion: number;
+  cuotasTotal: number;
+  cuotasSeleccionadas: number;
 
   constructor() {
     this.selectedIconMap = new Map<number, string>();
@@ -44,7 +47,10 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   actualizarTipoTotal(): void {
     this.total = this.rol.calcularTotal();
+    this.condonacion = this.rol.calcularCondonacion();
     this.tipos = this.rol.calcularTipo();
+    this.cuotasTotal = this.rol.cantidadCuotas();
+    this.cuotasSeleccionadas = this.rol.cantidadCuotasSeleccionadas();
     this.change.emit();
   }
 

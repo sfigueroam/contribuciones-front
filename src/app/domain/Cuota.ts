@@ -41,4 +41,8 @@ export class Cuota {
   isChecked(): boolean {
     return this.checked;
   }
+
+  getTotal(): number {
+    return this.saldoPesos + this.montoCondonacion;
+  }
 }

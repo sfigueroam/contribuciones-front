@@ -134,10 +134,44 @@ export class Rol {
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (cuota.checked) {
-          total += cuota.saldoPesos;
+          total += cuota.saldoPesos + cuota.montoCondonacion;
         }
       }
     }
     return total;
+  }
+
+  calcularCondonacion() {
+    let condonacion = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          condonacion += cuota.montoCondonacion;
+        }
+      }
+    }
+    return condonacion;
+  }
+
+  cantidadCuotas() {
+    let cantidad = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        cantidad++;
+      }
+    }
+    return cantidad;
+  }
+
+  cantidadCuotasSeleccionadas() {
+    let cantidad = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          cantidad++;
+        }
+      }
+    }
+    return cantidad;
   }
 }

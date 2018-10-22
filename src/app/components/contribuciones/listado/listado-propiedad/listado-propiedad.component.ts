@@ -28,6 +28,8 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   tipos: Array<TipoCuota>;
 
   total: number;
+  cuotasTotal: number;
+  cuotasSeleccionadas: number;
 
   constructor() {
   }
@@ -74,8 +76,10 @@ export class ListadoPropiedadComponent implements AfterViewInit {
     const result = new Map<TipoCuota, number>();
     const rolComponentArray = this.rolComponentList.toArray();
     let total = 0;
+    let cuotasTotal = 0;
+    let cuotasSeleccionadas = 0;
     for (const rolComponent of rolComponentArray) {
-      total += rolComponent.total;
+      total += rolComponent.total - rolComponent.condonacion;
       for (const tipo of rolComponent.tipos) {
         if (result.has(tipo)) {
           result.set(tipo, result.get(tipo) + 1);
@@ -83,8 +87,12 @@ export class ListadoPropiedadComponent implements AfterViewInit {
           result.set(tipo, 1);
         }
       }
+      cuotasTotal += rolComponent.cuotasTotal;
+      cuotasSeleccionadas += rolComponent.cuotasSeleccionadas;
     }
     this.total = total;
+    this.cuotasSeleccionadas = cuotasSeleccionadas;
+    this.cuotasTotal = cuotasTotal;
 
     this.tipos = new Array<TipoCuota>();
     if (result.get(TipoCuota.TODAS) === rolComponentArray.length) {

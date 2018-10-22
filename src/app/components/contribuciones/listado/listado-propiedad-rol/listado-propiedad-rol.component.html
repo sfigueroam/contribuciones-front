@@ -19,8 +19,8 @@
     </div>
     <div class="tgr-price">
       <p class="tgr-price__desc">
-        <span class="tgr-card__desc--tag">Descuento</span><br>
-        <span class="tgr-card__desc--price">-$4.000</span>
+        <span class="tgr-card__desc--tag">Condonación</span><br>
+        <span class="tgr-card__desc--price">-$ {{condonacion | number}}</span>
       </p>
     </div>
     <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="mdl-tabs__panel " [class.is-active]="isActive(year)" id="a{{year}}-panel"
-         *ngFor="let year of rol.getYears(); let i = index;">
+         *ngFor="let year of rol.getYears()">
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
         <tr>
@@ -62,7 +62,7 @@
           <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.numeroCuota | slice:0:1}} <!-- {{cuota.isChecked()}} -->
           </td>
           <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{cuota.saldoPesos | number}}</td>
+          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{cuota.getTotal() | number}}</td>
         </tr>
         </tbody>
       </table>

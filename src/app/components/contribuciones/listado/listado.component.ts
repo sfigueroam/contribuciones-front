@@ -23,14 +23,25 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   seleccionada: TipoCuota;
 
   total: number;
+  cuotasTotal: number;
+  cuotasSeleccionadas: number;
+
+  mostrarAlerta: boolean;
 
   constructor(private contributionsService: ContributionsService) {
+    this.mostrarAlerta = true;
+  }
+
+  ocultarAlerta(): void {
+    this.mostrarAlerta = false;
   }
 
   updateSeleccionadaTotal(): void {
     const result = new Map<TipoCuota, number>();
     const propiedadComponentArray = this.propiedadComponentList.toArray();
     let total = 0;
+    let cuotasTotal = 0;
+    let cuotasSeleccionadas = 0;
     for (const propiedadComponent of propiedadComponentArray) {
       total += propiedadComponent.total;
       for (const tipo of propiedadComponent.tipos) {
@@ -40,8 +51,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
           result.set(tipo, 1);
         }
       }
+      cuotasTotal += propiedadComponent.cuotasTotal;
+      cuotasSeleccionadas += propiedadComponent.cuotasSeleccionadas;
     }
     this.total = total;
+    this.cuotasSeleccionadas = cuotasSeleccionadas;
+    this.cuotasTotal = cuotasTotal;
 
     const tipos = [TipoCuota.TODAS, TipoCuota.NINGUNA, TipoCuota.VENCIDAS, TipoCuota.VIGENTES];
     for (const tipo of tipos) {
