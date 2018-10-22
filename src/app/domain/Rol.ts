@@ -180,9 +180,7 @@ export class Rol {
   cantidadCuotas() {
     let cantidad = 0;
     for (const year of this.getYears()) {
-      for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        cantidad++;
-      }
+      cantidad += this.cuotas.get(year).length;
     }
     return cantidad;
   }
