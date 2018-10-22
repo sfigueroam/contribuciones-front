@@ -34,8 +34,8 @@ export class ContributionsService {
 
     for (let p = 0; p < keyPropiedades.length; p++) {
       let prop: Propiedad = propiedadesTmp[keyPropiedades[p]];
-      for (let i = 0; i < prop.rol.length; i++) {
-        let deudas = this.getDeudas(prop.rol[i].rol).listaDeudaRol;
+      for (let i = 0; i < prop.roles.length; i++) {
+        let deudas = this.getDeudas(prop.roles[i].rol).listaDeudaRol;
         let cuotasTmp: Cuota[] = [];
         let year: number = -1;
 
@@ -43,13 +43,13 @@ export class ContributionsService {
         for (let j = 0; j < deudas.length; j++) {
           let cuota: Cuota = new Cuota(deudas[j]);
           if (year !== -1 && year !== cuota.fechaVencimiento.getFullYear()) {
-            prop.rol[i].pushCuota(cuotasTmp, year);
+            prop.roles[i].pushCuota(cuotasTmp, year);
             cuotasTmp = [];
           }
           cuotasTmp.push(cuota);
           year = cuota.fechaVencimiento.getFullYear();
           if (j + 1 === deudas.length) {
-            prop.rol[i].pushCuota(cuotasTmp, year);
+            prop.roles[i].pushCuota(cuotasTmp, year);
           }
         }
       }
