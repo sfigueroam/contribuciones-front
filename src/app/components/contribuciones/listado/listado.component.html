@@ -9,10 +9,19 @@
         de 6 roles, 36 cuotas seleccionadas
       </div>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-              (click)="openDialog()">$50.000 Pagar
+              (click)="openDialog()">$100.000 Pagar
       </button>
+    </div>    
+     <div class="tgr-select tgr-select--select mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <select class="mdl-textfield__input" id="octane" name="octane">
+        <option value="85">Todas</option>
+        <option value="87">Vencidas</option>
+        <option value="89">Vigentes</option>
+        <option value="91">Ninguna</option>
+      </select>
+      <label class="tgr-select__label mdl-textfield__label" for="octane">Seleccionar:</label>
     </div>
-    <div class="tgr-select">
+    <div class="tgr-select tgr-select--buttons">
       <div class="tgr-select__label">
         Seleccionar:
       </div>
@@ -34,7 +43,7 @@
           <strong class="tgr-target-here">Agrégalos aquí</strong>
           <br>
           <br>
-          <a><small>ENTENDIDO</small></a>
+          <a class="tgr-close">ENTENDIDO</a>
         </h5>
       </div>
     </div>
