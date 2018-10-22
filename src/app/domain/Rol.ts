@@ -129,6 +129,30 @@ export class Rol {
     return result;
   }
 
+  cuotasSeleccionadas(): Cuota[] {
+    const cuotas = [];
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          cuotas.push(cuota);
+        }
+      }
+    }
+    return cuotas;
+  }
+
+  calcularTotalCondonado(): number {
+    let total = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          total += cuota.saldoPesos;
+        }
+      }
+    }
+    return total;
+  }
+
   calcularTotal(): number {
     let total = 0;
     for (const year of this.getYears()) {

@@ -3,21 +3,46 @@ import {isNumeric} from 'rxjs/internal-compatibility';
 
 export class Propiedad {
 
-  public rol: Rol[];
+  public roles: Rol[];
   public direccion: string;
 
   setRol(rolArg: Rol[]): void {
-    this.rol = rolArg;
+    this.roles = rolArg;
+  }
+
+  calcularTotalCondonado(): number {
+    let total = 0;
+    for (const rol of this.roles) {
+      total += rol.calcularTotalCondonado();
+    }
+    return total;
+  }
+
+  calcularCondonacion() {
+    let total = 0;
+    for (const rol of this.roles) {
+      total += rol.calcularCondonacion();
+    }
+    return total;
+  }
+
+  tieneCuotasSeleccionadas(): boolean {
+    for (const rol of this.roles) {
+      if (rol.cantidadCuotasSeleccionadas() > 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
   addRol(rolArg: Rol): void {
 
-    if (this.rol === undefined) {
-      this.rol = [];
+    if (this.roles === undefined) {
+      this.roles = [];
       this.direccion = this.splitNombre(rolArg.direccion);
     }
 
-    this.rol.push(rolArg);
+    this.roles.push(rolArg);
   }
 
   private splitNombre(fullName: string): string {

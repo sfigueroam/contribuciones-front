@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Propiedad} from '../../../domain/Propiedad';
 
 @Component({
   selector: 'app-detalle-pago',
@@ -7,20 +8,35 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 })
 export class DetallePagoComponent implements OnInit {
 
-
   @ViewChild('dialog')
   dialog: ElementRef;
 
+  propiedades: Propiedad[];
 
-  constructor() { }
+  total: number;
+  condonacion: number;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  closeDialog(){
+  closeDialog() {
     this.dialog.nativeElement.close();
   }
-  showDialog(){
+
+  showDialog(propiedades: Propiedad[]): void {
+    this.propiedades = [];
+    this.total = 0;
+    this.condonacion = 0;
+    for (const propiedad of propiedades) {
+      if (propiedad.tieneCuotasSeleccionadas()) {
+        this.propiedades.push(propiedad);
+      }
+      this.total += propiedad.calcularTotalCondonado();
+      this.condonacion += propiedad.calcularCondonacion();
+    }
     this.dialog.nativeElement.showModal();
   }
 
