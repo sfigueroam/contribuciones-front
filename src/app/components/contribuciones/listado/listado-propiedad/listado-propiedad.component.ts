@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-propiedad-rol.component';
 import {TipoCuota} from '../../../../domain/TipoCuota';
@@ -13,6 +13,9 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   @Input()
   propiedad: Propiedad;
 
+  @Output()
+  change: EventEmitter<any> = new EventEmitter();
+
   @ViewChild('grid')
   grid: ElementRef;
 
@@ -22,6 +25,10 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   @ViewChildren(ListadoPropiedadRolComponent)
   rolComponentList: QueryList<ListadoPropiedadRolComponent>;
 
+  tipos: Array<TipoCuota>;
+
+  total: number;
+
   constructor() {
   }
 
@@ -30,6 +37,7 @@ export class ListadoPropiedadComponent implements AfterViewInit {
     setTimeout(
       () => {
         this.resizeAllGridItems();
+        this.updateTipoTotal();
       },
       500
     );
@@ -57,5 +65,41 @@ export class ListadoPropiedadComponent implements AfterViewInit {
         (item) => this.resizeGridItem(item)
       );
     }
+  }
+
+  updateTipoTotal(): void {
+    if (!this.rolComponentList) {
+      return;
+    }
+    const result = new Map<TipoCuota, number>();
+    const rolComponentArray = this.rolComponentList.toArray();
+    let total = 0;
+    for (const rolComponent of rolComponentArray) {
+      total += rolComponent.total;
+      for (const tipo of rolComponent.tipos) {
+        if (result.has(tipo)) {
+          result.set(tipo, result.get(tipo) + 1);
+        } else {
+          result.set(tipo, 1);
+        }
+      }
+    }
+    this.total = total;
+
+    this.tipos = new Array<TipoCuota>();
+    if (result.get(TipoCuota.TODAS) === rolComponentArray.length) {
+      this.tipos.push(TipoCuota.TODAS);
+    }
+    if (result.get(TipoCuota.VIGENTES) === rolComponentArray.length) {
+      this.tipos.push(TipoCuota.VIGENTES);
+    }
+    if (result.get(TipoCuota.VENCIDAS) === rolComponentArray.length) {
+      this.tipos.push(TipoCuota.VENCIDAS);
+    }
+    if (result.get(TipoCuota.NINGUNA) === rolComponentArray.length) {
+      this.tipos.push(TipoCuota.NINGUNA);
+    }
+
+    this.change.emit();
   }
 }

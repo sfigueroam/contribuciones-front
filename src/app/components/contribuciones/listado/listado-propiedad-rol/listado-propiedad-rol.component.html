@@ -11,11 +11,11 @@
   <div class="tgr-card__head">
     <div class="tgr-card__header">
       <div class="tgr-price">
-        <span class="tgr-price__cost">$15.000</span>
+        <span class="tgr-price__cost">$ {{total | number}}</span>
       </div>
       <p class="tgr-card__title">
         <i class="material-icons">directions_car</i>
-        <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
+        <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}} ({{tipos}})</span>
     </div>
     <div class="tgr-price">
       <p class="tgr-price__desc">
@@ -62,7 +62,7 @@
           <td class="mdl-data-table__cell--non-numeric">{{cuota.numeroCuota | slice:0:1}} {{cuota.isChecked()}}
           </td>
           <td class="mdl-data-table__cell--non-numeric">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-          <td>$15.000</td>
+          <td>$ {{cuota.saldoPesos | number}}</td>
         </tr>
         </tbody>
       </table>

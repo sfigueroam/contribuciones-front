@@ -90,4 +90,54 @@ export class Rol {
       }
     }
   }
+
+  calcularTipo(): Array<TipoCuota> {
+    const result = new Array();
+
+    let total = 0;
+    let vencidas = 0;
+    let seleccionadas = 0;
+    let seleccionadasVencidas = 0;
+
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        total++;
+        if (cuota.expired) {
+          vencidas++;
+          if (cuota.checked) {
+            seleccionadasVencidas++;
+          }
+        }
+        if (cuota.checked) {
+          seleccionadas++;
+        }
+      }
+    }
+
+    if (seleccionadas === seleccionadasVencidas && seleccionadas === vencidas) {
+      result.push(TipoCuota.VENCIDAS);
+    }
+    if (seleccionadasVencidas === 0 && seleccionadas === (total - vencidas)) {
+      result.push(TipoCuota.VIGENTES);
+    }
+    if (total === seleccionadas) {
+      result.push(TipoCuota.TODAS);
+    }
+    if (seleccionadas === 0) {
+      result.push(TipoCuota.NINGUNA);
+    }
+    return result;
+  }
+
+  calcularTotal(): number {
+    let total = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked) {
+          total += cuota.saldoPesos;
+        }
+      }
+    }
+    return total;
+  }
 }

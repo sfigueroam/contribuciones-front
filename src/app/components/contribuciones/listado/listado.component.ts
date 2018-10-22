@@ -22,11 +22,39 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   tipo = TipoCuota;
   seleccionada: TipoCuota;
 
+  total: number;
+
   constructor(private contributionsService: ContributionsService) {
   }
 
+  updateSeleccionadaTotal(): void {
+    const result = new Map<TipoCuota, number>();
+    const propiedadComponentArray = this.propiedadComponentList.toArray();
+    let total = 0;
+    for (const propiedadComponent of propiedadComponentArray) {
+      total += propiedadComponent.total;
+      for (const tipo of propiedadComponent.tipos) {
+        if (result.has(tipo)) {
+          result.set(tipo, result.get(tipo) + 1);
+        } else {
+          result.set(tipo, 1);
+        }
+      }
+    }
+    this.total = total;
+
+    const tipos = [TipoCuota.TODAS, TipoCuota.NINGUNA, TipoCuota.VENCIDAS, TipoCuota.VIGENTES];
+    for (const tipo of tipos) {
+      if (result.has(tipo) && result.get(tipo) === propiedadComponentArray.length) {
+        this.seleccionada = tipo;
+        return;
+      }
+    }
+
+    this.seleccionada = undefined;
+  }
+
   ngAfterViewInit() {
-    console.log('propiedadComponentList', this.propiedadComponentList);
   }
 
   ngOnInit() {

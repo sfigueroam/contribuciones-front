@@ -1,5 +1,9 @@
 <div class="tgr-list-section">
-  <app-listado-propiedad *ngFor="let propiedad of propiedades" [propiedad]="propiedad"></app-listado-propiedad>
+  <app-listado-propiedad
+    *ngFor="let propiedad of propiedades"
+    [propiedad]="propiedad"
+    (change)="updateSeleccionadaTotal()">
+  </app-listado-propiedad>
 </div>
 
 <div class="tgr-actions">
@@ -9,7 +13,7 @@
         de 6 roles, 36 cuotas seleccionadas
       </div>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-              (click)="openDialog()">$50.000 Pagar
+              (click)="openDialog()">Pagar $ {{total | number}}
       </button>
     </div>
     <div class="tgr-select">
@@ -25,7 +29,7 @@
     </div>
   </div>
 </div>
-<div class="tgr-add">
+<div class="tgr-add" *ngIf="false">
   <div class="tgr-target-wrapper">
     <div class="tgr-target">
       <div class="tgr-target-content">

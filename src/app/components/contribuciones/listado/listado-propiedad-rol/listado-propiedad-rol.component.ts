@@ -21,7 +21,11 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   showSuggestion: boolean;
   selectedYear: number;
 
+  // texto material icon (checkbox) por anio
   selectedIconMap: Map<number, string>;
+
+  tipos: Array<TipoCuota>;
+  total: number;
 
   constructor() {
     this.selectedIconMap = new Map<number, string>();
@@ -35,6 +39,13 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     }
 
     this.showSuggestion = this.rol.hasExpiredQuotes();
+    this.actualizarTipoTotal();
+  }
+
+  actualizarTipoTotal(): void {
+    this.total = this.rol.calcularTotal();
+    this.tipos = this.rol.calcularTipo();
+    this.change.emit();
   }
 
   selectAllNone(year: number): void {
@@ -63,8 +74,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
         this.selectedIconMap.set(year, 'indeterminate_check_box');
       }
     }
-
-    this.change.emit();
+    this.actualizarTipoTotal();
   }
 
   checkCuota(year: number, cuota: Cuota) {
