@@ -4,6 +4,7 @@ import {Propiedad} from '../../../domain/Propiedad';
 import {ContributionsService} from '../../../services/contributions.service';
 import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-listado',

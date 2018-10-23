@@ -22,6 +22,7 @@ import {ListadoPropiedadRolComponent} from './components/contribuciones/listado/
 import {LeadingZeroPipe} from './pipe/leading-zero.pipe';
 import {MDLInitDirective} from './services/mdlinit.directive';
 import {ListadoPropiedadRolCuotasComponent} from './components/contribuciones/listado/listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 registerLocaleData(localeEs, 'es');
@@ -49,7 +50,8 @@ registerLocaleData(localeEs, 'es');
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     {
