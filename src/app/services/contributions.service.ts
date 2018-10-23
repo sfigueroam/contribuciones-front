@@ -63,19 +63,4 @@ export class ContributionsService {
   private getDeudas(rol: number): any {
     return this.dummy.getDeudas(rol).listaDeudaRol;
   }
-
-  private agruparRoles(bienesRaices: any): Propiedad[] {
-    const propiedades: Propiedad[] = [];
-    for (let i = 0; i < bienesRaices.length; i++) {
-      const key = bienesRaices[i].rolComunaSiiCod + '-' + bienesRaices[i].rolId;
-      const rol: Rol = new Rol(bienesRaices[i]);
-      if (propiedades[key] === undefined) {
-        propiedades[key] = new Propiedad();
-      }
-      propiedades[key].addRol(rol);
-    }
-    return propiedades;
-
-  }
-
 }
