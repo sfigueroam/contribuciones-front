@@ -43,12 +43,11 @@
     <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
       {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
     </p>
-    <div class="tgr-section-desc" *ngIf="showSuggestion">
+    <div class="tgr-section-desc">
       <div class="tgr-section-desc--text">
-        Se hará un descuento mayor mientras más cuotas atrasadas se paguen
-      </div>
-      <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="showSuggestion = false;">ok
-      </button>
+        <span class="tgr-section-desc--title"><i class="material-icons right">close</i>Descuento</span>
+        <p>Se hará un descuento mayor mientras más cuotas atrasadas se paguen.</p>        
+      </div>    
     </div>
   </div>
   <div *ngIf="!showTabs">

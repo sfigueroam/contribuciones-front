@@ -10,34 +10,42 @@
 .tgr-card__head {
   border-bottom: 2px solid $color-filter;
   color: $color-primary;
-  padding: 20px 16px 0 16px;
   height: 80px;
+  overflow: hidden;
+  padding: 20px 16px 0 16px;
+  position: relative;
 }
 
 // condonacion
 .tgr-section-desc {
-  // background: $color-dark;
-  // border-radius: 10px;
-  // color: #fff;
-  display:none;
+  background: #fff;
+  border: 1px solid $gray-card-backgorund;
+  border-bottom: none;
+  color: $gray-text;
+  height: 51px;
+  display: block;
+  transform: translateY(0%);
   // font-size: 14px;
-  // left: 6px;
-  // padding: 16px;
-  // position: absolute;
-  // right: 6px;
-  // top: 52px;
+  left: 0;
+  padding: 24px;
+  position: absolute;
+  right: 0;
+  top: 102px;
+  transition: top .5s ease;
   // z-index: 1000;
 }
-// .tgr-section-desc--text {
-//   display: inline-block;
-//   float: left;
-//   line-height: 1.2;
-//   padding-left: 4px;
-//   width: calc(100% - 68px);
-// }
-// .tgr-section-desc .mdl-button {
-//   color: $color-pink;
-// }
+.tgr-section-desc--text p{
+  line-height: 1.2;
+}
+.tgr-section-desc--title {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+.tgr-section-desc .material-icons {
+  float: right;
+}
 
 .tgr-card__title {
   font-size: 16px;

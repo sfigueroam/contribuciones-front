@@ -25,6 +25,9 @@ html, body {
 .delete .tgr-cell-delete{
   display: block !important; 
 }
+.tgr-rol:hover .tgr-section-desc {
+  top: 0;
+}
 @media (max-width: 1080px){
   .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{
     padding-left: 0;
