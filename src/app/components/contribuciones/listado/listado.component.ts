@@ -28,10 +28,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   mostrarAlerta: boolean;
   mostrarDelete: boolean;
+  pagarInactivo: boolean;
 
   constructor(private contributionsService: ContributionsService) {
     this.mostrarAlerta = true;
     this.mostrarDelete = false;
+    this.pagarInactivo = true;
   }
 
   ocultarAlerta(): void {
@@ -70,6 +72,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     }
     this.total = total;
     this.cuotasSeleccionadas = cuotasSeleccionadas;
+    this.pagarInactivo = this.cuotasSeleccionadas === 0;
     this.cuotasTotal = cuotasTotal;
 
     const tipos = [TipoCuota.TODAS, TipoCuota.NINGUNA, TipoCuota.VENCIDAS, TipoCuota.VIGENTES];
