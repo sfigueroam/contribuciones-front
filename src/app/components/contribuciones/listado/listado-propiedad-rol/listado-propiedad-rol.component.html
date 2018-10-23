@@ -1,4 +1,4 @@
-<div class="content tgr-content mdl-shadow--3dp">
+<div class="content tgr-content">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
@@ -42,7 +42,7 @@
 
     <div class="mdl-tabs__panel " [class.is-active]="isActive(year)" id="a{{year}}-panel"
          *ngFor="let year of rol.getYears()">
-      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <table class="mdl-data-table mdl-js-data-table">
         <thead>
         <tr>
           <th (click)="selectAllNone(year)" class="tgr-th-icon {{ selectedIconMap.get(year) }}">

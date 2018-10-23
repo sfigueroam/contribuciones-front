@@ -30,8 +30,11 @@
     line-height: 1.2;
   }
 }
-.tgr-comuna {
+.tgr-comuna,
+.tgr-section-title--address small {
   color: $gray-text;
+  font-size: 26px;
+  font-weight: 300;
 }
 .tgr-total {
   font-size: 30px;
@@ -303,6 +306,7 @@
 }
 .tgr-close {
   color: #fff;
+  cursor: pointer;
   font-size: 14px;
   text-decoration: underline;
 }

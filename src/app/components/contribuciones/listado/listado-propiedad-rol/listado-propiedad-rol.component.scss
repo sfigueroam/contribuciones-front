@@ -11,9 +11,7 @@
   border-bottom: 2px solid $color-filter;
   color: $color-primary;
   padding: 20px 16px 29px 16px;
-}
-.tgr-card__header{
-  max-height:24px;
+  height: 80px;
 }
 
 // condonacion
@@ -79,6 +77,11 @@
   line-height: 1;
   padding-left: 10px;
 }
+.tgr-card__header ~ .tgr-price {
+  position: absolute;
+  right: 16px;
+  top: 38px;
+}
 .tgr-price__cost {
   font-weight: 300;
   font-size: 20px;
@@ -96,7 +99,7 @@
   display: block;
   font-size:18px;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1;
 }
 .tgr-price__desc {
   line-height: 1.2;
@@ -105,12 +108,12 @@
   text-align: right;
 }
 .tgr-card__desc--tag {
-  color: $tgr-text-colored;
+  color: $tgr-condoned;
   font-size: 14px;
   font-weight: 500;
 }
 .tgr-card__desc--price {
-  color: $tgr-text-colored;
+  color: $tgr-condoned;
   display: block;
   margin-top: 2px;
 }
