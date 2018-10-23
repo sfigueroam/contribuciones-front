@@ -3,6 +3,7 @@ import {Dummy} from '../modulos/dummy';
 import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
 import {Propiedad} from '../domain/Propiedad';
+import {ContributionsWsService} from './contributions-ws.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class ContributionsService {
 
   propiedades: Propiedad[];
 
-  constructor() {
+  constructor(private contributionsWsService: ContributionsWsService) {
+    this.contributionsWsService.hola();
     this.initBienesRaices();
   }
 
