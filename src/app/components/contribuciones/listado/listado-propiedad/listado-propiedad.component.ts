@@ -41,7 +41,7 @@ export class ListadoPropiedadComponent implements AfterViewInit {
         this.resizeAllGridItems();
         this.updateTipoTotal();
       },
-      500
+      700
     );
   }
 

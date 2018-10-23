@@ -1,11 +1,11 @@
-<div class="content tgr-content" [class.selected]="porEliminar">
+<div class="content tgr-content mdl-shadow--3dp" [class.selected]="porEliminar">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
     <h5 class="tgr-cell-wait__feedback">Espera un momento mientras obtenemos la información de las cuotas para el rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</h5>
   </div>
   <div class="tgr-cell-delete">
-    <div class="tgr-cell-delete--selector">
+    <div class="tgr-cell-delete--selector" (click)="porEliminar = ! porEliminar">
         <i class="material-icons tgr-unselect">check_circle</i>
         <i class="material-icons tgr-select">brightness_1</i>
       </div>
@@ -31,7 +31,7 @@
         <span class="tgr-price__cost">$ {{total | number}}</span>
       </div>
       <p class="tgr-card__title">
-        <i class="material-icons">directions_car</i>
+        <i class="material-icons">{{icon}}</i>
         <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
     </div>
     <div class="tgr-price" *ngIf="condonacion > 0">
