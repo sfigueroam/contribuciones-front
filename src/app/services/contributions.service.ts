@@ -34,9 +34,6 @@ export class ContributionsService {
         propiedadMap.set(idPropiedad, propiedad);
       }
       const rol = new Rol(bienRaiz);
-      if (rol.rol !== 8201011013) {
-        continue;
-      }
       propiedad.addRol(rol);
       for (const deuda of this.getDeudas(bienRaiz.rol)) {
         const cuota = new Cuota(deuda);

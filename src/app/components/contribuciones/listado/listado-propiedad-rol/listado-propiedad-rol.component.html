@@ -1,4 +1,4 @@
-<div class="content tgr-content selected">
+<div class="content tgr-content" [class.selected]="porEliminar">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
@@ -9,16 +9,18 @@
         <i class="material-icons tgr-unselect">check_circle</i>
         <i class="material-icons tgr-select">brightness_1</i>
       </div>
-    <h5 class="tgr-delete-link tgr-select">Eliminar este ROL</h5>
-    <h5 class="tgr-delete-link tgr-unselect">Seleccionado para eliminar</h5>
+    <h5 class="tgr-delete-link tgr-select">Para desasociar el rol <br>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}} de tu cuenta debes seleccionarlo</h5>
+    <h5 class="tgr-delete-link tgr-unselect">El rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}} se desasociará de tu cuenta.
+      <br>Debes confirmar eligiendo la opción
+      <br><b>ELIMINAR ROLES SELECCIONADOS</b> de la barra de acciones</h5>
     <div class="tge-cell-delete__actions">
       <button class="mdl-button mdl-js-button mdl-button--primary">
         Cancelar
       </button>
-      <button class="mdl-button mdl-js-button mdl-button--accent tgr-select">
+      <button class="mdl-button mdl-js-button mdl-button--accent tgr-select" (click)="porEliminar = true">
         Seleccionar
       </button>
-      <button class="mdl-button mdl-js-button mdl-button--accent tgr-unselect">
+      <button class="mdl-button mdl-js-button mdl-button--accent tgr-unselect" (click)="porEliminar = false">
         Deseleccionar
       </button>
     </div>
@@ -39,7 +41,8 @@
       </p>
     </div>
     <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-      {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
+      {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
+    </p>
     <div class="tgr-section-desc" *ngIf="showSuggestion">
       <div class="tgr-section-desc--text">
         Se hará un descuento mayor mientras más cuotas atrasadas se paguen

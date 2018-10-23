@@ -27,13 +27,27 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   cuotasSeleccionadas: number;
 
   mostrarAlerta: boolean;
+  mostrarDelete: boolean;
 
   constructor(private contributionsService: ContributionsService) {
     this.mostrarAlerta = true;
+    this.mostrarDelete = false;
   }
 
   ocultarAlerta(): void {
     this.mostrarAlerta = false;
+  }
+
+  activarEliminacion(): void {
+    this.mostrarDelete = true;
+  }
+
+  cancelarEliminacion(): void {
+    this.mostrarDelete = false;
+  }
+
+  eliminar(): void {
+    this.mostrarDelete = false;
   }
 
   updateSeleccionadaTotal(): void {

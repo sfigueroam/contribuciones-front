@@ -22,6 +22,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   cuotaComponentList: QueryList<ListadoPropiedadRolCuotasComponent>;
 
   showTabs: boolean;
+  porEliminar: boolean;
   showSuggestion: boolean;
   selectedYear: number;
 
@@ -33,6 +34,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   cuotasSeleccionadas: number;
 
   constructor() {
+    this.porEliminar = false;
   }
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.cuotasSeleccionadas = this.rol.cantidadCuotasSeleccionadas();
     this.change.emit();
 
-    this.showTabs = this.cuotasTotal > 1;
+    this.showTabs = this.cuotasTotal > 8;
   }
 
   isActive(year: number): boolean {

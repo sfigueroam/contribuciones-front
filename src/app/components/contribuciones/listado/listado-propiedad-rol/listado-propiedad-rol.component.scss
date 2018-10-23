@@ -157,7 +157,7 @@
   left: 0;
   right: 0;
   top: 102px;
-  bottom: -10px;
+  bottom: 0px;
   background: $color-advice-background;
   z-index: 800;
 }
@@ -167,7 +167,7 @@
   padding-top: 10px;
 }
 .tgr-cell-delete--selector .material-icons {
-  color:$tgr-selector 
+  color:$tgr-selector
 }
 .tge-cell-delete__actions {
   bottom: 0;
