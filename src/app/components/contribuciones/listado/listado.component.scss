@@ -75,10 +75,48 @@
     min-height: 78px;
   }
 }
-.tgr-actions__contet{
+.tgr-actions__content{
   max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
+}
+.tgr-actions__delete-zone {
+  background: $color-delete-background;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  padding-top: 40px;
+  text-align: center;
+}
+.delete ~ .tgr-actions  .tgr-actions__delete-zone {
+  display: block;
+}
+.tgr-actions__delete-zone button{
+  background: $button-primary-color;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.tgr-actions-delete {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+.tgr-actions-delete--action {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 210px;
+}
+.tgr-actions-delete--action .mdl-button {
+  color: $color-selected;
+  font-weight: 300;
+  text-transform: none;
 }
 .tgr-add__label {
   text-transform: uppercase;
@@ -143,9 +181,10 @@
   height: 48px;
   letter-spacing: 2px;
 }
-.tgr-pay .mdl-button:first-letter {
+.tgr-pay .mdl-button span {
   font-size: 16px;
-  padding-right: 6px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 .tgr-pay__label {
   float: left;
@@ -232,6 +271,9 @@
   left: 0;
   right: 0;
   z-index: 899;
+}
+.delete ~ .tgr-add {
+  display: none;
 }
 .trg-tap {
   visibility: hidden;    
