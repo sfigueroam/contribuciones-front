@@ -18,6 +18,7 @@ export class Rol {
 
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
+    this.cuotas = new Map<number, Cuota[]>();
   }
 
   // Revisa si existe alguna cuota vencida
@@ -32,24 +33,33 @@ export class Rol {
     return false;
   }
 
-  // Revisa si todas las cuotas de un ano estan seleccionadas
-  allChecked(year: number): boolean {
-    for (const cuota of Array.from(this.cuotas.get(year).values())) {
-      if (!cuota.checked) {
-        return false;
+  private all(checked: boolean, year: number): boolean{
+    if (year) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.checked !== checked) {
+          return false;
+        }
+      }
+    } else {
+      for (const aYear of Array.from(this.cuotas.keys())) {
+        for (const cuota of Array.from(this.cuotas.get(aYear).values())) {
+          if (cuota.checked !== checked) {
+            return false;
+          }
+        }
       }
     }
     return true;
   }
 
+  // Revisa si todas las cuotas de un ano estan seleccionadas
+  allChecked(year: number): boolean {
+    return this.all(true, year);
+  }
+
   // Revisa si todas las cuotas de un ano estan des seleccionadas
   noneChecked(year: number): boolean {
-    for (const cuota of Array.from(this.cuotas.get(year).values())) {
-      if (cuota.checked) {
-        return false;
-      }
-    }
-    return true;
+    return this.all(false, year);
   }
 
   pushCuota(cuota: Cuota[], year: number): void {
@@ -62,10 +72,6 @@ export class Rol {
 
   getYears(): number[] {
     return Array.from(this.cuotas.keys()).sort();
-  }
-
-  getCuotas(year): Cuota[] {
-    return this.cuotas.get(year);
   }
 
   seleccionar(tipo: TipoCuota, aYear?: number) {
@@ -195,5 +201,15 @@ export class Rol {
       }
     }
     return cantidad;
+  }
+
+  allCuotas(): Cuota[] {
+    const cuotas = [];
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        cuotas.push(cuota);
+      }
+    }
+    return cuotas;
   }
 }

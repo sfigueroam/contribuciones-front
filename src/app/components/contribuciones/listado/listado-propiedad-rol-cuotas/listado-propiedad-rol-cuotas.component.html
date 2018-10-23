@@ -1,0 +1,26 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+  <tr>
+    <th (click)="selectAllNone()" class="tgr-th-icon {{ selectedIcon }}">
+      <i class="material-icons"></i>
+    </th>
+    <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
+    <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
+    <th class="tgr-monto">Monto</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="{{cuotaIcon(cuota)}}" *ngFor="let cuota of cuotas"
+      (click)="checkCuota(cuota)">
+    <td>
+      <i class="material-icons"></i>
+    </td>
+    <td [class.tgr-tr--late]="cuota.isExpired()">
+      <span *ngIf="year; else conAnio">{{cuota.numeroCuota | slice:0:1}}</span>
+      <ng-template #conAnio>{{cuota.numeroCuota}}</ng-template>
+    </td>
+    <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+    <td [class.tgr-tr--late]="cuota.isExpired()">$ {{cuota.getTotal() | number}}</td>
+  </tr>
+  </tbody>
+</table>

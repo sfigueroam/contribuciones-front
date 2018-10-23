@@ -6,8 +6,8 @@ export class Propiedad {
   public roles: Rol[];
   public direccion: string;
 
-  setRol(rolArg: Rol[]): void {
-    this.roles = rolArg;
+  constructor() {
+    this.roles = [];
   }
 
   calcularTotalCondonado(): number {
@@ -36,12 +36,6 @@ export class Propiedad {
   }
 
   addRol(rolArg: Rol): void {
-
-    if (this.roles === undefined) {
-      this.roles = [];
-      this.direccion = this.splitNombre(rolArg.direccion);
-    }
-
     this.roles.push(rolArg);
   }
 

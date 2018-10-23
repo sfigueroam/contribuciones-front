@@ -2,7 +2,7 @@
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
-    <h5 class="tgr-cell-wait__feedback">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+    <h5 class="tgr-cell-wait__feedback">Espera un momento mientras obtenemos la información de las cuotas para el rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</h5>
   </div>
   <div class="tgr-cell-delete">
     <h5 class="tgr-cell-wait__feedback">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
@@ -15,9 +15,9 @@
       </div>
       <p class="tgr-card__title">
         <i class="material-icons">directions_car</i>
-        <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}} ({{tipos}})</span>
+        <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
     </div>
-    <div class="tgr-price">
+    <div class="tgr-price" *ngIf="condonacion > 0">
       <p class="tgr-price__desc">
         <span class="tgr-card__desc--tag">Condonación</span><br>
         <span class="tgr-card__desc--price">-$ {{condonacion | number}}</span>
@@ -33,8 +33,12 @@
       </button>
     </div>
   </div>
-
-  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div *ngIf="!showTabs">
+    <app-listado-propiedad-rol-cuotas
+      [rol]="rol" (change)="actualizarTipoTotal()">
+    </app-listado-propiedad-rol-cuotas>
+  </div>
+  <div *ngIf="showTabs" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
       <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="isActive(year)" (click)="activateTab(year)"
          *ngFor="let year of rol.getYears()">{{year}}</a>
@@ -42,30 +46,9 @@
 
     <div class="mdl-tabs__panel " [class.is-active]="isActive(year)" id="a{{year}}-panel"
          *ngFor="let year of rol.getYears()">
-      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-        <thead>
-        <tr>
-          <th (click)="selectAllNone(year)" class="tgr-th-icon {{ selectedIconMap.get(year) }}">
-            <i class="material-icons"></i>
-          </th>
-          <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
-          <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
-          <th class="tgr-monto">Monto</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="{{cuotaIcon(cuota)}}" *ngFor="let cuota of rol.getCuotas(year)"
-            (click)="checkCuota(year, cuota)">
-          <td>
-            <i class="material-icons"></i>
-          </td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.numeroCuota | slice:0:1}} <!-- {{cuota.isChecked()}} -->
-          </td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{cuota.getTotal() | number}}</td>
-        </tr>
-        </tbody>
-      </table>
+      <app-listado-propiedad-rol-cuotas
+          [rol]="rol" [year]="year" (change)="actualizarTipoTotal()">
+      </app-listado-propiedad-rol-cuotas>
     </div>
   </div>
 </div>

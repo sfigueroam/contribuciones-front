@@ -1,7 +1,7 @@
-import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import {Rol} from '../../../../domain/Rol';
-import {Cuota} from '../../../../domain/Cuota';
 import {TipoCuota} from '../../../../domain/TipoCuota';
+import {ListadoPropiedadRolCuotasComponent} from '../listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 
 @Component({
   selector: 'app-listado-propiedad-rol',
@@ -18,28 +18,25 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   @Output()
   change: EventEmitter<any> = new EventEmitter();
 
+  @ViewChildren(ListadoPropiedadRolCuotasComponent)
+  cuotaComponentList: QueryList<ListadoPropiedadRolCuotasComponent>;
+
+  showTabs: boolean;
   showSuggestion: boolean;
   selectedYear: number;
 
-  // texto material icon (checkbox) por anio
-  selectedIconMap: Map<number, string>;
-
   tipos: Array<TipoCuota>;
+
   total: number;
   condonacion: number;
   cuotasTotal: number;
   cuotasSeleccionadas: number;
 
   constructor() {
-    this.selectedIconMap = new Map<number, string>();
   }
 
   ngOnInit() {
     this.selectedYear = this.rol.getYears()[0];
-
-    for (const year of this.rol.getYears()) {
-      this.updateYear(year);
-    }
 
     this.showSuggestion = this.rol.hasExpiredQuotes();
     this.actualizarTipoTotal();
@@ -52,40 +49,8 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.cuotasTotal = this.rol.cantidadCuotas();
     this.cuotasSeleccionadas = this.rol.cantidadCuotasSeleccionadas();
     this.change.emit();
-  }
 
-  selectAllNone(year: number): void {
-    if (this.selectedIconMap.get(year) === 'check_box') {
-      this.rol.seleccionar(TipoCuota.NINGUNA, year);
-    } else {
-      this.rol.seleccionar(TipoCuota.TODAS, year);
-    }
-    this.updateYear(year);
-  }
-
-  updateYear(aYear?: number): void {
-    let yearList = [];
-    if (aYear) {
-      yearList.push(aYear);
-    } else {
-      yearList = this.rol.getYears();
-    }
-
-    for (const year of yearList) {
-      if (this.rol.allChecked(year)) {
-        this.selectedIconMap.set(year, 'checked');
-      } else if (this.rol.noneChecked(year)) {
-        this.selectedIconMap.set(year, 'unchecked');
-      } else {
-        this.selectedIconMap.set(year, 'indeterminate_check_box');
-      }
-    }
-    this.actualizarTipoTotal();
-  }
-
-  checkCuota(year: number, cuota: Cuota) {
-    cuota.checked = !cuota.checked;
-    this.updateYear(year);
+    this.showTabs = this.cuotasTotal > 1;
   }
 
   isActive(year: number): boolean {
@@ -100,12 +65,10 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.resize.emit();
   }
 
-  cuotaIcon(cuota: Cuota): string {
-    return cuota.checked ? 'checked' : 'unchecked';
-  }
-
   seleccionar(tipo: TipoCuota): void {
     this.rol.seleccionar(tipo);
-    this.updateYear();
+    for (const cuotaComponent of this.cuotaComponentList.toArray()) {
+      cuotaComponent.update();
+    }
   }
 }
