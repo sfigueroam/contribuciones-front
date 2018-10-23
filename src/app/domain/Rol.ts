@@ -21,11 +21,15 @@ export class Rol {
     this.cuotas = new Map<number, Cuota[]>();
   }
 
-  // Revisa si existe alguna cuota vencida
+  // Revisa si existe mas de 2 cuotas vencidas
   hasExpiredQuotes(): boolean {
+    let cantidad = 0;
     for (const year of Array.from(this.cuotas.keys())) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (cuota.expired) {
+          cantidad++;
+        }
+        if (cantidad >= 2) {
           return true;
         }
       }
@@ -33,7 +37,7 @@ export class Rol {
     return false;
   }
 
-  private all(checked: boolean, year: number): boolean{
+  private all(checked: boolean, year: number): boolean {
     if (year) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (cuota.checked !== checked) {

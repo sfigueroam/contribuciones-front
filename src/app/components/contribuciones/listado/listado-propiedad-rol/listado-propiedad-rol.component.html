@@ -1,4 +1,4 @@
-<div class="content tgr-content has-discount mdl-shadow--3dp " [class.selected]="porEliminar">
+<div class="content tgr-content mdl-shadow--3dp " [class.selected]="porEliminar" [class.has-discount]="showSuggestion">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
@@ -46,8 +46,8 @@
     <div class="tgr-section-desc">
       <div class="tgr-section-desc--text">
         <span class="tgr-section-desc--title"><i class="material-icons right">close</i>Descuento</span>
-        <p>Se hará un descuento mayor mientras más cuotas atrasadas se paguen.</p>        
-      </div>    
+        <p>Se hará un descuento mayor mientras más cuotas atrasadas se paguen.</p>
+      </div>
     </div>
   </div>
   <div *ngIf="!showTabs">
