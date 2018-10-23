@@ -5,7 +5,7 @@
     <h5 class="tgr-cell-wait__feedback">Espera un momento mientras obtenemos la información de las cuotas para el rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</h5>
   </div>
   <div class="tgr-cell-delete">
-    <div class="tgr-cell-delete--selector">
+    <div class="tgr-cell-delete--selector" (click)="porEliminar = ! porEliminar">
         <i class="material-icons tgr-unselect">check_circle</i>
         <i class="material-icons tgr-select">brightness_1</i>
       </div>
