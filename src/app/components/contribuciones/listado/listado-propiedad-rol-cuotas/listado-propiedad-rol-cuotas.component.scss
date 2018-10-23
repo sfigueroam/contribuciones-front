@@ -12,12 +12,15 @@
 }
 .checked .material-icons:before{
   content: "check_box";
+  cursor: pointer;
 }
 .unchecked .material-icons:before{
   content: "check_box_outline_blank";
+  cursor: pointer;
 }
 .indeterminate_check_box .material-icons:before{
   content: "indeterminate_check_box";
+  cursor: pointer;
 }
 .mdl-data-table td {
   text-align: left;

@@ -28,6 +28,9 @@ html, body {
 .see-discounts .tgr-rol:hover .has-discount .tgr-section-desc {
   top: 0;
 }
+.see-discounts.delete .tgr-rol:hover .has-discount .tgr-section-desc {
+  top: 102px;
+}
 @media (max-width: 1080px){
   .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{
     padding-left: 0;
