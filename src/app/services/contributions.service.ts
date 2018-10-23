@@ -15,7 +15,7 @@ export class ContributionsService {
   propiedades: Propiedad[];
 
   constructor(private contributionsWsService: ContributionsWsService) {
-    this.contributionsWsService.hola();
+    this.contributionsWsService.getBienRaizAsociado('96597810');
     this.initBienesRaices();
   }
 

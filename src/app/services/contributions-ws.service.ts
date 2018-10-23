@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-//import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
@@ -8,34 +9,39 @@ import { Injectable } from '@angular/core';
 export class ContributionsWsService {
 
 
-  constructor(/*private http: HttpClient*/) {
+  constructor(private http: HttpClient) {
     console.log('Iniciando ContributionsWsService');
   }
 
-  hola(): void{
 
+  getBienRaizAsociado(rut: string): Promise<{}> {
+
+    const params = {
+      'path': '/ClienteBienRaizWS/api/BienRaiz/asociado/obtener/' + rut
+    };
+    return this.request("GET", params);
   }
 
-  /*getBienRaizAsociado(rut: string): void {
+  private request(method, params): Promise<{}>{
+    return new Promise((resolve, reject) => {
+      this.http.request(method,
+        environment.urlWsTierra,
+        {
+          params: params,
+          responseType: 'json',
+          withCredentials: true
+        }
+      ).subscribe(
+        data => {
+          resolve(data);
+        },
+        err => {
+          console.log('Error', err);
+          reject(err);
+        }
+      );
+    });
+  }
 
-    console.log(rut);
 
-    let params = new HttpParams();
-    params.set('path', '/ClienteBienRaizWS/api/BienRaiz/asociado/obtener/96597810');
-
-
-    let option = {
-      params: params
-    };
-
-    this.http.get('https://dm5ujuys5b.execute-api.us-east-1.amazonaws.com/dev/proxy-private', option
-    ).subscribe(
-      data => {
-        console.log("POST Request is successful ", data);
-      },
-      error => {
-        console.log("Error", error);
-      }
-    );
-  }*/
 }
