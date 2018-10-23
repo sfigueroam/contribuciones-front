@@ -1,14 +1,12 @@
 <div class="tgr-section-grid" (resize)="resizeAllGridItems()">
   <div class="tgr-section-title">
-    <div class="tgr-section-title--address">{{propiedad.direccion}} -
-      <small>{{propiedad.roles[0].comuna}}</small>
-      ({{tipos}})
+    <div class="tgr-section-title--address">{{propiedad.direccion}} - {{propiedad.roles[0].comuna}}
     </div>
     <div class="tgr-total">$ {{total | number}}</div>
   </div>
   <div class="grid tgr-card-container" #grid>
     <app-listado-propiedad-rol
-      class="tgr-rol"
+      class="tgr-rol mdl-shadow--3dp"
       *ngFor="let rol of propiedad.roles"
       [rol]="rol"
       (resize)="resizeAllGridItems()"

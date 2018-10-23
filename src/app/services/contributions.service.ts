@@ -23,25 +23,61 @@ export class ContributionsService {
 
   initBienesRaices(): void {
 
+    const propiedadMap = new Map<string, Propiedad>();
+
+    for (const bienRaiz of this.getBienRaiz()) {
+      const idPropiedad = this.getBienRaizId(bienRaiz);
+      let propiedad = propiedadMap.get(idPropiedad);
+      if (!propiedad) {
+        propiedad = new Propiedad();
+        propiedad.direccion = bienRaiz.direccion;
+        propiedadMap.set(idPropiedad, propiedad);
+      }
+      const rol = new Rol(bienRaiz);
+      propiedad.addRol(rol);
+      for (const deuda of this.getDeudas(bienRaiz.rol)) {
+        const cuota = new Cuota(deuda);
+        const idCuota = this.getCuotaAnio(cuota);
+        if (!rol.cuotas.has(idCuota)) {
+          rol.cuotas.set(idCuota, []);
+        }
+        rol.cuotas.get(idCuota).push(cuota);
+      }
+    }
+
+    this.propiedades = Array.from(propiedadMap.values());
+    console.log(this.propiedades);
+  }
+
+  private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
+    return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
+  }
+
+  private getCuotaAnio(cuota: Cuota): number {
+    return parseInt(cuota.numeroCuota.split('-')[1], 10);
+  }
+
+  initBienesRaicesOld(): void {
+
     this.propiedades = [];
 
-    let bienesRaices = this.getBienRaiz().curout;
+    const bienesRaices = this.getBienRaiz();
 
-    let propiedadesTmp: Propiedad[] = this.agruparRoles(bienesRaices);
+    const propiedadesTmp: Propiedad[] = this.agruparRoles(bienesRaices);
 
     // Recorre los roles
-    let keyPropiedades = Object.keys(propiedadesTmp);
+    const keyPropiedades = Object.keys(propiedadesTmp);
 
     for (let p = 0; p < keyPropiedades.length; p++) {
-      let prop: Propiedad = propiedadesTmp[keyPropiedades[p]];
+      const prop: Propiedad = propiedadesTmp[keyPropiedades[p]];
       for (let i = 0; i < prop.roles.length; i++) {
-        let deudas = this.getDeudas(prop.roles[i].rol).listaDeudaRol;
+        const deudas = this.getDeudas(prop.roles[i].rol).listaDeudaRol;
         let cuotasTmp: Cuota[] = [];
-        let year: number = -1;
+        let year = -1;
 
         // Recorre las Cuotas
         for (let j = 0; j < deudas.length; j++) {
-          let cuota: Cuota = new Cuota(deudas[j]);
+          const cuota: Cuota = new Cuota(deudas[j]);
           if (year !== -1 && year !== cuota.fechaVencimiento.getFullYear()) {
             prop.roles[i].pushCuota(cuotasTmp, year);
             cuotasTmp = [];
@@ -56,30 +92,27 @@ export class ContributionsService {
       propiedadesTmp[p] = prop;
     }
 
-
     this.propiedades = propiedadesTmp;
-
+    console.log(this.propiedades);
   }
 
   private getBienRaiz(): any {
-    return this.dummy.getBienRaiz();
+    return this.dummy.getBienRaiz().curout;
   }
 
   private getDeudas(rol: number): any {
-    return this.dummy.getDeudas(rol);
+    return this.dummy.getDeudas(rol).listaDeudaRol;
   }
 
   private agruparRoles(bienesRaices: any): Propiedad[] {
-    let propiedades: Propiedad[] = [];
-
+    const propiedades: Propiedad[] = [];
     for (let i = 0; i < bienesRaices.length; i++) {
-      let key = bienesRaices[i].rolComunaSiiCod + '-' + bienesRaices[i].rolId;
-      let rol: Rol = new Rol(bienesRaices[i]);
+      const key = bienesRaices[i].rolComunaSiiCod + '-' + bienesRaices[i].rolId;
+      const rol: Rol = new Rol(bienesRaices[i]);
       if (propiedades[key] === undefined) {
         propiedades[key] = new Propiedad();
       }
       propiedades[key].addRol(rol);
-
     }
     return propiedades;
 

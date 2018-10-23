@@ -1,4 +1,4 @@
-<div class="tgr-list-section">
+<div class="tgr-list-section" [class.delete]="mostrarDelete">
   <app-listado-propiedad
     *ngFor="let propiedad of propiedades"
     [propiedad]="propiedad"
@@ -7,16 +7,28 @@
 </div>
 
 <div class="tgr-actions">
-  <div class="tgr-actions__contet">
+  <div class="tgr-actions__content">
+    <div class="tgr-actions__delete-zone">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              (click)="cancelarEliminacion()">
+        Cancelar eliminación
+      </button>
+      &nbsp;&nbsp;
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              (click)="eliminar()">
+        Eliminar roles seleccionados
+      </button>
+    </div>
     <div class="tgr-pay">
       <div class="tgr-pay__label">
         Cuotas seleccionadas {{cuotasSeleccionadas}} (de {{cuotasTotal}})
       </div>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-              (click)="openDialog()">Pagar $ {{total | number}}
+              (click)="openDialog()"
+              [disabled]="pagarInactivo">Pagar <span>$</span>{{total | number}}
       </button>
     </div>
-     <div class="tgr-select tgr-select--select mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <div class="tgr-select tgr-select--select mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <select class="mdl-textfield__input" id="octane" name="octane">
         <option value="85">Todas</option>
         <option value="87">Vencidas</option>
@@ -30,11 +42,22 @@
         Seleccionar:
       </div>
       <ul class="filter">
-        <li [class.active]="seleccionada === tipo.TODAS"><a (click)="seleccionar(tipo.TODAS)"><i class="material-icons">done</i>Todas</a></li>
-        <li [class.active]="seleccionada === tipo.VENCIDAS"><a (click)="seleccionar(tipo.VENCIDAS)"><i class="material-icons">done</i>Vencidas</a></li>
-        <li [class.active]="seleccionada === tipo.VIGENTES"><a (click)="seleccionar(tipo.VIGENTES)"><i class="material-icons">done</i>Vigentes</a></li>
-        <li [class.active]="seleccionada === tipo.NINGUNA"><a (click)="seleccionar(tipo.NINGUNA)"><i class="material-icons">done</i>Ninguna</a></li>
+        <li [class.active]="seleccionada === tipo.TODAS"><a (click)="seleccionar(tipo.TODAS)"><i class="material-icons">done</i>Todas</a>
+        </li>
+        <li [class.active]="seleccionada === tipo.VENCIDAS"><a (click)="seleccionar(tipo.VENCIDAS)"><i
+          class="material-icons">done</i>Vencidas</a></li>
+        <li [class.active]="seleccionada === tipo.VIGENTES"><a (click)="seleccionar(tipo.VIGENTES)"><i
+          class="material-icons">done</i>Vigentes</a></li>
+        <li [class.active]="seleccionada === tipo.NINGUNA"><a (click)="seleccionar(tipo.NINGUNA)"><i
+          class="material-icons">done</i>Ninguna</a></li>
       </ul>
+    </div>
+    <div class="tgr-actions-delete">
+      <div class="tgr-actions-delete--action">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="activarEliminacion()">
+          Eliminar Roles de tu cuenta
+        </button>
+      </div>
     </div>
   </div>
 </div>

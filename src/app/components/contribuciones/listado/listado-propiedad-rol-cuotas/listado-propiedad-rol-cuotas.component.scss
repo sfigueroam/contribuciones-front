@@ -1,0 +1,79 @@
+@import '../../../../../styles/colors';
+
+.tgr-tr--late {
+  color: $color-primary-contrast;
+}
+.checked .material-icons {
+  color: $color-filter;
+}
+.unchecked .material-icons,
+.indeterminate_check_box .material-icons {
+  color: $gray-filter;
+}
+.checked .material-icons:before{
+  content: "check_box";
+}
+.unchecked .material-icons:before{
+  content: "check_box_outline_blank";
+}
+.indeterminate_check_box .material-icons:before{
+  content: "indeterminate_check_box";
+}
+.mdl-data-table td {
+  text-align: left;
+}
+.mdl-data-table td:last-child {
+  text-align: right;
+}
+tr.checked {
+  background: $color-selected-row;
+}
+.tgr-th-icon {
+  position: relative;
+}
+.tgr-th-icon .material-icons:before {
+  top: 13px;
+  position: absolute;
+  left: 24px;
+}
+
+// Celdas tablas
+.tgr-list-section .mdl-data-table td,
+.tgr-list-section .mdl-data-table th {
+  @media (max-width: 1080px) {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  @media (max-width: 1000px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (max-width: 950px) {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  @media (max-width: 890px) {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  @media (max-width: 839px) {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  @media (max-width: 740px) {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  @media (max-width: 670px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (max-width: 620px) {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  @media (max-width: 605px) {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
