@@ -1,4 +1,4 @@
-<div class="tgr-list-section">
+<div class="tgr-list-section delete">
   <app-listado-propiedad
     *ngFor="let propiedad of propiedades"
     [propiedad]="propiedad"
@@ -7,13 +7,18 @@
 </div>
 
 <div class="tgr-actions">
-  <div class="tgr-actions__contet">
+  <div class="tgr-actions__content">
+    <div class="tgr-actions__delete-zone">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+              Eliminar Roles seleccionados
+      </button>
+    </div>
     <div class="tgr-pay">
       <div class="tgr-pay__label">
         Cuotas seleccionadas {{cuotasSeleccionadas}} (de {{cuotasTotal}})
       </div>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-              (click)="openDialog()">Pagar $ {{total | number}}
+              (click)="openDialog()">Pagar <span>$</span>{{total | number}}
       </button>
     </div>
      <div class="tgr-select tgr-select--select mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -35,6 +40,13 @@
         <li [class.active]="seleccionada === tipo.VIGENTES"><a (click)="seleccionar(tipo.VIGENTES)"><i class="material-icons">done</i>Vigentes</a></li>
         <li [class.active]="seleccionada === tipo.NINGUNA"><a (click)="seleccionar(tipo.NINGUNA)"><i class="material-icons">done</i>Ninguna</a></li>
       </ul>
+    </div>
+    <div class="tgr-actions-delete">      
+      <div class="tgr-actions-delete--action">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+          Eliminar Roles de tu cuenta
+        </button>
+      </div>       
     </div>
   </div>
 </div>

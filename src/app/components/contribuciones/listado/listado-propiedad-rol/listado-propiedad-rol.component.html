@@ -1,12 +1,27 @@
-<div class="content tgr-content mdl-shadow--3dp">
+<div class="content tgr-content selected">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
     <h5 class="tgr-cell-wait__feedback">Espera un momento mientras obtenemos la información de las cuotas para el rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</h5>
   </div>
   <div class="tgr-cell-delete">
-    <h5 class="tgr-cell-wait__feedback">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
-    <p class="tgr-delete-link"><a href="">Eliminar</a> este ROL de tu cuenta</p>
+    <div class="tgr-cell-delete--selector">
+        <i class="material-icons tgr-unselect">check_circle</i>
+        <i class="material-icons tgr-select">brightness_1</i>
+      </div>
+    <h5 class="tgr-delete-link tgr-select">Eliminar este ROL</h5>
+    <h5 class="tgr-delete-link tgr-unselect">Seleccionado para eliminar</h5>
+    <div class="tge-cell-delete__actions">
+      <button class="mdl-button mdl-js-button mdl-button--primary">
+        Cancelar
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--accent tgr-select">
+        Seleccionar
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--accent tgr-unselect">
+        Deseleccionar
+      </button>
+    </div>
   </div>
   <div class="tgr-card__head">
     <div class="tgr-card__header">
