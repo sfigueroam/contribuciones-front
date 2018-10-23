@@ -3,7 +3,8 @@ import {Dummy} from '../modulos/dummy';
 import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
 import {Propiedad} from '../domain/Propiedad';
-import {ContributionsWsService} from './contributions-ws.service';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,7 @@ export class ContributionsService {
 
   propiedades: Propiedad[];
 
-  constructor(private contributionsWsService: ContributionsWsService) {
-    this.contributionsWsService.getBienRaizAsociado('96597810');
+  constructor(private http: HttpClient) {
     this.initBienesRaices();
   }
 
@@ -64,5 +64,31 @@ export class ContributionsService {
 
   private getDeudas(rol: number): any {
     return this.dummy.getDeudas(rol).listaDeudaRol;
+  }
+
+
+  private apiTgr(path, method, body?): Promise<{}>{
+    const params = {
+      'path': path
+    };
+
+    return new Promise((resolve, reject) => {
+      this.http.request(method,
+        environment.urlWsTierra,
+        {
+          body: body,
+          params: params,
+          responseType: 'json'
+        }
+      ).subscribe(
+        data => {
+          resolve(data);
+        },
+        err => {
+          console.log('Error', err);
+          reject();
+        }
+      );
+    });
   }
 }
