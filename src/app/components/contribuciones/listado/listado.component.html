@@ -24,7 +24,8 @@
         Cuotas seleccionadas {{cuotasSeleccionadas}} (de {{cuotasTotal}})
       </div>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-              (click)="openDialog()">Pagar <span>$</span>{{total | number}}
+              (click)="openDialog()"
+              [disabled]="pagarInactivo">Pagar <span>$</span>{{total | number}}
       </button>
     </div>
     <div class="tgr-select tgr-select--select mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

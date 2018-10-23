@@ -33,8 +33,53 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   cuotasTotal: number;
   cuotasSeleccionadas: number;
 
+  icon: string;
+
   constructor() {
     this.porEliminar = false;
+  }
+
+  iconInit(): void {
+    switch (this.rol.idDestPropiedad) {
+      case 'A': // AGRICOLA
+      case 'B': // AGRICOLA POR ASIMILACION
+        this.icon = 'spa';
+        break;
+      case 'E': // EDUCACION Y CULTURA
+        this.icon = 'school';
+        break;
+      case 'F': // FORESTAL
+        this.icon = 'terrain';
+        break;
+      case 'G': // HOTEL, MOTEL
+        this.icon = 'hotel';
+        break;
+      case 'I': // INDUSTRIA
+      case 'M': // MINERIA
+        this.icon = 'local_shipping';
+        break;
+      case 'H': // HABITACIONAL
+        this.icon = 'business';
+        break;
+      case 'O': // OFICINA
+        this.icon = 'work';
+        break;
+      case 'L': // BODEGA
+        this.icon = 'meeting_room';
+        break;
+      case 'Q': // CULTO
+        this.icon = '';
+        break;
+      case 'S': // SALUD
+        this.icon = 'local_hospital';
+        break;
+      case 'Z': // ESTACIONAMIENTO
+        this.icon = 'directions_car';
+        break;
+      default:
+        this.icon = 'layers';
+        break;
+    }
   }
 
   ngOnInit() {
@@ -42,6 +87,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
     this.showSuggestion = this.rol.hasExpiredQuotes();
     this.actualizarTipoTotal();
+    this.iconInit();
   }
 
   actualizarTipoTotal(): void {

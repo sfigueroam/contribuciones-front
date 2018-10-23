@@ -28,10 +28,19 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   mostrarAlerta: boolean;
   mostrarDelete: boolean;
+  pagarInactivo: boolean;
 
   constructor(private contributionsService: ContributionsService) {
-    this.mostrarAlerta = true;
+    this.mostrarAlerta = false;
     this.mostrarDelete = false;
+    this.pagarInactivo = true;
+    // TODO eliminar este workaround para que se muestre la alerta a destiempo
+    setTimeout(
+      () => {
+        this.mostrarAlerta = true;
+      },
+      1500
+    );
   }
 
   ocultarAlerta(): void {
@@ -70,6 +79,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     }
     this.total = total;
     this.cuotasSeleccionadas = cuotasSeleccionadas;
+    this.pagarInactivo = this.cuotasSeleccionadas === 0;
     this.cuotasTotal = cuotasTotal;
 
     const tipos = [TipoCuota.TODAS, TipoCuota.NINGUNA, TipoCuota.VENCIDAS, TipoCuota.VIGENTES];
