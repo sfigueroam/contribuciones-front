@@ -1,8 +1,9 @@
-<div class="tgr-list-section see-discounts" [class.delete]="mostrarDelete">
+<div class="tgr-list-section" [class.delete]="mostrarDelete" [class.see-discounts]="mostrarSugerenciaCondonacion">
   <app-listado-propiedad
     *ngFor="let propiedad of propiedades"
     [propiedad]="propiedad"
-    (change)="updateSeleccionadaTotal()">
+    (change)="updateSeleccionadaTotal()"
+    (disableSuggest)="mostrarSugerenciaCondonacion = false">
   </app-listado-propiedad>
 </div>
 

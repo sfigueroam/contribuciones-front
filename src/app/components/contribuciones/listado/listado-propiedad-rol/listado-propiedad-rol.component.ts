@@ -17,6 +17,8 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   resize: EventEmitter<any> = new EventEmitter();
   @Output()
   change: EventEmitter<any> = new EventEmitter();
+  @Output()
+  disableSuggest: EventEmitter<any> = new EventEmitter();
 
   @ViewChildren(ListadoPropiedadRolCuotasComponent)
   cuotaComponentList: QueryList<ListadoPropiedadRolCuotasComponent>;
@@ -88,6 +90,10 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.showSuggestion = this.rol.hasExpiredQuotes();
     this.actualizarTipoTotal();
     this.iconInit();
+  }
+
+  disableSuggestion(): void {
+    this.disableSuggest.emit();
   }
 
   actualizarTipoTotal(): void {

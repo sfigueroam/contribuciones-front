@@ -30,11 +30,13 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   mostrarAlerta: boolean;
   mostrarDelete: boolean;
   pagarInactivo: boolean;
+  mostrarSugerenciaCondonacion: boolean;
 
   constructor(private contributionsService: ContributionsService) {
     this.mostrarAlerta = false;
     this.mostrarDelete = false;
     this.pagarInactivo = true;
+    this.mostrarSugerenciaCondonacion = true;
     // TODO eliminar este workaround para que se muestre la alerta a destiempo
     setTimeout(
       () => {

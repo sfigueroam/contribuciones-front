@@ -10,7 +10,8 @@
       *ngFor="let rol of propiedad.roles"
       [rol]="rol"
       (resize)="resizeAllGridItems()"
-      (change)="updateTipoTotal()">
+      (change)="updateTipoTotal()"
+      (disableSuggest)="disableSuggestion()">
     </app-listado-propiedad-rol>
   </div>
 </div>

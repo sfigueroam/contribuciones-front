@@ -15,6 +15,8 @@ export class ListadoPropiedadComponent implements AfterViewInit {
 
   @Output()
   change: EventEmitter<any> = new EventEmitter();
+  @Output()
+  disableSuggest: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('grid')
   grid: ElementRef;
@@ -32,6 +34,10 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   cuotasSeleccionadas: number;
 
   constructor() {
+  }
+
+  disableSuggestion(): void {
+    this.disableSuggest.emit();
   }
 
   ngAfterViewInit(): void {
