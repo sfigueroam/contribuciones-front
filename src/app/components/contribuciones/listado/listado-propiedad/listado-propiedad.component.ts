@@ -32,9 +32,11 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   cuotasSeleccionadas: number;
 
   constructor() {
+
   }
 
   ngAfterViewInit(): void {
+
     // TODO eliminar este workaround
     setTimeout(
       () => {

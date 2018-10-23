@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   urlWsTierra: 'https://dm5ujuys5b.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
   wsTierra: {
-    obtenerBienRaizAsociado: 'ClienteBienRaizWS/api/BienRaiz/asociado/obtener',
-    obtenerBienRaizNoAsociado: 'ClienteBienRaizWS/api/BienRaiz/noasociado/obtener',
+    obtenerBienRaizAsociado: '/ClienteBienRaizWS/api/BienRaiz/asociado/obtener',
+    obtenerBienRaizNoAsociado: '/ClienteBienRaizWS/api/BienRaiz/noasociado/obtener',
     asociarBienRaiz: '/ClienteBienRaizWS/api/BienRaiz/bienraiz/asociar',
     desasociarBienRaiz: '/ClienteBienRaizWS/api/BienRaiz/bienraiz/desasociar',
     recuperarDeudaRol: '/RecuperaDeudaROLRS/api/bienraiz/deuda/rol/obtiene',

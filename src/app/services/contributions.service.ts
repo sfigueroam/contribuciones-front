@@ -5,6 +5,8 @@ import {Cuota} from '../domain/Cuota';
 import {Propiedad} from '../domain/Propiedad';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {promise} from 'selenium-webdriver';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +17,8 @@ export class ContributionsService {
 
   propiedades: Propiedad[];
 
-  constructor(private http: HttpClient) {
-    this.initBienesRaices();
-  }
+  constructor(private http: HttpClient, private user: UserService) {
 
-  getBienesRaices(): Propiedad[] {
-    return this.propiedades;
   }
 
   initBienesRaices(): void {
@@ -50,6 +48,39 @@ export class ContributionsService {
     this.propiedades = Array.from(propiedadMap.values());
   }
 
+  getBienesRaices(): Promise<Propiedad[]> {
+
+    if (this.propiedades) {
+      return new Promise((resolve, reject) => {
+        resolve(this.propiedades);
+      });
+    }
+
+    return new Promise((resolve, reject) => {
+      this.getBienRaiz().then(
+        (data: { curout: any }) => {
+          const propiedadMap = new Map<string, Propiedad>();
+
+          for (const bienRaiz of data.curout) {
+            const idPropiedad = this.getBienRaizId(bienRaiz);
+            let propiedad = propiedadMap.get(idPropiedad);
+            if (!propiedad) {
+              propiedad = new Propiedad();
+              propiedad.direccion = bienRaiz.direccion;
+              propiedadMap.set(idPropiedad, propiedad);
+            }
+            const rol = new Rol(bienRaiz);
+            propiedad.addRol(rol);
+          }
+          this.propiedades = Array.from(propiedadMap.values());
+          resolve(this.propiedades);
+        }
+      );
+    });
+
+
+  }
+
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
     return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
   }
@@ -58,8 +89,11 @@ export class ContributionsService {
     return parseInt(cuota.numeroCuota.split('-')[1], 10);
   }
 
-  private getBienRaiz(): any {
-    return this.dummy.getBienRaiz().curout;
+  private getBienRaiz(): Promise<{}> {
+
+    const path = environment.wsTierra.obtenerBienRaizAsociado + '/' + this.user.rut;
+    return this.apiTgr(path, 'GET');
+
   }
 
   private getDeudas(rol: number): any {
@@ -67,7 +101,7 @@ export class ContributionsService {
   }
 
 
-  private apiTgr(path, method, body?): Promise<{}>{
+  private apiTgr(path, method, body?): Promise<{}> {
     const params = {
       'path': path
     };

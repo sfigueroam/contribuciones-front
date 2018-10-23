@@ -97,8 +97,17 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
+  //obtenerRoles()
+
   ngOnInit() {
-    this.propiedades = this.contributionsService.getBienesRaices();
+    this.contributionsService
+      .getBienesRaices()
+      .then((propiedades) => {
+        this.propiedades = propiedades;
+
+
+      });
+
     this.seleccionada = TipoCuota.TODAS;
   }
 
