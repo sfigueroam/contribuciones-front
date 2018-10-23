@@ -31,9 +31,16 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   pagarInactivo: boolean;
 
   constructor(private contributionsService: ContributionsService) {
-    this.mostrarAlerta = true;
+    this.mostrarAlerta = false;
     this.mostrarDelete = false;
     this.pagarInactivo = true;
+    // TODO eliminar este workaround para que se muestre la alerta a destiempo
+    setTimeout(
+      () => {
+        this.mostrarAlerta = true;
+      },
+      1500
+    );
   }
 
   ocultarAlerta(): void {
