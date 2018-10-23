@@ -43,9 +43,16 @@
   font-weight: 500;
   padding-bottom: 10px;
 }
-.tgr-section-desc .material-icons {
+.tgr-section-desc .material-icons.close {
   float: right;
   cursor: pointer;
+}
+.tgr-section-desc .material-icons.notification {
+  float: left;
+  font-size: 40px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  color: #ffa500;;
 }
 
 .tgr-card__title {
