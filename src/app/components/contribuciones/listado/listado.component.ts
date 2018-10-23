@@ -103,6 +103,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   seleccionar(tipo: TipoCuota): void {
+    console.log(tipo);
     if (this.propiedadComponentList) {
       this.propiedadComponentList.forEach(
         (rolComponent) => rolComponent.seleccionar(tipo)
