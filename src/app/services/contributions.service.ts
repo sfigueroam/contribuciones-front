@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Injectable, QueryList} from '@angular/core';
 import {Dummy} from '../modulos/dummy';
 import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
 import {Propiedad} from '../domain/Propiedad';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {promise} from 'selenium-webdriver';
 import {UserService} from './user.service';
+import {ListadoPropiedadComponent} from '../components/contribuciones/listado/listado-propiedad/listado-propiedad.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,33 +21,34 @@ export class ContributionsService {
 
   }
 
-  initBienesRaices(): void {
+  /*
+    initBienesRaices(): void {
 
-    const propiedadMap = new Map<string, Propiedad>();
+      const propiedadMap = new Map<string, Propiedad>();
 
-    for (const bienRaiz of this.getBienRaiz()) {
-      const idPropiedad = this.getBienRaizId(bienRaiz);
-      let propiedad = propiedadMap.get(idPropiedad);
-      if (!propiedad) {
-        propiedad = new Propiedad();
-        propiedad.direccion = bienRaiz.direccion;
-        propiedadMap.set(idPropiedad, propiedad);
-      }
-      const rol = new Rol(bienRaiz);
-      propiedad.addRol(rol);
-      for (const deuda of this.getDeudas(bienRaiz.rol)) {
-        const cuota = new Cuota(deuda);
-        const idCuota = this.getCuotaAnio(cuota);
-        if (!rol.cuotas.has(idCuota)) {
-          rol.cuotas.set(idCuota, []);
+      for (const bienRaiz of this.getBienRaiz()) {
+        const idPropiedad = this.getBienRaizId(bienRaiz);
+        let propiedad = propiedadMap.get(idPropiedad);
+        if (!propiedad) {
+          propiedad = new Propiedad();
+          propiedad.direccion = bienRaiz.direccion;
+          propiedadMap.set(idPropiedad, propiedad);
         }
-        rol.cuotas.get(idCuota).push(cuota);
+        const rol = new Rol(bienRaiz);
+        propiedad.addRol(rol);
+        for (const deuda of this.getDeudas(bienRaiz.rol)) {
+          const cuota = new Cuota(deuda);
+          const idCuota = this.getCuotaAnio(cuota);
+          if (!rol.cuotas.has(idCuota)) {
+            rol.cuotas.set(idCuota, []);
+          }
+          rol.cuotas.get(idCuota).push(cuota);
+        }
       }
+
+      this.propiedades = Array.from(propiedadMap.values());
     }
-
-    this.propiedades = Array.from(propiedadMap.values());
-  }
-
+  */
   getBienesRaices(): Promise<Propiedad[]> {
 
     if (this.propiedades) {
@@ -78,6 +79,34 @@ export class ContributionsService {
       );
     });
 
+
+  }
+
+
+  getObtenerRoles(propiedades: Propiedad[], propiedadComponentList: QueryList<ListadoPropiedadComponent>, count) {
+    console.log('propiedades.length-> ', propiedades.length);
+
+    if (propiedades.length === count) {
+      return;
+    }
+    let propiedad = propiedades[count];
+    this.getRol(propiedad.roles, propiedadComponentList, 0).then(() => {
+      this.getObtenerRoles(propiedades, propiedadComponentList, (count + 1);
+    });
+
+  }
+
+  getRol(roles: Rol[], propiedadComponentList: QueryList<ListadoPropiedadComponent>, count): Promise<{}> {
+
+    const rol = roles[count];
+
+    return this.getDeudaByRol(rol.rol).then(() => {
+
+      if (roles.length === (count + 1)) {
+        return null;
+      }
+      return this.getRol(roles, propiedadComponentList, (count + 1);
+    });
 
   }
 
@@ -124,5 +153,14 @@ export class ContributionsService {
         }
       );
     });
+  }
+
+  private getDeudaByRol(rol): Promise<{}> {
+    const path = environment.wsTierra.recuperarDeudaRol;
+    const body = {
+      'idRol': rol,
+      'listaCuotas': []
+    };
+    return this.apiTgr(path, 'POST', body);
   }
 }
