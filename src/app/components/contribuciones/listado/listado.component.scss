@@ -113,8 +113,10 @@
 .tgr-actions-delete {
   bottom: 0;
   left: 0;
+  margin: 0 auto;
   position: absolute;
   right: 0;
+  width: 200px;
 }
 
 .tgr-actions-delete--action {
@@ -205,6 +207,9 @@
   float: right;
   height: 48px;
   letter-spacing: 2px;
+  @media (max-width: 800px) {
+    letter-spacing: 0;
+  }
 }
 
 .tgr-pay .mdl-button span {
@@ -225,9 +230,9 @@
     margin-right: 8px;
     max-width: 221px;
     padding: 0;
-    width: calc(100% - 210px);  
+    width: calc(100% - 185px);  
   }
-  @media (max-width: 440px) {
+  @media (max-width: 520px) {
     float: none;
     margin-right: 0;
     max-width: none;

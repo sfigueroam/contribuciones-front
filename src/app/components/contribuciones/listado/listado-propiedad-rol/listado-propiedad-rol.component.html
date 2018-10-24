@@ -9,14 +9,13 @@
         <i class="material-icons tgr-unselect">check_circle</i>
         <i class="material-icons tgr-select">brightness_1</i>
       </div>
-    <h5 class="tgr-delete-link tgr-select">Para desasociar el rol <br>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}} de tu cuenta debes seleccionarlo</h5>
-    <h5 class="tgr-delete-link tgr-unselect">El rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}} se desasociará de tu cuenta.
-      <br>Debes confirmar eligiendo la opción
-      <br><b>ELIMINAR ROLES SELECCIONADOS</b> de la barra de acciones</h5>
+    <div class="tgr-delete-link tgr-select">Para desasociar el rol <br>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}} de tu cuenta debes seleccionarlo</div>
+    <div class="tgr-delete-link tgr-unselect">El rol <strong>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</strong> se desasociará de tu cuenta.
+      <br>Debes confirmar eligiendo la opción <strong>Eliminar Roles seleccionados</strong> de la zona inferior</div>
     <div class="tge-cell-delete__actions">
-      <button class="mdl-button mdl-js-button mdl-button--primary">
+     <!--  <button class="mdl-button mdl-js-button mdl-button--primary">
         Cancelar
-      </button>
+      </button> -->
       <button class="mdl-button mdl-js-button mdl-button--accent tgr-select" (click)="porEliminar = true">
         Seleccionar
       </button>

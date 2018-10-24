@@ -206,10 +206,11 @@
   display: none
 }
 .selected .tgr-unselect {
-  display: inline-block;
+  display: block;
 }
 .tgr-delete-link {
-  padding-left: 40px;
+
+  padding: 16px;
 }
 .tgr-delete-link a{
   color: $color-primary-contrast;
