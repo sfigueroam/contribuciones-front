@@ -98,16 +98,22 @@
   z-index: 10;
   padding-top: 40px;
   text-align: center;
+  @media (max-width: 520px){
+    padding-top: 16px;
+  }
 }
 
 .delete ~ .tgr-actions .tgr-actions__delete-zone {
   display: block;
 }
 
-.tgr-actions__delete-zone button {
+.tgr-actions__delete-zone .mdl-button--colored {
   background: $button-primary-color;
   border-radius: 6px;
   color: #fff;
+  @media (max-width: 520px){
+    margin-top: 10px;
+  }
 }
 
 .tgr-actions-delete {
