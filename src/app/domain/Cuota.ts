@@ -11,7 +11,7 @@ export class Cuota {
   numeroCuota: string;
   reajuste: number;
   saldoOriginal: number;
-  saldoPesos: number;
+  saldoTotal: number;
   tipoDeuda: string;
   checked: boolean;
   expired: boolean;
@@ -43,6 +43,6 @@ export class Cuota {
   }
 
   getTotal(): number {
-    return this.saldoPesos + this.montoCondonacion;
+    return this.saldoTotal + this.montoCondonacion;
   }
 }

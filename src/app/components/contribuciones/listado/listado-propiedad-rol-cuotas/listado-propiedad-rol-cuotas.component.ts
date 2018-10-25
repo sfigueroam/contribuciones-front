@@ -26,14 +26,17 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initCuotas();
+    this.selectedIcon = 'checked';
+  }
+
+  private initCuotas(): void{
     if (this.year) {
       this.cuotas = this.rol.cuotas.get(this.year);
     } else {
       this.cuotas = this.rol.allCuotas();
     }
-    this.selectedIcon = 'checked';
   }
-
   cuotaIcon(cuota: Cuota): string {
     return cuota.checked ? 'checked' : 'unchecked';
   }
@@ -53,6 +56,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
   }
 
   update(): void {
+    this.initCuotas();
     if (this.rol.allChecked(this.year)) {
       this.selectedIcon = 'checked';
     } else if (this.rol.noneChecked(this.year)) {

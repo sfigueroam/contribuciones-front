@@ -152,7 +152,7 @@ export class Rol {
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (cuota.checked) {
-          total += cuota.saldoPesos;
+          total += cuota.saldoTotal;
         }
       }
     }
@@ -164,7 +164,7 @@ export class Rol {
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (cuota.checked) {
-          total += cuota.saldoPesos + cuota.montoCondonacion;
+          total += cuota.saldoTotal + cuota.montoCondonacion;
         }
       }
     }

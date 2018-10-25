@@ -35,6 +35,7 @@ export class ListadoPropiedadComponent implements AfterViewInit {
 
   }
 
+
   ngAfterViewInit(): void {
 
     // TODO eliminar este workaround
@@ -45,6 +46,17 @@ export class ListadoPropiedadComponent implements AfterViewInit {
       },
       700
     );
+  }
+
+  actualizarRol(rolId: number): void {
+    for (const rolComponent of this.rolComponentList.toArray()) {
+      if (rolComponent.rol.rol === rolId) {
+        rolComponent.actualizarTipoTotal();
+        for (const cuotaComponent of rolComponent.cuotaComponentList.toArray()) {
+          cuotaComponent.update();
+        }
+      }
+    }
   }
 
   seleccionar(tipo: TipoCuota): void {

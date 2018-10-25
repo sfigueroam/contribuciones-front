@@ -83,31 +83,46 @@ export class ContributionsService {
   }
 
 
-  getObtenerRoles(propiedades: Propiedad[], propiedadComponentList: QueryList<ListadoPropiedadComponent>, count) {
+  getObtenerRoles(propiedades: Propiedad[], listadoComponent, count?: number) {
+
+    if (!count) {
+      count = 0;
+    }
+
     console.log('propiedades.length-> ', propiedades.length);
+    console.log('propiedades-> ', propiedades);
 
     if (propiedades.length === count) {
       return;
     }
     let propiedad = propiedades[count];
-    this.getRol(propiedad.roles, propiedadComponentList, 0).then(() => {
-      this.getObtenerRoles(propiedades, propiedadComponentList, (count + 1);
+    this.getRol(propiedad.roles, listadoComponent, 0).then(() => {
+      this.getObtenerRoles(propiedades, listadoComponent, (count + 1));
     });
 
   }
 
-  getRol(roles: Rol[], propiedadComponentList: QueryList<ListadoPropiedadComponent>, count): Promise<{}> {
-
+  getRol(roles: Rol[], listadoComponent, count): Promise<{}> {
     const rol = roles[count];
-
-    return this.getDeudaByRol(rol.rol).then(() => {
-
-      if (roles.length === (count + 1)) {
-        return null;
-      }
-      return this.getRol(roles, propiedadComponentList, (count + 1);
-    });
-
+    if (rol === undefined) {
+      return new Promise(() => {});
+    }
+    if (rol.cuotas.size > 0) {
+      return this.getRol(roles, listadoComponent, (count + 1));
+    } else {
+      return this.getDeudaByRol(rol.rol).then((data: { listaDeudaRol: any[] }) => {
+        for (const deuda of data.listaDeudaRol) {
+          const cuota = new Cuota(deuda);
+          const idCuota = this.getCuotaAnio(cuota);
+          if (!rol.cuotas.has(idCuota)) {
+            rol.cuotas.set(idCuota, []);
+          }
+          rol.cuotas.get(idCuota).push(cuota);
+        }
+        listadoComponent.actualizar(rol.rol);
+        return this.getRol(roles, listadoComponent, (count + 1));
+      });
+    }
   }
 
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
@@ -119,22 +134,18 @@ export class ContributionsService {
   }
 
   private getBienRaiz(): Promise<{}> {
-
     const path = environment.wsTierra.obtenerBienRaizAsociado + '/' + this.user.rut;
     return this.apiTgr(path, 'GET');
-
   }
 
   private getDeudas(rol: number): any {
     return this.dummy.getDeudas(rol).listaDeudaRol;
   }
 
-
   private apiTgr(path, method, body?): Promise<{}> {
     const params = {
       'path': path
     };
-
     return new Promise((resolve, reject) => {
       this.http.request(method,
         environment.urlWsTierra,

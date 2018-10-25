@@ -98,7 +98,14 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   obtenerRoles(){
-    this.contributionsService.getObtenerRoles(this.propiedades, this.propiedadComponentList, 0);
+    this.contributionsService.getObtenerRoles(this.propiedades, this);
+
+  }
+
+  actualizar(rolId: number): void{
+    for (const propiedadesComponent of this.propiedadComponentList.toArray()){
+      propiedadesComponent.actualizarRol(rolId);
+    }
 
   }
 

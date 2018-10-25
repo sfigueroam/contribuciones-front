@@ -91,6 +91,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   }
 
   actualizarTipoTotal(): void {
+
     this.total = this.rol.calcularTotal();
     this.condonacion = this.rol.calcularCondonacion();
     this.tipos = this.rol.calcularTipo();
