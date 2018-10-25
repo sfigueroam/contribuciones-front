@@ -100,8 +100,11 @@ h3 {
 	width: 100%;
 }
 .tgr-dialog__actions h2{
-	font-size: 20px;
-}.tgr-dialog__actions h3{
+	color: $tgr-condoned;
+  font-size: 14px;
+  font-weight: 400;
+}
+.tgr-dialog__actions h3{
 	font-size: 24px;
 }
 .mdl-button--colored,
