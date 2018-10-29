@@ -1,22 +1,23 @@
-<div class="tgr-list-section" [class.delete]="mostrarDelete">
+<div class="tgr-list-section" [class.delete]="mostrarDelete" [class.see-discounts]="mostrarSugerenciaCondonacion">
   <app-listado-propiedad
     *ngFor="let propiedad of propiedades"
     [propiedad]="propiedad"
-    (change)="updateSeleccionadaTotal()">
+    (change)="updateSeleccionadaTotal()"
+    (disableSuggest)="mostrarSugerenciaCondonacion = false">
   </app-listado-propiedad>
 </div>
 
 <div class="tgr-actions">
   <div class="tgr-actions__content">
     <div class="tgr-actions__delete-zone">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised"
               (click)="cancelarEliminacion()">
-        Cancelar eliminación
+        Cancelar
       </button>
       &nbsp;&nbsp;
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
               (click)="eliminar()">
-        Eliminar roles seleccionados
+        Quitar roles
       </button>
     </div>
     <div class="tgr-pay">
@@ -29,13 +30,14 @@
       </button>
     </div>
     <div class="tgr-select tgr-select--select mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <select class="mdl-textfield__input" id="octane" name="octane">
-        <option value="85">Todas</option>
-        <option value="87">Vencidas</option>
-        <option value="89">Vigentes</option>
-        <option value="91">Ninguna</option>
+      <select class="mdl-textfield__input" id="octane" name="octane" (change)="seleccionar($event.target.value)">
+        <option [value]="undefined" [selected]="!seleccionada" disabled>- Seleccionar -</option>
+        <option [value]="tipo.TODAS" [selected]="seleccionada === tipo.TODAS">Todas</option>
+        <option [value]="tipo.VENCIDAS" [selected]="seleccionada === tipo.VENCIDAS">Vencidas</option>
+        <option [value]="tipo.VIGENTES" [selected]="seleccionada === tipo.VIGENTES">Vigentes</option>
+        <option [value]="tipo.NINGUNA" [selected]="seleccionada === tipo.NINGUNA">Ninguna</option>
       </select>
-      <label class="tgr-select__label mdl-textfield__label" for="octane">Seleccionar:</label>
+      <label class="tgr-select__label mdl-textfield__label" for="octane">Tipo de Cuota</label>
     </div>
     <div class="tgr-select tgr-select--buttons">
       <div class="tgr-select__label">

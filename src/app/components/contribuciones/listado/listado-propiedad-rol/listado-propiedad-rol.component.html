@@ -1,22 +1,20 @@
-<div class="content tgr-content" [class.selected]="porEliminar">
+<div class="content tgr-content mdl-shadow--3dp " [class.selected]="porEliminar" [class.has-discount]="showSuggestion">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
     <h5 class="tgr-cell-wait__feedback">Espera un momento mientras obtenemos la información de las cuotas para el rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</h5>
   </div>
   <div class="tgr-cell-delete">
-    <div class="tgr-cell-delete--selector">
+    <div class="tgr-cell-delete--selector" (click)="porEliminar = ! porEliminar">
         <i class="material-icons tgr-unselect">check_circle</i>
         <i class="material-icons tgr-select">brightness_1</i>
       </div>
-    <h5 class="tgr-delete-link tgr-select">Para desasociar el rol <br>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}} de tu cuenta debes seleccionarlo</h5>
-    <h5 class="tgr-delete-link tgr-unselect">El rol {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}} se desasociará de tu cuenta.
-      <br>Debes confirmar eligiendo la opción
-      <br><b>ELIMINAR ROLES SELECCIONADOS</b> de la barra de acciones</h5>
+    <div class="tgr-delete-link tgr-select">Para desasociar este rol debe seleccionarlo</div>
+    <div class="tgr-delete-link tgr-unselect">Este rol se desasociará</div>
     <div class="tge-cell-delete__actions">
-      <button class="mdl-button mdl-js-button mdl-button--primary">
+     <!--  <button class="mdl-button mdl-js-button mdl-button--primary">
         Cancelar
-      </button>
+      </button> -->
       <button class="mdl-button mdl-js-button mdl-button--accent tgr-select" (click)="porEliminar = true">
         Seleccionar
       </button>
@@ -31,7 +29,7 @@
         <span class="tgr-price__cost">$ {{total | number}}</span>
       </div>
       <p class="tgr-card__title">
-        <i class="material-icons">directions_car</i>
+        <i class="material-icons">{{icon}}</i>
         <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
     </div>
     <div class="tgr-price" *ngIf="condonacion > 0">
@@ -43,12 +41,12 @@
     <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
       {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
     </p>
-    <div class="tgr-section-desc" *ngIf="showSuggestion">
+    <div class="tgr-section-desc">
       <div class="tgr-section-desc--text">
-        Se hará un descuento mayor mientras más cuotas atrasadas se paguen
+        <i class="material-icons notification">notification_important</i>
+        <span class="tgr-section-desc--title"><i class="material-icons close right" (click)="disableSuggestion()">close</i>Condonación</span>
+        <p>Se hará una condonación mayor mientras más cuotas atrasadas se seleccionen</p>
       </div>
-      <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="showSuggestion = false;">ok
-      </button>
     </div>
   </div>
   <div *ngIf="!showTabs">

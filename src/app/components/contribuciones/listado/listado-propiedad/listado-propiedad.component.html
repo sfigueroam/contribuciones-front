@@ -6,11 +6,12 @@
   </div>
   <div class="grid tgr-card-container" #grid>
     <app-listado-propiedad-rol
-      class="tgr-rol mdl-shadow--3dp"
+      class="tgr-rol"
       *ngFor="let rol of propiedad.roles"
       [rol]="rol"
       (resize)="resizeAllGridItems()"
-      (change)="updateTipoTotal()">
+      (change)="updateTipoTotal()"
+      (disableSuggest)="disableSuggestion()">
     </app-listado-propiedad-rol>
   </div>
 </div>

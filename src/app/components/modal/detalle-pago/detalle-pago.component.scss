@@ -1,0 +1,117 @@
+@import '../../../../styles/colors';
+.mdl-dialog {
+	min-width: 500px;
+	width: 80%;
+	padding: 0;
+	position: relative;
+	height: 80%;
+	min-height: 400px;
+	max-height: 100%;
+	@media (max-width: 750px) {
+    min-width: 0;
+  }
+  @media (max-width: 555px) {
+    min-width: 0;
+    height: 80%;
+    width: 96%;
+  }
+}
+h2 {
+	color: $gray-text-dark;
+	font-size: 26px;
+	font-weight: 300;	
+  margin: 0;
+	@media (max-width: 550px) {
+  	line-height: 1.2
+  }
+}
+h3 {
+	color: $gray-text-dark;
+	font-size: 26px;
+	font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+}
+.mdl-dialog__title {
+	border-bottom: 2px solid $color-filter;
+	font-size: 30px;
+  padding: 16px;
+}
+
+.mdl-dialog__content {
+	height: calc(100% - 231px);
+	overflow: auto;
+	@media (max-width: 750px) {
+    height: calc(100% - 250px);
+  }
+  @media (max-width: 400px) {
+    padding: 16px;
+  }
+}
+.tgr-propiedad {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+//tablas
+.mdl-data-table th {
+	text-align: center;
+}
+.mdl-data-table td {
+	@media (max-width: 550px) {
+    padding: 16px;
+  }
+  @media (max-width: 450px) {
+    padding: 8px;
+  }
+}
+.mdl-data-table td:first-of-type,
+.mdl-data-table th:first-of-type{
+	@media (max-width: 550px) {
+    padding: 16px;
+  }
+  @media (max-width: 450px) {
+    padding: 8px;
+  }
+}
+
+.mdl-data-table .mdl-data-table__cell--non-numeric {
+	text-align: left;
+}
+//acciones
+.tgr-dialog__actions {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.tgr-total {
+	padding-right: 22px;
+}
+.tgr-dialog__actions h2,
+.tgr-dialog__actions h3 {
+	display: block;
+	height: auto;
+	line-height: 1.2;
+	float: none;
+	padding-right: 16px;
+	text-align: right;
+	width: 100%;
+}
+.tgr-dialog__actions h2{
+	color: $tgr-condoned;
+  font-size: 14px;
+  font-weight: 400;
+}
+.tgr-dialog__actions h3{
+	font-size: 24px;
+}
+.mdl-button--colored,
+.mdl-button--raised.mdl-button--colored:active,
+.mdl-button--raised.mdl-button--colored:hover,
+.mdl-button--raised.mdl-button--colored:focus:not(:active) {
+	background: $button-primary-color;
+}
+
+

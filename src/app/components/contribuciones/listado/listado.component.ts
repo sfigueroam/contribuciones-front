@@ -4,6 +4,7 @@ import {Propiedad} from '../../../domain/Propiedad';
 import {ContributionsService} from '../../../services/contributions.service';
 import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-listado',
@@ -29,11 +30,20 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   mostrarAlerta: boolean;
   mostrarDelete: boolean;
   pagarInactivo: boolean;
+  mostrarSugerenciaCondonacion: boolean;
 
   constructor(private contributionsService: ContributionsService) {
-    this.mostrarAlerta = true;
+    this.mostrarAlerta = false;
     this.mostrarDelete = false;
     this.pagarInactivo = true;
+    this.mostrarSugerenciaCondonacion = true;
+    // TODO eliminar este workaround para que se muestre la alerta a destiempo
+    setTimeout(
+      () => {
+        this.mostrarAlerta = true;
+      },
+      1500
+    );
   }
 
   ocultarAlerta(): void {
@@ -95,6 +105,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   seleccionar(tipo: TipoCuota): void {
+    console.log(tipo);
     if (this.propiedadComponentList) {
       this.propiedadComponentList.forEach(
         (rolComponent) => rolComponent.seleccionar(tipo)
