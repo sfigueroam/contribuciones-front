@@ -56,11 +56,10 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
     console.log('checkCuota');
     cuota.intencionPago = !cuota.intencionPago;
     this.reliquidar.emit();
-    //this.update();
+
   }
 
   update(): void {
-    console.log('cuota update')
     this.initCuotas();
     if (this.rol.allChecked(this.year)) {
       this.selectedIcon = 'checked';
@@ -70,5 +69,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
       this.selectedIcon = 'indeterminate_check_box';
     }
     this.change.emit();
+    console.log('update rol-cuotas')
+    this.rol.wait = false;
   }
 }

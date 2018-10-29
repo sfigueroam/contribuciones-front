@@ -15,10 +15,12 @@ export class Rol {
   rolId: number;
   subrolId: number;
   cuotas: Map<number, Cuota[]>;
+  wait: boolean;
 
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
     this.cuotas = new Map<number, Cuota[]>();
+    this.wait = true;
   }
 
   // Revisa si existe alguna cuota vencida

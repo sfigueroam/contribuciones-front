@@ -26,6 +26,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   porEliminar: boolean;
   showSuggestion: boolean;
   selectedYear: number;
+  wait: boolean;
 
   tipos: Array<TipoCuota>;
 
@@ -38,6 +39,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   constructor(private contribucionesService: ContributionsService) {
     this.porEliminar = false;
+    this.wait = true;
   }
 
   iconInit(): void {
@@ -108,6 +110,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.change.emit();
 
     this.showTabs = this.cuotasTotal > 8;
+
   }
 
   isActive(year: number): boolean {
