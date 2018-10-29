@@ -31,11 +31,13 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   mostrarAlerta: boolean;
   mostrarDelete: boolean;
   pagarInactivo: boolean;
+  mostrarSugerenciaCondonacion: boolean;
 
   constructor(private contributionsService: ContributionsService) {
     this.mostrarAlerta = false;
     this.mostrarDelete = false;
     this.pagarInactivo = true;
+    this.mostrarSugerenciaCondonacion = true;
     // TODO eliminar este workaround para que se muestre la alerta a destiempo
     setTimeout(
       () => {
@@ -130,6 +132,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   seleccionar(tipo: TipoCuota): void {
+    console.log(tipo);
     if (this.propiedadComponentList) {
       this.propiedadComponentList.forEach(
         (rolComponent) => rolComponent.seleccionar(tipo)

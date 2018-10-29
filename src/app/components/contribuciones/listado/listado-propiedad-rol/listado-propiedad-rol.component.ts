@@ -18,6 +18,8 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   resize: EventEmitter<any> = new EventEmitter();
   @Output()
   change: EventEmitter<any> = new EventEmitter();
+  @Output()
+  disableSuggest: EventEmitter<any> = new EventEmitter();
 
   @ViewChildren(ListadoPropiedadRolCuotasComponent)
   cuotaComponentList: QueryList<ListadoPropiedadRolCuotasComponent>;
@@ -100,6 +102,9 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     });
   }
 
+  disableSuggestion(): void {
+    this.disableSuggest.emit();
+  }
   actualizarTipoTotal(): void {
     console.log('actualizarTipoTotal');
     this.total = this.rol.calcularTotal();
@@ -110,7 +115,6 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.change.emit();
 
     this.showTabs = this.cuotasTotal > 8;
-
   }
 
   isActive(year: number): boolean {
