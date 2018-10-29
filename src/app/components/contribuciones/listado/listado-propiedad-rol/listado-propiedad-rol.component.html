@@ -51,9 +51,10 @@
       </button>
     </div>
   </div>
+
   <div *ngIf="!showTabs">
     <app-listado-propiedad-rol-cuotas
-      [rol]="rol" (change)="actualizarTipoTotal()">
+      [rol]="rol" (change)="actualizarTipoTotal()" (reliquidar)="liquidar()" >
     </app-listado-propiedad-rol-cuotas>
   </div>
   <div *ngIf="showTabs" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -65,7 +66,7 @@
     <div class="mdl-tabs__panel " [class.is-active]="isActive(year)" id="a{{year}}-panel"
          *ngFor="let year of rol.getYears()">
       <app-listado-propiedad-rol-cuotas
-          [rol]="rol" [year]="year" (change)="actualizarTipoTotal()">
+        [rol]="rol" [year]="year" (change)="actualizarTipoTotal()">
       </app-listado-propiedad-rol-cuotas>
     </div>
   </div>

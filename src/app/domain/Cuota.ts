@@ -3,6 +3,7 @@ export class Cuota {
   codigoBarra: string;
   condonacion: number;
   fechaVencimiento: Date;
+  fechaVencimientoOriginal: string;
   folio: string;
   interes: number;
   montoCondonacion: number;
@@ -13,23 +14,21 @@ export class Cuota {
   saldoOriginal: number;
   saldoTotal: number;
   tipoDeuda: string;
-  checked: boolean;
+  intencionPago: boolean;
   expired: boolean;
 
   public constructor(init?: Partial<Cuota>) {
     Object.assign(this, init);
+    // @ts-ignore
+    this.fechaVencimientoOriginal = init.fechaVencimiento;
     this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
-    this.checked = true;
+    this.intencionPago = true;
     this.expired = this.isExpired();
   }
 
   private formatDate(fecha) {
     const fec = fecha.split('-');
     return new Date(fec[2], fec[1] - 1, fec[0], 0, 0, 0);
-  }
-
-  getYear(): any {
-    this.fechaVencimiento.getFullYear();
   }
 
   private isExpired(): boolean {
@@ -39,10 +38,14 @@ export class Cuota {
   }
 
   isChecked(): boolean {
-    return this.checked;
+    return this.intencionPago;
   }
 
   getTotal(): number {
     return this.saldoTotal + this.montoCondonacion;
+  }
+
+  getYear(): any {
+    this.fechaVencimiento.getFullYear();
   }
 }

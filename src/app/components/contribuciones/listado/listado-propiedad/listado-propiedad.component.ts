@@ -124,4 +124,14 @@ export class ListadoPropiedadComponent implements AfterViewInit {
 
     this.change.emit();
   }
+
+  getRolComponent(rolId: number) {
+    console.log("rolId->", rolId);
+    for (const rolComponent of this.rolComponentList.toArray()) {
+      console.log("rolComponent", rolComponent);
+      if (rolComponent.rol.rol === rolId) {
+        return rolComponent;
+      }
+    }
+  }
 }

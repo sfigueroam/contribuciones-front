@@ -5,6 +5,7 @@ import {ContributionsService} from '../../../services/contributions.service';
 import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
 import {HttpClient} from '@angular/common/http';
+import {ListadoPropiedadRolComponent} from './listado-propiedad-rol/listado-propiedad-rol.component';
 
 @Component({
   selector: 'app-listado',
@@ -102,6 +103,13 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   }
 
+  getPropiedadComponent(rolId: number): ListadoPropiedadRolComponent{
+    console.log('this.propiedadComponentList.length->', this.propiedadComponentList.length);
+    for (const propiedadesComponent of this.propiedadComponentList.toArray()){
+      const rolComponent =  propiedadesComponent.getRolComponent(rolId);
+      return rolComponent;
+    }
+  }
   actualizar(rolId: number): void{
     for (const propiedadesComponent of this.propiedadComponentList.toArray()){
       propiedadesComponent.actualizarRol(rolId);

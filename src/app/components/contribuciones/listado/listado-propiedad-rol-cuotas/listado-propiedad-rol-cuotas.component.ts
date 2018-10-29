@@ -19,6 +19,8 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
 
   @Output()
   change: EventEmitter<any> = new EventEmitter();
+  @Output()
+  reliquidar: EventEmitter<any> = new EventEmitter();
 
   selectedIcon: string;
 
@@ -38,7 +40,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
     }
   }
   cuotaIcon(cuota: Cuota): string {
-    return cuota.checked ? 'checked' : 'unchecked';
+    return cuota.intencionPago ? 'checked' : 'unchecked';
   }
 
   selectAllNone(): void {
@@ -51,11 +53,14 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
   }
 
   checkCuota(cuota: Cuota) {
-    cuota.checked = !cuota.checked;
-    this.update();
+    console.log('checkCuota');
+    cuota.intencionPago = !cuota.intencionPago;
+    this.reliquidar.emit();
+    //this.update();
   }
 
   update(): void {
+    console.log('cuota update')
     this.initCuotas();
     if (this.rol.allChecked(this.year)) {
       this.selectedIcon = 'checked';

@@ -7,6 +7,8 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from './user.service';
 import {ListadoPropiedadComponent} from '../components/contribuciones/listado/listado-propiedad/listado-propiedad.component';
+import {ListadoComponent} from '../components/contribuciones/listado/listado.component';
+import {ListadoPropiedadRolComponent} from '../components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
 
 @Injectable({
   providedIn: 'root'
@@ -78,8 +80,6 @@ export class ContributionsService {
         }
       );
     });
-
-
   }
 
 
@@ -88,9 +88,6 @@ export class ContributionsService {
     if (!count) {
       count = 0;
     }
-
-    console.log('propiedades.length-> ', propiedades.length);
-    console.log('propiedades-> ', propiedades);
 
     if (propiedades.length === count) {
       return;
@@ -101,6 +98,25 @@ export class ContributionsService {
     });
 
   }
+  getRolUpdate(rol: Rol, rolComponent: ListadoPropiedadRolComponent,  update?: boolean): Promise<{}> {
+    return new Promise((resolve, reject) => this.getDeudaByRol(rol.rol, rol.getCuotaRequest()).then((data: { listaDeudaRol: any[] }) => {
+      for (const deuda of data.listaDeudaRol) {
+        if (!update) {
+          const cuota = new Cuota(deuda);
+          const idCuota = this.getCuotaAnio(cuota);
+          if (!rol.cuotas.has(idCuota)) {
+            rol.cuotas.set(idCuota, []);
+          }
+          rol.cuotas.get(idCuota).push(cuota);
+        } else {
+          rol.actualizarCuota(deuda);
+        }
+      }
+      rolComponent.actualizarTipoTotal();
+      console.log(rol);
+      resolve();
+    }));
+  }
 
   getRol(roles: Rol[], listadoComponent, count): Promise<{}> {
     const rol = roles[count];
@@ -110,7 +126,7 @@ export class ContributionsService {
     if (rol.cuotas.size > 0) {
       return this.getRol(roles, listadoComponent, (count + 1));
     } else {
-      return this.getDeudaByRol(rol.rol).then((data: { listaDeudaRol: any[] }) => {
+      return this.getDeudaByRol(rol.rol, rol.cuotas).then((data: { listaDeudaRol: any[] }) => {
         for (const deuda of data.listaDeudaRol) {
           const cuota = new Cuota(deuda);
           const idCuota = this.getCuotaAnio(cuota);
@@ -166,11 +182,11 @@ export class ContributionsService {
     });
   }
 
-  private getDeudaByRol(rol): Promise<{}> {
+  private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
     const path = environment.wsTierra.recuperarDeudaRol;
     const body = {
       'idRol': rol,
-      'listaCuotas': []
+      'listaCuotas': Array.from(cuotas.values())
     };
     return this.apiTgr(path, 'POST', body);
   }

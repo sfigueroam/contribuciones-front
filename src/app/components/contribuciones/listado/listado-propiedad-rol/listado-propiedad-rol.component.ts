@@ -2,6 +2,7 @@ import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output, QueryL
 import {Rol} from '../../../../domain/Rol';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {ListadoPropiedadRolCuotasComponent} from '../listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
+import {ContributionsService} from '../../../../services/contributions.service';
 
 @Component({
   selector: 'app-listado-propiedad-rol',
@@ -35,7 +36,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   icon: string;
 
-  constructor() {
+  constructor(private contribucionesService: ContributionsService) {
     this.porEliminar = false;
   }
 
@@ -90,8 +91,15 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.iconInit();
   }
 
-  actualizarTipoTotal(): void {
+  liquidar(): void {
+    console.log('liquidar');
+    this.contribucionesService.getRolUpdate(this.rol, this, true).then( () => {
+      this.actualizarTipoTotal();
+    });
+  }
 
+  actualizarTipoTotal(): void {
+    console.log('actualizarTipoTotal');
     this.total = this.rol.calcularTotal();
     this.condonacion = this.rol.calcularCondonacion();
     this.tipos = this.rol.calcularTipo();

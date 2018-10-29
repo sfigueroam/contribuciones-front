@@ -33,17 +33,17 @@ export class Rol {
     return false;
   }
 
-  private all(checked: boolean, year: number): boolean{
+  private all(checked: boolean, year: number): boolean {
     if (year) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.checked !== checked) {
+        if (cuota.intencionPago !== checked) {
           return false;
         }
       }
     } else {
       for (const aYear of Array.from(this.cuotas.keys())) {
         for (const cuota of Array.from(this.cuotas.get(aYear).values())) {
-          if (cuota.checked !== checked) {
+          if (cuota.intencionPago !== checked) {
             return false;
           }
         }
@@ -85,13 +85,13 @@ export class Rol {
     for (const year of yearList) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (tipo === TipoCuota.TODAS) {
-          cuota.checked = true;
+          cuota.intencionPago = true;
         } else if (tipo === TipoCuota.NINGUNA) {
-          cuota.checked = false;
+          cuota.intencionPago = false;
         } else if (tipo === TipoCuota.VENCIDAS) {
-          cuota.checked = cuota.expired;
+          cuota.intencionPago = cuota.expired;
         } else if (tipo === TipoCuota.VIGENTES) {
-          cuota.checked = !cuota.expired;
+          cuota.intencionPago = !cuota.expired;
         }
       }
     }
@@ -110,11 +110,11 @@ export class Rol {
         total++;
         if (cuota.expired) {
           vencidas++;
-          if (cuota.checked) {
+          if (cuota.intencionPago) {
             seleccionadasVencidas++;
           }
         }
-        if (cuota.checked) {
+        if (cuota.intencionPago) {
           seleccionadas++;
         }
       }
@@ -139,7 +139,7 @@ export class Rol {
     const cuotas = [];
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.checked) {
+        if (cuota.intencionPago) {
           cuotas.push(cuota);
         }
       }
@@ -151,7 +151,7 @@ export class Rol {
     let total = 0;
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.checked) {
+        if (cuota.intencionPago) {
           total += cuota.saldoTotal;
         }
       }
@@ -163,7 +163,7 @@ export class Rol {
     let total = 0;
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.checked) {
+        if (cuota.intencionPago) {
           total += cuota.saldoTotal + cuota.montoCondonacion;
         }
       }
@@ -175,7 +175,7 @@ export class Rol {
     let condonacion = 0;
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.checked) {
+        if (cuota.intencionPago) {
           condonacion += cuota.montoCondonacion;
         }
       }
@@ -195,7 +195,7 @@ export class Rol {
     let cantidad = 0;
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.checked) {
+        if (cuota.intencionPago) {
           cantidad++;
         }
       }
@@ -212,4 +212,30 @@ export class Rol {
     }
     return cuotas;
   }
+
+
+  actualizarCuota(deuda: any) {
+    console.log('actualizarCuota.rol->', this.rol);
+  }
+
+  getCuotaRequest() {
+
+    let cuotasRequest: any = [];
+    console.log(this.cuotas);
+    const years = this.getYears();
+    for (let i = 0; i < years.length; i++) {
+      const cuotas = this.cuotas.get(years[i]);
+      for (let j = 0; j < cuotas.length; j++) {
+        cuotasRequest.push({
+          numeroFolio: cuotas[j].folio,
+          fechaVencimiento: cuotas[j].fechaVencimientoOriginal,
+          intencionPago: cuotas[j].intencionPago
+        });
+      }
+    }
+
+    return cuotasRequest;
+  }
+
+
 }
