@@ -42,7 +42,13 @@ export class Cuota {
   }
 
   getTotal(): number {
-    return this.saldoTotal + this.montoCondonacion;
+    /*if (this.montoCondonacion !== undefined) {
+      return this.saldoTotal + this.montoCondonacion;
+    } else {
+      return this.saldoTotal;
+    }
+    */
+    return this.saldoTotal;
   }
 
   getYear(): any {

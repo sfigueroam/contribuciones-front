@@ -8,6 +8,7 @@ export class UserService {
   rut: string;
   constructor() {
     this.rut = '96597810';
+    //this.rut = '12238422';
   }
 
 }

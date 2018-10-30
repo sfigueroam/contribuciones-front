@@ -55,6 +55,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
   checkCuota(cuota: Cuota) {
     console.log('checkCuota');
     cuota.intencionPago = !cuota.intencionPago;
+    console.log('cuota.intencionPago->', cuota.intencionPago);
     this.reliquidar.emit();
 
   }

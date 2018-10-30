@@ -170,7 +170,8 @@ export class Rol {
     for (const year of this.getYears()) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (cuota.intencionPago) {
-          total += cuota.saldoTotal + cuota.montoCondonacion;
+          //total += cuota.saldoTotal + cuota.montoCondonacion;
+          total += cuota.saldoTotal;
         }
       }
     }
@@ -179,13 +180,20 @@ export class Rol {
 
   calcularCondonacion() {
     let condonacion = 0;
-    for (const year of this.getYears()) {
-      for (const cuota of Array.from(this.cuotas.get(year).values())) {
-        if (cuota.intencionPago) {
-          condonacion += cuota.montoCondonacion;
+    if (this.isAllCondonacion()) {
+      for (const year of this.getYears()) {
+        for (const cuota of Array.from(this.cuotas.get(year).values())) {
+          console.log(cuota.intencionPago);
+          if (cuota.intencionPago) {
+            condonacion += cuota.montoCondonacion;
+          }
         }
       }
+    } else {
+      condonacion = 0;
     }
+
+    console.log('condonacion-> ', condonacion);
     return condonacion;
   }
 
@@ -209,6 +217,18 @@ export class Rol {
     return cantidad;
   }
 
+  private isAllCondonacion(): boolean {
+    let cantidad = 0;
+    for (const year of this.getYears()) {
+      for (const cuota of Array.from(this.cuotas.get(year).values())) {
+        if (cuota.condonacion === undefined) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   allCuotas(): Cuota[] {
     const cuotas = [];
     for (const year of this.getYears()) {
@@ -221,13 +241,44 @@ export class Rol {
 
 
   actualizarCuota(deuda: any) {
-    console.log('actualizarCuota.rol->', this.rol);
+    //console.log('deuda ->', deuda);
+    //console.log('cuotas ->', this.cuotas);
+
+    const year = parseInt(deuda.numeroCuota.split('-')[1], 10);
+    const folioDeuda = deuda.folio;
+
+    const cuotaDeuda = new Cuota(deuda);
+
+    //console.log(this.cuotas.get(year));
+
+    for (let i = 0; i < this.cuotas.get(year).length; i++) {
+      const folio = this.cuotas.get(year)[i].folio;
+      if (folio === folioDeuda) {
+        this.updateCuotas(this.cuotas.get(year)[i], deuda);
+      }
+    }
+
+  }
+
+  private updateCuotas(actual: Cuota, deuda: Cuota): void {
+    actual.codigoBarra = deuda.codigoBarra;
+    actual.folio = deuda.folio;
+    actual.interes = deuda.interes;
+    actual.condonacion = deuda.condonacion;
+    if (deuda.montoCondonacion !== undefined) {
+      actual.montoCondonacion = deuda.montoCondonacion;
+    } else {
+      actual.montoCondonacion = 0;
+    }
+    actual.reajuste = deuda.reajuste;
+    actual.saldoOriginal = deuda.saldoOriginal;
+    actual.saldoTotal = deuda.saldoTotal;
   }
 
   getCuotaRequest() {
 
     let cuotasRequest: any = [];
-    console.log(this.cuotas);
+    //console.log(this.cuotas);
     const years = this.getYears();
     for (let i = 0; i < years.length; i++) {
       const cuotas = this.cuotas.get(years[i]);
@@ -240,6 +291,7 @@ export class Rol {
       }
     }
 
+    console.log('cuotasRequest->', cuotasRequest);
     return cuotasRequest;
   }
 
