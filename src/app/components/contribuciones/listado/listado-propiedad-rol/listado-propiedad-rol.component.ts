@@ -96,9 +96,10 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   }
 
   liquidar(): void {
-    console.log('liquidar');
+    this.onWait();
     this.contribucionesService.getRolUpdate(this.rol, this, true).then( () => {
       this.actualizarTipoTotal();
+      this.offWait();
     });
   }
 
@@ -106,7 +107,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.disableSuggest.emit();
   }
   actualizarTipoTotal(): void {
-    console.log('actualizarTipoTotal');
+
     this.total = this.rol.calcularTotal();
     this.condonacion = this.rol.calcularCondonacion();
     this.tipos = this.rol.calcularTipo();
@@ -134,5 +135,14 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     for (const cuotaComponent of this.cuotaComponentList.toArray()) {
       cuotaComponent.update();
     }
+  }
+
+  private onWait(): void {
+
+    this.rol.wait = true;
+  }
+
+  private offWait(): void {
+    this.rol.wait = false;
   }
 }

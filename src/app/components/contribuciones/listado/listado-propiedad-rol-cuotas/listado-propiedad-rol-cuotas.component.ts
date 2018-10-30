@@ -50,6 +50,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
       this.rol.seleccionar(TipoCuota.TODAS, this.year);
     }
     this.update();
+    //this.reliquidar.emit();
   }
 
   checkCuota(cuota: Cuota) {
@@ -70,7 +71,6 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
       this.selectedIcon = 'indeterminate_check_box';
     }
     this.change.emit();
-    console.log('update rol-cuotas')
     this.rol.wait = false;
   }
 }
