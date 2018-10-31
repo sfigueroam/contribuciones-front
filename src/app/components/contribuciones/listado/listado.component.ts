@@ -64,13 +64,19 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   updateSeleccionadaTotal(): void {
+
     const result = new Map<TipoCuota, number>();
     const propiedadComponentArray = this.propiedadComponentList.toArray();
+
     let total = 0;
     let cuotasTotal = 0;
     let cuotasSeleccionadas = 0;
     for (const propiedadComponent of propiedadComponentArray) {
+      if (propiedadComponent.total === undefined) {
+        break;
+      }
       total += propiedadComponent.total;
+
       for (const tipo of propiedadComponent.tipos) {
         if (result.has(tipo)) {
           result.set(tipo, result.get(tipo) + 1);
@@ -100,20 +106,20 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
-  obtenerRoles(){
+  obtenerRoles() {
     this.contributionsService.getObtenerRoles(this.propiedades, this);
 
   }
 
-  getPropiedadComponent(rolId: number): ListadoPropiedadRolComponent{
-    console.log('this.propiedadComponentList.length->', this.propiedadComponentList.length);
-    for (const propiedadesComponent of this.propiedadComponentList.toArray()){
-      const rolComponent =  propiedadesComponent.getRolComponent(rolId);
+  getPropiedadComponent(rolId: number): ListadoPropiedadRolComponent {
+    for (const propiedadesComponent of this.propiedadComponentList.toArray()) {
+      const rolComponent = propiedadesComponent.getRolComponent(rolId);
       return rolComponent;
     }
   }
-  actualizar(rolId: number): void{
-    for (const propiedadesComponent of this.propiedadComponentList.toArray()){
+
+  actualizar(rolId: number): void {
+    for (const propiedadesComponent of this.propiedadComponentList.toArray()) {
       propiedadesComponent.actualizarRol(rolId);
     }
 
@@ -131,15 +137,39 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.seleccionada = TipoCuota.TODAS;
   }
 
-  seleccionar(tipo: TipoCuota): void {
-    console.log(tipo);
+
+  public onWith(): void {
     if (this.propiedadComponentList) {
       this.propiedadComponentList.forEach(
-        (rolComponent) => rolComponent.seleccionar(tipo)
+        (rolComponent) => rolComponent.onWait()
       );
+    }
+  }
+  seleccionar(tipo: TipoCuota): void {
+    this.onWith();
+    if (this.propiedadComponentList) {
+      this.reliquidar(tipo, this.propiedadComponentList.toArray(), 0);
     }
     this.seleccionada = tipo;
   }
+
+
+  private reliquidar(tipo: TipoCuota, listadoPropiedadComponents: ListadoPropiedadComponent[], index: number): Promise<{}> {
+    if (index >= listadoPropiedadComponents.length) {
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
+    } else {
+      return new Promise((resolve, reject) => listadoPropiedadComponents[index].seleccionar(tipo).then(() => {
+          this.reliquidar(tipo, listadoPropiedadComponents, (index + 1)).then(() => {
+            resolve();
+          });
+        })
+      );
+    }
+
+  }
+
 
   openDialog() {
     this.detallePago.showDialog(this.propiedades);

@@ -62,10 +62,34 @@ export class ListadoPropiedadComponent implements AfterViewInit {
     }
   }
 
-  seleccionar(tipo: TipoCuota): void {
+
+  public onWait(): void {
     if (this.rolComponentList) {
       this.rolComponentList.forEach(
-        (rolComponent) => rolComponent.seleccionar(tipo)
+        (rolComponent) => rolComponent.onWait()
+      );
+    }
+  }
+
+  seleccionar(tipo: TipoCuota): Promise<{}> {
+    this.onWait();
+    if (this.rolComponentList) {
+      return this.reliquidar(tipo, this.rolComponentList.toArray(), 0);
+    }
+  }
+
+  private reliquidar(tipo: TipoCuota, listadoPropiedadRolComponents: ListadoPropiedadRolComponent[], index: number): Promise<{}> {
+
+    if (index >= listadoPropiedadRolComponents.length) {
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
+    } else {
+      return new Promise((resolve, reject) => listadoPropiedadRolComponents[index].seleccionar(tipo).then(() => {
+          this.reliquidar(tipo, listadoPropiedadRolComponents, (index + 1)).then(() => {
+            resolve();
+          });
+        })
       );
     }
   }
@@ -129,9 +153,7 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   }
 
   getRolComponent(rolId: number) {
-    console.log("rolId->", rolId);
     for (const rolComponent of this.rolComponentList.toArray()) {
-      console.log("rolComponent", rolComponent);
       if (rolComponent.rol.rol === rolId) {
         return rolComponent;
       }

@@ -183,7 +183,6 @@ export class Rol {
     if (this.isAllCondonacion()) {
       for (const year of this.getYears()) {
         for (const cuota of Array.from(this.cuotas.get(year).values())) {
-          console.log(cuota.intencionPago);
           if (cuota.intencionPago) {
             condonacion += cuota.montoCondonacion;
           }
@@ -193,7 +192,6 @@ export class Rol {
       condonacion = 0;
     }
 
-    console.log('condonacion-> ', condonacion);
     return condonacion;
   }
 
@@ -291,7 +289,6 @@ export class Rol {
       }
     }
 
-    console.log('cuotasRequest->', cuotasRequest);
     return cuotasRequest;
   }
 

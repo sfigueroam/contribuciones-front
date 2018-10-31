@@ -95,17 +95,20 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.iconInit();
   }
 
-  liquidar(): void {
+  liquidar(): Promise<{}> {
     this.onWait();
-    this.contribucionesService.getRolUpdate(this.rol, this, true).then( () => {
-      this.actualizarTipoTotal();
-      this.offWait();
-    });
+    return new Promise((resolve, reject) => this.contribucionesService.getRolUpdate(this.rol, this, true).then(() => {
+        this.actualizarTipoTotal();
+        this.offWait();
+        resolve();
+      })
+    );
   }
 
   disableSuggestion(): void {
     this.disableSuggest.emit();
   }
+
   actualizarTipoTotal(): void {
 
     this.total = this.rol.calcularTotal();
@@ -130,19 +133,23 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.resize.emit();
   }
 
-  seleccionar(tipo: TipoCuota): void {
+  seleccionar(tipo: TipoCuota): Promise<{}> {
     this.rol.seleccionar(tipo);
     for (const cuotaComponent of this.cuotaComponentList.toArray()) {
-      cuotaComponent.update();
+      //cuotaComponent.update();
+      //cuotaComponent.liquidar();
+      cuotaComponent.reloadChecked();
     }
+
+    return this.liquidar();
   }
 
-  private onWait(): void {
+  public onWait(): void {
 
     this.rol.wait = true;
   }
 
-  private offWait(): void {
+  public offWait(): void {
     this.rol.wait = false;
   }
 }

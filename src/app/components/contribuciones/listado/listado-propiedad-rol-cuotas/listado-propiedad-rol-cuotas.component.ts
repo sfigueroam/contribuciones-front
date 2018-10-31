@@ -49,20 +49,17 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
     } else {
       this.rol.seleccionar(TipoCuota.TODAS, this.year);
     }
-    this.update();
-    //this.reliquidar.emit();
+    this.reloadChecked();
+    this.reliquidar.emit();
   }
 
   checkCuota(cuota: Cuota) {
-    console.log('checkCuota');
     cuota.intencionPago = !cuota.intencionPago;
-    console.log('cuota.intencionPago->', cuota.intencionPago);
     this.reliquidar.emit();
 
   }
 
-  update(): void {
-    this.initCuotas();
+  public reloadChecked(): void{
     if (this.rol.allChecked(this.year)) {
       this.selectedIcon = 'checked';
     } else if (this.rol.noneChecked(this.year)) {
@@ -70,6 +67,16 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
     } else {
       this.selectedIcon = 'indeterminate_check_box';
     }
+  }
+
+  liquidar(): void {
+    this.reloadChecked();
+    this.reliquidar.emit();
+  }
+
+  update(): void {
+    this.initCuotas();
+    this.reloadChecked();
     this.change.emit();
     this.rol.wait = false;
   }

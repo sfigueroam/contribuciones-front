@@ -113,7 +113,6 @@ export class ContributionsService {
         }
       }
       rolComponent.actualizarTipoTotal();
-      console.log(rol);
       resolve();
     }));
   }
@@ -121,7 +120,7 @@ export class ContributionsService {
   getRol(roles: Rol[], listadoComponent, count): Promise<{}> {
     const rol = roles[count];
     if (rol === undefined) {
-      return new Promise(() => {});
+      return new Promise((resolve, reject) => {resolve()});
     }
     if (rol.cuotas.size > 0) {
       return this.getRol(roles, listadoComponent, (count + 1));
