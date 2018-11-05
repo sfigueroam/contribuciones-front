@@ -1,5 +1,8 @@
 @import '../../../../../styles/colors';
-
+..mdl-tabs__tab-bar {
+  max-width: 100%;
+  overflow: auto;
+}
 .tgr-content {
 	background: #fff;
   border-radius: 4px;
