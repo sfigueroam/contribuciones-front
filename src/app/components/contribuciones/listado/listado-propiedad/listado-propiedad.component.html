@@ -1,4 +1,4 @@
-<div class="tgr-section-grid" (resize)="resizeAllGridItems()">
+<div class="tgr-section-grid" (resize)="resizeAllGridItems()" appMdlInit>
   <div class="tgr-section-title">
     <div class="tgr-section-title--address">{{propiedad.direccion}} - {{propiedad.roles[0].comuna}}
     </div>
@@ -11,7 +11,8 @@
       [rol]="rol"
       (resize)="resizeAllGridItems()"
       (change)="updateTipoTotal()"
-      (disableSuggest)="disableSuggestion()">
+      (disableSuggest)="disableSuggestion()"
+      (blockEvent)="blockEvent($event)">
     </app-listado-propiedad-rol>
   </div>
 </div>

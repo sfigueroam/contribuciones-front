@@ -3,6 +3,7 @@ import {Rol} from '../../../../domain/Rol';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {ListadoPropiedadRolCuotasComponent} from '../listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {ContributionsService} from '../../../../services/contributions.service';
+import {ignore} from 'selenium-webdriver/testing';
 
 @Component({
   selector: 'app-listado-propiedad-rol',
@@ -10,6 +11,8 @@ import {ContributionsService} from '../../../../services/contributions.service';
   styleUrls: ['./listado-propiedad-rol.component.scss']
 })
 export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
+
+
 
   @Input()
   rol: Rol;
@@ -20,6 +23,9 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   change: EventEmitter<any> = new EventEmitter();
   @Output()
   disableSuggest: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  blockEvent: EventEmitter<boolean> = new EventEmitter();
 
   @ViewChildren(ListadoPropiedadRolCuotasComponent)
   cuotaComponentList: QueryList<ListadoPropiedadRolCuotasComponent>;
@@ -145,11 +151,13 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   }
 
   public onWait(): void {
-
     this.rol.wait = true;
+    this.blockEvent.emit(this.rol.wait);
   }
 
   public offWait(): void {
     this.rol.wait = false;
+    this.blockEvent.emit(this.rol.wait);
   }
+
 }

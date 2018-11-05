@@ -55,16 +55,18 @@
       [rol]="rol" (change)="actualizarTipoTotal()" (reliquidar)="liquidar()" >
     </app-listado-propiedad-rol-cuotas>
   </div>
-  <div *ngIf="showTabs" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+
+
+  <div *ngIf="showTabs" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" >
     <div class="mdl-tabs__tab-bar">
-      <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="isActive(year)" (click)="activateTab(year)"
-         *ngFor="let year of rol.getYears()">{{year}}</a>
+      <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="isActive(year) || i === 0" (click)="activateTab(year)"
+         *ngFor="let year of rol.getYears(); let i = index">{{year}}</a>
     </div>
 
-    <div class="mdl-tabs__panel " [class.is-active]="isActive(year)" id="a{{year}}-panel"
-         *ngFor="let year of rol.getYears()">
+    <div class="mdl-tabs__panel " [class.is-active]="isActive(year) || i === 0" id="a{{year}}-panel"
+         *ngFor="let year of rol.getYears(); let i = index" >
       <app-listado-propiedad-rol-cuotas
-        [rol]="rol" [year]="year" (change)="actualizarTipoTotal()">
+        [rol]="rol" [year]="year" (change)="actualizarTipoTotal()" (reliquidar)="liquidar()">
       </app-listado-propiedad-rol-cuotas>
     </div>
   </div>

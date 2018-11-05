@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterContentInit, AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Cuota} from '../../../../domain/Cuota';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Rol} from '../../../../domain/Rol';
@@ -32,13 +32,15 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
     this.selectedIcon = 'checked';
   }
 
-  private initCuotas(): void{
+
+  private initCuotas(): void {
     if (this.year) {
       this.cuotas = this.rol.cuotas.get(this.year);
     } else {
       this.cuotas = this.rol.allCuotas();
     }
   }
+
   cuotaIcon(cuota: Cuota): string {
     return cuota.intencionPago ? 'checked' : 'unchecked';
   }
@@ -59,7 +61,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
 
   }
 
-  public reloadChecked(): void{
+  public reloadChecked(): void {
     if (this.rol.allChecked(this.year)) {
       this.selectedIcon = 'checked';
     } else if (this.rol.noneChecked(this.year)) {

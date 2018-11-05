@@ -4,7 +4,6 @@ import {Propiedad} from '../../../domain/Propiedad';
 import {ContributionsService} from '../../../services/contributions.service';
 import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
-import {HttpClient} from '@angular/common/http';
 import {ListadoPropiedadRolComponent} from './listado-propiedad-rol/listado-propiedad-rol.component';
 
 @Component({
@@ -12,6 +11,8 @@ import {ListadoPropiedadRolComponent} from './listado-propiedad-rol/listado-prop
   templateUrl: './listado.component.html',
   styleUrls: ['./listado.component.scss']
 })
+
+
 export class ListadoComponent implements OnInit, AfterViewInit {
 
   @ViewChild('detallePago')
@@ -33,11 +34,16 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   pagarInactivo: boolean;
   mostrarSugerenciaCondonacion: boolean;
 
+  block: boolean;
+  cantPropiedades: number;
+
   constructor(private contributionsService: ContributionsService) {
     this.mostrarAlerta = false;
     this.mostrarDelete = false;
     this.pagarInactivo = true;
+    this.block = false;
     this.mostrarSugerenciaCondonacion = true;
+    this.cantPropiedades = 0;
     // TODO eliminar este workaround para que se muestre la alerta a destiempo
     setTimeout(
       () => {
@@ -106,8 +112,9 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
-  obtenerRoles() {
-    this.contributionsService.getObtenerRoles(this.propiedades, this);
+  obtenerRoles(): Promise<{}> {
+
+    return this.contributionsService.getObtenerRoles(this.propiedades, this)
 
   }
 
@@ -126,12 +133,14 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.onBlock();
     this.contributionsService
       .getBienesRaices()
       .then((propiedades) => {
         this.propiedades = propiedades;
-
-        this.obtenerRoles();
+        this.obtenerRoles().then( () => {
+          this.offBlock();
+        });
       });
 
     this.seleccionada = TipoCuota.TODAS;
@@ -139,16 +148,20 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
 
   public onWith(): void {
+    this.onBlock();
     if (this.propiedadComponentList) {
       this.propiedadComponentList.forEach(
         (rolComponent) => rolComponent.onWait()
       );
     }
   }
+
   seleccionar(tipo: TipoCuota): void {
     this.onWith();
     if (this.propiedadComponentList) {
-      this.reliquidar(tipo, this.propiedadComponentList.toArray(), 0);
+      this.reliquidar(tipo, this.propiedadComponentList.toArray(), 0).then(() => {
+        this.offBlock();
+      });
     }
     this.seleccionada = tipo;
   }
@@ -171,7 +184,23 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
 
+  onBlock(): void {
+    this.block = true;
+  }
+
+  offBlock(): void {
+    this.block = false;
+  }
+
   openDialog() {
     this.detallePago.showDialog(this.propiedades);
+  }
+
+  blockPayment(block: boolean): void {
+    if (block) {
+      this.onBlock();
+    } else {
+      this.offBlock();
+    }
   }
 }

@@ -87,6 +87,22 @@
   margin-right: auto;
 }
 
+.tgr-white {
+  background: $color-delete-background;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  padding-top: 40px;
+  text-align: center;
+  @media (max-width: 520px){
+    padding-top: 16px;
+  }
+}
+
 .tgr-actions__delete-zone {
   background: $color-delete-background;
   display: none;
@@ -104,6 +120,10 @@
 }
 
 .delete ~ .tgr-actions .tgr-actions__delete-zone {
+  display: block;
+}
+
+.block ~ .tgr-actions .tgr-white {
   display: block;
 }
 

@@ -83,18 +83,22 @@ export class ContributionsService {
   }
 
 
-  getObtenerRoles(propiedades: Propiedad[], listadoComponent, count?: number) {
+  getObtenerRoles(propiedades: Propiedad[], listadoComponent, count?: number): Promise<{}> {
 
     if (!count) {
       count = 0;
     }
 
     if (propiedades.length === count) {
-      return;
+      return new Promise((resolve, reject) => {resolve()});
     }
     let propiedad = propiedades[count];
-    this.getRol(propiedad.roles, listadoComponent, 0).then(() => {
-      this.getObtenerRoles(propiedades, listadoComponent, (count + 1));
+    return new Promise((resolve, reject) => {
+      this.getRol(propiedad.roles, listadoComponent, 0).then(() => {
+        this.getObtenerRoles(propiedades, listadoComponent, (count + 1)).then( () => {
+          resolve();
+        });
+      });
     });
 
   }

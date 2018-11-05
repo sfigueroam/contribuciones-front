@@ -1,14 +1,23 @@
-<div class="tgr-list-section" [class.delete]="mostrarDelete" [class.see-discounts]="mostrarSugerenciaCondonacion">
+<div class="tgr-list-section" [class.delete]="mostrarDelete" [class.block]="block" [class.see-discounts]="mostrarSugerenciaCondonacion">
   <app-listado-propiedad
     *ngFor="let propiedad of propiedades"
     [propiedad]="propiedad"
     (change)="updateSeleccionadaTotal()"
-    (disableSuggest)="mostrarSugerenciaCondonacion = false">
+    (disableSuggest)="mostrarSugerenciaCondonacion = false"
+    (block)="blockPayment($event)">
+
   </app-listado-propiedad>
 </div>
 
 <div class="tgr-actions">
   <div class="tgr-actions__content">
+    <div class="tgr-white">
+      <div class="tgr-cell-wait">
+        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
+        </div>
+        <h5 class="tgr-cell-wait__feedback"></h5>
+      </div>
+    </div>
     <div class="tgr-actions__delete-zone">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised"
               (click)="cancelarEliminacion()">

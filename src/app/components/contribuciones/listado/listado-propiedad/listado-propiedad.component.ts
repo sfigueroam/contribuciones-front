@@ -17,6 +17,9 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   change: EventEmitter<any> = new EventEmitter();
   @Output()
   disableSuggest: EventEmitter<any> = new EventEmitter();
+  @Output()
+  block: EventEmitter<boolean> = new EventEmitter();
+
 
   @ViewChild('grid')
   grid: ElementRef;
@@ -120,7 +123,8 @@ export class ListadoPropiedadComponent implements AfterViewInit {
     let cuotasTotal = 0;
     let cuotasSeleccionadas = 0;
     for (const rolComponent of rolComponentArray) {
-      total += rolComponent.total - rolComponent.condonacion;
+      //total += rolComponent.total - rolComponent.condonacion;
+      total += rolComponent.total;
       for (const tipo of rolComponent.tipos) {
         if (result.has(tipo)) {
           result.set(tipo, result.get(tipo) + 1);
@@ -158,5 +162,9 @@ export class ListadoPropiedadComponent implements AfterViewInit {
         return rolComponent;
       }
     }
+  }
+
+  blockEvent(event: boolean): void{
+    this.block.emit(event);
   }
 }
