@@ -1,4 +1,4 @@
-import {AfterContentInit, AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Cuota} from '../../../../domain/Cuota';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Rol} from '../../../../domain/Rol';
@@ -29,7 +29,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
 
   ngOnInit() {
     this.initCuotas();
-    this.selectedIcon = 'checked';
+    this.reloadChecked();
   }
 
 
@@ -58,6 +58,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
   checkCuota(cuota: Cuota) {
     cuota.intencionPago = !cuota.intencionPago;
     this.reliquidar.emit();
+    this.reloadChecked();
 
   }
 
@@ -69,11 +70,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
     } else {
       this.selectedIcon = 'indeterminate_check_box';
     }
-  }
 
-  liquidar(): void {
-    this.reloadChecked();
-    this.reliquidar.emit();
   }
 
   update(): void {

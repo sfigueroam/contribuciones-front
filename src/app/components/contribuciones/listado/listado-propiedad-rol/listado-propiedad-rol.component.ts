@@ -142,11 +142,8 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   seleccionar(tipo: TipoCuota): Promise<{}> {
     this.rol.seleccionar(tipo);
     for (const cuotaComponent of this.cuotaComponentList.toArray()) {
-      //cuotaComponent.update();
-      //cuotaComponent.liquidar();
       cuotaComponent.reloadChecked();
     }
-
     return this.liquidar();
   }
 
