@@ -4,6 +4,7 @@ import {TipoCuota} from '../../../../domain/TipoCuota';
 import {ListadoPropiedadRolCuotasComponent} from '../listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {ContributionsService} from '../../../../services/contributions.service';
 import {ignore} from 'selenium-webdriver/testing';
+import {Cuota} from '../../../../domain/Cuota';
 
 @Component({
   selector: 'app-listado-propiedad-rol',
@@ -11,7 +12,6 @@ import {ignore} from 'selenium-webdriver/testing';
   styleUrls: ['./listado-propiedad-rol.component.scss']
 })
 export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
-
 
 
   @Input()
@@ -95,20 +95,29 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.selectedYear = this.rol.getYears()[0];
-
     this.showSuggestion = this.rol.hasExpiredQuotes();
     this.actualizarTipoTotal();
     this.iconInit();
+
   }
 
-  liquidar(): Promise<{}> {
+  liquidar(cuota?: Cuota): Promise<{}> {
     this.onWait();
-    return new Promise((resolve, reject) => this.contribucionesService.getRolUpdate(this.rol, this, true).then(() => {
-        this.actualizarTipoTotal();
-        this.offWait();
-        resolve();
-      })
-    );
+    if (cuota === undefined || cuota.expired) {
+      return new Promise((resolve, reject) => this.contribucionesService.getRolUpdate(this.rol, this, true).then(() => {
+          this.actualizarTipoTotal();
+          this.offWait();
+          resolve();
+        })
+      );
+    } else {
+      return new Promise((resolve, reject) => {
+          this.actualizarTipoTotal();
+          this.offWait();
+          resolve();
+        }
+      );
+    }
   }
 
   disableSuggestion(): void {

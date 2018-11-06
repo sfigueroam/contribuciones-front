@@ -28,6 +28,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   total: number;
   cuotasTotal: number;
   cuotasSeleccionadas: number;
+  cantidadRolesNoAsociados: number;
 
   mostrarAlerta: boolean;
   mostrarDelete: boolean;
@@ -44,13 +45,14 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.block = false;
     this.mostrarSugerenciaCondonacion = true;
     this.cantPropiedades = 0;
+    this.cantidadRolesNoAsociados = 0;
     // TODO eliminar este workaround para que se muestre la alerta a destiempo
-    setTimeout(
+    /*setTimeout(
       () => {
         this.mostrarAlerta = true;
       },
       1500
-    );
+    );*/
   }
 
   ocultarAlerta(): void {
@@ -114,7 +116,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   obtenerRoles(): Promise<{}> {
 
-    return this.contributionsService.getObtenerRoles(this.propiedades, this)
+    return this.contributionsService.getObtenerRoles(this.propiedades, this);
 
   }
 
@@ -135,10 +137,18 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.onBlock();
     this.contributionsService
+      .getRolesNoAsociados().then((data) => {
+      if (data){
+        this.mostrarAlerta = true;
+        this.cantidadRolesNoAsociados = data.length;
+      }
+
+    });
+    this.contributionsService
       .getBienesRaices()
       .then((propiedades) => {
         this.propiedades = propiedades;
-        this.obtenerRoles().then( () => {
+        this.obtenerRoles().then(() => {
           this.offBlock();
         });
       });

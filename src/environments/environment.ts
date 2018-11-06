@@ -2,16 +2,59 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const idTesoreria = '33';
+const origen = '912';
+
+const cabecera = {
+  ambiente: 'test',
+  usuario: '14059203'
+};
+
+const urlsBase = {
+  publica: 'https://dm5ujuys5b.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
+  privada: 'https://dm5ujuys5b.execute-api.us-east-1.amazonaws.com/dev/proxy-private'
+};
+
+const pathBase = {
+  clienteBienRaiz: '/ClienteBienRaizWS/api/BienRaiz',
+  deudaRol: '/RecuperaDeudaROLRS/api/bienraiz',
+  bienRaiz: '/BienRaizWS/api/BienRaiz'
+};
+
+
 export const environment = {
   production: false,
-  urlWsTierra: 'https://dm5ujuys5b.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
-  wsTierra: {
-    obtenerBienRaizAsociado: '/ClienteBienRaizWS/api/BienRaiz/asociado/obtener',
-    obtenerBienRaizNoAsociado: '/ClienteBienRaizWS/api/BienRaiz/noasociado/obtener',
-    asociarBienRaiz: '/ClienteBienRaizWS/api/BienRaiz/bienraiz/asociar',
-    desasociarBienRaiz: '/ClienteBienRaizWS/api/BienRaiz/bienraiz/desasociar',
-    recuperarDeudaRol: '/RecuperaDeudaROLRS/api/bienraiz/deuda/rol/obtiene',
-    buscarBienRaiz: '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin'
+  servicios: {
+    obtenerBienRaizAsociado: {
+      url: urlsBase.publica,
+      path: pathBase.clienteBienRaiz + '/asociado/obtener',
+      method: 'GET'
+    },
+    obtenerBienRaizNoAsociado: {
+      url: urlsBase.publica,
+      path: pathBase.clienteBienRaiz + '/noasociado/obtener',
+      method: 'GET'
+    },
+    asociarBienRaiz: {
+      url: urlsBase.publica,
+      path: pathBase.clienteBienRaiz + '/bienraiz/asociar',
+      method: 'POST'
+    },
+    desasociarBienRaiz: {
+      url: urlsBase.publica,
+      path: pathBase.clienteBienRaiz + '/bienraiz/desasociar',
+      method: 'POST'
+    },
+    recuperarDeudaRol: {
+      url: urlsBase.publica,
+      path: pathBase.deudaRol + '/deuda/rol/obtiene',
+      method: 'POST'
+    },
+    buscarBienRaiz: {
+      url: urlsBase.publica,
+      path: pathBase.bienRaiz + '/obtener/rolin',
+      method: 'POST'
+    }
   }
 };
 

@@ -27,6 +27,7 @@ export class DetallePagoComponent implements OnInit {
   }
 
   showDialog(propiedades: Propiedad[]): void {
+    console.log(propiedades);
     this.propiedades = [];
     this.total = 0;
     this.condonacion = 0;

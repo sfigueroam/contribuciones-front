@@ -1,4 +1,4 @@
-import {Injectable, QueryList} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Dummy} from '../modulos/dummy';
 import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
@@ -6,8 +6,6 @@ import {Propiedad} from '../domain/Propiedad';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from './user.service';
-import {ListadoPropiedadComponent} from '../components/contribuciones/listado/listado-propiedad/listado-propiedad.component';
-import {ListadoComponent} from '../components/contribuciones/listado/listado.component';
 import {ListadoPropiedadRolComponent} from '../components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
 
 @Injectable({
@@ -18,9 +16,10 @@ export class ContributionsService {
   dummy: Dummy = new Dummy();
 
   propiedades: Propiedad[];
+  rolesNoAsociados: Rol[];
+
 
   constructor(private http: HttpClient, private user: UserService) {
-
   }
 
   /*
@@ -90,19 +89,22 @@ export class ContributionsService {
     }
 
     if (propiedades.length === count) {
-      return new Promise((resolve, reject) => {resolve()});
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
     }
     let propiedad = propiedades[count];
     return new Promise((resolve, reject) => {
       this.getRol(propiedad.roles, listadoComponent, 0).then(() => {
-        this.getObtenerRoles(propiedades, listadoComponent, (count + 1)).then( () => {
+        this.getObtenerRoles(propiedades, listadoComponent, (count + 1)).then(() => {
           resolve();
         });
       });
     });
 
   }
-  getRolUpdate(rol: Rol, rolComponent: ListadoPropiedadRolComponent,  update?: boolean): Promise<{}> {
+
+  getRolUpdate(rol: Rol, rolComponent: ListadoPropiedadRolComponent, update?: boolean): Promise<{}> {
     return new Promise((resolve, reject) => this.getDeudaByRol(rol.rol, rol.getCuotaRequest()).then((data: { listaDeudaRol: any[] }) => {
       for (const deuda of data.listaDeudaRol) {
         if (!update) {
@@ -124,7 +126,9 @@ export class ContributionsService {
   getRol(roles: Rol[], listadoComponent, count): Promise<{}> {
     const rol = roles[count];
     if (rol === undefined) {
-      return new Promise((resolve, reject) => {resolve()});
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
     }
     if (rol.cuotas.size > 0) {
       return this.getRol(roles, listadoComponent, (count + 1));
@@ -153,21 +157,22 @@ export class ContributionsService {
   }
 
   private getBienRaiz(): Promise<{}> {
-    const path = environment.wsTierra.obtenerBienRaizAsociado + '/' + this.user.rut;
-    return this.apiTgr(path, 'GET');
+    let obtenerBienRaizAsociado = environment.servicios.obtenerBienRaizAsociado;
+    obtenerBienRaizAsociado.path = obtenerBienRaizAsociado.path + '/' + this.user.rut;
+    return this.request(obtenerBienRaizAsociado);
   }
 
   private getDeudas(rol: number): any {
     return this.dummy.getDeudas(rol).listaDeudaRol;
   }
 
-  private apiTgr(path, method, body?): Promise<{}> {
+  private request(servicio: { url: string, path: string, method: string }, body?): Promise<{}> {
     const params = {
-      'path': path
+      'path': servicio.path
     };
     return new Promise((resolve, reject) => {
-      this.http.request(method,
-        environment.urlWsTierra,
+      this.http.request(servicio.method,
+        servicio.url,
         {
           body: body,
           params: params,
@@ -186,11 +191,33 @@ export class ContributionsService {
   }
 
   private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
-    const path = environment.wsTierra.recuperarDeudaRol;
     const body = {
       'idRol': rol,
       'listaCuotas': Array.from(cuotas.values())
     };
-    return this.apiTgr(path, 'POST', body);
+    return this.request(environment.servicios.recuperarDeudaRol, body);
+  }
+
+  getRolesNoAsociados(): Promise<Rol[]> {
+    if (this.rolesNoAsociados) {
+      return new Promise((resolve, reject) => {
+        resolve(this.rolesNoAsociados);
+      });
+    }
+
+    return new Promise((resolve, reject) => {
+      let obtenerBienRaizNoAsociado = environment.servicios.obtenerBienRaizNoAsociado;
+      obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + this.user.rut;
+      this.request(environment.servicios.obtenerBienRaizNoAsociado).then((data: { curout: any }) => {
+        for (const bienRaiz of data.curout) {
+          if (!this.rolesNoAsociados) {
+            this.rolesNoAsociados = [];
+          }
+          const rol = new Rol(bienRaiz);
+          this.rolesNoAsociados.push(rol);
+        }
+        resolve(this.rolesNoAsociados);
+      });
+    });
   }
 }

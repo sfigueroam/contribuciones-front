@@ -57,7 +57,7 @@ export class ListadoPropiedadRolCuotasComponent implements OnInit {
 
   checkCuota(cuota: Cuota) {
     cuota.intencionPago = !cuota.intencionPago;
-    this.reliquidar.emit();
+    this.reliquidar.emit(cuota);
     this.reloadChecked();
 
   }
