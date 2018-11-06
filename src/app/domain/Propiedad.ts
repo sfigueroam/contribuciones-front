@@ -53,4 +53,17 @@ export class Propiedad {
 
     return slimName;
   }
+
+  desasociarRol(rol: Rol[]) {
+    let rolTmp: Rol[];
+    for (const ro of rol) {
+      rolTmp = [];
+      for (const r of this.roles) {
+        if (r.rol !== ro.rol) {
+          rolTmp.push(r);
+        }
+      }
+      this.roles = rolTmp;
+    }
+  }
 }

@@ -5,6 +5,7 @@ import {ContributionsService} from '../../../services/contributions.service';
 import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
 import {ListadoPropiedadRolComponent} from './listado-propiedad-rol/listado-propiedad-rol.component';
+import {Rol} from '../../../domain/Rol';
 
 @Component({
   selector: 'app-listado',
@@ -17,6 +18,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   @ViewChild('detallePago')
   detallePago: DetallePagoComponent;
+
   @ViewChildren(ListadoPropiedadComponent)
   propiedadComponentList: QueryList<ListadoPropiedadComponent>;
 
@@ -68,6 +70,15 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   eliminar(): void {
+    const propiedadComponentArray = this.propiedadComponentList.toArray();
+    let rol: Rol[] = [];
+    for (const propiedadComponent of propiedadComponentArray) {
+      const rolesDesasociar = propiedadComponent.getRolesDesasociar();
+      rol = rol.concat(rolesDesasociar);
+    }
+    for (const prop of this.propiedades) {
+      prop.desasociarRol(rol);
+    }
     this.mostrarDelete = false;
   }
 
@@ -138,7 +149,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.onBlock();
     this.contributionsService
       .getRolesNoAsociados().then((data) => {
-      if (data){
+      if (data) {
         this.mostrarAlerta = true;
         this.cantidadRolesNoAsociados = data.length;
       }
@@ -155,7 +166,6 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
     this.seleccionada = TipoCuota.TODAS;
   }
-
 
   public onWith(): void {
     this.onBlock();

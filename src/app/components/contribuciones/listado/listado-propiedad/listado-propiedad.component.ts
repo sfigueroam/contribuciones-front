@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Query
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ListadoPropiedadRolComponent} from '../listado-propiedad-rol/listado-propiedad-rol.component';
 import {TipoCuota} from '../../../../domain/TipoCuota';
+import {Rol} from '../../../../domain/Rol';
 
 @Component({
   selector: 'app-listado-propiedad',
@@ -63,6 +64,22 @@ export class ListadoPropiedadComponent implements AfterViewInit {
         }
       }
     }
+  }
+
+
+  getRolesDesasociar(): Rol[]{
+
+    const rol: Rol[] = [];
+
+    for (const rolComponent of this.rolComponentList.toArray()) {
+      if (rolComponent.porEliminar) {
+        rol.push(rolComponent.rol);
+      }
+    }
+
+    console.log('rol-> ', rol);
+    return rol;
+
   }
 
 
