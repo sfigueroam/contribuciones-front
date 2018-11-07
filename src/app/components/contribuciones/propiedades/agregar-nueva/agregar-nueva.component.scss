@@ -1,0 +1,20 @@
+@import '../../../../../styles/colors';
+
+
+.mdl-textfield {
+  width: calc(33.3% - 10px);  
+  margin: 0 10px 0 0;
+  @media (max-width: 996px){  	
+  	width: calc(50% - 10px);
+	}
+	@media (max-width: 683px){  	
+  	width: 100%;
+		margin: 0;
+	}
+}
+.tgr-textfield--full {
+	@media (max-width: 996px){  	
+  	width: 100%;
+		margin: 0;
+	}
+}

@@ -1,16 +1,12 @@
 @import '../../../../styles/colors';
 
+.tgr-container {
+  overflow: hidden;
+}
 // contenedor por propiedad
 .tgr-list-section {
-  padding: 36px 0 140px;
-  max-width: 1240px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-  @media (max-width: 1260px) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+  padding-bottom: 140px;
+  padding-top: 36px;
 }
 
 // zona titulo direccion

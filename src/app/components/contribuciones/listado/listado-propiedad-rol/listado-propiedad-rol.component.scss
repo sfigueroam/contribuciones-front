@@ -12,14 +12,9 @@
 
 // encabezado card
 .tgr-card__head {
-  border-bottom: 2px solid $color-filter;
-  color: $color-primary;
   height: 80px;
-  overflow: hidden;
   padding: 20px 16px 0 16px;
-  position: relative;
 }
-
 // condonacion
 .tgr-section-desc {
   background: #fff;
@@ -139,6 +134,14 @@
 }
 .tgr-list-section  .mdl-shadow--2dp {
   box-shadow: none;
+}
+.mdl-tabs__tab-bar {
+  justify-content: left;
+  overflow: auto;
+  overflow-y: hidden;
+}
+.mdl-tabs__tab {
+  min-width: 33px;
 }
 .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
   color: $color-primary;
