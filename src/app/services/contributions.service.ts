@@ -198,21 +198,18 @@ export class ContributionsService {
     return this.request(environment.servicios.recuperarDeudaRol, body);
   }
 
-  getRolesNoAsociados(): Promise<Rol[]> {
-    if (this.rolesNoAsociados) {
+  getRolesNoAsociados(force?: boolean): Promise<Rol[]> {
+    if (this.rolesNoAsociados && !force) {
       return new Promise((resolve, reject) => {
         resolve(this.rolesNoAsociados);
       });
     }
-
     return new Promise((resolve, reject) => {
-      let obtenerBienRaizNoAsociado = environment.servicios.obtenerBienRaizNoAsociado;
+      let obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
       obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + this.user.rut;
-      this.request(environment.servicios.obtenerBienRaizNoAsociado).then((data: { curout: any }) => {
+      this.request(obtenerBienRaizNoAsociado).then((data: { curout: any }) => {
+        this.rolesNoAsociados = [];
         for (const bienRaiz of data.curout) {
-          if (!this.rolesNoAsociados) {
-            this.rolesNoAsociados = [];
-          }
           const rol = new Rol(bienRaiz);
           this.rolesNoAsociados.push(rol);
         }

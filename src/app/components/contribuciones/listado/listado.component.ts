@@ -79,10 +79,17 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
     this.mostrarDelete = false;
     this.onBlock();
+
     this.desasociarRoles(roles).then(() => {
-      this.offBlock();
+      this.actualizarListaRoles(true);
     });
 
+  }
+
+  private actualizarListaRoles(force?: boolean) {
+    this.cargarRolesNoAsociado(force).then(() => {
+      this.offBlock();
+    });
   }
 
   private desasociarRoles(roles: Rol[]): Promise<{}> {
@@ -97,7 +104,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   private desasociarRol(rol: Rol): Promise<{}> {
     return new Promise((resolve, reject) => {
-      return this.contributionsService.desasociarRol(rol).then(() => {
+      this.contributionsService.desasociarRol(rol).then(() => {
         this.propiedades = this.propiedades.filter((propiedad: Propiedad) => {
           propiedad.desasociarRol(rol);
           if (propiedad.roles.length === 0) {
@@ -173,16 +180,22 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   }
 
+  private cargarRolesNoAsociado(force?: boolean): Promise<{}> {
+    return new Promise<{}>((resolve, reject) => {
+      this.contributionsService
+        .getRolesNoAsociados(force).then((data) => {
+        if (data) {
+          this.mostrarAlerta = true;
+          this.cantidadRolesNoAsociados = data.length;
+        }
+        resolve();
+      });
+    });
+  }
+
   ngOnInit() {
     this.onBlock();
-    this.contributionsService
-      .getRolesNoAsociados().then((data) => {
-      if (data) {
-        this.mostrarAlerta = true;
-        this.cantidadRolesNoAsociados = data.length;
-      }
-
-    });
+    this.cargarRolesNoAsociado();
     this.contributionsService
       .getBienesRaices()
       .then((propiedades) => {
