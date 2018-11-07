@@ -71,15 +71,43 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   eliminar(): void {
     const propiedadComponentArray = this.propiedadComponentList.toArray();
-    let rol: Rol[] = [];
+    let roles: Rol[] = [];
     for (const propiedadComponent of propiedadComponentArray) {
       const rolesDesasociar = propiedadComponent.getRolesDesasociar();
-      rol = rol.concat(rolesDesasociar);
+      roles = roles.concat(rolesDesasociar);
     }
-    for (const prop of this.propiedades) {
-      prop.desasociarRol(rol);
-    }
+
     this.mostrarDelete = false;
+    this.onBlock();
+    this.desasociarRoles(roles).then(() => {
+      this.offBlock();
+    });
+
+  }
+
+  private desasociarRoles(roles: Rol[]): Promise<{}> {
+    if (roles.length === 1) {
+      return this.desasociarRol(roles.pop());
+    } else {
+      return this.desasociarRol(roles.pop()).then(() => {
+        return this.desasociarRoles(roles);
+      });
+    }
+  }
+
+  private desasociarRol(rol: Rol): Promise<{}> {
+    return new Promise((resolve, reject) => {
+      return this.contributionsService.desasociarRol(rol).then(() => {
+        this.propiedades = this.propiedades.filter((propiedad: Propiedad) => {
+          propiedad.desasociarRol(rol);
+          if (propiedad.roles.length === 0) {
+            return false;
+          }
+          return true;
+        });
+        resolve();
+      });
+    });
   }
 
   updateSeleccionadaTotal(): void {
@@ -188,19 +216,13 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
 
   private reliquidar(tipo: TipoCuota, listadoPropiedadComponents: ListadoPropiedadComponent[], index: number): Promise<{}> {
-    if (index >= listadoPropiedadComponents.length) {
-      return new Promise((resolve, reject) => {
-        resolve();
-      });
+    if (index === (listadoPropiedadComponents.length - 1)) {
+      return listadoPropiedadComponents[index].seleccionar(tipo);
     } else {
-      return new Promise((resolve, reject) => listadoPropiedadComponents[index].seleccionar(tipo).then(() => {
-          this.reliquidar(tipo, listadoPropiedadComponents, (index + 1)).then(() => {
-            resolve();
-          });
-        })
-      );
+      return listadoPropiedadComponents[index].seleccionar(tipo).then(() => {
+        return this.reliquidar(tipo, listadoPropiedadComponents, (index + 1));
+      });
     }
-
   }
 
 

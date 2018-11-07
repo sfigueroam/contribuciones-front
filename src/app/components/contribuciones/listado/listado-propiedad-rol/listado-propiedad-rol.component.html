@@ -45,7 +45,7 @@
       <div class="tgr-section-desc--text">
         <i class="material-icons notification">notification_important</i>
         <span class="tgr-section-desc--title"><i class="material-icons close right" (click)="disableSuggestion()">close</i>Condonación</span>
-        <p>Se hará una condonación mayor mientras más cuotas atrasadas se seleccionen</p>
+        <p>Se hará una condonación al seleccionar todas las cuotas atrasadas</p>
       </div>
     </div>
   </div>
@@ -62,7 +62,6 @@
       <a href="#a{{year}}-panel" class="mdl-tabs__tab" [class.is-active]="isActive(year) || i === 0" (click)="activateTab(year)"
          *ngFor="let year of rol.getYears(); let i = index">{{year}}</a>
     </div>
-
     <div class="mdl-tabs__panel " [class.is-active]="isActive(year) || i === 0" id="a{{year}}-panel"
          *ngFor="let year of rol.getYears(); let i = index" >
       <app-listado-propiedad-rol-cuotas

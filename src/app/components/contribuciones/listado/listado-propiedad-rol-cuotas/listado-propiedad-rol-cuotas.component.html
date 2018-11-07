@@ -1,4 +1,4 @@
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" appMdlInit>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" appMdlInit *ngIf="cuotas.length > 0; else sinCuota">
   <thead>
   <tr>
     <th (click)="selectAllNone()" class="tgr-th-icon {{ selectedIcon }}">
@@ -24,3 +24,9 @@
   </tr>
   </tbody>
 </table>
+
+<ng-template #sinCuota>
+  <div class="mdl-card__supporting-text">
+    El Rol no posee deudas
+  </div>
+</ng-template>

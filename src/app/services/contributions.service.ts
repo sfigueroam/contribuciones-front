@@ -220,4 +220,13 @@ export class ContributionsService {
       });
     });
   }
+
+  desasociarRol(rol: Rol): Promise<any> {
+
+    const body = {
+      'rutin': this.user.rut,
+      'rolin': rol.rol.toString()
+    };
+    return this.request(environment.servicios.desasociarBienRaiz, body);
+  }
 }

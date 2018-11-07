@@ -23,15 +23,20 @@ export class Rol {
     this.wait = true;
   }
 
-  // Revisa si existe mas de 2 cuotas vencidas
-  hasExpiredQuotes(): boolean {
+  // Revisa si existe mas de n cuotas vencidas por defecto 2
+  hasExpiredQuotes(maxCuota?: number): boolean {
+    let max = 2;
+    if (maxCuota) {
+      max = maxCuota;
+    }
+
     let cantidad = 0;
     for (const year of Array.from(this.cuotas.keys())) {
       for (const cuota of Array.from(this.cuotas.get(year).values())) {
         if (cuota.expired) {
           cantidad++;
         }
-        if (cantidad >= 2) {
+        if (cantidad >= max) {
           return true;
         }
       }

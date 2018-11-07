@@ -73,11 +73,10 @@ export class ListadoPropiedadComponent implements AfterViewInit {
 
     for (const rolComponent of this.rolComponentList.toArray()) {
       if (rolComponent.porEliminar) {
+        rolComponent.onWait();
         rol.push(rolComponent.rol);
       }
     }
-
-    console.log('rol-> ', rol);
     return rol;
 
   }
@@ -100,17 +99,12 @@ export class ListadoPropiedadComponent implements AfterViewInit {
 
   private reliquidar(tipo: TipoCuota, listadoPropiedadRolComponents: ListadoPropiedadRolComponent[], index: number): Promise<{}> {
 
-    if (index >= listadoPropiedadRolComponents.length) {
-      return new Promise((resolve, reject) => {
-        resolve();
-      });
+    if (index === (listadoPropiedadRolComponents.length - 1)) {
+      return listadoPropiedadRolComponents[index].seleccionar(tipo);
     } else {
-      return new Promise((resolve, reject) => listadoPropiedadRolComponents[index].seleccionar(tipo).then(() => {
-          this.reliquidar(tipo, listadoPropiedadRolComponents, (index + 1)).then(() => {
-            resolve();
-          });
-        })
-      );
+      return listadoPropiedadRolComponents[index].seleccionar(tipo).then(() => {
+        return this.reliquidar(tipo, listadoPropiedadRolComponents, (index + 1));
+      });
     }
   }
 

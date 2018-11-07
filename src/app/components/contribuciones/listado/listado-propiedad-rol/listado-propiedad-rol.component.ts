@@ -103,7 +103,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   liquidar(cuota?: Cuota): Promise<{}> {
     this.onWait();
-    if (cuota === undefined || cuota.expired) {
+    if ((this.rol.cuotas.size > 0) && ((cuota === undefined && this.rol.hasExpiredQuotes(1)) || (cuota === undefined || cuota.expired))) {
       return new Promise((resolve, reject) => this.contribucionesService.getRolUpdate(this.rol, this, true).then(() => {
           this.actualizarTipoTotal();
           this.offWait();
