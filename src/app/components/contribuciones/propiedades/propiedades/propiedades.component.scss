@@ -1,3 +1,13 @@
 .active-menu{
   background: mediumpurple;
 }
+
+.mdl-tabs__tab-bar {
+	justify-content: left;
+}
+.mdl-tabs__tab {
+	text-transform: none;
+}
+.mdl-tabs__panel {
+	padding: 16px 0;
+}
