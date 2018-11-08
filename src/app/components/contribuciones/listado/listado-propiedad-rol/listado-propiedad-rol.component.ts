@@ -3,7 +3,6 @@ import {Rol} from '../../../../domain/Rol';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {ListadoPropiedadRolCuotasComponent} from '../listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {ContributionsService} from '../../../../services/contributions.service';
-import {ignore} from 'selenium-webdriver/testing';
 import {Cuota} from '../../../../domain/Cuota';
 
 @Component({
@@ -103,7 +102,9 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   liquidar(cuota?: Cuota): Promise<{}> {
     this.onWait();
-    if ((this.rol.cuotas.size > 0) && ((cuota === undefined && this.rol.hasExpiredQuotes(1)) || (cuota === undefined || cuota.expired))) {
+    if ((this.rol.cuotas.size > 0)
+      && ((cuota === undefined && this.rol.hasExpiredQuotes(2))
+        || (cuota === undefined || (cuota.expired && this.rol.hasExpiredQuotes(2))))) {
       return new Promise((resolve, reject) => this.contribucionesService.getRolUpdate(this.rol, this, true).then(() => {
           this.actualizarTipoTotal();
           this.offWait();

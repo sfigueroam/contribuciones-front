@@ -52,6 +52,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
     this.onBlock();
     this.cargarRolesNoAsociado();
     this.contributionsService
@@ -87,7 +88,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     }
 
     this.mostrarDelete = false;
-    this.onBlock();
+    //this.onBlock();
 
     this.desasociarRoles(roles).then(() => {
       this.actualizarListaRoles(true);
@@ -101,29 +102,38 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   private desasociarRoles(roles: Rol[]): Promise<{}> {
-    if (roles.length === 1) {
+    for (const rol of roles) {
+      this.propiedades = this.propiedades.filter((propiedad: Propiedad) => {
+        propiedad.desasociarRol(rol);
+        if (propiedad.roles.length === 0) {
+          return false;
+        }
+        return true;
+      });
+    }
+    this.contributionsService.propiedades = this.propiedades;
+
+    return new Promise((resolve, reject) => {
+      let prom: Promise<{}>[] = [];
+      for (const rol of roles) {
+        prom.push(this.contributionsService.desasociarRol(rol));
+      }
+      Promise.all(prom).then(() => {
+        resolve();
+      });
+    });
+
+    /** Pendientes hasta consultar el tema de la elimincacion **/
+    /*if (roles.length === 1) {
       return this.desasociarRol(roles.pop());
     } else {
       return this.desasociarRol(roles.pop()).then(() => {
         return this.desasociarRoles(roles);
       });
-    }
+    }*/
   }
 
-  private desasociarRol(rol: Rol): Promise<{}> {
-    return new Promise((resolve, reject) => {
-      this.contributionsService.desasociarRol(rol).then(() => {
-        this.propiedades = this.propiedades.filter((propiedad: Propiedad) => {
-          propiedad.desasociarRol(rol);
-          if (propiedad.roles.length === 0) {
-            return false;
-          }
-          return true;
-        });
-        resolve();
-      });
-    });
-  }
+
 
   updateSeleccionadaTotal(): void {
 
@@ -200,7 +210,6 @@ export class ListadoComponent implements OnInit, AfterViewInit {
       });
     });
   }
-
 
 
   public onWith(): void {

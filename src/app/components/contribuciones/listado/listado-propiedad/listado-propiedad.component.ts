@@ -70,10 +70,8 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   getRolesDesasociar(): Rol[]{
 
     const rol: Rol[] = [];
-
     for (const rolComponent of this.rolComponentList.toArray()) {
       if (rolComponent.porEliminar) {
-        rolComponent.onWait();
         rol.push(rolComponent.rol);
       }
     }

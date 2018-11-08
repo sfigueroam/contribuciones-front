@@ -23,7 +23,7 @@ export class Rol {
     this.wait = true;
   }
 
-  // Revisa si existe mas de n cuotas vencidas por defecto 2
+  // Revisa si existe mas o igual de n cuotas vencidas por defecto 2
   hasExpiredQuotes(maxCuota?: number): boolean {
     let max = 2;
     if (maxCuota) {
