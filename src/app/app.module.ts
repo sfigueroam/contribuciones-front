@@ -23,6 +23,7 @@ import {LeadingZeroPipe} from './pipe/leading-zero.pipe';
 import {MDLInitDirective} from './services/mdlinit.directive';
 import {ListadoPropiedadRolCuotasComponent} from './components/contribuciones/listado/listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {HttpClientModule} from '@angular/common/http';
+import {DISABLE_NATIVE_VALIDITY_CHECKING, MdlModule} from '@angular-mdl/core';
 
 
 registerLocaleData(localeEs, 'es');
@@ -51,12 +52,17 @@ registerLocaleData(localeEs, 'es');
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MdlModule
   ],
   providers: [
     {
       provide: LOCALE_ID,
       useValue: 'es-CL'
+    },
+    {
+      provide: DISABLE_NATIVE_VALIDITY_CHECKING,
+      useValue: true
     },
     ContributionsService
   ],

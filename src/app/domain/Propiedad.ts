@@ -57,5 +57,7 @@ export class Propiedad {
     this.roles = this.roles.filter( (r) => {
       return r.rol !== rol.rol;
     });
+
+
   }
 }

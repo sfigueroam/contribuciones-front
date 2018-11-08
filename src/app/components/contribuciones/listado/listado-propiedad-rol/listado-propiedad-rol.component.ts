@@ -31,6 +31,8 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
 
   showTabs: boolean;
   porEliminar: boolean;
+  hide: boolean;
+
   showSuggestion: boolean;
   selectedYear: number;
   wait: boolean;
@@ -47,6 +49,7 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
   constructor(private contribucionesService: ContributionsService) {
     this.porEliminar = false;
     this.wait = true;
+    this.hide = false;
   }
 
   iconInit(): void {

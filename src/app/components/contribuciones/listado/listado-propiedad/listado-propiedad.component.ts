@@ -31,6 +31,7 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   @ViewChildren(ListadoPropiedadRolComponent)
   rolComponentList: QueryList<ListadoPropiedadRolComponent>;
 
+  hide: boolean;
   tipos: Array<TipoCuota>;
 
   total: number;
@@ -38,6 +39,7 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   cuotasSeleccionadas: number;
 
   constructor() {
+    this.hide = false;
   }
 
   disableSuggestion(): void {
@@ -67,13 +69,20 @@ export class ListadoPropiedadComponent implements AfterViewInit {
   }
 
 
-  getRolesDesasociar(): Rol[]{
+  getRolesDesasociar(): Rol[] {
 
     const rol: Rol[] = [];
+    let temp: number = 0;
     for (const rolComponent of this.rolComponentList.toArray()) {
       if (rolComponent.porEliminar) {
+        temp++;
+        rolComponent.hide = true;
         rol.push(rolComponent.rol);
       }
+    }
+
+    if (this.rolComponentList.toArray().length === temp) {
+      this.hide = true;
     }
     return rol;
 
@@ -173,7 +182,14 @@ export class ListadoPropiedadComponent implements AfterViewInit {
     }
   }
 
-  blockEvent(event: boolean): void{
+  blockEvent(event: boolean): void {
     this.block.emit(event);
+  }
+
+  show() {
+    this.hide = false;
+    for (const rolComponent of this.rolComponentList.toArray()) {
+      rolComponent.hide = false;
+    }
   }
 }

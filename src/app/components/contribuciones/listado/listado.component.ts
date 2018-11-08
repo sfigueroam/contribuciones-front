@@ -6,6 +6,7 @@ import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
 import {ListadoPropiedadRolComponent} from './listado-propiedad-rol/listado-propiedad-rol.component';
 import {Rol} from '../../../domain/Rol';
+import {MdlSnackbarService} from '@angular-mdl/core';
 
 @Component({
   selector: 'app-listado',
@@ -40,7 +41,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   block: boolean;
   cantPropiedades: number;
 
-  constructor(private contributionsService: ContributionsService) {
+  constructor(private contributionsService: ContributionsService, private mdlSnackbarService: MdlSnackbarService) {
     this.mostrarAlerta = false;
     this.mostrarDelete = false;
     this.pagarInactivo = true;
@@ -79,7 +80,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.mostrarDelete = false;
   }
 
-  eliminar(): void {
+  private listaRolesDesasociar(): Rol[] {
     const propiedadComponentArray = this.propiedadComponentList.toArray();
     let roles: Rol[] = [];
     for (const propiedadComponent of propiedadComponentArray) {
@@ -87,21 +88,11 @@ export class ListadoComponent implements OnInit, AfterViewInit {
       roles = roles.concat(rolesDesasociar);
     }
 
-    this.mostrarDelete = false;
-    //this.onBlock();
-
-    this.desasociarRoles(roles).then(() => {
-      this.actualizarListaRoles(true);
-    });
-
+    return roles;
   }
 
-  private actualizarListaRoles(force?: boolean) {
-    this.offBlock();
-    this.cargarRolesNoAsociado(force);
-  }
+  private eliminar(roles: Rol[]): void {
 
-  private desasociarRoles(roles: Rol[]): Promise<{}> {
     for (const rol of roles) {
       this.propiedades = this.propiedades.filter((propiedad: Propiedad) => {
         propiedad.desasociarRol(rol);
@@ -111,6 +102,58 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         return true;
       });
     }
+    this.desasociarRoles(roles).then(() => {
+      for (const propiedadesComponent of this.propiedadComponentList.toArray()) {
+        propiedadesComponent.updateTipoTotal();
+      }
+      this.actualizarListaRoles(true);
+
+    });
+
+  }
+
+  desasociar() {
+    this.mostrarDelete = false;
+    const timeOut = 5000;
+    let cancelar = false;
+    const roles = this.listaRolesDesasociar();
+
+    let snackbar = this.mdlSnackbarService.showSnackbar({
+      message: 'Desasociando ' + roles.length + ' rol(es)',
+      action: {
+        handler: () => {
+          cancelar = true;
+          this.mdlSnackbarService.showToast('Cancelado...', 3000);
+          this.show();
+        },
+        text: 'Cancelar'
+      }
+    });
+
+    snackbar.subscribe((bar) => {
+      setTimeout(
+        () => {
+          if (!cancelar) {
+            bar.hide();
+            this.eliminar(roles);
+          }
+        },
+        timeOut);
+    });
+
+  }
+
+
+
+  private actualizarListaRoles(force?: boolean) {
+
+    this.cargarRolesNoAsociado(force);
+
+
+  }
+
+  private desasociarRoles(roles: Rol[]): Promise<{}> {
+
     this.contributionsService.propiedades = this.propiedades;
 
     return new Promise((resolve, reject) => {
@@ -122,20 +165,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         resolve();
       });
     });
-
-    /** Pendientes hasta consultar el tema de la elimincacion **/
-    /*if (roles.length === 1) {
-      return this.desasociarRol(roles.pop());
-    } else {
-      return this.desasociarRol(roles.pop()).then(() => {
-        return this.desasociarRoles(roles);
-      });
-    }*/
   }
 
 
-
   updateSeleccionadaTotal(): void {
+
+
 
     const result = new Map<TipoCuota, number>();
     const propiedadComponentArray = this.propiedadComponentList.toArray();
@@ -171,7 +206,6 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         return;
       }
     }
-
     this.seleccionada = undefined;
   }
 
@@ -184,13 +218,14 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   }
 
-  getPropiedadComponent(rolId: number): ListadoPropiedadRolComponent {
-    for (const propiedadesComponent of this.propiedadComponentList.toArray()) {
-      const rolComponent = propiedadesComponent.getRolComponent(rolId);
-      return rolComponent;
+  /*
+    getPropiedadComponent(rolId: number): ListadoPropiedadRolComponent {
+      for (const propiedadesComponent of this.propiedadComponentList.toArray()) {
+        const rolComponent = propiedadesComponent.getRolComponent(rolId);
+        return rolComponent;
+      }
     }
-  }
-
+  */
   actualizar(rolId: number): void {
     for (const propiedadesComponent of this.propiedadComponentList.toArray()) {
       propiedadesComponent.actualizarRol(rolId);
@@ -203,8 +238,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
       this.contributionsService
         .getRolesNoAsociados(force).then((data) => {
         if (data) {
-          this.mostrarAlerta = true;
-          this.cantidadRolesNoAsociados = data.length;
+          if (data.length > 0) {
+            this.mostrarAlerta = true;
+            this.cantidadRolesNoAsociados = data.length;
+          } else {
+            this.mostrarAlerta = false;
+          }
         }
         resolve();
       });
@@ -260,6 +299,13 @@ export class ListadoComponent implements OnInit, AfterViewInit {
       this.onBlock();
     } else {
       this.offBlock();
+    }
+  }
+
+  private show() {
+    const propiedadComponentArray = this.propiedadComponentList.toArray();
+    for (const propiedadComponent of propiedadComponentArray) {
+      propiedadComponent.show();
     }
   }
 }
