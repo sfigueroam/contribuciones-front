@@ -22,34 +22,6 @@ export class ContributionsService {
   constructor(private http: HttpClient, private user: UserService) {
   }
 
-  /*
-    initBienesRaices(): void {
-
-      const propiedadMap = new Map<string, Propiedad>();
-
-      for (const bienRaiz of this.getBienRaiz()) {
-        const idPropiedad = this.getBienRaizId(bienRaiz);
-        let propiedad = propiedadMap.get(idPropiedad);
-        if (!propiedad) {
-          propiedad = new Propiedad();
-          propiedad.direccion = bienRaiz.direccion;
-          propiedadMap.set(idPropiedad, propiedad);
-        }
-        const rol = new Rol(bienRaiz);
-        propiedad.addRol(rol);
-        for (const deuda of this.getDeudas(bienRaiz.rol)) {
-          const cuota = new Cuota(deuda);
-          const idCuota = this.getCuotaAnio(cuota);
-          if (!rol.cuotas.has(idCuota)) {
-            rol.cuotas.set(idCuota, []);
-          }
-          rol.cuotas.get(idCuota).push(cuota);
-        }
-      }
-
-      this.propiedades = Array.from(propiedadMap.values());
-    }
-  */
   getBienesRaices(): Promise<Propiedad[]> {
 
     if (this.propiedades) {
@@ -80,7 +52,6 @@ export class ContributionsService {
       );
     });
   }
-
 
   getObtenerRoles(propiedades: Propiedad[], listadoComponent, count?: number): Promise<{}> {
 
@@ -157,7 +128,7 @@ export class ContributionsService {
   }
 
   private getBienRaiz(): Promise<{}> {
-    let obtenerBienRaizAsociado = environment.servicios.obtenerBienRaizAsociado;
+    let obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
     obtenerBienRaizAsociado.path = obtenerBienRaizAsociado.path + '/' + this.user.rut;
     return this.request(obtenerBienRaizAsociado);
   }
@@ -204,6 +175,8 @@ export class ContributionsService {
         resolve(this.rolesNoAsociados);
       });
     }
+
+
     return new Promise((resolve, reject) => {
       let obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
       obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + this.user.rut;

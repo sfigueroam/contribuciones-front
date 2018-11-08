@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ContributionsService} from '../../../../services/contributions.service';
+import {Rol} from '../../../../domain/Rol';
+
+
 
 @Component({
   selector: 'app-sugeridas',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SugeridasComponent implements OnInit {
 
-  constructor() { }
 
+  roles: Rol[];
+
+  constructor(private contributionsService: ContributionsService) {
+    this.roles = [];
+  }
   ngOnInit() {
+    this.cargarRolesNoAsociados();
   }
 
+  private cargarRolesNoAsociados() {
+    this.contributionsService.getRolesNoAsociados().then((rolesNoAsociados) => {
+      this.roles = rolesNoAsociados;
+    });
+  }
 }

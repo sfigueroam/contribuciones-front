@@ -48,13 +48,22 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.mostrarSugerenciaCondonacion = true;
     this.cantPropiedades = 0;
     this.cantidadRolesNoAsociados = 0;
-    // TODO eliminar este workaround para que se muestre la alerta a destiempo
-    /*setTimeout(
-      () => {
-        this.mostrarAlerta = true;
-      },
-      1500
-    );*/
+
+  }
+
+  ngOnInit() {
+    this.onBlock();
+    this.cargarRolesNoAsociado();
+    this.contributionsService
+      .getBienesRaices()
+      .then((propiedades) => {
+        this.propiedades = propiedades;
+        this.obtenerRoles().then(() => {
+          this.offBlock();
+        });
+      });
+
+    this.seleccionada = TipoCuota.TODAS;
   }
 
   ocultarAlerta(): void {
@@ -87,9 +96,8 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   private actualizarListaRoles(force?: boolean) {
-    this.cargarRolesNoAsociado(force).then(() => {
-      this.offBlock();
-    });
+    this.offBlock();
+    this.cargarRolesNoAsociado(force);
   }
 
   private desasociarRoles(roles: Rol[]): Promise<{}> {
@@ -193,20 +201,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit() {
-    this.onBlock();
-    this.cargarRolesNoAsociado();
-    this.contributionsService
-      .getBienesRaices()
-      .then((propiedades) => {
-        this.propiedades = propiedades;
-        this.obtenerRoles().then(() => {
-          this.offBlock();
-        });
-      });
 
-    this.seleccionada = TipoCuota.TODAS;
-  }
 
   public onWith(): void {
     this.onBlock();

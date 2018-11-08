@@ -1,1 +1,16 @@
-<h2>Sugeridas</h2>
+
+<div class="tgr-content mdl-shadow--3dp">
+  <div class="tgr-card__head">
+    <span class="tgr-card__title--text">Roles</span>
+  </div>
+  <div class="tgr-card__body">
+
+    <div *ngFor="let rol of roles">
+      <label>{{rol.rol}}</label>
+    </div>
+
+  </div>
+  <div class="tgr-card__footer">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="button">Agregar</button>
+  </div>
+</div>
