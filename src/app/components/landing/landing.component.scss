@@ -1,0 +1,87 @@
+@import '../../../styles/colors';
+
+.tgr-landing {	
+	padding-top: 40px;	
+}
+.tgr-landing-content {
+	margin: 0 auto;
+  width: 1200px;
+  @media screen and (max-width: 1240px) {
+		padding: 0 40px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	@media screen and (max-width: 600px) {
+		padding: 0 16px;	
+	}
+}
+.tgr-landing-header {
+	max-width: 100%;
+}
+.mdl-cell--4-col{
+	@media screen and (max-width: 1240px) {
+		width: calc(50% - 16px);
+	}
+	@media screen and (max-width: 940px) {
+		width: 100%;
+	}
+}
+.tgr-logo-image {
+	display: block;
+	height: auto;
+	margin: 0 auto 20px;
+	width: 100px;
+}
+h2 {
+	color: $gray-87;
+	font-size: 36px;
+}
+h3 {
+	color: $gray-65;
+	font-size: 24px;
+	font-weight: 400;
+}
+p {
+	color: $gray-87;
+	font-size: 16px;
+}
+.tgr-welcome {
+	font-size: 24px;
+}
+a {
+	color: $link-color;
+	text-decoration: none;
+}
+.mdl-card {
+	background: #fff;
+}
+.mdl-card__title {
+	padding: 0;
+}
+.mdl-card__title-text {
+	padding-top: 10px;
+}
+.mdl-card__title-text .material-icons {
+	color: $primary-color;
+	font-size: 32px;
+	padding: 0 16px;
+}
+.tgr-cell,
+.tgr-grid {
+	width: 100%;
+}
+.tgr-arrow {
+	float: right;
+	padding: 16px 30px 16px 8px;
+}
+.tgr-arrow .material-icons {
+	color: $gray-65;
+	font-size: 36px;
+}
+.mdl-card__supporting-text {
+	text-align: left;;
+	color: $gray-87;
+	font-size: 15px;
+	line-height: 1.2;
+
+}

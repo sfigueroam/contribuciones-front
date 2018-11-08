@@ -24,6 +24,7 @@
 }
 .is-suggesting .tgr-suggestions {
 	opacity: 1;
+	visibility: visible;;
 }
 .tgr-suggestions {
 	background: #fff;
@@ -36,6 +37,7 @@
 	right: 0;
 	top: 46px;
 	z-index: 1;
+	visibility: hidden;;
 }
 .tgr-suggestion{
 	padding: 0 8px;
