@@ -18,3 +18,84 @@
 		margin: 0;
 	}
 }
+.is-suggesting {
+	margin: 0;	
+	position: relative;
+}
+.is-suggesting .tgr-suggestions {
+	opacity: 1;
+	visibility: visible;;
+}
+.tgr-suggestions {
+	background: #fff;
+	left: 0;
+	list-style: none;
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 46px;
+	z-index: 1;
+	visibility: hidden;;
+}
+.tgr-suggestion{
+	padding: 0 8px;
+}
+.tgr-suggestion:hover{
+	background: $gray-light;
+}
+.tgr-card__head {
+	color: $gray-text-dark;
+}
+.tgr-search .tgr-card__title--text {
+	padding-top: 10px;
+}
+.tgr-pay {
+	margin-top: 30px;
+}
+.tgr-results .mdl-checkbox {
+	float: right;
+  display: block;
+  width: auto;
+} 
+.tgr-card__title .material-icons {
+  color: $color-violet;
+      float: left;
+    line-height: 1;
+    margin-right: 4px;
+    margin-top: -6px;
+    margin-bottom: -6px
+}
+.tgr-card__title  {
+  margin: 0;
+}
+.tgr-card__subtitle {
+  margin-bottom: 0;
+  margin-top: 2px;
+}
+.tgr-card__tag {  
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.tgr-card__subtitle-text {
+  padding-left: 34px;
+}
+.tgr-card__title--text {
+	display: block;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1;
+}
+.tgr-rol-row {
+	padding: 16px 16px 8px 16px;
+}  
+.tgr-rol-row .tgr-card__title--text {
+	color: $color-primary
+}
+.tgr-rol-row ~ .tgr-rol-row {
+	border-top: 1px solid $gray-light;
+}
+.tgr-results .tgr-card__body {
+	padding: 0;
+}
