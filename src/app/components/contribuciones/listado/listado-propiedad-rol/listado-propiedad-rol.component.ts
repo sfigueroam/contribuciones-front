@@ -107,7 +107,8 @@ export class ListadoPropiedadRolComponent implements OnInit, AfterViewChecked {
     this.onWait();
     if ((this.rol.cuotas.size > 0)
       && ((cuota === undefined && this.rol.hasExpiredQuotes(2))
-        || (cuota === undefined || (cuota.expired && this.rol.hasExpiredQuotes(2))))) {
+        || (cuota === undefined || cuota.expired ))
+    && this.rol.hasExpiredQuotes(2)) {
       return new Promise((resolve, reject) => this.contribucionesService.getRolUpdate(this.rol, this, true).then(() => {
           this.actualizarTipoTotal();
           this.offWait();

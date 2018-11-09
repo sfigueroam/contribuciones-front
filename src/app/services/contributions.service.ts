@@ -49,7 +49,10 @@ export class ContributionsService {
           this.propiedades = Array.from(propiedadMap.values());
           resolve(this.propiedades);
         }
-      );
+      ).catch( (err) =>{
+        console.error(err);
+        reject(err);
+      });
     });
   }
 
