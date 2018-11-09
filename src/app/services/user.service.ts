@@ -13,7 +13,7 @@ export class UserService {
 
     //this.rut = '21354668';
     //this.rut = '12238422';
-    //this.rut = '17663951';
+    this.rut = '17663951';
     //this.rut = '1070713';
     //this.rut = '16244399';
 
