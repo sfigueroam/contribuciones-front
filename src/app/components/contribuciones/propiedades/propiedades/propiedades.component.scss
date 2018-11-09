@@ -1,13 +1,22 @@
+@import '../../../../../styles/colors';
+
 .active-menu{
   background: mediumpurple;
 }
-
 .mdl-tabs__tab-bar {
-	justify-content: left;
+	background: $gray-header;
+	display: block;
+	padding-top: 10px;
 }
 .mdl-tabs__tab {
+	font-weight: 400;
 	text-transform: none;
 }
 .mdl-tabs__panel {
 	padding: 16px 0;
 }
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+	color: $color-primary;
+	font-weight: 500;
+}
+
