@@ -23,7 +23,6 @@ provider:
   runtime: nodejs8.10
   stage: ${self:custom.currentStage}
 
-
 resources:
   Resources:
     StaticSite:

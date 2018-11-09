@@ -239,7 +239,9 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         .getRolesNoAsociados(force).then((data) => {
         if (data) {
           if (data.length > 0) {
-            this.mostrarAlerta = true;
+            if(force === undefined || !force) {
+              this.mostrarAlerta = true;
+            }
             this.cantidadRolesNoAsociados = data.length;
           } else {
             this.mostrarAlerta = false;
