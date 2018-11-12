@@ -4,7 +4,6 @@ import {Propiedad} from '../../../domain/Propiedad';
 import {ContributionsService} from '../../../services/contributions.service';
 import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
-import {ListadoPropiedadRolComponent} from './listado-propiedad-rol/listado-propiedad-rol.component';
 import {Rol} from '../../../domain/Rol';
 import {MdlSnackbarService} from '@angular-mdl/core';
 
