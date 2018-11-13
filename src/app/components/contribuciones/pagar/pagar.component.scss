@@ -1,6 +1,30 @@
 @import '../../../../styles/colors';
+
+.tgr-confirmation-card {
+  @media (max-width: 1310px){    
+    max-width: 60%; 
+  }
+  @media (max-width: 1080px){    
+    max-width: 70%; 
+  }
+  @media (max-width: 930px){    
+    max-width: 80%; 
+  }
+  @media (max-width: 810px){    
+    max-width: 95%; 
+  }
+}
+.mdl-tabs__tab {
+  @media (max-width: 680px){    
+    padding: 0 16px;
+  }
+}
+
+
+
 .tgr-confirmation-card {
   padding: 20px;
+  justify-content: center;
 }
 .mdl-card {
   padding-bottom: 100px;
@@ -8,6 +32,13 @@
 }
 .mdl-tabs__tab-bar {
   justify-content:  flex-start;
+  overflow: auto;
+  overflow-y: hidden;
+}
+.mdl-tabs__tab {
+  @media (max-width: 680px){    
+     min-width: 120px;
+  }  
 }
 
 //acciones
@@ -57,6 +88,7 @@
 }
 .tgr-pay-panel {
   padding: 16px 0 16px 16px;
+  min-height: 230px;
 }
 .mdl-button--colored{
   background: $link-color;
