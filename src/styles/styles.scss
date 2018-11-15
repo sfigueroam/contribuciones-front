@@ -260,6 +260,12 @@ html, body {
   position: relative;
   width: 146px;
 }
+.tgr-loading figcaption {
+  color: $primary-color;
+  margin-top: 32px;
+  text-align: center;
+  line-height: 1.2;
+}
 .tgr-tgr {
   position: absolute;
   top: 15px;
