@@ -144,7 +144,6 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
 
-
   private actualizarListaRoles(force?: boolean) {
 
     this.cargarRolesNoAsociado(force);
@@ -169,7 +168,6 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
 
   updateSeleccionadaTotal(): void {
-
 
 
     const result = new Map<TipoCuota, number>();
@@ -239,7 +237,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         .getRolesNoAsociados(force).then((data) => {
         if (data) {
           if (data.length > 0) {
-            if(force === undefined || !force) {
+            if (force === undefined || !force) {
               this.mostrarAlerta = true;
             }
             this.cantidadRolesNoAsociados = data.length;

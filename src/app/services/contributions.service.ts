@@ -16,7 +16,7 @@ export class ContributionsService {
   dummy: Dummy = new Dummy();
 
   propiedades: Propiedad[];
-  rolesNoAsociados: Rol[];
+  rolesNoAsociados: Propiedad[];
 
 
   constructor(private http: HttpClient, private user: UserService) {
@@ -172,7 +172,7 @@ export class ContributionsService {
     return this.request(environment.servicios.recuperarDeudaRol, body);
   }
 
-  getRolesNoAsociados(force?: boolean): Promise<Rol[]> {
+  getRolesNoAsociados(force?: boolean): Promise<Propiedad[]> {
     if (this.rolesNoAsociados && !force) {
       return new Promise((resolve, reject) => {
         resolve(this.rolesNoAsociados);
@@ -184,11 +184,22 @@ export class ContributionsService {
       let obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
       obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + this.user.rut;
       this.request(obtenerBienRaizNoAsociado).then((data: { curout: any }) => {
-        this.rolesNoAsociados = [];
+
+        const propiedadSugeridasMap = new Map<string, Propiedad>();
+
         for (const bienRaiz of data.curout) {
+          const idPropiedad = this.getBienRaizId(bienRaiz);
+          let propiedad = propiedadSugeridasMap.get(idPropiedad);
+          if (!propiedad) {
+            propiedad = new Propiedad();
+            propiedad.direccion = bienRaiz.direccion;
+            propiedadSugeridasMap.set(idPropiedad, propiedad);
+          }
           const rol = new Rol(bienRaiz);
-          this.rolesNoAsociados.push(rol);
+          propiedad.addRol(rol);
         }
+        this.rolesNoAsociados = Array.from(propiedadSugeridasMap.values());
+
         resolve(this.rolesNoAsociados);
       });
     });
