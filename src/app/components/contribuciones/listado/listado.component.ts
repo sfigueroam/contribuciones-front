@@ -39,8 +39,10 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   block: boolean;
   cantPropiedades: number;
+  hidden: boolean;
 
   constructor(private contributionsService: ContributionsService, private mdlSnackbarService: MdlSnackbarService) {
+    this.hidden = false;
     this.mostrarAlerta = false;
     this.mostrarDelete = false;
     this.pagarInactivo = true;
@@ -58,6 +60,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.contributionsService
       .getBienesRaices()
       .then((propiedades) => {
+        this.hidden = true;
         this.propiedades = propiedades;
         this.obtenerRoles().then(() => {
           this.offBlock();

@@ -15,6 +15,7 @@ export class SugeridasComponent implements OnInit {
 
   propiedades: Propiedad[];
 
+
   constructor(private contributionsService: ContributionsService) {
     this.propiedades = [];
   }
