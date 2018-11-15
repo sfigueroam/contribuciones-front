@@ -1,0 +1,98 @@
+@import '../../../../styles/colors';
+
+.tgr-confirmation-card {
+  @media (max-width: 1310px){    
+    max-width: 60%; 
+  }
+  @media (max-width: 1080px){    
+    max-width: 70%; 
+  }
+  @media (max-width: 930px){    
+    max-width: 80%; 
+  }
+  @media (max-width: 810px){    
+    max-width: 95%; 
+  }
+}
+.mdl-tabs__tab {
+  @media (max-width: 680px){    
+    padding: 0 16px;
+  }
+}
+
+
+
+.tgr-confirmation-card {
+  padding: 20px;
+  justify-content: center;
+}
+.mdl-card {
+  padding-bottom: 100px;
+  position: relative;
+}
+.mdl-tabs__tab-bar {
+  justify-content:  flex-start;
+  overflow: auto;
+  overflow-y: hidden;
+}
+.mdl-tabs__tab {
+  @media (max-width: 680px){    
+     min-width: 120px;
+  }  
+}
+
+//acciones
+.tgr-dialog__actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.tgr-total {
+  padding-right: 22px;
+}
+.mdl-dialog__actions {
+  float: right;
+}
+.tgr-dialog__actions h3 {
+  display: block;
+  height: auto;
+  line-height: 1.2;
+  float: none;
+  margin: 0;
+  padding-left: 20px;
+  text-align: left;
+  width: 100%;
+  font-size: 24px;
+}
+.mdl-radio {
+  height: auto;
+}
+.mdl-radio img {
+  display: block;
+  height: auto; 
+  width: 100px;
+  margin: 0 auto;
+}
+.mdl-radio {
+  padding: 5px;
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+.mdl-radio__label {
+  text-align: center; 
+  font-size: 13px; 
+}
+.mdl-radio__label.is-checked {
+  color: rgba($color-primary, .5);
+}
+.tgr-pay-panel {
+  padding: 16px 0 16px 16px;
+  min-height: 230px;
+}
+.mdl-button--colored{
+  background: $link-color;
+}
+
+
+

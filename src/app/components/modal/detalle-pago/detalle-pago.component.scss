@@ -81,31 +81,31 @@ h3 {
 }
 //acciones
 .tgr-dialog__actions {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .tgr-total {
-	padding-right: 22px;
+  padding-right: 22px;
 }
 .tgr-dialog__actions h2,
 .tgr-dialog__actions h3 {
-	display: block;
-	height: auto;
-	line-height: 1.2;
-	float: none;
-	padding-right: 16px;
-	text-align: right;
-	width: 100%;
+  display: block;
+  height: auto;
+  line-height: 1.2;
+  float: none;
+  padding-right: 16px;
+  text-align: right;
+  width: 100%;
 }
 .tgr-dialog__actions h2{
-	color: $tgr-condoned;
+  color: $tgr-condoned;
   font-size: 14px;
   font-weight: 400;
 }
 .tgr-dialog__actions h3{
-	font-size: 24px;
+  font-size: 24px;
 }
 .mdl-button--colored,
 .mdl-button--raised.mdl-button--colored:active,

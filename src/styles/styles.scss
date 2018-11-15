@@ -146,9 +146,13 @@ html, body {
 }
 
 .tgr-actions__content {
-  max-width: 1240px;
+  max-width: 1226px;
   margin-left: auto;
   margin-right: auto;
+  @media (max-width: 1260px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  } 
 }
 
 //boton de pago
@@ -165,6 +169,121 @@ html, body {
   padding-left: 3px;
   padding-right: 3px;
 }
+
+
+//confirmation
+
+.tgr-confirmation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 140px); 
+  @media (max-width: 450px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  } 
+}
+.tgr-confirmation a {
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.tgr-confirmation-card {
+  color: $gray-text;
+  flex: 1;
+  max-width: 50%; 
+  padding: 40px;
+  @media (max-width: 800px) {
+    max-width: 80%; 
+  }
+  @media (max-width: 450px) {
+    max-width: none; 
+  }
+}
+.tgr-confirmation  .material-icons {
+  color: $primary-color;
+  font-size: 40px;
+}
+.tgr-confirmation__title {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+}
+.tgr-confirmation p {
+  margin: 0;
+}
+.tgr-confirmation__subtitle {
+  color: $primary-color;
+  font-size: 18px;
+  margin: 0;
+  padding: 16px;
+}
+.tgr-confirmation__footer-link {
+  font-size: 16px;
+  padding-top: 56px;
+  text-align: left;
+}
+.tgr-confirmation__footer-link a {  
+  text-decoration: none;
+  color: $link-color;
+}
+.tgr-pay-panel .mdl-radio__outer-circle,
+.tgr-pay-panel .mdl-radio__inner-circle,
+.tgr-pay-panel input.mdl-radio__button{
+  display: none;
+}
+.tgr-pay-panel .mdl-radio {
+  padding: 0;
+}
+.tgr-pay-panel .mdl-radio.is-checked {
+  background: rgba($color-primary, .1);
+}
+
+.tgr-loading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   background-image:
+    radial-gradient(
+      circle ,
+      #fff,
+      #A3A9CF
+    );
+}
+.tgr-loading figure {
+  position: relative;
+  width: 146px;
+}
+.tgr-loading figcaption {
+  color: $primary-color;
+  margin-top: 32px;
+  text-align: center;
+  line-height: 1.2;
+}
+.tgr-tgr {
+  position: absolute;
+  top: 15px;
+  left: 32px;
+}
+.tgr-star  {
+    -webkit-animation: rotation 2s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
 
 @media (max-width: 1080px){
   .tgr-list-section .mdl-data-table .mdl-checkbox.is-upgraded{
