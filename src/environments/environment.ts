@@ -10,9 +10,10 @@ const cabecera = {
   usuario: '14059203'
 };
 
+
 const urlsBase = {
-  publica: 'https://dm5ujuys5b.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
-  privada: 'https://dm5ujuys5b.execute-api.us-east-1.amazonaws.com/dev/proxy-private'
+  publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
+  privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private'
 };
 
 const pathBase = {

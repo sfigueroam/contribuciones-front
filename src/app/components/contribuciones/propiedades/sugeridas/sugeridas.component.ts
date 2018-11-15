@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ContributionsService} from '../../../../services/contributions.service';
 import {Rol} from '../../../../domain/Rol';
+import {Propiedad} from '../../../../domain/Propiedad';
 
 
 
@@ -12,10 +13,10 @@ import {Rol} from '../../../../domain/Rol';
 export class SugeridasComponent implements OnInit {
 
 
-  roles: Rol[];
+  propiedades: Propiedad[];
 
   constructor(private contributionsService: ContributionsService) {
-    this.roles = [];
+    this.propiedades = [];
   }
   ngOnInit() {
     this.cargarRolesNoAsociados();
@@ -23,7 +24,7 @@ export class SugeridasComponent implements OnInit {
 
   private cargarRolesNoAsociados() {
     this.contributionsService.getRolesNoAsociados().then((rolesNoAsociados) => {
-      this.roles = rolesNoAsociados;
+      this.propiedades = rolesNoAsociados;
     });
   }
 }
