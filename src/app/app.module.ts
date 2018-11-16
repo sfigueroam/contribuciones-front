@@ -24,6 +24,8 @@ import {MDLInitDirective} from './services/mdlinit.directive';
 import {ListadoPropiedadRolCuotasComponent} from './components/contribuciones/listado/listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DISABLE_NATIVE_VALIDITY_CHECKING, MdlModule} from '@angular-mdl/core';
+import {SugeridasPropiedadComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad/sugeridas-propiedad.component';
+import { SugeridasPropiedadRolComponent } from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -47,7 +49,9 @@ registerLocaleData(localeEs, 'es');
     ListadoPropiedadRolComponent,
     LeadingZeroPipe,
     MDLInitDirective,
-    ListadoPropiedadRolCuotasComponent
+    ListadoPropiedadRolCuotasComponent,
+    SugeridasPropiedadComponent,
+    SugeridasPropiedadRolComponent
   ],
   imports: [
     BrowserModule,

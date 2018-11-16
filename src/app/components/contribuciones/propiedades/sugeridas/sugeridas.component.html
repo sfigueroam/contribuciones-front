@@ -1,16 +1,6 @@
 
-<div class="tgr-content mdl-shadow--3dp">
-  <div class="tgr-card__head">
-    <span class="tgr-card__title--text">Roles</span>
-  </div>
-  <div class="tgr-card__body">
 
-    <div *ngFor="let propiedad of propiedades">
-      <label>{{propiedad.direccion}}</label>
-    </div>
+    <app-sugeridas-propiedad *ngFor="let propiedad of propiedades"
+                             [propiedad]="propiedad">
+    </app-sugeridas-propiedad>
 
-  </div>
-  <div class="tgr-card__footer">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="button">Agregar</button>
-  </div>
-</div>
