@@ -1,14 +1,12 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterContentInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rol} from '../../../../../domain/Rol';
-import {TipoCuota} from '../../../../../domain/TipoCuota';
 
 @Component({
   selector: '[app-sugeridas-propiedad-rol]',
   templateUrl: './sugeridas-propiedad-rol.component.html',
   styleUrls: ['./sugeridas-propiedad-rol.component.scss']
 })
-export class SugeridasPropiedadRolComponent implements OnInit, AfterViewInit  {
-
+export class SugeridasPropiedadRolComponent implements OnInit, AfterContentInit {
 
 
   @Input()
@@ -17,12 +15,13 @@ export class SugeridasPropiedadRolComponent implements OnInit, AfterViewInit  {
   seleccion: boolean;
 
 
-
   icon: string;
+  selectedIcon: string;
 
   constructor() {
     this.icon = '';
     this.seleccion = true;
+    this.selectedIcon = 'checked';
   }
 
   @Output()
@@ -30,9 +29,18 @@ export class SugeridasPropiedadRolComponent implements OnInit, AfterViewInit  {
 
   ngOnInit() {
     this.iconInit();
+
+    //  this.change.emit();
   }
-  ngAfterViewInit() {
-  //  this.change.emit();
+
+  ngAfterContentInit() {
+    setTimeout(
+      () => {
+        console.log('ngAfterContentInit');
+        this.change.emit();
+      },
+      100
+    );
   }
 
   iconInit(): void {
@@ -78,9 +86,23 @@ export class SugeridasPropiedadRolComponent implements OnInit, AfterViewInit  {
     }
   }
 
+  updateSeleccion(checked: boolean): void {
+    this.seleccion = checked;
+    this.updateIconSeleccion();
+  }
+
+
+  private updateIconSeleccion(): void {
+    if (this.seleccion) {
+      this.selectedIcon = 'checked';
+    } else {
+      this.selectedIcon = 'unchecked';
+    }
+  }
   selectRol(): void {
     this.seleccion = !this.seleccion;
-    console.log('selectAllNone');
+    this.updateIconSeleccion();
+
   }
 
 }

@@ -1,11 +1,11 @@
-import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {SugeridasPropiedadRolComponent} from '../sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
 
 declare var componentHandler: any;
 
 @Component({
-  selector: 'app-sugeridas-propiedad',
+  selector: '[app-sugeridas-propiedad]',
   templateUrl: './sugeridas-propiedad.component.html',
   styleUrls: ['./sugeridas-propiedad.component.scss']
 })
@@ -14,11 +14,14 @@ export class SugeridasPropiedadComponent implements OnInit {
   @Input()
   propiedad: Propiedad;
 
+  @Output()
+  change: EventEmitter<any> = new EventEmitter();
+
   @ViewChildren(SugeridasPropiedadRolComponent)
   sugeridasPropiedadRolComponentList: QueryList<SugeridasPropiedadRolComponent>;
 
 
-  cantidadRolesSeleccon: number;
+  cantidadRolesSeleccionadas: number;
   seleccion: boolean;
 
   constructor() {
@@ -28,7 +31,8 @@ export class SugeridasPropiedadComponent implements OnInit {
   ngOnInit() {
   }
 
-  change(): void {
+  updatePropiedades(): void {
+    this.change.emit();
     //componentHandler.upgradeAllRegistered();
   }
 
@@ -42,22 +46,19 @@ export class SugeridasPropiedadComponent implements OnInit {
     const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
 
     for (const sugeridosRol of sugeridosRolList) {
-      sugeridosRol.seleccion = this.seleccion;
+      sugeridosRol.updateSeleccion(this.seleccion);
     }
-    this.updateCantidadRolesSeleccionados();
+    this.getRolesSeleccionadas();
   }
 
-  updateCantidadRolesSeleccionados(): Number {
-    this.cantidadRolesSeleccon = 0;
+  getRolesSeleccionadas(): number {
+    this.cantidadRolesSeleccionadas = 0;
     const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
     for (const sugeridosRol of sugeridosRolList) {
       if (sugeridosRol.seleccion) {
-        this.cantidadRolesSeleccon++;
+        this.cantidadRolesSeleccionadas++;
       }
     }
-
-    return this.cantidadRolesSeleccon;
-
-
+    return this.cantidadRolesSeleccionadas;
   }
 }

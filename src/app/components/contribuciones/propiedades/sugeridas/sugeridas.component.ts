@@ -19,10 +19,12 @@ export class SugeridasComponent implements OnInit {
 
   propiedades: Propiedad[];
   hidden: boolean = false;
+  cantidadSeleccionadas: number;
 
 
   constructor(private contribucionesSugeridasService: ContribucionesSugeridasService) {
     this.propiedades = [];
+    this.cantidadSeleccionadas = 0;
   }
   ngOnInit() {
     this.cargarRolesNoAsociados();
@@ -36,8 +38,18 @@ export class SugeridasComponent implements OnInit {
   }
 
 
-  updateSeleccionadaTotal(): void{
+  updateSeleccionadaTotal(): void {
     const sugeridasPropiedades = this.sugeridasPropiedadComponentList.toArray();
 
+    this.totalSeleccionadas();
+
+  }
+
+  totalSeleccionadas(): void {
+    this.cantidadSeleccionadas = 0;
+    const sugeridasPropiedades = this.sugeridasPropiedadComponentList.toArray();
+    for(const sugeridas of sugeridasPropiedades){
+      this.cantidadSeleccionadas = this.cantidadSeleccionadas + sugeridas.getRolesSeleccionadas();
+    }
   }
 }

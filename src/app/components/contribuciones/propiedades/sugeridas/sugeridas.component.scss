@@ -1,1 +1,194 @@
-@import "../agregar-nueva/agregar-nueva.component";
+@import '../../../../../styles/colors';
+
+.tgr-certificates {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.tgr-certificates__type{
+  width: calc(33.3333% - 13px);
+  margin-bottom: 20px;
+  @media (max-width: 480px){
+    width: 100%;
+    margin: 0;
+  }
+}
+.tgr-certificates__email{
+  width: calc(66.6666% - 26px);
+  margin-bottom: 20px;
+  @media (max-width: 480px){
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.checked .material-icons {
+  color: $color-filter;
+}
+.unchecked .material-icons,
+.indeterminate_check_box .material-icons {
+  color: $gray-filter;
+}
+.checked .material-icons:before{
+  content: "check_box";
+  cursor: pointer;
+}
+.unchecked .material-icons:before{
+  content: "check_box_outline_blank";
+  cursor: pointer;
+}
+.indeterminate_check_box .material-icons:before{
+  content: "indeterminate_check_box";
+  cursor: pointer;
+}
+
+.tgr-th-icon {
+  position: relative;
+}
+.tgr-th-icon .material-icons:before {
+  top: 13px;
+  position: absolute;
+  left: 24px;
+}
+
+.mdl-textfield {
+  width: calc(33.3% - 10px);
+  margin: 0 10px 0 0;
+  @media (max-width: 996px){
+    width: calc(50% - 10px);
+  }
+  @media (max-width: 683px){
+    width: 100%;
+    margin: 0;
+  }
+}
+.tgr-textfield--full {
+  @media (max-width: 996px){
+    width: 100%;
+    margin: 0;
+  }
+}
+.is-suggesting {
+  margin: 0;
+  position: relative;
+}
+.is-suggesting .tgr-suggestions {
+  opacity: 1;
+  visibility: visible;;
+}
+.tgr-suggestions {
+  background: #fff;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 46px;
+  z-index: 1;
+  visibility: hidden;;
+}
+.tgr-suggestion{
+  padding: 0 8px;
+}
+.tgr-suggestion:hover{
+  background: $gray-light;
+}
+.tgr-card__head {
+  color: $gray-text-dark;
+}
+.tgr-search .tgr-card__title--text {
+  padding-top: 10px;
+}
+.tgr-actions {
+  @media (max-width: 820px){
+    min-height: 98px;
+  }
+  @media (max-width: 520px){
+    min-height: 98px;
+  }
+}
+.tgr-pay {
+  margin-top: 40px;
+}
+.tgr-pay__label{
+  text-align: center;
+  @media (max-width: 580px){
+    text-align: left;
+  }
+}
+.tgr-pay .mdl-button {
+  margin-top: -30px;
+}
+.tgr-results {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 100px;
+}
+
+.tgr-results .tgr-content {
+  margin-bottom: 20px;
+  width: calc(33.3333% - 13px);
+  @media (max-width: 700px){
+    width: calc(50% - 10px);
+  }
+  @media (max-width: 480px){
+    width: 100%;
+  }
+}
+
+.tgr-results .mdl-checkbox {
+  float: right;
+  display: block;
+
+  width: auto;
+}
+.tgr-card__title .material-icons {
+  color: $color-violet;
+  float: left;
+  line-height: 1;
+  margin-right: 4px;
+  margin-top: -6px;
+  margin-bottom: -6px
+}
+.tgr-card__title  {
+  margin: 0;
+}
+.tgr-card__subtitle {
+  margin-bottom: 0;
+  margin-top: 2px;
+}
+.tgr-card__tag {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.tgr-card__subtitle-text {
+  padding-left: 34px;
+}
+.tgr-card__title--text {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+}
+.tgr-rol-row {
+  padding: 16px 16px 8px 16px;
+}
+.tgr-rol-row .tgr-card__title--text {
+  color: $color-primary
+}
+.tgr-rol-row ~ .tgr-rol-row {
+  border-top: 1px solid $gray-light;
+}
+.tgr-results .tgr-card__body {
+  padding: 0;
+}
+.mdl-checkbox__label {
+  line-height: 1.2;
+}
+.mdl-checkbox {
+  height: auto;
+  min-height: 24px;
+}

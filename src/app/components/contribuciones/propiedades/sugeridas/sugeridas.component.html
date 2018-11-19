@@ -1,24 +1,31 @@
-<div class="tgr-loading ->>hidden" [class.hidden]="hidden">
-  <figure>
-    <img class="tgr-star" src="../../../../assets/estrella.png" alt="">
-    <img class="tgr-tgr" src="../../../../assets/tgr.png" alt="">
-    <figcaption>Buscando información de roles sugeridos</figcaption>
-  </figure>
-</div>
+<div class="tgr-container">
+  <div class="tgr-loading ->>hidden" [class.hidden]="hidden">
+    <figure>
+      <img class="tgr-star" src="../../../../assets/estrella.png" alt="">
+      <img class="tgr-tgr" src="../../../../assets/tgr.png" alt="">
+      <figcaption>Buscando información de roles sugeridos</figcaption>
+    </figure>
+  </div>
 
+  <div class="tgr-results">
+    <div app-sugeridas-propiedad *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+         (change)="updateSeleccionadaTotal()" appMdlInit class="tgr-content mdl-shadow--3dp">
+    </div>
+  </div>
 
-<div class="tgr-results" *ngFor="let propiedad of propiedades">
-  <app-sugeridas-propiedad [propiedad]="propiedad" appMdlInit>
-  </app-sugeridas-propiedad>
-</div>
-
-
-<div class="tgr-actions">
-  <div class="tgr-actions__content">
-    <div class="tgr-pay">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-        Agregar 3 propiedades
-      </button>
+  <div class="tgr-actions">
+    <div class="tgr-actions__content">
+      <div class="tgr-pay">
+        <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0; else seleccionUno" type="button"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Agregar {{cantidadSeleccionadas}} propiedades
+        </button>
+        <ng-template #seleccionUno>
+          <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
+            Seleccione al menos un rol
+          </button>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>

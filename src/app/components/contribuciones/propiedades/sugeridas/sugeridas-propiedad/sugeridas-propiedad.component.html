@@ -1,5 +1,5 @@
-<div class="tgr-results" appMdlInit>
-  <div class="tgr-content mdl-shadow--3dp">
+
+
     <div class="tgr-card__head">
       <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" [class.is-checked]="seleccion" for="checkbox-{{propiedad.roles[0].rolComunaSiiCod}}-{{propiedad.roles[0].subrolId}}">
         <input type="checkbox" id="checkbox-{{propiedad.roles[0].rolComunaSiiCod}}-{{propiedad.roles[0].subrolId}}" class="mdl-checkbox__input"  [attr.checked]="seleccion" (click)="selectAllRol()">
@@ -9,9 +9,7 @@
     <div class="tgr-card__body" >
       <div class="tgr-rol-row" app-sugeridas-propiedad-rol *ngFor="let rol of propiedad.roles"
            [rol]="rol"
-           (change)="change()"
+           (change)="updatePropiedades()"
       >
       </div>
     </div>
-  </div>
-</div>
