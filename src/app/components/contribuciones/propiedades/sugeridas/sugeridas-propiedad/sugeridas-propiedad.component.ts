@@ -1,6 +1,6 @@
-import {Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
-import {ListadoPropiedadRolComponent} from '../../../listado/listado-propiedad-rol/listado-propiedad-rol.component';
+import {SugeridasPropiedadRolComponent} from '../sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
 
 declare var componentHandler: any;
 
@@ -14,13 +14,15 @@ export class SugeridasPropiedadComponent implements OnInit {
   @Input()
   propiedad: Propiedad;
 
-  @ViewChildren(ListadoPropiedadRolComponent, {read: ElementRef})
-  rolElementRefList: QueryList<ElementRef>;
+  @ViewChildren(SugeridasPropiedadRolComponent)
+  sugeridasPropiedadRolComponentList: QueryList<SugeridasPropiedadRolComponent>;
 
-  @ViewChild('grid')
-  grid: ElementRef;
+
+  cantidadRolesSeleccon: number;
+  seleccion: boolean;
 
   constructor() {
+    this.seleccion = true;
   }
 
   ngOnInit() {
@@ -30,20 +32,32 @@ export class SugeridasPropiedadComponent implements OnInit {
     //componentHandler.upgradeAllRegistered();
   }
 
-
-  resizeAllGridItems(): void {
-    if (this.rolElementRefList) {
-      this.rolElementRefList.forEach(
-        (item) => this.resizeGridItem(item)
-      );
-    }
+  selectAllRol(): void {
+    this.seleccion = !this.seleccion;
+    console.log('selectAllRol');
+    this.updateRoles();
   }
 
-  private resizeGridItem(item: ElementRef): void {
-    const rowHeight = parseInt(getComputedStyle(this.grid.nativeElement).getPropertyValue('grid-auto-rows'), 10);
-    const rowGap = parseInt(getComputedStyle(this.grid.nativeElement).getPropertyValue('grid-row-gap'), 10);
-    const rowSpan = Math.ceil((item.nativeElement.querySelector('.content').getBoundingClientRect().height + rowGap)
-      / (rowHeight + rowGap));
-    item.nativeElement.style.gridRowEnd = 'span ' + rowSpan;
+  updateRoles(): void {
+    const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
+
+    for (const sugeridosRol of sugeridosRolList) {
+      sugeridosRol.seleccion = this.seleccion;
+    }
+    this.updateCantidadRolesSeleccionados();
+  }
+
+  updateCantidadRolesSeleccionados(): Number {
+    this.cantidadRolesSeleccon = 0;
+    const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
+    for (const sugeridosRol of sugeridosRolList) {
+      if (sugeridosRol.seleccion) {
+        this.cantidadRolesSeleccon++;
+      }
+    }
+
+    return this.cantidadRolesSeleccon;
+
+
   }
 }

@@ -1,6 +1,6 @@
 
-  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-{{rol.subrolId}}">
-    <input type="checkbox" id="checkbox-{{rol.subrolId}}" class="mdl-checkbox__input" checked>
+  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" [class.is-checked]="seleccion" for="checkbox-{{rol.subrolId}}">
+    <input type="checkbox" id="checkbox-{{rol.subrolId}}" class="mdl-checkbox__input" [attr.checked]="seleccion" (click)="selectRol()" >
   </label>
   <p class="tgr-card__title">
     <i class="material-icons">{{icon}}</i>

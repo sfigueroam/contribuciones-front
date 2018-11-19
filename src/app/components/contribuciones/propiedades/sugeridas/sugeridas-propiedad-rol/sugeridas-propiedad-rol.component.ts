@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rol} from '../../../../../domain/Rol';
+import {TipoCuota} from '../../../../../domain/TipoCuota';
 
 @Component({
   selector: '[app-sugeridas-propiedad-rol]',
@@ -9,15 +10,20 @@ import {Rol} from '../../../../../domain/Rol';
 export class SugeridasPropiedadRolComponent implements OnInit, AfterViewInit  {
 
 
+
   @Input()
-  rol: Rol
+  rol: Rol;
+
+  seleccion: boolean;
+
+
 
   icon: string;
 
   constructor() {
     this.icon = '';
+    this.seleccion = true;
   }
-
 
   @Output()
   change: EventEmitter<any> = new EventEmitter();
@@ -70,6 +76,11 @@ export class SugeridasPropiedadRolComponent implements OnInit, AfterViewInit  {
         this.icon = 'layers';
         break;
     }
+  }
+
+  selectRol(): void {
+    this.seleccion = !this.seleccion;
+    console.log('selectAllNone');
   }
 
 }

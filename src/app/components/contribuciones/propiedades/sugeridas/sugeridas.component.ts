@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
+import {ListadoPropiedadComponent} from '../../listado/listado-propiedad/listado-propiedad.component';
+import {SugeridasPropiedadComponent} from './sugeridas-propiedad/sugeridas-propiedad.component';
 
 
 
@@ -12,8 +14,10 @@ import {ContribucionesSugeridasService} from '../../../../services/contribucione
 export class SugeridasComponent implements OnInit {
 
 
-  propiedades: Propiedad[];
+  @ViewChildren(SugeridasPropiedadComponent)
+  sugeridasPropiedadComponentList: QueryList<SugeridasPropiedadComponent>;
 
+  propiedades: Propiedad[];
   hidden: boolean = false;
 
 
@@ -29,5 +33,11 @@ export class SugeridasComponent implements OnInit {
       this.propiedades = rolesNoAsociados;
       this.hidden = true;
     });
+  }
+
+
+  updateSeleccionadaTotal(): void{
+    const sugeridasPropiedades = this.sugeridasPropiedadComponentList.toArray();
+
   }
 }
