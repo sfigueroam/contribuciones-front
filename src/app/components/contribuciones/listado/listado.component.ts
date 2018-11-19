@@ -6,6 +6,7 @@ import {TipoCuota} from '../../../domain/TipoCuota';
 import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.component';
 import {Rol} from '../../../domain/Rol';
 import {MdlSnackbarService} from '@angular-mdl/core';
+import {ContribucionesSugeridasService} from '../../../services/contribuciones-sugeridas.service';
 
 @Component({
   selector: 'app-listado',
@@ -41,7 +42,9 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   cantPropiedades: number;
   hidden: boolean;
 
-  constructor(private contributionsService: ContributionsService, private mdlSnackbarService: MdlSnackbarService) {
+  constructor(private contributionsService: ContributionsService,
+              private mdlSnackbarService: MdlSnackbarService,
+              private contribucionesSugeridasService: ContribucionesSugeridasService) {
     this.hidden = false;
     this.mostrarAlerta = false;
     this.mostrarDelete = false;
@@ -235,7 +238,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   private cargarRolesNoAsociado(force?: boolean): Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
-      this.contributionsService
+      this.contribucionesSugeridasService
         .getRolesNoAsociados(force).then((data) => {
         if (data) {
           if (data.length > 0) {

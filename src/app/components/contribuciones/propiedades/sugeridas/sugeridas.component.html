@@ -6,9 +6,12 @@
   </figure>
 </div>
 
-<app-sugeridas-propiedad *ngFor="let propiedad of propiedades"
-                         [propiedad]="propiedad">
-</app-sugeridas-propiedad>
+
+<div class="tgr-results" *ngFor="let propiedad of propiedades">
+  <app-sugeridas-propiedad [propiedad]="propiedad">
+  </app-sugeridas-propiedad>
+</div>
+
 
 <div class="tgr-actions">
   <div class="tgr-actions__content">

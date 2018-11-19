@@ -7,6 +7,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from './user.service';
 import {ListadoPropiedadRolComponent} from '../components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
+import {RequestService} from './request.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,9 @@ export class ContributionsService {
   dummy: Dummy = new Dummy();
 
   propiedades: Propiedad[];
-  rolesNoAsociados: Propiedad[];
 
 
-  constructor(private http: HttpClient, private user: UserService) {
+  constructor(private requestService: RequestService, private user: UserService) {
   }
 
   getBienesRaices(): Promise<Propiedad[]> {
@@ -133,76 +133,21 @@ export class ContributionsService {
   private getBienRaiz(): Promise<{}> {
     let obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
     obtenerBienRaizAsociado.path = obtenerBienRaizAsociado.path + '/' + this.user.rut;
-    return this.request(obtenerBienRaizAsociado);
+    return this.requestService.request(obtenerBienRaizAsociado);
   }
 
   private getDeudas(rol: number): any {
     return this.dummy.getDeudas(rol).listaDeudaRol;
   }
 
-  private request(servicio: { url: string, path: string, method: string }, body?): Promise<{}> {
-    const params = {
-      'path': servicio.path
-    };
-    return new Promise((resolve, reject) => {
-      this.http.request(servicio.method,
-        servicio.url,
-        {
-          body: body,
-          params: params,
-          responseType: 'json'
-        }
-      ).subscribe(
-        data => {
-          resolve(data);
-        },
-        err => {
-          console.log('Error', err);
-          reject();
-        }
-      );
-    });
-  }
+
 
   private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
     const body = {
       'idRol': rol,
       'listaCuotas': Array.from(cuotas.values())
     };
-    return this.request(environment.servicios.recuperarDeudaRol, body);
-  }
-
-  getRolesNoAsociados(force?: boolean): Promise<Propiedad[]> {
-    if (this.rolesNoAsociados && !force) {
-      return new Promise((resolve, reject) => {
-        resolve(this.rolesNoAsociados);
-      });
-    }
-
-
-    return new Promise((resolve, reject) => {
-      let obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
-      obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + this.user.rut;
-      this.request(obtenerBienRaizNoAsociado).then((data: { curout: any }) => {
-
-        const propiedadSugeridasMap = new Map<string, Propiedad>();
-
-        for (const bienRaiz of data.curout) {
-          const idPropiedad = this.getBienRaizId(bienRaiz);
-          let propiedad = propiedadSugeridasMap.get(idPropiedad);
-          if (!propiedad) {
-            propiedad = new Propiedad();
-            propiedad.direccion = bienRaiz.direccion;
-            propiedadSugeridasMap.set(idPropiedad, propiedad);
-          }
-          const rol = new Rol(bienRaiz);
-          propiedad.addRol(rol);
-        }
-        this.rolesNoAsociados = Array.from(propiedadSugeridasMap.values());
-
-        resolve(this.rolesNoAsociados);
-      });
-    });
+    return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
   }
 
   desasociarRol(rol: Rol): Promise<any> {
@@ -211,6 +156,6 @@ export class ContributionsService {
       'rutin': this.user.rut,
       'rolin': rol.rol.toString()
     };
-    return this.request(environment.servicios.desasociarBienRaiz, body);
+    return this.requestService.request(environment.servicios.desasociarBienRaiz, body);
   }
 }

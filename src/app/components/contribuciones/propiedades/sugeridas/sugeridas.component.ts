@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ContributionsService} from '../../../../services/contributions.service';
-import {Rol} from '../../../../domain/Rol';
 import {Propiedad} from '../../../../domain/Propiedad';
+import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
 
 
 
@@ -18,7 +17,7 @@ export class SugeridasComponent implements OnInit {
   hidden: boolean = false;
 
 
-  constructor(private contributionsService: ContributionsService) {
+  constructor(private contribucionesSugeridasService: ContribucionesSugeridasService) {
     this.propiedades = [];
   }
   ngOnInit() {
@@ -26,7 +25,7 @@ export class SugeridasComponent implements OnInit {
   }
 
   private cargarRolesNoAsociados() {
-    this.contributionsService.getRolesNoAsociados().then((rolesNoAsociados) => {
+    this.contribucionesSugeridasService.getRolesNoAsociados().then((rolesNoAsociados) => {
       this.propiedades = rolesNoAsociados;
       this.hidden = true;
     });
