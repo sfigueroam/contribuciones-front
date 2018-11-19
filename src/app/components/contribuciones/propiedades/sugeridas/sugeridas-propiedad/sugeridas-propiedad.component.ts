@@ -2,6 +2,8 @@ import {Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {ListadoPropiedadRolComponent} from '../../../listado/listado-propiedad-rol/listado-propiedad-rol.component';
 
+declare var componentHandler: any;
+
 @Component({
   selector: 'app-sugeridas-propiedad',
   templateUrl: './sugeridas-propiedad.component.html',
@@ -22,6 +24,10 @@ export class SugeridasPropiedadComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  change(): void {
+    //componentHandler.upgradeAllRegistered();
   }
 
 

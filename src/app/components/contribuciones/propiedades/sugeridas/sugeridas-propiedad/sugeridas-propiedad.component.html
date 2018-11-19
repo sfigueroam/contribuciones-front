@@ -1,15 +1,17 @@
 <div class="tgr-results">
   <div class="tgr-content mdl-shadow--3dp">
     <div class="tgr-card__head">
-      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-{{propiedad.roles[0].rolComunaSiiCod}}-{{propiedad.roles[0].subrolId}}">
+        <input type="checkbox" id="checkbox-{{propiedad.roles[0].rolComunaSiiCod}}-{{propiedad.roles[0].subrolId}}" class="mdl-checkbox__input" checked>
       </label>
       <span class="tgr-card__title--text">{{propiedad.direccion  | titlecase}} - {{propiedad.roles[0].comuna | titlecase}}</span>
     </div>
-    <div class="tgr-card__body">
-      <app-sugeridas-propiedad-rol *ngFor="let rol of propiedad.roles"
-        [rol]="rol"
-      ></app-sugeridas-propiedad-rol>
+    <div class="tgr-card__body" appMdlInit>
+      <div class="tgr-rol-row" app-sugeridas-propiedad-rol *ngFor="let rol of propiedad.roles"
+           [rol]="rol"
+           (change)="change()"
+      >
+      </div>
     </div>
   </div>
 </div>

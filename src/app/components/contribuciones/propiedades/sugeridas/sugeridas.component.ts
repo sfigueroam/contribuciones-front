@@ -15,6 +15,8 @@ export class SugeridasComponent implements OnInit {
 
   propiedades: Propiedad[];
 
+  hidden: boolean = false;
+
 
   constructor(private contributionsService: ContributionsService) {
     this.propiedades = [];
@@ -26,6 +28,7 @@ export class SugeridasComponent implements OnInit {
   private cargarRolesNoAsociados() {
     this.contributionsService.getRolesNoAsociados().then((rolesNoAsociados) => {
       this.propiedades = rolesNoAsociados;
+      this.hidden = true;
     });
   }
 }

@@ -1,6 +1,21 @@
+<div class="tgr-loading ->>hidden" [class.hidden]="hidden">
+  <figure>
+    <img class="tgr-star" src="../../../../assets/estrella.png" alt="">
+    <img class="tgr-tgr" src="../../../../assets/tgr.png" alt="">
+    <figcaption>Buscando información de roles sugeridos</figcaption>
+  </figure>
+</div>
 
+<app-sugeridas-propiedad *ngFor="let propiedad of propiedades"
+                         [propiedad]="propiedad">
+</app-sugeridas-propiedad>
 
-    <app-sugeridas-propiedad *ngFor="let propiedad of propiedades"
-                             [propiedad]="propiedad">
-    </app-sugeridas-propiedad>
-
+<div class="tgr-actions">
+  <div class="tgr-actions__content">
+    <div class="tgr-pay">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        Agregar 3 propiedades
+      </button>
+    </div>
+  </div>
+</div>

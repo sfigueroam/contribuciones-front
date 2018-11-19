@@ -1,12 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rol} from '../../../../../domain/Rol';
 
 @Component({
-  selector: 'app-sugeridas-propiedad-rol',
+  selector: '[app-sugeridas-propiedad-rol]',
   templateUrl: './sugeridas-propiedad-rol.component.html',
   styleUrls: ['./sugeridas-propiedad-rol.component.scss']
 })
-export class SugeridasPropiedadRolComponent implements OnInit {
+export class SugeridasPropiedadRolComponent implements OnInit, AfterViewInit  {
 
 
   @Input()
@@ -14,10 +14,19 @@ export class SugeridasPropiedadRolComponent implements OnInit {
 
   icon: string;
 
-  constructor() { }
+  constructor() {
+    this.icon = '';
+  }
+
+
+  @Output()
+  change: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
     this.iconInit();
+  }
+  ngAfterViewInit() {
+  //  this.change.emit();
   }
 
   iconInit(): void {
