@@ -7,6 +7,7 @@ import {ListadoPropiedadComponent} from './listado-propiedad/listado-propiedad.c
 import {Rol} from '../../../domain/Rol';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {ContribucionesSugeridasService} from '../../../services/contribuciones-sugeridas.service';
+import {ConfirmarDesasociarComponent} from './modal/confirmar-desasociar/confirmar-desasociar.component';
 
 @Component({
   selector: 'app-listado',
@@ -19,6 +20,9 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   @ViewChild('detallePago')
   detallePago: DetallePagoComponent;
+
+  @ViewChild('confimarDesasociar')
+  confirmarDesasociar: ConfirmarDesasociarComponent;
 
   @ViewChildren(ListadoPropiedadComponent)
   propiedadComponentList: QueryList<ListadoPropiedadComponent>;
@@ -98,6 +102,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   private eliminar(roles: Rol[]): void {
 
+
     for (const rol of roles) {
       this.propiedades = this.propiedades.filter((propiedad: Propiedad) => {
         propiedad.desasociarRol(rol);
@@ -118,11 +123,8 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   desasociar() {
-    this.mostrarDelete = false;
-    const timeOut = 5000;
-    let cancelar = false;
-    const roles = this.listaRolesDesasociar();
-
+    this.confirmarDesasociar.showDialog();
+    /*
     let snackbar = this.mdlSnackbarService.showSnackbar({
       message: 'Desasociando ' + roles.length + ' rol(es)',
       action: {
@@ -140,12 +142,21 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         () => {
           if (!cancelar) {
             bar.hide();
-            this.eliminar(roles);
+
           }
         },
         timeOut);
     });
+*/
+  }
 
+  confimarDesasociacion() {
+
+    this.mostrarDelete = false;
+    const timeOut = 5000;
+    let cancelar = false;
+    const roles = this.listaRolesDesasociar();
+    this.eliminar(roles);
   }
 
 
@@ -313,4 +324,6 @@ export class ListadoComponent implements OnInit, AfterViewInit {
       propiedadComponent.show();
     }
   }
+
+
 }

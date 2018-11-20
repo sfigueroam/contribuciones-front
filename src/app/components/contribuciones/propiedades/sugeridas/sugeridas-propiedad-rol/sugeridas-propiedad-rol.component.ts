@@ -102,6 +102,7 @@ export class SugeridasPropiedadRolComponent implements OnInit, AfterContentInit 
   selectRol(): void {
     this.seleccion = !this.seleccion;
     this.updateIconSeleccion();
+    this.change.emit();
 
   }
 

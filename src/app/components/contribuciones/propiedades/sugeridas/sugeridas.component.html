@@ -1,4 +1,4 @@
-<div class="tgr-container">
+<div class="tgr-container ">
   <div class="tgr-loading ->>hidden" [class.hidden]="hidden">
     <figure>
       <img class="tgr-star" src="../../../../assets/estrella.png" alt="">
@@ -15,10 +15,18 @@
 
   <div class="tgr-actions">
     <div class="tgr-actions__content">
+      <!--<div class="tgr-white">
+        <div class="tgr-cell-wait">
+          <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
+          </div>
+          <h5 class="tgr-cell-wait__feedback"></h5>
+        </div>
+      </div>-->
       <div class="tgr-pay">
         <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0; else seleccionUno" type="button"
-                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          Agregar {{cantidadSeleccionadas}} propiedades
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="agregarPropiedad()">
+          <span *ngIf="cantidadSeleccionadas > 1; else uno" >Agregar {{cantidadSeleccionadas}} propiedades</span>
+          <ng-template #uno>Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
         </button>
         <ng-template #seleccionUno>
           <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>

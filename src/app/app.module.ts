@@ -26,6 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {DISABLE_NATIVE_VALIDITY_CHECKING, MdlModule} from '@angular-mdl/core';
 import {SugeridasPropiedadComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad/sugeridas-propiedad.component';
 import { SugeridasPropiedadRolComponent } from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
+import { ConfirmarDesasociarComponent } from './components/contribuciones/listado/modal/confirmar-desasociar/confirmar-desasociar.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -51,7 +52,8 @@ registerLocaleData(localeEs, 'es');
     MDLInitDirective,
     ListadoPropiedadRolCuotasComponent,
     SugeridasPropiedadComponent,
-    SugeridasPropiedadRolComponent
+    SugeridasPropiedadRolComponent,
+    ConfirmarDesasociarComponent
   ],
   imports: [
     BrowserModule,

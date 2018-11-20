@@ -53,4 +53,24 @@ export class ContribucionesSugeridasService {
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
     return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
   }
+
+  asociarRoles(roles: number[]): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let promesas = [];
+
+      for (let rol of roles) {
+        const body = {
+          'rutin': this.user.rut,
+          'rolin': rol.toString()
+        };
+        promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz,body));
+      }
+      Promise.all(promesas).then(() => {
+          resolve();
+        },
+        () => {
+          reject();
+        });
+    });
+  }
 }

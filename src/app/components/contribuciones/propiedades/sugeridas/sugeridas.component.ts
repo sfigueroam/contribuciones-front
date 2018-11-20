@@ -39,8 +39,6 @@ export class SugeridasComponent implements OnInit {
 
 
   updateSeleccionadaTotal(): void {
-    const sugeridasPropiedades = this.sugeridasPropiedadComponentList.toArray();
-
     this.totalSeleccionadas();
 
   }
@@ -49,7 +47,23 @@ export class SugeridasComponent implements OnInit {
     this.cantidadSeleccionadas = 0;
     const sugeridasPropiedades = this.sugeridasPropiedadComponentList.toArray();
     for(const sugeridas of sugeridasPropiedades){
-      this.cantidadSeleccionadas = this.cantidadSeleccionadas + sugeridas.getRolesSeleccionadas();
+      this.cantidadSeleccionadas = this.cantidadSeleccionadas + sugeridas.getCantidadRolesSeleccionadas();
     }
+  }
+
+  agregarPropiedad() {
+    let roles: number [] = [];
+    const sugeridasPropiedadesList = this.sugeridasPropiedadComponentList.toArray();
+
+    for(const sugeridas of sugeridasPropiedadesList){
+      roles = roles.concat(sugeridas.getRolesSeleccionadas());
+    }
+
+    console.log('Agregado propiedades');
+
+    this.contribucionesSugeridasService.asociarRoles(roles).then(() => {
+      console.log('Fin asociados');
+    });
+
   }
 }
