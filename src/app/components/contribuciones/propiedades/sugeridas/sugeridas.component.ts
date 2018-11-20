@@ -1,9 +1,10 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
-import {ListadoPropiedadComponent} from '../../listado/listado-propiedad/listado-propiedad.component';
 import {SugeridasPropiedadComponent} from './sugeridas-propiedad/sugeridas-propiedad.component';
-
+import {ContributionsService} from '../../../../services/contributions.service';
+import {Router} from '@angular/router';
+import {MdlSnackbarService} from '@angular-mdl/core';
 
 
 @Component({
@@ -22,19 +23,31 @@ export class SugeridasComponent implements OnInit {
   cantidadSeleccionadas: number;
 
 
-  constructor(private contribucionesSugeridasService: ContribucionesSugeridasService) {
+  constructor(private contribucionesSugeridasService: ContribucionesSugeridasService,
+              private contributionsService: ContributionsService,
+              private mdlSnackbarService: MdlSnackbarService,
+              private router: Router) {
     this.propiedades = [];
     this.cantidadSeleccionadas = 0;
   }
+
+
   ngOnInit() {
     this.cargarRolesNoAsociados();
   }
 
-  private cargarRolesNoAsociados() {
-    this.contribucionesSugeridasService.getRolesNoAsociados().then((rolesNoAsociados) => {
-      this.propiedades = rolesNoAsociados;
-      this.hidden = true;
+  private cargarRolesNoAsociados(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.contribucionesSugeridasService.getRolesNoAsociados().then((rolesNoAsociados) => {
+          this.propiedades = rolesNoAsociados;
+          this.hidden = true;
+          resolve();
+        },
+        () => {
+          reject();
+        });
     });
+
   }
 
 
@@ -46,24 +59,36 @@ export class SugeridasComponent implements OnInit {
   totalSeleccionadas(): void {
     this.cantidadSeleccionadas = 0;
     const sugeridasPropiedades = this.sugeridasPropiedadComponentList.toArray();
-    for(const sugeridas of sugeridasPropiedades){
+    for (const sugeridas of sugeridasPropiedades) {
       this.cantidadSeleccionadas = this.cantidadSeleccionadas + sugeridas.getCantidadRolesSeleccionadas();
     }
+    console.log('this.cantidadSeleccionadas', this.cantidadSeleccionadas);
   }
 
   agregarPropiedad() {
+
+    this.hidden = false;
     let roles: number [] = [];
     const sugeridasPropiedadesList = this.sugeridasPropiedadComponentList.toArray();
-
-    for(const sugeridas of sugeridasPropiedadesList){
+    for (const sugeridas of sugeridasPropiedadesList) {
       roles = roles.concat(sugeridas.getRolesSeleccionadas());
     }
-
-    console.log('Agregado propiedades');
-
     this.contribucionesSugeridasService.asociarRoles(roles).then(() => {
-      console.log('Fin asociados');
-    });
-
+        this.contributionsService.clearPropiedades();
+        this.contribucionesSugeridasService.clearPropiedades();
+        this.cargarRolesNoAsociados().then(() => {
+          this.router.navigate(['/main/contribuciones']);
+        });
+      },
+      () => {
+        this.mdlSnackbarService.showSnackbar({
+          message: 'Ocurrió un error al asociar',
+          timeout: 1500,
+          action: {
+            handler: () => {},
+            text: 'ok'
+          }
+        });
+      });
   }
 }
