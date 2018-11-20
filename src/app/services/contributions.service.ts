@@ -22,6 +22,10 @@ export class ContributionsService {
   constructor(private requestService: RequestService, private user: UserService) {
   }
 
+  clearPropiedades(): void{
+    this.propiedades = undefined;
+  }
+
   getBienesRaices(): Promise<Propiedad[]> {
 
     if (this.propiedades) {

@@ -73,4 +73,8 @@ export class ContribucionesSugeridasService {
         });
     });
   }
+
+  clearPropiedades() {
+    this.rolesNoAsociados = undefined;
+  }
 }

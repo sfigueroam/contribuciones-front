@@ -9,6 +9,7 @@ import {PropiedadesComponent} from './components/contribuciones/propiedades/prop
 import {AgregarNuevaComponent} from './components/contribuciones/propiedades/agregar-nueva/agregar-nueva.component';
 import {SugeridasComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas.component';
 import {ConfirmacionComponent} from './components/certificados/confirmacion/confirmacion.component';
+import {OopsComponent} from './components/oops/oops.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'landing',
     component: LandingComponent,
+
+  },
+  {
+    path: 'oops',
+    component: OopsComponent,
 
   },
   {
