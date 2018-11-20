@@ -99,3 +99,20 @@
 .tgr-results .tgr-card__body {
 	padding: 0;
 }
+.tgr-results {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-bottom: 100px;
+}
+
+.tgr-results .tgr-content {
+  width: calc(33.3333% - 20px);
+  margin: 0 10px 20px;
+  @media (max-width: 700px){
+    width: calc(50% - 20px);
+  }
+  @media (max-width: 480px){
+    width: 100%;
+  }
+}
