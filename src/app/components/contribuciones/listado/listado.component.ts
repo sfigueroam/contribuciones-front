@@ -123,8 +123,11 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   desasociar() {
-    this.confirmarDesasociar.showDialog();
-    /*
+    this.mostrarDelete = false;
+    const timeOut = 5000;
+    let cancelar = false;
+    const roles = this.listaRolesDesasociar();
+
     let snackbar = this.mdlSnackbarService.showSnackbar({
       message: 'Desasociando ' + roles.length + ' rol(es)',
       action: {
@@ -142,15 +145,15 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         () => {
           if (!cancelar) {
             bar.hide();
-
+            this.eliminar(roles);
           }
         },
         timeOut);
     });
-*/
+
   }
 
-  confimarDesasociacion() {
+ /* confimarDesasociacion() {
 
     this.mostrarDelete = false;
     const timeOut = 5000;
@@ -158,7 +161,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     const roles = this.listaRolesDesasociar();
     this.eliminar(roles);
   }
-
+*/
 
   private actualizarListaRoles(force?: boolean) {
 

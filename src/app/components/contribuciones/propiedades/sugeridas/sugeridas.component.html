@@ -25,7 +25,7 @@
       <div class="tgr-pay">
         <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0; else seleccionUno" type="button"
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="agregarPropiedad()">
-          <span *ngIf="cantidadSeleccionadas > 1; else uno" >Agregar {{cantidadSeleccionadas}} propiedades</span>
+          <div *ngIf="cantidadSeleccionadas > 1; else uno" >Agregar {{cantidadSeleccionadas}} propiedades</div>
           <ng-template #uno>Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
         </button>
         <ng-template #seleccionUno>

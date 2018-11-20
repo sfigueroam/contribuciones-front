@@ -29,14 +29,11 @@ export class SugeridasPropiedadRolComponent implements OnInit, AfterContentInit 
 
   ngOnInit() {
     this.iconInit();
-
-    //  this.change.emit();
   }
 
   ngAfterContentInit() {
     setTimeout(
       () => {
-        console.log('ngAfterContentInit');
         this.change.emit();
       },
       100
