@@ -23,6 +23,37 @@ export class Rol {
     this.wait = true;
   }
 
+  icon(): string {
+    switch (this.idDestPropiedad) {
+      case 'A': // AGRICOLA
+      case 'B': // AGRICOLA POR ASIMILACION
+        return 'spa';
+      case 'E': // EDUCACION Y CULTURA
+        return 'school';
+      case 'F': // FORESTAL
+        return 'terrain';
+      case 'G': // HOTEL, MOTEL
+        return 'hotel';
+      case 'I': // INDUSTRIA
+      case 'M': // MINERIA
+        return 'local_shipping';
+      case 'H': // HABITACIONAL
+        return 'business';
+      case 'O': // OFICINA
+        return 'work';
+      case 'L': // BODEGA
+        return 'meeting_room';
+      case 'Q': // CULTO
+        return '';
+      case 'S': // SALUD
+        return 'local_hospital';
+      case 'Z': // ESTACIONAMIENTO
+        return 'directions_car';
+      default:
+        return 'layers';
+    }
+  }
+
   // Revisa si existe mas o igual de n cuotas vencidas por defecto 2
   hasExpiredQuotes(maxCuota?: number): boolean {
     let max = 2;

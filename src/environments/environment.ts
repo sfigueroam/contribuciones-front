@@ -25,6 +25,9 @@ const pathBase = {
 
 export const environment = {
   production: false,
+  certificados: {
+    anoDesde: 1955,
+  },
   servicios: {
     obtenerBienRaizAsociado: {
       url: urlsBase.publica,

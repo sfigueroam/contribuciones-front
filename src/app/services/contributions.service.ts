@@ -4,7 +4,6 @@ import {Rol} from '../domain/Rol';
 import {Cuota} from '../domain/Cuota';
 import {Propiedad} from '../domain/Propiedad';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
 import {UserService} from './user.service';
 import {ListadoPropiedadRolComponent} from '../components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
 import {RequestService} from './request.service';
@@ -17,7 +16,6 @@ export class ContributionsService {
   dummy: Dummy = new Dummy();
 
   propiedades: Propiedad[];
-
 
   constructor(private requestService: RequestService, private user: UserService) {
   }
@@ -49,7 +47,7 @@ export class ContributionsService {
           this.propiedades = Array.from(propiedadMap.values());
           resolve(this.propiedades);
         }
-      ).catch( (err) =>{
+      ).catch((err) => {
         console.error(err);
         reject(err);
       });
@@ -131,7 +129,7 @@ export class ContributionsService {
   }
 
   private getBienRaiz(): Promise<{}> {
-    let obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
+    const obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
     obtenerBienRaizAsociado.path = obtenerBienRaizAsociado.path + '/' + this.user.rut;
     return this.requestService.request(obtenerBienRaizAsociado);
   }
@@ -139,7 +137,6 @@ export class ContributionsService {
   private getDeudas(rol: number): any {
     return this.dummy.getDeudas(rol).listaDeudaRol;
   }
-
 
 
   private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
