@@ -13,7 +13,8 @@ const cabecera = {
 
 const urlsBase = {
   publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
-  privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private'
+  privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
+  elastic: 'https://search-dev-contribuciones-qj3q3jeqbkw5ix5ybdrdlpfqq4.us-east-1.es.amazonaws.com'
 };
 
 const pathBase = {
@@ -58,6 +59,16 @@ export const environment = {
       url: urlsBase.publica,
       path: pathBase.bienRaiz + '/obtener/rolin',
       method: 'POST'
+    }
+  },
+  elastic: {
+    localidad: {
+      url: urlsBase.elastic + '/localidad/_search',
+      method: 'POST',
+      body: {
+        size: 400,
+        from: 0
+      }
     }
   }
 };
