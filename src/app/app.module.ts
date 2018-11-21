@@ -19,7 +19,7 @@ import {PropiedadesComponent} from './components/contribuciones/propiedades/prop
 import {ConfirmacionComponent} from './components/certificados/confirmacion/confirmacion.component';
 import {ListadoPropiedadComponent} from './components/contribuciones/listado/listado-propiedad/listado-propiedad.component';
 import {ListadoPropiedadRolComponent} from './components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
-import {LeadingZeroPipe} from './pipe/leading-zero.pipe';
+import {LeadingZeroPipe} from './pipes/leading-zero.pipe';
 import {MDLInitDirective} from './services/mdlinit.directive';
 import {ListadoPropiedadRolCuotasComponent} from './components/contribuciones/listado/listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -30,7 +30,7 @@ import {ConfirmarDesasociarComponent} from './components/contribuciones/listado/
 import {OopsComponent} from './components/oops/oops.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MdlSelectModule} from '@angular-mdl/select';
-
+import {MatchSorterPipe} from './pipes/match-sorter.pipe';
 
 registerLocaleData(localeEs, 'es');
 
@@ -57,7 +57,8 @@ registerLocaleData(localeEs, 'es');
     SugeridasPropiedadComponent,
     SugeridasPropiedadRolComponent,
     ConfirmarDesasociarComponent,
-    OopsComponent
+    OopsComponent,
+    MatchSorterPipe
   ],
   imports: [
     BrowserModule,

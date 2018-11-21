@@ -44,12 +44,15 @@
 
 .tgr-th-icon {
   position: relative;
+  float: right;
+  //left: 10px;
+  top: 13px;
 }
-.tgr-th-icon .material-icons:before {
+/*.tgr-th-icon .material-icons:before {
   top: 13px;
   position: absolute;
   left: 24px;
-}
+}*/
 
 .mdl-textfield {
   width: calc(33.3% - 10px);

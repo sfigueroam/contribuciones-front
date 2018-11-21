@@ -57,7 +57,7 @@ export const environment = {
     },
     buscarBienRaiz: {
       url: urlsBase.publica,
-      path: pathBase.bienRaiz + '/obtener/rolin',
+      path: pathBase.bienRaiz + '/bienraiz/obtener/rolin',
       method: 'POST'
     }
   },

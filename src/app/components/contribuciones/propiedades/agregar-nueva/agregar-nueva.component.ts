@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../domain/Localidad';
 import {MdlSnackbarService} from '@angular-mdl/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -11,9 +12,25 @@ import {MdlSnackbarService} from '@angular-mdl/core';
 export class AgregarNuevaComponent implements OnInit {
 
   localidad: Localidad[];
+  form: FormGroup;
+  comuna: FormControl;
+  rol: FormControl;
+  subRol: FormControl;
+
+
 
   constructor(private contribucionesBuscarRolService: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService) {
+    this.comuna = new FormControl('', Validators.required);
+    this.rol = new FormControl('', Validators.required);
+    this.subRol = new FormControl('', Validators.required);
+
+    this.form = new FormGroup({
+      comuna: this.comuna,
+      rol: this.rol,
+      subRol: this.subRol
+    });
+
   }
 
   ngOnInit() {
@@ -31,4 +48,20 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
+  autoCompletarComuna(): void {
+
+  }
+
+  buscar(): void {
+
+
+
+
+    console.log(this.comuna.value);
+    console.log(this.rol.value);
+    console.log(this.subRol.value);
+    this.contribucionesBuscarRolService.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
+      console.log(response);
+    })
+  }
 }

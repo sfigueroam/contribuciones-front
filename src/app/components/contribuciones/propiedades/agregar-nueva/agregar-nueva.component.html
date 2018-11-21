@@ -1,4 +1,4 @@
-<div class="tgr-content tgr-search mdl-shadow--3dp">
+<div class="tgr-content tgr-search mdl-shadow--3dp" appMdlInit>
   <div class="tgr-card__head">
     <div class="tgr-switch">
       <!-- <button class="tgr-switch-active">
@@ -62,35 +62,47 @@
       </ul>
     </div>
   </div>
-  <div class="tgr-card__body">
+  <form [formGroup]="form" (ngSubmit)="buscar()">
+    <div class="tgr-card__body">
 
-    <mdl-select >
-      <mdl-option *ngFor="let local of localidad" [value]="local.id" >{{local.comuna}}</mdl-option>
-    </mdl-select>
+      <mdl-select #autocompleteSelect  [class.is-invalid]="comuna.touched && comuna.invalid"
+                  [autocomplete]="true"
+                  (change)="autoCompletarComuna()"
+                  error-msg="Debe seleccionar una Comuna"
+                  [formControl]="comuna"
+                  label="Comuna"
+                  floating-label>
+        <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelect.searchQuery"
+                    [value]="local.idSii">{{local.comuna | titlecase}}
+        </mdl-option>
+      </mdl-select>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-      <input type="text" value="" class="mdl-textfield__input" id="sample4" readonly>
-      <input type="hidden" value="" name="sample4">
-      <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-      <label for="sample4" class="mdl-textfield__label">Comuna</label>
-      <ul for="sample4" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-        <li class="mdl-menu__item" data-val="DEU">La Reina</li>
-        <li class="mdl-menu__item" data-val="BLR">Providencia</li>
-        <li class="mdl-menu__item" data-val="RUS">Renca</li>
-      </ul>
+      <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
+                     type="number"
+                     id="rol"
+                     name="rol"
+                     label="Rol"
+                     [formControl]="rol"
+
+                     error-msg="Debe ingresar un Rol"
+                     floating-label
+      ></mdl-textfield>
+      <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
+                     type="number"
+                     id="subRol"
+                     name="subRol"
+                     label="Sub Rol"
+                     [formControl]="subRol"
+                     error-msg="Debe ingresar un Sub Rol"
+                     floating-label
+      ></mdl-textfield>
     </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label tgr-textfield">
-      <input class="mdl-textfield__input" type="text">
-      <label class="mdl-textfield__label" for="calle">Rol</label>
+    <div class="tgr-card__footer">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+              [disabled]="form.invalid">Buscar
+      </button>
     </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label tgr-textfield">
-      <input class="mdl-textfield__input" type="text">
-      <label class="mdl-textfield__label" for="calle">Sub rol</label>
-    </div>
-  </div>
-  <div class="tgr-card__footer">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="button">Buscar</button>
-  </div>
+  </form>
 </div>
 <div class="tgr-results">
   <div class="tgr-content mdl-shadow--3dp">
