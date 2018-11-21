@@ -47,13 +47,10 @@ export class SugeridasComponent implements OnInit {
           reject();
         });
     });
-
   }
-
 
   updateSeleccionadaTotal(): void {
     this.totalSeleccionadas();
-
   }
 
   totalSeleccionadas(): void {
@@ -62,7 +59,6 @@ export class SugeridasComponent implements OnInit {
     for (const sugeridas of sugeridasPropiedades) {
       this.cantidadSeleccionadas = this.cantidadSeleccionadas + sugeridas.getCantidadRolesSeleccionadas();
     }
-    console.log('this.cantidadSeleccionadas', this.cantidadSeleccionadas);
   }
 
   agregarPropiedad() {

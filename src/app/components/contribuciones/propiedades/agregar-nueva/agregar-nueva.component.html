@@ -63,6 +63,11 @@
     </div>
   </div>
   <div class="tgr-card__body">
+
+    <mdl-select >
+      <mdl-option *ngFor="let local of localidad" [value]="local.id" >{{local.comuna}}</mdl-option>
+    </mdl-select>
+
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
       <input type="text" value="" class="mdl-textfield__input" id="sample4" readonly>
       <input type="hidden" value="" name="sample4">
