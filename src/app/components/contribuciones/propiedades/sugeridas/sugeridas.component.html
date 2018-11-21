@@ -13,27 +13,30 @@
     </div>
   </div>
 
-  <div class="tgr-actions">
-    <div class="tgr-actions__content">
-      <!--<div class="tgr-white">
-        <div class="tgr-cell-wait">
-          <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
-          </div>
-          <h5 class="tgr-cell-wait__feedback"></h5>
+
+
+</div>
+
+<div class="tgr-actions">
+  <div class="tgr-actions__content">
+    <!--<div class="tgr-white">
+      <div class="tgr-cell-wait">
+        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
         </div>
-      </div>-->
-      <div class="tgr-pay">
-        <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0; else seleccionUno" type="button"
-                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="agregarPropiedad()">
-          <div *ngIf="cantidadSeleccionadas > 1; else uno" >Agregar {{cantidadSeleccionadas}} propiedades</div>
-          <ng-template #uno>Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
-        </button>
-        <ng-template #seleccionUno>
-          <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
-            Seleccione al menos un rol
-          </button>
-        </ng-template>
+        <h5 class="tgr-cell-wait__feedback"></h5>
       </div>
+    </div>-->
+    <div class="tgr-pay">
+      <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0; else seleccionUno" type="button"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="agregarPropiedad()">
+        <div *ngIf="cantidadSeleccionadas > 1; else uno">Agregar {{cantidadSeleccionadas}} propiedades</div>
+        <ng-template #uno>Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
+      </button>
+      <ng-template #seleccionUno>
+        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
+          Seleccione al menos un rol
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>
