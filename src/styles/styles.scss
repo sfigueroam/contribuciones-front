@@ -274,6 +274,11 @@ html, body {
 .tgr-star  {
     -webkit-animation: rotation 2s infinite linear;
 }
+.mdl-data-table td, .mdl-data-table th {
+  @media (max-width: 360px) {
+    padding: 0 6px 12px 6px;
+  }
+}
 
 @-webkit-keyframes rotation {
     from {

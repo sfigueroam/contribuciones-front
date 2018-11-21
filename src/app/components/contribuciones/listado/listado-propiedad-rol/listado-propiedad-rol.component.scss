@@ -37,12 +37,18 @@
 }
 .tgr-section-desc--text p{
   line-height: 1.2;
+  @media (max-width: 360px) {
+    line-height: 1.1;
+  }
 }
 .tgr-section-desc--title {
   display: block;
   font-size: 18px;
   font-weight: 500;
   padding-bottom: 10px;
+  @media (max-width: 360px) {
+    padding-bottom: 5px;
+  }
 }
 .tgr-section-desc .material-icons.close {
   float: right;
@@ -53,7 +59,11 @@
   font-size: 40px;
   margin-bottom: 20px;
   margin-right: 20px;
-  color: #ffa500;;
+  color: #ffa500;
+  @media (max-width: 360px) {
+    margin-right: 10px;
+    margin-bottom: 30px;
+  }
 }
 
 .tgr-card__title {
