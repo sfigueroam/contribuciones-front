@@ -24,8 +24,8 @@ import {MDLInitDirective} from './services/mdlinit.directive';
 import {ListadoPropiedadRolCuotasComponent} from './components/contribuciones/listado/listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DISABLE_NATIVE_VALIDITY_CHECKING, MdlModule} from '@angular-mdl/core';
-import {SugeridasPropiedadComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad/sugeridas-propiedad.component';
-import {SugeridasPropiedadRolComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
+import {PropiedadComponent} from './components/contribuciones/propiedades/components/propiedad/propiedad.component';
+import {PropiedadRolComponent} from './components/contribuciones/propiedades/components/propiedad-rol/propiedad-rol.component';
 import {ConfirmarDesasociarComponent} from './components/contribuciones/listado/modal/confirmar-desasociar/confirmar-desasociar.component';
 import {OopsComponent} from './components/oops/oops.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -54,8 +54,8 @@ registerLocaleData(localeEs, 'es');
     LeadingZeroPipe,
     MDLInitDirective,
     ListadoPropiedadRolCuotasComponent,
-    SugeridasPropiedadComponent,
-    SugeridasPropiedadRolComponent,
+    PropiedadComponent,
+    PropiedadRolComponent,
     ConfirmarDesasociarComponent,
     OopsComponent,
     MatchSorterPipe

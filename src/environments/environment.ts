@@ -69,6 +69,14 @@ export const environment = {
         size: 400,
         from: 0
       }
+    },
+    tiposPropiedades: {
+      url: urlsBase.elastic + '/tipo_propiedades/_search',
+      method: 'POST',
+      body: {
+        size: 400,
+        from: 0
+      }
     }
   }
 };

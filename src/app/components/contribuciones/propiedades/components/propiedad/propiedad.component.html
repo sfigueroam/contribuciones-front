@@ -5,7 +5,7 @@
   <span class="tgr-card__title--text">{{propiedad.direccion  | titlecase}} - {{propiedad.roles[0].comuna | titlecase}}</span>
 </div>
 <div class="tgr-card__body">
-  <div class="tgr-rol-row" app-sugeridas-propiedad-rol *ngFor="let rol of propiedad.roles"
+  <div class="tgr-rol-row" app-propiedad-rol *ngFor="let rol of propiedad.roles"
        [rol]="rol"
        (change)="updatePropiedades()"
   >

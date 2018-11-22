@@ -1,7 +1,8 @@
-@import "../sugeridas.component";
-.tgr-card__title--text{
-  color: $color-primary
+@import "../../sugeridas/sugeridas.component";
+.tgr-card__body {
+  padding: 0;
 }
+
 .material-icons {
   color: #5F5FC4;
   float: left;
@@ -9,4 +10,8 @@
   margin-right: 4px;
   margin-top: -6px;
   margin-bottom: -6px;
+}
+
+.tgr-th-icon {
+  top: 0px;
 }

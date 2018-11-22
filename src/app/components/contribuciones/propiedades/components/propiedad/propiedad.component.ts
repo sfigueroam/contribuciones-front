@@ -1,15 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
-import {SugeridasPropiedadRolComponent} from '../sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
+import {PropiedadRolComponent} from '../propiedad-rol/propiedad-rol.component';
 
 declare var componentHandler: any;
 
 @Component({
-  selector: '[app-sugeridas-propiedad]',
-  templateUrl: './sugeridas-propiedad.component.html',
-  styleUrls: ['./sugeridas-propiedad.component.scss']
+  selector: '[app-propiedad]',
+  templateUrl: './propiedad.component.html',
+  styleUrls: ['./propiedad.component.scss']
 })
-export class SugeridasPropiedadComponent implements OnInit {
+export class PropiedadComponent implements OnInit {
 
   @Input()
   propiedad: Propiedad;
@@ -17,8 +17,8 @@ export class SugeridasPropiedadComponent implements OnInit {
   @Output()
   change: EventEmitter<any> = new EventEmitter();
 
-  @ViewChildren(SugeridasPropiedadRolComponent)
-  sugeridasPropiedadRolComponentList: QueryList<SugeridasPropiedadRolComponent>;
+  @ViewChildren(PropiedadRolComponent)
+  sugeridasPropiedadRolComponentList: QueryList<PropiedadRolComponent>;
 
 
   cantidadRolesSeleccionadas: number;

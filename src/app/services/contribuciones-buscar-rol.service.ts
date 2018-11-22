@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {Propiedad} from '../domain/Propiedad';
 import {Rol} from '../domain/Rol';
 import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
+import {TipoPropiedad} from '../domain/TipoPropiedad';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,44 @@ import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
 export class ContribucionesBuscarRolService {
 
   localidad: Localidad[];
+  tiposPropiedades: TipoPropiedad[];
 
 
   constructor(private requestService: RequestService) {
+
+  }
+
+  getTiposPropiedades(): Promise<TipoPropiedad[]>{
+    if(this.tiposPropiedades !== undefined){
+      return new Promise((resolve, reject) => {
+        resolve(this.tiposPropiedades);
+      });
+    }
+
+    return new Promise((resolve, reject) => {
+      this.requestService.requestElastic(environment.elastic.tiposPropiedades).then((data: {
+          hits: {
+            hits: {
+              _source: TipoPropiedad
+            }[], total: number
+          }
+        }) => {
+          this.tiposPropiedades = [];
+          for (const local of data.hits.hits) {
+            const tipoPropiedad = new TipoPropiedad(local._source);
+            this.tiposPropiedades.push(tipoPropiedad);
+          }
+          this.tiposPropiedades.sort(((a, b) => {
+            const ac = a.descripcion.toLowerCase();
+            const bc = b.descripcion.toLowerCase();
+            return ac > bc ? 1 : (ac < bc ? -1 : 0);
+          }));
+          resolve(this.tiposPropiedades);
+        },
+        () => {
+          reject();
+        });
+    });
 
   }
 
@@ -53,17 +89,6 @@ export class ContribucionesBuscarRolService {
     });
   }
 
-  /*
-    getComuna(id: number): Localidad {
-      for (let local of this.localidad) {
-        if (local.id === id) {
-          return local;
-        }
-      }
-      return null;
-    }
-  */
-
   searchRolesForIds(idComuna: number, idRol: number, idSubRol: number): Promise<Propiedad> {
 
     return new Promise((resolve, reject) => {
@@ -84,8 +109,10 @@ export class ContribucionesBuscarRolService {
           let propiedad = new Propiedad();
           propiedad.direccion = bienRaiz.direccion;
           const rol = new Rol(bienRaiz);
+          rol.subrolId = idSubRol;
+          rol.rolId = idRol;
+          rol.rolComunaSiiCod = idComuna;
           propiedad.addRol(rol);
-
           resolve(propiedad);
         }
       }, () => {

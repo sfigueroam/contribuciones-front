@@ -3,6 +3,8 @@ import {ContribucionesBuscarRolService} from '../../../../services/contribucione
 import {Localidad} from '../../../../domain/Localidad';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Propiedad} from '../../../../domain/Propiedad';
+import {TipoPropiedad} from '../../../../domain/TipoPropiedad';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -11,12 +13,19 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AgregarNuevaComponent implements OnInit {
 
+  wait: boolean = false;
+  sinResultado: boolean = false;
+
   localidad: Localidad[];
+  tipoPropiedades: TipoPropiedad[];
   form: FormGroup;
   comuna: FormControl;
   rol: FormControl;
   subRol: FormControl;
 
+  tipoPropiedad: FormControl;
+
+  propiedades: Propiedad[];
 
   constructor(private contribucionesBuscarRolService: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService) {
@@ -29,6 +38,8 @@ export class AgregarNuevaComponent implements OnInit {
       rol: this.rol,
       subRol: this.subRol
     });
+
+    this.tipoPropiedad = new FormControl('', Validators.required);
 
   }
 
@@ -46,23 +57,59 @@ export class AgregarNuevaComponent implements OnInit {
         }
       });
     });
+
+    this.contribucionesBuscarRolService.getTiposPropiedades().then((data) => {
+      this.tipoPropiedades = data;
+    }, () => {
+      this.mdlSnackbarService.showSnackbar({
+        message: 'Ocurrió un error con tipo de propiedades',
+        timeout: 1500,
+        action: {
+          handler: () => {
+          },
+          text: 'ok'
+        }
+      });
+    });
   }
 
-  autoCompletarComuna(): void {
-
-  }
+  autoCompletar(): void {}
 
   buscar(): void {
 
     console.log(this.comuna.value);
     console.log(this.rol.value);
     console.log(this.subRol.value);
+    this.onWait();
     this.contribucionesBuscarRolService.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
       if (response === null) {
-        console.log('No se encontro respuesta');
+        this.sinResultado = true;
       } else {
+        this.propiedades = [];
+        this.propiedades.push(response);
         console.log(response);
       }
+      this.offWait();
+    },() => {
+      this.mdlSnackbarService.showSnackbar({
+        message: 'Ocurrió un error al buscar',
+        timeout: 1500,
+        action: {
+          handler: () => {
+          },
+          text: 'ok'
+        }
+      });
+      this.offWait();
     });
+  }
+
+  onWait(): void {
+    this.sinResultado = false;
+    this.wait = true;
+  }
+
+  offWait(): void {
+    this.wait = false;
   }
 }
