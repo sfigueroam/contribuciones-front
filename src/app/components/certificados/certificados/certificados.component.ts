@@ -25,6 +25,8 @@ export class CertificadosComponent implements OnInit {
 
   helpers: Helper[];
 
+  oTrue = true;
+
   constructor(private contributions: ContributionsService, private mdlSnackbarService: MdlSnackbarService) {
     this.deudas = new FormControl();
     this.pagos = new FormControl();
@@ -119,7 +121,7 @@ export class CertificadosComponent implements OnInit {
     this.helpers.forEach(
       helper => helper.controls.forEach(
         control => {
-          if(control.control.value){
+          if (control.control.value) {
             seleccionados++;
           }
         }

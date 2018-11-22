@@ -17,7 +17,7 @@ export class PitValidators {
   static dependency(dependsOnName: string, dependentName: string): (group: FormGroup) => ValidationErrors | null {
     return (group: FormGroup) => {
       if (group.controls[dependsOnName].value && !group.controls[dependentName].value) {
-        return {noneChecked: true};
+        return {dependencyFail: true};
       } else {
         return null;
       }

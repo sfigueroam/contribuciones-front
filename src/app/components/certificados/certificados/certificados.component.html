@@ -5,8 +5,8 @@
     <div class="tgr-card__body mdl-grid">
       <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
         <h5>Tipo de Certificado</h5>
-        <mdl-checkbox [mdl-ripple]="true" [formControl]="deudas">
-          Certificado deudas
+        <mdl-checkbox [(ngModel)]="oTrue" [mdl-ripple]="true" [formControl]="deudas">
+          Certificado deudas {{oTrue}}
         </mdl-checkbox>
         <mdl-checkbox [mdl-ripple]="true" [formControl]="pagos">
           Historial de pagos
@@ -45,7 +45,8 @@
           <p class="tgr-card__title"><i class="material-icons">{{h2.icon}}</i><span class="tgr-card__title--text">{{h2.rol.destPropiedad | titlecase}}</span>
           </p>
           <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-            {{h2.rol.rolComunaSiiCod | leadingZero:3}}-{{h2.rol.rolId | leadingZero:5}}-{{h2.rol.subrolId | leadingZero:3}}
+            {{h2.rol.rolComunaSiiCod | leadingZero:3}}-{{h2.rol.rolId | leadingZero:5}}-{{h2.rol.subrolId |
+            leadingZero:3}}
           </p>
         </div>
       </div>

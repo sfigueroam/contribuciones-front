@@ -28,7 +28,7 @@ import {SugeridasPropiedadComponent} from './components/contribuciones/propiedad
 import {SugeridasPropiedadRolComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
 import {ConfirmarDesasociarComponent} from './components/contribuciones/listado/modal/confirmar-desasociar/confirmar-desasociar.component';
 import {OopsComponent} from './components/oops/oops.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MdlSelectModule} from '@angular-mdl/select';
 
 
@@ -62,6 +62,7 @@ registerLocaleData(localeEs, 'es');
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     MdlModule,
