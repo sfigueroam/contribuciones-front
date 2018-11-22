@@ -8,6 +8,10 @@ export class Localidad {
 
   public constructor(init?: Partial<Localidad>) {
     Object.assign(this, init);
-    this.idSii = init.id_sii;
+    // @ts-ignore
+    if (init.id_sii) {
+      // @ts-ignore
+      this.idSii = init.id_sii;
+    }
   }
 }

@@ -52,16 +52,17 @@ export class ContribucionesBuscarRolService {
         });
     });
   }
-/*
-  getComuna(id: number): Localidad {
-    for (let local of this.localidad) {
-      if (local.id === id) {
-        return local;
+
+  /*
+    getComuna(id: number): Localidad {
+      for (let local of this.localidad) {
+        if (local.id === id) {
+          return local;
+        }
       }
+      return null;
     }
-    return null;
-  }
-*/
+  */
 
   searchRolesForIds(idComuna: number, idRol: number, idSubRol: number): Promise<Propiedad> {
 
@@ -77,14 +78,16 @@ export class ContribucionesBuscarRolService {
       this.requestService.request(environment.servicios.buscarBienRaiz, body).then((data: { curout: any[] }) => {
         if (data.curout.length === 0) {
           resolve(null);
-        }
-        const bienRaiz = data.curout[0];
-        let propiedad = new Propiedad();
-        propiedad.direccion = bienRaiz.direccion;
-        const rol = new Rol(bienRaiz);
-        propiedad.addRol(rol);
 
-        resolve(propiedad);
+        } else {
+          const bienRaiz = data.curout[0];
+          let propiedad = new Propiedad();
+          propiedad.direccion = bienRaiz.direccion;
+          const rol = new Rol(bienRaiz);
+          propiedad.addRol(rol);
+
+          resolve(propiedad);
+        }
       }, () => {
         reject();
       });

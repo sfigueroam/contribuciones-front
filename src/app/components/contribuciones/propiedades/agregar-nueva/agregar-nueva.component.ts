@@ -18,7 +18,6 @@ export class AgregarNuevaComponent implements OnInit {
   subRol: FormControl;
 
 
-
   constructor(private contribucionesBuscarRolService: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService) {
     this.comuna = new FormControl('', Validators.required);
@@ -41,7 +40,8 @@ export class AgregarNuevaComponent implements OnInit {
         message: 'Ocurrió un error al obtener las comunas',
         timeout: 1500,
         action: {
-          handler: () => {},
+          handler: () => {
+          },
           text: 'ok'
         }
       });
@@ -54,14 +54,15 @@ export class AgregarNuevaComponent implements OnInit {
 
   buscar(): void {
 
-
-
-
     console.log(this.comuna.value);
     console.log(this.rol.value);
     console.log(this.subRol.value);
     this.contribucionesBuscarRolService.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
-      console.log(response);
-    })
+      if (response === null) {
+        console.log('No se encontro respuesta');
+      } else {
+        console.log(response);
+      }
+    });
   }
 }
