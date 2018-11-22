@@ -19,18 +19,18 @@ import {PropiedadesComponent} from './components/contribuciones/propiedades/prop
 import {ConfirmacionComponent} from './components/certificados/confirmacion/confirmacion.component';
 import {ListadoPropiedadComponent} from './components/contribuciones/listado/listado-propiedad/listado-propiedad.component';
 import {ListadoPropiedadRolComponent} from './components/contribuciones/listado/listado-propiedad-rol/listado-propiedad-rol.component';
-import {LeadingZeroPipe} from './pipe/leading-zero.pipe';
+import {LeadingZeroPipe} from './pipes/leading-zero.pipe';
 import {MDLInitDirective} from './services/mdlinit.directive';
 import {ListadoPropiedadRolCuotasComponent} from './components/contribuciones/listado/listado-propiedad-rol-cuotas/listado-propiedad-rol-cuotas.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DISABLE_NATIVE_VALIDITY_CHECKING, MdlModule} from '@angular-mdl/core';
-import {SugeridasPropiedadComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad/sugeridas-propiedad.component';
-import {SugeridasPropiedadRolComponent} from './components/contribuciones/propiedades/sugeridas/sugeridas-propiedad-rol/sugeridas-propiedad-rol.component';
+import {PropiedadComponent} from './components/contribuciones/propiedades/components/propiedad/propiedad.component';
+import {PropiedadRolComponent} from './components/contribuciones/propiedades/components/propiedad-rol/propiedad-rol.component';
 import {ConfirmarDesasociarComponent} from './components/contribuciones/listado/modal/confirmar-desasociar/confirmar-desasociar.component';
 import {OopsComponent} from './components/oops/oops.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MdlSelectModule} from '@angular-mdl/select';
-
+import {MatchSorterPipe} from './pipes/match-sorter.pipe';
 
 registerLocaleData(localeEs, 'es');
 
@@ -54,10 +54,11 @@ registerLocaleData(localeEs, 'es');
     LeadingZeroPipe,
     MDLInitDirective,
     ListadoPropiedadRolCuotasComponent,
-    SugeridasPropiedadComponent,
-    SugeridasPropiedadRolComponent,
+    PropiedadComponent,
+    PropiedadRolComponent,
     ConfirmarDesasociarComponent,
-    OopsComponent
+    OopsComponent,
+    MatchSorterPipe
   ],
   imports: [
     BrowserModule,

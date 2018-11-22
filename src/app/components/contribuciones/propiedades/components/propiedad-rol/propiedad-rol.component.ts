@@ -2,11 +2,11 @@ import {AfterContentInit, Component, EventEmitter, Input, OnInit, Output} from '
 import {Rol} from '../../../../../domain/Rol';
 
 @Component({
-  selector: '[app-sugeridas-propiedad-rol]',
-  templateUrl: './sugeridas-propiedad-rol.component.html',
-  styleUrls: ['./sugeridas-propiedad-rol.component.scss']
+  selector: '[app-propiedad-rol]',
+  templateUrl: './propiedad-rol.component.html',
+  styleUrls: ['./propiedad-rol.component.scss']
 })
-export class SugeridasPropiedadRolComponent implements OnInit, AfterContentInit {
+export class PropiedadRolComponent implements OnInit, AfterContentInit {
 
 
   @Input()

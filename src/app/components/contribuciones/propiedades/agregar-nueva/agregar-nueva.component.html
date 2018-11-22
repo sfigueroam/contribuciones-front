@@ -1,4 +1,8 @@
-<div class="tgr-content tgr-search mdl-shadow--3dp">
+<div class="tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait" appMdlInit>
+  <div class="tgr-cell-wait">
+    <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
+    </div>
+  </div>
   <div class="tgr-card__head">
     <div class="tgr-switch">
       <!-- <button class="tgr-switch-active">
@@ -7,22 +11,19 @@
             <button class="mdl-button mdl-js-button">
                  Rol
              </button> -->
-
-
       <button class="mdl-button mdl-js-button">
         Dirección
       </button>
       <button class="tgr-switch-active">
         Rol
       </button>
-
     </div>
-
 
     <span class="tgr-card__title--text">Busqueda de Propiedades</span>
   </div>
-  <div class="tgr-card__body hidden">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+  <div class="tgr-card__body  ">
+
+    <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
       <input type="text" value="" class="mdl-textfield__input" id="sample4" readonly>
       <input type="hidden" value="" name="sample4">
       <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
@@ -44,6 +45,33 @@
         <li class="mdl-menu__item" data-val="other">Otro</li>
       </ul>
     </div>
+    -->
+
+    <mdl-select #autocompleteSelectComunas [class.is-invalid]="comuna.touched && comuna.invalid"
+                [autocomplete]="true"
+                (change)="autoCompletar()"
+                error-msg="Debe seleccionar una Comuna"
+                [formControl]="comuna"
+                label="Comuna"
+                floating-label>
+      <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelectComunas.searchQuery"
+                  [value]="local.idSii">{{local.comuna | titlecase}}
+      </mdl-option>
+    </mdl-select>
+
+    <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
+                [autocomplete]="true"
+                (change)="autoCompletar()"
+                error-msg="Debe seleccionar un tipo de propiedad"
+                [formControl]="tipoPropiedad"
+                label="Tipo Propiedad"
+                floating-label>
+      <mdl-option *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+                  [value]="tipo.id">{{tipo.descripcion | titlecase}}
+      </mdl-option>
+    </mdl-select>
+
+
     <div
       class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label tgr-textfield--full clase-->>is-ssuggesting">
       <input class="mdl-textfield__input" type="text" id="calle" value="">
@@ -61,123 +89,69 @@
         <li class="tgr-suggestion">julio villane</li>
       </ul>
     </div>
-  </div>
-  <div class="tgr-card__body">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-      <input type="text" value="" class="mdl-textfield__input" id="sample4" readonly>
-      <input type="hidden" value="" name="sample4">
-      <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-      <label for="sample4" class="mdl-textfield__label">Comuna</label>
-      <ul for="sample4" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-        <li class="mdl-menu__item" data-val="DEU">La Reina</li>
-        <li class="mdl-menu__item" data-val="BLR">Providencia</li>
-        <li class="mdl-menu__item" data-val="RUS">Renca</li>
-      </ul>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label tgr-textfield">
-      <input class="mdl-textfield__input" type="text">
-      <label class="mdl-textfield__label" for="calle">Rol</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label tgr-textfield">
-      <input class="mdl-textfield__input" type="text">
-      <label class="mdl-textfield__label" for="calle">Sub rol</label>
+    <div class="tgr-card__footer">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+              [disabled]="form.invalid">Buscar
+      </button>
     </div>
   </div>
-  <div class="tgr-card__footer">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="button">Buscar</button>
+  <div class="content tgr-card__body hidden"  >
+    <form [formGroup]="form" (ngSubmit)="buscar()">
+      <div class="tgr-card__body ">
+
+
+        <mdl-select #autocompleteSelect [class.is-invalid]="comuna.touched && comuna.invalid"
+                    [autocomplete]="true"
+                    (change)="autoCompletar()"
+                    error-msg="Debe seleccionar una Comuna"
+                    [formControl]="comuna"
+                    label="Comuna"
+                    floating-label>
+          <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelect.searchQuery"
+                      [value]="local.idSii">{{local.comuna | titlecase}}
+          </mdl-option>
+        </mdl-select>
+
+        <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
+                       type="number"
+                       id="rol"
+                       name="rol"
+                       label="Rol"
+                       [formControl]="rol"
+
+                       error-msg="Debe ingresar un Rol"
+                       floating-label
+        ></mdl-textfield>
+        <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
+                       type="number"
+                       id="subRol"
+                       name="subRol"
+                       label="Sub Rol"
+                       [formControl]="subRol"
+                       error-msg="Debe ingresar un Sub Rol"
+                       floating-label
+        ></mdl-textfield>
+      </div>
+      <div class="tgr-card__footer">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+                [disabled]="form.invalid">Buscar
+        </button>
+      </div>
+    </form>
   </div>
 </div>
+
 <div class="tgr-results">
-  <div class="tgr-content mdl-shadow--3dp">
-    <div class="tgr-card__head">
-      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-      </label>
-      <span class="tgr-card__title--text">Avenida Miguel Claro 1074</span>
-    </div>
-    <div class="tgr-card__body">
-      <div class="tgr-rol-row">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-          <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-        </label>
-        <p class="tgr-card__title"><i class="material-icons">meeting_room</i><span
-          class="tgr-card__title--text">Bodega</span></p>
-        <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-          082-01011-003
-        </p>
-      </div>
-
-      <div class="tgr-rol-row">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-          <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-        </label>
-        <p class="tgr-card__title"><i class="material-icons">meeting_room</i><span
-          class="tgr-card__title--text">Bodega</span></p>
-        <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-          082-01011-003
-        </p>
-      </div>
-
-      <div class="tgr-rol-row">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-          <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-        </label>
-        <p class="tgr-card__title"><i class="material-icons">meeting_room</i><span
-          class="tgr-card__title--text">Bodega</span></p>
-        <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-          082-01011-003
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="tgr-content mdl-shadow--3dp">
-    <div class="tgr-card__head">
-      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-      </label>
-      <span class="tgr-card__title--text">Avenida Miguel Claro 1074</span>
-    </div>
-    <div class="tgr-card__body">
-      <div class="tgr-rol-row">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-          <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-        </label>
-        <p class="tgr-card__title"><i class="material-icons">meeting_room</i><span
-          class="tgr-card__title--text">Bodega</span></p>
-        <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-          082-01011-003
-        </p>
-      </div>
-
-      <div class="tgr-rol-row">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-          <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-        </label>
-        <p class="tgr-card__title"><i class="material-icons">meeting_room</i><span
-          class="tgr-card__title--text">Bodega</span></p>
-        <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-          082-01011-003
-        </p>
-      </div>
-
-      <div class="tgr-rol-row">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-          <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-        </label>
-        <p class="tgr-card__title"><i class="material-icons">meeting_room</i><span
-          class="tgr-card__title--text">Bodega</span></p>
-        <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-          082-01011-003
-        </p>
-      </div>
-
-    </div>
-
+  <h3 [class.hidden]="!sinResultado">Sin resultados en la busqueda</h3>
+  <div class="tgr-content mdl-shadow--3dp" app-propiedad *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+       (change)="updateSeleccionadaTotal()" appMdlInit>
   </div>
 </div>
+
+
+
+
+
 <div class="tgr-actions">
   <div class="tgr-actions__content">
     <div class="tgr-pay">

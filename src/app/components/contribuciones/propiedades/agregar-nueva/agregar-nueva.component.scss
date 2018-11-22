@@ -116,3 +116,27 @@
     width: 100%;
   }
 }
+
+// capa de espera
+.tgr-cell-wait {
+  display:none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: $color-advice-background;
+  z-index: 300;
+}
+.wait > .tgr-cell-wait {
+  display: block;
+}
+.tgr-cell-wait .mdl-spinner {
+  left: calc(50% - 20px);
+  margin-top: 10%;
+}
+.tgr-cell-wait__feedback {
+  padding: 5px 32px;
+  text-align: center;
+  color: #666;
+}

@@ -57,13 +57,21 @@ export const environment = {
     },
     buscarBienRaiz: {
       url: urlsBase.publica,
-      path: pathBase.bienRaiz + '/obtener/rolin',
+      path: pathBase.bienRaiz + '/bienraiz/obtener/rolin',
       method: 'POST'
     }
   },
   elastic: {
     localidad: {
       url: urlsBase.elastic + '/localidad/_search',
+      method: 'POST',
+      body: {
+        size: 400,
+        from: 0
+      }
+    },
+    tiposPropiedades: {
+      url: urlsBase.elastic + '/tipo_propiedades/_search',
       method: 'POST',
       body: {
         size: 400,
