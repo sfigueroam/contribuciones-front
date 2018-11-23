@@ -77,7 +77,11 @@ export const environment = {
         size: 400,
         from: 0
       }
-    }
+    },
+    propiedades: {
+      url: urlsBase.elastic + '/propiedades/_search',
+      method: 'POST'
+    },
   }
 };
 

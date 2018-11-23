@@ -6,6 +6,7 @@ import {Propiedad} from '../domain/Propiedad';
 import {Rol} from '../domain/Rol';
 import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
 import {TipoPropiedad} from '../domain/TipoPropiedad';
+import {Direccion} from '../domain/Direccion';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class ContribucionesBuscarRolService {
 
   }
 
-  getTiposPropiedades(): Promise<TipoPropiedad[]>{
-    if(this.tiposPropiedades !== undefined){
+  getTiposPropiedades(): Promise<TipoPropiedad[]> {
+    if (this.tiposPropiedades !== undefined) {
       return new Promise((resolve, reject) => {
         resolve(this.tiposPropiedades);
       });
@@ -108,12 +109,70 @@ export class ContribucionesBuscarRolService {
           const bienRaiz = data.curout[0];
           let propiedad = new Propiedad();
           propiedad.direccion = bienRaiz.direccion;
+          propiedad.idDireccion = idComuna + '-' + idRol;
           const rol = new Rol(bienRaiz);
           rol.subrolId = idSubRol;
           rol.rolId = idRol;
           rol.rolComunaSiiCod = idComuna;
           propiedad.addRol(rol);
           resolve(propiedad);
+        }
+      }, () => {
+        reject();
+      });
+    });
+  }
+
+
+  searchDireccion(idComuna: number, tipoPropiedad: string, search: string): Promise<Direccion[]> {
+    let body = {
+      'size': 20,
+      'query': {
+        'bool': {
+          'must': [
+            {
+              'match': {
+                'direccion': {
+                  'query': search
+                }
+              }
+            },
+            {
+              'match': {
+                'comuna': {
+                  'query': idComuna.toString()
+                }
+              }
+            },
+            {
+              'match': {
+                'id_dest_propiedad': {
+                  'query': tipoPropiedad
+                }
+              }
+            }
+          ]
+        }
+      }
+    };
+
+    let propiedades = {
+      url: environment.elastic.propiedades.url,
+      method: environment.elastic.propiedades.method,
+      body: body
+    };
+
+    let direcciones = [];
+    return new Promise((resolve, reject) => {
+      this.requestService.requestElastic(propiedades).then((data: { hits: { hits: { _source: Direccion }[] } }) => {
+        if (data.hits.hits.length === 0) {
+          resolve(null);
+        } else {
+          for (let direc of data.hits.hits) {
+            let direccion = new Direccion(direc._source);
+            direcciones.push(direccion);
+          }
+          resolve(direcciones);
         }
       }, () => {
         reject();

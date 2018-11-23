@@ -5,9 +5,11 @@ export class Propiedad {
 
   public roles: Rol[];
   public direccion: string;
+  public idDireccion: string;
 
   constructor() {
     this.roles = [];
+    this.idDireccion = '';
   }
 
   calcularTotalCondonado(): number {
@@ -53,11 +55,24 @@ export class Propiedad {
 
     return slimName;
   }
+
   desasociarRol(rol: Rol) {
-    this.roles = this.roles.filter( (r) => {
+    this.roles = this.roles.filter((r) => {
       return r.rol !== rol.rol;
     });
 
 
+  }
+
+  existRol(rol: number): boolean {
+    console.log('!!existRol');
+    for (let r of this.roles) {
+      console.log('r.rol', r.rol);
+      console.log('rol', rol);
+      if (r.rol === rol) {
+        return true;
+      }
+    }
+    return false;
   }
 }

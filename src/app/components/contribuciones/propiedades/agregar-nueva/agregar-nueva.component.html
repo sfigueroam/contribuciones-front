@@ -5,98 +5,70 @@
   </div>
   <div class="tgr-card__head">
     <div class="tgr-switch">
-      <!-- <button class="tgr-switch-active">
-                Dirección
-            </button>
-            <button class="mdl-button mdl-js-button">
-                 Rol
-             </button> -->
-      <button class="mdl-button mdl-js-button">
+
+      <button class="mdl-button mdl-js-button" [class.tgr-switch-active]="switchActive === 'direccion'"
+              (click)="changeSwith('direccion')">
         Dirección
       </button>
-      <button class="tgr-switch-active">
+      <button class="mdl-button mdl-js-button " [class.tgr-switch-active]="switchActive === 'rol'"
+              (click)="changeSwith('rol')">
         Rol
       </button>
     </div>
 
     <span class="tgr-card__title--text">Busqueda de Propiedades</span>
   </div>
-  <div class="tgr-card__body  ">
+  <form [formGroup]="formDireccion" (ngSubmit)="buscarDireccion()">
+    <div class="tgr-card__body " [class.hidden]="switchActive === 'rol'">
+      <mdl-select #autocompleteSelectComunas [class.is-invalid]="comunaDireccion.touched && comunaDireccion.invalid"
+                  [autocomplete]="true"
+                  (change)="autoCompletar()"
+                  error-msg="Debe seleccionar una Comuna"
+                  [formControl]="comunaDireccion"
+                  label="Comuna"
+                  floating-label>
+        <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelectComunas.searchQuery"
+                    [value]="local.id">{{local.comuna | titlecase}}
+        </mdl-option>
+      </mdl-select>
 
-    <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-      <input type="text" value="" class="mdl-textfield__input" id="sample4" readonly>
-      <input type="hidden" value="" name="sample4">
-      <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-      <label for="sample4" class="mdl-textfield__label">Comuna</label>
-      <ul for="sample4" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-        <li class="mdl-menu__item" data-val="DEU">La Reina</li>
-        <li class="mdl-menu__item" data-val="BLR">Providencia</li>
-        <li class="mdl-menu__item" data-val="RUS">Renca</li>
-      </ul>
+      <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
+                  [autocomplete]="true"
+                  (change)="autoCompletar()"
+                  (inputChange)="inputDirecciones()"
+                  error-msg="Debe seleccionar un tipo de propiedad"
+                  [formControl]="tipoPropiedad"
+                  label="Tipo Propiedad"
+                  floating-label>
+        <mdl-option
+          *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+          [value]="tipo.id">{{tipo.descripcion | titlecase}}
+        </mdl-option>
+      </mdl-select>
+
+      <mdl-select #autocompleteSelectDirecciones [class.is-invalid]="direccion.touched && direccion.invalid"
+                  [autocomplete]="true"
+                  (inputChange)="inputDirecciones($event)"
+                  error-msg="Debe seleccionar un tipo de propiedad"
+                  [formControl]="direccion"
+                  label="Direccion"
+                  floating-label
+      >
+        <mdl-option
+          *ngFor="let direccion of direcciones | matchSorter:'direccion':autocompleteSelectDirecciones.searchQuery"
+          [value]="direccion.id">{{direccion.direccion | titlecase}}
+        </mdl-option>
+      </mdl-select>
+
+      <div class="tgr-card__footer">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+                >Buscar
+        </button>
+      </div>
     </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-      <input type="text" value="" class="mdl-textfield__input" id="sample5" readonly>
-      <input type="hidden" value="" name="sample5">
-      <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-      <label for="sample5" class="mdl-textfield__label">Tipo de propiedad</label>
-      <ul for="sample5" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-        <li class="mdl-menu__item" data-val="casa">Casa</li>
-        <li class="mdl-menu__item" data-val="depto">Departamento</li>
-        <li class="mdl-menu__item" data-val="other">Otro</li>
-      </ul>
-    </div>
-    -->
-
-    <mdl-select #autocompleteSelectComunas [class.is-invalid]="comuna.touched && comuna.invalid"
-                [autocomplete]="true"
-                (change)="autoCompletar()"
-                error-msg="Debe seleccionar una Comuna"
-                [formControl]="comuna"
-                label="Comuna"
-                floating-label>
-      <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelectComunas.searchQuery"
-                  [value]="local.idSii">{{local.comuna | titlecase}}
-      </mdl-option>
-    </mdl-select>
-
-    <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
-                [autocomplete]="true"
-                (change)="autoCompletar()"
-                error-msg="Debe seleccionar un tipo de propiedad"
-                [formControl]="tipoPropiedad"
-                label="Tipo Propiedad"
-                floating-label>
-      <mdl-option *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
-                  [value]="tipo.id">{{tipo.descripcion | titlecase}}
-      </mdl-option>
-    </mdl-select>
-
-
-    <div
-      class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label tgr-textfield--full clase-->>is-ssuggesting">
-      <input class="mdl-textfield__input" type="text" id="calle" value="">
-      <label class="mdl-textfield__label" for="calle">Dirección</label>
-      <ul class="tgr-suggestions mdl-shadow--3dp">
-        <li class="tgr-suggestion">julio</li>
-        <li class="tgr-suggestion">julio cepeda</li>
-        <li class="tgr-suggestion">julio guzman</li>
-        <li class="tgr-suggestion">julio verne</li>
-        <li class="tgr-suggestion">julio iglesias</li>
-        <li class="tgr-suggestion">julio cortazar</li>
-        <li class="tgr-suggestion">julio jones</li>
-        <li class="tgr-suggestion">julio alvarez</li>
-        <li class="tgr-suggestion">julio jaramillo</li>
-        <li class="tgr-suggestion">julio villane</li>
-      </ul>
-    </div>
-    <div class="tgr-card__footer">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
-              [disabled]="form.invalid">Buscar
-      </button>
-    </div>
-  </div>
-  <div class="content tgr-card__body hidden"  >
-    <form [formGroup]="form" (ngSubmit)="buscar()">
+  </form>
+  <div class="content tgr-card__body " [class.hidden]="switchActive === 'direccion'">
+    <form [formGroup]="formRol" (ngSubmit)="buscarRol()">
       <div class="tgr-card__body ">
 
 
@@ -108,7 +80,7 @@
                     label="Comuna"
                     floating-label>
           <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelect.searchQuery"
-                      [value]="local.idSii">{{local.comuna | titlecase}}
+                      [value]="local.id">{{local.comuna | titlecase}}
           </mdl-option>
         </mdl-select>
 
@@ -118,7 +90,6 @@
                        name="rol"
                        label="Rol"
                        [formControl]="rol"
-
                        error-msg="Debe ingresar un Rol"
                        floating-label
         ></mdl-textfield>
@@ -134,7 +105,7 @@
       </div>
       <div class="tgr-card__footer">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
-                [disabled]="form.invalid">Buscar
+                [disabled]="formRol.invalid">Buscar
         </button>
       </div>
     </form>
@@ -147,9 +118,6 @@
        (change)="updateSeleccionadaTotal()" appMdlInit>
   </div>
 </div>
-
-
-
 
 
 <div class="tgr-actions">
