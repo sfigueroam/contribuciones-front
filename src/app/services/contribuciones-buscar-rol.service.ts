@@ -128,6 +128,9 @@ export class ContribucionesBuscarRolService {
   }
 */
   searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size:number): Promise<Direccion[]> {
+
+
+
     let body = {
       'size': size,
       'query': {
