@@ -122,11 +122,14 @@ export class ContribucionesBuscarRolService {
       });
     });
   }
-
-
-  searchDireccion(idComuna: number, tipoPropiedad: string, search: string): Promise<Direccion[]> {
+/*
+  parceDireccionToPropiedades(direcciones: Direccion[]): any {
+    return null;
+  }
+*/
+  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size:number): Promise<Direccion[]> {
     let body = {
-      'size': 20,
+      'size': size,
       'query': {
         'bool': {
           'must': [

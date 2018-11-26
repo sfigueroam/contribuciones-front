@@ -6,6 +6,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {TipoPropiedad} from '../../../../domain/TipoPropiedad';
 import {Direccion} from '../../../../domain/Direccion';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -16,10 +17,12 @@ export class AgregarNuevaComponent implements OnInit {
 
   wait: boolean = false;
   sinResultado: boolean = false;
+  searchDireccion: boolean = false;
 
   localidad: Localidad[];
   tipoPropiedades: TipoPropiedad[];
   direcciones: Direccion[];
+  direccionModel: string;
 
 
   formRol: FormGroup;
@@ -97,25 +100,16 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
-  buscarDireccion(dir?: string) {
-
-
-    console.log(this.comunaDireccion.value);
-    console.log(this.tipoPropiedad.value);
-    console.log(this.direccion.value);
-
-
-
-    if (!dir) {
-      this.direccion.value;
-    }
-
-    this.contribucionesBuscarRolService.searchDireccion(this.comunaDireccion.value, this.tipoPropiedad.value, dir).then((lista) => {
-      this.direcciones = lista;
-      console.log(lista);
-    },
+  buscarDireccionSugeridos() {
+    const size = environment.sizeResultSuggested;
+    this.contribucionesBuscarRolService.searchDireccion(this.comunaDireccion.value,
+      this.tipoPropiedad.value,
+      this.direccion.value,
+      size).then((lista) => {
+        this.direcciones = lista;
+      },
       () => {
-      this.error('A ocurrido un error al buscar');
+        this.error('A ocurrido un error al buscar');
       });
   }
 
@@ -132,16 +126,24 @@ export class AgregarNuevaComponent implements OnInit {
     this.switchActive = active;
   }
 
-  inputDirecciones(data: string) {
-    console.log('direcciones', data);
-    if (data.length > 2) {
-      this.buscarDireccion(data);
+  inputDirecciones(event: any) {
+    console.log(event.keyCode);
+    if (event.keyCode === 13) {
+      this.searchDireccion = false;
+    } else {
+      this.searchDireccion = true;
+      if (this.direccion.value.length > 2) {
+        this.buscarDireccionSugeridos();
+      } else {
+        this.direcciones = null;
+      }
     }
+
+    console.log(this.searchDireccion);
   }
 
 
   private agregarPropiedad(response: Propiedad) {
-    console.log('agregar la propiedad', response);
     if (this.propiedades === undefined || this.propiedades == null) {
       this.propiedades = [];
     }
@@ -175,5 +177,22 @@ export class AgregarNuevaComponent implements OnInit {
         text: 'ok'
       }
     });
+  }
+
+  buscarDireccion() {
+    this.searchDireccion = false;
+    const size = environment.sizeResultPage;
+    this.contribucionesBuscarRolService.searchDireccion(this.comunaDireccion.value,
+      this.tipoPropiedad.value,
+      this.direccion.value,
+      size).then((lista) => {
+        for (let dir of lista){
+          console.log(dir);
+
+        }
+      },
+      () => {
+        this.error('A ocurrido un error al buscar');
+      });
   }
 }

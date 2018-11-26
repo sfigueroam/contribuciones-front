@@ -42,7 +42,7 @@
         Quitar roles
       </button>
     </div>
-    <div class="tgr-pay">
+    <div class="tgr-pay"  *ngIf="propiedades && propiedades.length !== 0">
       <div class="tgr-pay__label">
         Cuotas seleccionadas {{cuotasSeleccionadas}} (de {{cuotasTotal}})
       </div>

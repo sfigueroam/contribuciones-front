@@ -259,7 +259,11 @@ export class ListadoComponent implements OnInit, AfterViewInit {
             if (force === undefined || !force) {
               this.mostrarAlerta = true;
             }
-            this.cantidadRolesNoAsociados = data.length;
+
+            this.cantidadRolesNoAsociados = 0;
+            for (let propRelacionado of data){
+              this.cantidadRolesNoAsociados = this.cantidadRolesNoAsociados + propRelacionado.roles.length;
+            }
           } else {
             this.mostrarAlerta = false;
           }

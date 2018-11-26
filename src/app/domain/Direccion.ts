@@ -9,6 +9,9 @@ export class Direccion {
 
   public constructor(init?: Partial<Direccion>) {
     Object.assign(this, init);
+    if(init.direccion !== undefined){
+      this.direccion = init.direccion.trim();
+    }
     // @ts-ignore
     if(init.id_dest_propiedad !== undefined) {
       // @ts-ignore

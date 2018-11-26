@@ -75,4 +75,6 @@ export class Propiedad {
     }
     return false;
   }
+
+
 }
