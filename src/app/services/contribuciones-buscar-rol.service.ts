@@ -122,45 +122,61 @@ export class ContribucionesBuscarRolService {
       });
     });
   }
-/*
-  parceDireccionToPropiedades(direcciones: Direccion[]): any {
-    return null;
-  }
-*/
-  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size:number): Promise<Direccion[]> {
 
+  /*
+    parceDireccionToPropiedades(direcciones: Direccion[]): any {
+      return null;
+    }
+  */
+  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
 
+    let filtros = this.wildcard(search);
+    let body = {size, query: {bool: {must: []}}};
 
-    let body = {
-      'size': size,
-      'query': {
-        'bool': {
-          'must': [
-            {
-              'match': {
-                'direccion': {
-                  'query': search
-                }
-              }
-            },
-            {
-              'match': {
-                'comuna': {
-                  'query': idComuna.toString()
-                }
-              }
-            },
-            {
-              'match': {
-                'id_dest_propiedad': {
-                  'query': tipoPropiedad
-                }
-              }
-            }
-          ]
+    body.size = size;
+    body.query.bool.must = [];
+
+    let direccion = {
+      'match': {
+        'direccion': {
+          'query': search,
+          'operator': 'and'
         }
       }
     };
+
+    body.query.bool.must.push(direccion);
+    for (const fil of filtros) {
+      let wild = {
+        'wildcard': {
+          'direccion': fil
+        }
+      };
+      body.query.bool.must.push(wild);
+      if(idComuna){
+        let searchComuna = {
+          'match': {
+            'comuna': {
+              'query': idComuna.toString()
+            }
+          }
+        };
+        body.query.bool.must.push(searchComuna);
+      }
+
+      if(tipoPropiedad){
+        let searchPropiedad = {
+          'match': {
+            'id_dest_propiedad': {
+              'query': tipoPropiedad
+            }
+          }
+        };
+        body.query.bool.must.push(searchPropiedad);
+      }
+
+
+    }
 
     let propiedades = {
       url: environment.elastic.propiedades.url,
@@ -184,5 +200,23 @@ export class ContribucionesBuscarRolService {
         reject();
       });
     });
+  }
+
+  wildcard(search: string): string[] {
+    let busqueda = [];
+    const campos: string[] = search.trim().toLowerCase().split(' ');
+    if (campos.length === 1) {
+      busqueda.push(campos[0] + '*');
+    } else {
+      let i = 0;
+      while (campos.length > i + 1) {
+        busqueda.push(campos[i].toLowerCase() + '*' + campos[i + 1].toLowerCase());
+        i++;
+      }
+      if ((campos.length % 2) === 1 && campos[i].toLowerCase().trim().length > 0) {
+        busqueda.push(campos[i].toLowerCase());
+      }
+    }
+    return busqueda;
   }
 }

@@ -22,7 +22,7 @@
     <div class="tgr-card__body " [class.hidden]="switchActive === 'rol'">
       <mdl-select #autocompleteSelectComunas [class.is-invalid]="comunaDireccion.touched && comunaDireccion.invalid"
                   [autocomplete]="true"
-                  (change)="autoCompletar()"
+                  (change)="autoCompletarComuna()"
                   error-msg="Debe seleccionar una Comuna"
                   [formControl]="comunaDireccion"
                   label="Comuna"
@@ -34,7 +34,7 @@
 
       <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
                   [autocomplete]="true"
-                  (change)="autoCompletar()"
+                  (change)="autoCompletarPropiedad()"
                   error-msg="Debe seleccionar un tipo de propiedad"
                   [formControl]="tipoPropiedad"
                   label="Tipo Propiedad"
