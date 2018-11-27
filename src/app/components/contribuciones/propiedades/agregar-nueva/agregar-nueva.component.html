@@ -20,18 +20,6 @@
   </div>
   <form [formGroup]="formDireccion" (submit)="buscarDireccion()">
     <div class="tgr-card__body " [class.hidden]="switchActive === 'rol'">
-      <mdl-select #autocompleteSelectComunas [class.is-invalid]="comunaDireccion.touched && comunaDireccion.invalid"
-                  [autocomplete]="true"
-                  (change)="autoCompletarComuna()"
-                  error-msg="Debe seleccionar una Comuna"
-                  [formControl]="comunaDireccion"
-                  label="Comuna"
-                  floating-label>
-        <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelectComunas.searchQuery"
-                    [value]="local.id">{{local.comuna | titlecase}}
-        </mdl-option>
-      </mdl-select>
-
       <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
                   [autocomplete]="true"
                   (change)="autoCompletarPropiedad()"
@@ -52,7 +40,7 @@
                (keyup)="inputDirecciones($event)"
                (ngModel)="direccionModel"
                formControlName="direccion">
-        <label class="mdl-textfield__label" for="calle">Dirección</label>
+        <label class="mdl-textfield__label" for="direccion">Dirección</label>
         <ul class="tgr-suggestions mdl-shadow--3dp">
           <li *ngFor="let dire of direcciones | matchSorter:'direccion'"
               (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false">{{dire.direccion |
@@ -72,8 +60,6 @@
   <div class="content tgr-card__body " [class.hidden]="switchActive === 'direccion'">
     <form [formGroup]="formRol" (ngSubmit)="buscarRol()">
       <div class="tgr-card__body ">
-
-
         <mdl-select #autocompleteSelect [class.is-invalid]="comuna.touched && comuna.invalid"
                     [autocomplete]="true"
                     (change)="autoCompletar()"
@@ -82,10 +68,9 @@
                     label="Comuna"
                     floating-label>
           <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelect.searchQuery"
-                      [value]="local.idSii">{{local.comuna | titlecase}}
+                      [value]="local.idSii">{{local.comuna | titlecase}} ({{local.idSii}})
           </mdl-option>
         </mdl-select>
-
         <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
                        type="number"
                        id="rol"
@@ -94,7 +79,7 @@
                        [formControl]="rol"
                        error-msg="Debe ingresar un Rol"
                        floating-label
-        ></mdl-textfield>
+        ></mdl-textfield> -
         <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
                        type="number"
                        id="subRol"
@@ -104,6 +89,7 @@
                        error-msg="Debe ingresar un Sub Rol"
                        floating-label
         ></mdl-textfield>
+
       </div>
       <div class="tgr-card__footer">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"

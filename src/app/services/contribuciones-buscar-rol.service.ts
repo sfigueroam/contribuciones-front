@@ -130,6 +130,7 @@ export class ContribucionesBuscarRolService {
   */
   searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
 
+    search = search.replace(',', ' , ');
     let filtros = this.wildcard(search);
     let body = {size, query: {bool: {must: []}}};
 

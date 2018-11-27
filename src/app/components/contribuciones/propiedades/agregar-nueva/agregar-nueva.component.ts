@@ -52,7 +52,6 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
 
-    this.comunaDireccion = new FormControl('', Validators.required);
     this.tipoPropiedad = new FormControl('', Validators.required);
 
     const validatorsDireccion = Validators.compose([
@@ -62,7 +61,6 @@ export class AgregarNuevaComponent implements OnInit {
     this.direccion = new FormControl('', validatorsDireccion);
 
     this.formDireccion = new FormGroup({
-      comunaDireccion: this.comunaDireccion,
       tipoPropiedad: this.tipoPropiedad,
       direccion: this.direccion
     });
@@ -184,7 +182,7 @@ export class AgregarNuevaComponent implements OnInit {
   buscarDireccion() {
     this.searchDireccion = false;
     const size = environment.sizeResultPage;
-    this.contribucionesBuscarRolService.searchDireccion(this.comunaDireccion.value,
+    this.contribucionesBuscarRolService.searchDireccion(undefined,
       this.tipoPropiedad.value,
       this.direccion.value,
       size).then((lista) => {
@@ -194,7 +192,7 @@ export class AgregarNuevaComponent implements OnInit {
         }
       },
       () => {
-        this.error('A ocurrido un error al buscar');
+        this.error('A ocurrido un error al buscar una propiedad');
       });
   }
 
@@ -202,7 +200,4 @@ export class AgregarNuevaComponent implements OnInit {
     this.buscarDireccionSugeridos();
   }
 
-  autoCompletarComuna() {
-    this.buscarDireccionSugeridos();
-  }
 }
