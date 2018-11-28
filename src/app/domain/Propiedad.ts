@@ -41,21 +41,6 @@ export class Propiedad {
     this.roles.push(rolArg);
   }
 
-  private splitNombre(fullName: string): string {
-    let slimName = '';
-    for (let i = 0; i < fullName.length; i++) {
-      const character = fullName.charAt(i);
-
-      if (!isNumeric(character)) {
-        slimName += character;
-      } else {
-        return slimName;
-      }
-    }
-
-    return slimName;
-  }
-
   desasociarRol(rol: Rol) {
     this.roles = this.roles.filter((r) => {
       return r.rol !== rol.rol;
@@ -77,4 +62,23 @@ export class Propiedad {
   }
 
 
+  private splitName(): string {
+    let slimName = '';
+    let isNumber = false;
+    for (let i = 0; i < this.direccion.length; i++) {
+      const character = this.direccion.charAt(i);
+
+      if (!isNumeric(character) ||  i < 5 ) {
+        if(isNumber){
+          return slimName;
+        }
+        slimName += character;
+      } else {
+        isNumber = true;
+        slimName += character;
+
+      }
+    }
+    return slimName;
+  }
 }

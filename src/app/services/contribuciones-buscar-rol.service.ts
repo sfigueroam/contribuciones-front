@@ -123,6 +123,38 @@ export class ContribucionesBuscarRolService {
     });
   }
 
+
+  direccionToPropiedad(direcciones: Direccion[]): Propiedad[] {
+    let propiedades: Propiedad[];
+
+    const propiedadMap = new Map<string, Propiedad>();
+
+    for (const dire of direcciones) {
+      const idPropiedad = dire.idComunaSii + '-' + dire.rol;
+      let propiedad = propiedadMap.get(idPropiedad);
+      if (!propiedad) {
+        propiedad = new Propiedad();
+        propiedad.direccion = dire.direccionOriginal;
+        propiedad.idDireccion = idPropiedad;
+        propiedadMap.set(idPropiedad, propiedad);
+      }
+      let rol = new Rol();
+      rol.rolComunaSiiCod = dire.idComunaSii;
+      rol.rolId = dire.rol;
+      rol.subrolId = dire.subrol;
+      rol.direccion = dire.direccionOriginal;
+      rol.idComuna = dire.idComuna;
+      rol.comuna = dire.descripcionComuna;
+      rol.destPropiedad = dire.descripcionPropiedad;
+      rol.idDestPropiedad = dire.idDestPropiedad;
+
+      propiedad.addRol(rol);
+    }
+    propiedades = Array.from(propiedadMap.values());
+
+    return propiedades;
+  }
+
   /*
     parceDireccionToPropiedades(direcciones: Direccion[]): any {
       return null;
@@ -130,8 +162,8 @@ export class ContribucionesBuscarRolService {
   */
   searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
 
-    search = search.replace(',', ' , ');
-    let filtros = this.wildcard(search);
+    search = search.replace(',', ' ');
+    let filtros;// = this.wildcard(search);
     let body = {size, query: {bool: {must: []}}};
 
     body.size = size;
@@ -147,14 +179,18 @@ export class ContribucionesBuscarRolService {
     };
 
     body.query.bool.must.push(direccion);
-    for (const fil of filtros) {
-      let wild = {
-        'wildcard': {
-          'direccion': fil
-        }
-      };
-      body.query.bool.must.push(wild);
-      if(idComuna){
+    if (filtros !== undefined) {
+      for (const fil of filtros) {
+        let wild = {
+          'wildcard': {
+            'direccion': fil
+          }
+        };
+        body.query.bool.must.push(wild);
+
+      }
+
+      if (idComuna) {
         let searchComuna = {
           'match': {
             'comuna': {
@@ -164,8 +200,7 @@ export class ContribucionesBuscarRolService {
         };
         body.query.bool.must.push(searchComuna);
       }
-
-      if(tipoPropiedad){
+      if (tipoPropiedad) {
         let searchPropiedad = {
           'match': {
             'id_dest_propiedad': {

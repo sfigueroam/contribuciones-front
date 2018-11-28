@@ -38,6 +38,7 @@ export class AgregarNuevaComponent implements OnInit {
 
   propiedades: Propiedad[];
   switchActive: string = 'direccion';
+  searchDelayedDirecciones: number;
 
   constructor(private contribucionesBuscarRolService: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService) {
@@ -52,10 +53,10 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
 
-    this.tipoPropiedad = new FormControl('', Validators.required);
+    this.tipoPropiedad = new FormControl('');
 
     const validatorsDireccion = Validators.compose([
-      Validators.minLength(2),
+      Validators.minLength(3),
       Validators.required
     ]);
     this.direccion = new FormControl('', validatorsDireccion);
@@ -77,7 +78,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.contribucionesBuscarRolService.getTiposPropiedades().then((data) => {
       this.tipoPropiedades = data;
     }, () => {
-      this.error('Ocurrió un error con tipo de propiedades');
+      this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
   }
 
@@ -86,7 +87,6 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarRol(): void {
-
 
     this.onWait();
     this.contribucionesBuscarRolService.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
@@ -97,22 +97,22 @@ export class AgregarNuevaComponent implements OnInit {
       }
       this.offWait();
     }, () => {
-      this.error('Ocurrió un error al buscar');
+      this.error('Ocurrió un error al buscar direcciones');
       this.offWait();
     });
   }
 
   buscarDireccionSugeridos() {
     const size = environment.sizeResultSuggested;
-    this.formDireccion
-    this.contribucionesBuscarRolService.searchDireccion(this.comunaDireccion.value,
+    this.formDireccion;
+    this.contribucionesBuscarRolService.searchDireccion(undefined,
       this.tipoPropiedad.value,
       this.direccion.value,
       size).then((lista) => {
         this.direcciones = lista;
       },
       () => {
-        this.error('A ocurrido un error al buscar');
+        this.error('A ocurrido un error al buscar direcciones');
       });
   }
 
@@ -130,14 +130,26 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   inputDirecciones(event: any) {
+    console.log(event.keyCode);
+    let inp = String.fromCharCode(event.keyCode);
+    if (this.direccion.value.length <= 2) {
+      this.direcciones = null;
+    }
     if (event.keyCode === 13) {
       this.searchDireccion = false;
-    } else {
+    } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8) {
       this.searchDireccion = true;
       if (this.direccion.value.length > 2) {
-        this.buscarDireccionSugeridos();
-      } else {
-        this.direcciones = null;
+        console.log('this.searchDelayedDirecciones', this.searchDelayedDirecciones);
+        if (!this.searchDelayedDirecciones) {
+          this.searchDelayedDirecciones = setTimeout(
+            () => {
+              console.log('buscando');
+              this.buscarDireccionSugeridos();
+              this.searchDelayedDirecciones = undefined;
+            },
+            800);
+        }
       }
     }
   }
@@ -186,10 +198,9 @@ export class AgregarNuevaComponent implements OnInit {
       this.tipoPropiedad.value,
       this.direccion.value,
       size).then((lista) => {
-        for (let dir of lista){
-          console.log(dir);
+        this.direcciones = lista;
+        this.agregarDireccionesAPropiedad();
 
-        }
       },
       () => {
         this.error('A ocurrido un error al buscar una propiedad');
@@ -198,6 +209,13 @@ export class AgregarNuevaComponent implements OnInit {
 
   autoCompletarPropiedad() {
     this.buscarDireccionSugeridos();
+  }
+
+  agregarDireccionesAPropiedad(): void {
+    let propiedads = this.contribucionesBuscarRolService.direccionToPropiedad(this.direcciones);
+    for(const pro of propiedads){
+      this.agregarPropiedad(pro);
+    }
   }
 
 }

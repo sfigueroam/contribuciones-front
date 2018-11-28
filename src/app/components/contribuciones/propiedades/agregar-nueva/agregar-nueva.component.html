@@ -40,11 +40,12 @@
                (keyup)="inputDirecciones($event)"
                (ngModel)="direccionModel"
                formControlName="direccion">
-        <label class="mdl-textfield__label" for="direccion">Dirección</label>
+        <label class="mdl-textfield__label" for="calle">Dirección</label>
         <ul class="tgr-suggestions mdl-shadow--3dp">
           <li *ngFor="let dire of direcciones | matchSorter:'direccion'"
               (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false">{{dire.direccion |
             titlecase}}
+            <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol | leadingZero:3}}</small>
           </li>
         </ul>
       </div>
