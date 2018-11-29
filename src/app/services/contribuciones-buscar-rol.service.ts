@@ -92,12 +92,12 @@ export class ContribucionesBuscarRolService {
 
   searchRolesForIds(idComuna: number, idRol: number, idSubRol: number): Promise<Propiedad> {
 
+    const leadingZeroPipe = new LeadingZeroPipe();
     return new Promise((resolve, reject) => {
-      const zero = new LeadingZeroPipe();
 
       let body = {
-        'rol': zero.transform(idRol.toString(), 5),
-        'subrol': zero.transform(idSubRol.toString(), 3),
+        'rol': leadingZeroPipe.transform(idRol.toString(), 5),
+        'subrol': leadingZeroPipe.transform(idSubRol.toString(), 3),
         'idcomuna': idComuna.toString()
       };
 
@@ -122,45 +122,103 @@ export class ContribucionesBuscarRolService {
       });
     });
   }
-/*
-  parceDireccionToPropiedades(direcciones: Direccion[]): any {
-    return null;
+
+
+  direccionToPropiedad(direcciones: Direccion[]): Propiedad[] {
+    let propiedades: Propiedad[];
+    const leadingZeroPipe = new LeadingZeroPipe();
+    const propiedadMap = new Map<string, Propiedad>();
+
+    if (direcciones) {
+      for (const dire of direcciones) {
+        const idPropiedad = dire.idComunaSii + '-' + dire.rol;
+        let propiedad = propiedadMap.get(idPropiedad);
+        if (!propiedad) {
+          propiedad = new Propiedad();
+          propiedad.direccion = dire.direccionOriginal;
+          propiedad.idDireccion = idPropiedad;
+          propiedadMap.set(idPropiedad, propiedad);
+        }
+        let rol = new Rol();
+        rol.rolComunaSiiCod = dire.idComunaSii;
+        rol.rolId = dire.rol;
+        rol.subrolId = dire.subrol;
+        rol.direccion = dire.direccionOriginal;
+        rol.idComuna = dire.idComuna;
+        rol.comuna = dire.descripcionComuna;
+        rol.destPropiedad = dire.descripcionPropiedad;
+        rol.idDestPropiedad = dire.idDestPropiedad;
+
+        const rolFull = leadingZeroPipe.transform(rol.rolComunaSiiCod, 3) + '' +
+          leadingZeroPipe.transform(rol.rolId, 5) + '' +
+          leadingZeroPipe.transform(rol.subrolId, 3);
+        rol.rol = +rolFull;
+
+        propiedad.addRol(rol);
+      }
+      propiedades = Array.from(propiedadMap.values());
+    }
+    return propiedades;
   }
-*/
-  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size:number): Promise<Direccion[]> {
 
+  /*
+    parceDireccionToPropiedades(direcciones: Direccion[]): any {
+      return null;
+    }
+  */
+  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
 
+    search = search.replace(',', ' ');
+    let filtros;// = this.wildcard(search);
+    let body = {size, query: {bool: {must: []}}};
 
-    let body = {
-      'size': size,
-      'query': {
-        'bool': {
-          'must': [
-            {
-              'match': {
-                'direccion': {
-                  'query': search
-                }
-              }
-            },
-            {
-              'match': {
-                'comuna': {
-                  'query': idComuna.toString()
-                }
-              }
-            },
-            {
-              'match': {
-                'id_dest_propiedad': {
-                  'query': tipoPropiedad
-                }
-              }
-            }
-          ]
+    body.size = size;
+    body.query.bool.must = [];
+
+    let direccion = {
+      'match': {
+        'direccion': {
+          'query': search,
+          'operator': 'and'
         }
       }
     };
+
+    body.query.bool.must.push(direccion);
+    if (filtros !== undefined) {
+      for (const fil of filtros) {
+        let wild = {
+          'wildcard': {
+            'direccion': fil
+          }
+        };
+        body.query.bool.must.push(wild);
+
+      }
+
+      if (idComuna) {
+        let searchComuna = {
+          'match': {
+            'comuna': {
+              'query': idComuna.toString()
+            }
+          }
+        };
+        body.query.bool.must.push(searchComuna);
+      }
+      if (tipoPropiedad) {
+        let searchPropiedad = {
+          'match': {
+            'id_dest_propiedad': {
+              'query': tipoPropiedad
+            }
+          }
+        };
+        body.query.bool.must.push(searchPropiedad);
+      }
+
+
+    }
 
     let propiedades = {
       url: environment.elastic.propiedades.url,
@@ -185,4 +243,44 @@ export class ContribucionesBuscarRolService {
       });
     });
   }
+
+  wildcard(search: string): string[] {
+    let busqueda = [];
+    const campos: string[] = search.trim().toLowerCase().split(' ');
+    if (campos.length === 1) {
+      busqueda.push(campos[0] + '*');
+    } else {
+      let i = 0;
+      while (campos.length > i + 1) {
+        busqueda.push(campos[i].toLowerCase() + '*' + campos[i + 1].toLowerCase());
+        i++;
+      }
+      if ((campos.length % 2) === 1 && campos[i].toLowerCase().trim().length > 0) {
+        busqueda.push(campos[i].toLowerCase());
+      }
+    }
+    return busqueda;
+  }
+
+
+  asociarRoles(rut: string, roles: Rol[]): Promise<{}> {
+
+    return new Promise((resolve, reject) => {
+      let promesas = [];
+      for (let rol of roles) {
+          const body = {
+            'rutin': rut,
+            'rolin': rol.rol.toString()
+          };
+        promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
+      }
+      Promise.all(promesas).then(() => {
+          resolve();
+        },
+        () => {
+          reject();
+        });
+    });
+  }
+
 }

@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {PropiedadRolComponent} from '../propiedad-rol/propiedad-rol.component';
+import {Rol} from '../../../../../domain/Rol';
+import {isNullOrUndefined} from 'util';
 
 declare var componentHandler: any;
 
@@ -18,7 +20,7 @@ export class PropiedadComponent implements OnInit {
   change: EventEmitter<any> = new EventEmitter();
 
   @ViewChildren(PropiedadRolComponent)
-  sugeridasPropiedadRolComponentList: QueryList<PropiedadRolComponent>;
+  propiedadRolComponentList: QueryList<PropiedadRolComponent>;
 
 
   cantidadRolesSeleccionadas: number;
@@ -48,7 +50,7 @@ export class PropiedadComponent implements OnInit {
   }
 
   updateRoles(): void {
-    const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
+    const sugeridosRolList = this.propiedadRolComponentList.toArray();
     for (const sugeridosRol of sugeridosRolList) {
       sugeridosRol.updateSeleccion(this.seleccion);
     }
@@ -57,7 +59,7 @@ export class PropiedadComponent implements OnInit {
 
   getCantidadRolesSeleccionadas(): number {
     this.cantidadRolesSeleccionadas = 0;
-    const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
+    const sugeridosRolList = this.propiedadRolComponentList.toArray();
     for (const sugeridosRol of sugeridosRolList) {
       if (sugeridosRol.seleccion) {
         this.cantidadRolesSeleccionadas++;
@@ -69,7 +71,7 @@ export class PropiedadComponent implements OnInit {
   getRolesSeleccionadas(): number [] {
     let roles: number[] = [];
 
-    const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
+    const sugeridosRolList = this.propiedadRolComponentList.toArray();
     for (const sugeridosRol of sugeridosRolList) {
       if (sugeridosRol.seleccion) {
         roles.push(sugeridosRol.rol.rol);
@@ -92,7 +94,7 @@ export class PropiedadComponent implements OnInit {
   private evalSelectRoles() {
 
     let cantidad = 0;
-    const sugeridosRolList = this.sugeridasPropiedadRolComponentList.toArray();
+    const sugeridosRolList = this.propiedadRolComponentList.toArray();
     for (const sugeridosRol of sugeridosRolList) {
       if (sugeridosRol.seleccion) {
         cantidad++;
@@ -106,5 +108,21 @@ export class PropiedadComponent implements OnInit {
       this.seleccion = undefined;
     }
     this.updateIconSeleccion();
+  }
+
+  getRolesSeleccioados(): Rol[] | undefined {
+
+    let roles: Rol[] = [];
+    const rolesList = this.propiedadRolComponentList.toArray();
+    for (const rol of rolesList) {
+      if (rol.seleccion) {
+        roles.push(rol.rol);
+      }
+    }
+    if(roles.length === 0){
+      return undefined;
+    }
+    return roles;
+
   }
 }

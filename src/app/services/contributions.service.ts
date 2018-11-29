@@ -20,6 +20,28 @@ export class ContributionsService {
     this.propiedades = undefined;
   }
 
+  addPropiedad(response: Propiedad) {
+    if (this.propiedades === undefined || this.propiedades == null) {
+      this.propiedades = [];
+    }
+    let estado: boolean = false;
+    for (const prop of this.propiedades) {
+      if (prop.idDireccion === response.idDireccion) {
+        estado = true;
+        for (const rol of response.roles) {
+          if (!prop.existRol(rol.rol)) {
+            console.log('Rol no existe');
+            prop.addRol(rol);
+          }
+        }
+      }
+    }
+
+    if (!estado) {
+      this.propiedades.push(response);
+    }
+  }
+
   updateBienesRaices(rut: number) {
     return new Promise<Propiedad[]>(
       (resolve, reject) => {

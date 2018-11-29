@@ -2,6 +2,7 @@ import {Rol} from './Rol';
 import {TipoCuota} from './TipoCuota';
 import {ResumenCuotas} from './ResumenCuotas';
 import {Observable, Subject} from 'rxjs';
+import {isNumeric} from 'rxjs/internal-compatibility';
 
 export class Propiedad {
 
@@ -105,5 +106,25 @@ export class Propiedad {
     for (const rol of this.roles) {
       rol.seleccionar(tipo);
     }
+  }
+
+  splitName(): string {
+    let slimName = '';
+    let isNumber = false;
+    for (let i = 0; i < this.direccion.length; i++) {
+      const character = this.direccion.charAt(i);
+
+      if (!isNumeric(character) ||  i < 5 ) {
+        if (isNumber) {
+          return slimName;
+        }
+        slimName += character;
+      } else {
+        isNumber = true;
+        slimName += character;
+
+      }
+    }
+    return slimName;
   }
 }
