@@ -1,29 +1,37 @@
+import {CuotaDetalle} from './CuotaDetalle';
+import {Observable, Subject} from 'rxjs';
+
 export class Cuota {
   clasificacion: string;
-  codigoBarra: string;
-  condonacion: number;
   fechaVencimiento: Date;
   fechaVencimientoOriginal: string;
   folio: string;
-  interes: number;
-  montoCondonacion: number;
-  multa: number;
-  nroRol: number;
   numeroCuota: string;
-  reajuste: number;
-  saldoOriginal: number;
-  saldoTotal: number;
   tipoDeuda: string;
-  intencionPago: boolean;
+  intencionPago = true;
   expired: boolean;
 
-  public constructor(init?: Partial<Cuota>) {
-    Object.assign(this, init);
-    // @ts-ignore
-    this.fechaVencimientoOriginal = init.fechaVencimiento;
+  liqParcial: CuotaDetalle;
+  liqTotal: CuotaDetalle;
+
+  changeSubject: Subject<any> = new Subject<any>();
+  changeStream: Observable<any> = this.changeSubject.asObservable();
+
+  public constructor(init?: any) {
+    this.clasificacion = init.clasificacion;
     this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
-    this.intencionPago = true;
+    this.fechaVencimientoOriginal = init.fechaVencimiento;
+    this.folio = init.folio;
+    this.numeroCuota = init.numeroCuota;
+    this.tipoDeuda = init.tipoDeuda;
     this.expired = this.isExpired();
+
+    this.liqTotal = new CuotaDetalle(init);
+  }
+
+  changeIntencionPago(value: boolean = !this.intencionPago) {
+    this.intencionPago = value;
+    this.changeSubject.next();
   }
 
   private formatDate(fecha) {
@@ -35,20 +43,6 @@ export class Cuota {
     const date = new Date();
     date.setHours(0, 0, 0, 0);
     return (date.getTime() - this.fechaVencimiento.getTime() > 0);
-  }
-
-  isChecked(): boolean {
-    return this.intencionPago;
-  }
-
-  getTotal(): number {
-    /*if (this.montoCondonacion !== undefined) {
-      return this.saldoTotal + this.montoCondonacion;
-    } else {
-      return this.saldoTotal;
-    }
-    */
-    return this.saldoTotal;
   }
 
   getYear(): any {

@@ -10,9 +10,7 @@ import {RequestService} from './request.service';
 })
 export class ContribucionesSugeridasService {
 
-
   rolesNoAsociados: Propiedad[];
-
 
   constructor(private requestService: RequestService, private user: UserService) {
   }
@@ -23,8 +21,6 @@ export class ContribucionesSugeridasService {
         resolve(this.rolesNoAsociados);
       });
     }
-
-
     return new Promise((resolve, reject) => {
       const obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
       obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + this.user.rut;
@@ -63,7 +59,7 @@ export class ContribucionesSugeridasService {
           'rutin': this.user.rut,
           'rolin': rol.toString()
         };
-        promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz,body));
+        promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
       }
       Promise.all(promesas).then(() => {
           resolve();

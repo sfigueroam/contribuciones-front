@@ -1,0 +1,18 @@
+<mdl-card mdl-shadow="2">
+  <mdl-card-title>
+    <button mdl-button mdl-button-type="icon" (click)="toggle()">
+      <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
+    </button>
+    <h2 mdl-card-title-text>{{propiedad.direccion}}
+      <small>{{comuna}}</small>
+    </h2>
+    <p>{{propiedad.total | number}}</p>
+    <button mdl-button mdl-button-type="icon" (click)="delete()">
+      <mdl-icon>close</mdl-icon>
+    </button>
+  </mdl-card-title>
+</mdl-card>
+
+<div [class.hidden]="!expanded" *ngFor="let rol of propiedad?.roles">
+  <app-rol-cuotas (change)="onChange()" [rol]="rol"></app-rol-cuotas>
+</div>

@@ -1,0 +1,76 @@
+<h1>Pagar Mis Contribuciones</h1>
+<div class="tgr-select tgr-select--buttons">
+  <div class="tgr-select__label">
+    Selecciona las cuotas que pagarás
+  </div>
+  <ul class="filter">
+    <li [class.active]="seleccionada === tipo.TODAS">
+      <a (click)="seleccionar(tipo.TODAS)">
+        <mdl-icon *ngIf="seleccionada === tipo.TODAS">done</mdl-icon>
+        Todas
+      </a>
+    </li>
+    <li [class.active]="seleccionada === tipo.VENCIDAS">
+      <a (click)="seleccionar(tipo.VENCIDAS)">
+        <mdl-icon *ngIf="seleccionada === tipo.VENCIDAS">done</mdl-icon>
+        Vencidas
+      </a>
+    </li>
+  </ul>
+</div>
+<div *ngFor="let propiedad of propiedades">
+  <app-direccion-cuotas (change)="onChange()" [propiedad]="propiedad"></app-direccion-cuotas>
+</div>
+
+<div class="tgr-actions">
+  <div class="tgr-actions__content">
+    <div>
+      <button mdl-button mdl-button-type="icon" (click)="summary()">
+        <mdl-icon>close</mdl-icon>
+      </button>
+    </div>
+    <div class="tgr-pay">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              (click)="pay()">Pagar $ {{total | number}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="tgr-add trg-tap" [class.open]="mostrarAlertaSugeridos && rolesSugeridos > 0">
+  <div class="tgr-target-wrapper">
+    <div class="tgr-target">
+      <div class="tgr-target-content">
+        <h5 class="tgr-target-text">Encontramos <span
+          *ngIf="rolesSugeridos == 1; else dialogMas"><strong>un rol</strong> <br>
+          asociado a tu RUT <br>
+          <strong class="tgr-target-here">Agrégalo aquí</strong>
+          </span>
+          <ng-template #dialogMas>
+            <strong>{{rolesSugeridos}} roles</strong> <br>
+            asociados a tu RUT <br>
+            <strong class="tgr-target-here">Agrégalos aquí</strong>
+          </ng-template>
+
+          <br>
+          <br>
+          <a class="tgr-close" (click)="mostrarAlertaSugeridos = false;">ENTENDIDO</a>
+        </h5>
+      </div>
+    </div>
+    <div class="tgr-target-wave">
+    </div>
+  </div>
+</div>
+<div class="tgr-add">
+  <div class="tgr-target-wrapper">
+    <div class="tgr-target-wave tgr-target-wave--button">
+      <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+              [routerLink]="['propiedades/sugeridas']">
+        <i class="material-icons">add</i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-detalle-pago #detallePago></app-detalle-pago>

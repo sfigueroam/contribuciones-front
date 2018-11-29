@@ -1,0 +1,44 @@
+<mdl-card mdl-card-expand mdl-shadow="2">
+  <mdl-card-title>
+    <button mdl-button mdl-button-type="icon" (click)="toggle()">
+      <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
+    </button>
+    <h2 mdl-card-title-text>
+      <i class="material-icons">{{icon}}</i>
+      <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
+    </h2>
+    <p>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
+    <p>{{rol.total | number}}</p>
+    <button mdl-button mdl-button-type="icon" (click)="delete()">
+      <mdl-icon>close</mdl-icon>
+    </button>
+  </mdl-card-title>
+  <div [class.hidden]="!expanded">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <thead>
+      <tr>
+        <th (click)="selectAllNone()">
+          <mdl-icon>{{selectedIcon}}</mdl-icon>
+        </th>
+        <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
+        <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
+        <th class="tgr-monto">Monto</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
+        <td>
+          <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
+        </td>
+        <td [class.tgr-tr--late]="cuota.isExpired()">
+          <span>{{cuota.numeroCuota}}</span>
+        </td>
+        <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+        <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(selectedIcon === icons.SELECTED ? cuota.liqTotal.saldoTotal :
+          cuota.liqParcial.saldoTotal) | number}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</mdl-card>

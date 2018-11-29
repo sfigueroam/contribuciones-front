@@ -1,0 +1,25 @@
+<div class="demo-container demo-layout-transparent">
+  <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-mode="waterfall" mdl-layout-fixed-header mdl-layout-header-seamed>
+    <mdl-layout-header mdl-layout-header-transparent>
+      <mdl-layout-header-row>
+        <mdl-layout-title>TGR</mdl-layout-title>
+        <mdl-layout-spacer></mdl-layout-spacer>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" [routerLink]="['/layout/l1']">
+            <mdl-icon>account_circle</mdl-icon>
+          </a>
+        </nav>
+      </mdl-layout-header-row>
+    </mdl-layout-header>
+    <mdl-layout-content>
+      <mdl-tabs mdl-ripple mdl-tab-active-index="0">
+        <mdl-tab-panel mdl-tab-panel-title="Contribuciones">
+          <app-seleccion-cuotas></app-seleccion-cuotas>
+        </mdl-tab-panel>
+        <mdl-tab-panel mdl-tab-panel-title="Certificados">
+          <h1>Certificados</h1>
+        </mdl-tab-panel>
+      </mdl-tabs>
+    </mdl-layout-content>
+  </mdl-layout>
+</div>

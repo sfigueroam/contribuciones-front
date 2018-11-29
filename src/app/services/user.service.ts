@@ -1,23 +1,38 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {PitUtils} from '../pit-utils';
+import {Propiedad} from '../domain/Propiedad';
+import {ContributionsService} from './contributions.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  rut: string;
-  constructor() {
-    this.rut = '96597810';
-    //this.rut = '8991219';
-    //this.rut = '18738500';
+  rut: number;
+  dv: string;
 
-    //this.rut = '21354668';
-    //this.rut = '12238422';
-    //this.rut = '17663951';
-    //this.rut = '1070713';
-    //this.rut = '16244399';
-
-
+  constructor(private contributions: ContributionsService) {
+    this.rut = 96597810;
   }
 
+  isLogged(): boolean {
+    return this.rut !== undefined;
+  }
+
+  setRut(rut: string) {
+    this.rut = +rut;
+    this.dv = PitUtils.dv(+this.rut);
+  }
+
+  getBienesRaices(): Promise<Propiedad[]> {
+    return this.contributions.getBienesRaices(this.rut);
+  }
+
+  eliminarPropiedad(idDireccion: string): Promise<any> {
+    return this.contributions.eliminarPropiedad(this.rut, idDireccion);
+  }
+
+  eliminarRol(rolComunaSiiCod: number, rolId: number, subrolId: number): Promise<any> {
+    return this.contributions.eliminarRol(this.rut, rolComunaSiiCod, rolId, subrolId);
+  }
 }

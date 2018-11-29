@@ -1,5 +1,7 @@
 import {Rol} from './Rol';
-import {isNumeric} from 'rxjs/internal-compatibility';
+import {TipoCuota} from './TipoCuota';
+import {ResumenCuotas} from './ResumenCuotas';
+import {Observable, Subject} from 'rxjs';
 
 export class Propiedad {
 
@@ -7,23 +9,64 @@ export class Propiedad {
   public direccion: string;
   public idDireccion: string;
 
+  isComplete = false;
+
+  changeSubject: Subject<any> = new Subject<any>();
+  changeStream: Observable<any> = this.changeSubject.asObservable();
+
+  total: number;
+
   constructor() {
     this.roles = [];
     this.idDireccion = '';
+  }
+
+  addRol(rol: Rol) {
+    this.roles.push(rol);
+    rol.completeStream.subscribe(
+      () => null,
+      (err) => console.log(err),
+      () => {
+        for (const r of this.roles) {
+          if (!r.isComplete) {
+            return;
+          }
+        }
+        this.isComplete = true;
+        this.calcularTotal();
+        for (const r of this.roles) {
+          r.changeStream.subscribe(
+            () => this.changeSubject.next()
+          );
+        }
+      }
+    );
+  }
+
+  private calcularTotal() {
+    let total = 0;
+    for (const r of this.roles) {
+      total += r.total;
+    }
+    this.total = total;
+  }
+
+  resumen(): ResumenCuotas {
+    const result = new ResumenCuotas();
+    for (const rol of this.roles) {
+      const resumenRol = rol.resumen();
+      result.total += resumenRol.total;
+      result.seleccionadas += resumenRol.seleccionadas;
+      result.vencidas += resumenRol.vencidas;
+      result.vencidasSeleccionadas += resumenRol.vencidasSeleccionadas;
+    }
+    return result;
   }
 
   calcularTotalCondonado(): number {
     let total = 0;
     for (const rol of this.roles) {
       total += rol.calcularTotalCondonado();
-    }
-    return total;
-  }
-
-  calcularCondonacion() {
-    let total = 0;
-    for (const rol of this.roles) {
-      total += rol.calcularCondonacion();
     }
     return total;
   }
@@ -37,25 +80,6 @@ export class Propiedad {
     return false;
   }
 
-  addRol(rolArg: Rol): void {
-    this.roles.push(rolArg);
-  }
-
-  private splitNombre(fullName: string): string {
-    let slimName = '';
-    for (let i = 0; i < fullName.length; i++) {
-      const character = fullName.charAt(i);
-
-      if (!isNumeric(character)) {
-        slimName += character;
-      } else {
-        return slimName;
-      }
-    }
-
-    return slimName;
-  }
-
   desasociarRol(rol: Rol) {
     this.roles = this.roles.filter((r) => {
       return r.rol !== rol.rol;
@@ -66,7 +90,7 @@ export class Propiedad {
 
   existRol(rol: number): boolean {
     console.log('!!existRol');
-    for (let r of this.roles) {
+    for (const r of this.roles) {
       console.log('r.rol', r.rol);
       console.log('rol', rol);
       if (r.rol === rol) {
@@ -77,4 +101,9 @@ export class Propiedad {
   }
 
 
+  seleccionar(tipo: TipoCuota) {
+    for (const rol of this.roles) {
+      rol.seleccionar(tipo);
+    }
+  }
 }

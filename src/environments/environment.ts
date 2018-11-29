@@ -10,7 +10,6 @@ const cabecera = {
   usuario: '14059203'
 };
 
-
 const urlsBase = {
   publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
   privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
@@ -25,9 +24,18 @@ const pathBase = {
 
 
 export const environment = {
+  production: false,
+  cognito: {
+    domain: '201811',
+    clientId: '2ntpfu2jj8miueillfdef8i93n',
+    redirectUri: 'http://localhost:4300/login',
+    logoutUri: 'http://localhost:4300/logout',
+    jwtCookieName: 'tgr-jwt',
+    expCookieName: 'exp',
+    allowCookies: true,
+  },
   sizeResultSuggested: 10,
   sizeResultPage: 20,
-  production: false,
   certificados: {
     anoDesde: 1955,
   },

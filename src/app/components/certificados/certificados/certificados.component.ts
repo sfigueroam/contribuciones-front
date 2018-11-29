@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
-import {ContributionsService} from '../../../services/contributions.service';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {PitValidators} from '../../../pit-validators';
 import {ControlHelper, Helper} from '../../../domain/CertificadosHelpers';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-certificados',
@@ -27,7 +27,7 @@ export class CertificadosComponent implements OnInit {
 
   oTrue = true;
 
-  constructor(private contributions: ContributionsService, private mdlSnackbarService: MdlSnackbarService) {
+  constructor(private user: UserService, private mdlSnackbarService: MdlSnackbarService) {
     this.deudas = new FormControl();
     this.pagos = new FormControl();
     this.ano = new FormControl();
@@ -48,7 +48,7 @@ export class CertificadosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contributions.getBienesRaices().then(
+    this.user.getBienesRaices().then(
       (propiedades) => {
         const rolesControlNames = [];
 

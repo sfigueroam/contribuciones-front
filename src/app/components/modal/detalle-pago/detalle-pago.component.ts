@@ -36,7 +36,7 @@ export class DetallePagoComponent implements OnInit {
         this.propiedades.push(propiedad);
       }
       this.total += propiedad.calcularTotalCondonado();
-      this.condonacion += propiedad.calcularCondonacion();
+      this.condonacion += 1;
     }
     this.dialog.nativeElement.showModal();
   }
