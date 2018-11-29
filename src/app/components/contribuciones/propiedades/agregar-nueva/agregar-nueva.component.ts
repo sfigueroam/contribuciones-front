@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../domain/Localidad';
 import {MdlSnackbarService} from '@angular-mdl/core';
@@ -7,6 +7,11 @@ import {Propiedad} from '../../../../domain/Propiedad';
 import {TipoPropiedad} from '../../../../domain/TipoPropiedad';
 import {Direccion} from '../../../../domain/Direccion';
 import {environment} from '../../../../../environments/environment';
+import {PropiedadComponent} from '../components/propiedad/propiedad.component';
+import {Rol} from '../../../../domain/Rol';
+import {UserService} from '../../../../services/user.service';
+import {Router} from '@angular/router';
+import {ContributionsService} from '../../../../services/contributions.service';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -14,6 +19,10 @@ import {environment} from '../../../../../environments/environment';
   styleUrls: ['./agregar-nueva.component.scss']
 })
 export class AgregarNuevaComponent implements OnInit {
+
+
+  @ViewChildren(PropiedadComponent)
+  propiedadComponentList: QueryList<PropiedadComponent>;
 
   wait: boolean = false;
   sinResultado: boolean = false;
@@ -40,8 +49,14 @@ export class AgregarNuevaComponent implements OnInit {
   switchActive: string = 'direccion';
   searchDelayedDirecciones: number;
 
+  cantidadSeleccionadas: number;
+  hidden: boolean;
+
   constructor(private contribucionesBuscarRolService: ContribucionesBuscarRolService,
-              private mdlSnackbarService: MdlSnackbarService) {
+              private mdlSnackbarService: MdlSnackbarService,
+              private userService: UserService,
+              private router: Router,
+              private contributionsService: ContributionsService) {
 
     this.comuna = new FormControl('', Validators.required);
     this.rol = new FormControl('', Validators.required);
@@ -52,6 +67,7 @@ export class AgregarNuevaComponent implements OnInit {
       subRol: this.subRol
     });
 
+    this.cantidadSeleccionadas = 0;
 
     this.tipoPropiedad = new FormControl('');
 
@@ -66,6 +82,20 @@ export class AgregarNuevaComponent implements OnInit {
       direccion: this.direccion
     });
 
+
+    this.hidden = true;
+  }
+
+  updateSeleccionadaTotal(): void {
+    this.totalSeleccionadas();
+  }
+
+  totalSeleccionadas(): void {
+    this.cantidadSeleccionadas = 0;
+    const propiedadesComponent = this.propiedadComponentList.toArray();
+    for (const pripedadComponent of propiedadesComponent) {
+      this.cantidadSeleccionadas = this.cantidadSeleccionadas + pripedadComponent.getCantidadRolesSeleccionadas();
+    }
   }
 
   ngOnInit() {
@@ -104,7 +134,6 @@ export class AgregarNuevaComponent implements OnInit {
 
   buscarDireccionSugeridos() {
     const size = environment.sizeResultSuggested;
-    this.formDireccion;
     this.contribucionesBuscarRolService.searchDireccion(undefined,
       this.tipoPropiedad.value,
       this.direccion.value,
@@ -192,6 +221,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarDireccion() {
+    this.onWait();
     this.searchDireccion = false;
     const size = environment.sizeResultPage;
     this.contribucionesBuscarRolService.searchDireccion(undefined,
@@ -200,6 +230,7 @@ export class AgregarNuevaComponent implements OnInit {
       size).then((lista) => {
         this.direcciones = lista;
         this.agregarDireccionesAPropiedad();
+        this.offWait();
 
       },
       () => {
@@ -213,9 +244,67 @@ export class AgregarNuevaComponent implements OnInit {
 
   agregarDireccionesAPropiedad(): void {
     let propiedads = this.contribucionesBuscarRolService.direccionToPropiedad(this.direcciones);
-    for(const pro of propiedads){
-      this.agregarPropiedad(pro);
+    if (propiedads) {
+      for (const pro of propiedads) {
+        this.agregarPropiedad(pro);
+      }
     }
+  }
+
+  asociarPropiedades() {
+    this.hidden = false;
+    console.log('inicio asociar propiedades');
+
+    if (this.userService.rut != null && this.userService.rut === undefined) {
+    //if (this.userService.rut === undefined) {
+      let roles: Rol[] = [];
+      const propiedadesComponent = this.propiedadComponentList.toArray();
+      for (const propiedadComponent of propiedadesComponent) {
+        const rolesSeleccionados = propiedadComponent.getRolesSeleccioados();
+        if (rolesSeleccionados !== undefined) {
+          roles = roles.concat(rolesSeleccionados);
+        }
+      }
+
+      console.log('roles.loength', roles.length);
+      if (roles.length > 0) {
+        this.contribucionesBuscarRolService.asociarRoles(this.userService.rut, roles).then(() => {
+            this.contributionsService.propiedades = undefined;
+            this.router.navigate(['/main/contribuciones']);
+          },
+          () => {
+            this.hidden = true;
+            console.error('Ocurrio un error');
+            this.error('Ocurrio un error al asociar los roles, intente más tarde');
+          });
+      } else {
+        this.hidden = true;
+      }
+    } else {
+      let propiedadesConRolesSeleccionados = this.getPropiedadesConRolesSeleccionados();
+
+      for (let propiedad of propiedadesConRolesSeleccionados) {
+        this.contributionsService.addPropiedad(propiedad);
+      }
+      this.router.navigate(['/main/contribuciones']);
+    }
+  }
+
+
+  private getPropiedadesConRolesSeleccionados(): Propiedad[] {
+
+    let listaPropiedades = [];
+    const propiedadesComponent = this.propiedadComponentList.toArray();
+    for (const propiedadComponent of propiedadesComponent) {
+      const rolesSeleccionados = propiedadComponent.getRolesSeleccioados();
+      if (rolesSeleccionados !== undefined) {
+        let propiedad = propiedadComponent.propiedad;
+        propiedad.roles = rolesSeleccionados;
+        listaPropiedades.push(propiedad);
+      }
+    }
+
+    return listaPropiedades;
   }
 
 }

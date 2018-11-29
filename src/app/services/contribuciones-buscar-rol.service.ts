@@ -92,12 +92,12 @@ export class ContribucionesBuscarRolService {
 
   searchRolesForIds(idComuna: number, idRol: number, idSubRol: number): Promise<Propiedad> {
 
+    const leadingZeroPipe = new LeadingZeroPipe();
     return new Promise((resolve, reject) => {
-      const zero = new LeadingZeroPipe();
 
       let body = {
-        'rol': zero.transform(idRol.toString(), 5),
-        'subrol': zero.transform(idSubRol.toString(), 3),
+        'rol': leadingZeroPipe.transform(idRol.toString(), 5),
+        'subrol': leadingZeroPipe.transform(idSubRol.toString(), 3),
         'idcomuna': idComuna.toString()
       };
 
@@ -126,32 +126,38 @@ export class ContribucionesBuscarRolService {
 
   direccionToPropiedad(direcciones: Direccion[]): Propiedad[] {
     let propiedades: Propiedad[];
-
+    const leadingZeroPipe = new LeadingZeroPipe();
     const propiedadMap = new Map<string, Propiedad>();
 
-    for (const dire of direcciones) {
-      const idPropiedad = dire.idComunaSii + '-' + dire.rol;
-      let propiedad = propiedadMap.get(idPropiedad);
-      if (!propiedad) {
-        propiedad = new Propiedad();
-        propiedad.direccion = dire.direccionOriginal;
-        propiedad.idDireccion = idPropiedad;
-        propiedadMap.set(idPropiedad, propiedad);
+    if (direcciones) {
+      for (const dire of direcciones) {
+        const idPropiedad = dire.idComunaSii + '-' + dire.rol;
+        let propiedad = propiedadMap.get(idPropiedad);
+        if (!propiedad) {
+          propiedad = new Propiedad();
+          propiedad.direccion = dire.direccionOriginal;
+          propiedad.idDireccion = idPropiedad;
+          propiedadMap.set(idPropiedad, propiedad);
+        }
+        let rol = new Rol();
+        rol.rolComunaSiiCod = dire.idComunaSii;
+        rol.rolId = dire.rol;
+        rol.subrolId = dire.subrol;
+        rol.direccion = dire.direccionOriginal;
+        rol.idComuna = dire.idComuna;
+        rol.comuna = dire.descripcionComuna;
+        rol.destPropiedad = dire.descripcionPropiedad;
+        rol.idDestPropiedad = dire.idDestPropiedad;
+
+        const rolFull = leadingZeroPipe.transform(rol.rolComunaSiiCod, 3) + '' +
+          leadingZeroPipe.transform(rol.rolId, 5) + '' +
+          leadingZeroPipe.transform(rol.subrolId, 3);
+        rol.rol = +rolFull;
+
+        propiedad.addRol(rol);
       }
-      let rol = new Rol();
-      rol.rolComunaSiiCod = dire.idComunaSii;
-      rol.rolId = dire.rol;
-      rol.subrolId = dire.subrol;
-      rol.direccion = dire.direccionOriginal;
-      rol.idComuna = dire.idComuna;
-      rol.comuna = dire.descripcionComuna;
-      rol.destPropiedad = dire.descripcionPropiedad;
-      rol.idDestPropiedad = dire.idDestPropiedad;
-
-      propiedad.addRol(rol);
+      propiedades = Array.from(propiedadMap.values());
     }
-    propiedades = Array.from(propiedadMap.values());
-
     return propiedades;
   }
 
@@ -255,4 +261,26 @@ export class ContribucionesBuscarRolService {
     }
     return busqueda;
   }
+
+
+  asociarRoles(rut: string, roles: Rol[]): Promise<{}> {
+
+    return new Promise((resolve, reject) => {
+      let promesas = [];
+      for (let rol of roles) {
+          const body = {
+            'rutin': rut,
+            'rolin': rol.rol.toString()
+          };
+        promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
+      }
+      Promise.all(promesas).then(() => {
+          resolve();
+        },
+        () => {
+          reject();
+        });
+    });
+  }
+
 }

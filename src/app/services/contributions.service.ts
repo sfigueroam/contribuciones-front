@@ -24,6 +24,30 @@ export class ContributionsService {
     this.propiedades = undefined;
   }
 
+
+  addPropiedad(response: Propiedad) {
+    if (this.propiedades === undefined || this.propiedades == null) {
+      this.propiedades = [];
+    }
+    let estado: boolean = false;
+    for (let prop of this.propiedades) {
+      if (prop.idDireccion === response.idDireccion) {
+        estado = true;
+        for (let rol of response.roles) {
+          if (!prop.existRol(rol.rol)) {
+            console.log('rol No e xiste');
+            prop.addRol(rol);
+          }
+        }
+      }
+    }
+
+    if (!estado) {
+      this.propiedades.push(response);
+    }
+  }
+
+
   getBienesRaices(): Promise<Propiedad[]> {
 
     if (this.propiedades) {

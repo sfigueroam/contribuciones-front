@@ -100,7 +100,6 @@ export class PropiedadRolComponent implements OnInit, AfterContentInit {
     this.seleccion = !this.seleccion;
     this.updateIconSeleccion();
     this.change.emit();
-
   }
 
 }
