@@ -254,7 +254,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.hidden = false;
     console.log('inicio asociar propiedades');
 
-    if (this.user.rut != null && this.user.rut === undefined) {
+    if (this.user.rut != null && this.user.rut !== undefined) {
       let roles: Rol[] = [];
       const propiedadesComponent = this.propiedadComponentList.toArray();
       for (const propiedadComponent of propiedadesComponent) {
