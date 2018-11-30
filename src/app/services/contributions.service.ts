@@ -74,6 +74,9 @@ export class ContributionsService {
   }
 
   getBienesRaices(rut: number): Promise<Propiedad[]> {
+    if (rut == null) {
+      this.propiedades = [];
+    }
     if (this.propiedades) {
       return new Promise((resolve) => {
         resolve(this.propiedades);

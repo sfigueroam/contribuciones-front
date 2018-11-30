@@ -26,6 +26,7 @@ export class Rol {
   changeSubject: Subject<any> = new Subject<any>();
   changeStream: Observable<any> = this.changeSubject.asObservable();
 
+  condonacion: number;
   total: number;
 
   public constructor(init?: Partial<Rol>) {
@@ -152,10 +153,12 @@ export class Rol {
   private calcularTotal() {
     let pagoParcial = 0;
     let pagoTotal = 0;
+    let condonacion = 0;
     let total = true;
     for (const cuota of this.cuotas) {
       pagoTotal += cuota.liqTotal.saldoTotal;
-      if (cuota.intencionPago) {
+      condonacion += cuota.liqTotal.montoCondonacion;
+      if (cuota.intencionPago && cuota.liqParcial) {
         pagoParcial += cuota.liqParcial.saldoTotal;
       } else {
         total = false;
@@ -164,8 +167,10 @@ export class Rol {
 
     if (total) {
       this.total = pagoTotal;
+      this.condonacion = condonacion;
     } else {
       this.total = pagoParcial;
+      this.condonacion = 0;
     }
   }
 

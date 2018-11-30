@@ -5,14 +5,35 @@
         <mdl-layout-title>TGR</mdl-layout-title>
         <mdl-layout-spacer></mdl-layout-spacer>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" [routerLink]="['/layout/l1']">
+          <button class="mdl-navigation__link"
+                  #btnMenu="mdlButton"
+                  (click)="menu.toggle($event, btnMenu)"
+                  mdl-button
+                  mdl-button-type="icon">
             <mdl-icon>account_circle</mdl-icon>
-          </a>
+          </button>
+          <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
+            <mdl-menu-item *ngIf="!logged"
+                           (click)="redirigirLogin()"
+                           mdl-ripple>
+              Iniciar Sesión
+            </mdl-menu-item>
+            <mdl-menu-item *ngIf="logged"
+                           (click)="redirigirMiCuenta()"
+                           mdl-ripple mdl-menu-item-full-bleed-divider>
+              Mi Cuenta
+            </mdl-menu-item>
+            <mdl-menu-item *ngIf="logged"
+                           (click)="logout()"
+                           mdl-ripple>
+              Cerrar Sesión
+            </mdl-menu-item>
+          </mdl-menu>
         </nav>
       </mdl-layout-header-row>
     </mdl-layout-header>
     <mdl-layout-content>
-      <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
+      <mdl-tabs mdl-ripple [mdl-tab-active-index]="index" (mdl-tab-active-changed)="tabChanged($event)">
         <mdl-tab-panel mdl-tab-panel-title="Contribuciones">
         </mdl-tab-panel>
         <mdl-tab-panel mdl-tab-panel-title="Certificados">

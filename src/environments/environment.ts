@@ -25,6 +25,7 @@ const pathBase = {
 
 export const environment = {
   production: false,
+  cuentaUrl: 'http://localhost:4200',
   cognito: {
     domain: '201811',
     clientId: '2ntpfu2jj8miueillfdef8i93n',

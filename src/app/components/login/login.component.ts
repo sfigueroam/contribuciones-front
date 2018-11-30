@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.user.getBienesRaices().then(
-          () => this.router.navigate(['/main']),
+          () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
             console.log(err);
-            this.router.navigate(['/main']);
+            this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
           }
         );
       }

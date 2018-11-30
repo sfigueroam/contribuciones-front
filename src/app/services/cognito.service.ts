@@ -106,6 +106,10 @@ export class CognitoService {
     }
   }
 
+  redirectLogin(): void {
+    window.location.href = this.loginUrl();
+  }
+
   logout(): void {
     this.removeCookies();
     window.location.href = this.logoutUrl();

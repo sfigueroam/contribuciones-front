@@ -15,33 +15,39 @@ export class ContribucionesSugeridasService {
   }
 
   getRolesNoAsociados(rut: number, force?: boolean): Promise<Propiedad[]> {
+    if (rut == null) {
+      this.rolesNoAsociados = [];
+    }
     if (this.rolesNoAsociados && !force) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         resolve(this.rolesNoAsociados);
       });
     }
     return new Promise((resolve, reject) => {
       const obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
       obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + rut;
-      this.requestService.request(obtenerBienRaizNoAsociado).then((data: { curout: any }) => {
+      this.requestService.request(obtenerBienRaizNoAsociado).then(
+        (data: { curout: any }) => {
 
-        const propiedadSugeridasMap = new Map<string, Propiedad>();
+          const propiedadSugeridasMap = new Map<string, Propiedad>();
 
-        for (const bienRaiz of data.curout) {
-          const idPropiedad = this.getBienRaizId(bienRaiz);
-          let propiedad = propiedadSugeridasMap.get(idPropiedad);
-          if (!propiedad) {
-            propiedad = new Propiedad();
-            propiedad.direccion = bienRaiz.direccion;
-            propiedadSugeridasMap.set(idPropiedad, propiedad);
+          for (const bienRaiz of data.curout) {
+            const idPropiedad = this.getBienRaizId(bienRaiz);
+            let propiedad = propiedadSugeridasMap.get(idPropiedad);
+            if (!propiedad) {
+              propiedad = new Propiedad();
+              propiedad.direccion = bienRaiz.direccion;
+              propiedadSugeridasMap.set(idPropiedad, propiedad);
+            }
+            const rol = new Rol(bienRaiz);
+            propiedad.addRol(rol);
           }
-          const rol = new Rol(bienRaiz);
-          propiedad.addRol(rol);
-        }
-        this.rolesNoAsociados = Array.from(propiedadSugeridasMap.values());
+          this.rolesNoAsociados = Array.from(propiedadSugeridasMap.values());
 
-        resolve(this.rolesNoAsociados);
-      });
+          resolve(this.rolesNoAsociados);
+        },
+        err => reject(err)
+      );
     });
   }
 

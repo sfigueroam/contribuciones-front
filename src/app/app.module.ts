@@ -6,7 +6,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {CertificadosComponent} from './components/certificados/certificados/certificados.component';
 import localeEs from '@angular/common/locales/es-CL';
 import {registerLocaleData} from '@angular/common';
-import {ContributionsService} from './services/contributions.service';
 import {PagarComponent} from './components/contribuciones/pagar/pagar.component';
 import {RespuestaComponent} from './components/contribuciones/respuesta/respuesta.component';
 import {MenuComponent} from './components/menu/menu.component';
@@ -29,6 +28,7 @@ import {RolCuotasComponent} from './components/main/contribuciones/seleccion-cuo
 import {LoginComponent} from './components/login/login.component';
 import {AgregarNuevaComponent} from './components/main/contribuciones/agregar/nueva/agregar-nueva.component';
 import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
+import {CookieService} from 'ngx-cookie-service';
 
 registerLocaleData(localeEs, 'es');
 
@@ -73,7 +73,7 @@ registerLocaleData(localeEs, 'es');
       provide: DISABLE_NATIVE_VALIDITY_CHECKING,
       useValue: true
     },
-    ContributionsService
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
