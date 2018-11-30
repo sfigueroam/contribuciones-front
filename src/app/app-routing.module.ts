@@ -4,6 +4,8 @@ import {MainComponent} from './components/main/main.component';
 import {SeleccionCuotasComponent} from './components/main/contribuciones/seleccion-cuotas/seleccion-cuotas.component';
 import {AgregarNuevaComponent} from './components/main/contribuciones/agregar/nueva/agregar-nueva.component';
 import {SugeridasComponent} from './components/main/contribuciones/agregar/sugeridas/sugeridas.component';
+import {CertificadosComponent} from './components/certificados/certificados/certificados.component';
+import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,7 +23,11 @@ const routes: Routes = [{
           path: 'seleccionar-cuotas',
           component: SeleccionCuotasComponent
         }, {
+          path: 'certificados',
+          component: CertificadosComponent
+        }, {
           path: 'agregar',
+          component: AgregarComponent,
           children: [
             {
               path: 'sugeridas',

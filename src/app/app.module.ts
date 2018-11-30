@@ -12,7 +12,6 @@ import {RespuestaComponent} from './components/contribuciones/respuesta/respuest
 import {MenuComponent} from './components/menu/menu.component';
 import {DetallePagoComponent} from './components/modal/detalle-pago/detalle-pago.component';
 import {SugeridasComponent} from './components/main/contribuciones/agregar/sugeridas/sugeridas.component';
-import {PropiedadesComponent} from './components/contribuciones/propiedades/propiedades/propiedades.component';
 import {ConfirmacionComponent} from './components/certificados/confirmacion/confirmacion.component';
 import {LeadingZeroPipe} from './pipes/leading-zero.pipe';
 import {HttpClientModule} from '@angular/common/http';
@@ -29,6 +28,7 @@ import {DireccionCuotasComponent} from './components/main/contribuciones/selecci
 import {RolCuotasComponent} from './components/main/contribuciones/seleccion-cuotas/rol-cuotas/rol-cuotas.component';
 import {LoginComponent} from './components/login/login.component';
 import {AgregarNuevaComponent} from './components/main/contribuciones/agregar/nueva/agregar-nueva.component';
+import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -42,7 +42,7 @@ registerLocaleData(localeEs, 'es');
     DetallePagoComponent,
     SugeridasComponent,
     AgregarNuevaComponent,
-    PropiedadesComponent,
+    AgregarComponent,
     ConfirmacionComponent,
     LeadingZeroPipe,
     PropiedadComponent,

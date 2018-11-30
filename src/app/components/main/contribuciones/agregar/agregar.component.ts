@@ -5,11 +5,11 @@ import {Router} from '@angular/router';
 import {UserService} from '../../../../services/user.service';
 
 @Component({
-  selector: 'app-propiedades',
-  templateUrl: './propiedades.component.html',
-  styleUrls: ['./propiedades.component.scss']
+  selector: 'app-agregar',
+  templateUrl: './agregar.component.html',
+  styleUrls: ['./agregar.component.scss']
 })
-export class PropiedadesComponent implements OnInit {
+export class AgregarComponent implements OnInit {
 
   constructor(private user: UserService,
               private contribucionesSugeridasService: ContribucionesSugeridasService,

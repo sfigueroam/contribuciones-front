@@ -32,16 +32,19 @@
           [value]="tipo.id">{{tipo.descripcion | titlecase}}
         </mdl-option>
       </mdl-select>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label tgr-textfield--full"
-           [class.is-suggesting]="searchDireccion">
-        <input class="mdl-textfield__input"
-               type="text"
-               id="direccion"
-               (keyup)="inputDirecciones($event)"
-               (ngModel)="direccionModel"
-               formControlName="direccion">
-        <label class="mdl-textfield__label" for="calle">Dirección</label>
-        <ul class="tgr-suggestions mdl-shadow--3dp">
+      <mdl-textfield type="text"
+                     [class.is-invalid]="direccion.invalid && direccion.touched"
+                     id="direccion"
+                     name="direccion"
+                     [formControl]="direccion"
+                     (keyup)="inputDirecciones($event)"
+                     (ngModel)="direccionModel"
+                     floating-label
+                     label="Dirección *"
+                     error-msg="Debe ingresar al menos 3 caracteres">
+      </mdl-textfield>
+      <div>
+        <ul>
           <li *ngFor="let dire of direcciones | matchSorter:'direccion'"
               (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false">{{dire.direccion |
             titlecase}}
@@ -51,8 +54,6 @@
           </li>
         </ul>
       </div>
-
-
       <div class="tgr-card__footer .tgr-pay">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
                 [disabled]="formDireccion.invalid">Buscar
@@ -81,8 +82,7 @@
                        label="Rol"
                        [formControl]="rol"
                        error-msg="Debe ingresar un Rol"
-                       floating-label
-        ></mdl-textfield>
+                       floating-label></mdl-textfield>
         -
         <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
                        type="number"

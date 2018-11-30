@@ -1,0 +1,26 @@
+<div class="tgr-loading ->>hidden" [class.hidden]="hidden">
+  <figure>
+    <img class="tgr-star" src="../../../../assets/estrella.png" alt="">
+    <img class="tgr-tgr" src="../../../../assets/tgr.png" alt="">
+    <figcaption>Cargando</figcaption>
+  </figure>
+</div>
+
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div class="mdl-tabs__tab-bar">
+    <a *ngIf="isSugeridos"
+       class="mdl-tabs__tab"
+       routerLinkActive="is-active"
+       routerLink="/main/contribuciones/agregar/sugeridas"
+       href="">Sugeridas</a>
+    <a class="mdl-tabs__tab"
+       routerLinkActive="is-active"
+       routerLink="/main/contribuciones/agregar/nueva"
+       href="">Agregar nueva propiedad</a>
+  </div>
+</div>
+<div class="mdl-tabs__panel">
+  <div class="tgr-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
