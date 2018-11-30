@@ -1,17 +1,17 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {ContribucionesBuscarRolService} from '../../../../services/contribuciones-buscar-rol.service';
-import {Localidad} from '../../../../domain/Localidad';
+import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
+import {Localidad} from '../../../../../domain/Localidad';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Propiedad} from '../../../../domain/Propiedad';
-import {TipoPropiedad} from '../../../../domain/TipoPropiedad';
-import {Direccion} from '../../../../domain/Direccion';
-import {environment} from '../../../../../environments/environment';
-import {PropiedadComponent} from '../components/propiedad/propiedad.component';
-import {Rol} from '../../../../domain/Rol';
-import {UserService} from '../../../../services/user.service';
+import {Propiedad} from '../../../../../domain/Propiedad';
+import {TipoPropiedad} from '../../../../../domain/TipoPropiedad';
+import {Direccion} from '../../../../../domain/Direccion';
+import {environment} from '../../../../../../environments/environment';
+import {PropiedadComponent} from '../shared/propiedad/propiedad.component';
+import {Rol} from '../../../../../domain/Rol';
+import {UserService} from '../../../../../services/user.service';
 import {Router} from '@angular/router';
-import {ContributionsService} from '../../../../services/contributions.service';
+import {ContributionsService} from '../../../../../services/contributions.service';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -24,9 +24,9 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
 
-  wait: boolean = false;
-  sinResultado: boolean = false;
-  searchDireccion: boolean = false;
+  wait = false;
+  sinResultado = false;
+  searchDireccion = false;
 
   localidad: Localidad[];
   tipoPropiedades: TipoPropiedad[];
@@ -41,20 +41,19 @@ export class AgregarNuevaComponent implements OnInit {
   rol: FormControl;
   subRol: FormControl;
 
-  comunaDireccion: FormControl;
   tipoPropiedad: FormControl;
   direccion: FormControl;
 
   propiedades: Propiedad[];
-  switchActive: string = 'direccion';
+  switchActive = 'direccion';
   searchDelayedDirecciones: number;
 
   cantidadSeleccionadas: number;
   hidden: boolean;
 
-  constructor(private contribucionesBuscarRolService: ContribucionesBuscarRolService,
+  constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
-              private userService: UserService,
+              private user: UserService,
               private router: Router,
               private contributionsService: ContributionsService) {
 
@@ -99,13 +98,13 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contribucionesBuscarRolService.getComunas().then((data) => {
+    this.contribucionesBuscarRol.getComunas().then((data) => {
       this.localidad = data;
     }, () => {
       this.error('Ocurrió un error al obtener las comunas');
     });
 
-    this.contribucionesBuscarRolService.getTiposPropiedades().then((data) => {
+    this.contribucionesBuscarRol.getTiposPropiedades().then((data) => {
       this.tipoPropiedades = data;
     }, () => {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
@@ -119,7 +118,7 @@ export class AgregarNuevaComponent implements OnInit {
   buscarRol(): void {
 
     this.onWait();
-    this.contribucionesBuscarRolService.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
+    this.contribucionesBuscarRol.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
       if (response === null) {
         this.sinResultado = true;
       } else {
@@ -134,7 +133,7 @@ export class AgregarNuevaComponent implements OnInit {
 
   buscarDireccionSugeridos() {
     const size = environment.sizeResultSuggested;
-    this.contribucionesBuscarRolService.searchDireccion(undefined,
+    this.contribucionesBuscarRol.searchDireccion(undefined,
       this.tipoPropiedad.value,
       this.direccion.value,
       size).then((lista) => {
@@ -160,7 +159,7 @@ export class AgregarNuevaComponent implements OnInit {
 
   inputDirecciones(event: any) {
     console.log(event.keyCode);
-    let inp = String.fromCharCode(event.keyCode);
+    const inp = String.fromCharCode(event.keyCode);
     if (this.direccion.value.length <= 2) {
       this.direcciones = null;
     }
@@ -188,11 +187,11 @@ export class AgregarNuevaComponent implements OnInit {
     if (this.propiedades === undefined || this.propiedades == null) {
       this.propiedades = [];
     }
-    let estado: boolean = false;
-    for (let prop of this.propiedades) {
+    let estado = false;
+    for (const prop of this.propiedades) {
       if (prop.idDireccion === response.idDireccion) {
         estado = true;
-        for (let rol of response.roles) {
+        for (const rol of response.roles) {
           if (!prop.existRol(rol.rol)) {
             console.log('rol No e xiste');
             prop.addRol(rol);
@@ -224,7 +223,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.onWait();
     this.searchDireccion = false;
     const size = environment.sizeResultPage;
-    this.contribucionesBuscarRolService.searchDireccion(undefined,
+    this.contribucionesBuscarRol.searchDireccion(undefined,
       this.tipoPropiedad.value,
       this.direccion.value,
       size).then((lista) => {
@@ -243,7 +242,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   agregarDireccionesAPropiedad(): void {
-    let propiedads = this.contribucionesBuscarRolService.direccionToPropiedad(this.direcciones);
+    const propiedads = this.contribucionesBuscarRol.direccionToPropiedad(this.direcciones);
     if (propiedads) {
       for (const pro of propiedads) {
         this.agregarPropiedad(pro);
@@ -255,8 +254,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.hidden = false;
     console.log('inicio asociar propiedades');
 
-    if (this.userService.rut != null && this.userService.rut === undefined) {
-    //if (this.userService.rut === undefined) {
+    if (this.user.rut != null && this.user.rut === undefined) {
       let roles: Rol[] = [];
       const propiedadesComponent = this.propiedadComponentList.toArray();
       for (const propiedadComponent of propiedadesComponent) {
@@ -268,7 +266,7 @@ export class AgregarNuevaComponent implements OnInit {
 
       console.log('roles.loength', roles.length);
       if (roles.length > 0) {
-        this.contribucionesBuscarRolService.asociarRoles(this.userService.rut, roles).then(() => {
+        this.user.asociarRoles(roles).then(() => {
             this.contributionsService.propiedades = undefined;
             this.router.navigate(['/main/contribuciones']);
           },
@@ -281,9 +279,9 @@ export class AgregarNuevaComponent implements OnInit {
         this.hidden = true;
       }
     } else {
-      let propiedadesConRolesSeleccionados = this.getPropiedadesConRolesSeleccionados();
+      const propiedadesConRolesSeleccionados = this.getPropiedadesConRolesSeleccionados();
 
-      for (let propiedad of propiedadesConRolesSeleccionados) {
+      for (const propiedad of propiedadesConRolesSeleccionados) {
         this.contributionsService.addPropiedad(propiedad);
       }
       this.router.navigate(['/main/contribuciones']);
@@ -292,18 +290,16 @@ export class AgregarNuevaComponent implements OnInit {
 
 
   private getPropiedadesConRolesSeleccionados(): Propiedad[] {
-
-    let listaPropiedades = [];
+    const listaPropiedades = [];
     const propiedadesComponent = this.propiedadComponentList.toArray();
     for (const propiedadComponent of propiedadesComponent) {
       const rolesSeleccionados = propiedadComponent.getRolesSeleccioados();
       if (rolesSeleccionados !== undefined) {
-        let propiedad = propiedadComponent.propiedad;
+        const propiedad = propiedadComponent.propiedad;
         propiedad.roles = rolesSeleccionados;
         listaPropiedades.push(propiedad);
       }
     }
-
     return listaPropiedades;
   }
 

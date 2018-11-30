@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {Router} from '@angular/router';
+import {UserService} from '../../../../services/user.service';
 
 @Component({
   selector: 'app-propiedades',
@@ -10,13 +11,14 @@ import {Router} from '@angular/router';
 })
 export class PropiedadesComponent implements OnInit {
 
-  constructor(private contribucionesSugeridasService: ContribucionesSugeridasService,
+  constructor(private user: UserService,
+              private contribucionesSugeridasService: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
               private router: Router) {
   }
 
-  hidden: boolean = false;
-  isSugeridos: boolean = false;
+  hidden = false;
+  isSugeridos = false;
 
   ngOnInit() {
     this.cargarRolesNoAsociados().then((data) => {
@@ -24,7 +26,7 @@ export class PropiedadesComponent implements OnInit {
         this.isSugeridos = true;
       } else {
         this.isSugeridos = false;
-        this.router.navigate(['/main/contribuciones/propiedades/agregar']);
+        this.router.navigate(['/main/contribuciones/agregar/nueva']);
       }
       console.log('this.isSugeridos', this.isSugeridos);
     }, () => {
@@ -44,7 +46,7 @@ export class PropiedadesComponent implements OnInit {
 
   private cargarRolesNoAsociados(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.contribucionesSugeridasService.getRolesNoAsociados().then((rolesNoAsociados) => {
+      this.user.getRolesNoAsociados().then((rolesNoAsociados) => {
           this.hidden = true;
           if (rolesNoAsociados.length > 0) {
             resolve(true);

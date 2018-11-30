@@ -95,7 +95,7 @@ export class ContribucionesBuscarRolService {
     const leadingZeroPipe = new LeadingZeroPipe();
     return new Promise((resolve, reject) => {
 
-      let body = {
+      const body = {
         'rol': leadingZeroPipe.transform(idRol.toString(), 5),
         'subrol': leadingZeroPipe.transform(idSubRol.toString(), 3),
         'idcomuna': idComuna.toString()
@@ -107,7 +107,7 @@ export class ContribucionesBuscarRolService {
 
         } else {
           const bienRaiz = data.curout[0];
-          let propiedad = new Propiedad();
+          const propiedad = new Propiedad();
           propiedad.direccion = bienRaiz.direccion;
           propiedad.idDireccion = idComuna + '-' + idRol;
           const rol = new Rol(bienRaiz);
@@ -139,7 +139,7 @@ export class ContribucionesBuscarRolService {
           propiedad.idDireccion = idPropiedad;
           propiedadMap.set(idPropiedad, propiedad);
         }
-        let rol = new Rol();
+        const rol = new Rol();
         rol.rolComunaSiiCod = dire.idComunaSii;
         rol.rolId = dire.rol;
         rol.subrolId = dire.subrol;
@@ -161,21 +161,15 @@ export class ContribucionesBuscarRolService {
     return propiedades;
   }
 
-  /*
-    parceDireccionToPropiedades(direcciones: Direccion[]): any {
-      return null;
-    }
-  */
   searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
 
     search = search.replace(',', ' ');
-    let filtros;// = this.wildcard(search);
-    let body = {size, query: {bool: {must: []}}};
+    const body = {size, query: {bool: {must: []}}};
 
     body.size = size;
     body.query.bool.must = [];
 
-    let direccion = {
+    const direccion = {
       'match': {
         'direccion': {
           'query': search,
@@ -185,56 +179,33 @@ export class ContribucionesBuscarRolService {
     };
 
     body.query.bool.must.push(direccion);
-    if (filtros !== undefined) {
-      for (const fil of filtros) {
-        let wild = {
-          'wildcard': {
-            'direccion': fil
+
+    if (tipoPropiedad) {
+      const searchPropiedad = {
+        'match': {
+          'id_dest_propiedad': {
+            'query': tipoPropiedad
           }
-        };
-        body.query.bool.must.push(wild);
-
-      }
-
-      if (idComuna) {
-        let searchComuna = {
-          'match': {
-            'comuna': {
-              'query': idComuna.toString()
-            }
-          }
-        };
-        body.query.bool.must.push(searchComuna);
-      }
-      if (tipoPropiedad) {
-        let searchPropiedad = {
-          'match': {
-            'id_dest_propiedad': {
-              'query': tipoPropiedad
-            }
-          }
-        };
-        body.query.bool.must.push(searchPropiedad);
-      }
-
-
+        }
+      };
+      body.query.bool.must.push(searchPropiedad);
     }
 
-    let propiedades = {
+    const propiedades = {
       url: environment.elastic.propiedades.url,
       method: environment.elastic.propiedades.method,
       body: body
     };
 
-    let direcciones = [];
+    const direcciones = [];
     return new Promise((resolve, reject) => {
       this.requestService.requestElastic(propiedades).then((data: { hits: { hits: { _source: Direccion }[] } }) => {
         if (data.hits.hits.length === 0) {
           resolve(null);
         } else {
-          for (let direc of data.hits.hits) {
-            let direccion = new Direccion(direc._source);
-            direcciones.push(direccion);
+          for (const direc of data.hits.hits) {
+            const direccion2 = new Direccion(direc._source);
+            direcciones.push(direccion2);
           }
           resolve(direcciones);
         }
@@ -244,43 +215,15 @@ export class ContribucionesBuscarRolService {
     });
   }
 
-  wildcard(search: string): string[] {
-    let busqueda = [];
-    const campos: string[] = search.trim().toLowerCase().split(' ');
-    if (campos.length === 1) {
-      busqueda.push(campos[0] + '*');
-    } else {
-      let i = 0;
-      while (campos.length > i + 1) {
-        busqueda.push(campos[i].toLowerCase() + '*' + campos[i + 1].toLowerCase());
-        i++;
-      }
-      if ((campos.length % 2) === 1 && campos[i].toLowerCase().trim().length > 0) {
-        busqueda.push(campos[i].toLowerCase());
-      }
+  asociarRoles(rut: number, roles: Rol[]): Promise<any> {
+    const promesas = [];
+    for (const rol of roles) {
+      const body = {
+        'rutin': String(rut),
+        'rolin': rol.rol.toString()
+      };
+      promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
     }
-    return busqueda;
+    return Promise.all(promesas);
   }
-
-
-  asociarRoles(rut: string, roles: Rol[]): Promise<{}> {
-
-    return new Promise((resolve, reject) => {
-      let promesas = [];
-      for (let rol of roles) {
-          const body = {
-            'rutin': rut,
-            'rolin': rol.rol.toString()
-          };
-        promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
-      }
-      Promise.all(promesas).then(() => {
-          resolve();
-        },
-        () => {
-          reject();
-        });
-    });
-  }
-
 }

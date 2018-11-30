@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Propiedad} from '../domain/Propiedad';
-import {UserService} from './user.service';
 import {environment} from '../../environments/environment';
 import {Rol} from '../domain/Rol';
 import {RequestService} from './request.service';
@@ -12,10 +11,10 @@ export class ContribucionesSugeridasService {
 
   rolesNoAsociados: Propiedad[];
 
-  constructor(private requestService: RequestService, private user: UserService) {
+  constructor(private requestService: RequestService) {
   }
 
-  getRolesNoAsociados(force?: boolean): Promise<Propiedad[]> {
+  getRolesNoAsociados(rut: number, force?: boolean): Promise<Propiedad[]> {
     if (this.rolesNoAsociados && !force) {
       return new Promise((resolve, reject) => {
         resolve(this.rolesNoAsociados);
@@ -23,7 +22,7 @@ export class ContribucionesSugeridasService {
     }
     return new Promise((resolve, reject) => {
       const obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
-      obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + this.user.rut;
+      obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + rut;
       this.requestService.request(obtenerBienRaizNoAsociado).then((data: { curout: any }) => {
 
         const propiedadSugeridasMap = new Map<string, Propiedad>();
@@ -50,13 +49,13 @@ export class ContribucionesSugeridasService {
     return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
   }
 
-  asociarRoles(roles: number[]): Promise<any> {
+  asociarRoles(rut: number, roles: number[]): Promise<any> {
     return new Promise((resolve, reject) => {
-      let promesas = [];
+      const promesas = [];
 
-      for (let rol of roles) {
+      for (const rol of roles) {
         const body = {
-          'rutin': this.user.rut,
+          'rutin': String(rut),
           'rolin': rol.toString()
         };
         promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));

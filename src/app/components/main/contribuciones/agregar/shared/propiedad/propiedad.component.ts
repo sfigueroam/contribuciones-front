@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
-import {Propiedad} from '../../../../../domain/Propiedad';
+import {Propiedad} from '../../../../../../domain/Propiedad';
 import {PropiedadRolComponent} from '../propiedad-rol/propiedad-rol.component';
-import {Rol} from '../../../../../domain/Rol';
-import {isNullOrUndefined} from 'util';
+import {Rol} from '../../../../../../domain/Rol';
 
 declare var componentHandler: any;
 
@@ -119,7 +118,7 @@ export class PropiedadComponent implements OnInit {
         roles.push(rol.rol);
       }
     }
-    if(roles.length === 0){
+    if (roles.length === 0) {
       return undefined;
     }
     return roles;

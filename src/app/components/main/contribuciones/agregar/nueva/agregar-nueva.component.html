@@ -45,7 +45,9 @@
           <li *ngFor="let dire of direcciones | matchSorter:'direccion'"
               (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false">{{dire.direccion |
             titlecase}}
-            <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol | leadingZero:3}}</small>
+            <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol |
+              leadingZero:3}}
+            </small>
           </li>
         </ul>
       </div>
@@ -80,7 +82,8 @@
                        [formControl]="rol"
                        error-msg="Debe ingresar un Rol"
                        floating-label
-        ></mdl-textfield> -
+        ></mdl-textfield>
+        -
         <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
                        type="number"
                        id="subRol"
@@ -112,7 +115,8 @@
 <div class="tgr-actions">
   <div class="tgr-actions__content">
     <div class="tgr-pay">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="asociarPropiedades()">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              (click)="asociarPropiedades()">
         Agregar {{cantidadSeleccionadas}} propiedades
       </button>
     </div>

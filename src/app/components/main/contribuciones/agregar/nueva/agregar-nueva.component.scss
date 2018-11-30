@@ -1,25 +1,25 @@
-@import '../../../../../styles/colors';
+@import '../../../../../../styles/colors';
 
 
 .mdl-textfield {
-  width: calc(33.3% - 10px);  
+  width: calc(33.3% - 10px);
   margin: 0 10px 0 0;
-  @media (max-width: 996px){  	
+  @media (max-width: 996px) {
   	width: calc(50% - 10px);
 	}
-	@media (max-width: 683px){  	
+  @media (max-width: 683px) {
   	width: 100%;
 		margin: 0;
 	}
 }
 .tgr-textfield--full {
-	@media (max-width: 996px){  	
+  @media (max-width: 996px) {
   	width: 100%;
 		margin: 0;
 	}
 }
 .is-suggesting {
-	margin: 0;	
+  margin: 0;
 	position: relative;
 }
 .is-suggesting .tgr-suggestions {
@@ -58,7 +58,7 @@
 	float: right;
   display: block;
   width: auto;
-} 
+}
 .tgr-card__title .material-icons {
   color: $color-violet;
       float: left;
@@ -74,7 +74,8 @@
   margin-bottom: 0;
   margin-top: 2px;
 }
-.tgr-card__tag {  
+
+.tgr-card__tag {
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -89,7 +90,7 @@
 }
 .tgr-rol-row {
 	padding: 16px 16px 8px 16px;
-}  
+}
 .tgr-rol-row .tgr-card__title--text {
 	color: $color-primary
 }

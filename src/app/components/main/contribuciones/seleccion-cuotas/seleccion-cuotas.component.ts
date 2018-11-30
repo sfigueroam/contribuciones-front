@@ -6,6 +6,8 @@ import {ContributionsService} from '../../../../services/contributions.service';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
 import {UserService} from '../../../../services/user.service';
+import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -26,14 +28,26 @@ export class SeleccionCuotasComponent implements OnInit {
   complete: boolean;
 
   rolesSugeridos = 0;
-  mostrarAlertaSugeridos = true;
+  ocultarAlertaSugeridas = false;
 
-  constructor(private user: UserService, private contributions: ContributionsService, private mdlSnackbarService: MdlSnackbarService) {
+  constructor(private router: Router,
+              private user: UserService,
+              private contributions: ContributionsService,
+              private sugeridas: ContribucionesSugeridasService,
+              private mdlSnackbarService: MdlSnackbarService) {
   }
 
   ngOnInit() {
     this.complete = false;
     this.seleccionada = TipoCuota.TODAS;
+
+    this.user.getRolesNoAsociados().then(
+      (props: Propiedad[]) => this.rolesSugeridos = props.length,
+      (err) => {
+        console.log(err);
+        this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles sugeridos');
+      }
+    );
 
     this.user.getBienesRaices().then(
       (propiedades) => {
@@ -69,6 +83,10 @@ export class SeleccionCuotasComponent implements OnInit {
       total += p.total;
     }
     this.total = total;
+  }
+
+  gotoSugeridas() {
+    this.router.navigate(['/main/contribuciones/agregar/sugeridas']);
   }
 
   onChange() {

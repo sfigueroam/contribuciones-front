@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {PitUtils} from '../pit-utils';
 import {Propiedad} from '../domain/Propiedad';
 import {ContributionsService} from './contributions.service';
+import {ContribucionesBuscarRolService} from './contribuciones-buscar-rol.service';
+import {Rol} from '../domain/Rol';
+import {ContribucionesSugeridasService} from './contribuciones-sugeridas.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,9 @@ export class UserService {
   rut: number;
   dv: string;
 
-  constructor(private contributions: ContributionsService) {
+  constructor(private contributions: ContributionsService,
+              private sugeridas: ContribucionesSugeridasService,
+              private buscarRoles: ContribucionesBuscarRolService) {
     this.rut = 96597810;
   }
 
@@ -34,5 +39,13 @@ export class UserService {
 
   eliminarRol(rolComunaSiiCod: number, rolId: number, subrolId: number): Promise<any> {
     return this.contributions.eliminarRol(this.rut, rolComunaSiiCod, rolId, subrolId);
+  }
+
+  asociarRoles(roles: Rol[]): Promise<any> {
+    return this.buscarRoles.asociarRoles(this.rut, roles);
+  }
+
+  getRolesNoAsociados(): Promise<Propiedad[]> {
+    return this.sugeridas.getRolesNoAsociados(this.rut);
   }
 }

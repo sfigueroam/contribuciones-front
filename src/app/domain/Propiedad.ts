@@ -114,7 +114,7 @@ export class Propiedad {
     for (let i = 0; i < this.direccion.length; i++) {
       const character = this.direccion.charAt(i);
 
-      if (!isNumeric(character) ||  i < 5 ) {
+      if (!isNumeric(character) || i < 5) {
         if (isNumber) {
           return slimName;
         }

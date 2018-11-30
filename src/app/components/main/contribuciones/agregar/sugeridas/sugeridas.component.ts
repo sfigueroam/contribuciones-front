@@ -1,10 +1,11 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {Propiedad} from '../../../../domain/Propiedad';
-import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
-import {PropiedadComponent} from '../components/propiedad/propiedad.component';
-import {ContributionsService} from '../../../../services/contributions.service';
+import {Propiedad} from '../../../../../domain/Propiedad';
+import {ContribucionesSugeridasService} from '../../../../../services/contribuciones-sugeridas.service';
+import {PropiedadComponent} from '../shared/propiedad/propiedad.component';
+import {ContributionsService} from '../../../../../services/contributions.service';
 import {Router} from '@angular/router';
 import {MdlSnackbarService} from '@angular-mdl/core';
+import {UserService} from '../../../../../services/user.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class SugeridasComponent implements OnInit {
   cantidadSeleccionadas: number;
 
 
-  constructor(private contribucionesSugeridasService: ContribucionesSugeridasService,
+  constructor(private user: UserService,
+              private contribucionesSugeridasService: ContribucionesSugeridasService,
               private contributionsService: ContributionsService,
               private mdlSnackbarService: MdlSnackbarService,
               private router: Router) {
@@ -38,7 +40,7 @@ export class SugeridasComponent implements OnInit {
 
   private cargarRolesNoAsociados(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.contribucionesSugeridasService.getRolesNoAsociados().then((rolesNoAsociados) => {
+      this.user.getRolesNoAsociados().then((rolesNoAsociados) => {
           this.propiedades = rolesNoAsociados;
           this.hidden = true;
           resolve();
@@ -62,14 +64,13 @@ export class SugeridasComponent implements OnInit {
   }
 
   agregarPropiedad() {
-
     this.hidden = false;
-    let roles: number [] = [];
+    let roles = [];
     const sugeridasPropiedadesList = this.sugeridasPropiedadComponentList.toArray();
     for (const sugeridas of sugeridasPropiedadesList) {
       roles = roles.concat(sugeridas.getRolesSeleccionadas());
     }
-    this.contribucionesSugeridasService.asociarRoles(roles).then(() => {
+    this.user.asociarRoles(roles).then(() => {
         this.contributionsService.clearPropiedades();
         this.contribucionesSugeridasService.clearPropiedades();
         this.cargarRolesNoAsociados().then(() => {
@@ -81,7 +82,8 @@ export class SugeridasComponent implements OnInit {
           message: 'Ocurrió un error al asociar',
           timeout: 1500,
           action: {
-            handler: () => {},
+            handler: () => {
+            },
             text: 'ok'
           }
         });
