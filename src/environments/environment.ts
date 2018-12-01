@@ -1,13 +1,9 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 const idTesoreria = '33';
-const origen = '912';
+const origen = '928';
 
 const cabecera = {
   ambiente: 'test',
-  usuario: '14059203'
+  usuario: '60805000'
 };
 
 const urlsBase = {
@@ -26,6 +22,9 @@ const pathBase = {
 export const environment = {
   production: false,
   cuentaUrl: 'http://localhost:4200',
+  pago: {
+    url: 'http://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
+  },
   cognito: {
     domain: '201811',
     clientId: '2ntpfu2jj8miueillfdef8i93n',

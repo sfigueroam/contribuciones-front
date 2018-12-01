@@ -16,6 +16,7 @@ export class Propiedad {
   changeStream: Observable<any> = this.changeSubject.asObservable();
 
   total: number;
+  condonacion: number;
 
   constructor() {
     this.roles = [];
@@ -46,10 +47,13 @@ export class Propiedad {
 
   private calcularTotal() {
     let total = 0;
+    let condonacion = 0;
     for (const r of this.roles) {
       total += r.total;
+      condonacion += r.condonacion;
     }
     this.total = total;
+    this.condonacion = condonacion;
   }
 
   resumen(): ResumenCuotas {

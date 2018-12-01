@@ -1,13 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
-import {DetallePagoComponent} from '../../../modal/detalle-pago/detalle-pago.component';
 import {ContributionsService} from '../../../../services/contributions.service';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
 import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
 import {Router} from '@angular/router';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -16,15 +16,14 @@ import {Router} from '@angular/router';
 })
 export class SeleccionCuotasComponent implements OnInit {
 
-  @ViewChild('detallePago')
-  detallePago: DetallePagoComponent;
-
   propiedades: Propiedad[] = [];
 
   tipo = TipoCuota;
   seleccionada: TipoCuota;
+  cantidadSeleccionadas: number;
 
   total: number;
+  condonacion: number;
   complete: boolean;
 
   rolesSugeridos = 0;
@@ -79,10 +78,14 @@ export class SeleccionCuotasComponent implements OnInit {
 
   private calcularTotal() {
     let total = 0;
+    let condonacion = 0;
     for (const p of this.propiedades) {
       total += p.total;
+      condonacion += p.condonacion;
     }
     this.total = total;
+    this.condonacion = condonacion;
+    this.recalcularTipo();
   }
 
   gotoSugeridas() {
@@ -100,12 +103,37 @@ export class SeleccionCuotasComponent implements OnInit {
     this.recalcularTipo();
   }
 
-  summary() {
-    this.detallePago.showDialog(this.propiedades);
-  }
-
   pay() {
+    let codigos = '';
+    for (const p of this.propiedades) {
+      for (const r of p.roles) {
+        for (const c of r.cuotas) {
+          if (c.intencionPago) {
+            if (r.condonacion > 0) {
+              codigos += c.liqTotal.codigoBarra + ', ';
+            } else {
+              codigos += c.liqParcial.codigoBarra + ', ';
+            }
+          }
+        }
+      }
+    }
 
+    const data = new FormData();
+    data.append('listaContribuciones', 'on, ' + codigos);
+    data.append('pagar', 'PAGAR');
+
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.addEventListener('readystatechange', function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);
+      }
+      console.log(this.responseText);
+    });
+
+    xhr.open('POST', environment.pago.url);
+    xhr.send(data);
   }
 
   private recalcularTipo() {
@@ -118,5 +146,6 @@ export class SeleccionCuotasComponent implements OnInit {
       result.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
     }
     this.seleccionada = result.tipo();
+    this.cantidadSeleccionadas = result.seleccionadas;
   }
 }

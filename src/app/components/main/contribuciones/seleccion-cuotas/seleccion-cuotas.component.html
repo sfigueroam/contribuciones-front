@@ -1,8 +1,11 @@
 <div [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
   Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT
+  <button mdl-button (click)="ocultarAlertaSugeridas = true">
+    <mdl-icon mdl-badge-overlap>close</mdl-icon>
+  </button>
 </div>
 <div [class.hidden]="rolesSugeridos < 1">
-  <button mdl-button mdl-button-type="icon" (click)="gotoSugeridas()">
+  <button mdl-button (click)="gotoSugeridas()">
     <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
   </button>
 </div>
@@ -32,9 +35,8 @@
 </div>
 
 <div>
-  <p>Subtotal: </p>
-  <p>Condonación: </p>
   <p>Total: {{total | number}}</p>
+  <p *ngIf="condonacion > 0">El monto total considera una condonación de $ {{condonacion | number}}</p>
 </div>
 
 <div class="tgr-actions">
@@ -44,8 +46,8 @@
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
     <div>
-      <button mdl-button mdl-button-type="icon" (click)="summary()">
-        <mdl-icon>close</mdl-icon>
+      <button #summaryButton mdl-button (click)="summaryDialog.show()">
+        <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap>menu</mdl-icon>
       </button>
     </div>
     <div>
@@ -59,7 +61,6 @@
   </div>
 </div>
 
-
 <div class="tgr-add">
   <div class="tgr-target-wrapper">
     <div class="tgr-target-wave tgr-target-wave--button">
@@ -71,4 +72,42 @@
   </div>
 </div>
 
-<app-detalle-pago #detallePago></app-detalle-pago>
+<mdl-dialog #summaryDialog
+            [mdl-dialog-config]="{
+              clickOutsideToClose: true,
+              styles:{'width': '700px'},
+              isModal: true,
+              openFrom: summaryButton,
+              enterTransitionDuration: 400,
+              leaveTransitionDuration: 400}">
+  <h3 class="mdl-dialog__title">Detalle de pago</h3>
+  <div class="mdl-dialog__content" *ngIf="complete">
+    <div class="tgr-propiedad" *ngFor="let propiedad of propiedades">
+      <h2>{{propiedad.direccion}}</h2>
+      <table class="mdl-data-table">
+        <thead>
+        <tr>
+          <th>ROL</th>
+          <th>Cuota</th>
+          <th>Vence</th>
+          <th>Monto</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let rol of propiedad.roles">
+        <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
+          <td>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
+          </td>
+          <td>{{cuota.numeroCuota}}</td>
+          <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+          <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tgr-dialog__actions">
+    <button mdl-button (click)="summaryDialog.close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+      Cerrar
+    </button>
+  </div>
+</mdl-dialog>
