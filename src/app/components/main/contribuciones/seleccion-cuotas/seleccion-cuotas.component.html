@@ -19,22 +19,25 @@
 <div class="mdl-grid switch-fee-text">
   <div class="mdl-cell mdl-cell--4-col m-0auto mb-0 select-fee">
     <p>Selecciona las cuotas que pagarás</p>
-    <ul class="filter">
-    <li [class.active]="seleccionada === tipo.TODAS">
-      <a (click)="seleccionar(tipo.TODAS)">
-        <mdl-icon *ngIf="seleccionada === tipo.TODAS">done</mdl-icon>
-        Todas
-      </a>
-    </li>
-    <li [class.active]="seleccionada === tipo.VENCIDAS">
-      <a (click)="seleccionar(tipo.VENCIDAS)">
-        <mdl-icon *ngIf="seleccionada === tipo.VENCIDAS">done</mdl-icon>
-        Vencidas
-      </a>
-    </li>
-  </ul>
+    <div class="tgr-select tgr-select--buttons">
+      <ul class="filter">
+        <li [class.active]="seleccionada === tipo.TODAS">
+          <a (click)="seleccionar(tipo.TODAS)">
+            <mdl-icon *ngIf="seleccionada === tipo.TODAS">done</mdl-icon>
+            Todas
+          </a>
+        </li>
+        <li [class.active]="seleccionada === tipo.VENCIDAS">
+          <a (click)="seleccionar(tipo.VENCIDAS)">
+            <mdl-icon *ngIf="seleccionada === tipo.VENCIDAS">done</mdl-icon>
+            Vencidas
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
+
 
 <div *ngFor="let propiedad of propiedades">
   <app-direccion-cuotas (change)="onChange()" [propiedad]="propiedad"></app-direccion-cuotas>

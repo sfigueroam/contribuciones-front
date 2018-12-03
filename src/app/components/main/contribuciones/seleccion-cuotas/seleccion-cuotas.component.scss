@@ -35,3 +35,54 @@
   margin-bottom: 0;
   text-align: center;
 }
+
+.filter {
+  margin-top: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-left: 0;
+}
+
+.filter li {
+  display: inline-block;
+  float: none;
+  height: inherit;
+  line-height: 30px;
+  margin-right: 10px;
+  margin-top: 0;
+  position: relative;
+}
+
+.filter .material-icons {
+  color: #fff;
+  display: none;
+  line-height: 1;
+}
+
+.filter a {
+  background: $color-light;
+  border-radius: 32px;
+  border: 1px solid $color-filter;
+  color: $color-80;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 0 15px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.filter .active .material-icons {
+  display: inline-block;
+  float: left;
+  font-size: 20px;
+  padding-top: 4px;
+  font-weight: bold;
+  padding-right: 3px;
+}
+
+.filter .active a {
+  background: $color-filter;
+  color: #fff;
+  padding-left: 10px;
+}
