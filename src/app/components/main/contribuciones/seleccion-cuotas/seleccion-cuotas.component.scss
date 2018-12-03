@@ -99,3 +99,66 @@
 .mdl-button {
   overflow: visible;
 }
+
+.drawer-shopping-cart { 
+    padding-bottom: 70px;
+        > .mdl-layout-title {
+        line-height: 56px;
+        text-align: center;
+        padding-right: 16px;
+        margin-left: 15px;
+    }
+    .sub-title {
+      color: $gray-87;
+        font-size: 16px;
+        margin-left: 15px;
+        margin-top: 30px;
+        text-align: center;
+    }
+    table {
+        th {
+            width: 25%;
+            text-align: left;
+            padding-left: 24px;
+            &:last-of-type {
+                text-align: right;
+            }
+            @media (max-width: 500px) {
+              padding-left: 4px;
+            }
+        }
+        td {
+            width: 25%;
+            text-align: left;
+            padding-left: 24px;
+            &:last-of-type {
+                text-align: right;
+            }
+            @media (max-width: 500px) {
+              padding-left: 4px;
+            }
+        }
+
+    }
+  .tgr-dialog__actions {
+    text-align: center;
+  }
+}
+.mdl-dialog__content {
+  @media (max-width: 500px) {
+    padding: 10px 0 24px 0;
+  }
+}
+.mdl-dialog__content .tgr-propiedad:first-child .sub-title {
+  margin-top: 0;
+}
+
+@media (min-width: 481px) {
+    .drawer-shopping-cart {
+        table {
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}

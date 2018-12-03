@@ -90,13 +90,15 @@
               clickOutsideToClose: true,
               styles:{'width': '700px'},
               isModal: true,
+              classes: 'tgr-payment-detail',
               enterTransitionDuration: 400,
               leaveTransitionDuration: 400}">
-  <h3 class="mdl-dialog__title">Detalle de pago</h3>
-  <div class="mdl-dialog__content" *ngIf="complete">
+  <div class="drawer-shopping-cart active">
+      <p class="mdl-layout-title">Resumen de tus Cuotas</p>
+      <div class="mdl-dialog__content" *ngIf="complete">
     <div class="tgr-propiedad" *ngFor="let propiedad of propiedades">
-      <div *ngIf="propiedad.total > 0">
-        <h2>{{propiedad.direccion}} ({{propiedad.total | number}})</h2>
+      <div *ngIf="propiedad.total > 0">      
+        <p class="sub-title"><strong>{{propiedad.direccion}}</strong>({{propiedad.total | number}})</p>
         <table class="mdl-data-table">
           <thead>
           <tr>
@@ -119,10 +121,18 @@
       </div>
     </div>
   </div>
-  <div class="tgr-dialog__actions">
+
+
+       <div class="tgr-dialog__actions">
     <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple
             (click)="summaryDialog.close()">
       Cerrar
     </button>
+  </div> 
+        
+        
   </div>
+  
+
+  
 </mdl-dialog>
