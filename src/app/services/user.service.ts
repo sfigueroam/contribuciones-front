@@ -3,7 +3,6 @@ import {PitUtils} from '../pit-utils';
 import {Propiedad} from '../domain/Propiedad';
 import {ContributionsService} from './contributions.service';
 import {ContribucionesBuscarRolService} from './contribuciones-buscar-rol.service';
-import {Rol} from '../domain/Rol';
 import {ContribucionesSugeridasService} from './contribuciones-sugeridas.service';
 import {environment} from '../../environments/environment';
 
@@ -46,7 +45,7 @@ export class UserService {
     return this.contributions.eliminarRol(this.rut, rolComunaSiiCod, rolId, subrolId);
   }
 
-  asociarRoles(roles: Rol[]): Promise<any> {
+  asociarRoles(roles: number[]): Promise<any> {
     return this.buscarRoles.asociarRoles(this.rut, roles);
   }
 

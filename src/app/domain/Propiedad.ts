@@ -38,7 +38,10 @@ export class Propiedad {
         this.calcularTotal();
         for (const r of this.roles) {
           r.changeStream.subscribe(
-            () => this.changeSubject.next()
+            () => {
+              this.calcularTotal();
+              this.changeSubject.next();
+            }
           );
         }
       }
@@ -68,36 +71,8 @@ export class Propiedad {
     return result;
   }
 
-  calcularTotalCondonado(): number {
-    let total = 0;
-    for (const rol of this.roles) {
-      total += rol.calcularTotalCondonado();
-    }
-    return total;
-  }
-
-  tieneCuotasSeleccionadas(): boolean {
-    for (const rol of this.roles) {
-      if (rol.cantidadCuotasSeleccionadas() > 0) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  desasociarRol(rol: Rol) {
-    this.roles = this.roles.filter((r) => {
-      return r.rol !== rol.rol;
-    });
-
-
-  }
-
   existRol(rol: number): boolean {
-    console.log('!!existRol');
     for (const r of this.roles) {
-      console.log('r.rol', r.rol);
-      console.log('rol', rol);
       if (r.rol === rol) {
         return true;
       }

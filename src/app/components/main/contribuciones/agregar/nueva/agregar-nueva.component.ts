@@ -111,10 +111,6 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
-  autoCompletar(): void {
-    console.log('Autocomplet');
-  }
-
   buscarRol(): void {
 
     this.onWait();
@@ -139,8 +135,8 @@ export class AgregarNuevaComponent implements OnInit {
       size).then((lista) => {
         this.direcciones = lista;
       },
-      () => {
-        this.error('A ocurrido un error al buscar direcciones');
+      err => {
+        this.error(err);
       });
   }
 
@@ -158,7 +154,6 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   inputDirecciones(event: any) {
-    console.log(event.keyCode);
     const inp = String.fromCharCode(event.keyCode);
     if (this.direccion.value.length <= 2) {
       this.direcciones = null;
@@ -168,11 +163,9 @@ export class AgregarNuevaComponent implements OnInit {
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8) {
       this.searchDireccion = true;
       if (this.direccion.value.length > 2) {
-        console.log('this.searchDelayedDirecciones', this.searchDelayedDirecciones);
         if (!this.searchDelayedDirecciones) {
           this.searchDelayedDirecciones = setTimeout(
             () => {
-              console.log('buscando');
               this.buscarDireccionSugeridos();
               this.searchDelayedDirecciones = undefined;
             },
@@ -193,7 +186,6 @@ export class AgregarNuevaComponent implements OnInit {
         estado = true;
         for (const rol of response.roles) {
           if (!prop.existRol(rol.rol)) {
-            console.log('rol No e xiste');
             prop.addRol(rol);
           }
         }
@@ -252,7 +244,6 @@ export class AgregarNuevaComponent implements OnInit {
 
   asociarPropiedades() {
     this.hidden = false;
-    console.log('inicio asociar propiedades');
 
     if (this.user.rut != null && this.user.rut !== undefined) {
       let roles: Rol[] = [];
@@ -264,15 +255,14 @@ export class AgregarNuevaComponent implements OnInit {
         }
       }
 
-      console.log('roles.loength', roles.length);
       if (roles.length > 0) {
-        this.user.asociarRoles(roles).then(() => {
+        this.user.asociarRoles(roles.map(r => r.rol)).then(() => {
             this.contributionsService.propiedades = undefined;
-            this.router.navigate(['/main/contribuciones']);
+            this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
           },
-          () => {
+          err => {
             this.hidden = true;
-            console.error('Ocurrio un error');
+            console.error(err);
             this.error('Ocurrio un error al asociar los roles, intente más tarde');
           });
       } else {

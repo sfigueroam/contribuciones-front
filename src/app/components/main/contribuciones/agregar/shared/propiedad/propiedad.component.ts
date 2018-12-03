@@ -2,11 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren}
 import {Propiedad} from '../../../../../../domain/Propiedad';
 import {PropiedadRolComponent} from '../propiedad-rol/propiedad-rol.component';
 import {Rol} from '../../../../../../domain/Rol';
-
-declare var componentHandler: any;
+import {CheckboxIcon} from '../../../../../../domain/CheckboxIcon';
 
 @Component({
-  selector: '[app-propiedad]',
+  selector: 'app-propiedad',
   templateUrl: './propiedad.component.html',
   styleUrls: ['./propiedad.component.scss']
 })
@@ -42,7 +41,6 @@ export class PropiedadComponent implements OnInit {
 
   selectAllRol(): void {
     this.seleccion = !this.seleccion;
-    console.log('selectAllRol');
     this.updateIconSeleccion();
     this.updateRoles();
     this.change.emit();
@@ -68,8 +66,7 @@ export class PropiedadComponent implements OnInit {
   }
 
   getRolesSeleccionadas(): number [] {
-    let roles: number[] = [];
-
+    const roles: number[] = [];
     const sugeridosRolList = this.propiedadRolComponentList.toArray();
     for (const sugeridosRol of sugeridosRolList) {
       if (sugeridosRol.seleccion) {
@@ -81,12 +78,12 @@ export class PropiedadComponent implements OnInit {
 
   private updateIconSeleccion(): void {
 
-    if(this.seleccion === undefined){
-      this.selectedIcon = 'indeterminate_check_box';
+    if (this.seleccion === undefined) {
+      this.selectedIcon = CheckboxIcon.INDETERMINATE;
     } else if (this.seleccion) {
-      this.selectedIcon = 'checked';
+      this.selectedIcon = CheckboxIcon.SELECTED;
     } else {
-      this.selectedIcon = 'unchecked';
+      this.selectedIcon = CheckboxIcon.UNSELECTED;
     }
   }
 
@@ -101,9 +98,9 @@ export class PropiedadComponent implements OnInit {
     }
     if (cantidad === sugeridosRolList.length) {
       this.seleccion = true;
-    } else if (cantidad === 0){
+    } else if (cantidad === 0) {
       this.seleccion = false;
-    }else{
+    } else {
       this.seleccion = undefined;
     }
     this.updateIconSeleccion();
@@ -111,7 +108,7 @@ export class PropiedadComponent implements OnInit {
 
   getRolesSeleccioados(): Rol[] | undefined {
 
-    let roles: Rol[] = [];
+    const roles: Rol[] = [];
     const rolesList = this.propiedadRolComponentList.toArray();
     for (const rol of rolesList) {
       if (rol.seleccion) {

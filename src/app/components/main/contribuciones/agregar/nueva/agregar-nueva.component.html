@@ -1,4 +1,4 @@
-<div class="tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait" appMdlInit>
+<div class="tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
@@ -66,7 +66,6 @@
       <div class="tgr-card__body ">
         <mdl-select #autocompleteSelect [class.is-invalid]="comuna.touched && comuna.invalid"
                     [autocomplete]="true"
-                    (change)="autoCompletar()"
                     error-msg="Debe seleccionar una Comuna"
                     [formControl]="comuna"
                     label="Comuna"
@@ -104,9 +103,9 @@
 
 <div class="tgr-results">
   <h3 [class.hidden]="!sinResultado">Sin resultados en la busqueda</h3>
-  <div class="tgr-content mdl-shadow--3dp" app-propiedad *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
-       (change)="updateSeleccionadaTotal()" appMdlInit>
-  </div>
+  <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+                 (change)="updateSeleccionadaTotal()">
+  </app-propiedad>
 </div>
 
 

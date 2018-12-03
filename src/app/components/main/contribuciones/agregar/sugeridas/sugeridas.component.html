@@ -8,9 +8,9 @@
   </div>
 
   <div class="tgr-results">
-    <div class="tgr-content mdl-shadow--3dp" app-propiedad *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
-         (change)="updateSeleccionadaTotal()" appMdlInit >
-    </div>
+    <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+                   (change)="updateSeleccionadaTotal()">
+    </app-propiedad>
   </div>
 
   <div class="tgr-actions">
@@ -36,3 +36,4 @@
       </div>
     </div>
   </div>
+</div>

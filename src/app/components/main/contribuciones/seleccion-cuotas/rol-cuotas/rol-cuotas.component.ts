@@ -39,7 +39,6 @@ export class RolCuotasComponent implements OnInit {
       () => null,
       (err) => console.log(err),
       () => {
-        console.log('rol cargado', this.rol);
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
