@@ -1,3 +1,17 @@
+@import '../../../../../../styles/colors';
+
 .hidden {
   display: none;
+}
+.mdl-data-table {
+  width: 100%;
+}
+.mdl-data-table td, .mdl-data-table th {
+  text-align: center;
+}
+.tgr-tr--late {
+  color: $color-danger;
+}
+.el-rol {
+  padding-left: 0;
 }

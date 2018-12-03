@@ -548,6 +548,7 @@ html, body, h1, h2, h3, h4,  h5 {
 }
 
 //listdo contribuciones:
+
 .bar {
         -webkit-transition: .6s;
         transition: .6s;
@@ -661,3 +662,6 @@ html, body, h1, h2, h3, h4,  h5 {
         //-o-text-overflow: ellipsis;
     }
 };
+.bar .bar-text p.el-rol {
+  margin-left: 3px;
+}
