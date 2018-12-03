@@ -1,16 +1,22 @@
 <div class="demo-container demo-layout-transparent">
-  <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-mode="waterfall" mdl-layout-fixed-header mdl-layout-header-seamed>
-    <mdl-layout-header mdl-layout-header-transparent>
+  <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-fixed-header>
+    <mdl-layout-header mdl-layout-header>
       <mdl-layout-header-row>
-        <mdl-layout-title>TGR</mdl-layout-title>
         <mdl-layout-spacer></mdl-layout-spacer>
+        <a href="/">
+          <img src="../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">  
+        </a>
+        <mdl-layout-spacer></mdl-layout-spacer>
+        
+        
+        
         <nav class="mdl-navigation">
           <button class="mdl-navigation__link"
                   #btnMenu="mdlButton"
                   (click)="menu.toggle($event, btnMenu)"
                   mdl-button
                   mdl-button-type="icon">
-            <mdl-icon>account_circle</mdl-icon>
+            <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
           </button>
           <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
             <mdl-menu-item *ngIf="!logged"
@@ -32,6 +38,13 @@
         </nav>
       </mdl-layout-header-row>
     </mdl-layout-header>
+
+
+
+
+
+
+
     <mdl-layout-content>
       <mdl-tabs mdl-ripple [mdl-tab-active-index]="index" (mdl-tab-active-changed)="tabChanged($event)">
         <mdl-tab-panel mdl-tab-panel-title="Contribuciones">

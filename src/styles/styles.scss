@@ -3,9 +3,234 @@
 @import '~@angular-mdl/popover/popover';
 @import '~@angular-mdl/select/select';
 
-html, body {
-  font-family: 'Roboto', sans-serif !important;
+html, body, h1, h2, h3, h4,  h5 {
+  font-family: "Helvetica","Arial",sans-serif;
 }
+// Definiciones Generales Margen y Padding
+
+.m-0auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-20 {
+  margin: 20px 0;
+}
+
+.my-10 {
+  margin: 10px 0;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-25 {
+  margin-top: 25px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.mb-140 {
+  margin-bottom: 140px;
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.ml-0 {
+  margin-left: 0;
+}
+
+.ml--5 {
+  margin-left: -5px;
+}
+
+.mr-0 {
+  margin-right: 0;
+}
+
+.pt-0 {
+  padding-top: 0;
+}
+
+.py-8 {
+  padding: 8px 0;
+}
+
+.py-15 {
+  padding: 15px 0;
+}
+
+.pl-10 {
+  padding-left: 10px;
+}
+
+.pl-0 {
+  padding-left: 0;
+}
+
+.pl-30 {
+  padding-left: 30px;
+}
+
+.pr-0 {
+  padding-right: 0;
+}
+
+// Formato de Texto
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+// Colores de Texto
+
+.text-white {
+  color: $color-white;
+}
+
+.text-info {
+  color: $color-info;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-secondary {
+  color: $color-secondary;
+}
+
+.text-default-dark {
+  color: $color-default-dark;
+}
+
+.text-success-hover {
+  color: $color-success-hover;
+}
+
+.text-success {
+  color: $color-success;
+}
+
+.text-warning {
+  color: $color-warning !important;
+}
+
+.text-warning2 {
+  color: #ff6800 !important;
+}
+
+.text-danger {
+  color: $color-danger;
+  //padding: 0;
+}
+
+// Colores de Fondo
+
+.background-white {
+  background-color: $color-white;
+}
+
+.background-primary {
+  background-color: $color-primary;
+}
+
+.background-default-dark {
+  background-color: $color-default-dark;
+}
+
+.background-lightgray {
+  background-color: $color-light-gray;
+}
+
+.background-lightgray2 {
+  background-color: $color-light-gray2;
+}
+
+.background-success {
+  background-color: $color-success;
+}
+
+.background-info {
+  background-color: $color-info;
+}
+
+.background-warning {
+  background-color: $color-warning;
+}
+//
+.p-relative {
+  position: relative;
+}
+//
+.title {
+    margin: 25px auto 5px auto;
+}
+.mdl-grid {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+// Nuevos colores de Paneles
+
+/* XS devices */
+@media (max-width: 768px) {
+
+  .width-xs-100 {
+    width: 100%;
+  }
+
+}
+
 
 .tgr-container {
   padding-left: 0;
@@ -103,6 +328,9 @@ html, body {
 
 .tgr-header .mdl-layout__drawer-button{
     color: #767777 !important;
+}
+.mdl-tabs__tab {
+  font-size: 12px;
 }
 .mdl-tabs__tab .mdl-tabs__ripple-container .mdl-ripple {
   background: $color-violet;

@@ -1,21 +1,25 @@
-<div [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
-  Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT
-  <button mdl-button (click)="ocultarAlertaSugeridas = true">
-    <mdl-icon mdl-badge-overlap>close</mdl-icon>
-  </button>
-</div>
-<div [class.hidden]="rolesSugeridos < 1">
-  <button mdl-button (click)="gotoSugeridas()">
-    <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
-  </button>
-</div>
-
-<h1>Pagar Mis Contribuciones</h1>
-<div class="tgr-select tgr-select--buttons">
-  <div class="tgr-select__label">
-    Selecciona las cuotas que pagarás
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--3-col-phone mdl-cell--4-col-desktop m-0auto text-center p-relative">
+    <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
+      <i mdl-button (click)="ocultarAlertaSugeridas = true" class="material-icons alert-remove">clear</i>
+      <p>Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT</p>
+    </div>
+    <div [class.hidden]="rolesSugeridos < 1" class="notifications">
+      <div (click)="gotoSugeridas()">
+        <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
+      </div>
+    </div>  
   </div>
-  <ul class="filter">
+</div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col m-0auto text-center pay-title">
+    <h5 class="title text-primary"><strong>Pagar Mis Contribuciones</strong></h5>
+  </div>
+</div>
+<div class="mdl-grid switch-fee-text">
+  <div class="mdl-cell mdl-cell--4-col m-0auto mb-0 select-fee">
+    <p>Selecciona las cuotas que pagarás</p>
+    <ul class="filter">
     <li [class.active]="seleccionada === tipo.TODAS">
       <a (click)="seleccionar(tipo.TODAS)">
         <mdl-icon *ngIf="seleccionada === tipo.TODAS">done</mdl-icon>
@@ -29,7 +33,9 @@
       </a>
     </li>
   </ul>
+  </div>
 </div>
+
 <div *ngFor="let propiedad of propiedades">
   <app-direccion-cuotas (change)="onChange()" [propiedad]="propiedad"></app-direccion-cuotas>
 </div>

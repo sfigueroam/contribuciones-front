@@ -1,0 +1,37 @@
+@import '../../../../../styles/colors';
+
+.alert-new-rol {
+  background-color: $color-warning;
+  color: $color-white;
+  padding: 10px 15px;
+  border-radius: 2px;
+  position: relative;
+  p {
+    margin: 0;
+    line-height: 20px;
+  }
+  i.alert-remove {
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    font-size: 18px;
+    opacity: .5;
+    cursor: pointer;
+  }
+}
+
+.notifications {
+    position: absolute;
+    top: 11px;
+    right: -50px;
+    color: $color-default-dark;
+    .mdl-badge[data-badge]:after {
+        background-color: $color-warning;
+    }
+}
+.select-fee p {   
+  font-size: 16px;
+  color: rgba(0,0,0,.54);
+  margin-bottom: 0;
+  text-align: center;
+}

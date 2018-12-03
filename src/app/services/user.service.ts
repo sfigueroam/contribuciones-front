@@ -18,7 +18,7 @@ export class UserService {
   constructor(private contributions: ContributionsService,
               private sugeridas: ContribucionesSugeridasService,
               private buscarRoles: ContribucionesBuscarRolService) {
-    // this.rut = 96597810;
+     this.rut = 96597810;
   }
 
   redirectMiCuenta(): void {
