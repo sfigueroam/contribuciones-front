@@ -9,13 +9,15 @@
           <i class="material-icons">{{icon}}</i>
           <strong>{{rol.destPropiedad | titlecase}}</strong>
         </h6>
+        <p>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
       </div>
-    
-    <p>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
-    <p>{{rol.total | number}}</p>
-    <button mdl-button mdl-button-type="icon" (click)="delete()">
-      <mdl-icon>close</mdl-icon>
-    </button>
+      <div class="mdl-layout-spacer"></div>
+      <div class="wrapper">
+        <span>{{rol.total | number}}</span>        
+        <button class="mdl-button mdl-js-button mdl-button--icon pointer delete-this-rol" (click)="delete()">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
   </mdl-card-title>
   <div [class.hidden]="!expanded">
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
