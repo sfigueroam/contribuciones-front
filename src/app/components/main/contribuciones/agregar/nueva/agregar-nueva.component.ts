@@ -7,7 +7,7 @@ import {Propiedad} from '../../../../../domain/Propiedad';
 import {TipoPropiedad} from '../../../../../domain/TipoPropiedad';
 import {Direccion} from '../../../../../domain/Direccion';
 import {environment} from '../../../../../../environments/environment';
-import {PropiedadComponent} from '../shared/propiedad/propiedad.component';
+import {PropiedadComponent} from '../../../shared/propiedad/propiedad.component';
 import {Rol} from '../../../../../domain/Rol';
 import {UserService} from '../../../../../services/user.service';
 import {Router} from '@angular/router';

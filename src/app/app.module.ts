@@ -10,8 +10,8 @@ import {SugeridasComponent} from './components/main/contribuciones/agregar/suger
 import {LeadingZeroPipe} from './pipes/leading-zero.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import {DISABLE_NATIVE_VALIDITY_CHECKING, MdlModule} from '@angular-mdl/core';
-import {PropiedadComponent} from './components/main/contribuciones/agregar/shared/propiedad/propiedad.component';
-import {PropiedadRolComponent} from './components/main/contribuciones/agregar/shared/propiedad-rol/propiedad-rol.component';
+import {PropiedadComponent} from './components/main/shared/propiedad/propiedad.component';
+import {PropiedadRolComponent} from './components/main/shared/propiedad-rol/propiedad-rol.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MdlSelectModule} from '@angular-mdl/select';
 import {MatchSorterPipe} from './pipes/match-sorter.pipe';

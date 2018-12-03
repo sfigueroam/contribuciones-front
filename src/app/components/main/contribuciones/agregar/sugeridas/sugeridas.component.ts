@@ -1,7 +1,7 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {ContribucionesSugeridasService} from '../../../../../services/contribuciones-sugeridas.service';
-import {PropiedadComponent} from '../shared/propiedad/propiedad.component';
+import {PropiedadComponent} from '../../../shared/propiedad/propiedad.component';
 import {ContributionsService} from '../../../../../services/contributions.service';
 import {Router} from '@angular/router';
 import {MdlSnackbarService} from '@angular-mdl/core';
@@ -15,14 +15,12 @@ import {UserService} from '../../../../../services/user.service';
 })
 export class SugeridasComponent implements OnInit {
 
-
   @ViewChildren(PropiedadComponent)
   sugeridasPropiedadComponentList: QueryList<PropiedadComponent>;
 
   propiedades: Propiedad[];
   hidden: boolean = false;
   cantidadSeleccionadas: number;
-
 
   constructor(private user: UserService,
               private contribucionesSugeridasService: ContribucionesSugeridasService,
