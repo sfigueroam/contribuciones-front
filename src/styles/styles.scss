@@ -665,3 +665,27 @@ html, body, h1, h2, h3, h4,  h5 {
 .bar .bar-text p.el-rol {
   margin-left: 3px;
 }
+button.new-rol,
+button.close-new-rol,
+button.button-question {    
+    position: absolute;
+    bottom: 80px;
+    right: 5px;
+    height: 35px;
+    width: 35px;
+    min-width: 35px;
+    z-index: 4;
+    color: $color-white;
+    @media (min-width: 481px) {
+        height: 42px;
+        width: 42px;
+        min-width: 42px;
+        bottom: 86px;
+        right: 26px;
+    }
+}
+
+.mdl-button--accent.mdl-button--accent.mdl-button--raised,
+.mdl-button--accent.mdl-button--accent.mdl-button--fab {
+  background: $link-color;
+}

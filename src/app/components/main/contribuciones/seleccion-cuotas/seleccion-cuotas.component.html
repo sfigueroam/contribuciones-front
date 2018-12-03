@@ -44,11 +44,15 @@
   </div>
 </div>
 
+<div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--4-col total-buy m-0auto">
+                <p class="text-primary text-center">
+                  <strong>Total: {{total | number}}</strong>
+                </p>
+                <p *ngIf="condonacion > 0" class="text-success text-center">El monto total considera una condonación de $ {{condonacion | number}}</p>
+              </div>
+            </div>
 
-<div>
-  <p>Total: {{total | number}}</p>
-  <p *ngIf="condonacion > 0">El monto total considera una condonación de $ {{condonacion | number}}</p>
-</div>
 
 <div class="tgr-actions">
   <div *ngIf="!complete">
@@ -75,13 +79,17 @@
 <div class="tgr-add">
   <div class="tgr-target-wrapper">
     <div class="tgr-target-wave tgr-target-wave--button">
-      <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
-              [routerLink]="['/main/contribuciones/agregar/nueva']">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--accent new-rol" [routerLink]="['/main/contribuciones/agregar/nueva']">
         <i class="material-icons">add</i>
       </button>
+
+
+
     </div>
   </div>
 </div>
+
+
 
 <mdl-dialog #summaryDialog
             [mdl-dialog-config]="{
