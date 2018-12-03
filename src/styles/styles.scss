@@ -365,31 +365,76 @@ html, body, h1, h2, h3, h4,  h5 {
   box-shadow: 0px 3px 26px 0px rgba(168, 168, 168, 1);
   display: block;
   left: 0;
-  min-height: 98px;
+  min-height: 24px;
   position: fixed;
   right: 0;
   z-index: 900;
-  @media (max-width: 1260px) {
-    padding-left: 16px;
-    padding-right: 16px;
+  // @media (max-width: 1260px) {
+  //   padding-left: 16px;
+  //   padding-right: 16px;
+  // }
+  // @media (max-width: 820px){
+  //   min-height: 90px;
+  // }
+  // @media (max-width: 520px){
+  //   min-height: 110px;
+  // }
+}
+.tgr-mini-footer .tgr-actions__content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;  
+}
+.tgr-actions.tgr-mini-footer {
+  overflow: hidden;
+  background-color: $color-white;
+  color: $color-default-dark;
+  padding: 20px 28px 28px 28px;
+    .mdl-badge[data-badge]:after {
+        background-color: $color-warning;
+    }
+  h6 {
+    display: inline-block;
+    margin: 0;
   }
-  @media (max-width: 820px){
-    min-height: 90px;
+  .mdl-28 {
+    font-size: 28px;
   }
-  @media (max-width: 520px){
-    min-height: 110px;
+  a.button-pay {
+    background-color: $color-success;
+    color: #fff;
+    margin-top: -8px;
+    text-transform: none;
+        a {
+            text-decoration: none;
+            color: white;
+        }
   }
+    @media (min-width: 481px) and (max-width: 839px){   
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
+    @media (min-width: 840px) and (max-width: 1279px){   
+        padding-left: 250px;
+        padding-right: 250px;
+    }
+
+    @media (min-width: 1280px) {   
+        padding-left: 400px;
+        padding-right: 400px;
+    }
 }
 
-.tgr-actions__content {
-  max-width: 1226px;
-  margin-left: auto;
-  margin-right: auto;
-  @media (max-width: 1260px) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
+// .tgr-actions__content {
+//   max-width: 1226px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   @media (max-width: 1260px) {
+//     padding-left: 16px;
+//     padding-right: 16px;
+//   }
+// }
 
 //boton de pago
 .tgr-pay .mdl-button {

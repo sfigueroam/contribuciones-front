@@ -54,25 +54,17 @@
             </div>
 
 
-<div class="tgr-actions">
+<div class="tgr-actions tgr-mini-footer">
   <div *ngIf="!complete" class="tgr-loading2">
     <mdl-spinner [active]="true"></mdl-spinner>
     <p>Estamos calculando tu monto a pagar</p>
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
-    <div>
-      <button mdl-button (click)="summaryDialog.show()">
-        <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap>menu</mdl-icon>
-      </button>
-    </div>
-    <div>
-      $ {{total | number}}
-    </div>
-    <div class="tgr-pay">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-              (click)="pay()">Pagar
-      </button>
-    </div>
+    
+      <mdl-icon  (click)="summaryDialog.show()" [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list</mdl-icon>
+      <h6 class="pl-10"><strong>$ {{total | number}}</strong></h6>
+      <div class="mdl-layout-spacer"></div>
+      <a (click)="pay()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-pay">PAGAR</a>
   </div>
 </div>
 
