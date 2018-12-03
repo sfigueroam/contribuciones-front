@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Rol} from '../../../../../../domain/Rol';
+import {Rol} from '../../../../domain/Rol';
 
 @Component({
   selector: '[app-propiedad-rol]',

@@ -1,63 +1,38 @@
-<form [formGroup]="form" (submit)="solicitarCertificado()"></form>
-<br>
 <div class="tgr-container">
   <div class="tgr-content mdl-shadow--3dp">
     <div class="tgr-card__body mdl-grid">
       <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
         <h5>Tipo de Certificado</h5>
-        <mdl-checkbox [(ngModel)]="oTrue" [mdl-ripple]="true" [formControl]="deudas">
-          Certificado deudas {{oTrue}}
-        </mdl-checkbox>
-        <mdl-checkbox [mdl-ripple]="true" [formControl]="pagos">
-          Historial de pagos
-        </mdl-checkbox>
-        <mdl-select [class.is-invalid]="ano.touched && ano.invalid"
-                    *ngIf="pagos.value"
-                    [formControl]="ano"
+        <div (click)="certificadoDeudas = !certificadoDeudas">
+          <span><mdl-icon>{{certificadoDeudas ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Certificado deudas</span>
+        </div>
+        <div (click)="historialPagos = !historialPagos">
+          <span><mdl-icon>{{historialPagos ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Historial de Pagos</span>
+        </div>
+        <mdl-select *ngIf="historialPagos"
                     label="Año *"
-                    error-msg="Debe seleccionar un uso"
+                    [(ngModel)]="ano"
+                    error-msg="Debe seleccionar un año"
                     floating-label>
           <mdl-option *ngFor="let a of anos" [value]="a">{{a}}</mdl-option>
         </mdl-select>
       </div>
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
-        <h5>Correo Destino</h5>
-        <mdl-textfield type="email"
-                       [autocomplete]="true"
-                       [formControl]="email"
-                       floating-label
-                       label="Correo Electrónico *"
-                       error-msg="No es un correo válido"></mdl-textfield>
-      </div>
     </div>
   </div>
 
-  <h4>Propiedades</h4>
   <div class="tgr-results">
-    <div *ngFor="let h of helpers" class="tgr-content mdl-shadow--3dp">
-      <div class="tgr-card__head">
-        <mdl-icon (click)="seleccionarPropiedad(h)">{{h.icon}}</mdl-icon>
-        <span class="tgr-card__title--text">{{h.propiedad.direccion}}</span>
-      </div>
-      <div class="tgr-card__body">
-        <div class="tgr-rol-row" *ngFor="let h2 of h.controls">
-          <mdl-checkbox [mdl-ripple]="true" [formControl]="h2.control" (change)="validarDireccion(h)"></mdl-checkbox>
-          <p class="tgr-card__title"><i class="material-icons">{{h2.icon}}</i><span class="tgr-card__title--text">{{h2.rol.destPropiedad | titlecase}}</span>
-          </p>
-          <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
-            {{h2.rol.rolComunaSiiCod | leadingZero:3}}-{{h2.rol.rolId | leadingZero:5}}-{{h2.rol.subrolId |
-            leadingZero:3}}
-          </p>
-        </div>
-      </div>
-    </div>
+    <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+                   (change)="actualizarSeleccionadas()">
+    </app-propiedad>
   </div>
+
   <div class="tgr-actions">
     <div class="tgr-actions__content">
       <div class="tgr-pay">
         <div class="tgr-pay__label"> {{seleccionados}} rol(es) seleccionado(s)</div>
         <button type="submit"
-                [disabled]="form.invalid"
+                (click)="solicitarCertificado()"
+                [disabled]="(!certificadoDeudas && (!historialPagos || !ano)) || seleccionados < 1"
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
           Enviar Certificado
         </button>

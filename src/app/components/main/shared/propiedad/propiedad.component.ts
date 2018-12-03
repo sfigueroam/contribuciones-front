@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
-import {Propiedad} from '../../../../../../domain/Propiedad';
+import {Propiedad} from '../../../../domain/Propiedad';
 import {PropiedadRolComponent} from '../propiedad-rol/propiedad-rol.component';
-import {Rol} from '../../../../../../domain/Rol';
-import {CheckboxIcon} from '../../../../../../domain/CheckboxIcon';
+import {Rol} from '../../../../domain/Rol';
+import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
 
 @Component({
   selector: 'app-propiedad',
@@ -19,7 +19,6 @@ export class PropiedadComponent implements OnInit {
 
   @ViewChildren(PropiedadRolComponent)
   propiedadRolComponentList: QueryList<PropiedadRolComponent>;
-
 
   cantidadRolesSeleccionadas: number;
   seleccion: boolean;
