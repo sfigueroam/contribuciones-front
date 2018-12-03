@@ -45,13 +45,14 @@
 </div>
 
 <div class="mdl-grid">
-              <div class="mdl-cell mdl-cell--4-col total-buy m-0auto">
-                <p class="text-primary text-center">
-                  <strong>Total: {{total | number}}</strong>
-                </p>
-                <p *ngIf="condonacion > 0" class="text-success text-center">El monto total considera una condonación de $ {{condonacion | number}}</p>
-              </div>
-            </div>
+  <div class="mdl-cell mdl-cell--4-col total-buy m-0auto">
+    <p class="text-primary text-center">
+      <strong>Total: {{total | number}}</strong>
+    </p>
+    <p *ngIf="condonacion > 0" class="text-success text-center">El monto total considera una condonación de $
+      {{condonacion | number}}</p>
+  </div>
+</div>
 
 
 <div class="tgr-actions">
@@ -61,7 +62,9 @@
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
     <div>
-      <button mdl-button (click)="summaryDialog.show()">
+      <button mdl-button
+              (click)="summaryDialog.show()"
+              [disabled]="total <= 0">
         <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap>menu</mdl-icon>
       </button>
     </div>
@@ -70,7 +73,8 @@
     </div>
     <div class="tgr-pay">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-              (click)="pay()">Pagar
+              (click)="pay()"
+              [disabled]="total <= 0">Pagar
       </button>
     </div>
   </div>
@@ -79,17 +83,13 @@
 <div class="tgr-add">
   <div class="tgr-target-wrapper">
     <div class="tgr-target-wave tgr-target-wave--button">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--accent new-rol" [routerLink]="['/main/contribuciones/agregar/nueva']">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--accent new-rol"
+              [routerLink]="['/main/contribuciones/agregar/nueva']">
         <i class="material-icons">add</i>
       </button>
-
-
-
     </div>
   </div>
 </div>
-
-
 
 <mdl-dialog #summaryDialog
             [mdl-dialog-config]="{
@@ -126,7 +126,8 @@
     </div>
   </div>
   <div class="tgr-dialog__actions">
-    <button mdl-button (click)="summaryDialog.close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+    <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+            (click)="summaryDialog.close()">
       Cerrar
     </button>
   </div>

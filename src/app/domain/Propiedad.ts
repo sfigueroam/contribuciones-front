@@ -72,10 +72,7 @@ export class Propiedad {
   }
 
   existRol(rol: number): boolean {
-    console.log('!!existRol');
     for (const r of this.roles) {
-      console.log('r.rol', r.rol);
-      console.log('rol', rol);
       if (r.rol === rol) {
         return true;
       }

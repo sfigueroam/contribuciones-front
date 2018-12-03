@@ -28,7 +28,6 @@ export class AgregarComponent implements OnInit {
         this.isSugeridos = false;
         this.router.navigate(['/main/contribuciones/agregar/nueva']);
       }
-      console.log('this.isSugeridos', this.isSugeridos);
     }, () => {
       this.mdlSnackbarService.showSnackbar({
         message: 'Ocurrió un error buscar los roles asociados',
@@ -40,8 +39,6 @@ export class AgregarComponent implements OnInit {
         }
       });
     });
-
-    console.log('this.isSugeridos', this.isSugeridos);
   }
 
   private cargarRolesNoAsociados(): Promise<boolean> {

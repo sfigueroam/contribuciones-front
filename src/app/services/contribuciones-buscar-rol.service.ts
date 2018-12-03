@@ -216,8 +216,6 @@ export class ContribucionesBuscarRolService {
   }
 
   asociarRoles(rut: number, roles: number[]): Promise<any> {
-    console.log('rut', rut);
-    console.log('roles', roles);
     const promesas = [];
     for (const rol of roles) {
       const body = {
