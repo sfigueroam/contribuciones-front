@@ -231,6 +231,12 @@ html, body, h1, h2, h3, h4,  h5 {
 
 }
 
+.rol-card .rol-card {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      position: relative;
+  }
 
 .tgr-container {
   padding-left: 0;
@@ -540,3 +546,117 @@ html, body, h1, h2, h3, h4,  h5 {
     padding-left: 24px;
   }
 }
+
+//listdo contribuciones:
+.bar {
+        -webkit-transition: .6s;
+        transition: .6s;
+        box-sizing: border-box;
+        position: relative;
+        background-color: $color-white;
+        color: $color-primary;
+        width: 100%;
+        padding: 10px 6px 6px 6px;
+        border-bottom: 1px solid $color-light-gray2;
+        &.background-lightgray {
+            background-color: $color-light-gray;
+        }
+        .bar-text {
+            margin-top: 0;
+            padding: 4px;
+            > h6 {
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 60%;
+            line-height: 18px;
+            letter-spacing: .2px;
+                i {
+                    vertical-align: bottom;
+                    margin-bottom: 2px;
+                }
+            }
+
+            > p {
+                margin-top: -6px;
+                margin-bottom: 0;
+                margin-left: 32px;
+                max-width: 60%;
+                position: relative;
+                line-height: 18px;
+            }
+            .mdl-button--fab {
+                margin-left: -5px;
+                height: 32px;
+                min-width: 32px;
+                width: 32px;
+                background-color: $color-white;
+                box-shadow: none;
+                color: $color-primary;
+                &.background-lightgray {
+                    background-color: $color-light-gray;
+                }
+            }
+        }       
+    .wrapper {
+        box-sizing: border-box;
+        position: absolute;
+        right: 5px;
+        top: 8px;
+        span {
+            margin-right: -8px;
+        }
+        button {
+        top: -8px;
+        margin-right: -5px;
+        margin-left: 8px;
+            i {
+                font-size: 16px;
+                color: rgba(0, 0, 0, .3);
+            }
+        }
+    }
+    .rol-card-content {
+        padding: 0;
+        .no-debt {
+            padding: 15px;
+        }
+    }
+    .rol-address {
+        padding: 12px;
+        border-bottom: 1px solid rgba(0, 0, 0,.12);
+        p {
+            margin: 0;
+        }
+    }
+    .mdl-data-table {
+        table-layout:fixed;
+        width: 100%;
+        border: none;
+        th:first-of-type,
+        td:first-of-type {
+            padding-left: 14px;
+            padding-right: 0;
+        }
+        th:last-of-type,
+        td:last-of-type {
+            padding-right: 15px;
+        }
+        tbody tr {
+            position: static;
+            height: 0;
+        }
+        th, td {
+            text-align: center;
+        }
+    }
+    td, th {
+        //width: 100%;
+        //white-space: nowrap;
+        //overflow: hidden;
+        //text-overflow: ellipsis;
+        //-o-text-overflow: ellipsis;
+    }
+};

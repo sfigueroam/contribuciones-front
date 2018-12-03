@@ -1,12 +1,16 @@
-<mdl-card mdl-card-expand mdl-shadow="2">
-  <mdl-card-title>
+<div mdl-shadow="2" mdl-cell mdl-cell--4-col mb-10 rol-card >
+  <mdl-card-title class="bar">
     <button mdl-button mdl-button-type="icon" (click)="toggle()">
       <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
     </button>
-    <h2 mdl-card-title-text>
-      <i class="material-icons">{{icon}}</i>
-      <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
-    </h2>
+  
+      <div class="bar-text">
+        <h6>
+          <i class="material-icons">{{icon}}</i>
+          <strong>{{rol.destPropiedad | titlecase}}</strong>
+        </h6>
+      </div>
+    
     <p>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
     <p>{{rol.total | number}}</p>
     <button mdl-button mdl-button-type="icon" (click)="delete()">
@@ -41,4 +45,4 @@
       </tbody>
     </table>
   </div>
-</mdl-card>
+</div>
