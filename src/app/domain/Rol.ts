@@ -127,6 +127,7 @@ export class Rol {
         cuota.intencionPago = cuota.expired;
       }
     }
+    this.calcularTotal();
     this.changeSubject.next();
   }
 
@@ -138,16 +139,6 @@ export class Rol {
       }
     }
     return cuotas;
-  }
-
-  calcularTotalCondonado(): number {
-    let total = 0;
-    for (const cuota of this.cuotas) {
-      if (cuota.intencionPago) {
-        total += cuota.liqTotal.saldoTotal;
-      }
-    }
-    return total;
   }
 
   private calcularTotal() {
@@ -172,24 +163,6 @@ export class Rol {
       this.total = pagoParcial;
       this.condonacion = 0;
     }
-  }
-
-  cantidadCuotas(): number {
-    return this.cuotas.length;
-  }
-
-  cantidadCuotasSeleccionadas() {
-    let cantidad = 0;
-    for (const cuota of this.cuotas) {
-      if (cuota.intencionPago) {
-        cantidad++;
-      }
-    }
-    return cantidad;
-  }
-
-  allCuotas(): Cuota[] {
-    return this.cuotas;
   }
 
   getCuotasDeseleccionadas(): { numeroFolio: string, fechaVencimiento: string, intencionPago: boolean }[] {

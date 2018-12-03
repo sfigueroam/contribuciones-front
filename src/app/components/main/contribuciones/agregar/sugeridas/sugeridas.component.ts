@@ -65,7 +65,7 @@ export class SugeridasComponent implements OnInit {
 
   agregarPropiedad() {
     this.hidden = false;
-    let roles = [];
+    let roles: number[] = [];
     const sugeridasPropiedadesList = this.sugeridasPropiedadComponentList.toArray();
     for (const sugeridas of sugeridasPropiedadesList) {
       roles = roles.concat(sugeridas.getRolesSeleccionadas());
@@ -74,7 +74,7 @@ export class SugeridasComponent implements OnInit {
         this.contributionsService.clearPropiedades();
         this.contribucionesSugeridasService.clearPropiedades();
         this.cargarRolesNoAsociados().then(() => {
-          this.router.navigate(['/main/contribuciones']);
+          this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
         });
       },
       () => {

@@ -266,9 +266,9 @@ export class AgregarNuevaComponent implements OnInit {
 
       console.log('roles.loength', roles.length);
       if (roles.length > 0) {
-        this.user.asociarRoles(roles).then(() => {
+        this.user.asociarRoles(roles.map(r => r.rol)).then(() => {
             this.contributionsService.propiedades = undefined;
-            this.router.navigate(['/main/contribuciones']);
+            this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
           },
           () => {
             this.hidden = true;

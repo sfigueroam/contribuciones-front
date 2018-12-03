@@ -129,7 +129,6 @@ export class SeleccionCuotasComponent implements OnInit {
       if (this.readyState === 4) {
         console.log(this.responseText);
       }
-      console.log(this.responseText);
     });
 
     xhr.open('POST', environment.pago.url);

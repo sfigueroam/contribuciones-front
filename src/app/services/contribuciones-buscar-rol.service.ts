@@ -215,12 +215,14 @@ export class ContribucionesBuscarRolService {
     });
   }
 
-  asociarRoles(rut: number, roles: Rol[]): Promise<any> {
+  asociarRoles(rut: number, roles: number[]): Promise<any> {
+    console.log('rut', rut);
+    console.log('roles', roles);
     const promesas = [];
     for (const rol of roles) {
       const body = {
         'rutin': String(rut),
-        'rolin': rol.rol.toString()
+        'rolin': String(rol)
       };
       promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
     }
