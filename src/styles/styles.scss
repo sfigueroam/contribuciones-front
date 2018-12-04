@@ -381,7 +381,15 @@ html, body, h1, h2, h3, h4,  h5 {
   }
 }
 
-
+.tgr-actions__content {
+  max-width: 1226px;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 1260px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
 .tgr-mini-footer .tgr-actions__content {
   display: flex;
   flex-flow: row wrap;
@@ -429,15 +437,7 @@ html, body, h1, h2, h3, h4,  h5 {
     }    
 }
 
-// .tgr-actions__content {
-//   max-width: 1226px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   @media (max-width: 1260px) {
-//     padding-left: 16px;
-//     padding-right: 16px;
-//   }
-// }
+
 
 //boton de pago
 .tgr-pay .mdl-button {
@@ -760,4 +760,7 @@ button.button-question {
     padding: 1em 0;
   }
 
+}
+.mdl-textfield__label {
+  color: $gray-65;
 }
