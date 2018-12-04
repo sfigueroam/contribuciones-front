@@ -1,13 +1,13 @@
 <div class="tgr-container">
-  <div class="tgr-content mdl-shadow--3dp">
+  <div class=" mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet m-0auto">
     <div class="tgr-card__body mdl-grid">
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
-        <h5>Tipo de Certificado</h5>
+      <h5 class="title text-primary text-center"><strong>Tipo de Certificado</strong></h5>
+      <div class="tgr-controls m-0auto">        
         <div (click)="certificadoDeudas = !certificadoDeudas">
-          <span><mdl-icon>{{certificadoDeudas ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Certificado deudas</span>
+          <span class="tgr-juliuscheck"><mdl-icon>{{certificadoDeudas ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Certificado deudas</span>
         </div>
         <div (click)="historialPagos = !historialPagos">
-          <span><mdl-icon>{{historialPagos ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Historial de Pagos</span>
+          <span class="tgr-juliuscheck"><mdl-icon>{{historialPagos ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Historial de Pagos</span>
         </div>
         <mdl-select *ngIf="historialPagos"
                     label="Año *"
