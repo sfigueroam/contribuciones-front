@@ -14,10 +14,11 @@ export class ContribucionesService {
   propiedades: Propiedad[];
 
   constructor(private requestService: RequestService) {
+    this.propiedades = [];
   }
 
   clearPropiedades(): void {
-    this.propiedades = undefined;
+    this.propiedades = [];
   }
 
   addPropiedad(response: Propiedad) {
@@ -74,7 +75,9 @@ export class ContribucionesService {
   }
 
   getBienesRaices(rut: number): Promise<Propiedad[]> {
-    if (this.propiedades) {
+
+
+    if (this.propiedades ) {
       return new Promise((resolve) => {
         resolve(this.propiedades);
       });
