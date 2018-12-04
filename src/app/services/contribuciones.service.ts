@@ -9,7 +9,7 @@ import {CuotaDetalle} from '../domain/CuotaDetalle';
 @Injectable({
   providedIn: 'root'
 })
-export class ContributionsService {
+export class ContribucionesService {
 
   propiedades: Propiedad[];
 

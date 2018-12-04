@@ -11,7 +11,7 @@ import {PropiedadComponent} from '../../../shared/propiedad/propiedad.component'
 import {Rol} from '../../../../../domain/Rol';
 import {UserService} from '../../../../../services/user.service';
 import {Router} from '@angular/router';
-import {ContributionsService} from '../../../../../services/contributions.service';
+import {ContribucionesService} from '../../../../../services/contribuciones.service';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -55,7 +55,7 @@ export class AgregarNuevaComponent implements OnInit {
               private mdlSnackbarService: MdlSnackbarService,
               private user: UserService,
               private router: Router,
-              private contributionsService: ContributionsService) {
+              private contribuciones: ContribucionesService) {
 
     this.comuna = new FormControl('', Validators.required);
     this.rol = new FormControl('', Validators.required);
@@ -257,7 +257,7 @@ export class AgregarNuevaComponent implements OnInit {
 
       if (roles.length > 0) {
         this.user.asociarRoles(roles.map(r => r.rol)).then(() => {
-            this.contributionsService.propiedades = undefined;
+            this.contribuciones.propiedades = undefined;
             this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
           },
           err => {
@@ -272,7 +272,7 @@ export class AgregarNuevaComponent implements OnInit {
       const propiedadesConRolesSeleccionados = this.getPropiedadesConRolesSeleccionados();
 
       for (const propiedad of propiedadesConRolesSeleccionados) {
-        this.contributionsService.addPropiedad(propiedad);
+        this.contribuciones.addPropiedad(propiedad);
       }
 
       console.log(this.contributionsService.propiedades);

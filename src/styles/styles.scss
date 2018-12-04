@@ -365,7 +365,7 @@ html, body, h1, h2, h3, h4,  h5 {
   box-shadow: 0px 3px 26px 0px rgba(168, 168, 168, 1);
   display: block;
   left: 0;
-  min-height: 98px;
+  min-height: 90px;
   position: fixed;
   right: 0;
   z-index: 900;
@@ -381,14 +381,22 @@ html, body, h1, h2, h3, h4,  h5 {
   }
 }
 
-
+.tgr-actions__content {
+  max-width: 1226px;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 1260px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
 .tgr-mini-footer .tgr-actions__content {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;  
 }
 .tgr-actions.tgr-mini-footer {
-  min-height: 24px;
+  min-height: 40px;
   overflow: hidden;
   background-color: $color-white;
   color: $color-default-dark;
@@ -429,15 +437,7 @@ html, body, h1, h2, h3, h4,  h5 {
     }    
 }
 
-// .tgr-actions__content {
-//   max-width: 1226px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   @media (max-width: 1260px) {
-//     padding-left: 16px;
-//     padding-right: 16px;
-//   }
-// }
+
 
 //boton de pago
 .tgr-pay .mdl-button {
@@ -746,6 +746,21 @@ button.button-question {
   position: static;
 }
 
-.mdl-button--raised.mdl-button--colored {
+.mdl-button--raised.mdl-button--colored,
+.mdl-button--primary.mdl-button--primary.mdl-button--raised,
+.mdl-button--primary.mdl-button--primary.mdl-button--fab {
   color: #fff;
+}
+.tgr-payment-detail{
+   background: $gray-backgorund;
+  max-height: 100vh;
+  overflow-y: auto;
+  max-width: 100%;
+   @media (max-width: 500px) {
+    padding: 1em 0;
+  }
+
+}
+.mdl-textfield__label {
+  color: $gray-65;
 }

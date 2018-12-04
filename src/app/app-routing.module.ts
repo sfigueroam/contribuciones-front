@@ -7,6 +7,7 @@ import {SugeridasComponent} from './components/main/contribuciones/agregar/suger
 import {CertificadosComponent} from './components/main/certificados/certificados.component';
 import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 import {LoginComponent} from './components/login/login.component';
+import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,10 @@ const routes: Routes = [
         component: CertificadosComponent
       }
     ]
-  }
+  }, {
+    path: 'main/contribuciones/certificados/obtener',
+    component: ObtenerComponent
+  },
 ];
 
 @NgModule({

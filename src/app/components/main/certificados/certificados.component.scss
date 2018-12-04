@@ -1,4 +1,18 @@
 @import '../../../../styles/colors';
+.tgr-controls {
+  text-align: center;
+  width: 100%;
+}
+
+.tgr-juliuscheck {  
+  display: inline-block;
+  line-height: 1.3;
+  padding-top: 8px;
+}
+.tgr-juliuscheck .material-icons {
+  color: $color-violet;
+  vertical-align: bottom;
+}
 
 .tgr-certificates {
   display: flex;

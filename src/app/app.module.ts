@@ -23,6 +23,7 @@ import {LoginComponent} from './components/login/login.component';
 import {AgregarNuevaComponent} from './components/main/contribuciones/agregar/nueva/agregar-nueva.component';
 import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 import {CookieService} from 'ngx-cookie-service';
+import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -42,6 +43,7 @@ registerLocaleData(localeEs, 'es');
     DireccionCuotasComponent,
     RolCuotasComponent,
     LoginComponent,
+    ObtenerComponent,
   ],
   imports: [
     BrowserModule,
