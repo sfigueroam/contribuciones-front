@@ -32,7 +32,7 @@
           [value]="tipo.id">{{tipo.descripcion | titlecase}}
         </mdl-option>
       </mdl-select>
-      <div class="tgr-newsearch is-suggesting">
+      <div class="tgr-newsearch is-suggesting" [class.is-suggesting]="searchDireccion">
       <mdl-textfield type="text"
                      [class.is-invalid]="direccion.invalid && direccion.touched"
                      id="direccion"
@@ -44,7 +44,7 @@
                      label="Dirección *"
                      error-msg="Debe ingresar al menos 3 caracteres">
       </mdl-textfield>
-      
+
         <ul class="tgr-suggestions">
           <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
               (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false">{{dire.direccion |
