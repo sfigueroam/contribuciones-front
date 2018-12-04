@@ -41,9 +41,7 @@ export class UserService {
     if (this.rut) {
       return this.contributions.eliminarPropiedad(this.rut, idDireccion);
     } else {
-      return new Promise((resolve, reject) => {
-        resolve();
-      });
+      return this.contributions.eliminarPropiedadSinlogin(idDireccion);
     }
   }
 
@@ -51,9 +49,7 @@ export class UserService {
     if (this.rut) {
       return this.contributions.eliminarRol(this.rut, rolComunaSiiCod, rolId, subrolId);
     } else {
-      return new Promise((resolve, reject) => {
-        resolve();
-      });
+      return this.contributions.eliminarRolSinLogin(rolComunaSiiCod, rolId, subrolId);
     }
   }
 

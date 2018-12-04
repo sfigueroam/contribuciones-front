@@ -161,6 +161,19 @@ export class ContribucionesService {
     );
   }
 
+  eliminarPropiedadSinlogin(idDireccion: string): Promise<any> {
+    return new Promise<any>(
+      (resolve, reject) => {
+        const index = this.propiedades.findIndex(p => p.idDireccion === idDireccion);
+        const propiedad = this.propiedades[index];
+        this.propiedades.splice(index, 1);
+        propiedad.changeSubject.next();
+        propiedad.changeSubject.complete();
+        resolve();
+      }
+    );
+  }
+
   eliminarRol(rut: number, rolComunaSiiCod: number, rolId: number, subrolId: number): Promise<any> | undefined {
     return new Promise<any>(
       (resolve, reject) => {
@@ -177,8 +190,32 @@ export class ContribucionesService {
               value => resolve(value),
               err => reject(err)
             );
+
           }
         }
+        if (!rol) {
+          reject('No se encontró el rol (' + rolComunaSiiCod + ', ' + rolId + ', ' + subrolId);
+        }
+      }
+    );
+  }
+
+
+  eliminarRolSinLogin(rolComunaSiiCod: number, rolId: number, subrolId: number): Promise<any> | undefined {
+    return new Promise<any>(
+      (resolve, reject) => {
+        let rol;
+        for (const propiedad of this.propiedades) {
+          const index = propiedad.roles.findIndex(r => r.rolComunaSiiCod === rolComunaSiiCod &&
+            r.rolId === rolId && r.subrolId === subrolId);
+          if (index >= 0) {
+            rol = propiedad.roles[index];
+            propiedad.roles.splice(index, 1);
+            rol.changeSubject.next();
+            rol.changeSubject.complete();
+          }
+        }
+        resolve();
         if (!rol) {
           reject('No se encontró el rol (' + rolComunaSiiCod + ', ' + rolId + ', ' + subrolId);
         }
