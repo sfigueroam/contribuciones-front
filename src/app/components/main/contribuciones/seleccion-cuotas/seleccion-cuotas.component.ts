@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
-import {ContributionsService} from '../../../../services/contributions.service';
+import {ContribucionesService} from '../../../../services/contribuciones.service';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
 import {UserService} from '../../../../services/user.service';
@@ -29,9 +29,13 @@ export class SeleccionCuotasComponent implements OnInit {
   rolesSugeridos = 0;
   ocultarAlertaSugeridas = false;
 
+  listaContribuciones: string;
+
+  urlPagoTgr: string;
+
   constructor(private router: Router,
               private user: UserService,
-              private contributions: ContributionsService,
+              private contribuciones: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService) {
   }
@@ -39,6 +43,7 @@ export class SeleccionCuotasComponent implements OnInit {
   ngOnInit() {
     this.complete = false;
     this.seleccionada = TipoCuota.TODAS;
+    this.urlPagoTgr = environment.pago.url;
 
     this.user.getRolesNoAsociados().then(
       (props: Propiedad[]) => this.rolesSugeridos = props.length,
@@ -51,7 +56,7 @@ export class SeleccionCuotasComponent implements OnInit {
     this.user.getBienesRaices().then(
       (propiedades) => {
         this.propiedades = propiedades;
-        this.contributions.cargarRoles().then(
+        this.contribuciones.cargarRoles().then(
           () => {
             this.complete = true;
             this.calcularTotal();
@@ -86,6 +91,22 @@ export class SeleccionCuotasComponent implements OnInit {
     this.total = total;
     this.condonacion = condonacion;
     this.recalcularTipo();
+
+    let codigos = 'on, ';
+    for (const p of this.propiedades) {
+      for (const r of p.roles) {
+        for (const c of r.cuotas) {
+          if (c.intencionPago) {
+            if (r.condonacion > 0) {
+              codigos += c.liqTotal.codigoBarra + ', ';
+            } else {
+              codigos += c.liqParcial.codigoBarra + ', ';
+            }
+          }
+        }
+      }
+    }
+    this.listaContribuciones = codigos;
   }
 
   gotoSugeridas() {
@@ -101,38 +122,6 @@ export class SeleccionCuotasComponent implements OnInit {
       propiedad.seleccionar(tipo);
     }
     this.recalcularTipo();
-  }
-
-  pay() {
-    let codigos = '';
-    for (const p of this.propiedades) {
-      for (const r of p.roles) {
-        for (const c of r.cuotas) {
-          if (c.intencionPago) {
-            if (r.condonacion > 0) {
-              codigos += c.liqTotal.codigoBarra + ', ';
-            } else {
-              codigos += c.liqParcial.codigoBarra + ', ';
-            }
-          }
-        }
-      }
-    }
-
-    const data = new FormData();
-    data.append('listaContribuciones', 'on, ' + codigos);
-    data.append('pagar', 'PAGAR');
-
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-    xhr.addEventListener('readystatechange', function () {
-      if (this.readyState === 4) {
-        console.log(this.responseText);
-      }
-    });
-
-    xhr.open('POST', environment.pago.url);
-    xhr.send(data);
   }
 
   private recalcularTipo() {

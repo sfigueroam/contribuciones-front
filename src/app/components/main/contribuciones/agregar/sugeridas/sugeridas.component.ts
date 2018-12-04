@@ -2,7 +2,7 @@ import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {ContribucionesSugeridasService} from '../../../../../services/contribuciones-sugeridas.service';
 import {PropiedadComponent} from '../../../shared/propiedad/propiedad.component';
-import {ContributionsService} from '../../../../../services/contributions.service';
+import {ContribucionesService} from '../../../../../services/contribuciones.service';
 import {Router} from '@angular/router';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
@@ -23,8 +23,8 @@ export class SugeridasComponent implements OnInit {
   cantidadSeleccionadas: number;
 
   constructor(private user: UserService,
-              private contribucionesSugeridasService: ContribucionesSugeridasService,
-              private contributionsService: ContributionsService,
+              private sugeridas: ContribucionesSugeridasService,
+              private contribuciones: ContribucionesService,
               private mdlSnackbarService: MdlSnackbarService,
               private router: Router) {
     this.propiedades = [];
@@ -69,8 +69,8 @@ export class SugeridasComponent implements OnInit {
       roles = roles.concat(sugeridas.getRolesSeleccionadas());
     }
     this.user.asociarRoles(roles).then(() => {
-        this.contributionsService.clearPropiedades();
-        this.contribucionesSugeridasService.clearPropiedades();
+        this.contribuciones.clearPropiedades();
+        this.sugeridas.clearPropiedades();
         this.cargarRolesNoAsociados().then(() => {
           this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
         });

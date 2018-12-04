@@ -62,15 +62,20 @@
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
 
-    
-      <button mdl-button (click)="summaryDialog.show()" [disabled]="total <= 0">
-        <mdl-icon  [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list</mdl-icon>
+
+    <button mdl-button (click)="summaryDialog.show()" [disabled]="total <= 0">
+      <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list
+      </mdl-icon>
+    </button>
+    <h6 class="pl-10"><strong>$ {{total | number}}</strong></h6>
+    <div class="mdl-layout-spacer"></div>
+    <form ngNoForm method="post" action="http://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago">
+      <input type="hidden" name="listaContribuciones" value="{{listaContribuciones}}"/>
+      <button type="submit"
+              [disabled]="total <= 0"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-pay">Pagar
       </button>
-      <h6 class="pl-10"><strong>$ {{total | number}}</strong></h6>
-      <div class="mdl-layout-spacer"></div>
-      <button type="button" [disabled]="total <= 0" (click)="pay()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-pay">PAGAR</button>
-
-
+    </form>
   </div>
 </div>
 
@@ -94,45 +99,37 @@
               enterTransitionDuration: 400,
               leaveTransitionDuration: 400}">
   <div class="drawer-shopping-cart active">
-      <p class="mdl-layout-title">Resumen de tus Cuotas</p>
-      <div class="mdl-dialog__content" *ngIf="complete">
-    <div class="tgr-propiedad" *ngFor="let propiedad of propiedades">
-      <div *ngIf="propiedad.total > 0">      
-        <p class="sub-title"><strong>{{propiedad.direccion}}</strong>({{propiedad.total | number}})</p>
-        <table class="mdl-data-table">
-          <thead>
-          <tr>
-            <th>ROL</th>
-            <th>Cuota</th>
-            <th>Vence</th>
-            <th>Monto</th>
-          </tr>
-          </thead>
-          <tbody *ngFor="let rol of propiedad.roles">
-          <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
-            <td>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
-            </td>
-            <td>{{cuota.numeroCuota}}</td>
-            <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-            <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
-          </tr>
-          </tbody>
-        </table>
+    <p class="mdl-layout-title">Resumen de tus Cuotas</p>
+    <div class="mdl-dialog__content" *ngIf="complete">
+      <div class="tgr-propiedad" *ngFor="let propiedad of propiedades">
+        <div *ngIf="propiedad.total > 0">
+          <p class="sub-title"><strong>{{propiedad.direccion}}</strong>({{propiedad.total | number}})</p>
+          <table class="mdl-data-table">
+            <thead>
+            <tr>
+              <th>ROL</th>
+              <th>Cuota</th>
+              <th>Vence</th>
+              <th>Monto</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let rol of propiedad.roles">
+            <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
+              <td>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
+              </td>
+              <td>{{cuota.numeroCuota}}</td>
+              <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+              <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+    <div class="tgr-dialog__actions">
+      <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+              (click)="summaryDialog.close()">Cerrar
+      </button>
+    </div>
   </div>
-
-
-       <div class="tgr-dialog__actions">
-    <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple
-            (click)="summaryDialog.close()">
-      Cerrar
-    </button>
-  </div> 
-        
-        
-  </div>
-  
-
-  
 </mdl-dialog>
