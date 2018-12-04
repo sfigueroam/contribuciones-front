@@ -275,11 +275,10 @@ export class AgregarNuevaComponent implements OnInit {
         this.contribuciones.addPropiedad(propiedad);
       }
 
-      console.log(this.contributionsService.propiedades);
+      console.log(this.contribuciones.propiedades);
       this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
     }
   }
-
 
   private getPropiedadesConRolesSeleccionados(): Propiedad[] {
     const listaPropiedades = [];
@@ -294,5 +293,4 @@ export class AgregarNuevaComponent implements OnInit {
     }
     return listaPropiedades;
   }
-
 }
