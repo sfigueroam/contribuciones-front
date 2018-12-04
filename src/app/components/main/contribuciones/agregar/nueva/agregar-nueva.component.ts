@@ -46,7 +46,7 @@ export class AgregarNuevaComponent implements OnInit {
 
   propiedades: Propiedad[];
   switchActive = 'direccion';
-  searchDelayedDirecciones: number;
+  busquedaEnEjecucion = false;
 
   cantidadSeleccionadas: number;
   hidden: boolean;
@@ -163,11 +163,12 @@ export class AgregarNuevaComponent implements OnInit {
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8) {
       this.searchDireccion = true;
       if (this.direccion.value.length > 2) {
-        if (!this.searchDelayedDirecciones) {
-          this.searchDelayedDirecciones = setTimeout(
+        if (!this.busquedaEnEjecucion) {
+          this.busquedaEnEjecucion = true;
+          setTimeout(
             () => {
               this.buscarDireccionSugeridos();
-              this.searchDelayedDirecciones = undefined;
+              this.busquedaEnEjecucion = false;
             },
             800);
         }
