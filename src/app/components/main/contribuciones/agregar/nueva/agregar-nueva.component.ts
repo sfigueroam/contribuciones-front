@@ -274,7 +274,9 @@ export class AgregarNuevaComponent implements OnInit {
       for (const propiedad of propiedadesConRolesSeleccionados) {
         this.contributionsService.addPropiedad(propiedad);
       }
-      this.router.navigate(['/main/contribuciones']);
+
+      console.log(this.contributionsService.propiedades);
+      this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
     }
   }
 
