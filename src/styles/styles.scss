@@ -533,12 +533,7 @@ html, body, h1, h2, h3, h4,  h5 {
   display: flex;
   align-items: center;
   justify-content: center;
-   background-image:
-    radial-gradient(
-      circle ,
-      #fff,
-      #A3A9CF
-    );
+  background: $gray-blue;
 }
 .tgr-loading figure {
   position: relative;

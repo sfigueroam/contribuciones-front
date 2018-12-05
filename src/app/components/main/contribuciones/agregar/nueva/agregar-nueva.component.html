@@ -70,16 +70,18 @@
                     error-msg="Debe seleccionar una Comuna"
                     [formControl]="comuna"
                     label="Comuna"
+                    class="tgr-i-comuna"
                     floating-label>
           <mdl-option *ngFor="let local of localidad| matchSorter:'comuna,idSii':autocompleteSelect.searchQuery"
                       [value]="local.idSii">{{local.comuna | titlecase}} ({{local.idSii}})
           </mdl-option>
-        </mdl-select>
+        </mdl-select>        
         <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
                        type="number"
                        id="rol"
                        name="rol"
                        label="Rol"
+                       class="tgr-i-rol"
                        [formControl]="rol"
                        error-msg="Debe ingresar un Rol"
                        floating-label></mdl-textfield>
@@ -88,6 +90,7 @@
                        type="number"
                        id="subRol"
                        name="subRol"
+                       class="tgr-i-subrol"
                        label="Sub Rol"
                        [formControl]="subRol"
                        error-msg="Debe ingresar un Sub Rol"
