@@ -38,11 +38,19 @@ export class UserService {
   }
 
   eliminarPropiedad(idDireccion: string): Promise<any> {
-    return this.contributions.eliminarPropiedad(this.rut, idDireccion);
+    if (this.rut) {
+      return this.contributions.eliminarPropiedad(this.rut, idDireccion);
+    } else {
+      return this.contributions.eliminarPropiedadSinlogin(idDireccion);
+    }
   }
 
   eliminarRol(rolComunaSiiCod: number, rolId: number, subrolId: number): Promise<any> {
-    return this.contributions.eliminarRol(this.rut, rolComunaSiiCod, rolId, subrolId);
+    if (this.rut) {
+      return this.contributions.eliminarRol(this.rut, rolComunaSiiCod, rolId, subrolId);
+    } else {
+      return this.contributions.eliminarRolSinLogin(rolComunaSiiCod, rolId, subrolId);
+    }
   }
 
   asociarRoles(roles: number[]): Promise<any> {
