@@ -71,7 +71,7 @@
                     [formControl]="comuna"
                     label="Comuna"
                     floating-label>
-          <mdl-option *ngFor="let local of localidad| matchSorter:'comuna':autocompleteSelect.searchQuery"
+          <mdl-option *ngFor="let local of localidad| matchSorter:'comuna,idSii':autocompleteSelect.searchQuery"
                       [value]="local.idSii">{{local.comuna | titlecase}} ({{local.idSii}})
           </mdl-option>
         </mdl-select>

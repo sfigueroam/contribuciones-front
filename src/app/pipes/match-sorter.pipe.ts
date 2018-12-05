@@ -10,7 +10,7 @@ export class MatchSorterPipe implements PipeTransform {
     return matchSorter(
       input,
       value,
-      typeof options === 'string' ? { keys: [options] } : options,
+      typeof options === 'string' ? { keys: options.split(',') } : options,
     );
   }
 }
