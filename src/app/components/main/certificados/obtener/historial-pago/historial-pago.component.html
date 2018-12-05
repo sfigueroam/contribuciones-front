@@ -1,4 +1,26 @@
-<h3>Historial Pago</h3>
-<p>
-  {{info | json}}
-</p>
+<h1>HISTORIAL DE PAGOS
+  <small *ngIf="rol">ROL/RUT {{rol.comuna}}-{{rol.rol}}-{{rol.subrol}}
+  </small>
+</h1>
+<dl>
+  <dt>FECHA VENCIMIENTO</dt>
+  <dd>{{info.formulario.fechaVencimiento}}</dd>
+  <dt>CONTRIBUCIONES
+    <small>(FORMULARIO {{info.formulario.formularioPago}})</small>
+  </dt>
+  <dt>FOLIO</dt>
+  <dd>{{info.formulario.folio}}</dd>
+  <dt>FECHA DE PAGO</dt>
+  <dd>{{info.formulario.fechaPago}}</dd>
+  <dt>INSTITUCIÓN RECAUDADORA</dt>
+  <dd>{{info.formulario.iraNombre}}</dd>
+  <dt>MONTO PAGADO</dt>
+  <dd>${{info.formulario.montoPago | number}}</dd>
+</dl>
+
+<ngx-barcode [bc-value]="info.formulario.cid"
+             [bc-display-value]="true"
+             bc-format="CODE128"
+             bc-height="30"
+             bc-font="Helvetica"
+             bc-font-size="14px"></ngx-barcode>

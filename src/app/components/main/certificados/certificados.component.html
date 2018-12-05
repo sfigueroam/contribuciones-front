@@ -2,7 +2,7 @@
   <div class=" mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet m-0auto">
     <div class="tgr-card__body mdl-grid">
       <h5 class="title text-primary text-center"><strong>Tipo de Certificado</strong></h5>
-      <div class="tgr-controls m-0auto">        
+      <div class="tgr-controls m-0auto">
         <div (click)="certificadoDeudas = !certificadoDeudas">
           <span class="tgr-juliuscheck"><mdl-icon>{{certificadoDeudas ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Certificado deudas</span>
         </div>
@@ -34,7 +34,7 @@
                 (click)="solicitarCertificado()"
                 [disabled]="(!certificadoDeudas && (!historialPagos || !ano)) || seleccionados < 1"
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          Enviar Certificado
+          Obtener
         </button>
       </div>
     </div>

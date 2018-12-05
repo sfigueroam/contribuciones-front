@@ -27,16 +27,24 @@ export class ObtenerComponent implements OnInit {
               private router: Router) {
   }
 
+  print() {
+    window.print();
+  }
+
   ngOnInit() {
     this.rolesId = this.service.roles;
-    if (this.rolesId == null || this.rolesId.length === 0) {
-      this.router.navigate(['/main/contribuciones/certificados']);
-    }
-
     this.ano = this.service.ano;
 
     this.certificadoDeuda = this.service.certificadoDeuda;
     this.historialPago = this.service.historialPago;
+
+    if (this.rolesId == null || this.rolesId.length === 0) {
+      // TODO JOSHE HAY QUE DESCOMENTAR ESTO Y BORRAR LAS OTRAS LINEAS DEL IF
+      // this.router.navigate(['/main/contribuciones/certificados']);
+      this.rolesId = [3700074115];
+      this.ano = 2011;
+      this.historialPago = true;
+    }
 
     const promises = [];
     this.certificados = [];

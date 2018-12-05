@@ -26,6 +26,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
 import {CertificadoDeudaComponent} from './components/main/certificados/obtener/certificado-deuda/certificado-deuda.component';
 import {HistorialPagoComponent} from './components/main/certificados/obtener/historial-pago/historial-pago.component';
+import {NgxBarcodeModule} from 'ngx-barcode';
 
 registerLocaleData(localeEs, 'es');
 
@@ -57,6 +58,7 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     MdlModule,
     MdlSelectModule,
+    NgxBarcodeModule,
   ],
   providers: [
     {

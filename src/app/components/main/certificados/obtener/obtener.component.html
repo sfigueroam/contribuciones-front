@@ -1,4 +1,14 @@
-<div *ngFor="let c of certificados">
-  <app-certificado-deuda *ngIf="c.deuda" [info]="c.deuda"></app-certificado-deuda>
-  <app-historial-pago *ngIf="c.pago" [info]="c.pago"></app-historial-pago>
+<div *ngIf="!cargaFinalizada" class="tgr-loading">
+  <figure>
+    <img class="tgr-star" src="../../../../../assets/estrella.png" alt="">
+    <img class="tgr-tgr" src="../../../../../assets/tgr.png" alt="">
+    <figcaption>Cargando información de certificados...</figcaption>
+  </figure>
+</div>
+<div *ngIf="cargaFinalizada">
+  <button (click)="print()">Imprimir</button>
+  <div *ngFor="let c of certificados">
+    <app-certificado-deuda *ngIf="c.deuda" [info]="c.deuda"></app-certificado-deuda>
+    <app-historial-pago *ngIf="c.pago" [info]="c.pago"></app-historial-pago>
+  </div>
 </div>

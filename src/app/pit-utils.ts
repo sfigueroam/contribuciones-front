@@ -31,4 +31,14 @@ export class PitUtils {
       dv: dv
     };
   }
+
+  static separaRol(valor: number): { comuna: string, rol: string, subrol: string } {
+    const result = {comuna: undefined, rol: undefined, subrol: undefined};
+    result.subrol = ('000' + (valor % 1000)).substr(-3);
+    valor = Math.floor(valor / 1000);
+    result.rol = ('00000' + (valor % 100000)).substr(-5);
+    valor = Math.floor(valor / 100000);
+    result.comuna = ('000' + (valor)).substr(-3);
+    return result;
+  }
 }

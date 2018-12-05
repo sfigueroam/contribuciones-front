@@ -4,8 +4,15 @@ export class CertificadoDeuda {
   nombre: string;
   direccion: string;
   comuna: string;
-  rut: string;
+  rutRol: string;
   rutDv: string;
+
+  moneda: string;
+  monedaLiq: string;
+  formNombre: string;
+  formCod: string;
+  formOrig: string;
+
   tablaDeudas: TablaDeudaRegistro[];
   tablaTotales: TablaTotalesRegistro[];
   fechaEmision: string;

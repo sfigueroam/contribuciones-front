@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HistorialPago} from '../../../../../domain/HistorialPago';
+import {PitUtils} from '../../../../../pit-utils';
 
 @Component({
   selector: 'app-historial-pago',
@@ -11,10 +12,12 @@ export class HistorialPagoComponent implements OnInit {
   @Input()
   info: HistorialPago;
 
+  rol: { comuna: string, rol: string, subrol: string };
+
   constructor() {
   }
 
   ngOnInit() {
+    this.rol = PitUtils.separaRol(this.info.formulario.rutRol);
   }
-
 }

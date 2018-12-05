@@ -1,5 +1,5 @@
 <h1>{{info.titulo}}
-  <small>ROL/RUT {{'de donde se saca esto'}}</small>
+  <small>ROL/RUT {{rol.comuna}}-{{rol.rol}}-{{rol.subrol}}</small>
 </h1>
 <dl>
   <dt>NOMBRE</dt>
@@ -9,12 +9,12 @@
   <dt>COMUNA</dt>
   <dd>{{info.comuna}}</dd>
 </dl>
-<div *ngFor="let deuda of info.tablaDeudas">
-  <h2>DEUDA {{deuda.tipoDeuda | uppercase}}</h2>
+<div *ngIf="info.tablaDeudas[0] as deudaMorosa">
+  <h2>DEUDA LIQUIDADA MOROSA</h2>
   <h3>CONTRIBUCIONES
-    <small>(FORMULARIO 30)</small>
+    <small>({{info.formNombre}})</small>
   </h3>
-  <div *ngFor="let formulario of deuda.tablaFormularios">
+  <div *ngFor="let formulario of deudaMorosa.tablaFormularios">
     <dl>
       <dt>FECHA VENCIMIENTO</dt>
       <dl>{{formulario.fechaVcto}}</dl>
@@ -29,7 +29,35 @@
       <dt>MULTA</dt>
       <dl>{{formulario.multas | number}}</dl>
       <dt>TOTAL</dt>
+      <dl>${{formulario.deudaTotal | number}}</dl>
+    </dl>
+  </div>
+  <div *ngIf="info.tablaTotales[0] as totalMorosa">
+    <dl>
+      <dt>TOTAL DEUDA</dt>
+      <dl>${{totalMorosa.deudaTotal}}</dl>
+    </dl>
+  </div>
+</div>
+<div *ngIf="info.tablaDeudas[1] as deudaNoVencida">
+  <h2>DEUDA NO VENCIDA LIQUIDADA</h2>
+  <h3>CONTRIBUCIONES
+    <small>({{info.formNombre}})</small>
+  </h3>
+  <div *ngFor="let formulario of deudaNoVencida.tablaFormularios">
+    <dl>
+      <dt>FECHA VENCIMIENTO</dt>
+      <dl>{{formulario.fechaVcto}}</dl>
+      <dt>FOLIO</dt>
+      <dl>{{formulario.folio}}</dl>
+      <dt>TOTAL</dt>
       <dl>{{formulario.deudaTotal | number}}</dl>
+    </dl>
+  </div>
+  <div *ngIf="info.tablaTotales[1] as totalNoVencida">
+    <dl>
+      <dt>TOTAL DEUDA</dt>
+      <dl>${{totalNoVencida.deudaTotal}}</dl>
     </dl>
   </div>
 </div>
@@ -37,8 +65,12 @@
 <p>
   Para verificar la autenticidad del presente certificado ingrese el código de barra en www.tgr.cl
 </p>
-<p>
-  {{info.codigoBarras}}
-</p>
+<ngx-barcode [bc-value]="info.codigoBarras"
+             [bc-display-value]="true"
+             bc-format="CODE128"
+             bc-height="30"
+             bc-font="Helvetica"
+             bc-font-size="14px"></ngx-barcode>
+<br>
 <h5>IMPORTANTE</h5>
 <p>DOCUMENTO NO VÁLIDO PARA PAGAR EN INSTITUCIONES RECAUDADORAS</p>
