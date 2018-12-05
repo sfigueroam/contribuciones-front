@@ -24,6 +24,8 @@ import {AgregarNuevaComponent} from './components/main/contribuciones/agregar/nu
 import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 import {CookieService} from 'ngx-cookie-service';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
+import {CertificadoDeudaComponent} from './components/main/certificados/obtener/certificado-deuda/certificado-deuda.component';
+import {HistorialPagoComponent} from './components/main/certificados/obtener/historial-pago/historial-pago.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -44,6 +46,8 @@ registerLocaleData(localeEs, 'es');
     RolCuotasComponent,
     LoginComponent,
     ObtenerComponent,
+    CertificadoDeudaComponent,
+    HistorialPagoComponent,
   ],
   imports: [
     BrowserModule,

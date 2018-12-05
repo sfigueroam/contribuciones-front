@@ -50,7 +50,10 @@ export class CertificadosComponent implements OnInit {
         this.propiedades = propiedades;
         this.actualizarSeleccionadas();
       },
-      () => this.mdlSnackbarService.showToast('Ocurrió un error al obtener el listado de propiedades')
+      (err) => {
+        console.log(err);
+        this.mdlSnackbarService.showToast('Ocurrió un error al obtener el listado de propiedades');
+      }
     );
   }
 
@@ -73,9 +76,6 @@ export class CertificadosComponent implements OnInit {
         this.certificados.roles.push(rol.rol);
       }
     }
-    console.log('Año', this.ano);
-    console.log(this.roles);
-    console.log(this.certificados);
     this.router.navigate(['/main/contribuciones/certificados/obtener']);
   }
 }

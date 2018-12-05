@@ -1,0 +1,44 @@
+<h1>{{info.titulo}}
+  <small>ROL/RUT {{'de donde se saca esto'}}</small>
+</h1>
+<dl>
+  <dt>NOMBRE</dt>
+  <dd>{{info.nombre}}</dd>
+  <dt>DIRECCIÓN</dt>
+  <dd>{{info.direccion}}</dd>
+  <dt>COMUNA</dt>
+  <dd>{{info.comuna}}</dd>
+</dl>
+<div *ngFor="let deuda of info.tablaDeudas">
+  <h2>DEUDA {{deuda.tipoDeuda | uppercase}}</h2>
+  <h3>CONTRIBUCIONES
+    <small>(FORMULARIO 30)</small>
+  </h3>
+  <div *ngFor="let formulario of deuda.tablaFormularios">
+    <dl>
+      <dt>FECHA VENCIMIENTO</dt>
+      <dl>{{formulario.fechaVcto}}</dl>
+      <dt>FOLIO</dt>
+      <dl>{{formulario.folio}}</dl>
+      <dt>DEUDA NETA</dt>
+      <dl>{{formulario.deudaNeta | number}}</dl>
+      <dt>REAJUSTE</dt>
+      <dl>{{formulario.reajustes | number}}</dl>
+      <dt>INTERESES</dt>
+      <dl>{{formulario.intereses | number}}</dl>
+      <dt>MULTA</dt>
+      <dl>{{formulario.multas | number}}</dl>
+      <dt>TOTAL</dt>
+      <dl>{{formulario.deudaTotal | number}}</dl>
+    </dl>
+  </div>
+</div>
+<h5>FECHA DE EMISION: {{info.fechaEmision}}</h5>
+<p>
+  Para verificar la autenticidad del presente certificado ingrese el código de barra en www.tgr.cl
+</p>
+<p>
+  {{info.codigoBarras}}
+</p>
+<h5>IMPORTANTE</h5>
+<p>DOCUMENTO NO VÁLIDO PARA PAGAR EN INSTITUCIONES RECAUDADORAS</p>

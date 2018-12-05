@@ -1,11 +1,3 @@
-const idTesoreria = '33';
-const origen = '928';
-
-const cabecera = {
-  ambiente: 'test',
-  usuario: '60805000'
-};
-
 const urlsBase = {
   publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
   privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
@@ -40,6 +32,16 @@ export const environment = {
     anoDesde: 1955,
   },
   servicios: {
+    certificadoDeudas: {
+      url: urlsBase.publica,
+      path: '/tgrSuscriptorWs/api/suscriptor/certificado/obtener',
+      method: 'POST'
+    },
+    certificadoHistorialPago: {
+      url: urlsBase.publica,
+      path: '/recaPagoConsultasWS/api/pago/consulta',
+      method: 'POST'
+    },
     obtenerBienRaizAsociado: {
       url: urlsBase.publica,
       path: pathBase.clienteBienRaiz + '/asociado/obtener',
@@ -94,11 +96,3 @@ export const environment = {
     },
   }
 };
-
-/*
- * In development mode, for easier debugging, you can ignore zone related error
- * stack frames such as `zone.run`/`zoneDelegate.invokeTask` by importing the
- * below file. Don't forget to comment it out in production mode
- * because it will have a performance impact when errors are thrown
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

@@ -1,4 +1,4 @@
-<p>
-  obtener works!
-</p>
-<p>{{rolesId}}</p>
+<div *ngFor="let c of certificados">
+  <app-certificado-deuda *ngIf="c.deuda" [info]="c.deuda"></app-certificado-deuda>
+  <app-historial-pago *ngIf="c.pago" [info]="c.pago"></app-historial-pago>
+</div>
