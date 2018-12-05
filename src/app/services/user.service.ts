@@ -34,7 +34,11 @@ export class UserService {
   }
 
   getBienesRaices(): Promise<Propiedad[]> {
-    return this.contributions.getBienesRaices(this.rut);
+    if (this.rut) {
+      return this.contributions.getBienesRaices(this.rut);
+    } else {
+      return this.contributions.getBienesRaicesSinlogin();
+    }
   }
 
   eliminarPropiedad(idDireccion: string): Promise<any> {

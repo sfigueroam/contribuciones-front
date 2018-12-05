@@ -41,6 +41,16 @@ export const environment = {
     anoDesde: 1955,
   },
   servicios: {
+    certificadoDeudas: {
+      url: urlsBase.publica,
+      path: '/tgrSuscriptorWs/api/suscriptor/certificado/obtener',
+      method: 'POST'
+    },
+    certificadoHistorialPago: {
+      url: urlsBase.publica,
+      path: '/recaPagoConsultasWS/api/pago/consulta',
+      method: 'POST'
+    },
     obtenerBienRaizAsociado: {
       url: urlsBase.publica,
       path: pathBase.clienteBienRaiz + '/asociado/obtener',

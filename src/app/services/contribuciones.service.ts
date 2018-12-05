@@ -14,7 +14,7 @@ export class ContribucionesService {
   propiedades: Propiedad[];
 
   constructor(private requestService: RequestService) {
-    this.propiedades = [];
+
   }
 
   clearPropiedades(): void {
@@ -25,7 +25,7 @@ export class ContribucionesService {
     if (this.propiedades === undefined || this.propiedades == null) {
       this.propiedades = [];
     }
-    let estado: boolean = false;
+    let estado = false;
     for (const prop of this.propiedades) {
       if (prop.idDireccion === response.idDireccion) {
         estado = true;
@@ -76,14 +76,22 @@ export class ContribucionesService {
 
   getBienesRaices(rut: number): Promise<Propiedad[]> {
 
-
-    if (this.propiedades ) {
+    if (this.propiedades) {
       return new Promise((resolve) => {
         resolve(this.propiedades);
       });
     } else {
       return this.updateBienesRaices(rut);
     }
+  }
+
+  getBienesRaicesSinlogin(): Promise<Propiedad[]> {
+    if(this.propiedades === undefined) {
+      this.clearPropiedades();
+    }
+    return new Promise((resolve) => {
+      resolve(this.propiedades);
+    });
   }
 
   async cargarRoles(): Promise<any> {
