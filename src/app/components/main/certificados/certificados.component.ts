@@ -6,6 +6,8 @@ import {Propiedad} from '../../../domain/Propiedad';
 import {PropiedadComponent} from '../shared/propiedad/propiedad.component';
 import {Rol} from '../../../domain/Rol';
 import {CheckboxIcon} from '../../../domain/CheckboxIcon';
+import {CertificadosService} from '../../../services/certificados.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-certificados',
@@ -28,7 +30,10 @@ export class CertificadosComponent implements OnInit {
   seleccionados: number;
   roles: Rol[];
 
-  constructor(private user: UserService, private mdlSnackbarService: MdlSnackbarService) {
+  constructor(private user: UserService,
+              private mdlSnackbarService: MdlSnackbarService,
+              private certificados: CertificadosService,
+              private router: Router) {
     this.anos = [];
     for (let ano = (new Date()).getFullYear(); ano >= environment.certificados.anoDesde; ano--) {
       this.anos.push(ano);
@@ -59,7 +64,18 @@ export class CertificadosComponent implements OnInit {
   }
 
   solicitarCertificado(): void {
+    this.certificados.ano = this.ano;
+    this.certificados.historialPago = this.historialPagos;
+    this.certificados.certificadoDeuda = this.certificadoDeudas;
+    this.certificados.roles = [];
+    for (const rol of this.roles) {
+      if (rol) {
+        this.certificados.roles.push(rol.rol);
+      }
+    }
     console.log('Año', this.ano);
     console.log(this.roles);
+    console.log(this.certificados);
+    this.router.navigate(['/main/contribuciones/certificados/obtener']);
   }
 }

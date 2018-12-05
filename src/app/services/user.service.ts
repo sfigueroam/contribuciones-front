@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {PitUtils} from '../pit-utils';
 import {Propiedad} from '../domain/Propiedad';
-import {ContributionsService} from './contributions.service';
+import {ContribucionesService} from './contribuciones.service';
 import {ContribucionesBuscarRolService} from './contribuciones-buscar-rol.service';
 import {ContribucionesSugeridasService} from './contribuciones-sugeridas.service';
 import {environment} from '../../environments/environment';
@@ -14,7 +14,7 @@ export class UserService {
   rut: number;
   dv: string;
 
-  constructor(private contributions: ContributionsService,
+  constructor(private contributions: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private buscarRoles: ContribucionesBuscarRolService) {
     // this.rut = 96597810;
