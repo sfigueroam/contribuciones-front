@@ -13,6 +13,7 @@ export class CertificadoDeudaComponent implements OnInit {
   info: CertificadoDeuda;
   rol: { comuna: string, rol: string, subrol: string };
 
+
   constructor() {
   }
 

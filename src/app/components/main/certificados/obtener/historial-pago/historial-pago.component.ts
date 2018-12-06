@@ -13,8 +13,10 @@ export class HistorialPagoComponent implements OnInit {
   info: HistorialPago;
 
   rol: { comuna: string, rol: string, subrol: string };
+  fechaEmision: Date;
 
   constructor() {
+    this.fechaEmision = new Date();
   }
 
   ngOnInit() {
