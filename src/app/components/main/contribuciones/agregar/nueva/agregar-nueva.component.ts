@@ -193,8 +193,6 @@ export class AgregarNuevaComponent implements OnInit {
       }
     }
 
-    console.log(estado);
-
     if (!estado) {
       this.propiedades.push(response);
     }
@@ -275,8 +273,6 @@ export class AgregarNuevaComponent implements OnInit {
       for (const propiedad of propiedadesConRolesSeleccionados) {
         this.contribuciones.addPropiedad(propiedad);
       }
-
-      console.log(this.contribuciones.propiedades);
       this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
     }
   }

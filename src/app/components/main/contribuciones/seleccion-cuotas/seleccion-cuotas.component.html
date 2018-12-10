@@ -119,7 +119,8 @@
               </td>
               <td>{{cuota.numeroCuota}}</td>
               <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-              <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
+              <!--<td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : (cuota.liqParcial ? cuota.liqParcial.saldoTotal : 0)) | number}}</td>-->
+              <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal ) | number}}</td>
             </tr>
             </tbody>
           </table>

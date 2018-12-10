@@ -136,6 +136,12 @@ export class Rol {
     for (const cuota of this.cuotas) {
       if (cuota.intencionPago) {
         cuotas.push(cuota);
+        /*
+        console.log('cuota.numeroCuota', cuota.numeroCuota);
+        console.log('this.condonacion', this.condonacion);
+        console.log('cuota.liqTotal.saldoTotal', cuota.liqTotal.saldoTotal);
+        console.log('cuota.liqParcial', cuota.liqParcial);
+        console.log('cuota.liqParcial.saldoTotal', cuota.liqParcial.saldoTotal);*/
       }
     }
     return cuotas;

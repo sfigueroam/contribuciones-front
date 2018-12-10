@@ -38,7 +38,7 @@ export class CertificadosService {
           }
         };
         this.requestService.request(environment.servicios.certificadoHistorialPago, body).then(
-          (response: { message: HistorialPago[] }) => {console.log(response.message); resolve(response.message !== undefined ? response.message : null)},
+          (response: { message: HistorialPago[] }) => resolve(response.message !== undefined ? response.message : null),
           err => reject(err)
         );
       }

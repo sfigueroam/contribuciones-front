@@ -97,6 +97,12 @@ export class SeleccionCuotasComponent implements OnInit {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
           if (c.intencionPago) {
+            /*if (c.numeroCuota === '5-1988') {
+              console.log(c);
+            }
+            if (c.liqParcial === undefined) {
+              console.log(c);
+            }*/
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarra + ', ';
             } else {

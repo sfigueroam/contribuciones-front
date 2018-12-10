@@ -31,7 +31,6 @@ export class ContribucionesService {
         estado = true;
         for (const rol of response.roles) {
           if (!prop.existRol(rol.rol)) {
-            console.log('Rol no existe');
             prop.addRol(rol);
           }
         }
@@ -86,7 +85,7 @@ export class ContribucionesService {
   }
 
   getBienesRaicesSinlogin(): Promise<Propiedad[]> {
-    if(this.propiedades === undefined) {
+    if (this.propiedades === undefined) {
       this.clearPropiedades();
     }
     return new Promise((resolve) => {
@@ -98,35 +97,51 @@ export class ContribucionesService {
     for (const propiedad of this.propiedades) {
       for (const rol of propiedad.roles) {
         await this.cargarRol(rol);
+        //console.log(rol);
         rol.complete();
       }
     }
   }
 
   private cargarRol(rol: Rol): Promise<any> {
-    return new Promise(
-      (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
-        (data: { listaDeudaRol: any[] }) => {
-          const mapCuotas = new Map<string, Cuota>();
-          for (const deuda of data.listaDeudaRol) {
-            const cuota = new Cuota(deuda);
-            mapCuotas.set(cuota.numeroCuota, cuota);
-            rol.cuotas.push(cuota);
-          }
-          this.getDeudaByRol(rol.rol, rol.getCuotasDeseleccionadas()).then(
-            (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
-              for (const deuda of data2.listaDeudaRol) {
-                const cuota = mapCuotas.get(deuda.numeroCuota);
-                cuota.liqParcial = new CuotaDetalle(deuda);
-              }
-              resolve();
-            },
-            (err) => reject(err)
-          );
-        },
-        (err) => reject(err)
-      )
-    );
+    if (rol.cuotas.length > 0) {
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
+
+    } else {
+      return new Promise(
+        (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
+          (data: { listaDeudaRol: any[] }) => {
+            const mapCuotas = new Map<string, Cuota>();
+            for (const deuda of data.listaDeudaRol) {
+              const cuota = new Cuota(deuda);
+              mapCuotas.set(cuota.numeroCuota, cuota);
+              rol.cuotas.push(cuota);
+            }
+            this.getDeudaByRol(rol.rol, rol.getCuotasDeseleccionadas()).then(
+              (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
+                for (const deuda of data2.listaDeudaRol) {
+                  const cuota = mapCuotas.get(deuda.numeroCuota);
+                  cuota.liqParcial = new CuotaDetalle(deuda);
+
+                  /*if (deuda.numeroCuota === '5-1988') {
+                    console.log('deuda.numeroCuota', deuda.numeroCuota);
+                    console.log(cuota.liqTotal);
+                    console.log(cuota.liqParcial);
+                    console.log(cuota.folio);
+                    console.log('cuota.numeroCuota', cuota.numeroCuota);
+                  }*/
+                }
+                resolve();
+              },
+              (err) => reject(err)
+            );
+          },
+          (err) => reject(err)
+        )
+      );
+    }
   }
 
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
