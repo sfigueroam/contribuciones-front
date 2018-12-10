@@ -2,22 +2,23 @@
   <small *ngIf="rol">ROL/RUT {{rol.comuna}}-{{rol.rol}}-{{rol.subrol}}
   </small>
 </h1>
-<dl>
+
+<dl *ngFor="let i of info">
   <dt>FECHA VENCIMIENTO</dt>
-  <dd>{{info.formulario.fechaVencimiento}}</dd>
+  <dd>{{i.formulario.fechaVencimiento}}</dd>
   <dt>CONTRIBUCIONES
-    <small>(FORMULARIO {{info.formulario.formularioPago}})</small>
+    <small>(FORMULARIO {{i.formulario.formularioPago}})</small>
   </dt>
   <dt>FOLIO</dt>
-  <dd>{{info.formulario.folio}}</dd>
+  <dd>{{i.formulario.folio}}</dd>
   <dt>FECHA DE PAGO</dt>
-  <dd>{{info.formulario.fechaPago}}</dd>
+  <dd>{{i.formulario.fechaPago}}</dd>
   <dt>INSTITUCIÓN RECAUDADORA</dt>
-  <dd>{{info.formulario.iraNombre}}</dd>
+  <dd>{{i.formulario.iraNombre}}</dd>
   <dt>MONTO PAGADO</dt>
-  <dd>${{info.formulario.montoPago | number}}</dd>
+  <dd>${{i.formulario.montoPago | number}}</dd>
 </dl>
-<h5>FECHA DE EMISION: {{fechaEmision}}</h5>
+<h5>FECHA DE EMISION: {{fechaEmision | date:'dd-MM-y | HH:mm:ss'}}</h5>
 <!--
 <ngx-barcode [bc-value]="info.formulario.cid"
              [bc-display-value]="true"

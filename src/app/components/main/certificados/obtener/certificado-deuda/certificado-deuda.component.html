@@ -32,12 +32,14 @@
       <dl>${{formulario.deudaTotal | number}}</dl>
     </dl>
   </div>
-  <div *ngIf="info.tablaTotales[0] as totalMorosa">
+  <!--
+  Según comentan ya no se envía
+  <div *ngIf="info.tablaTotales && info.tablaTotales[0] as totalMorosa">
     <dl>
       <dt>TOTAL DEUDA</dt>
       <dl>${{totalMorosa.deudaTotal}}</dl>
     </dl>
-  </div>
+  </div>-->
 </div>
 <div *ngIf="info.tablaDeudas[1] as deudaNoVencida">
   <h2>DEUDA NO VENCIDA LIQUIDADA</h2>
@@ -54,12 +56,12 @@
       <dl>{{formulario.deudaTotal | number}}</dl>
     </dl>
   </div>
-  <div *ngIf="info.tablaTotales[1] as totalNoVencida">
+  <!--<div *ngIf="info.tablaTotales[1] as totalNoVencida">
     <dl>
       <dt>TOTAL DEUDA</dt>
       <dl>${{totalNoVencida.deudaTotal}}</dl>
     </dl>
-  </div>
+  </div>-->
 </div>
 <h5>FECHA DE EMISION: {{info.fechaEmision}}</h5>
 <p>

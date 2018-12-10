@@ -3,10 +3,10 @@
     <div class="tgr-card__body mdl-grid">
       <h5 class="title text-primary text-center"><strong>Tipo de Certificado</strong></h5>
       <div class="tgr-controls m-0auto">
-        <div (click)="certificadoDeudas = !certificadoDeudas">
+        <div (click)="certificadoDeudas = (!historialPagos || !certificadoDeudas); historialPagos = false">
           <span class="tgr-juliuscheck"><mdl-icon>{{certificadoDeudas ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Certificado deudas</span>
         </div>
-        <div (click)="historialPagos = !historialPagos">
+        <div (click)="historialPagos = (!certificadoDeudas || !historialPagos); certificadoDeudas = false" >
           <span class="tgr-juliuscheck"><mdl-icon>{{historialPagos ? icons.SELECTED : icons.UNSELECTED}}</mdl-icon> Historial de Pagos</span>
         </div>
         <mdl-select *ngIf="historialPagos"

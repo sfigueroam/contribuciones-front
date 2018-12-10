@@ -40,7 +40,7 @@ export class CertificadosComponent implements OnInit {
     }
 
     this.certificadoDeudas = true;
-    this.historialPagos = true;
+    this.historialPagos = false;
     this.seleccionados = 0;
   }
 

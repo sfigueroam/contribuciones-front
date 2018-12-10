@@ -18,8 +18,8 @@ export class CertificadosService {
   constructor(private requestService: RequestService) {
   }
 
-  getHistorialPago(rolId: number, ano: number): Promise<HistorialPago> {
-    return new Promise<HistorialPago>(
+  getHistorialPago(rolId: number, ano: number): Promise<HistorialPago[]> {
+    return new Promise<HistorialPago[]>(
       (resolve, reject) => {
         const body = {
           mensajeId: {
@@ -38,7 +38,7 @@ export class CertificadosService {
           }
         };
         this.requestService.request(environment.servicios.certificadoHistorialPago, body).then(
-          (response: { message: HistorialPago[] }) => resolve(response.message[0]),
+          (response: { message: HistorialPago[] }) => {console.log(response.message); resolve(response.message !== undefined ? response.message : null)},
           err => reject(err)
         );
       }

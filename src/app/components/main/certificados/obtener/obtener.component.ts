@@ -18,7 +18,7 @@ export class ObtenerComponent implements OnInit {
   certificadoDeuda = false;
   historialPago = false;
 
-  certificados: { deuda?: CertificadoDeuda, pago?: HistorialPago }[];
+  certificados: { deuda?: CertificadoDeuda, pago?: HistorialPago[] }[];
 
   cargaFinalizada = false;
 
@@ -40,23 +40,28 @@ export class ObtenerComponent implements OnInit {
 
     if (this.rolesId == null || this.rolesId.length === 0) {
       // TODO JOSHE HAY QUE DESCOMENTAR ESTO Y BORRAR LAS OTRAS LINEAS DEL IF
-      // this.router.navigate(['/main/contribuciones/certificados']);
-      this.rolesId = [3700074115];
-      this.ano = 2011;
-      this.historialPago = true;
+       this.router.navigate(['/main/contribuciones/certificados']);
+
+      //Borra todo esto
+      //this.rolesId = [3700074115];
+      //this.rolesId = [3700074115];
+      //this.ano = 2011;
+      //this.ano = 2015;
+      //this.historialPago = true;
+      //this.certificadoDeuda = true;
     }
 
     const promises = [];
     this.certificados = [];
     for (const rolId of this.rolesId) {
-      const certificado: { deuda?: CertificadoDeuda, pago?: HistorialPago } = {};
+      const certificado: { deuda?: CertificadoDeuda, pago ?: HistorialPago[] } = {};
       this.certificados.push(certificado);
       if (this.certificadoDeuda) {
         promises.push(
           this.service.getCertificadoDeuda(rolId).then(
             certificadoDeuda => certificado.deuda = certificadoDeuda,
             err => {
-              console.log(err);
+              console.error(err);
               this.mdlSnackbarService.showToast('Ocurrió un error al obtener el certificado de deuda');
             }
           )
@@ -67,7 +72,7 @@ export class ObtenerComponent implements OnInit {
           this.service.getHistorialPago(rolId, this.ano).then(
             historialPago => certificado.pago = historialPago,
             err => {
-              console.log(err);
+              console.error(err);
               this.mdlSnackbarService.showToast('Ocurrió un error al obtener el historial de pago');
             }
           )
@@ -78,7 +83,7 @@ export class ObtenerComponent implements OnInit {
     Promise.all(promises).then(
       () => this.cargaFinalizada = true,
       err => {
-        console.log(err);
+        console.error(err);
         this.cargaFinalizada = true;
       }
     );

@@ -10,8 +10,7 @@ import {PitUtils} from '../../../../../pit-utils';
 export class HistorialPagoComponent implements OnInit {
 
   @Input()
-  info: HistorialPago;
-
+  info: HistorialPago[];
   rol: { comuna: string, rol: string, subrol: string };
   fechaEmision: Date;
 
@@ -20,6 +19,8 @@ export class HistorialPagoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.rol = PitUtils.separaRol(this.info.formulario.rutRol);
+    if(this.info && this.info.length > 0){
+      this.rol = PitUtils.separaRol(this.info[0].formulario.rutRol);
+    }
   }
 }
