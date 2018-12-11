@@ -103,7 +103,7 @@
     <div class="mdl-dialog__content" *ngIf="complete">
       <div class="tgr-propiedad" *ngFor="let propiedad of propiedades">
         <div *ngIf="propiedad.total > 0">
-          <p class="sub-title"><strong>{{propiedad.direccion}}</strong>({{propiedad.total | number}})</p>
+          <p class="sub-title"><strong>{{propiedad.splitName()}}</strong>($ {{propiedad.total | number}})</p>
           <table class="mdl-data-table">
             <thead>
             <tr>

@@ -4,12 +4,12 @@
       <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
     </button>
     <h6 class="pointer">
-      <strong>{{propiedad.direccion}} </strong><span class="comuna">{{comuna}}</span>
+      <strong>{{propiedad.splitName()}} </strong><span class="comuna">{{comuna}}</span>
      </h6>  
   </div>
   <div class="mdl-layout-spacer"></div>
   <div class="wrapper">
-    <span>{{propiedad.total | number}}</span>    
+    <span *ngIf="propiedad.total">$ {{propiedad.total | number}}</span>
     <button mdl-button mdl-js-button pointer delete-this-rol mdl-button-type="icon" (click)="delete()">      
       <i class="material-icons">close</i>
     </button>
