@@ -1,23 +1,24 @@
-<mdl-card mdl-shadow="2" class="mdl-cell mdl-cell--4-col mb-10 rol-card" >
+<mdl-card mdl-shadow="2" class="mdl-cell mdl-cell--4-col mb-10 rol-card">
   <mdl-card-title class="bar">
     <button mdl-button mdl-button-type="icon" (click)="toggle()">
       <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
     </button>
-  
-      <div class="bar-text">
-        <h6>
-          <i class="material-icons">{{icon}}</i>
-          <strong>{{rol.destPropiedad | titlecase}}</strong>
-        </h6>
-        <p class="el-rol">ROL {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}</p>
-      </div>
-      <div class="mdl-layout-spacer"></div>
-      <div class="wrapper">
-        <span *ngIf="rol.total">$ {{rol.total | number}}</span>
-        <button class="mdl-button mdl-js-button mdl-button--icon pointer delete-this-rol" (click)="delete()">
-          <i class="material-icons">close</i>
-        </button>
-      </div>
+
+    <div class="bar-text" (click)="toggle()">
+      <h6>
+        <i class="material-icons">{{icon}}</i>
+        <strong>{{rol.destPropiedad | titlecase}}</strong>
+      </h6>
+      <p class="el-rol">ROL {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId |
+        leadingZero:3}}</p>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="wrapper">
+      <span *ngIf="rol.total >= 0" (click)="toggle()">$ {{rol.total | number}}</span>
+      <button class="mdl-button mdl-js-button mdl-button--icon pointer delete-this-rol" (click)="delete()">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
   </mdl-card-title>
   <div [class.hidden]="!expanded">
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">

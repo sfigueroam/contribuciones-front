@@ -50,7 +50,7 @@ export class RolCuotasComponent implements OnInit {
     if (this.rol.isComplete) {
       this.expanded = !this.expanded;
     } else {
-      this.mdlSnackbarService.showToast('Aún no se carga la información de cuotas, espere un momento', 1400);
+      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', 1400);
     }
   }
 
@@ -94,7 +94,7 @@ export class RolCuotasComponent implements OnInit {
         }
       );
     } else {
-      this.mdlSnackbarService.showToast('Aún no se carga la información de cuotas, espere un momento', 1400);
+      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', 1400);
     }
   }
 }

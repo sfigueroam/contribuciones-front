@@ -290,4 +290,8 @@ export class AgregarNuevaComponent implements OnInit {
     }
     return listaPropiedades;
   }
+
+  volver() {
+    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+  }
 }

@@ -115,10 +115,14 @@
 
 <div class="tgr-actions">
   <div class="tgr-actions__content">
-    <div class="tgr-pay">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+
+    <div class="tgr-pay tgr-agregar-nueva">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [disabled]="cantidadSeleccionadas == 0"
               (click)="asociarPropiedades()">
         Agregar {{cantidadSeleccionadas}} propiedades
+      </button>
+      <button type="button" class="mdl-button  mdl-button--raised mdl-button--return"  (click)="volver()" >
+        Volver
       </button>
     </div>
   </div>

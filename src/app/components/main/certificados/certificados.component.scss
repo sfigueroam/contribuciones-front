@@ -1,4 +1,48 @@
 @import '../../../../styles/colors';
+.tgr-pay.tgr-pay-up{
+  margin-top: 10px;
+
+  @media (max-width: 320px) {
+    margin-top: 10px;
+  }
+  @media (min-width: 321px) and (max-width: 420px) {
+    margin-top: 20px;
+  }
+}
+
+.tgr-pay.tgr-pay-down{
+
+  @media (max-width: 320px) {
+    margin-top: 60px;
+  }
+
+  @media (min-width: 321px) and (max-width: 420px) {
+    margin-top: 40px;
+  }
+}
+
+.mdl-button.mdl-button--return {
+  background: gray;
+  right: 10px;
+}
+.tgr-actions{
+  @media (max-width: 320px){
+    padding-left: 10px;
+    padding-right: 11px;
+  }
+}
+
+.tgr-pay > .mdl-button {
+  @media (max-width: 320px){
+    //height: 0px;
+    font-size: 12px;
+  }
+}
+.tgr-pay__label{
+  @media (max-width: 320px){
+    height: 0px;
+  }
+}
 .tgr-controls {
   text-align: center;
   width: 100%;

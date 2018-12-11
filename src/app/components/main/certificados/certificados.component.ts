@@ -78,4 +78,8 @@ export class CertificadosComponent implements OnInit {
     }
     this.router.navigate(['/main/contribuciones/certificados/obtener']);
   }
+
+  volver(): void {
+    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+  }
 }

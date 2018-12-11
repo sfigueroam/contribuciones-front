@@ -88,4 +88,7 @@ export class ObtenerComponent implements OnInit {
       }
     );
   }
+  volver(): void{
+    this.router.navigate(['/main/contribuciones/certificados']);
+  }
 }

@@ -1,9 +1,31 @@
 @import '../../../../../../styles/colors';
 
+.mdl-button.mdl-button--return {
+  background: gray;
+  right: 10px;
+}
+.tgr-actions{
+  @media (max-width: 320px){
+    top: 488px;
+    padding-right: 10px;
+    padding-left: 10px;
 
+  }
+}
+
+.tgr-pay > .mdl-button {
+  @media (max-width: 320px){
+   font-size: 12px;
+  }
+}
+.tgr-pay.tgr-agregar-nueva{
+  @media (max-width: 320px){
+   margin-top: 20px;
+  }
+}
 .mdl-textfield {
   width: 100%;
-  
+
 }
 .tgr-textfield--full {
   @media (max-width: 996px) {

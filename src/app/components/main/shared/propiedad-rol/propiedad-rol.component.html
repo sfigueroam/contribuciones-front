@@ -2,7 +2,7 @@
   <label (click)="selectRol()" class="tgr-th-icon {{ selectedIcon }}">
     <i class="material-icons"></i>
   </label>
-
+<div class="tgr-card-body">
   <p class="tgr-card__title">
     <i class="material-icons">{{icon}}</i>
     <span class="tgr-card__title--text">{{rol.destPropiedad | titlecase}}</span>
@@ -11,3 +11,4 @@
   <p class="tgr-card__subtitle"><span class="tgr-card__tag">Rol</span>
     {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
   </p>
+</div>

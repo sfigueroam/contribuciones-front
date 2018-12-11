@@ -28,13 +28,18 @@
 
   <div class="tgr-actions">
     <div class="tgr-actions__content">
-      <div class="tgr-pay">
+      <div class="tgr-pay tgr-pay-up">
         <div class="tgr-pay__label"> {{seleccionados}} rol(es) seleccionado(s)</div>
+      </div>
+      <div class="tgr-pay tgr-pay-down">
         <button type="submit"
                 (click)="solicitarCertificado()"
                 [disabled]="(!certificadoDeudas && (!historialPagos || !ano)) || seleccionados < 1"
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
           Obtener
+        </button>
+        <button type="button" class="mdl-button  mdl-button--raised mdl-button--return"  (click)="volver()" >
+          Volver
         </button>
       </div>
     </div>
