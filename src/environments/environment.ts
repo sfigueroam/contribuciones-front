@@ -27,7 +27,7 @@ export const environment = {
     allowCookies: true,
   },
   sizeResultSuggested: 10,
-  sizeResultPage: 20,
+  sizeResultPage: 30,
   certificados: {
     anoDesde: 1955,
   },

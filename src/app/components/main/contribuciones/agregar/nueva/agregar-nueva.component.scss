@@ -1,5 +1,6 @@
 @import '../../../../../../styles/colors';
 
+
 .mdl-button.mdl-button--return {
   background: gray;
   right: 10px;
@@ -13,7 +14,7 @@
   }
 }
 
-.tgr-pay > .mdl-button {
+.mdl-button {
   @media (max-width: 320px){
    font-size: 12px;
   }
@@ -25,7 +26,6 @@
 }
 .mdl-textfield {
   width: 100%;
-
 }
 .tgr-textfield--full {
   @media (max-width: 996px) {
@@ -33,6 +33,12 @@
 		margin: 0;
 	}
 }
+.mdl-textfield > .mdl-textfield__label {
+  @media (max-width: 320px){
+    font-size: 12px;
+  }
+}
+
 .tgr-newsearch {
   margin: 0;
 	position: relative;
@@ -113,6 +119,10 @@
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 1;
+  @media (max-width: 320px){
+    font-size: 14px;
+  }
+
 }
 .tgr-rol-row {
 	padding: 16px 16px 8px 16px;
@@ -178,4 +188,9 @@
 }
 .tgr-i-subrol {
   margin-left: 8px;
+}
+.mdl-textfield {
+  @media (max-width: 320px) {
+    font-size: 12px;
+  }
 }
