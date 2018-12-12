@@ -51,6 +51,8 @@ export class AgregarNuevaComponent implements OnInit {
   cantidadSeleccionadas: number;
   hidden: boolean;
 
+  inputDireccionesTmp = '';
+
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
               private user: UserService,
@@ -128,6 +130,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarDireccionSugeridos() {
+    this.inputDireccionesTmp = this.direccion.value;
     const size = environment.sizeResultSuggested;
     this.contribucionesBuscarRol.searchDireccion(undefined,
       this.tipoPropiedad.value,
@@ -157,10 +160,10 @@ export class AgregarNuevaComponent implements OnInit {
     const inp = String.fromCharCode(event.keyCode);
     if (this.direccion.value.length <= 2) {
       this.direcciones = null;
-    }
-    if (event.keyCode === 13) {
+      this.inputDireccionesTmp = '';
+    } else if (event.keyCode === 13) {
       this.searchDireccion = false;
-    } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8) {
+    } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
       if (this.direccion.value.length > 2) {
         if (!this.busquedaEnEjecucion) {
