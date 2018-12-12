@@ -47,10 +47,9 @@ export class SeleccionCuotasComponent implements OnInit {
 
     this.user.getRolesNoAsociados().then(
       (props: Propiedad[]) => {
-        if(props.length > 0) {
-          for (let propRelacionado of props) {
-            this.rolesSugeridos = this.rolesSugeridos + propRelacionado.roles.length;
-          }
+        this.rolesSugeridos = 0;
+        for (const p of props) {
+          this.rolesSugeridos += p.roles.length;
         }
       },
       (err) => {
