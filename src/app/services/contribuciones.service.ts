@@ -56,6 +56,7 @@ export class ContribucionesService {
               if (!propiedad) {
                 propiedad = new Propiedad();
                 propiedad.direccion = bienRaiz.direccion;
+                propiedad.idDireccion = idPropiedad;
                 propiedadMap.set(idPropiedad, propiedad);
               }
               const rol = new Rol(bienRaiz);
