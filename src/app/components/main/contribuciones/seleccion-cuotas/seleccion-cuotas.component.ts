@@ -46,7 +46,13 @@ export class SeleccionCuotasComponent implements OnInit {
     this.urlPagoTgr = environment.pago.url;
 
     this.user.getRolesNoAsociados().then(
-      (props: Propiedad[]) => this.rolesSugeridos = props.length,
+      (props: Propiedad[]) => {
+        if(props.length > 0) {
+          for (let propRelacionado of props) {
+            this.rolesSugeridos = this.rolesSugeridos + propRelacionado.roles.length;
+          }
+        }
+      },
       (err) => {
         console.log(err);
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles sugeridos');

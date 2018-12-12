@@ -87,4 +87,8 @@ export class SugeridasComponent implements OnInit {
         });
       });
   }
+
+  volver(): void {
+    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+  }
 }
