@@ -22,17 +22,20 @@
           <h5 class="tgr-cell-wait__feedback"></h5>
         </div>
       </div>-->
-      <div class="tgr-pay">
-        <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0; else seleccionUno" type="button"
+      <div class="tgr-pay tgr-sugeridas">
+        <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0" type="button"
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="agregarPropiedad()">
           <div *ngIf="cantidadSeleccionadas > 1; else uno">Agregar {{cantidadSeleccionadas}} propiedades</div>
           <ng-template #uno>Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
         </button>
-        <ng-template #seleccionUno>
-          <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
-            Seleccione al menos un rol
-          </button>
-        </ng-template>
+
+        <button *ngIf="!cantidadSeleccionadas || cantidadSeleccionadas == 0" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
+          <div>Seleccione un rol</div>
+        </button>
+
+        <button type="button" class="mdl-button  mdl-button--raised mdl-button--return"  (click)="volver()" >
+          Volver
+        </button>
       </div>
     </div>
   </div>
