@@ -13,7 +13,7 @@ const pathBase = {
 
 export const environment = {
   production: false,
-  cuentaUrl: 'http://localhost:4200',
+  cuentaUrl: 'https://201811.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=14f89jhmsbv982dhcuf2jijcgu&redirect_uri=http://localhost:4200/login',
   pago: {
     url: 'http://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
   },
