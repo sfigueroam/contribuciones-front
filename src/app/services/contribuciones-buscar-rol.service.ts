@@ -163,7 +163,7 @@ export class ContribucionesBuscarRolService {
 
   searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
 
-    search = search.replace(',', ' ');
+    /*search = search.replace(',', ' ');
     const body = {size, query: {bool: {must: []}}};
 
     body.size = size;
@@ -190,7 +190,13 @@ export class ContribucionesBuscarRolService {
       };
       body.query.bool.must.push(searchPropiedad);
     }
+*/
 
+    const body = {
+      size: size,
+      search: search,
+      tipoPropiedad: tipoPropiedad
+    };
     const propiedades = {
       url: environment.elastic.propiedades.url,
       method: environment.elastic.propiedades.method,
