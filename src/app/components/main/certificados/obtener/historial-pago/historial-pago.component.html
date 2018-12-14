@@ -1,29 +1,39 @@
-<h1>HISTORIAL DE PAGOS
-  <small *ngIf="rol">ROL/RUT {{rol.comuna}}-{{rol.rol}}-{{rol.subrol}}
-  </small>
-</h1>
+<div class="row">
+  <div class="col-xs-12 header-certificado montserrat">
+    <p><strong>HISTORIAL DE PAGOS</strong></p>
+    <p *ngIf="rol"><strong>ROL/RUT {{rol.comuna}}-{{rol.rol}}-{{rol.subrol}}</strong></p>
+  </div>
 
-<dl *ngFor="let i of info">
-  <dt>FECHA VENCIMIENTO</dt>
-  <dd>{{i.formulario.fechaVencimiento}}</dd>
-  <dt>CONTRIBUCIONES
-    <small>(FORMULARIO {{i.formulario.formularioPago}})</small>
-  </dt>
-  <dt>FOLIO</dt>
-  <dd>{{i.formulario.folio}}</dd>
-  <dt>FECHA DE PAGO</dt>
-  <dd>{{i.formulario.fechaPago}}</dd>
-  <dt>INSTITUCIÓN RECAUDADORA</dt>
-  <dd>{{i.formulario.iraNombre}}</dd>
-  <dt>MONTO PAGADO</dt>
-  <dd>${{i.formulario.montoPago | number}}</dd>
-</dl>
-<h5>FECHA DE EMISION: {{fechaEmision | date:'dd-MM-y | HH:mm:ss'}}</h5>
-<!--
-<ngx-barcode [bc-value]="info.formulario.cid"
-             [bc-display-value]="true"
-             bc-format="CODE128"
-             bc-height="30"
-             bc-font="Helvetica"
-             bc-font-size="14px"></ngx-barcode>
--->
+  <div class="datos-agrupacion" *ngFor="let i of info;  let c = index">
+    <div class="row folio-fecha">
+      <div class="col-xs-7 col-sm-3">
+        <p>FECHA VENCIMIENTO</p>
+      </div>
+      <div class="col-xs-5 col-sm-3 color-danger">
+        <p><strong>{{i.formulario.fechaVencimiento | date:'dd-MM-y'}}</strong></p>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <p>FOLIO {{i.formulario.folio}}</p>
+      </div>
+    </div>
+    <div class="row datos-detalle">
+      <div class="col-xs-12 col-sm-3 reajuste">
+        <p>FECHA DE PAGO<span><strong>{{i.formulario.fechaPago | date:'dd-MM-y' }}</strong></span></p>
+      </div>
+      <div class="col-xs-12 col-sm-3 reajuste">
+        <p>INSTITUCIÓN RECAUDADORA<span><strong>{{i.formulario.iraNombre}}</strong></span></p>
+      </div>
+      <div class="col-xs-12 col-sm-3 reajuste">
+        <p>MONTO PAGADO<span><span class="hidden-xs">$</span> {{i.formulario.montoPago | number}}</span></p>
+      </div>
+    </div>
+    <hr class="bold-hr" *ngIf="(c + 1) < info.length">
+  </div>
+  <div class="datos-agrupacion">
+    <div class="row informacion-final">
+      <div class="col-xs-12 fecha-emision">
+        <p class="text-center">FECHA DE EMISIÓN: {{fechaEmision | date:'dd-MM-y | HH:mm:ss'}}</p>
+      </div>
+    </div>
+  </div>
+</div>

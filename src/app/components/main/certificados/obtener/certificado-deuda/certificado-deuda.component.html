@@ -1,78 +1,144 @@
-<h1>{{info.titulo}}
-  <small>ROL/RUT {{rol.comuna}}-{{rol.rol}}-{{rol.subrol}}</small>
-</h1>
-<dl>
-  <dt>NOMBRE</dt>
-  <dd>{{info.nombre}}</dd>
-  <dt>DIRECCIÓN</dt>
-  <dd>{{info.direccion}}</dd>
-  <dt>COMUNA</dt>
-  <dd>{{info.comuna}}</dd>
-</dl>
-<div *ngIf="info.tablaDeudas[0] as deudaMorosa">
-  <h2>DEUDA LIQUIDADA MOROSA</h2>
-  <h3>CONTRIBUCIONES
-    <small>({{info.formNombre}})</small>
-  </h3>
-  <div *ngFor="let formulario of deudaMorosa.tablaFormularios">
-    <dl>
-      <dt>FECHA VENCIMIENTO</dt>
-      <dl>{{formulario.fechaVcto}}</dl>
-      <dt>FOLIO</dt>
-      <dl>{{formulario.folio}}</dl>
-      <dt>DEUDA NETA</dt>
-      <dl>{{formulario.deudaNeta | number}}</dl>
-      <dt>REAJUSTE</dt>
-      <dl>{{formulario.reajustes | number}}</dl>
-      <dt>INTERESES</dt>
-      <dl>{{formulario.intereses | number}}</dl>
-      <dt>MULTA</dt>
-      <dl>{{formulario.multas | number}}</dl>
-      <dt>TOTAL</dt>
-      <dl>${{formulario.deudaTotal | number}}</dl>
-    </dl>
+<div class="row">
+  <div class="col-xs-12 header-certificado montserrat">
+    <p><strong>{{info.titulo}}</strong></p>
+    <p><strong>ROL/RUT {{rol.comuna}}-{{rol.rol}}-{{rol.subrol}}</strong></p>
   </div>
-  <!--
-  Según comentan ya no se envía
-  <div *ngIf="info.tablaTotales && info.tablaTotales[0] as totalMorosa">
-    <dl>
-      <dt>TOTAL DEUDA</dt>
-      <dl>${{totalMorosa.deudaTotal}}</dl>
-    </dl>
-  </div>-->
-</div>
-<div *ngIf="info.tablaDeudas[1] as deudaNoVencida">
-  <h2>DEUDA NO VENCIDA LIQUIDADA</h2>
-  <h3>CONTRIBUCIONES
-    <small>({{info.formNombre}})</small>
-  </h3>
-  <div *ngFor="let formulario of deudaNoVencida.tablaFormularios">
-    <dl>
-      <dt>FECHA VENCIMIENTO</dt>
-      <dl>{{formulario.fechaVcto}}</dl>
-      <dt>FOLIO</dt>
-      <dl>{{formulario.folio}}</dl>
-      <dt>TOTAL</dt>
-      <dl>{{formulario.deudaTotal | number}}</dl>
-    </dl>
+  <div class="col-xs-12 datos-personales ">
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="montserrat">NOMBRE</p>
+        <p>{{info.nombre}}</p>
+      </div>
+      <div class="col-sm-6">
+        <p class="montserrat">DIRECCIÓN</p>
+        <p>{{info.direccion}}</p>
+      </div>
+      <div class="col-sm-6">
+        <p class="montserrat">COMUNA</p>
+        <p>{{info.comuna}}</p>
+      </div>
+    </div>
   </div>
-  <!--<div *ngIf="info.tablaTotales[1] as totalNoVencida">
-    <dl>
-      <dt>TOTAL DEUDA</dt>
-      <dl>${{totalNoVencida.deudaTotal}}</dl>
-    </dl>
-  </div>-->
+  <div class="col-xs-12">
+    <div class="row" *ngIf="info.tablaDeudas[0] as deudaMorosa">
+      <div class="col-xs-12 header-agrupacion">
+        <p class="montserrat">DEUDA LIQUIDADA MOROSA</p>
+        <p>CONTRIBUCIONES <span> ({{info.formNombre}})</span></p>
+      </div>
+      <div class="datos-agrupacion" *ngFor="let formulario of deudaMorosa.tablaFormularios;  let i = index">
+        <div class="row folio-fecha">
+          <div class="col-xs-7 col-sm-3">
+            <p>FECHA VENCIMIENTO</p>
+          </div>
+          <div class="col-xs-5 col-sm-3 color-danger">
+            <p><strong>{{formulario.fechaVcto}}</strong></p>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <p>FOLIO {{formulario.folio}}</p>
+          </div>
+        </div>
+        <div class="row datos-detalle">
+          <div class="col-xs-12 col-sm-3 deuda-neta">
+            <p>DEUDA NETA<span><span class="hidden-xs">$</span> {{formulario.deudaNeta | number}}</span></p>
+          </div>
+          <div class="col-xs-12 col-sm-3 reajuste">
+            <p>REAJUSTE<span><span class="hidden-xs">$</span>{{formulario.reajustes | number}}</span></p>
+          </div>
+          <div class="col-xs-12 col-sm-3 reajuste">
+            <p>INTERESES<span><span class="hidden-xs">$</span> {{formulario.intereses | number}}</span></p>
+          </div>
+          <div class="col-xs-12 col-sm-3 reajuste">
+            <p>MULTA<span><span class="hidden-xs">$</span>{{formulario.multas | number}}</span></p>
+          </div>
+          <div class="col-xs-12 hidden-xs">
+            <hr class="light-hr">
+          </div>
+          <div class="col-xs-7 col-sm-3">
+            <p><strong>TOTAL</strong></p>
+          </div>
+          <div class="col-xs-5 col-sm-3 text monto-total-detalle">
+            <p><strong>${{formulario.deudaTotal | number}}</strong></p>
+          </div>
+        </div>
+        <hr class="bold-hr" *ngIf="(i + 1) < deudaMorosa.tablaFormularios.length">
+      </div>
+
+      <div class="row" *ngIf="info.tablaTotales[0] as totalMorosa">
+        <div class="col-xs-12">
+          <div class="monto-total-agrupacion">
+            <div class="col-xs-7 col-sm-3 total-texto">
+              <p><strong>TOTAL DEUDA</strong></p>
+            </div>
+            <div class="col-xs-5 col-sm-3 total-valor">
+              <p><strong>$ {{totalMorosa.deudaTotal}}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="row" *ngIf="info.tablaDeudas[1] as deudaNoVencida">
+        <div class="col-xs-12 header-agrupacion">
+          <p class="montserrat">DEUDA NO VENCIDA LIQUIDADA</p>
+          <p>CONTRIBUCIONES <span>({{info.formNombre}})</span></p>
+        </div>
+        <div class="datos-agrupacion" *ngFor="let formulario of deudaNoVencida.tablaFormularios">
+          <div class="row folio-fecha">
+            <div class="col-xs-7 col-sm-3">
+              <p>FECHA VENCIMIENTO</p>
+            </div>
+            <div class="col-xs-5 col-sm-3">
+              <p><strong>{{formulario.fechaVcto}}</strong></p>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <p>FOLIO {{formulario.folio}}</p>
+            </div>
+          </div>
+          <div class="row datos-detalle">
+            <div class="col-xs-7 col-sm-3">
+              <p><strong>TOTAL</strong></p>
+            </div>
+            <div class="col-xs-5 col-sm-3 monto-total-detalle">
+              <p><strong>{{formulario.deudaTotal | number}}</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="datos-agrupacion" *ngIf="info.tablaTotales[1] as totalNoVencida">
+        <div class="row" >
+          <div class="monto-total-agrupacion">
+            <div class="col-xs-7 col-sm-3 total-texto">
+              <p><strong>TOTAL DEUDA</strong></p>
+            </div>
+            <div class="col-xs-5 col-sm-3 total-valor">
+              <p><strong>$ {{totalNoVencida.deudaTotal}}</strong></p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="row informacion-final">
+        <div class="col-xs-12 fecha-emision">
+          <p class="text-center">FECHA DE EMISIÓN: {{info.fechaEmision}}5</p>
+        </div>
+        <div class="col-xs-12 text-center">
+          <p>Para verificar la autenticidad del presente certificado ingrese el código de barra en www.tgr.cl</p>
+        </div>
+        <div class="col-xs-12 text-center codigo-de-barra">
+
+          <ngx-barcode [bc-value]="info.codigoBarras"
+                       [bc-display-value]="true"
+                       bc-format="CODE128"
+                       bc-height="30"
+                       bc-font="Helvetica"
+                       bc-font-size="14px"></ngx-barcode>
+        </div>
+        <div class="col-xs-12 text-center montserrat info-importante">
+          <p>
+            <span class="color-primary"><strong>IMPORTANTE</strong></span><br>
+            <span>DOCUMENTO NO VÁLIDO PARA PAGAR EN INSTITUCIONES RECAUDADORAS</span>
+          </p>
+        </div>
+      </div>
+  </div>
 </div>
-<h5>FECHA DE EMISION: {{info.fechaEmision}}</h5>
-<p>
-  Para verificar la autenticidad del presente certificado ingrese el código de barra en www.tgr.cl
-</p>
-<ngx-barcode [bc-value]="info.codigoBarras"
-             [bc-display-value]="true"
-             bc-format="CODE128"
-             bc-height="30"
-             bc-font="Helvetica"
-             bc-font-size="14px"></ngx-barcode>
-<br>
-<h5>IMPORTANTE</h5>
-<p>DOCUMENTO NO VÁLIDO PARA PAGAR EN INSTITUCIONES RECAUDADORAS</p>
+

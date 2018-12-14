@@ -5,7 +5,7 @@ import {PitUtils} from '../../../../../pit-utils';
 @Component({
   selector: 'app-historial-pago',
   templateUrl: './historial-pago.component.html',
-  styleUrls: ['./historial-pago.component.scss']
+  styleUrls: ['../bootstrap-3-grid.css', './historial-pago.component.scss', '../certificados.scss']
 })
 export class HistorialPagoComponent implements OnInit {
 

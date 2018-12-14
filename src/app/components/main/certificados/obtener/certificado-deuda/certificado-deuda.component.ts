@@ -5,7 +5,7 @@ import {PitUtils} from '../../../../../pit-utils';
 @Component({
   selector: 'app-certificado-deuda',
   templateUrl: './certificado-deuda.component.html',
-  styleUrls: ['./certificado-deuda.component.scss']
+  styleUrls: ['../bootstrap-3-grid.css', './certificado-deuda.component.scss', '../certificados.scss']
 })
 export class CertificadoDeudaComponent implements OnInit {
 

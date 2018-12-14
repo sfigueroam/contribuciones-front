@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-obtener',
   templateUrl: './obtener.component.html',
-  styleUrls: ['./obtener.component.scss']
+  styleUrls: ['./bootstrap-3-grid.css', './certificados.scss', './obtener.component.scss']
 })
 export class ObtenerComponent implements OnInit {
 
@@ -40,15 +40,15 @@ export class ObtenerComponent implements OnInit {
 
     if (this.rolesId == null || this.rolesId.length === 0) {
       // TODO JOSHE HAY QUE DESCOMENTAR ESTO Y BORRAR LAS OTRAS LINEAS DEL IF
-       this.router.navigate(['/main/contribuciones/certificados']);
+       //this.router.navigate(['/main/contribuciones/certificados']);
 
       //Borra todo esto
-      //this.rolesId = [3700074115];
-      //this.rolesId = [3700074115];
-      //this.ano = 2011;
-      //this.ano = 2015;
-      //this.historialPago = true;
-      //this.certificadoDeuda = true;
+      this.rolesId = [3700074115];
+      this.rolesId = [3700074115];
+      this.ano = 2011;
+      this.ano = 2015;
+      this.historialPago = true;
+      this.certificadoDeuda = true;
     }
 
     const promises = [];
