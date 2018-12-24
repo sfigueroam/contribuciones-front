@@ -21,31 +21,37 @@
     </div>
   </mdl-card-title>
   <div [class.hidden]="!expanded">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-      <thead>
-      <tr>
-        <th (click)="selectAllNone()">
-          <mdl-icon>{{selectedIcon}}</mdl-icon>
-        </th>
-        <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
-        <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
-        <th class="tgr-monto">Monto</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
-        <td>
-          <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
-        </td>
-        <td [class.tgr-tr--late]="cuota.isExpired()">
-          <span>{{cuota.numeroCuota}}</span>
-        </td>
-        <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-        <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(selectedIcon === icons.SELECTED ? cuota.liqTotal.saldoTotal :
-          cuota.liqParcial.saldoTotal) | number}}
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div *ngIf="rol.cuotas.length > 0">
+      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+        <tr>
+          <th (click)="selectAllNone()">
+            <mdl-icon>{{selectedIcon}}</mdl-icon>
+          </th>
+          <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
+          <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
+          <th class="tgr-monto">Monto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
+          <td>
+            <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
+          </td>
+          <td [class.tgr-tr--late]="cuota.isExpired()">
+            <span>{{cuota.numeroCuota}}</span>
+          </td>
+          <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(selectedIcon === icons.SELECTED ? cuota.liqTotal.saldoTotal
+            :
+            cuota.liqParcial.saldoTotal) | number}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="rol.cuotas.length == 0">
+      No registras deudas asociadas a este ROL
+    </div>
   </div>
 </mdl-card>
