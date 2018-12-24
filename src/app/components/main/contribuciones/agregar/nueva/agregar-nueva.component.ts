@@ -190,7 +190,7 @@ export class AgregarNuevaComponent implements OnInit {
         estado = true;
         for (const rol of response.roles) {
           if (!prop.existRol(rol.rol)) {
-            prop.addRol(rol);
+            prop.addRol(new Rol(rol));
           }
         }
       }

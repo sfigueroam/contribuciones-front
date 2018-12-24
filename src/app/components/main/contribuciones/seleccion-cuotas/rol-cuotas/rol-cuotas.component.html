@@ -7,7 +7,7 @@
     <div class="bar-text" (click)="toggle()">
       <h6>
         <i class="material-icons">{{icon}}</i>
-        <strong>{{rol.destPropiedad | titlecase}}</strong>
+        <strong>{{rol.destPropiedad | titlecase}} {{rol.sufijoDireccion}}</strong>
       </h6>
       <p class="el-rol">ROL {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId |
         leadingZero:3}}</p>

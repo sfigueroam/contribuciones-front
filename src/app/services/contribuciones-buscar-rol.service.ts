@@ -139,15 +139,17 @@ export class ContribucionesBuscarRolService {
           propiedad.idDireccion = idPropiedad;
           propiedadMap.set(idPropiedad, propiedad);
         }
-        const rol = new Rol();
-        rol.rolComunaSiiCod = dire.idComunaSii;
-        rol.rolId = dire.rol;
-        rol.subrolId = dire.subrol;
-        rol.direccion = dire.direccionOriginal;
-        rol.idComuna = dire.idComuna;
-        rol.comuna = dire.descripcionComuna;
-        rol.destPropiedad = dire.descripcionPropiedad;
-        rol.idDestPropiedad = dire.idDestPropiedad;
+
+        const rol = new Rol({
+          rolComunaSiiCod: dire.idComunaSii,
+          rolId: dire.rol,
+          subrolId: dire.subrol,
+          direccion: dire.direccionOriginal,
+          idComuna: dire.idComuna,
+          comuna: dire.descripcionComuna,
+          destPropiedad: dire.descripcionPropiedad,
+          idDestPropiedad: dire.idDestPropiedad,
+        });
 
         const rolFull = leadingZeroPipe.transform(rol.rolComunaSiiCod, 3) + '' +
           leadingZeroPipe.transform(rol.rolId, 5) + '' +

@@ -36,12 +36,16 @@ export class Rol {
     if (!this.cuotas) {
       this.cuotas = [];
     }
-    //this.calcularSufijoDireccion();
+    this.calcularSufijoDireccion();
   }
 
   private calcularSufijoDireccion() {
-    console.log(this.direccion);
-    console.log(this.direccion.match(/(.)*([0-9])+(.)*/i));
+    if (this.direccion) {
+      const regexp = this.direccion.match(/\D*[0-9]+(.*)/i);
+      this.sufijoDireccion = regexp.length > 1 ? regexp[1].trim() : '';
+    } else {
+      console.log(this);
+    }
   }
 
   complete() {
