@@ -43,22 +43,22 @@ export const environment = {
       method: 'POST'
     },
     obtenerBienRaizAsociado: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/asociado/obtener',
       method: 'GET'
     },
     obtenerBienRaizNoAsociado: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/noasociado/obtener',
       method: 'GET'
     },
     asociarBienRaiz: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/bienraiz/asociar',
       method: 'POST'
     },
     desasociarBienRaiz: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/bienraiz/desasociar',
       method: 'POST'
     },
