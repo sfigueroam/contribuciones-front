@@ -29,11 +29,19 @@ export class Rol {
   condonacion: number;
   total: number;
 
+  sufijoDireccion: string;
+
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
     if (!this.cuotas) {
       this.cuotas = [];
     }
+    //this.calcularSufijoDireccion();
+  }
+
+  private calcularSufijoDireccion() {
+    console.log(this.direccion);
+    console.log(this.direccion.match(/(.)*([0-9])+(.)*/i));
   }
 
   complete() {

@@ -1,5 +1,8 @@
 @import "~@angular-mdl/core/scss/color-definitions";
 
+$button-primary-color: #448aff;
+$spinner-single-color: $button-primary-color;
+
 $color-warning-text : #F4B4B7;
 $color-warning-text-hover : #F4B4B7;
 $color-warning-background : #F9D2D4;
@@ -43,7 +46,6 @@ $primary-color: #283593;
 $color-primary : #283593;
 $color-primary-dark : #001064;
 $color-primary-contrast : #dd0117;
-$button-primary-color : #448aff;
 
 
 //Variables de color
