@@ -309,6 +309,9 @@ html, body, h1, h2, h3, h4, h5 {
   line-height: 36px;
   vertical-align: middle;
 }
+.tgr-switch-active:focus:not(:active) {
+  background: $color-filter;
+}
 
 .tgr-card__body {
   padding: 16px;
