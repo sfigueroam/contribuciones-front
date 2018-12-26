@@ -442,19 +442,7 @@ html, body, h1, h2, h3, h4, h5 {
   }
 }
 
-.mdl-navigation__link.mdl-button.mdl-button--icon{
-  @media (min-width: 481px) and (max-width: 839px) {
-    height: 40%;
-  }
 
-  @media (min-width: 840px) and (max-width: 1279px) {
-    height: 50%;
-  }
-
-  @media (min-width: 1280px) {
-    height: 75%;
-  }
-}
 
 .mdl-dialog__actions {
   button:hover {
@@ -639,7 +627,7 @@ html, body, h1, h2, h3, h4, h5 {
 .tgr-loading figcaption {
   color: $button-primary-color;
   margin-top: 32px;
-  text-align: center;
+  text-align: right;
   line-height: 1.2;
 }
 
@@ -651,7 +639,7 @@ html, body, h1, h2, h3, h4, h5 {
 .tgr-loading  .mdl-spinner {
   position:  absolute;
   bottom: -4px;
-  left: 7px;
+  left: 4px;
 }
 
 
