@@ -1,23 +1,21 @@
 @import '../../../../../styles/colors';
 
-.active-menu{
-  background: mediumpurple;
-}
 .mdl-tabs__tab-bar {
 	background: $gray-header;
 	display: block;
 	padding-top: 10px;
 }
-.mdl-tabs__tab {
-	font-weight: 400;
+.tgr-tabs .mdl-tabs__tab {
+	font-weight: 500;
 	text-transform: none;
+	font-size: 1rem;
 }
 .mdl-tabs__panel {
 	padding: 16px 0;
 }
-.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+.tgr-tabs .is-active {
 	color: $color-primary;
-	font-weight: 500;
+	font-weight: 600;
 }
 
 .mdl-button:hover{
