@@ -312,6 +312,12 @@ html, body, h1, h2, h3, h4, h5 {
 .tgr-switch-active:focus:not(:active) {
   background: $color-filter;
 }
+.mdl-button:hover{
+  color: #fff;
+  .material-icons{
+    color: #fff;
+  }
+}
 
 .tgr-card__body {
   padding: 16px;
@@ -878,4 +884,12 @@ button.button-question {
 }
 .mdl-dialog__actions button:focus:not(:active):hover{
   color: inherit;
+}
+.mdl-navigation__link.mdl-button.mdl-button--icon:hover{
+  background: $primary-color;
+}
+
+.mdl-layout__header-row .mdl-navigation:last-child .mdl-navigation__link{
+padding: 0;
+margin: 0 24px;
 }
