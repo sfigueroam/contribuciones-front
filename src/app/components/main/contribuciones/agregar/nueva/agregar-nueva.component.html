@@ -75,7 +75,7 @@
           <mdl-option *ngFor="let local of localidad| matchSorter:'comuna,idSii':autocompleteSelect.searchQuery"
                       [value]="local.idSii">{{local.comuna | titlecase}} ({{local.idSii}})
           </mdl-option>
-        </mdl-select>        
+        </mdl-select>
         <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
                        type="number"
                        id="rol"
@@ -106,7 +106,8 @@
 </div>
 
 <div class="tgr-results">
-  <h3 [class.hidden]="!sinResultado">Sin resultados en la busqueda</h3>
+  <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
+    nuevamente</h3>
   <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
                  (change)="updateSeleccionadaTotal()">
   </app-propiedad>
