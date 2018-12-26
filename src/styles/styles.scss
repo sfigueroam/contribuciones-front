@@ -631,7 +631,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .tgr-loading figcaption {
-  color: $primary-color;
+  color: $button-primary-color;
   margin-top: 32px;
   text-align: center;
   line-height: 1.2;
@@ -641,6 +641,11 @@ html, body, h1, h2, h3, h4, h5 {
   position: absolute;
   top: 15px;
   left: 32px;
+}
+.tgr-loading  .mdl-spinner {
+  position:  absolute;
+  bottom: -4px;
+  left: 7px;
 }
 
 
