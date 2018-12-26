@@ -309,6 +309,15 @@ html, body, h1, h2, h3, h4, h5 {
   line-height: 36px;
   vertical-align: middle;
 }
+.tgr-switch-active:focus:not(:active) {
+  background: $color-filter;
+}
+.mdl-button:hover{
+  color: #fff;
+  .material-icons{
+    color: #fff;
+  }
+}
 
 .tgr-card__body {
   padding: 16px;
@@ -433,19 +442,7 @@ html, body, h1, h2, h3, h4, h5 {
   }
 }
 
-.mdl-navigation__link.mdl-button.mdl-button--icon{
-  @media (min-width: 481px) and (max-width: 839px) {
-    height: 40%;
-  }
 
-  @media (min-width: 840px) and (max-width: 1279px) {
-    height: 50%;
-  }
-
-  @media (min-width: 1280px) {
-    height: 75%;
-  }
-}
 
 .mdl-dialog__actions {
   button:hover {
@@ -628,9 +625,9 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .tgr-loading figcaption {
-  color: $primary-color;
+  color: $button-primary-color;
   margin-top: 32px;
-  text-align: center;
+  text-align: right;
   line-height: 1.2;
 }
 
@@ -639,10 +636,12 @@ html, body, h1, h2, h3, h4, h5 {
   top: 15px;
   left: 32px;
 }
-
-.tgr-star {
-  -webkit-animation: rotation 2s infinite linear;
+.tgr-loading  .mdl-spinner {
+  position:  absolute;
+  bottom: -4px;
+  left: 4px;
 }
+
 
 .mdl-data-table td, .mdl-data-table th {
   @media (max-width: 360px) {
@@ -809,18 +808,24 @@ button.close-new-rol,
 button.button-question {
   position: absolute;
   bottom: 80px;
-  right: 5px;
+  right: 0;
   height: 35px;
   width: 35px;
   min-width: 35px;
   z-index: 4;
   color: $color-white;
+  @media (min-width: 350px) {    
+    right: 20px;
+  }
   @media (min-width: 481px) {
     height: 42px;
     width: 42px;
     min-width: 42px;
     bottom: 86px;
-    right: 26px;
+    right: 15px;
+  }
+  @media (min-width: 1260px) {    
+    right: 0;
   }
 }
 
@@ -857,4 +862,22 @@ button.button-question {
 
 .mdl-textfield__label {
   color: $gray-65;
+}
+//alienacion titulo con checkbox a la izquierda
+.tgr-th-icon ~ .tgr-card__title--text {
+  margin-left: 28px;
+}
+.mdl-dialog__actions .mdl-button:focus:not(:active){
+  background: transparent;
+}
+.mdl-dialog__actions button:focus:not(:active):hover{
+  color: inherit;
+}
+.mdl-navigation__link.mdl-button.mdl-button--icon:hover{
+  background: $primary-color;
+}
+
+.mdl-layout__header-row .mdl-navigation:last-child .mdl-navigation__link{
+padding: 0;
+margin: 0 24px;
 }
