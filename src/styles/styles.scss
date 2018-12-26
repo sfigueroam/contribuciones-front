@@ -873,3 +873,9 @@ button.button-question {
 .tgr-th-icon ~ .tgr-card__title--text {
   margin-left: 28px;
 }
+.mdl-dialog__actions .mdl-button:focus:not(:active){
+  background: transparent;
+}
+.mdl-dialog__actions button:focus:not(:active):hover{
+  color: inherit;
+}
