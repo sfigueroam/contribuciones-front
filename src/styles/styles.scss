@@ -869,3 +869,7 @@ button.button-question {
 .mdl-textfield__label {
   color: $gray-65;
 }
+//alienacion titulo con checkbox a la izquierda
+.tgr-th-icon ~ .tgr-card__title--text {
+  margin-left: 28px;
+}
