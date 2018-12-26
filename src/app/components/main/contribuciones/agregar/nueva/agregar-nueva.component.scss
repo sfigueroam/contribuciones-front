@@ -72,7 +72,10 @@
   box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
 }
 .tgr-suggestion{
-	padding: 0 8px;
+  padding: 4px 8px;
+}
+.tgr-suggestion small {
+  display: block;
 }
 .tgr-suggestion:hover{
 	background: $gray-light;
