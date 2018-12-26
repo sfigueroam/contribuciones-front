@@ -640,9 +640,6 @@ html, body, h1, h2, h3, h4, h5 {
   left: 32px;
 }
 
-.tgr-star {
-  -webkit-animation: rotation 2s infinite linear;
-}
 
 .mdl-data-table td, .mdl-data-table th {
   @media (max-width: 360px) {
@@ -809,18 +806,24 @@ button.close-new-rol,
 button.button-question {
   position: absolute;
   bottom: 80px;
-  right: 5px;
+  right: 0;
   height: 35px;
   width: 35px;
   min-width: 35px;
   z-index: 4;
   color: $color-white;
+  @media (min-width: 350px) {    
+    right: 20px;
+  }
   @media (min-width: 481px) {
     height: 42px;
     width: 42px;
     min-width: 42px;
     bottom: 86px;
-    right: 26px;
+    right: 15px;
+  }
+  @media (min-width: 1260px) {    
+    right: 0;
   }
 }
 
