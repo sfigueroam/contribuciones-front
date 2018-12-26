@@ -4,6 +4,7 @@ import {HistorialPago} from '../../../../domain/HistorialPago';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {CertificadoDeuda} from '../../../../domain/CertificadoDeuda';
 import {Router} from '@angular/router';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-obtener',
@@ -39,16 +40,7 @@ export class ObtenerComponent implements OnInit {
     this.historialPago = this.service.historialPago;
 
     if (this.rolesId == null || this.rolesId.length === 0) {
-      // TODO JOSHE HAY QUE DESCOMENTAR ESTO Y BORRAR LAS OTRAS LINEAS DEL IF
        this.router.navigate(['/main/contribuciones/certificados']);
-
-      //Borra todo esto
-      //this.rolesId = [3700074115];
-      //this.rolesId = [3700074115];
-      //this.ano = 2011;
-      //this.ano = 2015;
-      //this.historialPago = true;
-      //this.certificadoDeuda = true;
     }
 
     const promises = [];
@@ -62,7 +54,7 @@ export class ObtenerComponent implements OnInit {
             certificadoDeuda => certificado.deuda = certificadoDeuda,
             err => {
               console.error(err);
-              this.mdlSnackbarService.showToast('Ocurrió un error al obtener el certificado de deuda');
+              this.mdlSnackbarService.showToast('Ocurrió un error al obtener el certificado de deuda', environment.snackbarTime);
             }
           )
         );
@@ -73,7 +65,7 @@ export class ObtenerComponent implements OnInit {
             historialPago => certificado.pago = historialPago,
             err => {
               console.error(err);
-              this.mdlSnackbarService.showToast('Ocurrió un error al obtener el historial de pago');
+              this.mdlSnackbarService.showToast('Ocurrió un error al obtener el historial de pago', environment.snackbarTime);
             }
           )
         );

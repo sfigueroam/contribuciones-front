@@ -5,6 +5,7 @@ import {TipoCuota} from '../../../../../domain/TipoCuota';
 import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
+import {environment} from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-rol-cuotas',
@@ -50,7 +51,7 @@ export class RolCuotasComponent implements OnInit {
     if (this.rol.isComplete) {
       this.expanded = !this.expanded;
     } else {
-      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', 1400);
+      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
     }
   }
 
@@ -85,16 +86,16 @@ export class RolCuotasComponent implements OnInit {
         'ELIMINAR').subscribe(
         () => {
           this.user.eliminarRol(this.rol.rolComunaSiiCod, this.rol.rolId, this.rol.subrolId).then(
-            () => this.mdlSnackbarService.showToast('Rol eliminado', 1400),
+            () => this.mdlSnackbarService.showToast('Rol eliminado', environment.snackbarTime),
             err => {
               console.log(err);
-              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección', 1400);
+              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección', environment.snackbarTime);
             }
           );
         }
       );
     } else {
-      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', 1400);
+      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
     }
   }
 }

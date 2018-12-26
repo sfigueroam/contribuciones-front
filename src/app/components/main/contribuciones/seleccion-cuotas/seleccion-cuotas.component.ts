@@ -54,7 +54,7 @@ export class SeleccionCuotasComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-        this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles sugeridos');
+        this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles sugeridos', environment.snackbarTime);
       }
     );
 
@@ -75,13 +75,13 @@ export class SeleccionCuotasComponent implements OnInit {
           },
           err => {
             console.log(err);
-            this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles');
+            this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles', environment.snackbarTime);
           }
         );
       },
       err => {
         console.log(err);
-        this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades');
+        this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades', environment.snackbarTime);
       }
     );
   }

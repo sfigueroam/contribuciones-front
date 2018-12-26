@@ -3,6 +3,7 @@ import {ContribucionesSugeridasService} from '../../../../services/contribucione
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {Router} from '@angular/router';
 import {UserService} from '../../../../services/user.service';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-agregar',
@@ -31,7 +32,7 @@ export class AgregarComponent implements OnInit {
     }, () => {
       this.mdlSnackbarService.showSnackbar({
         message: 'Ocurrió un error buscar los roles asociados',
-        timeout: 1500,
+        timeout: environment.snackbarTime,
         action: {
           handler: () => {
           },

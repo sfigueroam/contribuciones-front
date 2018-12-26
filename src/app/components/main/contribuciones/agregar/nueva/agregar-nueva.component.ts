@@ -204,7 +204,7 @@ export class AgregarNuevaComponent implements OnInit {
   private error(msg: string) {
     this.mdlSnackbarService.showSnackbar({
       message: msg,
-      timeout: 1500,
+      timeout: environment.snackbarTime,
       action: {
         handler: () => {
         },

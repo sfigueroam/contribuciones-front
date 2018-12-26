@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
+import {environment} from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-direccion-cuotas',
@@ -46,16 +47,16 @@ export class DireccionCuotasComponent implements OnInit {
         'ELIMINAR').subscribe(
         () => {
           this.user.eliminarPropiedad(this.propiedad.idDireccion).then(
-            () => this.mdlSnackbarService.showToast('Dirección eliminada', 4000),
+            () => this.mdlSnackbarService.showToast('Dirección eliminada', environment.snackbarTime),
             err => {
               console.log(err);
-              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección', 4000);
+              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección', environment.snackbarTime);
             }
           );
         }
       );
     } else {
-      this.mdlSnackbarService.showToast('Aún no se carga la información de los roles, espere un momento', 1400);
+      this.mdlSnackbarService.showToast('Aún no se carga la información de los roles, espere un momento', environment.snackbarTime);
     }
   }
 }

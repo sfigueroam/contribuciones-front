@@ -6,6 +6,7 @@ import {ContribucionesService} from '../../../../../services/contribuciones.serv
 import {Router} from '@angular/router';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
+import {environment} from '../../../../../../environments/environment';
 
 
 @Component({
@@ -78,7 +79,7 @@ export class SugeridasComponent implements OnInit {
       () => {
         this.mdlSnackbarService.showSnackbar({
           message: 'Ocurrió un error al asociar',
-          timeout: 1500,
+          timeout: environment.snackbarTime,
           action: {
             handler: () => {
             },

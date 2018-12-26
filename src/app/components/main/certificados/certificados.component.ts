@@ -52,7 +52,7 @@ export class CertificadosComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-        this.mdlSnackbarService.showToast('Ocurrió un error al obtener el listado de propiedades');
+        this.mdlSnackbarService.showToast('Ocurrió un error al obtener el listado de propiedades', environment.snackbarTime);
       }
     );
   }
