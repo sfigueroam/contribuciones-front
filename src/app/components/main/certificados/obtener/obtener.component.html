@@ -1,4 +1,4 @@
-<div *ngIf="!cargaFinalizada" class="tgr-loading">
+<div *ngIf="!cargaFinalizada" class="tgr-loading" xmlns="http://www.w3.org/1999/html">
   <figure>
     <img class="tgr-star" src="../../../../../assets/estrella.png" alt="">
     <img class="tgr-tgr" src="../../../../../assets/tgr.png" alt="">
@@ -6,9 +6,20 @@
     <figcaption>Cargando información de certificados...</figcaption>
   </figure>
 </div>
-<div *ngIf="cargaFinalizada">
-  <button (click)="print()">Imprimir</button>
-  <button (click)="volver()">Volver</button>
+<div class="container" *ngIf="cargaFinalizada">
+  <div class="row header-pag">
+    <div class="col-xs-8 col-sm-4">
+      <mdl-icon (click)="volver()" style="cursor: pointer">
+        <img src="../../../../../assets/TGR_logo_nuevo_h.svg" alt="Volver a la página de inicio TGR"
+             class="header-logo">
+      </mdl-icon>
+    </div>
+    <div class="col-xs-4 menu-icon">
+      <mdl-icon (click)="print()" style="cursor: pointer" >
+        <i class="material-icons">print</i>
+      </mdl-icon>
+    </div>
+  </div>
 
   <div *ngFor="let c of certificados">
     <app-certificado-deuda *ngIf="c.deuda" [info]="c.deuda"></app-certificado-deuda>

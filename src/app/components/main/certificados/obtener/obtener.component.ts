@@ -9,7 +9,7 @@ import {environment} from '../../../../../environments/environment';
 @Component({
   selector: 'app-obtener',
   templateUrl: './obtener.component.html',
-  styleUrls: ['./obtener.component.scss']
+  styleUrls: ['./bootstrap-3-grid.css', './certificados.scss', './obtener.component.scss']
 })
 export class ObtenerComponent implements OnInit {
 
