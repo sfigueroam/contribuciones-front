@@ -4,6 +4,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {CookieService} from 'ngx-cookie-service';
 import {UserService} from './user.service';
 import {delay} from 'q';
+import {JwtCognitoService} from './jwt-cognito.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CognitoService {
   jwt: string;
   exp: Date;
 
-  constructor(private cookie: CookieService, private user: UserService) {
+  constructor(private cookie: CookieService, private user: UserService, private jwtCognito: JwtCognitoService) {
     this.helper = new JwtHelperService();
     if (this.cookie.check(environment.cognito.jwtCookieName)) {
       this.init(this.cookie.get(environment.cognito.jwtCookieName));
@@ -77,6 +78,7 @@ export class CognitoService {
   private init(jwt: string) {
     this.jwt = jwt;
     this.identity = this.helper.decodeToken(this.jwt);
+    this.jwtCognito.jwt = this.jwt;
   }
 
   login(fragment: string): Promise<any> {

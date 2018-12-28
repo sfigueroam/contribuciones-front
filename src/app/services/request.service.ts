@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {JwtCognitoService} from './jwt-cognito.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwtCognito: JwtCognitoService) { }
 
   public request(servicio: { url: string, path: string, method: string }, body?): Promise<{}> {
+    console.log(this.jwtCognito.jwt);
     const params = {
       'path': servicio.path
     };
@@ -18,7 +20,10 @@ export class RequestService {
         {
           body: body,
           params: params,
-          responseType: 'json'
+          responseType: 'json',
+          headers: {
+            'Authorization': this.jwtCognito.jwt
+          },
         }
       ).subscribe(
         data => {
