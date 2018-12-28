@@ -10,7 +10,7 @@ const cabecera = {
 const urlsBase = {
   publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
   privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
-  elastic: 'https://search-dev-contribuciones-qj3q3jeqbkw5ix5ybdrdlpfqq4.us-east-1.es.amazonaws.com'
+  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const pathBase = {
@@ -53,22 +53,22 @@ export const environment = {
       method: 'POST'
     },
     obtenerBienRaizAsociado: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/asociado/obtener',
       method: 'GET'
     },
     obtenerBienRaizNoAsociado: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/noasociado/obtener',
       method: 'GET'
     },
     asociarBienRaiz: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/bienraiz/asociar',
       method: 'POST'
     },
     desasociarBienRaiz: {
-      url: urlsBase.publica,
+      url: urlsBase.privada,
       path: pathBase.clienteBienRaiz + '/bienraiz/desasociar',
       method: 'POST'
     },
@@ -85,7 +85,7 @@ export const environment = {
   },
   elastic: {
     localidad: {
-      url: urlsBase.elastic + '/localidad/_search',
+      url: urlsBase.elastic + '/search/localidad',
       method: 'POST',
       body: {
         size: 400,
@@ -93,7 +93,7 @@ export const environment = {
       }
     },
     tiposPropiedades: {
-      url: urlsBase.elastic + '/tipo_propiedades/_search',
+      url: urlsBase.elastic + '/search/tipo_propiedad',
       method: 'POST',
       body: {
         size: 400,
@@ -101,7 +101,7 @@ export const environment = {
       }
     },
     propiedades: {
-      url: urlsBase.elastic + '/propiedades/_search',
+      url: urlsBase.elastic + '/search/propiedad',
       method: 'POST'
     },
   }
