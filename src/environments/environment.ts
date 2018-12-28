@@ -1,7 +1,7 @@
 const urlsBase = {
   publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
   privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
-  elastic: 'https://0ymrjs1yc6.execute-api.us-east-1.amazonaws.com/dev'
+  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const pathBase = {
