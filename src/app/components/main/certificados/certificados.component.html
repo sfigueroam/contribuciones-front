@@ -33,6 +33,7 @@
       </div>
       <div class="tgr-pay tgr-pay-down">
         <button type="submit"
+                id="obtener_certificado"
                 (click)="solicitarCertificado()"
                 [disabled]="(!certificadoDeudas && (!historialPagos || !ano)) || seleccionados < 1"
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
