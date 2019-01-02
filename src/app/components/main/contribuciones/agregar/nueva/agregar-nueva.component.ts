@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
 import {MdlSnackbarService} from '@angular-mdl/core';
@@ -12,6 +12,7 @@ import {Rol} from '../../../../../domain/Rol';
 import {UserService} from '../../../../../services/user.service';
 import {Router} from '@angular/router';
 import {ContribucionesService} from '../../../../../services/contribuciones.service';
+import {AsociarCorreoComponent} from '../../../../dialogs/asociar-correo/asociar-correo.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -20,9 +21,11 @@ import {ContribucionesService} from '../../../../../services/contribuciones.serv
 })
 export class AgregarNuevaComponent implements OnInit {
 
-
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
+
+  @ViewChild('asociarCorreo')
+  asociarCorreo: AsociarCorreoComponent;
 
   wait = false;
   sinResultado = false;
@@ -32,7 +35,6 @@ export class AgregarNuevaComponent implements OnInit {
   tipoPropiedades: TipoPropiedad[];
   direcciones: Direccion[];
   direccionModel: string;
-
 
   formRol: FormGroup;
   formDireccion: FormGroup;
@@ -83,7 +85,6 @@ export class AgregarNuevaComponent implements OnInit {
       direccion: this.direccion
     });
 
-
     this.hidden = true;
   }
 
@@ -111,6 +112,8 @@ export class AgregarNuevaComponent implements OnInit {
     }, () => {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
+
+    this.asociarCorreo.show();
   }
 
   buscarRol(): void {

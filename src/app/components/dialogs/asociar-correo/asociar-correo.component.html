@@ -1,0 +1,50 @@
+<dialog #dialog class="mdl-dialog">
+  <form [formGroup]="formEmail" *ngIf="estado === estados.init">
+    <h3 class="mdl-dialog__title">Bienvenido/a al Pago de Contribuciones</h3>
+    <div class="mdl-dialog__content">
+      <p>Para facilitar tu proceso puedes guardar las propiedades que agregues o recuperar un pago anterior ingresando
+        tu correo electrónico.</p>
+      <mdl-textfield type="text" [formControl]="email" label="Ingresa el Correo Electrónico" floating-label
+                     autofocus></mdl-textfield>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button mdl-button (click)="asociarCorreo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+              [disabled]="!formEmail.valid">Continuar
+      </button>
+      <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
+    </div>
+  </form>
+  <div *ngIf="estado === estados.unregistered">
+    <h3 class="mdl-dialog__title">
+      <mdl-icon>check_circle</mdl-icon>
+    </h3>
+    <div class="mdl-dialog__content">
+      <p>
+        Ya estás asociando tus propiedades a la dirección:<br>
+        <span>{{correo}}</span><br>
+        Recuerda ingresar este correo para la próxima vez que pagues tus contribuciones.
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button mdl-button (click)="close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Continuar</button>
+    </div>
+  </div>
+  <form [formGroup]="formCode" *ngIf="estado === estados.registered">
+    <div class="mdl-dialog__content">
+      <p>
+        Encontramos un pago anterior asociado a la siguiente dirección:<br>
+        <span>{{correo}}</span><br>
+        Te hemos enviado un correo electrónico con un código de 6 dígitos, el que debes ingresar para recuperar tu pago.
+      </p>
+      <mdl-textfield type="text" [formControl]="code" label="Ingresa el Código de Verificación" floating-label
+                     autofocus></mdl-textfield>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button mdl-button (click)="ingresarCodigo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+              [disabled]="!formCode.valid">Continuar
+      </button>
+      <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
+      <button mdl-button (click)="close()" mdl-ripple>Ingresar otro correo</button>
+    </div>
+  </form>
+</dialog>

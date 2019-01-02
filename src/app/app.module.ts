@@ -27,6 +27,7 @@ import {ObtenerComponent} from './components/main/certificados/obtener/obtener.c
 import {CertificadoDeudaComponent} from './components/main/certificados/obtener/certificado-deuda/certificado-deuda.component';
 import {HistorialPagoComponent} from './components/main/certificados/obtener/historial-pago/historial-pago.component';
 import {NgxBarcodeModule} from 'ngx-barcode';
+import {AsociarCorreoComponent} from './components/dialogs/asociar-correo/asociar-correo.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -49,6 +50,7 @@ registerLocaleData(localeEs, 'es');
     ObtenerComponent,
     CertificadoDeudaComponent,
     HistorialPagoComponent,
+    AsociarCorreoComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +73,7 @@ registerLocaleData(localeEs, 'es');
     },
     CookieService
   ],
+  entryComponents: [AsociarCorreoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

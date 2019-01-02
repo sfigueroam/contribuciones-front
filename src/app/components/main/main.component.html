@@ -4,12 +4,9 @@
       <mdl-layout-header-row>
         <mdl-layout-spacer></mdl-layout-spacer>
         <a href="/">
-          <img src="../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">  
+          <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
         </a>
         <mdl-layout-spacer></mdl-layout-spacer>
-        
-        
-        
         <nav class="mdl-navigation">
           <button class="mdl-navigation__link"
                   #btnMenu="mdlButton"
@@ -39,12 +36,6 @@
       </mdl-layout-header-row>
     </mdl-layout-header>
 
-
-
-
-
-
-
     <mdl-layout-content>
       <mdl-tabs mdl-ripple [mdl-tab-active-index]="index" (mdl-tab-active-changed)="tabChanged($event)">
         <mdl-tab-panel mdl-tab-panel-title="Contribuciones">
@@ -56,3 +47,4 @@
     </mdl-layout-content>
   </mdl-layout>
 </div>
+<dialog-outlet></dialog-outlet>
