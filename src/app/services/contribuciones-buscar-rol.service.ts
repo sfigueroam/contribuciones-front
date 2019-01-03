@@ -7,6 +7,7 @@ import {Rol} from '../domain/Rol';
 import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
 import {TipoPropiedad} from '../domain/TipoPropiedad';
 import {Direccion} from '../domain/Direccion';
+import {ResponseResultado} from './contribuciones.service';
 
 @Injectable({
   providedIn: 'root'
@@ -164,36 +165,6 @@ export class ContribucionesBuscarRolService {
   }
 
   searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
-
-    /*search = search.replace(',', ' ');
-    const body = {size, query: {bool: {must: []}}};
-
-    body.size = size;
-    body.query.bool.must = [];
-
-    const direccion = {
-      'match': {
-        'direccion': {
-          'query': search,
-          'operator': 'and'
-        }
-      }
-    };
-
-    body.query.bool.must.push(direccion);
-
-    if (tipoPropiedad) {
-      const searchPropiedad = {
-        'match': {
-          'id_dest_propiedad': {
-            'query': tipoPropiedad
-          }
-        }
-      };
-      body.query.bool.must.push(searchPropiedad);
-    }
-*/
-
     const body = {
       size: size,
       search: search,
@@ -223,15 +194,34 @@ export class ContribucionesBuscarRolService {
     });
   }
 
-  asociarRoles(rut: number, roles: number[]): Promise<any> {
+  asociarRoles(rut: number, correo: string, roles: number[]): Promise<any> {
     const promesas = [];
     for (const rol of roles) {
-      const body = {
-        'rutin': String(rut),
-        'rolin': String(rol)
-      };
-      promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
+      if (rut) {
+        const body = {
+          'rutin': String(rut),
+          'rolin': String(rol)
+        };
+        promesas.push(this.requestService.request(environment.servicios.asociarBienRaiz, body));
+      } else if (correo) {
+        promesas.push(this.asociar(correo, rol.toString()));
+      }
     }
     return Promise.all(promesas);
+  }
+
+  asociar(correo: string, rol: string): Promise<ResponseResultado> {
+    return new Promise<ResponseResultado>(
+      (resolve, reject) => {
+        const body = {
+          correo: correo,
+          rol: rol
+        };
+        this.requestService.lambda(environment.lambda.asociar, body).then(
+          response => resolve(new ResponseResultado(response)),
+          err => reject(err)
+        );
+      }
+    );
   }
 }

@@ -1,10 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {RecuperarRolesCorreoService, ResponseResultado} from '../../../services/recuperar-roles-correo.service';
 import {MdlSnackbarService} from '@angular-mdl/core';
+import {ContribucionesService, ResponseResultado} from '../../../services/contribuciones.service';
+import {UserService} from '../../../services/user.service';
 
 export enum State {
-  init, registered, unregistered
+  init, verification
 }
 
 @Component({
@@ -27,8 +28,9 @@ export class AsociarCorreoComponent implements OnInit {
   code: FormControl;
 
   correo: string;
+  codigo: string;
 
-  constructor(private service: RecuperarRolesCorreoService, private mdlSnackbarService: MdlSnackbarService) {
+  constructor(private service: ContribucionesService, private mdlSnackbarService: MdlSnackbarService, private user: UserService) {
     this.email = new FormControl('', [
       Validators.required,
       Validators.email
@@ -54,7 +56,7 @@ export class AsociarCorreoComponent implements OnInit {
     this.service.enviarMailCodigoVerificacion(this.correo).then(
       (resultado: ResponseResultado) => {
         if (resultado.ok()) {
-          this.estado = State.registered;
+          this.estado = State.verification;
         } else {
           this.mdlSnackbarService.showToast(resultado.descripcion);
         }
@@ -68,7 +70,25 @@ export class AsociarCorreoComponent implements OnInit {
   }
 
   ingresarCodigo(): void {
-    this.estado = State.unregistered;
+    this.codigo = this.code.value;
+    this.service.validarCodigo(this.correo, this.codigo).then(
+      (resultado: ResponseResultado) => {
+        if (resultado.ok()) {
+          this.user.email = this.correo;
+          this.close();
+        } else {
+          this.mdlSnackbarService.showToast(resultado.descripcion);
+        }
+      },
+      (err) => {
+        console.log(err);
+        this.mdlSnackbarService.showToast('Ocurrió un error al validar el código');
+      }
+    );
+  }
+
+  otroCorreo(): void {
+    this.estado = State.init;
   }
 
   show(): void {
@@ -76,6 +96,7 @@ export class AsociarCorreoComponent implements OnInit {
   }
 
   close(): void {
+    this.user.solicitarEmail = false;
     this.dialog.nativeElement.close();
   }
 }

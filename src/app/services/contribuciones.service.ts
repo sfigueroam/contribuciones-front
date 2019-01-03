@@ -5,6 +5,8 @@ import {Propiedad} from '../domain/Propiedad';
 import {environment} from '../../environments/environment';
 import {RequestService} from './request.service';
 import {CuotaDetalle} from '../domain/CuotaDetalle';
+import {UtilService} from './util.service';
+import {Direccion} from '../domain/Direccion';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class ContribucionesService {
 
   propiedades: Propiedad[];
 
-  constructor(private requestService: RequestService) {
+  constructor(private requestService: RequestService, private util: UtilService) {
 
   }
 
@@ -45,25 +47,9 @@ export class ContribucionesService {
   updateBienesRaices(rut: number) {
     return new Promise<Propiedad[]>(
       (resolve, reject) => {
-        const roles = [];
         this.getBienRaiz(rut).then(
           (data: { curout: any }) => {
-            // Se construye un mapa para poder asociar los roles por dirección
-            const propiedadMap = new Map<string, Propiedad>();
-            for (const bienRaiz of data.curout) {
-              const idPropiedad = this.getBienRaizId(bienRaiz);
-              let propiedad = propiedadMap.get(idPropiedad);
-              if (!propiedad) {
-                propiedad = new Propiedad();
-                propiedad.direccion = bienRaiz.direccion;
-                propiedad.idDireccion = idPropiedad;
-                propiedadMap.set(idPropiedad, propiedad);
-              }
-              const rol = new Rol(bienRaiz);
-              propiedad.addRol(rol);
-              roles.push(rol);
-            }
-            this.propiedades = Array.from(propiedadMap.values());
+            this.propiedades = this.util.procesarPropiedades(data.curout);
             resolve(this.propiedades);
           }
         ).catch((err) => {
@@ -83,6 +69,21 @@ export class ContribucionesService {
     } else {
       return this.updateBienesRaices(rut);
     }
+  }
+
+  getBienesRaicesByEmail(email: string): Promise<Propiedad[]> {
+    return new Promise((resolve) => {
+      if (this.propiedades) {
+        resolve(this.propiedades);
+      } else {
+        this.rolesRecuperar(email).then(
+          propiedades => {
+            this.propiedades = propiedades;
+            resolve(this.propiedades);
+          }
+        );
+      }
+    });
   }
 
   getBienesRaicesSinlogin(): Promise<Propiedad[]> {
@@ -162,7 +163,7 @@ export class ContribucionesService {
     return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
   }
 
-  eliminarPropiedad(rut: number, idDireccion: string): Promise<any> {
+  eliminarPropiedad(rut: number, correo: string, idDireccion: string): Promise<any> {
     return new Promise<any>(
       (resolve, reject) => {
         const index = this.propiedades.findIndex(p => p.idDireccion === idDireccion);
@@ -170,7 +171,7 @@ export class ContribucionesService {
         this.propiedades.splice(index, 1);
         const promises = [];
         for (const rol of propiedad.roles) {
-          promises.push(this.desasociarRol(rut, rol));
+          promises.push(this.desasociarRol(rut, correo, rol));
         }
         Promise.all(promises).then(
           value => {
@@ -197,7 +198,7 @@ export class ContribucionesService {
     );
   }
 
-  eliminarRol(rut: number, rolComunaSiiCod: number, rolId: number, subrolId: number): Promise<any> | undefined {
+  eliminarRol(rut: number, email: string, rolComunaSiiCod: number, rolId: number, subrolId: number): Promise<any> | undefined {
     return new Promise<any>(
       (resolve, reject) => {
         let rol;
@@ -209,7 +210,7 @@ export class ContribucionesService {
             propiedad.roles.splice(index, 1);
             rol.changeSubject.next();
             rol.changeSubject.complete();
-            this.desasociarRol(rut, rol).then(
+            this.desasociarRol(rut, email, rol).then(
               value => resolve(value),
               err => reject(err)
             );
@@ -246,11 +247,88 @@ export class ContribucionesService {
     );
   }
 
-  private desasociarRol(rut: number, rol: Rol): Promise<any> {
-    const body = {
-      'rutin': String(rut),
-      'rolin': rol.rol.toString()
-    };
-    return this.requestService.request(environment.servicios.desasociarBienRaiz, body);
+  private desasociarRol(rut: number, correo: string, rol: Rol): Promise<any> {
+    if (rut) {
+      const body = {
+        'rutin': String(rut),
+        'rolin': rol.rol.toString()
+      };
+      return this.requestService.request(environment.servicios.desasociarBienRaiz, body);
+    } else if (correo) {
+      return this.desasociar(correo, rol.rol.toString());
+    }
+  }
+
+  enviarMailCodigoVerificacion(correo: string): Promise<ResponseResultado> {
+    return new Promise<ResponseResultado>(
+      (resolve, reject) => {
+        const body = {
+          correo: correo
+        };
+        this.requestService.lambda(environment.lambda.enviarMailCodigoVerificacion, body).then(
+          response => resolve(new ResponseResultado(response)),
+          err => reject(err)
+        );
+      }
+    );
+  }
+
+  validarCodigo(correo: string, codigo: string): Promise<ResponseResultado> {
+    return new Promise<ResponseResultado>(
+      (resolve, reject) => {
+        const body = {
+          correo: correo,
+          codigo: codigo
+        };
+        this.requestService.lambda(environment.lambda.validarCodigo, body).then(
+          response => resolve(new ResponseResultado(response)),
+          err => reject(err)
+        );
+      }
+    );
+  }
+
+  rolesRecuperar(correo: string): Promise<Propiedad[]> {
+    return new Promise<Propiedad[]>(
+      (resolve, reject) => {
+        const body = {
+          correo: correo
+        };
+        this.requestService.lambda(environment.lambda.recuperar, body).then(
+          (response: { listaRoles: { direccion: string, rolId: number, rolComunaSiiCod: number }[] }) => {
+            resolve(this.util.procesarPropiedades(response.listaRoles));
+          },
+          err => reject(err)
+        );
+      }
+    );
+  }
+
+  desasociar(correo: string, rol: string): Promise<ResponseResultado> {
+    return new Promise<ResponseResultado>(
+      (resolve, reject) => {
+        const body = {
+          correo: correo,
+          rol: rol
+        };
+        this.requestService.lambda(environment.lambda.desasociar, body).then(
+          response => resolve(new ResponseResultado(response)),
+          err => reject(err)
+        );
+      }
+    );
+  }
+}
+
+export class ResponseResultado {
+  resultado: string;
+  descripcion: string;
+
+  public constructor(init?: Partial<Direccion>) {
+    Object.assign(this, init);
+  }
+
+  ok(): boolean {
+    return this.resultado === '1';
   }
 }
