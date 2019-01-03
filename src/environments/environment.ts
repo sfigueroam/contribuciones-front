@@ -1,7 +1,8 @@
 const urlsBase = {
   publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
   privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
-  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev'
+  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
+  lambdaRoles: 'https://86w4nv3zfa.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const pathBase = {
@@ -31,6 +32,33 @@ export const environment = {
   sizeResultPage: 30,
   certificados: {
     anoDesde: 1955,
+  },
+  lambda: {
+    enviarMailCodigoVerificacion: {
+      url: urlsBase.lambdaRoles,
+      path: '/codigorecuperacion/enviar',
+      method: 'POST'
+    },
+    validarCodigo: {
+      url: urlsBase.lambdaRoles,
+      path: '/codigorecuperacion/validar',
+      method: 'POST'
+    },
+    recuperar: {
+      url: urlsBase.lambdaRoles,
+      path: '/recuperar',
+      method: 'POST'
+    },
+    asociar: {
+      url: urlsBase.lambdaRoles,
+      path: '/asociar',
+      method: 'POST'
+    },
+    desasociar: {
+      url: urlsBase.lambdaRoles,
+      path: '/desasociar',
+      method: 'POST'
+    }
   },
   servicios: {
     certificadoDeudas: {
