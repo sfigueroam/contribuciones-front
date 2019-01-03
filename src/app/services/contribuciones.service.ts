@@ -98,7 +98,6 @@ export class ContribucionesService {
     for (const propiedad of this.propiedades) {
       for (const rol of propiedad.roles) {
         await this.cargarRol(rol);
-        //console.log(rol);
         rol.complete();
       }
     }
