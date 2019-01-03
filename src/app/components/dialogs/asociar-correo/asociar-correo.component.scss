@@ -74,6 +74,10 @@
   background: rgb(63,81,181);
   color: #fff;
 }
+.mdl-button--raised[disabled]:hover {
+  background-color: rgba(0,0,0, 0.12);
+  color: #fff; 
+}
 .mdl-button--accent.mdl-button--accent {
     color: rgb(63,81,181);
 }
