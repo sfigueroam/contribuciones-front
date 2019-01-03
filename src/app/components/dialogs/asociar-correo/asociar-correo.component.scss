@@ -4,6 +4,12 @@
   max-width: 500px;
   top: calc(50% - 150px);
   text-align: center;
+  @media (max-width: 540px) {
+    top: calc(10%);
+  }
+  @media (max-width: 350px) {
+    top: 2%;
+  }
 }
 .mdl-dialog__title{
   font-size: 18px;
