@@ -1,4 +1,5 @@
 @import '../../../../styles/colors';
+
 .mdl-dialog {
   width: 90%;
   max-width: 500px;
@@ -9,7 +10,7 @@
   font-size: 18px;
   color: #000;
 }
-.mdl-dialog__title .material-icons{    
+.mdl-dialog__title .material-icons{
   color: #44B24E;
   font-size: 50px;
   display: block;
@@ -18,18 +19,18 @@
 .mdl-dialog__content{
   padding-bottom: 15px;
 }
-.mdl-dialog__content p{  
+.mdl-dialog__content p{
   font-size: 16px;
-  color: $gray-6;  
+  color: $gray-6;
   letter-spacing: -0.1px;
   margin-bottom: 20px;
 }
-.mdl-dialog__content span{ 
+.mdl-dialog__content span{
   color: #000
 }
-.mdl-dialog__content .spam{ 
+.mdl-dialog__content .spam{
   font-size: 14px;
-  font-style: italic;  
+  font-style: italic;
   letter-spacing: -.3px;
   width: 83%;
   margin-right: auto;
@@ -39,12 +40,12 @@
 
 .inner-form{
   margin-right: auto;
-  margin-left: auto;  
+  margin-left: auto;
   width: 86%;
 }
 .inner-code{
   margin-right: auto;
-  margin-left: auto;  
+  margin-left: auto;
   width: 86%;
 }
 .mdl-textfield {
@@ -52,7 +53,7 @@
 }
 .mdl-dialog__actions{
   margin-right: auto;
-  margin-left: auto;  
+  margin-left: auto;
   text-align: center;
   display: block;
   width: 81.1%;
@@ -63,15 +64,15 @@
   margin-bottom: 20px;
 }
 .mdl-button--raised {
-  background: rgb(63,81,181);    
+  background: rgb(63,81,181);
 }
 .mdl-button:hover {
   background-color: rgba(158,158,158, 0.20);
   color: rgb(0,0,0);
 }
 .mdl-button--raised:hover {
-  background: rgb(63,81,181);  
-  color: #fff;  
+  background: rgb(63,81,181);
+  color: #fff;
 }
 .mdl-button--accent.mdl-button--accent {
     color: rgb(63,81,181);
