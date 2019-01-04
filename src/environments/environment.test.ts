@@ -17,7 +17,7 @@ export const environment = {
   production: false,
   cuentaUrl: 'https://201811.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=4anlvnujbockuaqrg2sgvkd2lq&redirect_uri=https://d3l4fqbye5bc5j.cloudfront.net/login',
   pago: {
-    url: 'http://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
+    url: 'https://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
   },
   cognito: {
     domain: '201811',
