@@ -137,8 +137,14 @@ export class AgregarNuevaComponent implements OnInit {
   buscarDireccionSugeridos() {
     this.inputDireccionesTmp = this.direccion.value;
     const size = environment.sizeResultSuggested;
+
+    let tipoPropiedad = this.tipoPropiedad.value;
+    if (tipoPropiedad === -1) {
+      tipoPropiedad = '';
+    }
+
     this.contribucionesBuscarRol.searchDireccion(undefined,
-      this.tipoPropiedad.value,
+      tipoPropiedad,
       this.direccion.value,
       size).then((lista) => {
         this.direcciones = lista;
@@ -222,8 +228,12 @@ export class AgregarNuevaComponent implements OnInit {
     this.onWait();
     this.searchDireccion = false;
     const size = environment.sizeResultPage;
+    let tipoPropiedad = this.tipoPropiedad.value;
+    if (tipoPropiedad === -1) {
+      tipoPropiedad = '';
+    }
     this.contribucionesBuscarRol.searchDireccion(undefined,
-      this.tipoPropiedad.value,
+      tipoPropiedad,
       this.direccion.value,
       size).then((lista) => {
         this.direcciones = lista;

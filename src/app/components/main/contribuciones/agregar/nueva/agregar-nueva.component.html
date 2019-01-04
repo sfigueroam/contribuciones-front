@@ -27,6 +27,7 @@
                   [formControl]="tipoPropiedad"
                   label="Tipo Propiedad"
                   floating-label>
+        <mdl-option [value]="-1">Todos</mdl-option>
         <mdl-option
           *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
           [value]="tipo.id">{{tipo.descripcion | titlecase}}
