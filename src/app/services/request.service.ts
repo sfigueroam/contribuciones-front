@@ -10,6 +10,27 @@ export class RequestService {
   constructor(private http: HttpClient, private jwtCognito: JwtCognitoService) {
   }
 
+  public lambda(servicio: { url: string, path: string, method: string }, body?): Promise<{}> {
+
+    return new Promise((resolve, reject) => {
+      this.http.request(servicio.method,
+        servicio.url + servicio.path,
+        {
+          body: body,
+          responseType: 'json',
+        }
+      ).subscribe(
+        data => {
+          resolve(data);
+        },
+        err => {
+          console.log('Error', err);
+          reject();
+        }
+      );
+    });
+  }
+
   public request(servicio: { url: string, path: string, method: string }, body?): Promise<{}> {
     const params = {
       'path': servicio.path

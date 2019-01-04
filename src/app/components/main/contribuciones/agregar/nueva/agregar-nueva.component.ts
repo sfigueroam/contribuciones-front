@@ -113,7 +113,9 @@ export class AgregarNuevaComponent implements OnInit {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
 
-    this.asociarCorreo.show();
+    if (!this.user.email && this.user.solicitarEmail) {
+      this.asociarCorreo.show();
+    }
   }
 
   buscarRol(): void {
@@ -250,7 +252,7 @@ export class AgregarNuevaComponent implements OnInit {
   asociarPropiedades() {
     this.hidden = false;
 
-    if (this.user.rut != null && this.user.rut !== undefined) {
+    if ((this.user.rut != null && this.user.rut !== undefined) || this.user.email) {
       let roles: Rol[] = [];
       const propiedadesComponent = this.propiedadComponentList.toArray();
       for (const propiedadComponent of propiedadesComponent) {

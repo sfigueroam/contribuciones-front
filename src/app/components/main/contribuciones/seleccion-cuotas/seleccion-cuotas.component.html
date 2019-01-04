@@ -39,7 +39,8 @@
 </div>
 
 <div class="mdl-grid" *ngFor="let propiedad of propiedades">
-  <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--5-col m-0auto rol-card">
+  <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--5-col m-0auto rol-card"
+       *ngIf="propiedad.roles.length > 0">
     <app-direccion-cuotas (change)="onChange()" [propiedad]="propiedad"></app-direccion-cuotas>
   </div>
 </div>

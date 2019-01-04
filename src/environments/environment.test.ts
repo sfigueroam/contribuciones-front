@@ -1,16 +1,8 @@
-const idTesoreria = '33';
-const origen = '928';
-
-const cabecera = {
-  ambiente: 'test',
-  usuario: '60805000'
-};
-
-
 const urlsBase = {
   publica: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
   privada: 'https://5yi8rce761.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
-  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev'
+  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
+  lambdaRoles: 'https://86w4nv3zfa.execute-api.us-east-1.amazonaws.com/dev/roles'
 };
 
 const pathBase = {
@@ -40,6 +32,33 @@ export const environment = {
   sizeResultPage: 30,
   certificados: {
     anoDesde: 1955,
+  },
+  lambda: {
+    enviarMailCodigoVerificacion: {
+      url: urlsBase.lambdaRoles,
+      path: '/codigorecuperacion/enviar',
+      method: 'POST'
+    },
+    validarCodigo: {
+      url: urlsBase.lambdaRoles,
+      path: '/codigorecuperacion/validar',
+      method: 'POST'
+    },
+    recuperar: {
+      url: urlsBase.lambdaRoles,
+      path: '/recuperar',
+      method: 'POST'
+    },
+    asociar: {
+      url: urlsBase.lambdaRoles,
+      path: '/asociar',
+      method: 'POST'
+    },
+    desasociar: {
+      url: urlsBase.lambdaRoles,
+      path: '/desasociar',
+      method: 'POST'
+    }
   },
   servicios: {
     certificadoDeudas: {
@@ -106,11 +125,3 @@ export const environment = {
     },
   }
 };
-
-/*
- * In development mode, for easier debugging, you can ignore zone related error
- * stack frames such as `zone.run`/`zoneDelegate.invokeTask` by importing the
- * below file. Don't forget to comment it out in production mode
- * because it will have a performance impact when errors are thrown
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

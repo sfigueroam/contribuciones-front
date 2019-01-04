@@ -8,7 +8,7 @@
           <mdl-textfield type="text" [formControl]="email" label="Ingresa el Correo Electrónico" floating-label
                      autofocus></mdl-textfield>
         </div>
-      
+
     </div>
     <div class="mdl-dialog__actions">
       <button mdl-button (click)="asociarCorreo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
@@ -17,22 +17,7 @@
       <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
     </div>
   </form>
-  <div *ngIf="estado === estados.unregistered">
-    <div class="mdl-dialog__title">
-      <mdl-icon>check_circle</mdl-icon>
-    </div>
-    <div class="mdl-dialog__content">
-      <p>
-        Ya estás asociando tus propiedades a la dirección:<br>
-        <span>{{correo}}</span><br>
-        Recuerda ingresar este correo para la próxima vez que pagues tus contribuciones.
-      </p>
-    </div>
-    <div class="mdl-dialog__actions">
-      <button mdl-button (click)="close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Continuar</button>
-    </div>
-  </div>
-  <form [formGroup]="formCode" *ngIf="estado === estados.registered">
+  <form [formGroup]="formCode" *ngIf="estado === estados.verification">
     <div class="mdl-dialog__content">
       <p>
         Encontramos un pago anterior asociado a la siguiente dirección:<br>
@@ -43,23 +28,17 @@
          <mdl-textfield type="text" [formControl]="code" label="Ingresa el código de verificación" floating-label
                      autofocus></mdl-textfield>
           <p class="spam">
-        Si no ves el correo que enviamos, recuerda revisar en la carpeta de spam.  
+            Si no ves el correo que enviamos, recuerda revisar en la carpeta de spam.
         </p>
       </div>
-     
+
     </div>
     <div class="mdl-dialog__actions">
-
         <button mdl-button (click)="ingresarCodigo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
                 [disabled]="!formCode.valid">Continuar
         </button>
-      
-
-      
-
-
+      <button mdl-button (click)="otroCorreo()" mdl-ripple mdl-colored="accent">Ingresar otro correo</button>
       <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
-      <button mdl-button (click)="close()" mdl-ripple mdl-colored="accent">Ingresar otro correo</button>
     </div>
   </form>
 </dialog>
