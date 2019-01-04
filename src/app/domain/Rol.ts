@@ -42,7 +42,13 @@ export class Rol {
   private calcularSufijoDireccion() {
     if (this.direccion) {
       const regexp = this.direccion.match(/\D*[0-9]+(.*)/i);
-      this.sufijoDireccion = regexp.length > 1 ? regexp[1].trim() : '';
+
+      if (regexp) {
+        this.sufijoDireccion = regexp.length > 1 ? regexp[1].trim() : '';
+      } else {
+        this.sufijoDireccion = '';
+      }
+
     } else {
       console.log(this);
     }
