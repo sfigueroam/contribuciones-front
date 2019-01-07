@@ -511,6 +511,10 @@ html, body, h1, h2, h3, h4, h5 {
     padding-left: 400px;
     padding-right: 400px;
   }
+  button.button-pay[disabled] {
+    background-color: rgba(0,0,0, 0.12);
+    color: rgba(0,0,0, 0.26);
+  }
 }
 
 //boton de pago
