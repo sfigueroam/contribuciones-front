@@ -891,4 +891,10 @@ button.button-question {
 padding: 0;
 margin: 0 24px;
 }
-
+.tgr-actions.tgr-mini-footer .mdl-button:hover {
+  color: #000;    
+  background-color: transparent;
+}
+.tgr-actions.tgr-mini-footer .mdl-button:hover .material-icons{
+  color: #000;    
+}
