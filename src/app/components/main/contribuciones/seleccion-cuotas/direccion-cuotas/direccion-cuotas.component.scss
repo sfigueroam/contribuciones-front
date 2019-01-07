@@ -6,3 +6,12 @@
 .bar .bar-text {
   cursor: pointer;
 }
+.mdl-button.mdl-button--icon:hover {
+  background: #CFCFCF;
+}
+.bar-text .mdl-button.mdl-button--icon:hover .material-icons {
+  color: #252e60;
+}
+.bar-text ~ .wrapper .mdl-button.mdl-button--icon:hover .material-icons {
+  color: rgba(0, 0, 0, 0.3);
+}

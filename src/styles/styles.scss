@@ -879,8 +879,8 @@ button.button-question {
 .mdl-dialog__actions button:focus:not(:active):hover{
   color: inherit;
 }
-.mdl-navigation__link.mdl-button.mdl-button--icon:hover{
-  background: $primary-color;
+.mdl-navigation__link.mdl-button.mdl-button--icon:hover i{
+  color: #424242;
 }
 
 .mdl-layout__header-row .mdl-navigation:last-child .mdl-navigation__link{
