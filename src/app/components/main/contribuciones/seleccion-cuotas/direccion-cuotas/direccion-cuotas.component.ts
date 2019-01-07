@@ -56,7 +56,8 @@ export class DireccionCuotasComponent implements OnInit {
         }
       );
     } else {
-      this.mdlSnackbarService.showToast('Aún no se carga la información de los roles, espere un momento', environment.snackbarTime);
+      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas',
+        environment.snackbarTime);
     }
   }
 }

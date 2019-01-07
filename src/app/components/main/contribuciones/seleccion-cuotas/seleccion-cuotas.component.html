@@ -50,7 +50,7 @@
     <p class="text-primary text-center">
       <strong>Total: $ {{total | number}}</strong>
     </p>
-    <p *ngIf="condonacion > 0" class="text-success text-center">El monto total considera una condonación de $
+    <p *ngIf="condonacion > 0" class="text-success text-center">Condonación: - $
       {{condonacion | number}}</p>
   </div>
 </div>
@@ -70,9 +70,7 @@
     <div class="mdl-layout-spacer"></div>
     <form ngNoForm method="post" action="http://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago">
       <input type="hidden" name="listaContribuciones" value="{{listaContribuciones}}"/>
-      <button type="submit"
-              [disabled]="total <= 0"
-              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-pay">Pagar
+      <button mdl-button class="button-pay" [disabled]="total <= 0">Pagar
       </button>
     </form>
   </div>
@@ -81,9 +79,9 @@
 <div class="tgr-add">
   <div class="tgr-target-wrapper">
     <div class="tgr-target-wave tgr-target-wave--button">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--accent new-rol"
+      <button mdl-button mdl-button-type="fab" mdl-colored="accent" class="new-rol"
               [routerLink]="['/main/contribuciones/agregar/nueva']">
-        <i class="material-icons">add</i>
+        <mdl-icon>add</mdl-icon>
       </button>
     </div>
   </div>
