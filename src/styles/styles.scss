@@ -4,7 +4,7 @@
 @import '~@angular-mdl/select/select';
 
 html, body, h1, h2, h3, h4, h5 {
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 // Definiciones Generales Margen y Padding
@@ -820,7 +820,7 @@ button.button-question {
   min-width: 35px;
   z-index: 4;
   color: $color-white;
-  @media (min-width: 350px) {    
+  @media (min-width: 350px) {
     right: 20px;
   }
   @media (min-width: 481px) {
@@ -830,7 +830,7 @@ button.button-question {
     bottom: 86px;
     right: 15px;
   }
-  @media (min-width: 1260px) {    
+  @media (min-width: 1260px) {
     right: 0;
   }
 }

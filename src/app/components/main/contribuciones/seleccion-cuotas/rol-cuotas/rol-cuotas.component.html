@@ -14,7 +14,7 @@
     </div>
     <div class="mdl-layout-spacer"></div>
     <div class="wrapper">
-      <span *ngIf="rol.total >= 0" (click)="toggle()">$ {{rol.total | number}}</span>
+      <span class="rol-total" *ngIf="rol.total >= 0" (click)="toggle()">$ {{rol.total | number}}</span>
       <button class="mdl-button mdl-js-button mdl-button--icon pointer delete-this-rol" (click)="delete()">
         <i class="material-icons">close</i>
       </button>

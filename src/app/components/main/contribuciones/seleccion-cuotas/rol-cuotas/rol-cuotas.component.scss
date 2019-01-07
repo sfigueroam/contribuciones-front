@@ -23,6 +23,7 @@ mdl-icon.material-icons {
     padding: 10px 45px;
     text-align: center;
 }
+
 .mdl-button.mdl-button--icon:hover {
   background: #CFCFCF;
 }
@@ -31,4 +32,8 @@ mdl-icon.material-icons {
 }
 .bar-text ~ .wrapper .mdl-button.mdl-button--icon:hover .material-icons {
   color: rgba(0, 0, 0, 0.3);
+}
+
+.rol-total {
+  font-size: 14px;
 }
