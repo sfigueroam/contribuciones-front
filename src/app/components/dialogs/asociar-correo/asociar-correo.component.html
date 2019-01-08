@@ -2,10 +2,10 @@
   <form [formGroup]="formEmail" *ngIf="estado === estados.init">
     <h3 class="mdl-dialog__title">Bienvenido/a al Pago de Contribuciones</h3>
     <div class="mdl-dialog__content">
-      <p>Para facilitar tu proceso puedes guardar las propiedades que agregues o recuperar un pago anterior ingresando
+      <p>Para facilitar tu proceso, puedes comenzar a guardar las propiedades que agregues o recuperar un pago anterior ingresando
         tu correo electrónico.</p>
         <div class="inner-form">
-          <mdl-textfield type="text" [formControl]="email" label="Ingresa el Correo Electrónico" floating-label
+          <mdl-textfield type="text" [formControl]="email" label="Ingresa tu Correo Electrónico" floating-label
                      autofocus></mdl-textfield>
         </div>
 
@@ -20,15 +20,14 @@
   <form [formGroup]="formCode" *ngIf="estado === estados.verification">
     <div class="mdl-dialog__content">
       <p>
-        Encontramos un pago anterior asociado a la siguiente dirección:<br>
-        <span>{{correo}}</span><br>
-        Te hemos enviado un correo electrónico con un código de 6 dígitos, el que debes ingresar para recuperar tu pago.
+        Para continuar, ingresa el código de 6 dígitos que enviamos a la siguiente dirección:
+        <span>{{correo}}</span>
       </p>
       <div class="inner-code">
-         <mdl-textfield type="text" [formControl]="code" label="Ingresa el código de verificación" floating-label
+         <mdl-textfield type="text" [formControl]="code" label="Código de verificación" floating-label
                      autofocus></mdl-textfield>
           <p class="spam">
-            Si no ves el correo que enviamos, recuerda revisar en la carpeta de spam.
+            Si no ves el correo que enviamos, espera 5 min o revisa la carpeta de spam.
         </p>
       </div>
 

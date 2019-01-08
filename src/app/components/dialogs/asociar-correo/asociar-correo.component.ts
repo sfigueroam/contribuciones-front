@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdlSnackbarService} from '@angular-mdl/core';
 import {ContribucionesService, ResponseResultado} from '../../../services/contribuciones.service';
 import {UserService} from '../../../services/user.service';
+import {Router} from '@angular/router';
 
 export enum State {
   init, verification
@@ -32,7 +33,10 @@ export class AsociarCorreoComponent implements OnInit {
   correo: string;
   codigo: string;
 
-  constructor(private service: ContribucionesService, private mdlSnackbarService: MdlSnackbarService, private user: UserService) {
+  constructor(private service: ContribucionesService,
+              private mdlSnackbarService: MdlSnackbarService,
+              private user: UserService,
+              private router: Router) {
     this.email = new FormControl('', [
       Validators.required,
       Validators.email
@@ -77,7 +81,14 @@ export class AsociarCorreoComponent implements OnInit {
       (resultado: ResponseResultado) => {
         if (resultado.ok()) {
           this.user.email = this.correo;
-          this.close();
+          this.service.getBienesRaicesByEmail(this.correo).then(
+            (propiedades) => {
+              if (propiedades.length > 0) {
+                this.router.navigate(['main/contribuciones/seleccionar-cuotas']);
+              }
+              this.close();
+            }
+          );
         } else {
           this.mdlSnackbarService.showToast(resultado.descripcion);
         }
