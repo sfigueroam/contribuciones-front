@@ -27,6 +27,8 @@ export class AsociarCorreoComponent implements OnInit {
   formCode: FormGroup;
   code: FormControl;
 
+  callback: any;
+
   correo: string;
   codigo: string;
 
@@ -91,12 +93,16 @@ export class AsociarCorreoComponent implements OnInit {
     this.estado = State.init;
   }
 
-  show(): void {
+  show(callback: any): void {
+    this.callback = callback;
     this.dialog.nativeElement.showModal();
   }
 
   close(): void {
     this.user.solicitarEmail = false;
+    if (this.callback) {
+      this.callback();
+    }
     this.dialog.nativeElement.close();
   }
 }

@@ -55,6 +55,8 @@ export class AgregarNuevaComponent implements OnInit {
 
   inputDireccionesTmp = '';
 
+  bottomToolbarVisible = true;
+
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
               private user: UserService,
@@ -88,6 +90,14 @@ export class AgregarNuevaComponent implements OnInit {
     this.hidden = true;
   }
 
+  ocultarToolbar(): void {
+    this.bottomToolbarVisible = false;
+  }
+
+  mostrarToolbar(): void {
+    this.bottomToolbarVisible = true;
+  }
+
   updateSeleccionadaTotal(): void {
     this.totalSeleccionadas();
   }
@@ -114,7 +124,8 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
     if (!this.user.email && this.user.solicitarEmail) {
-      this.asociarCorreo.show();
+      this.ocultarToolbar();
+      this.asociarCorreo.show(this.mostrarToolbar());
     }
   }
 
