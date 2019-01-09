@@ -24,6 +24,16 @@ mdl-icon.material-icons {
     text-align: center;
 }
 
+.mdl-button.mdl-button--icon:hover {
+  background: #CFCFCF;
+}
+.mdl-button.mdl-button--icon:hover mdl-icon.material-icons {
+  color: #5F5FC4;
+}
+.bar-text ~ .wrapper .mdl-button.mdl-button--icon:hover .material-icons {
+  color: rgba(0, 0, 0, 0.3);
+}
+
 .rol-total {
   font-size: 14px;
 }
