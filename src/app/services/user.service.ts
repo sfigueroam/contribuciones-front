@@ -32,7 +32,7 @@ export class UserService {
 
   setRut(rut: string) {
     this.rut = +rut;
-    this.dv = PitUtils.dv(+this.rut);
+    this.dv = PitUtils.dv(this.rut);
     this.solicitarEmail = false;
   }
 
