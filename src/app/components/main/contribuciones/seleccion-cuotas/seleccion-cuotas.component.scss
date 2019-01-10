@@ -59,11 +59,14 @@
   overflow-y: hidden;
   padding-left: 0;
   text-align: center;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .filter li {
-  display: inline-block;
-  float: none;
+  display: block;
+  float: left;
   height: inherit;
   line-height: 30px;
   margin-right: 10px;
