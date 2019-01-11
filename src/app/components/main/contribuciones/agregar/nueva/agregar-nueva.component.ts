@@ -1,7 +1,7 @@
-import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren, ViewContainerRef} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
-import {MdlSnackbarService} from '@angular-mdl/core';
+import {MdlDialogOutletService, MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {TipoPropiedad} from '../../../../../domain/TipoPropiedad';
@@ -23,9 +23,6 @@ export class AgregarNuevaComponent implements OnInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
-
-  @ViewChild('asociarCorreo')
-  asociarCorreo: AsociarCorreoComponent;
 
   wait = false;
   sinResultado = false;
@@ -55,14 +52,16 @@ export class AgregarNuevaComponent implements OnInit {
 
   inputDireccionesTmp = '';
 
-  bottomToolbarVisible = true;
+  bottomToolbarHidden: boolean;
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
               private user: UserService,
               private router: Router,
-              private contribuciones: ContribucionesService) {
-
+              private contribuciones: ContribucionesService,
+              private dialogService: MdlDialogService,
+              private mdlDialogService: MdlDialogOutletService,
+              private vcRef: ViewContainerRef) {
     this.comuna = new FormControl('', Validators.required);
     this.rol = new FormControl('', Validators.required);
     this.subRol = new FormControl('', Validators.required);
@@ -88,14 +87,16 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
     this.hidden = true;
+
+    this.bottomToolbarHidden = !this.user.email && this.user.solicitarEmail;
   }
 
   ocultarToolbar(): void {
-    this.bottomToolbarVisible = false;
+    this.bottomToolbarHidden = true;
   }
 
   mostrarToolbar(): void {
-    this.bottomToolbarVisible = true;
+    this.bottomToolbarHidden = false;
   }
 
   updateSeleccionadaTotal(): void {
@@ -124,13 +125,21 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
     if (!this.user.email && this.user.solicitarEmail) {
-      this.ocultarToolbar();
-      this.asociarCorreo.show(this.mostrarToolbar());
+      this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
+      const pDialog = this.dialogService.showCustomDialog({
+        component: AsociarCorreoComponent,
+        isModal: true,
+        clickOutsideToClose: true,
+      });
+      pDialog.subscribe((dialogReference: MdlDialogReference) => {
+        dialogReference.onHide().subscribe(
+          () => this.bottomToolbarHidden = false
+        );
+      });
     }
   }
 
   buscarRol(): void {
-
     this.onWait();
     this.contribucionesBuscarRol.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
       if (response === null) {
@@ -200,7 +209,6 @@ export class AgregarNuevaComponent implements OnInit {
       }
     }
   }
-
 
   private agregarPropiedad(response: Propiedad) {
     if (this.propiedades === undefined || this.propiedades == null) {

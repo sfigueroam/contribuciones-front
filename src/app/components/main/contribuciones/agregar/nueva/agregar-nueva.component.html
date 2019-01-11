@@ -122,7 +122,7 @@
   </app-propiedad>
 </div>
 
-<div class="tgr-actions" *ngIf="bottomToolbarVisible">
+<div class="tgr-actions" [class.hidden]="bottomToolbarHidden">
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">
@@ -136,5 +136,3 @@
     </div>
   </div>
 </div>
-
-<app-asociar-correo #asociarCorreo></app-asociar-correo>

@@ -1,43 +1,46 @@
-<dialog #dialog class="mdl-dialog tgr-dialog">
-  <form [formGroup]="formEmail" *ngIf="estado === estados.init">
-    <h3 class="mdl-dialog__title">Bienvenido/a al Pago de Contribuciones</h3>
-    <div class="mdl-dialog__content">
-      <p>Para facilitar tu proceso, puedes comenzar a guardar las propiedades que agregues o recuperar un pago anterior ingresando
-        tu correo electrónico.</p>
-        <div class="inner-form">
-          <mdl-textfield type="text" [formControl]="email" label="Ingresa tu Correo Electrónico" floating-label
+<!--mdl-dialog #dialog class="mdl-dialog tgr-dialog"-->
+<form [formGroup]="formEmail" *ngIf="estado === estados.init; else verification">
+  <h3 class="mdl-dialog__title">Bienvenido/a al Pago de Contribuciones</h3>
+  <div class="mdl-dialog__content">
+    <p>Para facilitar tu proceso, puedes comenzar a guardar las propiedades que agregues o recuperar un pago anterior
+      ingresando
+      tu correo electrónico.</p>
+    <div class="inner-form">
+      <mdl-textfield type="text" [formControl]="email" label="Ingresa tu Correo Electrónico" floating-label
                      autofocus></mdl-textfield>
-        </div>
+    </div>
 
-    </div>
-    <div class="mdl-dialog__actions">
-      <button mdl-button (click)="asociarCorreo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
-              [disabled]="!formEmail.valid">Continuar
-      </button>
-      <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
-    </div>
-  </form>
-  <form [formGroup]="formCode" *ngIf="estado === estados.verification">
+  </div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="asociarCorreo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+            [disabled]="!formEmail.valid">Continuar
+    </button>
+    <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
+  </div>
+</form>
+<ng-template #verification>
+  <form [formGroup]="formCode">
     <div class="mdl-dialog__content">
       <p>
         Para continuar, ingresa el código de 6 dígitos que enviamos a la siguiente dirección:
         <span>{{correo}}</span>
       </p>
       <div class="inner-code">
-         <mdl-textfield type="text" [formControl]="code" label="Código de verificación" floating-label
-                     autofocus></mdl-textfield>
-          <p class="spam">
-            Si no ves el correo que enviamos, espera 5 min o revisa la carpeta de spam.
+        <mdl-textfield type="text" [formControl]="code" label="Código de verificación" floating-label
+                       autofocus></mdl-textfield>
+        <p class="spam">
+          Si no ves el correo que enviamos, espera 5 min o revisa la carpeta de spam.
         </p>
       </div>
 
     </div>
     <div class="mdl-dialog__actions">
-        <button mdl-button (click)="ingresarCodigo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
-                [disabled]="!formCode.valid">Continuar
-        </button>
+      <button mdl-button (click)="ingresarCodigo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+              [disabled]="!formCode.valid">Continuar
+      </button>
       <button mdl-button (click)="otroCorreo()" mdl-ripple mdl-colored="accent">Ingresar otro correo</button>
       <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
     </div>
   </form>
-</dialog>
+</ng-template>
+<!--/mdl-dialog-->

@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MdlSnackbarService} from '@angular-mdl/core';
+import {MdlDialogReference, MdlSnackbarService} from '@angular-mdl/core';
 import {ContribucionesService, ResponseResultado} from '../../../services/contribuciones.service';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
@@ -16,9 +16,6 @@ export enum State {
 })
 export class AsociarCorreoComponent implements OnInit {
 
-  @ViewChild('dialog')
-  dialog: ElementRef;
-
   estados = State;
   estado = State.init;
 
@@ -28,12 +25,11 @@ export class AsociarCorreoComponent implements OnInit {
   formCode: FormGroup;
   code: FormControl;
 
-  callback: any;
-
   correo: string;
   codigo: string;
 
-  constructor(private service: ContribucionesService,
+  constructor(private dialog: MdlDialogReference,
+              private service: ContribucionesService,
               private mdlSnackbarService: MdlSnackbarService,
               private user: UserService,
               private router: Router) {
@@ -104,16 +100,8 @@ export class AsociarCorreoComponent implements OnInit {
     this.estado = State.init;
   }
 
-  show(callback: any): void {
-    this.callback = callback;
-    this.dialog.nativeElement.showModal();
-  }
-
   close(): void {
     this.user.solicitarEmail = false;
-    if (this.callback) {
-      this.callback();
-    }
-    this.dialog.nativeElement.close();
+    this.dialog.hide();
   }
 }
