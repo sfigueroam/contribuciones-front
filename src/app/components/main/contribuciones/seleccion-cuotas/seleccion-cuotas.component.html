@@ -69,7 +69,7 @@
     </button>
     <h6 class="pl-10"><strong>$ {{total | number}}</strong></h6>
     <div class="mdl-layout-spacer"></div>
-    <form ngNoForm method="post" action="http://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago">
+    <form ngNoForm method="post" action="{{urlPagoTgr}}">
       <input type="hidden" name="listaContribuciones" value="{{listaContribuciones}}"/>
       <button type="submit"
               [disabled]="total <= 0"
