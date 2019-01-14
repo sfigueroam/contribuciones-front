@@ -54,6 +54,8 @@ export class AgregarNuevaComponent implements OnInit {
 
   bottomToolbarHidden: boolean;
 
+  dialogoRecuperarPropiedadesEmail: boolean;
+
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
               private user: UserService,
@@ -91,6 +93,8 @@ export class AgregarNuevaComponent implements OnInit {
     this.bottomToolbarHidden = !this.user.email && this.user.solicitarEmail;
   }
 
+
+
   ocultarToolbar(): void {
     this.bottomToolbarHidden = true;
   }
@@ -112,6 +116,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.dialogoRecuperarPropiedadesEmail = environment.dialogoRecuperarPropiedadesEmail;
+
     this.contribucionesBuscarRol.getComunas().then((data) => {
       this.localidad = data;
     }, () => {
@@ -124,7 +131,7 @@ export class AgregarNuevaComponent implements OnInit {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
 
-    if (!this.user.email && this.user.solicitarEmail) {
+    if (!this.user.email && this.user.solicitarEmail && this.dialogoRecuperarPropiedadesEmail) {
       this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
       const pDialog = this.dialogService.showCustomDialog({
         component: AsociarCorreoComponent,

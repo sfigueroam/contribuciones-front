@@ -33,6 +33,7 @@ export const environment = {
   certificados: {
     anoDesde: 1955,
   },
+  dialogoRecuperarPropiedadesEmail: false,
   lambda: {
     enviarMailCodigoVerificacion: {
       url: urlsBase.lambdaRoles,
