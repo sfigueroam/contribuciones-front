@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
+import {MdlDialogOutletService} from '@angular-mdl/core';
 
 @Component({
   selector: 'app-main',
@@ -16,7 +17,10 @@ export class MainComponent implements OnInit {
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
-              private cognito: CognitoService) {
+              private cognito: CognitoService,
+              private vcRef: ViewContainerRef,
+              private mdlDialogService: MdlDialogOutletService) {
+    this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
     route.url.subscribe(() => {
       this.index = route.snapshot.firstChild.data['index'];
@@ -24,6 +28,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.logged = this.user.isLogged();
   }
 

@@ -45,6 +45,7 @@ export class RolCuotasComponent implements OnInit {
         );
       }
     );
+
   }
 
   toggle() {
@@ -80,6 +81,7 @@ export class RolCuotasComponent implements OnInit {
 
   delete() {
     if (this.rol.isComplete) {
+
       this.dialogService.confirm(
         'Eliminarás el ROL completo',
         'CANCELAR',

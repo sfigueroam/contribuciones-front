@@ -50,7 +50,7 @@
 
         <ul class="tgr-suggestions">
           <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
-              (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; buscarDireccion()">{{dire.direccion |
+              (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
             titlecase}}
             <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol |
               leadingZero:3}}

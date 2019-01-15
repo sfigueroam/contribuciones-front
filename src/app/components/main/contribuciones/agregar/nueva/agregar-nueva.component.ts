@@ -61,9 +61,8 @@ export class AgregarNuevaComponent implements OnInit {
               private user: UserService,
               private router: Router,
               private contribuciones: ContribucionesService,
-              private dialogService: MdlDialogService,
-              private mdlDialogService: MdlDialogOutletService,
-              private vcRef: ViewContainerRef) {
+              private dialogService: MdlDialogService) {
+
     this.comuna = new FormControl('', Validators.required);
     this.rol = new FormControl('', Validators.required);
     this.subRol = new FormControl('', Validators.required);
@@ -132,7 +131,7 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
     if (!this.user.email && this.user.solicitarEmail && this.dialogoRecuperarPropiedadesEmail) {
-      this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
+
       const pDialog = this.dialogService.showCustomDialog({
         component: AsociarCorreoComponent,
         isModal: true,
@@ -337,5 +336,12 @@ export class AgregarNuevaComponent implements OnInit {
 
   volver() {
     this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+  }
+
+  cargarDireccion(dire) {
+    const direcciones = [];
+    direcciones.push(new Direccion(dire));
+    this.direcciones = direcciones;
+    this.agregarDireccionesAPropiedad();
   }
 }

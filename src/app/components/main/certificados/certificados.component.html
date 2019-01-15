@@ -21,7 +21,8 @@
   </div>
 
   <div class="tgr-results">
-    <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+    <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades"
+                   [propiedad]="propiedad"
                    (change)="actualizarSeleccionadas()">
     </app-propiedad>
   </div>
