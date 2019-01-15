@@ -50,8 +50,11 @@
     <p class="text-primary text-center">
       <strong>Total: $ {{total | number}}</strong>
     </p>
-    <p *ngIf="condonacion > 0" class="text-success text-center">Condonación: - $
-      {{condonacion | number}}</p>
+    <p *ngIf="condonacion > 0" class="text-success text-center">
+      El monto total considera una condonación de $ {{condonacion | number}}
+    </p>
+    <br>
+    <br>
   </div>
 </div>
 
