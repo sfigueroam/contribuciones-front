@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
-import {MdlDialogOutletService, MdlSnackbarService} from '@angular-mdl/core';
+import {MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
 import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
@@ -83,8 +83,6 @@ export class SeleccionCuotasComponent implements OnInit {
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades', environment.snackbarTime);
       }
     );
-
-
 
 
   }

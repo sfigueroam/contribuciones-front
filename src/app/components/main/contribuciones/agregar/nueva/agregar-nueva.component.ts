@@ -1,7 +1,7 @@
-import {Component, OnInit, QueryList, ViewChildren, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
-import {MdlDialogOutletService, MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
+import {MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {TipoPropiedad} from '../../../../../domain/TipoPropiedad';
@@ -63,6 +63,7 @@ export class AgregarNuevaComponent implements OnInit {
               private contribuciones: ContribucionesService,
               private dialogService: MdlDialogService) {
 
+
     this.comuna = new FormControl('', Validators.required);
     this.rol = new FormControl('', Validators.required);
     this.subRol = new FormControl('', Validators.required);
@@ -91,7 +92,6 @@ export class AgregarNuevaComponent implements OnInit {
 
     this.bottomToolbarHidden = !this.user.email && this.user.solicitarEmail;
   }
-
 
 
   ocultarToolbar(): void {
@@ -132,12 +132,15 @@ export class AgregarNuevaComponent implements OnInit {
 
     if (!this.user.email && this.user.solicitarEmail && this.dialogoRecuperarPropiedadesEmail) {
 
-      const pDialog = this.dialogService.showCustomDialog({
+      const config = {
         component: AsociarCorreoComponent,
         isModal: true,
-        clickOutsideToClose: true,
-      });
+        clickOutsideToClose: true
+      };
+
+      const pDialog = this.dialogService.showCustomDialog(config);
       pDialog.subscribe((dialogReference: MdlDialogReference) => {
+        console.log('dialog visible', dialogReference);
         dialogReference.onHide().subscribe(
           () => this.bottomToolbarHidden = false
         );
