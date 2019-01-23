@@ -878,10 +878,11 @@ button.button-question {
   margin-left: 28px;
 }
 .mdl-dialog__actions .mdl-button:focus:not(:active){
-  background: transparent;
+  background: #448aff;
+  color: rgb(255,255,255);
 }
 .mdl-dialog__actions button:focus:not(:active):hover{
-  color: inherit;
+  color: rgb(255,255,255);
 }
 .mdl-navigation__link.mdl-button.mdl-button--icon:hover i{
   color: #424242;
