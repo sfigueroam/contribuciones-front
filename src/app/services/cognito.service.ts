@@ -49,7 +49,7 @@ export class CognitoService {
     }
 
     if(this.identity.hasOwnProperty('cognito:username')) {
-      return this.identity['cognito:username'].spli('-')[0]
+      return this.identity['cognito:username'].split('-')[0]
     }
 
     return null
