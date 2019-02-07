@@ -3,20 +3,21 @@ phases:
   install:
     commands:
     # Download and Install python for aws cli
-    - wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
-    - tar xJf Python-3.6.0.tar.xz
-    - cd Python-3.6.0
-    - ./configure
-    - make
-    - make install
+    #- wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+    #- tar xJf Python-3.6.0.tar.xz
+    #- cd Python-3.6.0
+    #- ./configure
+    #- make
+    #- make install
     # Download and upgrade aws cli
-    - pip3 install --upgrade awscli
-    - wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-    - chmod +x ./jq
-    - cp jq /usr/bin
+    #- pip3 install --upgrade awscli
+    #- wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+    #- chmod +x ./jq
+    #- cp jq /usr/bin
     - cp ${CODEBUILD_SRC_DIR}/src/environments/environment.ts ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     # Get parameters aws and set variables
     # Replace variable whit sed command in environment file
+    - sed -i "s;__URL_BOTON_PAGO_TGR__;${BUILD_URL_BOTON_PAGO_TGR};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;__ENDPOINT_PUBLICA__;${BUILD_ENDPOINT_API_PUBLICA};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;__ENDPOINT_PRIVADA__;${BUILD_ENDPOINT_API_PRIVADA};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;__ENDPOINT_ROLES__;${BUILD_ENDPOINT_API_ROLES};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts

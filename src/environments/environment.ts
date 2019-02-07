@@ -1,12 +1,10 @@
 const endpoints = {
   publica: '__ENDPOINT_PUBLICA__',
-  //publica: 'https://u3aeivcwv0.execute-api.us-east-1.amazonaws.com/dev',
   privada: '__ENDPOINT_PRIVADA__',
   //privada: 'https://u3aeivcwv0.execute-api.us-east-1.amazonaws.com/dev',
   lambdaRoles: '__ENDPOINT_ROLES__',
   //lambdaRoles: 'https://86w4nv3zfa.execute-api.us-east-1.amazonaws.com/dev',
   elastic: '__ENDPOINT_ELASTICSEARCH__',
-  //elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
 };
 
 const urlsBase = {
@@ -37,7 +35,8 @@ export const environment = {
   production: false,
   cuentaUrl: id.authorizeURL + "?response_type=token&client_id=" + id.clientId + "&redirect_uri=" + id.redirectURI,
   pago: {
-    url: 'https://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
+    //url: 'https://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
+    url: '__URL_BOTON_PAGO_TGR__'
   },
   cognito: {
     authorizeURL: '__COGNITO_URL_AUTHORIZE__',
