@@ -1,8 +1,26 @@
+const endpoints = {
+  publica: '__ENDPOINT_PUBLICA__',
+  privada: '__ENDPOINT_PRIVADA__',
+  //privada: 'https://u3aeivcwv0.execute-api.us-east-1.amazonaws.com/dev',
+  lambdaRoles: '__ENDPOINT_ROLES__',
+  //lambdaRoles: 'https://86w4nv3zfa.execute-api.us-east-1.amazonaws.com/dev',
+  elastic: '__ENDPOINT_ELASTICSEARCH__',
+};
+
 const urlsBase = {
-  publica: 'https://u3aeivcwv0.execute-api.us-east-1.amazonaws.com/dev/proxy-public',
-  privada: 'https://u3aeivcwv0.execute-api.us-east-1.amazonaws.com/dev/proxy-private',
-  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
-  lambdaRoles: 'https://86w4nv3zfa.execute-api.us-east-1.amazonaws.com/dev/roles'
+  publica: endpoints.publica + '/proxy-public',
+  privada: endpoints.privada + '/proxy-private',
+  elastic: endpoints.elastic,
+  lambdaRoles: endpoints.lambdaRoles + '/roles'
+};
+
+const id = {
+  //authorizeURL: "https://201811.auth.us-east-1.amazoncognito.com/oauth2/authorize",
+  authorizeURL: "__COGNITO_URL_AUTHORIZE__",
+  //clientId: "14f89jhmsbv982dhcuf2jijcgu",
+  clientId: "__COGNITO_CLIENT_ID_1__",
+  //redirectURI: "http://localhost:4200/login"
+  redirectURI: "__COGNITO_CLIENT_REDIRECT_URI_1__"
 };
 
 const pathBase = {
@@ -15,15 +33,20 @@ const pathBase = {
 export const environment = {
   snackbarTime: 5000,
   production: false,
-  cuentaUrl: 'https://201811.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=14f89jhmsbv982dhcuf2jijcgu&redirect_uri=http://localhost:4200/login',
+  cuentaUrl: id.authorizeURL + "?response_type=token&client_id=" + id.clientId + "&redirect_uri=" + id.redirectURI,
   pago: {
-    url: 'https://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
+    url: '__URL_BOTON_PAGO_TGR__'
   },
   cognito: {
-    domain: '201811',
-    clientId: '2ntpfu2jj8miueillfdef8i93n',
-    redirectUri: 'http://localhost:4300/login',
-    logoutUri: 'http://localhost:4300/logout',
+    authorizeURL: '__COGNITO_URL_AUTHORIZE__',
+    //logoutURL: 'https://201811.auth.us-east-1.amazoncognito.com/logout',
+    logoutURL: '__COGNITO_LOGOUT_URL__',
+    //clientId: '2ntpfu2jj8miueillfdef8i93n',
+    clientId: '__COGNITO_CLIENT_ID_2__',
+    //redirectUri: 'http://localhost:4300/login',
+    redirectUri: '__COGNITO_CLIENT_REDIRECT_URI_2__',
+    //logoutUri: 'http://localhost:4300/logout',
+    logoutUri: '__COGNITO_CLIENT_LOGOUT_URI_2__',
     jwtCookieName: 'tgr-jwt',
     expCookieName: 'exp',
     allowCookies: true,

@@ -25,18 +25,16 @@ export class CognitoService {
   }
 
   loginUrl(): string {
-    return 'https://'
-      + environment.cognito.domain
-      + '.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id='
+    return environment.cognito.authorizeURL
+      + '?response_type=token&client_id='
       + environment.cognito.clientId
       + '&redirect_uri='
       + environment.cognito.redirectUri;
   }
 
   logoutUrl(): string {
-    return 'https://'
-      + environment.cognito.domain
-      + '.auth.us-east-1.amazoncognito.com/logout?client_id='
+    return environment.cognito.logoutURL
+      + '?client_id='
       + environment.cognito.clientId
       + '&logout_uri='
       + environment.cognito.logoutUri;
