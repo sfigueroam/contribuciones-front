@@ -35,7 +35,6 @@ export const environment = {
   production: false,
   cuentaUrl: id.authorizeURL + "?response_type=token&client_id=" + id.clientId + "&redirect_uri=" + id.redirectURI,
   pago: {
-    //url: 'https://test.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
     url: '__URL_BOTON_PAGO_TGR__'
   },
   cognito: {
