@@ -53,6 +53,7 @@ phases:
     #- sudo apt-get install -y yarn
     #- yarn global add @angular/cli@6.0.8
     #- yarn install
+    - npm install
     #- yarn add ngx-spinner
     - npm install -g @angular/cli@6.0.8
     #- npm install ngx-spinner
