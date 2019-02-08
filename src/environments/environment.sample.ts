@@ -32,7 +32,7 @@ const pathBase = {
 
 export const environment = {
   snackbarTime: 5000,
-  production: false,
+  production: true,
   cuentaUrl: id.authorizeURL + "?response_type=token&client_id=" + id.clientId + "&redirect_uri=" + id.redirectURI,
   pago: {
     url: '__URL_BOTON_PAGO_TGR__'
@@ -56,7 +56,7 @@ export const environment = {
   certificados: {
     anoDesde: 1955,
   },
-  dialogoRecuperarPropiedadesEmail: true,
+  dialogoRecuperarPropiedadesEmail: false,
   lambda: {
     enviarMailCodigoVerificacion: {
       url: urlsBase.lambdaRoles,
