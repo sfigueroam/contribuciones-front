@@ -18,6 +18,15 @@
 
     <span class="tgr-card__title--text small-text">Búsqueda de Propiedades</span>
   </div>
+  <ngx-invisible-recaptcha #captchaElem
+                           [siteKey]="recaptcha2.siteKey"
+                           (success)="handleSuccessCaptcha2($event)"
+                           [type]="recaptcha2.type"
+                           [badge]="recaptcha2.badge"
+                           [ngModel]="recaptcha"
+                           [ngModelOptions]="{ standalone: true }">
+  </ngx-invisible-recaptcha>
+
   <form [formGroup]="formDireccion" (submit)="buscarDireccion()">
     <div class="tgr-card__body " [class.hidden]="switchActive === 'rol'">
       <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"

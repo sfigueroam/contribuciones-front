@@ -83,4 +83,24 @@ export class RequestService {
       );
     });
   }
+
+  public validaRecaptcha( servicio: { url: string, body: any, method: string}): Promise<{}> {
+    return new Promise((resolve, reject) => {
+      this.http.request(servicio.method,
+        servicio.url,
+        {
+          body: servicio.body,
+          responseType: 'json'
+        }
+      ).subscribe(
+        data => {
+          resolve(data);
+        },
+        err => {
+          console.log('Error', err);
+          reject(err.error);
+        }
+      );
+    });
+  }
 }
