@@ -151,7 +151,7 @@ export class ContribucionesService {
 
   private getBienRaiz(rut: number): Promise<{}> {
     const obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
-    obtenerBienRaizAsociado.path = obtenerBienRaizAsociado.path + '/' + rut;
+    obtenerBienRaizAsociado.url = obtenerBienRaizAsociado.url + '/' + rut;
     return this.requestService.request(obtenerBienRaizAsociado);
   }
 
