@@ -1,10 +1,8 @@
 const endpoints = {
-  publica: '__ENDPOINT_PUBLICA__',
-  privada: '__ENDPOINT_PRIVADA__',
-  //privada: 'https://u3aeivcwv0.execute-api.us-east-1.amazonaws.com/dev',
-  lambdaRoles: '__ENDPOINT_ROLES__',
-  //lambdaRoles: 'https://86w4nv3zfa.execute-api.us-east-1.amazonaws.com/dev',
-  elastic: '__ENDPOINT_ELASTICSEARCH__',
+  publica: 'BUILD_BACK_ENDPOINT',
+  privada: 'BUILD_BACK_ENDPOINT',
+  lambdaRoles: 'BUILD_BACK_ENDPOINT',
+  elastic: 'BUILD_ELASTICSEARCH_ENDPOINT',
 };
 
 const urlsBase = {
@@ -12,15 +10,6 @@ const urlsBase = {
   privada: endpoints.privada + '/proxy-private',
   elastic: endpoints.elastic,
   lambdaRoles: endpoints.lambdaRoles + '/roles'
-};
-
-const id = {
-  //authorizeURL: "https://201811.auth.us-east-1.amazoncognito.com/oauth2/authorize",
-  authorizeURL: "__COGNITO_URL_AUTHORIZE__",
-  //clientId: "14f89jhmsbv982dhcuf2jijcgu",
-  clientId: "__COGNITO_CLIENT_ID_1__",
-  //redirectURI: "http://localhost:4200/login"
-  redirectURI: "__COGNITO_CLIENT_REDIRECT_URI_1__"
 };
 
 const pathBase = {
@@ -33,20 +22,16 @@ const pathBase = {
 export const environment = {
   snackbarTime: 5000,
   production: true,
-  cuentaUrl: id.authorizeURL + "?response_type=token&client_id=" + id.clientId + "&redirect_uri=" + id.redirectURI,
+  cuentaUrl: 'BUILD_CUENTA_USUARIO_URL',
   pago: {
-    url: '__URL_BOTON_PAGO_TGR__'
+    url: 'BUILD_BOTON_PAGO_TGR_URL'
   },
   cognito: {
-    authorizeURL: '__COGNITO_URL_AUTHORIZE__',
-    //logoutURL: 'https://201811.auth.us-east-1.amazoncognito.com/logout',
-    logoutURL: '__COGNITO_LOGOUT_URL__',
-    //clientId: '2ntpfu2jj8miueillfdef8i93n',
-    clientId: '__COGNITO_CLIENT_ID_2__',
-    //redirectUri: 'http://localhost:4300/login',
-    redirectUri: '__COGNITO_CLIENT_REDIRECT_URI_2__',
-    //logoutUri: 'http://localhost:4300/logout',
-    logoutUri: '__COGNITO_CLIENT_LOGOUT_URI_2__',
+    authorizeURL: 'BUILD_AUTHORIZE_URL',
+    logoutURL: 'BUILD_LOGOUT_URL',
+    clientId: 'BUILD_CLIENT_ID',
+    redirectUri: 'BUILD_REDIRECT_URI',
+    logoutUri: 'BUILD_LOGOUT_URI',
     jwtCookieName: 'tgr-jwt',
     expCookieName: 'exp',
     allowCookies: true,
