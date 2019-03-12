@@ -14,6 +14,7 @@ phases:
     - sed -i "s;BUILD_CLIENT_ID;${BUILD_CLIENT_ID};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;BUILD_REDIRECT_URI;${BUILD_REDIRECT_URI};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;BUILD_LOGOUT_URI;${BUILD_LOGOUT_URI};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_CUENTA_USUARIO_URL;${BUILD_CUENTA_USUARIO_URL};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
 
     - npm install
     - npm install -g @angular/cli@6.0.8
