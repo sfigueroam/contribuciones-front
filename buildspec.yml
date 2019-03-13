@@ -3,18 +3,18 @@ phases:
   install:
     commands:
     - touch ${CODEBUILD_SRC_DIR}/src/environments/environment.ts
-    - cp ${CODEBUILD_SRC_DIR}/src/environments/environment.sample.ts ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - cp ${CODEBUILD_SRC_DIR}/src/environments/environment.sample.ts              ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
 
     # Replace variable whit sed command in environment file
-    - sed -i "s;BUILD_BOTON_PAGO_TGR_URL;${BUILD_BOTON_PAGO_TGR_URL};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_BACK_ENDPOINT;${BUILD_BACK_ENDPOINT};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_ELASTICSEARCH_ENDPOINT;${BUILD_ELASTICSEARCH_ENDPOINT};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_AUTHORIZE_URL;${BUILD_AUTHORIZE_URL};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_LOGOUT_URL;${BUILD_LOGOUT_URL};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_CLIENT_ID;${BUILD_CLIENT_ID};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_REDIRECT_URI;${BUILD_REDIRECT_URI};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_LOGOUT_URI;${BUILD_LOGOUT_URI};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
-    - sed -i "s;BUILD_CUENTA_USUARIO_URL;${BUILD_CUENTA_USUARIO_URL};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_BOTON_PAGO_TGR_URL;${BUILD_BOTON_PAGO_TGR_URL};g"           ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_BACK_ENDPOINT;${BUILD_BACK_ENDPOINT};g"                     ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_ELASTICSEARCH_ENDPOINT;${BUILD_ELASTICSEARCH_ENDPOINT};g"   ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_AUTHORIZE_URL;${BUILD_AUTHORIZE_URL};g"                     ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_LOGOUT_URL;${BUILD_LOGOUT_URL};g"                           ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_CLIENT_ID;${BUILD_CLIENT_ID};g"                             ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_REDIRECT_URI;${BUILD_REDIRECT_URI};g"                       ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_LOGOUT_URI;${BUILD_LOGOUT_URI};g"                           ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_CUENTA_USUARIO_URL;${BUILD_CUENTA_USUARIO_URL};g"           ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
 
     - npm install
     - npm install -g @angular/cli@6.0.8
