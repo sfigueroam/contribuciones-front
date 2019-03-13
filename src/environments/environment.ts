@@ -29,9 +29,9 @@ export const environment = {
   cognito: {
     authorizeURL: 'https://autentica-dev.tegere.info/oauth2/authorize',
     logoutURL: 'https://autentica.tegere.info/logout',
-    clientId: '4lmo6gpuqsi6ooscnb6hk719ue',
-    redirectUri: 'https://locahost:4202/login',
-    logoutUri: 'https://localhost:4202/logout',
+    clientId: '2ihs7thp1tgtpqtdj3576kvbgr',
+    redirectUri: 'https://bbrr-dmezaa.tegere.info/login',
+    logoutUri: 'https://bbrr-dmezaa.tegere.info/logout',
     jwtCookieName: 'tgr-jwt',
     expCookieName: 'exp',
     allowCookies: true,

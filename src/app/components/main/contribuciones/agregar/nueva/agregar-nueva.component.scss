@@ -2,7 +2,18 @@
 
 .mdl-button.mdl-button--return {
   background: gray;
-  right: 10px;
+  text-transform: none;
+  background-color: transparent;
+  color: #448aff;
+  box-shadow: none;
+  font-size: 14px;
+  @media (max-width: 480px){
+    padding-right: 0;
+    font-size: 13px;
+  }
+  i.material-icons {
+    margin-left: -8px;
+  }
 }
 .tgr-actions{
   @media (max-width: 320px){

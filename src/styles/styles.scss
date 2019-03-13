@@ -132,6 +132,12 @@ html, body, h1, h2, h3, h4, h5 {
   text-align: right;
 }
 
+// Fuente del Texto
+
+.text-mont {
+  font-family: 'Montserrat', sans-serif;
+}
+
 // Colores de Texto
 
 .text-white {
@@ -350,7 +356,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .mdl-layout {
-  background: $gray-backgorund;
+  background: $gray-lightblue-background;
 }
 
 .tgr-header .mdl-layout__drawer-button {
@@ -398,8 +404,8 @@ html, body, h1, h2, h3, h4, h5 {
   right: 0;
   z-index: 900;
   @media (max-width: 1260px) {
-    padding-left: 16px;
-    padding-right: 16px;
+    //padding-left: 16px;
+    //padding-right: 16px;
   }
   @media (max-width: 820px) {
     min-height: 90px;
@@ -414,8 +420,8 @@ html, body, h1, h2, h3, h4, h5 {
   margin-left: auto;
   margin-right: auto;
   @media (max-width: 1260px) {
-    padding-left: 16px;
-    padding-right: 16px;
+    //padding-left: 16px;
+    //padding-right: 16px;
   }
 }
 
@@ -426,6 +432,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .mdl-layout__header-row{
+  background-color: #ffffff;
   @media (min-width: 481px) and (max-width: 839px) {
     padding-left: 100px;
     padding-right: 100px;
