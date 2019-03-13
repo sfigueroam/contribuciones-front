@@ -28,11 +28,12 @@
     "core-js": "^2.5.4",
     "match-sorter": "^2.3.0",
     "ngx-barcode": "^0.2.4",
+    "ngx-captcha": "^5.0.0",
     "ngx-cookie-service": "^2.0.0",
+    "ngx-spinner": "",
     "rxjs": "6.0.0",
     "web-animations-js": "^2.3.1",
-    "zone.js": "~0.8.26",
-    "ngx-spinner": ""
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",

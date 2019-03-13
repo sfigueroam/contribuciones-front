@@ -28,6 +28,7 @@ import {CertificadoDeudaComponent} from './components/main/certificados/obtener/
 import {HistorialPagoComponent} from './components/main/certificados/obtener/historial-pago/historial-pago.component';
 import {NgxBarcodeModule} from 'ngx-barcode';
 import {AsociarCorreoComponent} from './components/dialogs/asociar-correo/asociar-correo.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 registerLocaleData(localeEs, 'es');
 
@@ -61,6 +62,8 @@ registerLocaleData(localeEs, 'es');
     MdlModule,
     MdlSelectModule,
     NgxBarcodeModule,
+    NgxCaptchaModule,
+
   ],
   providers: [
     {

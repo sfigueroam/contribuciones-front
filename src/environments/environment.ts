@@ -1,8 +1,8 @@
 const endpoints = {
-  base: 'BUILD_BACK_ENDPOINT',
-  lambdaRoles: 'BUILD_BACK_ENDPOINT',
-  elastic: 'BUILD_ELASTICSEARCH_ENDPOINT',
-  validateRecaptcha: 'BUILD_BACK_ENDPOINT'
+  base: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev',
+  lambdaRoles: '',
+  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
+  validateRecaptcha: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const urlsBase = {
@@ -11,8 +11,14 @@ const urlsBase = {
   lambdaRoles: endpoints.lambdaRoles + '/roles',
   recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
   recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3'
+
 };
 
+const id = {
+  authorizeURL: "https://autentica-dev.tegere.info/oauth2/authorize",
+  clientId: "178vr805sl67cfm1u83m3vtv3c",
+  redirectURI: "http://localhost:4302/login"
+};
 
 const pathBase = {
   clienteBienRaiz: '/ClienteBienRaizWS/api/BienRaiz',
@@ -24,17 +30,16 @@ const pathBase = {
 export const environment = {
   snackbarTime: 5000,
   production: true,
-  //TODO: llamar a una url privada de cuenta de usuario sin client-id
-  cuentaUrl: 'BUILD_CUENTA_USUARIO_URL',
+  cuentaUrl: id.authorizeURL + "?response_type=token&client_id=" + id.clientId + "&redirect_uri=" + id.redirectURI,
   pago: {
-    url: 'BUILD_BOTON_PAGO_TGR_URL'
+    url: 'http://test2.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
   },
   cognito: {
-    authorizeURL: 'BUILD_AUTHORIZE_URL',
-    logoutURL: 'BUILD_LOGOUT_URL',
-    clientId: 'BUILD_CLIENT_ID',
-    redirectUri: 'BUILD_REDIRECT_URI',
-    logoutUri: 'BUILD_LOGOUT_URI',
+    authorizeURL: 'https://autentica-dev.tegere.info/oauth2/authorize',
+    logoutURL: '',
+    clientId: '3eqo995p7hord0t8vsdma4r8a8',
+    redirectUri: 'http://localhost:4202/login',
+    logoutUri: '',
     jwtCookieName: 'tgr-jwt',
     expCookieName: 'exp',
     allowCookies: true,

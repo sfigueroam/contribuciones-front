@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
 import {MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
@@ -13,6 +13,10 @@ import {UserService} from '../../../../../services/user.service';
 import {Router} from '@angular/router';
 import {ContribucionesService} from '../../../../../services/contribuciones.service';
 import {AsociarCorreoComponent} from '../../../../dialogs/asociar-correo/asociar-correo.component';
+import {InvisibleReCaptchaComponent, ReCaptchaV3Service, ScriptService} from 'ngx-captcha';
+import {TgrReCaptcha} from '../../../../../domain/TgrReCaptcha';
+import {RecaptchaService} from '../../../../../services/recaptcha.service';
+import {TipoRecaptcha} from '../../../../../enum/TipoRecaptcha.enum';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -55,13 +59,32 @@ export class AgregarNuevaComponent implements OnInit {
   bottomToolbarHidden: boolean;
 
   dialogoRecuperarPropiedadesEmail: boolean;
+  viewRecaptcha2: boolean;
+
+
+  @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
+  recaptcha2: TgrReCaptcha;
+  recaptcha3: TgrReCaptcha;
+
+  public recaptcha: any = null;
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
               private user: UserService,
               private router: Router,
               private contribuciones: ContribucionesService,
-              private dialogService: MdlDialogService) {
+              private dialogService: MdlDialogService,
+              private reCaptchaV3Service: ReCaptchaV3Service,
+              private scriptService: ScriptService,
+              private recaptchaService: RecaptchaService) {
+
+    this.recaptcha2 = new TgrReCaptcha();
+    this.viewRecaptcha2 = false;
+    this.recaptcha3 = new TgrReCaptcha();
+
+    this.recaptcha2.siteKey = '6LcObZUUAAAAAIy5A6GCnsxaIyt30YjQeZnShVls';
+    this.recaptcha3.siteKey = '6Lc2dpUUAAAAAMYdfS1Cin3np310tS_dYpoH9JxC';
+    this.recaptcha3.action = 'buscar';
 
 
     this.comuna = new FormControl('', Validators.required);
@@ -148,7 +171,7 @@ export class AgregarNuevaComponent implements OnInit {
     }
   }
 
-  buscarRol(): void {
+  buscarRolPost(): void {
     this.onWait();
     this.contribucionesBuscarRol.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
       if (response === null) {
@@ -252,7 +275,7 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
-  buscarDireccion() {
+  buscarDireccionPost() {
     this.onWait();
     this.searchDireccion = false;
     const size = environment.sizeResultPage;
@@ -267,10 +290,12 @@ export class AgregarNuevaComponent implements OnInit {
         this.direcciones = lista;
         this.agregarDireccionesAPropiedad();
         this.offWait();
+        this.resetCaptcha2();
 
       },
       () => {
         this.error('A ocurrido un error al buscar una propiedad');
+        this.resetCaptcha2();
       });
   }
 
@@ -347,4 +372,58 @@ export class AgregarNuevaComponent implements OnInit {
     this.direcciones = direcciones;
     this.agregarDireccionesAPropiedad();
   }
+
+
+  handleSuccessCaptcha2(token): void {
+    this.recaptchaService.validaRecaptcha(token, TipoRecaptcha.V2).then(value => {
+      if (this.switchActive === 'direccion') {
+        this.buscarDireccionPost();
+      } else {
+        this.buscarRolPost();
+      }
+
+    }).catch(reason => {
+      this.error('Falló validación del ReCaptcha');
+
+    });
+  }
+
+  executeCaptcha2(): void {
+    console.log('Ejecutando Recaptcha 2')
+    this.offWait();
+    this.captchaElem.execute();
+  }
+
+  resetCaptcha2(): void {
+    this.captchaElem.resetCaptcha();
+  }
+
+  buscarRol() {
+    this.validarCaptcha();
+  }
+
+  buscarDireccion() {
+    this.validarCaptcha();
+  }
+
+  validarCaptcha(): void {
+    this.captchaElem.reloadCaptcha();
+    this.captchaElem.resetCaptcha();
+    this.onWait();
+    this.scriptService.cleanup();
+    this.reCaptchaV3Service.execute(this.recaptcha3.siteKey, this.recaptcha3.action, (token) => {
+      this.recaptchaService.validaRecaptcha(token, TipoRecaptcha.V3).then(value => {
+        if (this.switchActive === 'direccion') {
+          this.buscarDireccionPost();
+        } else {
+          this.buscarRolPost();
+        }
+      }).catch(reason => {
+        console.log(reason);
+        this.executeCaptcha2();
+      });
+    });
+  }
+
+
 }
