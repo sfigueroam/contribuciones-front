@@ -17,7 +17,7 @@ const urlsBase = {
 const id = {
   authorizeURL: "https://autentica-dev.tegere.info/oauth2/authorize",
   clientId: "178vr805sl67cfm1u83m3vtv3c",
-  redirectURI: "http://localhost:4201/login"
+  redirectURI: "http://localhost:4302/login"
 };
 
 const pathBase = {
