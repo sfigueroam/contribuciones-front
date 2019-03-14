@@ -1,3 +1,9 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col m-0auto pay-title">
+    <h5 class="title text-primary text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
+    <p class="text-left">Busca una o más propiedades y agrégalas al carrito.</p>
+  </div>
+</div>
 <div class="tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
@@ -43,7 +49,7 @@
                      (keyup)="inputDirecciones($event)"
                      (ngModel)="direccionModel"
                      floating-label
-                     label="Dirección *"
+                     label="Dirección"
                      error-msg="Debe ingresar al menos 3 caracteres">
       </mdl-textfield>
 
@@ -121,18 +127,19 @@
   </app-propiedad>
 </div>
 
+<p class="contador-propiedades">Llevas <strong>0</strong> propiedades en el carrito</p>
 <div class="tgr-actions">
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">
 
+      <button id="agregar_propiedades" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [disabled]="cantidadSeleccionadas == 0"
+        (click)="asociarPropiedades()">
+        Agregar {{cantidadSeleccionadas}} propiedades
+      </button>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return"  (click)="volver()" >
         Ir al Carrito
         <i class="material-icons">keyboard_arrow_right</i>
-      </button>
-      <button id="agregar_propiedades" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [disabled]="cantidadSeleccionadas == 0"
-              (click)="asociarPropiedades()">
-        Agregar {{cantidadSeleccionadas}} propiedades
       </button>
     </div>
   </div>

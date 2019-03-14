@@ -225,6 +225,14 @@ html, body, h1, h2, h3, h4, h5 {
   margin: 25px auto 5px auto;
 }
 
+.pay-title {
+  p {
+    font-size: 16px;
+    color: $color-dark-gray;
+    margin-top: 12px;
+  }
+}
+
 .mdl-grid {
   padding-top: 0;
   padding-bottom: 0;
@@ -411,7 +419,7 @@ html, body, h1, h2, h3, h4, h5 {
     min-height: 90px;
   }
   @media (max-width: 520px) {
-    min-height: 110px;
+    min-height: 70px;
   }
 }
 
@@ -529,8 +537,19 @@ html, body, h1, h2, h3, h4, h5 {
   background: $button-primary-color;
   border-radius: 6px;
   color: #fff;
-  display: block;
-  float: right;
+  display: inline-block;
+  //&:first-of-type {
+  //  @media (max-width: 480px) {
+  //    float: left;
+  //    margin-left: 10px;
+  //  }
+  //}
+  //&:last-of-type {
+  //  @media (max-width: 480px) {
+  //    float: right;
+  //    margin-right: 10px;
+  //  }
+  //}
 }
 
 .tgr-pay .mdl-button span {
