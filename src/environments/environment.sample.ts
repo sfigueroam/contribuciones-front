@@ -6,8 +6,8 @@ const endpoints = {
 };
 
 const keyRecaptcha = {
-  v2: '6LcObZUUAAAAAIy5A6GCnsxaIyt30YjQeZnShVls',
-  v3: '6Lc2dpUUAAAAAMYdfS1Cin3np310tS_dYpoH9JxC'
+  v2: 'BUILD_RECAPTCHA_KEY_V2',
+  v3: 'BUILD_RECAPTCHA_KEY_V3'
 };
 
 const urlsBase = {
