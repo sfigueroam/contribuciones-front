@@ -5,6 +5,11 @@ const endpoints = {
   validateRecaptcha: 'BUILD_BACK_ENDPOINT'
 };
 
+const keyRecaptcha = {
+  v2: '6LcObZUUAAAAAIy5A6GCnsxaIyt30YjQeZnShVls',
+  v3: '6Lc2dpUUAAAAAMYdfS1Cin3np310tS_dYpoH9JxC'
+};
+
 const urlsBase = {
   api: endpoints.base + '/api',
   elastic: endpoints.elastic,
@@ -131,11 +136,13 @@ export const environment = {
   recaptcha: {
     v2: {
       url: urlsBase.recaptcha2,
-      method: 'POST'
+      method: 'POST',
+      key: keyRecaptcha.v2
     },
     v3: {
       url: urlsBase.recaptcha3,
-      method: 'POST'
+      method: 'POST',
+      key: keyRecaptcha.v3
     }
   }
 };
