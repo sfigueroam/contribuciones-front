@@ -31,10 +31,7 @@ export class RequestService {
     });
   }
 
-  public request(servicio: { url: string, path: string, method: string }, body?): Promise<{}> {
-    const params = {
-      'path': servicio.path
-    };
+  public request(servicio: { url: string,  method: string }, body?): Promise<{}> {
     let headers = {};
     if (this.jwtCognito.jwt !== undefined) {
       headers = new HttpHeaders({
@@ -47,7 +44,6 @@ export class RequestService {
         servicio.url,
         {
           body: body,
-          params: params,
           responseType: 'json',
           headers: headers
 

@@ -25,7 +25,7 @@ export class ContribucionesSugeridasService {
     }
     return new Promise((resolve, reject) => {
       const obtenerBienRaizNoAsociado = Object.assign({}, environment.servicios.obtenerBienRaizNoAsociado);
-      obtenerBienRaizNoAsociado.path = obtenerBienRaizNoAsociado.path + '/' + rut;
+      obtenerBienRaizNoAsociado.url = obtenerBienRaizNoAsociado.url + '/' + rut;
       this.requestService.request(obtenerBienRaizNoAsociado).then(
         (data: { curout: any }) => {
 

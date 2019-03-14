@@ -41,18 +41,18 @@ export class CognitoService {
   }
 
   private username(): string {
-    if(this.identity.hasOwnProperty('custom:clave-unica:run')) {
-      var temp = JSON.parse(this.identity['custom:clave-unica:run']);
-      if(temp.tipo == 'RUN') {
-        return temp.numero
+    if (this.identity.hasOwnProperty('custom:clave-unica:run')) {
+      const temp = JSON.parse(this.identity['custom:clave-unica:run']);
+      if (temp.tipo === 'RUN') {
+        return temp.numero;
       }
     }
 
-    if(this.identity.hasOwnProperty('cognito:username')) {
-      return this.identity['cognito:username'].split('-')[0]
+    if (this.identity.hasOwnProperty('cognito:username')) {
+      return this.identity['cognito:username'].split('-')[0];
     }
 
-    return null
+    return null;
   }
 
   createCookie(): void {

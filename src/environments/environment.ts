@@ -1,21 +1,13 @@
 const endpoints = {
-  publica: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
-  privada: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
+  base: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
   lambdaRoles: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
   elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
 };
 
 const urlsBase = {
-  publica: endpoints.publica + '/proxy-public',
-  privada: endpoints.privada + '/proxy-private',
+  api: endpoints.base + '/api',
   elastic: endpoints.elastic,
   lambdaRoles: endpoints.lambdaRoles + '/roles'
-};
-
-const pathBase = {
-  clienteBienRaiz: '/ClienteBienRaizWS/api/BienRaiz',
-  deudaRol: '/RecuperaDeudaROLRS/api/bienraiz',
-  bienRaiz: '/BienRaizWS/api/BienRaiz'
 };
 
 
@@ -71,43 +63,35 @@ export const environment = {
   },
   servicios: {
     certificadoDeudas: {
-      url: urlsBase.publica,
-      path: '/tgrSuscriptorWs/api/suscriptor/certificado/obtener',
+      url: urlsBase.api + '/tgrSuscriptorWs/api/suscriptor/certificado/obtener',
       method: 'POST'
     },
     certificadoHistorialPago: {
-      url: urlsBase.publica,
-      path: '/recaPagoConsultasWS/api/pago/consulta',
+      url: urlsBase.api + '/recaPagoConsultasWS/api/pago/consulta',
       method: 'POST'
     },
     obtenerBienRaizAsociado: {
-      url: urlsBase.privada,
-      path: pathBase.clienteBienRaiz + '/asociado/obtener',
+      url: urlsBase.api + '/ClienteBienRaizWS/api/BienRaiz/asociado/obtener',
       method: 'GET'
     },
     obtenerBienRaizNoAsociado: {
-      url: urlsBase.privada,
-      path: pathBase.clienteBienRaiz + '/noasociado/obtener',
+      url: urlsBase.api + '/ClienteBienRaizWS/api/BienRaiz/noasociado/obtener',
       method: 'GET'
     },
     asociarBienRaiz: {
-      url: urlsBase.privada,
-      path: pathBase.clienteBienRaiz + '/bienraiz/asociar',
+      url: urlsBase.api + '/ClienteBienRaizWS/api/BienRaiz/bienraiz/asociar',
       method: 'POST'
     },
     desasociarBienRaiz: {
-      url: urlsBase.privada,
-      path: pathBase.clienteBienRaiz + '/bienraiz/desasociar',
+      url: urlsBase.api +  '/ClienteBienRaizWS/api/BienRaiz/bienraiz/desasociar',
       method: 'POST'
     },
     recuperarDeudaRol: {
-      url: urlsBase.publica,
-      path: pathBase.deudaRol + '/deuda/rol/obtiene',
+      url: urlsBase.api +  '/RecuperaDeudaROLRS/api/bienraiz/deuda/rol/obtiene',
       method: 'POST'
     },
     buscarBienRaiz: {
-      url: urlsBase.publica,
-      path: pathBase.bienRaiz + '/bienraiz/obtener/rolin',
+      url: urlsBase.api +  '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin',
       method: 'POST'
     }
   },

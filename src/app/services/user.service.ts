@@ -16,17 +16,10 @@ export class UserService {
 
   email: string;
   solicitarEmail = true;
-  
-  
-  
 
   constructor(private contributions: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private buscarRoles: ContribucionesBuscarRolService) {
-                //borrar diseño
-                //this.rut = 12182216;
-                //this.dv = '4';
-                //this.solicitarEmail = false;
   }
 
   redirectMiCuenta(): void {
