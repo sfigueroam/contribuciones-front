@@ -82,8 +82,8 @@ export class AgregarNuevaComponent implements OnInit {
     this.viewRecaptcha2 = false;
     this.recaptcha3 = new TgrReCaptcha();
 
-    this.recaptcha2.siteKey = '6LcObZUUAAAAAIy5A6GCnsxaIyt30YjQeZnShVls';
-    this.recaptcha3.siteKey = '6Lc2dpUUAAAAAMYdfS1Cin3np310tS_dYpoH9JxC';
+    this.recaptcha2.siteKey = environment.recaptcha.v2.key;
+    this.recaptcha3.siteKey = environment.recaptcha.v3.key;
     this.recaptcha3.action = 'buscar';
 
 
