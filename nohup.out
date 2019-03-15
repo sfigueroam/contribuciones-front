@@ -1,0 +1,100 @@
+
+> tgr-contribuciones-frontend@0.0.0 start /home/ec2-user/environment/contribuciones-front
+> ng serve --port 4202 --host 0.0.0.0
+
+** Angular Live Development Server is listening on 0.0.0.0:4202, open your browser on http://localhost:4202/ **
+
+Date: 2019-03-12T20:21:33.220Z
+Hash: fcefa36fed324a253a42
+Time: 31708ms
+chunk {main} main.js, main.js.map (main) 329 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 289 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 5.22 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 414 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 4.93 MB [initial] [rendered]
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+[34mℹ[39m [90m｢wdm｣[39m: Compiling...
+
+Date: 2019-03-12T20:22:25.091Z - Hash: fcefa36fed324a253a42 - Time: 521ms
+5 unchanged chunks
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+
+> tgr-contribuciones-frontend@0.0.0 start /home/ec2-user/environment/contribuciones-front
+> ng serve --port 4202 --host 0.0.0.0
+
+** Angular Live Development Server is listening on 0.0.0.0:4202, open your browser on http://localhost:4202/ **
+[34mℹ[39m [90m｢wdm｣[39m: wait until bundle finished: /index.html
+[34mℹ[39m [90m｢wdm｣[39m: wait until bundle finished: /index.html
+
+Date: 2019-03-12T20:40:07.663Z
+Hash: fcefa36fed324a253a42
+Time: 22225ms
+chunk {main} main.js, main.js.map (main) 329 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 289 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 5.22 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 414 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 4.93 MB [initial] [rendered]
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+
+> tgr-contribuciones-frontend@0.0.0 start /home/ec2-user/environment/contribuciones-front
+> ng serve --port 4202 --host 0.0.0.0 --disableHostCheck
+
+Port 4202 is already in use. Use '--port' to specify a different port.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! tgr-contribuciones-frontend@0.0.0 start: `ng serve --port 4202 --host 0.0.0.0 --disableHostCheck`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the tgr-contribuciones-frontend@0.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/ec2-user/.npm/_logs/2019-03-12T20_52_07_613Z-debug.log
+
+> tgr-contribuciones-frontend@0.0.0 start /home/ec2-user/environment/contribuciones-front
+> ng serve --port 4202 --host 0.0.0.0 --disableHostCheck
+
+WARNING: Running a server with --disable-host-check is a security risk. See https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a for more information.
+** Angular Live Development Server is listening on 0.0.0.0:4202, open your browser on http://localhost:4202/ **
+[34mℹ[39m [90m｢wdm｣[39m: wait until bundle finished: /
+[34mℹ[39m [90m｢wdm｣[39m: wait until bundle finished: /
+
+Date: 2019-03-12T20:57:36.305Z
+Hash: fcefa36fed324a253a42
+Time: 20133ms
+chunk {main} main.js, main.js.map (main) 329 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 289 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 5.22 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 414 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 4.93 MB [initial] [rendered]
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+[34mℹ[39m [90m｢wdm｣[39m: Compiling...
+
+Date: 2019-03-12T21:00:53.145Z - Hash: 26cce46be362b1d3d500 - Time: 1917ms
+4 unchanged chunks
+chunk {main} main.js, main.js.map (main) 329 kB [initial] [rendered]
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+[34mℹ[39m [90m｢wdm｣[39m: Compiling...
+
+Date: 2019-03-13T02:08:22.447Z - Hash: 8a3807aad420cf4a1d8b - Time: 2081ms
+4 unchanged chunks
+chunk {main} main.js, main.js.map (main) 329 kB [initial] [rendered]
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+
+> tgr-contribuciones-frontend@0.0.0 start /home/ec2-user/environment/contribuciones-front
+> ng serve --port 4202 --host 0.0.0.0 --disableHostCheck
+
+WARNING: Running a server with --disable-host-check is a security risk. See https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a for more information.
+** Angular Live Development Server is listening on 0.0.0.0:4202, open your browser on http://localhost:4202/ **
+[34mℹ[39m [90m｢wdm｣[39m: wait until bundle finished: /
+[34mℹ[39m [90m｢wdm｣[39m: wait until bundle finished: /
+
+Date: 2019-03-13T02:19:21.153Z
+Hash: 8a3807aad420cf4a1d8b
+Time: 22123ms
+chunk {main} main.js, main.js.map (main) 329 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 289 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 5.22 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 414 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 4.93 MB [initial] [rendered]
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.

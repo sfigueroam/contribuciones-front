@@ -1,3 +1,9 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col m-0auto pay-title">
+    <h5 class="title text-primary text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
+    <p class="text-left">Busca una o más propiedades y agrégalas al carrito.</p>
+  </div>
+</div>
 <div class="tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait">
   <div class="tgr-cell-wait">
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
@@ -5,18 +11,17 @@
   </div>
   <div class="tgr-card__head">
     <div class="tgr-switch">
-
-      <button class="mdl-button mdl-js-button" [class.tgr-switch-active]="switchActive === 'direccion'"
-              (click)="changeSwith('direccion')">
-        Dirección
-      </button>
       <button class="mdl-button mdl-js-button " [class.tgr-switch-active]="switchActive === 'rol'"
               (click)="changeSwith('rol')">
         Rol
       </button>
+      <button class="mdl-button mdl-js-button" [class.tgr-switch-active]="switchActive === 'direccion'"
+              (click)="changeSwith('direccion')">
+        Dirección
+      </button>
     </div>
 
-    <span class="tgr-card__title--text small-text">Búsqueda de Propiedades</span>
+    <span class="tgr-card__title--text small-text">Buscar por:</span>
   </div>
   <ngx-invisible-recaptcha #captchaElem
                            [siteKey]="recaptcha2.siteKey"
@@ -53,7 +58,7 @@
                      (keyup)="inputDirecciones($event)"
                      (ngModel)="direccionModel"
                      floating-label
-                     label="Dirección *"
+                     label="Dirección"
                      error-msg="Debe ingresar al menos 3 caracteres">
       </mdl-textfield>
 
@@ -131,16 +136,19 @@
   </app-propiedad>
 </div>
 
-<div class="tgr-actions" [class.hidden]="bottomToolbarHidden">
+<p class="contador-propiedades">Llevas <strong>0</strong> propiedades en el carrito</p>
+<div class="tgr-actions">
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">
+
       <button id="agregar_propiedades" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [disabled]="cantidadSeleccionadas == 0"
-              (click)="asociarPropiedades()">
+        (click)="asociarPropiedades()">
         Agregar {{cantidadSeleccionadas}} propiedades
       </button>
-      <button type="button" class="mdl-button  mdl-button--raised mdl-button--return"  (click)="volver()" >
-        Volver
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return"  (click)="volver()" >
+        Ir al Carrito
+        <i class="material-icons">keyboard_arrow_right</i>
       </button>
     </div>
   </div>

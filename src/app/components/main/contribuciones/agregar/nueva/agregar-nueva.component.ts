@@ -48,7 +48,7 @@ export class AgregarNuevaComponent implements OnInit {
   direccion: FormControl;
 
   propiedades: Propiedad[];
-  switchActive = 'direccion';
+  switchActive = 'rol';
   busquedaEnEjecucion = false;
 
   cantidadSeleccionadas: number;
