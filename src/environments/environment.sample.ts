@@ -19,18 +19,12 @@ const urlsBase = {
 };
 
 
-const pathBase = {
-  clienteBienRaiz: '/ClienteBienRaizWS/api/BienRaiz',
-  deudaRol: '/RecuperaDeudaROLRS/api/bienraiz',
-  bienRaiz: '/BienRaizWS/api/BienRaiz'
-};
-
 
 export const environment = {
   snackbarTime: 5000,
   production: true,
   //TODO: llamar a una url privada de cuenta de usuario sin client-id
-  cuentaUrl: 'BUILD_CUENTA_USUARIO_URL',
+  cuentaUrl: 'BUILD_CUENTA_USUARIO_URL' + '/redirect',
   pago: {
     url: 'BUILD_BOTON_PAGO_TGR_URL'
   },

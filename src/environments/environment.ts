@@ -5,26 +5,18 @@ const endpoints = {
   validateRecaptcha: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev'
 };
 
+const keyRecaptcha = {
+  v2: '6LcObZUUAAAAAIy5A6GCnsxaIyt30YjQeZnShVls',
+  v3: '6Lc2dpUUAAAAAMYdfS1Cin3np310tS_dYpoH9JxC'
+};
+
 const urlsBase = {
   api: endpoints.base + '/api',
   elastic: endpoints.elastic,
   lambdaRoles: endpoints.lambdaRoles + '/roles',
   recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
   recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3'
-
 };
-
-const id = {
-  authorizeURL: "https://autentica-dev.tegere.info/oauth2/authorize",
-  clientId: "178vr805sl67cfm1u83m3vtv3c",
-  redirectURI: "http://localhost:4302/login"
-};
-
-const keyRecaptcha = {
-  v2: '6LcObZUUAAAAAIy5A6GCnsxaIyt30YjQeZnShVls',
-  v3: '6Lc2dpUUAAAAAMYdfS1Cin3np310tS_dYpoH9JxC'
-};
-
 
 
 
@@ -32,7 +24,7 @@ export const environment = {
 
   snackbarTime: 5000,
   production: true,
-  cuentaUrl: id.authorizeURL + "?response_type=token&client_id=" + id.clientId + "&redirect_uri=" + id.redirectURI,
+  cuentaUrl: 'http://localhost:4201' + '/redirect',
   pago: {
     url: 'http://test2.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
   },
