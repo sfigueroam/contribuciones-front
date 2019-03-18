@@ -8,20 +8,24 @@
         </a>
         <mdl-layout-spacer></mdl-layout-spacer>
         <nav class="mdl-navigation">
-          <button class="mdl-navigation__link cuenta-usuario"
-                  #btnMenu="mdlButton"
-                  (click)="menu.toggle($event, btnMenu)"
+          <button class="mdl-navigation__link cuenta-usuario"  *ngIf="!logged"
+                  (click)="redirigirLogin()"
                   mdl-button
                   mdl-button-type="icon">
             <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
             <span class="account-user-text">Ingresar</span>
           </button>
-          <!-- <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
-            <mdl-menu-item *ngIf="!logged"
-                           (click)="redirigirLogin()"
-                           mdl-ripple>
-              Iniciar Sesión
-            </mdl-menu-item>
+
+
+          <button class="mdl-navigation__link cuenta-usuario"  *ngIf="logged"
+                  #btnMenu="mdlButton"
+                  (click)="menu.toggle($event, btnMenu)"
+                  mdl-button
+                  mdl-button-type="icon">
+            <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
+            <span class="account-user-text">Mi TGR</span>
+          </button>
+           <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
             <mdl-menu-item *ngIf="logged"
                            (click)="redirigirMiCuenta()"
                            mdl-ripple mdl-menu-item-full-bleed-divider>
@@ -32,7 +36,7 @@
                            mdl-ripple>
               Cerrar Sesión
             </mdl-menu-item>
-          </mdl-menu> -->
+          </mdl-menu>
         </nav>
       </mdl-layout-header-row>
     </mdl-layout-header>
