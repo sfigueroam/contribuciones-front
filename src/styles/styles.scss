@@ -222,10 +222,13 @@ html, body, h1, h2, h3, h4, h5 {
 
 //
 .title {
-  margin: 25px auto 5px auto;
+  margin: 0 auto 5px auto;
+  line-height: 24px;
 }
 
 .pay-title {
+  color: $color-dark-blue-text;
+  margin-top: 15px;
   p {
     font-size: 16px;
     color: $color-dark-gray;
@@ -248,6 +251,37 @@ html, body, h1, h2, h3, h4, h5 {
   }
 
 }
+
+// INICIO HEADER
+.cuenta-usuario {
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    text-transform: none;
+    .mdl-button--account-user {
+        display: block;
+        margin-top: -5px;
+        transition: .4s;
+        &:hover {
+          background-color: rgba(84, 84, 85, .2);
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+        }
+    }
+    span.ingresar {
+        display: block;
+        margin-top: 26px;
+        color: $color-dark-gray;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: transparent !important;
+        color: $color-dark-gray !important;
+    }
+}
+// FIN HEADER
 
 .rol-card .rol-card {
   margin-left: 0;
@@ -276,7 +310,7 @@ html, body, h1, h2, h3, h4, h5 {
 
 // encabezado card
 .tgr-card__head {
-  border-bottom: 2px solid $color-filter;
+  border-bottom: 2px solid $color-dark-blue-text;
   color: $color-primary;
   overflow: hidden;
   padding: 20px 16px;
@@ -291,7 +325,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .tgr-switch {
-  border: 1px solid $color-filter;
+  border: 1px solid $color-dark-blue-text;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 2px;
   float: right;

@@ -1,7 +1,25 @@
 <div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col linea-tiempo-1">
+    <div class="pasos">
+      <div class="bullet active"></div>
+      <p class="active">Buscar<br><span class="mdl-layout--large-screen-only">Propiedades</span></p>
+    </div>
+    <i class="material-icons">keyboard_arrow_right</i>
+    <div class="pasos">
+      <div class="bullet"></div>
+      <p>Seleccionar<br><span class="mdl-layout--large-screen-only">Deudas</span></p>
+    </div>
+    <i class="material-icons">keyboard_arrow_right</i>
+    <div class="pasos">
+      <div class="bullet"></div>
+      <p>Pagar</p>
+    </div>
+  </div>
+</div>
+<div class="mdl-grid">
   <div class="mdl-cell mdl-cell--4-col m-0auto pay-title">
-    <h5 class="title text-primary text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
-    <p class="text-left">Busca una o más propiedades y agrégalas al carrito.</p>
+    <h5 class="title text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
+    <p class="text-left">Busca una o más propiedades y agrégalas al carro.</p>
   </div>
 </div>
 <div class="tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait">
@@ -127,7 +145,7 @@
   </app-propiedad>
 </div>
 
-<p class="contador-propiedades">Llevas <strong>0</strong> propiedades en el carrito</p>
+<p class="contador-propiedades">Llevas <strong>0</strong> propiedades en el carro</p>
 <div class="tgr-actions">
   <div class="tgr-actions__content">
 
@@ -138,7 +156,7 @@
         Agregar {{cantidadSeleccionadas}} propiedades
       </button>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return"  (click)="volver()" >
-        Ir al Carrito
+        Ir al Carro
         <i class="material-icons">keyboard_arrow_right</i>
       </button>
     </div>

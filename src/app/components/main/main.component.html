@@ -8,14 +8,15 @@
         </a>
         <mdl-layout-spacer></mdl-layout-spacer>
         <nav class="mdl-navigation">
-          <button class="mdl-navigation__link"
+          <button class="mdl-navigation__link cuenta-usuario"
                   #btnMenu="mdlButton"
                   (click)="menu.toggle($event, btnMenu)"
                   mdl-button
                   mdl-button-type="icon">
             <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
+            <span class="ingresar">Ingresar</span>
           </button>
-          <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
+          <!-- <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
             <mdl-menu-item *ngIf="!logged"
                            (click)="redirigirLogin()"
                            mdl-ripple>
@@ -31,7 +32,7 @@
                            mdl-ripple>
               Cerrar Sesión
             </mdl-menu-item>
-          </mdl-menu>
+          </mdl-menu> -->
         </nav>
       </mdl-layout-header-row>
     </mdl-layout-header>
