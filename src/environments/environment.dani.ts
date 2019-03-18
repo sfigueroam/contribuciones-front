@@ -1,26 +1,36 @@
 const endpoints = {
-  base: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
-  lambdaRoles: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
+  base: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev',
+  lambdaRoles: '',
   elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
+  validateRecaptcha: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev'
+};
+
+const keyRecaptcha = {
+  v2: '6LcObZUUAAAAAIy5A6GCnsxaIyt30YjQeZnShVls',
+  v3: '6Lc2dpUUAAAAAMYdfS1Cin3np310tS_dYpoH9JxC'
 };
 
 const urlsBase = {
   api: endpoints.base + '/api',
   elastic: endpoints.elastic,
-  lambdaRoles: endpoints.lambdaRoles + '/roles'
+  lambdaRoles: endpoints.lambdaRoles + '/roles',
+  recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
+  recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3'
 };
 
 
+
 export const environment = {
+
   snackbarTime: 5000,
   production: true,
-  cuentaUrl: 'BUILD_CUENTA_USUARIO_URL',
+  cuentaUrl: 'http://localhost:4201' + '/redirect',
   pago: {
-    url: 'https://completar-en-system-manager.com'
+    url: 'http://test2.tesoreria.cl/ConsultaTipoDeudaWEB/enviaMedioPago'
   },
   cognito: {
     authorizeURL: 'https://autentica-dev.tegere.info/oauth2/authorize',
-    logoutURL: 'https://autentica.tegere.info/logout',
+    logoutURL: '',
     clientId: '2ihs7thp1tgtpqtdj3576kvbgr',
     redirectUri: 'https://bbrr-dmezaa.tegere.info/login',
     logoutUri: 'https://bbrr-dmezaa.tegere.info/logout',
@@ -116,5 +126,17 @@ export const environment = {
       url: urlsBase.elastic + '/search/propiedad',
       method: 'POST'
     },
+  },
+  recaptcha: {
+    v2: {
+      url: urlsBase.recaptcha2,
+      method: 'POST',
+      key: keyRecaptcha.v2
+    },
+    v3: {
+      url: urlsBase.recaptcha3,
+      method: 'POST',
+      key: keyRecaptcha.v3
+    }
   }
 };
