@@ -32,7 +32,7 @@ export const environment = {
     authorizeURL: 'https://autentica-dev.tegere.info/oauth2/authorize',
     logoutURL: '',
     clientId: '3eqo995p7hord0t8vsdma4r8a8',
-    redirectUri: 'http://localhost:4202/login',
+    redirectUri: 'https://bbrr-dmezaa.tegere.info/login',
     logoutUri: '',
     jwtCookieName: 'tgr-jwt',
     expCookieName: 'exp',
