@@ -16,6 +16,9 @@
       &.active {
         background-color: $link-color;
       }
+      &.done {
+        background-color: $color-dark-blue-text;
+      }
     }
     p {
       text-align: center;
@@ -27,6 +30,9 @@
         color: $link-color;
         font-weight: 500;
       }
+      &.done {
+        color: $color-dark-blue-text;
+      }
       @media (max-width: 480px) {
         font-size: 16px;
       }
@@ -34,8 +40,8 @@
   }
   i {
     color: rgba(0, 0, 0, .4);
-    &.active {
-      color: $link-color;
+    &.done {
+      color: $color-dark-blue-text;
     }
   }
 }
