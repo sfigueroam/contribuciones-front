@@ -1,45 +1,4 @@
 @import '../../../../../../styles/colors';
-
-.linea-tiempo-1 {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  margin-bottom: 1px;
-  .pasos {
-    text-align: center;
-    .bullet {
-      margin-right: auto;
-      margin-left: auto;
-      height: 15px;
-      width: 15px;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, .4);
-      &.active {
-        background-color: $link-color;
-      }
-    }
-    p {
-      text-align: center;
-      margin-top: 6px;
-      line-height: 15px;
-      color: rgba(0, 0, 0, .4);
-      font-size: 14px;
-      &.active {
-        color: $link-color;
-        font-weight: 500;
-      }
-      @media (max-width: 480px) {
-        font-size: 16px;
-      }
-    }
-  }
-  i {
-    color: rgba(0, 0, 0, .4);
-    &.active {
-      color: $link-color;
-    }
-  }
-}
 .tgr-content.tgr-search {
   .tgr-card__head {
   	color: $gray-text-dark;

@@ -29,6 +29,7 @@ import {HistorialPagoComponent} from './components/main/certificados/obtener/his
 import {NgxBarcodeModule} from 'ngx-barcode';
 import {AsociarCorreoComponent} from './components/dialogs/asociar-correo/asociar-correo.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { LineaTiempoComponent } from './components/main/contribuciones/linea-tiempo/linea-tiempo.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -52,6 +53,7 @@ registerLocaleData(localeEs, 'es');
     CertificadoDeudaComponent,
     HistorialPagoComponent,
     AsociarCorreoComponent,
+    LineaTiempoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col linea-tiempo-1">
+    <div class="pasos">
+      <div class="bullet" [class.active]="buscar"></div>
+      <p [class.active]="buscar">Buscar<br><span class="mdl-layout--large-screen-only">Propiedades</span></p>
+    </div>
+    <i class="material-icons">keyboard_arrow_right</i>
+    <div class="pasos" >
+      <div class="bullet" [class.active]="seleccionar"></div>
+      <p [class.active]="seleccionar">Seleccionar<br><span class="mdl-layout--large-screen-only">Deudas</span></p>
+    </div>
+    <i class="material-icons">keyboard_arrow_right</i>
+    <div class="pasos">
+      <div class="bullet" [class.active]="pagar"></div>
+      <p [class.active]="pagar">Pagar</p>
+    </div>
+  </div>
+</div>
