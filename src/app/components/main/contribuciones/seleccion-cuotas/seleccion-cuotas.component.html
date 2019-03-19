@@ -11,7 +11,7 @@
     </div>
   </div>
 </div>
-<app-linea-tiempo [seleccionar]="propiedades.length > 0"></app-linea-tiempo>
+<app-linea-tiempo [seleccionar]="propiedades.length > 0 && cantidadSeleccionadas > 0" [doneBuscar]="propiedades.length > 0 " ></app-linea-tiempo>
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--4-col m-0auto text-center pay-title">
     <h5 class="title text-mont">Seleccionar Mis <strong>Deudas</strong></h5>

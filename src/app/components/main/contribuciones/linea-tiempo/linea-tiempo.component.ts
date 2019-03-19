@@ -11,12 +11,13 @@ export class LineaTiempoComponent implements OnInit {
 
   @Input()
   buscar: boolean;
-
   @Input()
   seleccionar: boolean;
 
   @Input()
-  pagar: boolean;
+  doneBuscar: boolean;
+  @Input()
+  doneSeleccionar: boolean;
 
 
   constructor() { }
