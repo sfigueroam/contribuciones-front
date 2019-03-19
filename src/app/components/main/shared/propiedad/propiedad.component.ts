@@ -120,4 +120,9 @@ export class PropiedadComponent implements OnInit {
     return roles;
 
   }
+  getCantRoles(): number {
+    const rolesList = this.propiedadRolComponentList.toArray();
+    return rolesList.length;
+
+  }
 }

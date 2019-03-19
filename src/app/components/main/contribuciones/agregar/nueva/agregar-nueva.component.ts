@@ -60,6 +60,7 @@ export class AgregarNuevaComponent implements OnInit {
 
   dialogoRecuperarPropiedadesEmail: boolean;
   viewRecaptcha2: boolean;
+  countPropiedades: number;
 
 
   @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
@@ -169,6 +170,8 @@ export class AgregarNuevaComponent implements OnInit {
         );
       });
     }
+
+    this.countPropiedades = this.contribuciones.getCountPropiedad();
   }
 
   buscarRolPost(): void {

@@ -23,6 +23,19 @@ export class ContribucionesService {
     this.propiedades = [];
   }
 
+  getCountPropiedad(): number{
+    let cantidad = 0;
+    if (this.propiedades === undefined || this.propiedades == null) {
+      return 0;
+    }
+
+    for(const prop of this.propiedades ){
+      cantidad = cantidad + prop.countRol();
+    }
+    return cantidad;
+
+  }
+
   addPropiedad(response: Propiedad) {
     if (this.propiedades === undefined || this.propiedades == null) {
       this.propiedades = [];

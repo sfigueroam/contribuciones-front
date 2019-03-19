@@ -23,6 +23,11 @@ export class Propiedad {
     this.idDireccion = '';
   }
 
+  countRol(): number{
+    if(this.roles !== undefined){
+      return this.roles.length;
+    }
+  }
   addRol(rol: Rol) {
     this.roles.push(rol);
     rol.completeStream.subscribe(

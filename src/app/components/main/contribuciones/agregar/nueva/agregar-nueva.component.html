@@ -137,7 +137,10 @@
   </app-propiedad>
 </div>
 
-<p class="contador-propiedades">Llevas <strong>0</strong> propiedades en el carro</p>
+<p class="contador-propiedades" *ngIf="countPropiedades == 1; else propiedadesTemplate" >Lleva <strong>{{countPropiedades}}</strong> propiedad en el carro</p>
+<ng-template #propiedadesTemplate>
+  <p class="contador-propiedades">Llevas <strong>{{countPropiedades}}</strong> propiedades en el carro</p>
+</ng-template>
 <div class="tgr-actions">
   <div class="tgr-actions__content">
 
