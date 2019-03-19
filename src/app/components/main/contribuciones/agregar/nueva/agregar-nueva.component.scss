@@ -1,5 +1,7 @@
 @import '../../../../../../styles/colors';
 .tgr-content.tgr-search {
+  margin-left: auto;
+  margin-right: auto;
   .tgr-card__head {
   	color: $gray-text-dark;
   	padding: 10px 18px;
@@ -133,6 +135,10 @@
 .tgr-pay {
 	margin-top: 17px;
 	    text-align: center;
+}
+.grecaptcha-badge {
+  bottom: 70px !important;
+  z-index: 5 !important;
 }
 .tgr-results .mdl-checkbox {
 	float: right;
