@@ -17,7 +17,9 @@
     <h5 class="title text-mont">Seleccionar Mis <strong>Deudas</strong></h5>
   </div>
 </div>
-<div class="mdl-grid switch-fee-text">
+
+
+<div class="mdl-grid switch-fee-text" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--4-col m-0auto mb-0 select-fee">
     <p>Selecciona las cuotas que pagarás</p>
     <div class="tgr-select tgr-select--buttons">
@@ -39,6 +41,14 @@
   </div>
 </div>
 
+<ng-template #bodySinDeuda>
+  <div class="mdl-grid switch-fee-text">
+
+    <button  [routerLink]="['/main/contribuciones/agregar/nueva']">Agregar propiedades</button>
+  </div>
+
+</ng-template>
+
 <div class="mdl-grid" *ngFor="let propiedad of propiedades">
   <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--5-col m-0auto rol-card"
        *ngIf="propiedad.roles.length > 0">
@@ -46,7 +56,7 @@
   </div>
 </div>
 
-<div class="mdl-grid">
+<div class="mdl-grid" *ngIf="propiedades.length > 0">
   <div class="mdl-cell mdl-cell--4-col total-buy m-0auto">
     <p class="text-primary text-center">
       <strong>Total: $ {{total | number}}</strong>
@@ -59,7 +69,7 @@
   </div>
 </div>
 
-<div class="tgr-actions tgr-mini-footer">
+<div class="tgr-actions tgr-mini-footer" *ngIf="propiedades.length > 0; else footeractions">
   <div *ngIf="!complete" class="tgr-loading2">
     <mdl-spinner single-color active></mdl-spinner>
     <p>Estamos calculando tu monto a pagar</p>
@@ -79,7 +89,13 @@
   </div>
 </div>
 
-<div class="tgr-add">
+<ng-template #footeractions>
+  <div class="tgr-actions tgr-mini-footer">
+    No hay deudas seleccionadas para pagar
+  </div>
+</ng-template>
+
+<div class="tgr-add" *ngIf="propiedades.length > 0">
   <div class="tgr-target-wrapper">
     <div class="tgr-target-wave tgr-target-wave--button">
       <button mdl-button mdl-button-type="fab" mdl-colored="accent" class="new-rol"
@@ -120,7 +136,7 @@
               <td>{{cuota.numeroCuota}}</td>
               <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
               <!--<td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : (cuota.liqParcial ? cuota.liqParcial.saldoTotal : 0)) | number}}</td>-->
-              <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal ) | number}}</td>
+              <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
             </tr>
             </tbody>
           </table>
