@@ -12,8 +12,8 @@ import {ObtenerComponent} from './components/main/certificados/obtener/obtener.c
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/main/contribuciones/seleccionar-cuotas',
-    //redirectTo: '/main/contribuciones/agregar/nueva',
+    //redirectTo: '/main/contribuciones/seleccionar-cuotas',
+    redirectTo: '/main/contribuciones/agregar/nueva',
     pathMatch: 'full'
   }, {
     path: 'login',
