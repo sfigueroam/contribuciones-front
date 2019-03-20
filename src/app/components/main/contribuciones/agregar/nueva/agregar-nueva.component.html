@@ -1,6 +1,6 @@
 <app-linea-tiempo [buscar]="true" ></app-linea-tiempo>
 <div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--4-col m-0auto pay-title">
+  <div class="mdl-cell mdl-cell--6-col m-0auto pay-title">
     <h5 class="title text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
     <p class="text-left">Busca una o más propiedades y agrégalas al carro.</p>
   </div>
@@ -14,7 +14,7 @@
     <div class="tgr-switch">
       <button class="mdl-button mdl-js-button " [class.tgr-switch-active]="switchActive === 'rol'"
               (click)="changeSwith('rol')">
-        Rol
+        ROL
       </button>
       <button class="mdl-button mdl-js-button" [class.tgr-switch-active]="switchActive === 'direccion'"
               (click)="changeSwith('direccion')">
@@ -35,43 +35,51 @@
 
   <form [formGroup]="formDireccion" (submit)="buscarDireccion()">
     <div class="tgr-card__body " [class.hidden]="switchActive === 'rol'">
-      <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
-                  [autocomplete]="true"
-                  (change)="autoCompletarPropiedad()"
-                  error-msg="Debe seleccionar un tipo de propiedad"
-                  [formControl]="tipoPropiedad"
-                  label="Tipo Propiedad"
-                  floating-label>
-        <mdl-option [value]="-1">Todos</mdl-option>
-        <mdl-option
-          *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
-          [value]="tipo.id">{{tipo.descripcion | titlecase}}
-        </mdl-option>
-      </mdl-select>
-      <div class="tgr-newsearch" [class.is-suggesting]="searchDireccion">
-      <mdl-textfield type="text"
-                     [class.is-invalid]="direccion.invalid && direccion.touched"
-                     (focus)="ocultarToolbar()"
-                     (blur)="mostrarToolbar()"
-                     id="direccion"
-                     name="direccion"
-                     [formControl]="direccion"
-                     (keyup)="inputDirecciones($event)"
-                     (ngModel)="direccionModel"
-                     floating-label
-                     label="Dirección"
-                     error-msg="Debe ingresar al menos 3 caracteres">
-      </mdl-textfield>
+      <div class="ayuda-busqueda">
+        <p>
+          <i class="material-icons">help</i>
+          ¿Cómo buscar por <strong>Dirección</strong>?
+        </p>
+      </div>
+      <div class="tgr-card__search ">
+        <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
+                    [autocomplete]="true"
+                    (change)="autoCompletarPropiedad()"
+                    error-msg="Debe seleccionar un tipo de propiedad"
+                    [formControl]="tipoPropiedad"
+                    label="Tipo Propiedad"
+                    floating-label>
+          <mdl-option [value]="-1">Todos</mdl-option>
+          <mdl-option
+            *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+            [value]="tipo.id">{{tipo.descripcion | titlecase}}
+          </mdl-option>
+        </mdl-select>
+        <div class="tgr-newsearch" [class.is-suggesting]="searchDireccion">
+          <mdl-textfield type="text"
+                         [class.is-invalid]="direccion.invalid && direccion.touched"
+                         (focus)="ocultarToolbar()"
+                         (blur)="mostrarToolbar()"
+                         id="direccion"
+                         name="direccion"
+                         [formControl]="direccion"
+                         (keyup)="inputDirecciones($event)"
+                         (ngModel)="direccionModel"
+                         floating-label
+                         label="Dirección"
+                         error-msg="Debe ingresar al menos 3 caracteres">
+          </mdl-textfield>
 
-        <ul class="tgr-suggestions">
-          <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
-              (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
-            titlecase}}
-            <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol |
-              leadingZero:3}}
-            </small>
-          </li>
-        </ul>
+          <ul class="tgr-suggestions">
+            <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
+                (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
+              titlecase}}
+              <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol |
+                leadingZero:3}}
+              </small>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="tgr-card__footer .tgr-pay">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
@@ -80,9 +88,15 @@
       </div>
     </div>
   </form>
-  <div class="content tgr-card__body " [class.hidden]="switchActive === 'direccion'">
+  <div class="tgr-card__body " [class.hidden]="switchActive === 'direccion'">
+    <div class="ayuda-busqueda">
+      <p>
+        <i class="material-icons">help</i>
+        ¿Cómo buscar por <strong>ROL</strong>?
+      </p>
+    </div>
     <form [formGroup]="formRol" (ngSubmit)="buscarRol()">
-      <div class="tgr-card__body ">
+      <div class="tgr-card__search ">
         <mdl-select #autocompleteSelect [class.is-invalid]="comuna.touched && comuna.invalid"
                     [autocomplete]="true"
                     (focus)="ocultarToolbar()"
@@ -122,7 +136,9 @@
       </div>
       <div class="tgr-card__footer">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
-                [disabled]="formRol.invalid">Buscar
+                [disabled]="formRol.invalid">
+                  <i class="material-icons">search</i>
+                  Buscar
         </button>
       </div>
     </form>
@@ -137,7 +153,7 @@
   </app-propiedad>
 </div>
 
-<p class="contador-propiedades" *ngIf="countPropiedades == 1; else propiedadesTemplate" >Lleva <strong>{{countPropiedades}}</strong> propiedad en el carro</p>
+<p class="contador-propiedades" *ngIf="countPropiedades == 1; else propiedadesTemplate" >Llevas <strong>{{countPropiedades}}</strong> propiedad en el carro</p>
 <ng-template #propiedadesTemplate>
   <p class="contador-propiedades">Llevas <strong>{{countPropiedades}}</strong> propiedades en el carro</p>
 </ng-template>

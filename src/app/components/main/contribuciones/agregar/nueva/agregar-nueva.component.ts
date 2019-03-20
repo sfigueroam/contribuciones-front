@@ -297,7 +297,7 @@ export class AgregarNuevaComponent implements OnInit {
 
       },
       () => {
-        this.error('A ocurrido un error al buscar una propiedad');
+        this.error('Ha ocurrido un error al buscar una propiedad');
         this.resetCaptcha2();
       });
   }

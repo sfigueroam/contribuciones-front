@@ -236,6 +236,10 @@ html, body, h1, h2, h3, h4, h5 {
     font-size: 16px;
     color: $color-dark-gray;
     margin-top: 12px;
+    text-align: center;
+    @media (max-width: 480px) {
+      text-align: left;
+    }
   }
 }
 
@@ -521,6 +525,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 .tgr-actions.tgr-mini-footer {
   min-height: 40px;
+  text-align: center;
   overflow: hidden;
   background-color: $color-white;
   color: $color-default-dark;
@@ -953,7 +958,7 @@ button.button-question {
 
 .mdl-layout__header-row .mdl-navigation:last-child .mdl-navigation__link{
 padding: 0;
-margin: 0 24px;
+margin: 1px;
 }
 .tgr-actions.tgr-mini-footer .mdl-button:hover {
   color: #000;
