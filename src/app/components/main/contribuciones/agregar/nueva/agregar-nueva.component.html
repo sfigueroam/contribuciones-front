@@ -34,13 +34,13 @@
   </ngx-invisible-recaptcha>
 
   <form [formGroup]="formDireccion" (submit)="buscarDireccion()">
-    <div class="tgr-card__body " [class.hidden]="switchActive === 'rol'">
-      <div class="ayuda-busqueda">
+    <div class="tgr-card__body body-direccion " [class.hidden]="switchActive === 'rol'">
+      <button type="button" class="ayuda-busqueda">
         <p>
           <i class="material-icons">help</i>
           ¿Cómo buscar por <strong>Dirección</strong>?
         </p>
-      </div>
+      </button>
       <div class="tgr-card__search ">
         <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
                     [autocomplete]="true"
@@ -69,6 +69,11 @@
                          label="Dirección"
                          error-msg="Debe ingresar al menos 3 caracteres">
           </mdl-textfield>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion" type="submit"
+                [disabled]="formDireccion.invalid">
+                  <i class="material-icons">search</i>
+                  Buscar
+          </button>
 
           <ul class="tgr-suggestions">
             <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
@@ -81,20 +86,15 @@
           </ul>
         </div>
       </div>
-      <div class="tgr-card__footer .tgr-pay">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
-                [disabled]="formDireccion.invalid">Buscar
-        </button>
-      </div>
     </div>
   </form>
   <div class="tgr-card__body " [class.hidden]="switchActive === 'direccion'">
-    <div class="ayuda-busqueda">
+    <button type="button" class="ayuda-busqueda">
       <p>
         <i class="material-icons">help</i>
         ¿Cómo buscar por <strong>ROL</strong>?
       </p>
-    </div>
+    </button>
     <form [formGroup]="formRol" (ngSubmit)="buscarRol()">
       <div class="tgr-card__search ">
         <mdl-select #autocompleteSelect [class.is-invalid]="comuna.touched && comuna.invalid"
@@ -148,7 +148,8 @@
 <div class="tgr-results">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
     nuevamente</h3>
-  <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+    <span>check totalizador resultados acá (debe mostrarse cuando se haya encontrado + de una propiedad)</span>
+  <app-propiedad class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
                  (change)="updateSeleccionadaTotal()">
   </app-propiedad>
 </div>

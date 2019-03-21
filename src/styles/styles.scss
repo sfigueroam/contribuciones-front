@@ -310,7 +310,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .tgr-content {
-  background: #fff;
+  background: #ffffff;
   border-radius: 4px;
   position: relative;
 }
@@ -401,7 +401,17 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .tgr-results .tgr-content {
-  width: 376px;
+  margin-bottom: 25px;
+  .tgr-card__head {
+    background-color: $color-light-gray;
+    border-left: 10px solid #931c82;
+    border-bottom: none;
+    color: $color-dark-blue-text;
+  }
+  .tgr-card__body {
+    border-left: 10px solid #931c82;
+    color: $color-dark-blue-text;
+  }
 }
 
 .mdl-layout {
