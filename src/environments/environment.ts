@@ -15,8 +15,10 @@ const urlsBase = {
   elastic: endpoints.elastic,
   lambdaRoles: endpoints.lambdaRoles + '/roles',
   recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
-  recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3'
+  recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3',
+  deviceDetect: endpoints.base + '/detect'
 };
+
 
 
 
@@ -138,5 +140,10 @@ export const environment = {
       method: 'POST',
       key: keyRecaptcha.v3
     }
+  },
+  deviceDetect: {
+    url: urlsBase.deviceDetect,
+    method: 'GET'
   }
+
 };
