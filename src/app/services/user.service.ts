@@ -17,6 +17,8 @@ export class UserService {
   email: string;
   solicitarEmail = true;
 
+
+
   constructor(private contributions: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private buscarRoles: ContribucionesBuscarRolService) {
@@ -69,4 +71,6 @@ export class UserService {
   getRolesNoAsociados(): Promise<Propiedad[]> {
     return this.sugeridas.getRolesNoAsociados(this.rut);
   }
+
+
 }

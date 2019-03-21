@@ -17,6 +17,8 @@ import {InvisibleReCaptchaComponent, ReCaptchaV3Service, ScriptService} from 'ng
 import {TgrReCaptcha} from '../../../../../domain/TgrReCaptcha';
 import {RecaptchaService} from '../../../../../services/recaptcha.service';
 import {TipoRecaptcha} from '../../../../../enum/TipoRecaptcha.enum';
+import {MdlSelectComponent} from '@angular-mdl/select';
+import {DeviceDetectService} from '../../../../../services/device-detect.service';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -57,6 +59,7 @@ export class AgregarNuevaComponent implements OnInit {
   inputDireccionesTmp = '';
 
   bottomToolbarHidden: boolean;
+  footerHidden = false;
 
   dialogoRecuperarPropiedadesEmail: boolean;
   viewRecaptcha2: boolean;
@@ -66,6 +69,10 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
   recaptcha2: TgrReCaptcha;
   recaptcha3: TgrReCaptcha;
+
+
+  @ViewChild('autocompleteSelectComuna') selectComuna: MdlSelectComponent;
+  @ViewChild('autocompleteSelectTipoPropiedades') selectTipo: MdlSelectComponent;
 
   public recaptcha: any = null;
 
@@ -77,6 +84,7 @@ export class AgregarNuevaComponent implements OnInit {
               private dialogService: MdlDialogService,
               private reCaptchaV3Service: ReCaptchaV3Service,
               private scriptService: ScriptService,
+              private deviceDetectService: DeviceDetectService,
               private recaptchaService: RecaptchaService) {
 
     this.recaptcha2 = new TgrReCaptcha();
@@ -115,15 +123,30 @@ export class AgregarNuevaComponent implements OnInit {
     this.hidden = true;
 
     this.bottomToolbarHidden = !this.user.email && this.user.solicitarEmail;
+
+
   }
 
 
   ocultarToolbar(): void {
     this.bottomToolbarHidden = true;
+    this.ocultarFooter();
   }
 
   mostrarToolbar(): void {
     this.bottomToolbarHidden = false;
+    this.mostrarFooter();
+  }
+
+  mostrarFooter(): void {
+    this.footerHidden = false;
+  }
+
+  ocultarFooter(): void {
+    if(!this.deviceDetectService.isDeviceDesktop()){
+      this.footerHidden = true;
+    }
+
   }
 
   updateSeleccionadaTotal(): void {
@@ -172,6 +195,14 @@ export class AgregarNuevaComponent implements OnInit {
     }
 
     this.countPropiedades = this.contribuciones.getCountPropiedad();
+
+    const domSelectComuna = this.selectComuna.selectInput.nativeElement as HTMLElement;
+    domSelectComuna.addEventListener('focus', () => this.ocultarFooter());
+    domSelectComuna.addEventListener('blur', () => this.mostrarFooter());
+
+    const domSelectTipo = this.selectTipo.selectInput.nativeElement as HTMLElement;
+    domSelectTipo.addEventListener('focus', () => this.ocultarFooter());
+    domSelectTipo.addEventListener('blur', () => this.mostrarFooter());
   }
 
   buscarRolPost(): void {
@@ -392,7 +423,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   executeCaptcha2(): void {
-    console.log('Ejecutando Recaptcha 2')
+    console.log('Ejecutando Recaptcha 2');
     this.offWait();
     this.captchaElem.execute();
   }
@@ -427,6 +458,5 @@ export class AgregarNuevaComponent implements OnInit {
       });
     });
   }
-
 
 }

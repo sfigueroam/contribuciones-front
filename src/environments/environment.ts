@@ -1,8 +1,8 @@
 const endpoints = {
-  base: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev',
+  base: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev',
   lambdaRoles: '',
   elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
-  validateRecaptcha: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev'
+  validateRecaptcha: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const keyRecaptcha = {
@@ -15,12 +15,15 @@ const urlsBase = {
   elastic: endpoints.elastic,
   lambdaRoles: endpoints.lambdaRoles + '/roles',
   recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
-  recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3'
+  recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3',
+  deviceDetect: endpoints.base + '/detect'
 };
 
 
 
+
 export const environment = {
+
 
   snackbarTime: 5000,
   production: true,
@@ -138,5 +141,10 @@ export const environment = {
       method: 'POST',
       key: keyRecaptcha.v3
     }
+  },
+  deviceDetect: {
+    url: urlsBase.deviceDetect,
+    method: 'GET'
   }
+
 };

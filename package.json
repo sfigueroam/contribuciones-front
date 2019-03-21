@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "local": "ng serve --port 4202 --host 0.0.0.0"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +31,7 @@
     "ngx-barcode": "^0.2.4",
     "ngx-captcha": "^5.0.0",
     "ngx-cookie-service": "^2.0.0",
+    "ngx-device-detector": "^1.3.5",
     "ngx-spinner": "",
     "rxjs": "6.0.0",
     "web-animations-js": "^2.3.1",

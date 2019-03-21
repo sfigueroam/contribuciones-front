@@ -1,8 +1,8 @@
 const endpoints = {
-  base: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev',
+  base: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
   lambdaRoles: '',
   elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
-  validateRecaptcha: 'https://aonbim65f5.execute-api.us-east-1.amazonaws.com/dev'
+  validateRecaptcha: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const keyRecaptcha = {

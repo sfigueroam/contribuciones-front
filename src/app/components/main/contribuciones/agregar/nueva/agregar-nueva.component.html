@@ -97,16 +97,14 @@
     </div>
     <form [formGroup]="formRol" (ngSubmit)="buscarRol()">
       <div class="tgr-card__search ">
-        <mdl-select #autocompleteSelect [class.is-invalid]="comuna.touched && comuna.invalid"
+        <mdl-select #autocompleteSelectComuna [class.is-invalid]="comuna.touched && comuna.invalid"
                     [autocomplete]="true"
-                    (focus)="ocultarToolbar()"
-                    (blur)="mostrarToolbar()"
                     error-msg="Debe seleccionar una Comuna"
                     [formControl]="comuna"
                     label="Comuna"
                     class="tgr-i-comuna"
                     floating-label>
-          <mdl-option *ngFor="let local of localidad| matchSorter:'comuna,idSii':autocompleteSelect.searchQuery"
+          <mdl-option *ngFor="let local of localidad| matchSorter:'comuna,idSii':autocompleteSelectComuna.searchQuery"
                       [value]="local.idSii">{{local.comuna | titlecase}} ({{local.idSii}})
           </mdl-option>
         </mdl-select>
@@ -153,11 +151,11 @@
   </app-propiedad>
 </div>
 
-<p class="contador-propiedades" *ngIf="countPropiedades == 1; else propiedadesTemplate" >Llevas <strong>{{countPropiedades}}</strong> propiedad en el carro</p>
+<p class="contador-propiedades" [class.contador-hidden]="footerHidden"  *ngIf="countPropiedades == 1; else propiedadesTemplate" >Llevas <strong>{{countPropiedades}}</strong> propiedad en el carro</p>
 <ng-template #propiedadesTemplate>
-  <p class="contador-propiedades">Llevas <strong>{{countPropiedades}}</strong> propiedades en el carro</p>
+  <p class="contador-propiedades" [class.contador-hidden]="footerHidden" >Llevas <strong>{{countPropiedades}}</strong> propiedades en el carro</p>
 </ng-template>
-<div class="tgr-actions">
+<div class="tgr-actions" [class.tgr-actions-hidden]="footerHidden">
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">

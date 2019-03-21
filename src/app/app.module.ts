@@ -30,6 +30,8 @@ import {NgxBarcodeModule} from 'ngx-barcode';
 import {AsociarCorreoComponent} from './components/dialogs/asociar-correo/asociar-correo.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { LineaTiempoComponent } from './components/main/contribuciones/linea-tiempo/linea-tiempo.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
 
 registerLocaleData(localeEs, 'es');
 
@@ -65,9 +67,11 @@ registerLocaleData(localeEs, 'es');
     MdlSelectModule,
     NgxBarcodeModule,
     NgxCaptchaModule,
+    DeviceDetectorModule.forRoot(),
 
   ],
   providers: [
+    { provide: 'windowObject', useValue: window},
     {
       provide: LOCALE_ID,
       useValue: 'es-CL'
