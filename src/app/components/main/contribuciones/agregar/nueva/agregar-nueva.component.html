@@ -143,10 +143,13 @@
   </div>
 </div>
 
-<div class="tgr-results">
+<div class="mdl-cell mdl-cell--8-col tgr-results">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
     nuevamente</h3>
-    <span>check totalizador resultados acá (debe mostrarse cuando se haya encontrado + de una propiedad)</span>
+    <div class="check-seleccion-propiedades">
+      <i class="material-icons">check_box_outline_blank</i>
+      <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
+    </div>
   <app-propiedad class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
                  (change)="updateSeleccionadaTotal()">
   </app-propiedad>

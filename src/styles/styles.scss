@@ -379,7 +379,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .tgr-card__footer {
-  padding: 0 16px 16px;
+  padding: 20px 10px;
   text-align: right;
 }
 
@@ -403,14 +403,47 @@ html, body, h1, h2, h3, h4, h5 {
 .tgr-results .tgr-content {
   margin-bottom: 25px;
   .tgr-card__head {
+    padding: 17px 10px 14px 12px;
     background-color: $color-light-gray;
-    border-left: 10px solid #931c82;
+    border-left: 6px solid #931c82;
     border-bottom: none;
     color: $color-dark-blue-text;
+    .material-icons {
+      color: $color-dark-blue-text;
+    }
+    .tgr-card__title--text {
+      color: $color-dark-blue-text;
+      margin-bottom: 0;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .tgr-card__title--comuna {
+      color: $color-dark-blue-text;
+      margin-left: 28px;
+      margin-bottom: 0;
+      font-size: 16px;
+    }
   }
   .tgr-card__body {
-    border-left: 10px solid #931c82;
+    border-left: 6px solid #931c82;
     color: $color-dark-blue-text;
+    .material-icons {
+      color: $color-dark-blue-text !important;
+    }
+    .tgr-card__title {
+      .material-icons {
+        color: $color-dark-blue-text;
+      }
+      .tgr-card__title--text {
+        font-size: 16px;
+        color: $color-dark-blue-text;
+      }
+    }
+    .tgr-card__subtitle {
+      margin-left: 3px;
+      font-size:16px;
+      color: $color-dark-blue-text;
+    }
   }
 }
 

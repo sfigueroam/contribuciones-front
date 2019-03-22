@@ -267,7 +267,7 @@
 	line-height: 1;
 }
 .tgr-rol-row {
-	padding: 16px 16px 8px 16px;
+	padding: 16px 10px 10px 12px;
 }
 .tgr-rol-row .tgr-card__title--text {
 	color: $color-primary
@@ -284,16 +284,6 @@
   flex-wrap: wrap;
   padding-bottom: 25px;
   align-items: flex-start;
-}
-.tgr-results .tgr-content {
-  //width: calc(33.3333% - 20px);
-  //margin: 0 10px 20px;
-  //@media (max-width: 700px){
-  //  width: calc(50% - 20px);
-  //}
-  //@media (max-width: 480px){
-  //  width: 100%;
-  //}
   margin-left: auto;
   margin-right: auto;
   @media (max-width: 480px) {
@@ -301,6 +291,23 @@
   }
   @media (min-width: 600px) and (max-width: 840px) {
     width: 70%;
+  }
+  .check-seleccion-propiedades {
+    margin-bottom: 6px;
+    .material-icons {
+      vertical-align: bottom;
+      color: $color-dark-blue-text;
+    }
+    span {
+      margin-left: 6px;
+      font-size: 16px;
+      color: $color-dark-blue-text;
+    }
+  }
+  .tgr-content {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 .contador-propiedades {
