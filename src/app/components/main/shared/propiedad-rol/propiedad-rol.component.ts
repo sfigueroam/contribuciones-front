@@ -12,6 +12,10 @@ export class PropiedadRolComponent implements OnInit, AfterContentInit {
   @Input()
   rol: Rol;
 
+  @Input('default-seleccion')
+  defaulSeleccion: boolean;
+
+
   seleccion: boolean;
 
 
@@ -21,13 +25,17 @@ export class PropiedadRolComponent implements OnInit, AfterContentInit {
   constructor() {
     this.icon = '';
     this.seleccion = true;
-    this.selectedIcon = 'checked';
   }
 
   @Output()
   change: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
+
+    if (this.defaulSeleccion === false) {
+      this.seleccion = false;
+    }
+    this.updateIconSeleccion();
     this.iconInit();
   }
 

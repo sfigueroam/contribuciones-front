@@ -8,6 +8,7 @@
 </div>
 <div class="tgr-card__body">
   <div class="tgr-rol-row" app-propiedad-rol *ngFor="let rol of propiedad.roles"
+       [default-seleccion]="defaulSeleccion"
        [rol]="rol"
        (change)="updatePropiedades()">
   </div>

@@ -14,6 +14,9 @@ export class PropiedadComponent implements OnInit {
   @Input()
   propiedad: Propiedad;
 
+  @Input('default-seleccion')
+  defaulSeleccion: boolean;
+
   @Output()
   change: EventEmitter<any> = new EventEmitter();
 
@@ -21,15 +24,22 @@ export class PropiedadComponent implements OnInit {
   propiedadRolComponentList: QueryList<PropiedadRolComponent>;
 
   cantidadRolesSeleccionadas: number;
-  seleccion: boolean;
+  public seleccion: boolean;
   selectedIcon: string;
 
   constructor() {
-    this.seleccion = true;
-    this.updateIconSeleccion();
+
+
   }
 
   ngOnInit() {
+
+    console.log('propiedades, ngOnInit');
+    this.seleccion = true;
+    if (this.defaulSeleccion === false) {
+      this.seleccion = false;
+    }
+    this.updateIconSeleccion();
   }
 
   updatePropiedades(): void {
@@ -120,9 +130,16 @@ export class PropiedadComponent implements OnInit {
     return roles;
 
   }
+
   getCantRoles(): number {
     const rolesList = this.propiedadRolComponentList.toArray();
     return rolesList.length;
 
+  }
+
+  updateSeleccion(selec: boolean){
+    this.seleccion = selec;
+    this.updateIconSeleccion();
+    this.updateRoles();
   }
 }

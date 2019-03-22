@@ -33,7 +33,7 @@
                            [ngModelOptions]="{ standalone: true }">
   </ngx-invisible-recaptcha>
 
-  <form [formGroup]="formDireccion" (submit)="buscarDireccion()">
+  <form [formGroup]="formDireccion" (submit)="buscarDireccion()" autocomplete="off">
     <div class="tgr-card__body body-direccion " [class.hidden]="switchActive === 'rol'">
       <button type="button" class="ayuda-busqueda">
         <p>
@@ -48,7 +48,8 @@
                     error-msg="Debe seleccionar un tipo de propiedad"
                     [formControl]="tipoPropiedad"
                     label="Tipo Propiedad"
-                    floating-label>
+                    floating-label
+                    >
           <mdl-option [value]="-1">Todos</mdl-option>
           <mdl-option
             *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
@@ -95,7 +96,7 @@
         ¿Cómo buscar por <strong>ROL</strong>?
       </p>
     </button>
-    <form [formGroup]="formRol" (ngSubmit)="buscarRol()">
+    <form [formGroup]="formRol" (ngSubmit)="buscarRol()" autocomplete="off">
       <div class="tgr-card__search ">
         <mdl-select #autocompleteSelectComuna [class.is-invalid]="comuna.touched && comuna.invalid"
                     [autocomplete]="true"
@@ -146,12 +147,16 @@
 <div class="mdl-cell mdl-cell--8-col tgr-results">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
     nuevamente</h3>
-    <div class="check-seleccion-propiedades">
-      <i class="material-icons">check_box_outline_blank</i>
+    <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
+      <mdl-icon (click)="selectAllProperies()" > {{selectedIcon}}</mdl-icon>
       <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
     </div>
-  <app-propiedad class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
-                 (change)="updateSeleccionadaTotal()">
+
+
+  <app-propiedad class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades"
+                 [default-seleccion]=false
+                 [propiedad]="propiedad"
+                 (change)="updateSeleccionadaTotal()" >
   </app-propiedad>
 </div>
 
