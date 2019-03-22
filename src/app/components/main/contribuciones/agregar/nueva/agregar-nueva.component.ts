@@ -19,6 +19,7 @@ import {RecaptchaService} from '../../../../../services/recaptcha.service';
 import {TipoRecaptcha} from '../../../../../enum/TipoRecaptcha.enum';
 import {MdlSelectComponent} from '@angular-mdl/select';
 import {DeviceDetectService} from '../../../../../services/device-detect.service';
+import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -29,6 +30,8 @@ export class AgregarNuevaComponent implements OnInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
+
+  defaulSel = false;
 
   wait = false;
   sinResultado = false;
@@ -65,6 +68,8 @@ export class AgregarNuevaComponent implements OnInit {
   viewRecaptcha2: boolean;
   countPropiedades: number;
 
+  selectAll: boolean;
+  selectedIcon: string;
 
   @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
   recaptcha2: TgrReCaptcha;
@@ -75,6 +80,7 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChild('autocompleteSelectTipoPropiedades') selectTipo: MdlSelectComponent;
 
   public recaptcha: any = null;
+  private totalRoles: number;
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
@@ -126,6 +132,9 @@ export class AgregarNuevaComponent implements OnInit {
 
     this.bottomToolbarHidden = !this.user.email && this.user.solicitarEmail;
 
+    this.selectAll = false;
+    this.updateIconSeleccion();
+
   }
 
 
@@ -144,22 +153,32 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   ocultarFooter(): void {
-    if(!this.deviceDetectService.isDeviceDesktop()){
+    if (!this.deviceDetectService.isDeviceDesktop()) {
       this.footerHidden = true;
     }
 
   }
 
   updateSeleccionadaTotal(): void {
-    console.log('todas seleccionadas');
     this.totalSeleccionadas();
+    if (this.cantidadSeleccionadas === 0) {
+      this.selectAll = false;
+    } else if (this.totalRoles === this.cantidadSeleccionadas) {
+      this.selectAll = true;
+    } else if (this.totalRoles !== this.cantidadSeleccionadas) {
+      this.selectAll = undefined;
+    }
+    this.updateIconSeleccion();
+
   }
 
   totalSeleccionadas(): void {
     this.cantidadSeleccionadas = 0;
+    this.totalRoles = 0;
     const propiedadesComponent = this.propiedadComponentList.toArray();
-    for (const pripedadComponent of propiedadesComponent) {
-      this.cantidadSeleccionadas = this.cantidadSeleccionadas + pripedadComponent.getCantidadRolesSeleccionadas();
+    for (const propedadComponent of propiedadesComponent) {
+      this.cantidadSeleccionadas = this.cantidadSeleccionadas + propedadComponent.getCantidadRolesSeleccionadas();
+      this.totalRoles = this.totalRoles + propedadComponent.getCantRoles();
     }
   }
 
@@ -211,8 +230,6 @@ export class AgregarNuevaComponent implements OnInit {
     const domSelectTipo = this.selectTipo.selectInput.nativeElement as HTMLElement;
     domSelectTipo.addEventListener('focus', () => this.ocultarFooter());
     domSelectTipo.addEventListener('blur', () => this.mostrarFooter());
-
-
 
 
   }
@@ -445,10 +462,12 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarRol() {
+    this.searchDireccion = false;
     this.validarCaptcha();
   }
 
   buscarDireccion() {
+    this.searchDireccion = false;
     this.validarCaptcha();
   }
 
@@ -471,4 +490,33 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
+  private updateIconSeleccion(): void {
+    if (this.selectAll === undefined) {
+      this.selectedIcon = CheckboxIcon.INDETERMINATE;
+    } else if (this.selectAll) {
+      this.selectedIcon = CheckboxIcon.SELECTED;
+    } else {
+      this.selectedIcon = CheckboxIcon.UNSELECTED;
+    }
+  }
+
+  private selectAllProperies() {
+    if (this.selectAll === undefined) {
+      this.selectAll = false;
+    } else {
+      this.selectAll = !this.selectAll;
+    }
+    this.updateSelectionProperties();
+    this.updateSeleccionadaTotal();
+    this.updateIconSeleccion();
+
+
+  }
+
+  private updateSelectionProperties() {
+    const propiedadesList = this.propiedadComponentList.toArray();
+    for (const propiedades of propiedadesList) {
+      propiedades.updateSeleccion(this.selectAll);
+    }
+  }
 }

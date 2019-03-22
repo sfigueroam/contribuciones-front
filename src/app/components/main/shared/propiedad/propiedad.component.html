@@ -2,11 +2,12 @@
   <label (click)="selectAllRol()" class="tgr-th-icon">
     <mdl-icon>{{selectedIcon}}</mdl-icon>
   </label>
-  <span
-    class="tgr-card__title--text">{{propiedad.splitName()  | titlecase}} - {{propiedad.roles[0].comuna | titlecase}}</span>
+  <p class="tgr-card__title--text">{{propiedad.splitName()  | titlecase}} </p>
+  <p class="tgr-card__title--comuna">{{propiedad.roles[0].comuna | titlecase}} </p>
 </div>
 <div class="tgr-card__body">
   <div class="tgr-rol-row" app-propiedad-rol *ngFor="let rol of propiedad.roles"
+       [default-seleccion]="defaulSeleccion"
        [rol]="rol"
        (change)="updatePropiedades()">
   </div>
