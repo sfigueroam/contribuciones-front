@@ -2,7 +2,8 @@ const endpoints = {
   base: 'BUILD_BACK_ENDPOINT',
   lambdaRoles: 'BUILD_BACK_ENDPOINT',
   elastic: 'BUILD_ELASTICSEARCH_ENDPOINT',
-  validateRecaptcha: 'BUILD_BACK_ENDPOINT'
+  validateRecaptcha: 'BUILD_BACK_ENDPOINT',
+  deviceDetect: 'https://bbrr-dev.tegere.info/dev'
 };
 
 const keyRecaptcha = {
@@ -16,7 +17,7 @@ const urlsBase = {
   lambdaRoles: endpoints.lambdaRoles + '/roles',
   recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
   recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3',
-  deviceDetect: endpoints.base + '/detect'
+  deviceDetect: endpoints.deviceDetect + '/detect'
 };
 
 

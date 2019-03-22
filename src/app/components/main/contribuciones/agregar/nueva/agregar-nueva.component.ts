@@ -120,10 +120,11 @@ export class AgregarNuevaComponent implements OnInit {
       direccion: this.direccion
     });
 
+    this.tipoPropiedad.setValue(-1);
+
     this.hidden = true;
 
     this.bottomToolbarHidden = !this.user.email && this.user.solicitarEmail;
-
 
   }
 
@@ -150,6 +151,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   updateSeleccionadaTotal(): void {
+    console.log('todas seleccionadas');
     this.totalSeleccionadas();
   }
 
@@ -200,9 +202,19 @@ export class AgregarNuevaComponent implements OnInit {
     domSelectComuna.addEventListener('focus', () => this.ocultarFooter());
     domSelectComuna.addEventListener('blur', () => this.mostrarFooter());
 
+    domSelectComuna.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+    });
+
+
     const domSelectTipo = this.selectTipo.selectInput.nativeElement as HTMLElement;
     domSelectTipo.addEventListener('focus', () => this.ocultarFooter());
     domSelectTipo.addEventListener('blur', () => this.mostrarFooter());
+
+
+
+
   }
 
   buscarRolPost(): void {

@@ -2,7 +2,8 @@ const endpoints = {
   base: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
   lambdaRoles: '',
   elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
-  validateRecaptcha: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev'
+  validateRecaptcha: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
+  deviceDetect: 'https://bbrr-dev.tegere.info/dev'
 };
 
 const keyRecaptcha = {
@@ -16,7 +17,7 @@ const urlsBase = {
   lambdaRoles: endpoints.lambdaRoles + '/roles',
   recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
   recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3',
-  deviceDetect: endpoints.base + '/detect'
+  deviceDetect: endpoints.deviceDetect + '/detect'
 };
 
 
