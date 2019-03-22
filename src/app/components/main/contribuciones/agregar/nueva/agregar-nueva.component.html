@@ -60,7 +60,7 @@
           <mdl-textfield type="text"
                          [class.is-invalid]="direccion.invalid && direccion.touched"
                          (focus)="ocultarToolbar()"
-                         (blur)="mostrarToolbar()"
+                         (blur)="mostrarToolbar(); existBusqueda()"
                          id="direccion"
                          name="direccion"
                          [formControl]="direccion"
@@ -142,6 +142,12 @@
       </div>
     </form>
   </div>
+  <div class="tgr-card__body ">
+    <a class="cursor-pointer" (click)="limpiarBusquda()" >Limpiar Búsqueda</a>
+  </div>
+</div>
+<div class="mdl-cell mdl-cell--8-col tgr-results" *ngIf="propiedades && propiedades.length > 0">
+  <a > Se encontraron {{totalRoles}} coincidencias en la búsqueda</a>
 </div>
 
 <div class="mdl-cell mdl-cell--8-col tgr-results">
@@ -153,7 +159,7 @@
     </div>
 
 
-  <app-propiedad class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades"
+  <app-propiedad  class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades"
                  [default-seleccion]=false
                  [propiedad]="propiedad"
                  (change)="updateSeleccionadaTotal()" >

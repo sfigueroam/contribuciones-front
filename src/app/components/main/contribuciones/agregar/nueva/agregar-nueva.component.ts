@@ -31,6 +31,7 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
 
+
   defaulSel = false;
 
   wait = false;
@@ -80,7 +81,8 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChild('autocompleteSelectTipoPropiedades') selectTipo: MdlSelectComponent;
 
   public recaptcha: any = null;
-  private totalRoles: number;
+  private totalRoles: number = 0;
+
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
               private mdlSnackbarService: MdlSnackbarService,
@@ -519,4 +521,33 @@ export class AgregarNuevaComponent implements OnInit {
       propiedades.updateSeleccion(this.selectAll);
     }
   }
+
+  limpiarBusquda() {
+    if (this.switchActive === 'direccion') {
+      this.limpiarFiltroDireccion();
+    } else {
+      this.limpiarFiltroRol();
+    }
+  }
+
+  limpiarFiltroRol(){
+    this.formRol.reset();
+  }
+  limpiarFiltroDireccion(){
+    this.formDireccion.reset();
+    this.tipoPropiedad.setValue(-1);
+  }
+
+  existBusqueda() {
+
+    setTimeout(
+      () => {
+        this.searchDireccion = false;
+      },
+      200
+    );
+
+  }
+
+
 }

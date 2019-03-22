@@ -69,6 +69,7 @@ registerLocaleData(localeEs, 'es');
     NgxCaptchaModule,
     DeviceDetectorModule.forRoot(),
 
+
   ],
   providers: [
     { provide: 'windowObject', useValue: window},
