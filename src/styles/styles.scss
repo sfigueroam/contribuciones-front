@@ -402,6 +402,10 @@ html, body, h1, h2, h3, h4, h5 {
 
 .tgr-results .tgr-content {
   margin-bottom: 25px;
+  .border-white {
+    height: 3px;
+    background-color: #ffffff;
+  }
   .tgr-card__head {
     padding: 17px 10px 14px 12px;
     background-color: $color-light-gray;
@@ -443,6 +447,9 @@ html, body, h1, h2, h3, h4, h5 {
       margin-left: 3px;
       font-size:16px;
       color: $color-dark-blue-text;
+      .tgr-card__tag {
+        font-weight: 400;
+      }
     }
   }
 }
