@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
 import {MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
@@ -30,6 +30,9 @@ export class AgregarNuevaComponent implements OnInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
+
+
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
 
   defaulSel = false;

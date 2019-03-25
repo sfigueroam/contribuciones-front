@@ -150,7 +150,7 @@
   <a > Se encontraron {{totalRoles}} coincidencias en la búsqueda</a>
 </div>
 
-<div class="mdl-cell mdl-cell--8-col tgr-results">
+<div #scrollMe class="mdl-cell mdl-cell--8-col tgr-results">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
     nuevamente</h3>
     <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
@@ -159,7 +159,7 @@
     </div>
 
 
-  <app-propiedad  class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades"
+  <app-propiedad   class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades"
                  [default-seleccion]=false
                  [propiedad]="propiedad"
                  (change)="updateSeleccionadaTotal()" >
