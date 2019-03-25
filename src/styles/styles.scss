@@ -259,6 +259,35 @@ html, body, h1, h2, h3, h4, h5 {
 
 }
 
+// INICIO Esconder Address Bar en móvil
+html, body {
+  overflow-y: auto;
+  min-height: 100%;
+}
+.mdl-layout {
+    min-height: 100%;
+    height: auto;
+    overflow: auto;
+}
+.mdl-layout__drawer {
+    position: fixed;
+}
+.mdl-layout__content {
+    display: block;
+    overflow: visible;
+    margin-top: 64px;
+}
+.is-small-screen .mdl-layout__content {
+    margin-top: 56px;
+}
+.mdl-layout__header {
+    position: fixed;
+}
+.mdl-layout__obfuscator {
+    position: fixed;
+}
+// FIN Esconder Address Bar en móvil
+
 // INICIO HEADER
 .cuenta-usuario {
     width: auto;
@@ -322,13 +351,6 @@ html, body, h1, h2, h3, h4, h5 {
   overflow: hidden;
   padding: 20px 16px;
   position: relative;
-}
-
-.tgr-card__title--text {
-  display: block;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
 }
 
 .tgr-switch {
@@ -431,8 +453,22 @@ html, body, h1, h2, h3, h4, h5 {
   .tgr-card__body {
     border-left: 6px solid #931c82;
     color: $color-dark-blue-text;
-    .material-icons {
-      color: $color-dark-blue-text !important;
+    .tgr-rol-row {
+      .tgr-th-icon {
+        top: 6px;
+        .material-icons {
+          line-height: 0 !important;
+          color: $color-dark-blue-text !important;
+          vertical-align: top !important;
+        }
+      }
+      .tgr-card-body {
+        .tgr-card__title {
+          .material-icons {
+            color: $color-dark-blue-text !important;
+          }
+        }
+      }
     }
     .tgr-card__title {
       .material-icons {

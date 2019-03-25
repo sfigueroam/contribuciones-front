@@ -2,13 +2,20 @@
 .tgr-card__title--text{
   color: $color-primary
 }
-.material-icons {
-  color: #5F5FC4;
-  float: left;
-  line-height: 1;
-  margin-right: 4px;
-  margin-top: -6px;
-  margin-bottom: -6px;
+
+.tgr-card__body {
+  .tgr-rol-row {
+    .tgr-th-icon {
+      .material-icons {
+        color: #2f3c89;
+        float: left;
+        line-height: 0;
+        margin-right: 4px;
+        margin-top: -6px;
+        margin-bottom: -6px;
+      }
+    }
+  }
 }
 
 .tgr-th-icon{
