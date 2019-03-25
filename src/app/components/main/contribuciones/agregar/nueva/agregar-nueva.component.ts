@@ -20,6 +20,7 @@ import {TipoRecaptcha} from '../../../../../enum/TipoRecaptcha.enum';
 import {MdlSelectComponent} from '@angular-mdl/select';
 import {DeviceDetectService} from '../../../../../services/device-detect.service';
 import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
+import {DialogAgregarPropiedadComponent} from './modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -541,19 +542,28 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   existBusqueda() {
-
     setTimeout(
       () => {
         this.searchDireccion = false;
       },
       200
     );
-
   }
-
   onScroll() {
     this.scroll.nativeElement.scrollIntoView();
     const htmlScroll = this.scroll.nativeElement as HTMLElement;
     htmlScroll.focus();
+  }
+
+  dialogConfirmarAgregarPropiedad(): void{
+    const pDialog = this.dialogService.showCustomDialog({
+      component: DialogAgregarPropiedadComponent,
+      providers: [{provide: 'adsfasdf', useValue: 'Just an example'}],
+      clickOutsideToClose: true,
+      isModal: true
+    });
+    pDialog.subscribe( (dialogReference: MdlDialogReference) => {
+      console.log('dialog visible', dialogReference);
+    });
   }
 }
