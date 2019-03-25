@@ -2,6 +2,7 @@ version: 0.2
 phases:
   install:
     commands:
+    - rm -f ${CODEBUILD_SRC_DIR}/src/environments/environment.ts
     - touch ${CODEBUILD_SRC_DIR}/src/environments/environment.ts
     - cp ${CODEBUILD_SRC_DIR}/src/environments/environment.sample.ts ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
 
