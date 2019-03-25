@@ -3,7 +3,7 @@ const endpoints = {
   lambdaRoles: '',
   elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
   validateRecaptcha: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
-  deviceDetect: 'https://bbrr-dev.tegere.info/dev'
+  deviceDetect: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const keyRecaptcha = {

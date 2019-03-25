@@ -31,11 +31,8 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
 
+  @ViewChild('scroll') scroll: ElementRef;
 
-  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
-
-
-  defaulSel = false;
 
   wait = false;
   sinResultado = false;
@@ -246,6 +243,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.sinResultado = true;
       } else {
         this.agregarPropiedad(response);
+        this.onScroll();
       }
       this.offWait();
     }, () => {
@@ -359,6 +357,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.agregarDireccionesAPropiedad();
         this.offWait();
         this.resetCaptcha2();
+        this.onScroll();
 
       },
       () => {
@@ -552,5 +551,9 @@ export class AgregarNuevaComponent implements OnInit {
 
   }
 
-
+  onScroll() {
+    this.scroll.nativeElement.scrollIntoView();
+    const htmlScroll = this.scroll.nativeElement as HTMLElement;
+    htmlScroll.focus();
+  }
 }
