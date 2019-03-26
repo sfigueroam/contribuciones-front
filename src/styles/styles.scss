@@ -424,6 +424,14 @@ html, body {
   }
 }
 
+.separator {
+  .mdl-list__item {
+    .mdl-list__item-primary-content {
+      height: 2px;
+      background-color: rgba(84, 84, 85, .45);
+    }
+  }
+}
 .tgr-card__body {
   padding: 16px;
 }

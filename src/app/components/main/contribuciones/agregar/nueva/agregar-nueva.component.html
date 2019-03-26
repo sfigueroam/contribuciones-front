@@ -55,7 +55,7 @@
             *ngFor="let tipo of tipoPropiedadesfrecuentes| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
             [value]="tipo.id">{{tipo.descripcion | titlecase}}
           </mdl-option>
-          <mdl-option class="separator" [disabled]="true">______________________________</mdl-option>
+          <mdl-option class="separator" [disabled]="true"></mdl-option>
           <mdl-option
             *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
             [value]="tipo.id">{{tipo.descripcion | titlecase}}
@@ -151,10 +151,6 @@
         </button>
       </div>
     </form>
-  </div>
-  <div class="tgr-card__body ">
-    <a *ngIf="showButtonLimpiarBusqueda" class="cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>&nbsp;
-
   </div>
 </div>
 <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
