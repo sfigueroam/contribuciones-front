@@ -21,6 +21,8 @@ import {MdlSelectComponent} from '@angular-mdl/select';
 import {DeviceDetectService} from '../../../../../services/device-detect.service';
 import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
 import {DialogAgregarPropiedadComponent} from './modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
+import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.component';
+import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -559,6 +561,27 @@ export class AgregarNuevaComponent implements OnInit {
     const pDialog = this.dialogService.showCustomDialog({
       component: DialogAgregarPropiedadComponent,
       providers: [{provide: 'adsfasdf', useValue: 'Just an example'}],
+      clickOutsideToClose: true,
+      isModal: true
+    });
+    pDialog.subscribe( (dialogReference: MdlDialogReference) => {
+      console.log('dialog visible', dialogReference);
+    });
+  }
+
+  dialogAyudaDireccion(): void{
+    const pDialog = this.dialogService.showCustomDialog({
+      component: AyudaDireccionComponent,
+      clickOutsideToClose: true,
+      isModal: true
+    });
+    pDialog.subscribe( (dialogReference: MdlDialogReference) => {
+      console.log('dialog visible', dialogReference);
+    });
+  }
+  dialogAyudaRol(): void{
+    const pDialog = this.dialogService.showCustomDialog({
+      component: AyudaRolComponent,
       clickOutsideToClose: true,
       isModal: true
     });

@@ -32,6 +32,8 @@ import {NgxCaptchaModule} from 'ngx-captcha';
 import {LineaTiempoComponent} from './components/main/contribuciones/linea-tiempo/linea-tiempo.component';
 import {DeviceDetectorModule} from 'ngx-device-detector';
 import { DialogAgregarPropiedadComponent } from './components/main/contribuciones/agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
+import { AyudaDireccionComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
+import { AyudaRolComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-rol/ayuda-rol.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -58,6 +60,8 @@ registerLocaleData(localeEs, 'es');
     AsociarCorreoComponent,
     LineaTiempoComponent,
     DialogAgregarPropiedadComponent,
+    AyudaDireccionComponent,
+    AyudaRolComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,12 @@ registerLocaleData(localeEs, 'es');
     },
     CookieService
   ],
-  entryComponents: [AsociarCorreoComponent, DialogAgregarPropiedadComponent],
+  entryComponents: [
+    AsociarCorreoComponent,
+    DialogAgregarPropiedadComponent,
+    AyudaRolComponent,
+    AyudaDireccionComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
