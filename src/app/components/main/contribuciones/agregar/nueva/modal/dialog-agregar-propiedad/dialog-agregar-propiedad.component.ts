@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogAgregarPropiedadComponent implements OnInit {
 
+
+  countPropiedades: number;
   constructor() { }
 
   ngOnInit() {
   }
 
+  continuar(){
+
+  }
+
+  exit(){
+
+  }
 }
