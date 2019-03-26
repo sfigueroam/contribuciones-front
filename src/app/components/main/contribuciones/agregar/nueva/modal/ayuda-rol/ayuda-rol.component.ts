@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MdlDialogReference} from '@angular-mdl/core';
 
 @Component({
   selector: 'app-ayuda-rol',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AyudaRolComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialog: MdlDialogReference,
+  ) {
+  }
 
   ngOnInit() {
+  }
+
+  volver(): void {
+    this.dialog.hide();
   }
 
 }

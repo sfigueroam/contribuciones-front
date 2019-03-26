@@ -42,6 +42,7 @@ export class AgregarNuevaComponent implements OnInit {
   searchDireccion = false;
 
   localidad: Localidad[];
+  tipoPropiedadesfrecuentes: TipoPropiedad[];
   tipoPropiedades: TipoPropiedad[];
   direcciones: Direccion[];
   direccionModel: string;
@@ -199,7 +200,15 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
     this.contribucionesBuscarRol.getTiposPropiedades().then((data) => {
-      this.tipoPropiedades = data;
+      this.tipoPropiedadesfrecuentes = [];
+      this.tipoPropiedades = [];
+      for (const prop of data) {
+        if (prop.id === 'H' || prop.id === 'L' || prop.id === 'Z') {
+          this.tipoPropiedadesfrecuentes.push(prop);
+        } else {
+          this.tipoPropiedades.push(prop);
+        }
+      }
     }, () => {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
@@ -545,10 +554,11 @@ export class AgregarNuevaComponent implements OnInit {
     }
   }
 
-  limpiarFiltroRol(){
+  limpiarFiltroRol() {
     this.formRol.reset();
   }
-  limpiarFiltroDireccion(){
+
+  limpiarFiltroDireccion() {
     this.formDireccion.reset();
     this.tipoPropiedad.setValue(-1);
   }
@@ -561,13 +571,14 @@ export class AgregarNuevaComponent implements OnInit {
       200
     );
   }
+
   onScroll() {
     this.scroll.nativeElement.scrollIntoView();
     const htmlScroll = this.scroll.nativeElement as HTMLElement;
     htmlScroll.focus();
   }
 
-  dialogConfirmarAgregarPropiedad(): void{
+  dialogConfirmarAgregarPropiedad(): void {
     this.propiedades = [];
     this.loadCantidadPropiedadesEnCarro();
     const pDialog = this.dialogService.showCustomDialog({
@@ -579,14 +590,15 @@ export class AgregarNuevaComponent implements OnInit {
     this.cantidadSeleccionadas = 0;
   }
 
-  dialogAyudaDireccion(): void{
+  dialogAyudaDireccion(): void {
     const pDialog = this.dialogService.showCustomDialog({
       component: AyudaDireccionComponent,
       clickOutsideToClose: true,
       isModal: true
     });
   }
-  dialogAyudaRol(): void{
+
+  dialogAyudaRol(): void {
     const pDialog = this.dialogService.showCustomDialog({
       component: AyudaRolComponent,
       clickOutsideToClose: true,
