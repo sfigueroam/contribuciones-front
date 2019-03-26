@@ -145,8 +145,8 @@
     </form>
   </div>
   <div class="tgr-card__body ">
-    <a class="cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>&nbsp;
-    <a class="cursor-pointer" (click)="dialogConfirmarAgregarPropiedad()">confirmar</a>
+    <a *ngIf="showButtonLimpiarBusqueda" class="cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>&nbsp;
+    <!--<a class="cursor-pointer" (click)="dialogConfirmarAgregarPropiedad()">confirmar</a>-->
   </div>
 </div>
 <div class="mdl-cell mdl-cell--8-col tgr-results" *ngIf="propiedades && propiedades.length > 0">

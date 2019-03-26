@@ -85,6 +85,7 @@ export class AgregarNuevaComponent implements OnInit {
 
   public recaptcha: any = null;
   private totalRoles: number = 0;
+  showButtonLimpiarBusqueda = false;
 
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
@@ -469,11 +470,13 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarRol() {
+    this.showButtonLimpiarBusqueda = true;
     this.searchDireccion = false;
     this.validarCaptcha();
   }
 
   buscarDireccion() {
+    this.showButtonLimpiarBusqueda = true;
     this.searchDireccion = false;
     this.validarCaptcha();
   }
@@ -528,6 +531,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   limpiarBusquda() {
+    this.showButtonLimpiarBusqueda = false;
     if (this.switchActive === 'direccion') {
       this.limpiarFiltroDireccion();
     } else {
