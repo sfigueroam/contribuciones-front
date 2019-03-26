@@ -259,6 +259,17 @@ html, body, h1, h2, h3, h4, h5 {
 
 }
 
+// INICIO. Estilos de Botones
+.mdl-button.button-default {
+  color: $link-color;
+  &:active,
+  &:focus {
+    background-color: $link-color;
+    color: #ffffff;
+  }
+}
+// FIN. Estilos de Botones
+
 // INICIO Esconder Address Bar en móvil
 html, body {
   overflow-y: auto;
@@ -287,6 +298,12 @@ html, body {
     position: fixed;
 }
 // FIN Esconder Address Bar en móvil
+
+// Inicio. Diálogos
+.dialog-backdrop {
+    background: rgba(0,0,0,0.4) !important;
+}
+// Fin. Diálogos
 
 // INICIO HEADER
 .cuenta-usuario {
