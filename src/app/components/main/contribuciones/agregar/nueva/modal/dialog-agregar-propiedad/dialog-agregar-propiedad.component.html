@@ -1,14 +1,16 @@
 <div class="tgr-dialog">
     <div class="tgr-dialog__body">
         <p>
-          Agregaste <strong>{{countPropiedades}}</strong> propiedades al carro.
+          Agregaste <strong>{{cantPropiedades}} </strong> <span *ngIf="cantPropiedades != 1; else singularPropiedad">propiedades</span>
+          al carro.
         </p>
+      <ng-template #singularPropiedad>propiedad</ng-template>
     </div>
     <div class="tgr-dialog__options">
-        <button class="mdl-button mdl-js-button mdl-button--primary button-default">
+      <button class="mdl-button mdl-js-button mdl-button--primary button-default" (click)="continuar();">
             CONTINUAR BUSCANDO
         </button>
-        <button class="mdl-button mdl-js-button mdl-button--primary button-default">
+      <button class="mdl-button mdl-js-button mdl-button--primary button-default" (click)="exit()">
             IR AL CARRO
             <i class="material-icons">keyboard_arrow_right</i>
         </button>
