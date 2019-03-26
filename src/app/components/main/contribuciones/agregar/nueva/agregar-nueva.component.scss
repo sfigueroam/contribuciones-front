@@ -24,16 +24,6 @@
     &.body-direccion {
       padding-bottom: 30px;
     }
-    .tgr-card__search {
-      margin-top: 28px;
-      @media (max-width: 480px) {
-        padding-left: 9px;
-        padding-right: 9px;
-      }
-      @media (min-width: 840px) {
-        margin-top: 0;
-      }
-    }
     .ayuda-busqueda {
       position: absolute;
       top: 0;
@@ -63,6 +53,25 @@
         display: none;
       }
     }
+    .tgr-card__search {
+      margin-top: 28px;
+      @media (max-width: 480px) {
+        padding-left: 9px;
+        padding-right: 9px;
+      }
+      @media (min-width: 840px) {
+        margin-top: 0;
+      }
+    }
+    .tgr-card__footer {
+      padding-left: 0;
+      &.footer-direccion {
+        padding: 0;
+      }
+      .button-default-link {
+        float: left;
+      }
+    }
   }
 }
 .mdl-button.mdl-button--return {
@@ -82,6 +91,7 @@
   }
 }
 .tgr-actions{
+  min-height: 70px;
   @media (max-width: 320px){
     top: 507px;
     padding-right: 10px;
@@ -105,6 +115,9 @@
 .tgr-switch {
   .mdl-button {
     color: $color-dark-blue-text;
+    &:hover {
+      color: #ffffff;
+    }
     &.tgr-switch-active {
       color: $color-white;
       background-color: $color-dark-blue-text;
@@ -282,10 +295,22 @@
 .tgr-results .tgr-card__body {
 	padding: 0;
 }
+.tgr-results-coincidencias {
+  width: 100%;
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  p {
+    font-size: 16px;
+    color: $color-dark-blue-text;
+  }
+}
 .tgr-results {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding-top: 12px;
   padding-bottom: 25px;
   align-items: flex-start;
   margin-left: auto;

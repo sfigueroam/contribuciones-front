@@ -77,7 +77,9 @@
             <i class="material-icons">search</i>
             Buscar
           </button>
-
+          <div *ngIf="showButtonLimpiarBusqueda" class="tgr-card__footer footer-direccion">
+            <a class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>
+          </div>
           <ul class="tgr-suggestions">
             <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
                 (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
@@ -117,7 +119,7 @@
                        type="number"
                        id="rol"
                        name="rol"
-                       label="Rol"
+                       label="ROL"
                        class="tgr-i-rol"
                        [formControl]="rol"
                        error-msg="Debe ingresar un Rol"
@@ -130,12 +132,13 @@
                        id="subRol"
                        name="subRol"
                        class="tgr-i-subrol"
-                       label="Sub Rol"
+                       label="Sub ROL"
                        [formControl]="subRol"
                        error-msg="Debe ingresar un Sub Rol"
                        floating-label></mdl-textfield>
       </div>
       <div class="tgr-card__footer">
+        <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
                 [disabled]="formRol.invalid">
           <i class="material-icons">search</i>
@@ -144,16 +147,10 @@
       </div>
     </form>
   </div>
-  <div class="tgr-card__body ">
-    <a *ngIf="showButtonLimpiarBusqueda" class="cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>&nbsp;
-    <!--<a class="cursor-pointer" (click)="dialogConfirmarAgregarPropiedad()">confirmar</a>-->
-  </div>
 </div>
-<div class="mdl-cell mdl-cell--8-col tgr-results" *ngIf="propiedades && propiedades.length > 0">
-  <a> Se encontraron {{totalRoles}} coincidencias en la búsqueda</a>
+<div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
+  <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
 </div>
-
-
 <div #scroll class="mdl-cell mdl-cell--8-col tgr-results">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
     nuevamente</h3>

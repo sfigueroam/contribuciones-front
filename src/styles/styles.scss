@@ -268,6 +268,16 @@ html, body, h1, h2, h3, h4, h5 {
     color: #ffffff;
   }
 }
+
+.mdl-button.button-default-link {
+  color: $link-color;
+  &:active,
+  &:focus,
+  &:visited {
+    background-color: transparent;
+    color: $link-color;
+  }
+}
 // FIN. Estilos de Botones
 
 // INICIO Esconder Address Bar en móvil
@@ -434,11 +444,6 @@ html, body {
   margin-top: 3px;
   display: block;
 }
-
-.tgr-results {
-  padding-top: 20px;
-}
-
 .tgr-results .tgr-content {
   margin-bottom: 25px;
   .border-white {
