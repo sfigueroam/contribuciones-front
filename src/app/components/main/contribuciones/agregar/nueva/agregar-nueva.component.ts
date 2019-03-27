@@ -20,7 +20,7 @@ import {TipoRecaptcha} from '../../../../../enum/TipoRecaptcha.enum';
 import {MdlSelectComponent} from '@angular-mdl/select';
 import {DeviceDetectService} from '../../../../../services/device-detect.service';
 import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
-import {DialogAgregarPropiedadComponent} from './modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
+import {CANT_PROPIEDADES, DialogAgregarPropiedadComponent} from './modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
 import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.component';
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 
@@ -42,6 +42,7 @@ export class AgregarNuevaComponent implements OnInit {
   searchDireccion = false;
 
   localidad: Localidad[];
+  tipoPropiedadesfrecuentes: TipoPropiedad[];
   tipoPropiedades: TipoPropiedad[];
   direcciones: Direccion[];
   direccionModel: string;
@@ -199,7 +200,15 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
     this.contribucionesBuscarRol.getTiposPropiedades().then((data) => {
-      this.tipoPropiedades = data;
+      this.tipoPropiedadesfrecuentes = [];
+      this.tipoPropiedades = [];
+      for (const prop of data) {
+        if (prop.id === 'H' || prop.id === 'L' || prop.id === 'Z') {
+          this.tipoPropiedadesfrecuentes.push(prop);
+        } else {
+          this.tipoPropiedades.push(prop);
+        }
+      }
     }, () => {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
@@ -221,7 +230,7 @@ export class AgregarNuevaComponent implements OnInit {
       });
     }
 
-    this.countPropiedades = this.contribuciones.getCountPropiedad();
+    this.loadCantidadPropiedadesEnCarro();
 
     const domSelectComuna = this.selectComuna.selectInput.nativeElement as HTMLElement;
     domSelectComuna.addEventListener('focus', () => this.ocultarFooter());
@@ -238,6 +247,10 @@ export class AgregarNuevaComponent implements OnInit {
     domSelectTipo.addEventListener('blur', () => this.mostrarFooter());
 
 
+  }
+
+  loadCantidadPropiedadesEnCarro(): void {
+    this.countPropiedades = this.contribuciones.getCountPropiedad();
   }
 
   buscarRolPost(): void {
@@ -399,7 +412,8 @@ export class AgregarNuevaComponent implements OnInit {
       if (roles.length > 0) {
         this.user.asociarRoles(roles.map(r => r.rol)).then(() => {
             this.contribuciones.propiedades = undefined;
-            this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+            this.dialogConfirmarAgregarPropiedad();
+            //this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
           },
           err => {
             this.hidden = true;
@@ -415,7 +429,8 @@ export class AgregarNuevaComponent implements OnInit {
       for (const propiedad of propiedadesConRolesSeleccionados) {
         this.contribuciones.addPropiedad(propiedad);
       }
-      this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+      this.dialogConfirmarAgregarPropiedad();
+      //this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
     }
   }
 
@@ -556,6 +571,7 @@ export class AgregarNuevaComponent implements OnInit {
       200
     );
   }
+
   onScroll() {
     this.scroll.nativeElement.scrollIntoView();
     const htmlScroll = this.scroll.nativeElement as HTMLElement;
@@ -563,15 +579,15 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   dialogConfirmarAgregarPropiedad(): void {
+    this.propiedades = [];
+    this.loadCantidadPropiedadesEnCarro();
     const pDialog = this.dialogService.showCustomDialog({
       component: DialogAgregarPropiedadComponent,
-      providers: [{provide: 'adsfasdf', useValue: 'Just an example'}],
+      providers: [{provide: CANT_PROPIEDADES, useValue: this.cantidadSeleccionadas}],
       clickOutsideToClose: true,
       isModal: true
     });
-    pDialog.subscribe((dialogReference: MdlDialogReference) => {
-      console.log('dialog visible', dialogReference);
-    });
+    this.cantidadSeleccionadas = 0;
   }
 
   dialogAyudaDireccion(): void {
@@ -580,9 +596,6 @@ export class AgregarNuevaComponent implements OnInit {
       clickOutsideToClose: true,
       isModal: true
     });
-    pDialog.subscribe((dialogReference: MdlDialogReference) => {
-      console.log('dialog visible', dialogReference);
-    });
   }
 
   dialogAyudaRol(): void {
@@ -590,9 +603,6 @@ export class AgregarNuevaComponent implements OnInit {
       component: AyudaRolComponent,
       clickOutsideToClose: true,
       isModal: true
-    });
-    pDialog.subscribe((dialogReference: MdlDialogReference) => {
-      console.log('dialog visible', dialogReference);
     });
   }
 }

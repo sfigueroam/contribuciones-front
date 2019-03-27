@@ -152,6 +152,10 @@
       </div>
     </form>
   </div>
+  <div class="tgr-card__body ">
+    <a *ngIf="showButtonLimpiarBusqueda" class="cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>&nbsp;
+
+  </div>
 </div>
 <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
   <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
