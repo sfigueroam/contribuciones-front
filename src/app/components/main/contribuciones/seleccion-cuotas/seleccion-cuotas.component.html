@@ -12,12 +12,13 @@
   </div>
 </div>
 <app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo>
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--4-col m-0auto text-center pay-title">
-    <h5 class="title text-mont">Seleccionar Mis <strong>Deudas</strong></h5>
+<div class="tgr-container">
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-title">
+      <h5 class="title text-center text-mont">Seleccionar Mis <strong>Deudas</strong></h5>
+    </div>
   </div>
 </div>
-
 
 <div class="mdl-grid switch-fee-text" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--4-col m-0auto mb-0 select-fee">
@@ -42,15 +43,21 @@
 </div>
 
 <ng-template #bodySinDeuda>
-  <div class="mdl-grid switch-fee-text">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam,</p>
-
-  </div>
-  <div class="tgr-actions__content">
-    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return"
-            [routerLink]="['/main/contribuciones/agregar/nueva']">Agregar propiedades
-    </button>
+  <div class="tgr-container">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+        <p>Actualmente no tienes propiedades ni deudas en tu carro. Te invitamos a buscar y agregar propiedades para pagar.</p>
+      </div>
+    </div>
+    <div class="mdl-grid">
+      <div class="tgr-actions__content">
+        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                [routerLink]="['/main/contribuciones/agregar/nueva']">
+                <i class="material-icons">add</i>
+                Agregar propiedades
+        </button>
+      </div>
+    </div>
   </div>
 
 </ng-template>

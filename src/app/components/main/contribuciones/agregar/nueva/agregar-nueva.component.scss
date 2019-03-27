@@ -37,6 +37,7 @@
       font-size: 16px;
       color: $color-dark-blue-text;
       background-color: $color-light-gray;
+      transition: .3s;
       &:hover,
       &:active,
       &:focus {
@@ -301,6 +302,28 @@
 	padding: 0;
 }
 
+.results-not-found {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+  @media (min-width: 600px) and (max-width: 840px) {
+    width: 70%;
+  }
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 30px;
+    margin-bottom: 34px;
+    color: $color-dark-gray;
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
+  }
+}
+
 .tgr-results-coincidencias {
   width: 100%;
   margin-top: 24px;
@@ -332,6 +355,7 @@
     margin-bottom: 6px;
     .material-icons {
       vertical-align: bottom;
+      cursor: pointer;
       color: $color-dark-blue-text;
     }
     span {
@@ -389,6 +413,9 @@
 .tgr-cell-wait .mdl-spinner {
   left: calc(50% - 20px);
   margin-top: 20%;
+  @media (min-width: 1025px) {
+    margin-top: 15%;
+  }
 }
 .tgr-cell-wait__feedback {
   padding: 5px 32px;

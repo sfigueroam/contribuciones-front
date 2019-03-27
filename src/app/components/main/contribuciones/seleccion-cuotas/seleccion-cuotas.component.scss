@@ -1,6 +1,16 @@
 @import '../../../../../styles/colors';
 
-// $spinner-color-1 = rgb(255, 122, 175);
+.pay-title {
+  &.sel-cuotas-title {
+    margin-bottom: 0;
+  }
+  &.sel-cuotas-subtitle {
+    margin-top: 0;
+    p {
+      margin-top: 7px;
+    }
+  }
+}
 
 .tgr-mini-footer{
   @media (max-width: 480) {

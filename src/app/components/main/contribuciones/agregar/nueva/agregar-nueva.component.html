@@ -153,12 +153,14 @@
     </form>
   </div>
 </div>
+<div class="mdl-cell mdl-cell--8-col results-not-found">
+  <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
+    nuevamente.</h3>
+</div>
 <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
   <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
 </div>
 <div #scroll class="mdl-cell mdl-cell--8-col tgr-results">
-  <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
-    nuevamente</h3>
   <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
     <mdl-icon (click)="selectAllProperies()"> {{selectedIcon}}</mdl-icon>
     <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
