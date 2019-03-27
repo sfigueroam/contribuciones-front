@@ -39,6 +39,7 @@ export class UserService {
   }
 
   getBienesRaices(): Promise<Propiedad[]> {
+
     if (this.rut) {
       return this.contributions.getBienesRaices(this.rut);
     } else if (this.email) {
