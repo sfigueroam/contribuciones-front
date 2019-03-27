@@ -24,7 +24,7 @@ const urlsBase = {
 
 
 export const environment = {
-
+  google_analytics_code: 'UA-136994548-1',
   snackbarTime: 5000,
   production: true,
   cuentaUrl: 'http://localhost:4201' + '/redirect',
