@@ -43,4 +43,5 @@ tslint.xml
 .DS_Store
 Thumbs.db
 .serverless
+src/environments/environment.ts
 

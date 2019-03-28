@@ -15,3 +15,7 @@
 .bar-text ~ .wrapper .mdl-button.mdl-button--icon:hover .material-icons {
   color: rgba(0, 0, 0, 0.3);
 }
+
+.tgr-tr--late {
+  color: $color-expired;
+}

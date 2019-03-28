@@ -38,8 +38,6 @@ export class AyudaRolComponent implements OnInit {
   }
 
   open(index: number): void {
-    console.log(index);
-    // register your subscription and callback whe open lightbox is fired
     this.subscription = this.lightboxEvent.lightboxEvent$
       .subscribe(event => this._onReceivedEvent(event));
     this.lightbox.open(this.albums, index, {wrapAround: true, showImageNumberLabel: true});
@@ -48,9 +46,7 @@ export class AyudaRolComponent implements OnInit {
   }
 
   private _onReceivedEvent(event: any): void {
-    // remember to unsubscribe the event when lightbox is closed
     if (event.id === LIGHTBOX_EVENT.CLOSE) {
-      // event CLOSED is fired
       this.subscription.unsubscribe();
     }
   }

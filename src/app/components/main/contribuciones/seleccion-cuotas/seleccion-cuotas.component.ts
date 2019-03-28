@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
-import {MdlSnackbarService} from '@angular-mdl/core';
+import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
 import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
+import {AyudaDireccionComponent} from '../agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
+import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -40,7 +42,8 @@ export class SeleccionCuotasComponent implements OnInit {
               private contribuciones: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
-              private deviceDetectService: DeviceDetectService) {
+              private deviceDetectService: DeviceDetectService,
+              private dialogService: MdlDialogService,) {
   }
 
   ngOnInit() {
@@ -150,5 +153,13 @@ export class SeleccionCuotasComponent implements OnInit {
     }
     this.seleccionada = result.tipo();
     this.cantidadSeleccionadas = result.seleccionadas;
+  }
+
+  dialogAyudaCondonacion(): void {
+    const pDialog = this.dialogService.showCustomDialog({
+      component: AyudaCondonacionComponent,
+      clickOutsideToClose: true,
+      isModal: true
+    });
   }
 }

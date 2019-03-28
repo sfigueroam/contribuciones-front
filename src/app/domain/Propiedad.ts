@@ -18,16 +18,19 @@ export class Propiedad {
   total: number;
   condonacion: number;
 
+  expired = false;
+
   constructor() {
     this.roles = [];
     this.idDireccion = '';
   }
 
-  countRol(): number{
-    if(this.roles !== undefined){
+  countRol(): number {
+    if (this.roles !== undefined) {
       return this.roles.length;
     }
   }
+
   addRol(rol: Rol) {
     this.roles.push(rol);
     rol.completeStream.subscribe(
@@ -56,9 +59,13 @@ export class Propiedad {
   private calcularTotal() {
     let total = 0;
     let condonacion = 0;
+    this.expired = false;
     for (const r of this.roles) {
       total += r.total;
       condonacion += r.condonacion;
+      if (r.expired) {
+        this.expired = true;
+      }
     }
     this.total = total;
     this.condonacion = condonacion;
