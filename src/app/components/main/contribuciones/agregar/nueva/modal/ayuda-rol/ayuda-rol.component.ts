@@ -41,7 +41,7 @@ export class AyudaRolComponent implements OnInit {
     this.subscription = this.lightboxEvent.lightboxEvent$
       .subscribe(event => this._onReceivedEvent(event));
     this.lightbox.open(this.albums, index, {wrapAround: true, showImageNumberLabel: true});
-    this.volver();
+    // this.volver();
 
   }
 

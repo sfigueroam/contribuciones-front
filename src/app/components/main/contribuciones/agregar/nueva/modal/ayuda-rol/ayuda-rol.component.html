@@ -5,11 +5,13 @@
 </div>
 <div class="dialog-body">
   <h4>¿Cómo buscar por <strong>ROL</strong>?</h4>
-  <p>Revisa el <strong>Certificado de Avalúo Fiscal</strong> que te entrega XXXXXX Institución. En él encontrarás la información de tu comuna y el <strong>Número de ROL</strong> que corresponde tanto al ROL como al Sub ROL.</p>
+  <p>Revisa el <strong>Boletín de Pago</strong> enviado por SII - TGR. En él encontrarás la información de tu <strong>comuna</strong> y el <strong>Número de ROL</strong> necesarios para buscar tu/s propiedad/es.</p>
   <div class="column has-text-centered">
     <div class="img-row" *ngFor="let image of albums; let i=index">
       <img class="img-frame" [src]="image.thumb" (click)="open(i)"/>
     </div>
   </div>
 </div>
-<a (click)="volver()">Entendido</a>
+<div class="dialog-footer">
+  <button class="mdl-button button-default-link" (click)="volver()">Entendido</button>
+</div>
