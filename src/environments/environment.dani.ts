@@ -1,8 +1,9 @@
 const endpoints = {
-  base: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
+  base: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev',
   lambdaRoles: '',
   elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
-  validateRecaptcha: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev'
+  validateRecaptcha: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev',
+  deviceDetect: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const keyRecaptcha = {
@@ -15,13 +16,15 @@ const urlsBase = {
   elastic: endpoints.elastic,
   lambdaRoles: endpoints.lambdaRoles + '/roles',
   recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
-  recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3'
+  recaptcha3: endpoints.validateRecaptcha + '/captcha/v3',
+  deviceDetect: endpoints.deviceDetect + '/detect'
 };
 
 
 
-export const environment = {
 
+export const environment = {
+  googleAnalyticsCode: 'UA-136994548-1',
   snackbarTime: 5000,
   production: true,
   cuentaUrl: 'http://localhost:4201' + '/redirect',
@@ -138,5 +141,10 @@ export const environment = {
       method: 'POST',
       key: keyRecaptcha.v3
     }
+  },
+  deviceDetect: {
+    url: urlsBase.deviceDetect,
+    method: 'GET'
   }
+
 };
