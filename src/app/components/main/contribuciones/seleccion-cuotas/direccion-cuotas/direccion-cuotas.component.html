@@ -9,7 +9,8 @@
   </div>
   <div class="mdl-layout-spacer"></div>
   <div class="wrapper">
-    <span *ngIf="propiedad.total >= 0" (click)="toggle()">$ {{propiedad.total | number}}</span>
+    <span [class.tgr-tr--late]="propiedad.expired" *ngIf="propiedad.total >= 0"
+          (click)="toggle()">$ {{propiedad.total | number}}</span>
     <button mdl-button mdl-js-button pointer delete-this-rol mdl-button-type="icon" (click)="delete()">      
       <i class="material-icons">close</i>
     </button>

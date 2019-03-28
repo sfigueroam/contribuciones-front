@@ -26,7 +26,7 @@ export class DireccionCuotasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.expanded = false;
+    this.expanded = true;
 
     this.comuna = this.propiedad.roles[0].comuna;
   }
