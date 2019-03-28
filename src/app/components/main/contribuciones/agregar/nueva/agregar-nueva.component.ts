@@ -270,6 +270,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarDireccionSugeridos() {
+    if (this.direccion.value === '' || this.direccion.value === null) {
+      return;
+    }
     this.inputDireccionesTmp = this.direccion.value;
     const size = environment.sizeResultSuggested;
 
@@ -359,6 +362,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarDireccionPost() {
+    if (this.direccion.value === '' || this.direccion.value === null) {
+      return;
+    }
     this.onWait();
     this.searchDireccion = false;
     const size = environment.sizeResultPage;
@@ -453,6 +459,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   cargarDireccion(dire) {
+    this.showButtonLimpiarBusqueda = true;
     const direcciones = [];
     direcciones.push(new Direccion(dire));
     this.direcciones = direcciones;
@@ -556,11 +563,13 @@ export class AgregarNuevaComponent implements OnInit {
 
   limpiarFiltroRol() {
     this.formRol.reset();
+    this.selectComuna.searchQuery = '';
   }
 
   limpiarFiltroDireccion() {
     this.formDireccion.reset();
     this.tipoPropiedad.setValue(-1);
+    this.selectTipo.searchQuery = '';
   }
 
   existBusqueda() {

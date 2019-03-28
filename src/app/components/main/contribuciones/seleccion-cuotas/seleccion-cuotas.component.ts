@@ -8,6 +8,7 @@ import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
+import {DeviceDetectService} from '../../../../services/device-detect.service';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -33,11 +34,13 @@ export class SeleccionCuotasComponent implements OnInit {
 
   urlPagoTgr: string;
 
+
   constructor(private router: Router,
               private user: UserService,
               private contribuciones: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
-              private mdlSnackbarService: MdlSnackbarService) {
+              private mdlSnackbarService: MdlSnackbarService,
+              private deviceDetectService: DeviceDetectService) {
   }
 
   ngOnInit() {

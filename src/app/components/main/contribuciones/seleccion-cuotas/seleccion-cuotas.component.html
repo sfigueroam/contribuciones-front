@@ -96,6 +96,7 @@
     <div class="mdl-layout-spacer"></div>
     <form ngNoForm method="post" action="{{urlPagoTgr}}">
       <input type="hidden" name="listaContribuciones" value="{{listaContribuciones}}"/>
+      <input *ngIf="deviceDetectService.device.mobile" type="hidden" name="canal" value="30M"/>
       <button mdl-button class="button-pay" [disabled]="total <= 0">Pagar
       </button>
     </form>
