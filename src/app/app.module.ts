@@ -34,6 +34,7 @@ import {DeviceDetectorModule} from 'ngx-device-detector';
 import { DialogAgregarPropiedadComponent } from './components/main/contribuciones/agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
 import { AyudaDireccionComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
 import { AyudaRolComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-rol/ayuda-rol.component';
+import {LightboxModule} from 'ngx-lightbox';
 
 
 registerLocaleData(localeEs, 'es');
@@ -74,6 +75,7 @@ registerLocaleData(localeEs, 'es');
     NgxBarcodeModule,
     NgxCaptchaModule,
     DeviceDetectorModule.forRoot(),
+    LightboxModule,
 
 
   ],
