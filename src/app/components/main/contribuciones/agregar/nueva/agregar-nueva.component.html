@@ -152,6 +152,10 @@
       </div>
     </form>
   </div>
+  <div class="tgr-card__body ">
+    <a *ngIf="showButtonLimpiarBusqueda" class="cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>&nbsp;
+
+  </div>
 </div>
 <div class="mdl-cell mdl-cell--8-col results-not-found">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta

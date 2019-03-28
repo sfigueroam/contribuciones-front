@@ -31,6 +31,8 @@ export class Rol {
 
   sufijoDireccion: string;
 
+  isProcess = false;
+
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
     if (!this.cuotas) {

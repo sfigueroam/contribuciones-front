@@ -23,13 +23,13 @@ export class ContribucionesService {
     this.propiedades = [];
   }
 
-  getCountPropiedad(): number{
+  getCountPropiedad(): number {
     let cantidad = 0;
     if (this.propiedades === undefined || this.propiedades == null) {
       return 0;
     }
 
-    for(const prop of this.propiedades ){
+    for (const prop of this.propiedades) {
       cantidad = cantidad + prop.countRol();
     }
     return cantidad;
@@ -111,7 +111,9 @@ export class ContribucionesService {
   async cargarRoles(): Promise<any> {
     for (const propiedad of this.propiedades) {
       for (const rol of propiedad.roles) {
-        await this.cargarRol(rol);
+        if (!rol.isProcess) {
+          await this.cargarRol(rol);
+        }
         rol.complete();
       }
     }
@@ -138,15 +140,8 @@ export class ContribucionesService {
                 for (const deuda of data2.listaDeudaRol) {
                   const cuota = mapCuotas.get(deuda.numeroCuota);
                   cuota.liqParcial = new CuotaDetalle(deuda);
-
-                  /*if (deuda.numeroCuota === '5-1988') {
-                    console.log('deuda.numeroCuota', deuda.numeroCuota);
-                    console.log(cuota.liqTotal);
-                    console.log(cuota.liqParcial);
-                    console.log(cuota.folio);
-                    console.log('cuota.numeroCuota', cuota.numeroCuota);
-                  }*/
                 }
+                rol.isProcess = true;
                 resolve();
               },
               (err) => reject(err)
