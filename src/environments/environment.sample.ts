@@ -23,6 +23,7 @@ const urlsBase = {
 
 
 export const environment = {
+  googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
   snackbarTime: 5000,
   production: true,
   //TODO: llamar a una url privada de cuenta de usuario sin client-id

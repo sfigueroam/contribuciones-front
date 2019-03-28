@@ -85,7 +85,7 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChild('autocompleteSelectTipoPropiedades') selectTipo: MdlSelectComponent;
 
   public recaptcha: any = null;
-  private totalRoles: number = 0;
+  private totalRoles = 0;
   showButtonLimpiarBusqueda = false;
 
 

@@ -23,7 +23,7 @@ export class ContribucionesService {
     this.propiedades = [];
   }
 
-  getCountPropiedad(): number {
+  getCountPropiedad() {
     let cantidad = 0;
     if (this.propiedades === undefined || this.propiedades == null) {
       return 0;
