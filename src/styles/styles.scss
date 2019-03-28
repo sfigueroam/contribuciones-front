@@ -261,7 +261,7 @@ html, body, h1, h2, h3, h4, h5 {
 
 // INICIO. Estilos de Botones
 .mdl-button.button-default {
-  color: $link-color;
+  color: #ffffff;
   &:active,
   &:focus {
     background-color: $link-color;
@@ -271,7 +271,6 @@ html, body, h1, h2, h3, h4, h5 {
 
 .mdl-button.button-default-link {
   color: $link-color;
-
   &:active,
   &:focus,
   &:visited {
@@ -434,6 +433,10 @@ html, body {
 }
 .tgr-card__body {
   padding: 16px;
+}
+
+.tgr-th-icon {
+  cursor: pointer;  
 }
 
 .tgr-card__footer {
