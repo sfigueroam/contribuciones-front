@@ -407,19 +407,24 @@ export class AgregarNuevaComponent implements OnInit {
 
     if ((this.user.rut != null && this.user.rut !== undefined) || this.user.email) {
       let roles: Rol[] = [];
+
+      const listaPropiedades = [];
       const propiedadesComponent = this.propiedadComponentList.toArray();
       for (const propiedadComponent of propiedadesComponent) {
         const rolesSeleccionados = propiedadComponent.getRolesSeleccioados();
         if (rolesSeleccionados !== undefined) {
           roles = roles.concat(rolesSeleccionados);
+          const propiedad = propiedadComponent.propiedad;
+          listaPropiedades.push(propiedad);
         }
       }
 
       if (roles.length > 0) {
         this.user.asociarRoles(roles.map(r => r.rol)).then(() => {
-            this.contribuciones.propiedades = undefined;
+            for (const propiedad of listaPropiedades) {
+              this.contribuciones.addPropiedad(propiedad);
+            }
             this.dialogConfirmarAgregarPropiedad();
-            //this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
           },
           err => {
             this.hidden = true;
