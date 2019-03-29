@@ -1,4 +1,4 @@
-<app-linea-tiempo [buscar]="true" ></app-linea-tiempo>
+<app-linea-tiempo [buscar]="true"></app-linea-tiempo>
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--6-col m-0auto pay-title">
     <h5 class="title text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
@@ -35,22 +35,27 @@
 
   <form [formGroup]="formDireccion" (submit)="buscarDireccion()" autocomplete="off">
     <div class="tgr-card__body body-direccion " [class.hidden]="switchActive === 'rol'">
-      <button type="button" class="ayuda-busqueda">
+      <button type="button" class="ayuda-busqueda" (click)="dialogAyudaDireccion()">
         <p>
           <i class="material-icons">help</i>
           ¿Cómo buscar por <strong>Dirección</strong>?
         </p>
       </button>
       <div class="tgr-card__search ">
-        <mdl-select #autocompleteSelectTipoPropiedades [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
+        <mdl-select #autocompleteSelectTipoPropiedades
+                    [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
                     [autocomplete]="true"
                     (change)="autoCompletarPropiedad()"
                     error-msg="Debe seleccionar un tipo de propiedad"
                     [formControl]="tipoPropiedad"
                     label="Tipo Propiedad"
-                    floating-label
-                    >
+                    floating-label>
           <mdl-option [value]="-1">Todos</mdl-option>
+          <mdl-option
+            *ngFor="let tipo of tipoPropiedadesfrecuentes| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+            [value]="tipo.id">{{tipo.descripcion | titlecase}}
+          </mdl-option>
+          <mdl-option class="separator" [disabled]="true"></mdl-option>
           <mdl-option
             *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
             [value]="tipo.id">{{tipo.descripcion | titlecase}}
@@ -70,12 +75,15 @@
                          label="Dirección"
                          error-msg="Debe ingresar al menos 3 caracteres">
           </mdl-textfield>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion" type="submit"
-                [disabled]="formDireccion.invalid">
-                  <i class="material-icons">search</i>
-                  Buscar
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion"
+                  type="submit"
+                  [disabled]="formDireccion.invalid">
+            <i class="material-icons">search</i>
+            Buscar
           </button>
-
+          <div *ngIf="showButtonLimpiarBusqueda" class="tgr-card__footer footer-direccion">
+            <a class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>
+          </div>
           <ul class="tgr-suggestions">
             <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
                 (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
@@ -90,7 +98,7 @@
     </div>
   </form>
   <div class="tgr-card__body " [class.hidden]="switchActive === 'direccion'">
-    <button type="button" class="ayuda-busqueda">
+    <button type="button" class="ayuda-busqueda" (click)="dialogAyudaRol()">
       <p>
         <i class="material-icons">help</i>
         ¿Cómo buscar por <strong>ROL</strong>?
@@ -115,7 +123,7 @@
                        type="number"
                        id="rol"
                        name="rol"
-                       label="Rol"
+                       label="ROL"
                        class="tgr-i-rol"
                        [formControl]="rol"
                        error-msg="Debe ingresar un Rol"
@@ -128,61 +136,70 @@
                        id="subRol"
                        name="subRol"
                        class="tgr-i-subrol"
-                       label="Sub Rol"
+                       label="Sub ROL"
                        [formControl]="subRol"
                        error-msg="Debe ingresar un Sub Rol"
                        floating-label></mdl-textfield>
       </div>
       <div class="tgr-card__footer">
+        <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer"
+           (click)="limpiarBusquda()">Limpiar Búsqueda</a>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
                 [disabled]="formRol.invalid">
-                  <i class="material-icons">search</i>
-                  Buscar
+          <i class="material-icons">search</i>
+          Buscar
         </button>
       </div>
     </form>
   </div>
-  <div class="tgr-card__body ">
-    <a class="cursor-pointer" (click)="limpiarBusquda()" >Limpiar Búsqueda</a>
-  </div>
 </div>
-<div class="mdl-cell mdl-cell--8-col tgr-results" *ngIf="propiedades && propiedades.length > 0">
-  <a > Se encontraron {{totalRoles}} coincidencias en la búsqueda</a>
-</div>
-
-<div class="mdl-cell mdl-cell--8-col tgr-results">
+<div class="mdl-cell mdl-cell--8-col results-not-found">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
-    nuevamente</h3>
-    <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
-      <mdl-icon (click)="selectAllProperies()" > {{selectedIcon}}</mdl-icon>
-      <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
-    </div>
+    nuevamente.</h3>
+</div>
+<div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
+  <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
+</div>
+<div #scroll class="mdl-cell mdl-cell--8-col tgr-results">
+  <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
+    <mdl-icon (click)="selectAllProperies()"> {{selectedIcon}}</mdl-icon>
+    <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
+  </div>
 
-
-  <app-propiedad  class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades"
+  <app-propiedad class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp"
+                 *ngFor="let propiedad of propiedades"
                  [default-seleccion]=false
                  [propiedad]="propiedad"
-                 (change)="updateSeleccionadaTotal()" >
+                 (change)="updateSeleccionadaTotal()">
   </app-propiedad>
+
 </div>
 
-<p class="contador-propiedades" [class.contador-hidden]="footerHidden"  *ngIf="countPropiedades == 1; else propiedadesTemplate" >Llevas <strong>{{countPropiedades}}</strong> propiedad en el carro</p>
+
+<p class="contador-propiedades" [class.contador-hidden]="footerHidden"
+   *ngIf="countPropiedades == 1; else propiedadesTemplate">Llevas <strong>{{countPropiedades}}</strong> propiedad en
+  el
+  carro</p>
 <ng-template #propiedadesTemplate>
-  <p class="contador-propiedades" [class.contador-hidden]="footerHidden" >Llevas <strong>{{countPropiedades}}</strong> propiedades en el carro</p>
+  <p class="contador-propiedades" [class.contador-hidden]="footerHidden">Llevas <strong>{{countPropiedades}}</strong>
+    propiedades en el carro</p>
 </ng-template>
 <div class="tgr-actions" [class.tgr-actions-hidden]="footerHidden">
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">
 
-      <button id="agregar_propiedades" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [disabled]="cantidadSeleccionadas == 0"
-        (click)="asociarPropiedades()">
+      <button id="agregar_propiedades" type="button"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              [disabled]="cantidadSeleccionadas == 0"
+              (click)="asociarPropiedades()">
         Agregar {{cantidadSeleccionadas}} propiedades
       </button>
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return"  (click)="volver()" >
-        Ir al Carro
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
+        IR AL CARRO
         <i class="material-icons">keyboard_arrow_right</i>
       </button>
     </div>
   </div>
 </div>
+

@@ -3,9 +3,41 @@
 .hidden {
   display: none;
 }
-.bar .bar-text {
-  cursor: pointer;
+.bar {
+  border-left: 5px solid #931c82;
+  .bar-text {
+    padding-top: 0;
+    padding-bottom: 0;
+    cursor: pointer;
+    .mdl-button.mdl-button--icon {
+      vertical-align: top;
+      color: $color-dark-blue-text;
+    }
+    h6 {
+      .direccion {
+        margin-bottom: 0;
+        color: $color-dark-blue-text;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 21px;
+      }
+      .comuna {
+        //margin-top: 5px;
+        margin-bottom: 0;
+        color: $color-dark-blue-text;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 21px;
+      }
+    }
+  }
+  .wrapper {
+    span {
+      font-size: 16px;
+    }
+  }
 }
+
 .mdl-button.mdl-button--icon:hover {
   background: #CFCFCF;
 }
@@ -14,4 +46,8 @@
 }
 .bar-text ~ .wrapper .mdl-button.mdl-button--icon:hover .material-icons {
   color: rgba(0, 0, 0, 0.3);
+}
+
+.tgr-tr--late {
+  color: $color-expired;
 }

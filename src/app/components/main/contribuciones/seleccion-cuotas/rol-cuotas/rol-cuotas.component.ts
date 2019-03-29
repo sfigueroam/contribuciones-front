@@ -46,6 +46,7 @@ export class RolCuotasComponent implements OnInit {
       }
     );
 
+
   }
 
   toggle() {

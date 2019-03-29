@@ -1,0 +1,18 @@
+<div class="close-dialog">
+  <a (click)="volver()">
+    <i class="material-icons">close</i>
+  </a>
+</div>
+<div class="dialog-body">
+  <h4>¿Cómo buscar por <strong>ROL</strong>?</h4>
+  <p>Revisa el <strong>Boletín de Pago</strong> enviado por SII - TGR. En él encontrarás la información de tu <strong>comuna</strong> y el <strong>Número de ROL</strong> necesarios para buscar tu/s propiedad/es.</p>
+  <p>En las siguientes imágenes de ejemplo resaltamos en amarillo la información necesaria:</p>
+  <div class="column has-text-centered">
+    <div class="img-row" *ngFor="let image of albums; let i=index">
+      <img class="img-frame" [src]="image.thumb" (click)="open(i)"/>
+    </div>
+  </div>
+</div>
+<div class="dialog-footer">
+  <button class="mdl-button button-default-link" (click)="volver()">Entendido</button>
+</div>

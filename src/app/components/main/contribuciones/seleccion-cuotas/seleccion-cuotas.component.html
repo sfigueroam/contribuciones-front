@@ -12,12 +12,13 @@
   </div>
 </div>
 <app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo>
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--4-col m-0auto text-center pay-title">
-    <h5 class="title text-mont">Seleccionar Mis <strong>Deudas</strong></h5>
+<div class="tgr-container">
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-title">
+      <h5 class="title text-center text-mont">Seleccionar Mis <strong>Deudas</strong></h5>
+    </div>
   </div>
 </div>
-
 
 <div class="mdl-grid switch-fee-text" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--4-col m-0auto mb-0 select-fee">
@@ -42,21 +43,28 @@
 </div>
 
 <ng-template #bodySinDeuda>
-  <div class="mdl-grid switch-fee-text">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam,</p>
-
-  </div>
-  <div class="tgr-actions__content">
-    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return"
-            [routerLink]="['/main/contribuciones/agregar/nueva']">Agregar propiedades
-    </button>
+  <div class="tgr-container">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+        <p>Actualmente no tienes propiedades ni deudas en tu carro. Te invitamos a buscar y agregar propiedades para
+          pagar.</p>
+      </div>
+    </div>
+    <div class="mdl-grid">
+      <div class="tgr-actions__content">
+        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                [routerLink]="['/main/contribuciones/agregar/nueva']">
+          <i class="material-icons">add</i>
+          Agregar propiedades
+        </button>
+      </div>
+    </div>
   </div>
 
 </ng-template>
 
 <div class="mdl-grid" *ngFor="let propiedad of propiedades">
-  <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--5-col m-0auto rol-card"
+  <div class="mdl-cell mdl-cell--6-col m-0auto rol-card"
        *ngIf="propiedad.roles.length > 0">
     <app-direccion-cuotas (change)="onChange()" [propiedad]="propiedad"></app-direccion-cuotas>
   </div>
@@ -64,16 +72,23 @@
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0">
   <div class="mdl-cell mdl-cell--4-col total-buy m-0auto">
-    <p class="text-primary text-center">
-      <strong>Total: $ {{total | number}}</strong>
+    <p *ngIf="complete" class="text-primary text-center">
+      Total Deuda Contribuciones: <strong>$ {{total | number}}</strong>
     </p>
-    <p *ngIf="condonacion > 0" class="text-success text-center">
-      El monto total considera una condonación de $ {{condonacion | number}}
-    </p>
-    <br>
-    <br>
+    <div *ngIf="condonacion > 0">
+      <p class="tgr-condonacion text-center">
+        El pago de las deudas ha generado una condonación de <strong>$ {{condonacion | number}}</strong>, incluída en el
+        monto total a pagar
+      </p>
+      <button type="button" class="ayuda-condonacion" (click)="dialogAyudaCondonacion()">
+        <p>
+          ¿Qué es <strong>Condonación</strong>?
+        </p>
+      </button>
+    </div>
   </div>
 </div>
+
 
 <div class="tgr-actions tgr-mini-footer" *ngIf="propiedades.length > 0; else footeractions">
   <div *ngIf="!complete" class="tgr-loading2">
@@ -85,11 +100,11 @@
       <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list
       </mdl-icon>
     </button>
-    <h6 class="pl-10"><strong>$ {{total | number}}</strong></h6>
     <div class="mdl-layout-spacer"></div>
     <form ngNoForm method="post" action="{{urlPagoTgr}}">
       <input type="hidden" name="listaContribuciones" value="{{listaContribuciones}}"/>
-      <button mdl-button class="button-pay" [disabled]="total <= 0">Pagar
+      <input *ngIf="deviceDetectService.device.mobile" type="hidden" name="canal" value="30M"/>
+      <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}
       </button>
     </form>
   </div>

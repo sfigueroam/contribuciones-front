@@ -7,14 +7,16 @@
     <div class="bar-text" (click)="toggle()">
       <h6>
         <i class="material-icons">{{icon}}</i>
-        <strong>{{rol.destPropiedad | titlecase}} {{rol.sufijoDireccion}}</strong>
+        {{rol.destPropiedad | titlecase}} {{rol.sufijoDireccion}}
       </h6>
       <p class="el-rol">ROL {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId |
-        leadingZero:3}}</p>
+        leadingZero:3}}
+      </p>
     </div>
     <div class="mdl-layout-spacer"></div>
     <div class="wrapper">
-      <span class="rol-total" *ngIf="rol.total >= 0" (click)="toggle()">$ {{rol.total | number}}</span>
+      <span class="rol-total" [class.tgr-tr--late]="rol.expired" *ngIf="rol.total >= 0"
+            (click)="toggle()">$ {{rol.total | number}}</span>
       <button class="mdl-button mdl-js-button mdl-button--icon pointer delete-this-rol" (click)="delete()">
         <i class="material-icons">close</i>
       </button>
@@ -38,7 +40,7 @@
           <td>
             <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
           </td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">
+          <td [class.tgr-tr--late]="cuota.expired">
             <span>{{cuota.numeroCuota}}</span>
           </td>
           <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>

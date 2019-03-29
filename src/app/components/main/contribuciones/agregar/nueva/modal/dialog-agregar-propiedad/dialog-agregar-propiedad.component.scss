@@ -1,0 +1,14 @@
+@import '../../../../../../../../styles/colors';
+.tgr-dialog {
+    padding-top: 18px;
+    .tgr-dialog__body {
+        margin-bottom: 24px;
+        p {
+            font-size: 16px;
+            color: $color-dark-gray;
+        }
+    }
+    .tgr-dialog__options {
+        
+    }
+}

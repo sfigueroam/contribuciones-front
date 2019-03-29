@@ -12,9 +12,10 @@
   	padding: 10px 18px;
   	color: $color-dark-blue-text;
   	border-bottom: none;
-  	@media (min-width: 840px) {
-  	  border-bottom: 2px solid $color-dark-blue-text;
-  	}
+  	// descomentar en versión desktop
+  	//@media (min-width: 840px) {
+  	//  border-bottom: 2px solid $color-dark-blue-text;
+  	//}
   }
   .tgr-card__body {
     position: relative;
@@ -23,16 +24,6 @@
     }
     &.body-direccion {
       padding-bottom: 30px;
-    }
-    .tgr-card__search {
-      margin-top: 28px;
-      @media (max-width: 480px) {
-        padding-left: 9px;
-        padding-right: 9px;
-      }
-      @media (min-width: 840px) {
-        margin-top: 0;
-      }
     }
     .ayuda-busqueda {
       position: absolute;
@@ -47,6 +38,7 @@
       font-size: 16px;
       color: $color-dark-blue-text;
       background-color: $color-light-gray;
+      transition: .3s;
       &:hover,
       &:active,
       &:focus {
@@ -59,15 +51,40 @@
           vertical-align: bottom;
         }
       }
-      @media (min-width: 840px) {
-        display: none;
+      // descomentar en versión desktop
+      //@media (min-width: 840px) {
+      //  display: none;
+      //}
+    }
+
+    .tgr-card__search {
+      margin-top: 28px;
+      @media (max-width: 480px) {
+        padding-left: 9px;
+        padding-right: 9px;
+      }
+      // descomentar en versión desktop
+      //@media (min-width: 840px) {
+      //  margin-top: 0;
+      //}
+    }
+
+    .tgr-card__footer {
+      padding-left: 0;
+
+      &.footer-direccion {
+        padding: 0;
+      }
+
+      .button-default-link {
+        float: left;
       }
     }
   }
 }
 .mdl-button.mdl-button--return {
   background: gray;
-  text-transform: none;
+  text-transform: capitalize;
   background-color: transparent;
   color: #448aff;
   box-shadow: none;
@@ -78,9 +95,11 @@
   }
   i.material-icons {
     margin-left: -8px;
+    margin-bottom: 2px;
   }
 }
 .tgr-actions{
+  min-height: 70px;
   @media (max-width: 320px){
     top: 507px;
     padding-right: 10px;
@@ -104,6 +123,10 @@
 .tgr-switch {
   .mdl-button {
     color: $color-dark-blue-text;
+
+    &:hover {
+      color: #ffffff;
+    }
     &.tgr-switch-active {
       color: $color-white;
       background-color: $color-dark-blue-text;
@@ -141,7 +164,11 @@
   }
   //boton de pago
   .mdl-button:first-of-type {
-    @media (max-width: 480px) {
+    @media (max-width: 340px) {
+      float: left;
+      margin-left: 0;
+    }
+    @media (min-width: 341px) and (max-width: 480px) {
       float: left;
       margin-left: 10px;
     }
@@ -222,7 +249,7 @@
 }
 .tgr-pay {
 	margin-top: 17px;
-	    text-align: center;
+	text-align: center;
 }
 .grecaptcha-badge {
   bottom: 70px !important;
@@ -239,9 +266,9 @@
   padding: 0 10px;
 }
 .tgr-card__title .material-icons {
-  color: $color-violet;
-      float: left;
-    line-height: 1;
+    color: $color-dark-blue-text;
+    float: left;
+    line-height: 20px;
     margin-right: 4px;
     margin-top: -6px;
     margin-bottom: -6px
@@ -264,7 +291,6 @@
 	display: block;
 	font-size: 16px;
 	font-weight: 500;
-	line-height: 1;
 }
 .tgr-rol-row {
 	padding: 16px 10px 10px 12px;
@@ -278,10 +304,46 @@
 .tgr-results .tgr-card__body {
 	padding: 0;
 }
+
+.results-not-found {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+  @media (min-width: 600px) and (max-width: 840px) {
+    width: 70%;
+  }
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 30px;
+    margin-bottom: 34px;
+    color: $color-dark-gray;
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
+  }
+}
+
+.tgr-results-coincidencias {
+  width: 100%;
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  p {
+    font-size: 16px;
+    color: $color-dark-blue-text;
+  }
+}
 .tgr-results {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding-top: 12px;
   padding-bottom: 25px;
   align-items: flex-start;
   margin-left: auto;
@@ -296,6 +358,7 @@
     margin-bottom: 6px;
     .material-icons {
       vertical-align: bottom;
+      cursor: pointer;
       color: $color-dark-blue-text;
     }
     span {
@@ -353,6 +416,9 @@
 .tgr-cell-wait .mdl-spinner {
   left: calc(50% - 20px);
   margin-top: 20%;
+  @media (min-width: 1025px) {
+    margin-top: 15%;
+  }
 }
 .tgr-cell-wait__feedback {
   padding: 5px 32px;

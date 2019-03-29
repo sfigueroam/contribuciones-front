@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
 import {MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
@@ -20,6 +20,9 @@ import {TipoRecaptcha} from '../../../../../enum/TipoRecaptcha.enum';
 import {MdlSelectComponent} from '@angular-mdl/select';
 import {DeviceDetectService} from '../../../../../services/device-detect.service';
 import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
+import {CANT_PROPIEDADES, DialogAgregarPropiedadComponent} from './modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
+import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.component';
+import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -31,14 +34,15 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
 
+  @ViewChild('scroll') scroll: ElementRef;
 
-  defaulSel = false;
 
   wait = false;
   sinResultado = false;
   searchDireccion = false;
 
   localidad: Localidad[];
+  tipoPropiedadesfrecuentes: TipoPropiedad[];
   tipoPropiedades: TipoPropiedad[];
   direcciones: Direccion[];
   direccionModel: string;
@@ -81,7 +85,8 @@ export class AgregarNuevaComponent implements OnInit {
   @ViewChild('autocompleteSelectTipoPropiedades') selectTipo: MdlSelectComponent;
 
   public recaptcha: any = null;
-  private totalRoles: number = 0;
+  private totalRoles = 0;
+  showButtonLimpiarBusqueda = false;
 
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
@@ -195,7 +200,15 @@ export class AgregarNuevaComponent implements OnInit {
     });
 
     this.contribucionesBuscarRol.getTiposPropiedades().then((data) => {
-      this.tipoPropiedades = data;
+      this.tipoPropiedadesfrecuentes = [];
+      this.tipoPropiedades = [];
+      for (const prop of data) {
+        if (prop.id === 'H' || prop.id === 'L' || prop.id === 'Z') {
+          this.tipoPropiedadesfrecuentes.push(prop);
+        } else {
+          this.tipoPropiedades.push(prop);
+        }
+      }
     }, () => {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
@@ -217,7 +230,7 @@ export class AgregarNuevaComponent implements OnInit {
       });
     }
 
-    this.countPropiedades = this.contribuciones.getCountPropiedad();
+    this.loadCantidadPropiedadesEnCarro();
 
     const domSelectComuna = this.selectComuna.selectInput.nativeElement as HTMLElement;
     domSelectComuna.addEventListener('focus', () => this.ocultarFooter());
@@ -236,6 +249,10 @@ export class AgregarNuevaComponent implements OnInit {
 
   }
 
+  loadCantidadPropiedadesEnCarro(): void {
+    this.countPropiedades = this.contribuciones.getCountPropiedad();
+  }
+
   buscarRolPost(): void {
     this.onWait();
     this.contribucionesBuscarRol.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
@@ -243,6 +260,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.sinResultado = true;
       } else {
         this.agregarPropiedad(response);
+        this.onScroll();
       }
       this.offWait();
     }, () => {
@@ -252,6 +270,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarDireccionSugeridos() {
+    if (this.direccion.value === '' || this.direccion.value === null) {
+      return;
+    }
     this.inputDireccionesTmp = this.direccion.value;
     const size = environment.sizeResultSuggested;
 
@@ -341,6 +362,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarDireccionPost() {
+    if (this.direccion.value === '' || this.direccion.value === null) {
+      return;
+    }
     this.onWait();
     this.searchDireccion = false;
     const size = environment.sizeResultPage;
@@ -356,6 +380,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.agregarDireccionesAPropiedad();
         this.offWait();
         this.resetCaptcha2();
+        this.onScroll();
 
       },
       () => {
@@ -393,7 +418,8 @@ export class AgregarNuevaComponent implements OnInit {
       if (roles.length > 0) {
         this.user.asociarRoles(roles.map(r => r.rol)).then(() => {
             this.contribuciones.propiedades = undefined;
-            this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+            this.dialogConfirmarAgregarPropiedad();
+            //this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
           },
           err => {
             this.hidden = true;
@@ -409,7 +435,8 @@ export class AgregarNuevaComponent implements OnInit {
       for (const propiedad of propiedadesConRolesSeleccionados) {
         this.contribuciones.addPropiedad(propiedad);
       }
-      this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+      this.dialogConfirmarAgregarPropiedad();
+      //this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
     }
   }
 
@@ -432,6 +459,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   cargarDireccion(dire) {
+    this.showButtonLimpiarBusqueda = true;
     const direcciones = [];
     direcciones.push(new Direccion(dire));
     this.direcciones = direcciones;
@@ -464,11 +492,13 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   buscarRol() {
+    this.showButtonLimpiarBusqueda = true;
     this.searchDireccion = false;
     this.validarCaptcha();
   }
 
   buscarDireccion() {
+    this.showButtonLimpiarBusqueda = true;
     this.searchDireccion = false;
     this.validarCaptcha();
   }
@@ -523,6 +553,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   limpiarBusquda() {
+    this.showButtonLimpiarBusqueda = false;
     if (this.switchActive === 'direccion') {
       this.limpiarFiltroDireccion();
     } else {
@@ -530,24 +561,57 @@ export class AgregarNuevaComponent implements OnInit {
     }
   }
 
-  limpiarFiltroRol(){
+  limpiarFiltroRol() {
     this.formRol.reset();
+    this.selectComuna.searchQuery = '';
   }
-  limpiarFiltroDireccion(){
+
+  limpiarFiltroDireccion() {
     this.formDireccion.reset();
     this.tipoPropiedad.setValue(-1);
+    this.selectTipo.searchQuery = '';
   }
 
   existBusqueda() {
-
     setTimeout(
       () => {
         this.searchDireccion = false;
       },
       200
     );
-
   }
 
+  onScroll() {
+    this.scroll.nativeElement.scrollIntoView();
+    const htmlScroll = this.scroll.nativeElement as HTMLElement;
+    htmlScroll.focus();
+  }
 
+  dialogConfirmarAgregarPropiedad(): void {
+    this.propiedades = [];
+    this.loadCantidadPropiedadesEnCarro();
+    const pDialog = this.dialogService.showCustomDialog({
+      component: DialogAgregarPropiedadComponent,
+      providers: [{provide: CANT_PROPIEDADES, useValue: this.cantidadSeleccionadas}],
+      clickOutsideToClose: true,
+      isModal: true
+    });
+    this.cantidadSeleccionadas = 0;
+  }
+
+  dialogAyudaDireccion(): void {
+    const pDialog = this.dialogService.showCustomDialog({
+      component: AyudaDireccionComponent,
+      clickOutsideToClose: true,
+      isModal: true
+    });
+  }
+
+  dialogAyudaRol(): void {
+    const pDialog = this.dialogService.showCustomDialog({
+      component: AyudaRolComponent,
+      clickOutsideToClose: true,
+      isModal: true
+    });
+  }
 }

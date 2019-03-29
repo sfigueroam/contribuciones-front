@@ -28,9 +28,14 @@ import {CertificadoDeudaComponent} from './components/main/certificados/obtener/
 import {HistorialPagoComponent} from './components/main/certificados/obtener/historial-pago/historial-pago.component';
 import {NgxBarcodeModule} from 'ngx-barcode';
 import {AsociarCorreoComponent} from './components/dialogs/asociar-correo/asociar-correo.component';
-import { NgxCaptchaModule } from 'ngx-captcha';
-import { LineaTiempoComponent } from './components/main/contribuciones/linea-tiempo/linea-tiempo.component';
-import { DeviceDetectorModule } from 'ngx-device-detector';
+import {NgxCaptchaModule} from 'ngx-captcha';
+import {LineaTiempoComponent} from './components/main/contribuciones/linea-tiempo/linea-tiempo.component';
+import {DeviceDetectorModule} from 'ngx-device-detector';
+import { DialogAgregarPropiedadComponent } from './components/main/contribuciones/agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
+import { AyudaDireccionComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
+import { AyudaRolComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-rol/ayuda-rol.component';
+import {LightboxModule} from 'ngx-lightbox';
+import {AyudaCondonacionComponent} from './components/main/contribuciones/seleccion-cuotas/modal/ayuda-condonacion/ayuda-condonacion.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -56,6 +61,10 @@ registerLocaleData(localeEs, 'es');
     HistorialPagoComponent,
     AsociarCorreoComponent,
     LineaTiempoComponent,
+    DialogAgregarPropiedadComponent,
+    AyudaDireccionComponent,
+    AyudaRolComponent,
+    AyudaCondonacionComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,11 +77,12 @@ registerLocaleData(localeEs, 'es');
     NgxBarcodeModule,
     NgxCaptchaModule,
     DeviceDetectorModule.forRoot(),
+    LightboxModule,
 
 
   ],
   providers: [
-    { provide: 'windowObject', useValue: window},
+    {provide: 'windowObject', useValue: window},
     {
       provide: LOCALE_ID,
       useValue: 'es-CL'
@@ -83,7 +93,13 @@ registerLocaleData(localeEs, 'es');
     },
     CookieService
   ],
-  entryComponents: [AsociarCorreoComponent],
+  entryComponents: [
+    AsociarCorreoComponent,
+    DialogAgregarPropiedadComponent,
+    AyudaRolComponent,
+    AyudaDireccionComponent,
+    AyudaCondonacionComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

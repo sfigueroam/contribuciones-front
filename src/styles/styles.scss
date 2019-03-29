@@ -259,6 +259,80 @@ html, body, h1, h2, h3, h4, h5 {
 
 }
 
+// INICIO. LIGHTBOX
+.lightboxOverlay {
+  z-index: 999999999 !important;
+}
+
+.lightbox {
+  z-index: 9999999999 !important;
+}
+// FIN. LIGHTBOX
+
+// INICIO. Estilos de Botones
+.mdl-button.button-default {
+  cursor: pointer;
+  color: $link-color;
+  transition: .4s;
+  &:active,
+  &:focus {
+    background-color: $link-color;
+    color: #ffffff;
+  }
+}
+
+.mdl-button.button-default-link {
+  color: $link-color;
+  transition: .4s;
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    background-color: transparent;
+    color: $link-color !important;
+    text-decoration: underline;
+    .material-icons {
+      color: $link-color;
+    }
+  }
+}
+// FIN. Estilos de Botones
+
+// INICIO Esconder Address Bar en móvil
+html, body {
+  overflow-y: auto;
+  min-height: 100%;
+}
+.mdl-layout {
+    min-height: 100%;
+    height: auto;
+    overflow: auto;
+}
+.mdl-layout__drawer {
+    position: fixed;
+}
+.mdl-layout__content {
+    display: block;
+    overflow: visible;
+    margin-top: 64px;
+}
+.is-small-screen .mdl-layout__content {
+    margin-top: 56px;
+}
+.mdl-layout__header {
+    position: fixed;
+}
+.mdl-layout__obfuscator {
+    position: fixed;
+}
+// FIN Esconder Address Bar en móvil
+
+// Inicio. Diálogos
+.dialog-backdrop {
+    background: rgba(0,0,0,0.4) !important;
+}
+// Fin. Diálogos
+
 // INICIO HEADER
 .cuenta-usuario {
     width: auto;
@@ -290,11 +364,19 @@ html, body, h1, h2, h3, h4, h5 {
 }
 // FIN HEADER
 
-.rol-card .rol-card {
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
-  position: relative;
+.rol-card {
+  margin-bottom: 25px;
+  @media (max-width: 599px) {
+    width: 100%;
+  }
+  @media (min-width: 600px) and (max-width: 840px) {
+    width: 70%;
+  }
+  .rol-card {
+    margin: 0;
+    width: 100%;
+    position: relative;
+  }
 }
 
 .tgr-container {
@@ -322,13 +404,6 @@ html, body, h1, h2, h3, h4, h5 {
   overflow: hidden;
   padding: 20px 16px;
   position: relative;
-}
-
-.tgr-card__title--text {
-  display: block;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
 }
 
 .tgr-switch {
@@ -374,8 +449,20 @@ html, body, h1, h2, h3, h4, h5 {
   }
 }
 
+.separator {
+  .mdl-list__item {
+    .mdl-list__item-primary-content {
+      height: 2px;
+      background-color: rgba(84, 84, 85, .45);
+    }
+  }
+}
 .tgr-card__body {
   padding: 16px;
+}
+
+.tgr-th-icon {
+  cursor: pointer;  
 }
 
 .tgr-card__footer {
@@ -395,17 +482,16 @@ html, body, h1, h2, h3, h4, h5 {
   margin-top: 3px;
   display: block;
 }
-
-.tgr-results {
-  padding-top: 20px;
+.border-white {
+  height: 3px;
+  background-color: #ffffff;
 }
-
 .tgr-results .tgr-content {
   margin-bottom: 25px;
   .tgr-card__head {
     padding: 17px 10px 14px 12px;
     background-color: $color-light-gray;
-    border-left: 6px solid #931c82;
+    border-left: 5px solid #931c82;
     border-bottom: none;
     color: $color-dark-blue-text;
     .material-icons {
@@ -425,10 +511,24 @@ html, body, h1, h2, h3, h4, h5 {
     }
   }
   .tgr-card__body {
-    border-left: 6px solid #931c82;
+    border-left: 5px solid #931c82;
     color: $color-dark-blue-text;
-    .material-icons {
-      color: $color-dark-blue-text !important;
+    .tgr-rol-row {
+      .tgr-th-icon {
+        top: 6px;
+        .material-icons {
+          line-height: 0 !important;
+          color: $color-dark-blue-text !important;
+          vertical-align: top !important;
+        }
+      }
+      .tgr-card-body {
+        .tgr-card__title {
+          .material-icons {
+            color: $color-dark-blue-text !important;
+          }
+        }
+      }
     }
     .tgr-card__title {
       .material-icons {
@@ -442,7 +542,10 @@ html, body, h1, h2, h3, h4, h5 {
     .tgr-card__subtitle {
       margin-left: 3px;
       font-size:16px;
-      color: $color-dark-blue-text;
+      color: $color-contribuciones !important;
+      .tgr-card__tag {
+        font-weight: 400;
+      }
     }
   }
 }
@@ -808,7 +911,6 @@ html, body, h1, h2, h3, h4, h5 {
   color: $color-primary;
   width: 100%;
   padding: 10px 6px 6px 6px;
-  border-bottom: 1px solid $color-light-gray2;
   &.background-lightgray {
     background-color: $color-light-gray;
   }
@@ -930,8 +1032,8 @@ button.button-question {
   position: absolute;
   bottom: 80px;
   right: 0;
-  height: 35px;
-  width: 35px;
+  height: 42px;
+  width: 42px;
   min-width: 35px;
   z-index: 4;
   color: $color-white;
@@ -939,8 +1041,8 @@ button.button-question {
     right: 20px;
   }
   @media (min-width: 481px) {
-    height: 42px;
-    width: 42px;
+    height: 50px;
+    width: 50px;
     min-width: 42px;
     bottom: 86px;
     right: 15px;
@@ -962,6 +1064,8 @@ button.button-question {
 .mdl-layout__content {
   padding-bottom: 80px;
   position: static;
+  // IOS SCROLLING
+  -webkit-overflow-scrolling: touch;
 }
 
 .mdl-button--raised.mdl-button--colored,

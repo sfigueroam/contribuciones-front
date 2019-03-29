@@ -19,6 +19,7 @@ phases:
     - sed -i "s;BUILD_RECAPTCHA_KEY_V3;${BUILD_RECAPTCHA_KEY_V3};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;BUILD_RECAPTCHA_KEY_V2;${BUILD_RECAPTCHA_KEY_V2};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;BUILD_DEVICE_INFO_ENDPOINT;${BUILD_DEVICE_INFO_ENDPOINT};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_GOOGLE_ANALYTIC_CODE;${BUILD_GOOGLE_ANALYTIC_CODE};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
 
     - npm install
     - npm install -g @angular/cli@6.0.8

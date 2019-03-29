@@ -31,6 +31,10 @@ export class Rol {
 
   sufijoDireccion: string;
 
+  isProcess = false;
+
+  expired = false;
+
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
     if (!this.cuotas) {
@@ -70,6 +74,7 @@ export class Rol {
 
   resumen(): ResumenCuotas {
     const result = new ResumenCuotas();
+
     for (const cuota of this.cuotas) {
       result.total++;
       if (cuota.intencionPago) {
@@ -170,7 +175,11 @@ export class Rol {
     let pagoTotal = 0;
     let condonacion = 0;
     let total = true;
+    this.expired = false;
     for (const cuota of this.cuotas) {
+      if (cuota.expired) {
+        this.expired = true;
+      }
       pagoTotal += cuota.liqTotal.saldoTotal;
       condonacion += cuota.liqTotal.montoCondonacion;
       if (cuota.intencionPago && cuota.liqParcial) {
