@@ -44,4 +44,5 @@ tslint.xml
 Thumbs.db
 .serverless
 src/environments/environment.ts
+src/environments/environment_joshe.ts
 
