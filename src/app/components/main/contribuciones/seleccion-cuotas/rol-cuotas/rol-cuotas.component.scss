@@ -16,9 +16,29 @@
 mdl-icon.material-icons {
   color: #5F5FC4;
 }
-.bar .bar-text {
-  cursor: pointer;
+
+.bar {
+  border-left: 5px solid #931c82;
+  .mdl-button.mdl-button--icon {
+    .material-icons {
+      color: $color-dark-blue-text;
+    }
+    }
+  .bar-text {
+    cursor: pointer;
+    h6 {
+      font-size: 16px;
+      color: $color-dark-blue-text;
+      font-weight: 500;
+    }
+    .el-rol {
+      font-size: 16px;
+      color: $color-contribuciones;
+      font-weight: 400;
+    }
+  }
 }
+
 .tgr-row {
     padding: 10px 45px;
     text-align: center;

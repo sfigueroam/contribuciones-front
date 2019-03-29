@@ -7,10 +7,11 @@
     <div class="bar-text" (click)="toggle()">
       <h6>
         <i class="material-icons">{{icon}}</i>
-        <strong>{{rol.destPropiedad | titlecase}} {{rol.sufijoDireccion}}</strong>
+        {{rol.destPropiedad | titlecase}} {{rol.sufijoDireccion}}
       </h6>
       <p class="el-rol">ROL {{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId |
-        leadingZero:3}}</p>
+        leadingZero:3}}
+      </p>
     </div>
     <div class="mdl-layout-spacer"></div>
     <div class="wrapper">

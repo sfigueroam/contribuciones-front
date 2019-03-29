@@ -22,7 +22,7 @@ export class AyudaRolComponent implements OnInit {
 
     for (let i = 1; i <= 3; i++) {
       const src = 'assets/ayuda/ayudarol' + i + '.png';
-      const caption = '¿Cómo buscar por ROL? Certificado de Avalúo Fiscal';
+      const caption = '¿Cómo buscar por ROL? Boletín de Pago';
       const thumb = 'assets/ayuda/ayudarol-thumb' + i + '.png';
       const album = {
         src: src,
@@ -41,7 +41,7 @@ export class AyudaRolComponent implements OnInit {
     this.subscription = this.lightboxEvent.lightboxEvent$
       .subscribe(event => this._onReceivedEvent(event));
     this.lightbox.open(this.albums, index, {wrapAround: true, showImageNumberLabel: true});
-    this.volver();
+    // this.volver();
 
   }
 

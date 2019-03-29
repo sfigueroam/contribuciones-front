@@ -259,6 +259,16 @@ html, body, h1, h2, h3, h4, h5 {
 
 }
 
+// INICIO. LIGHTBOX
+.lightboxOverlay {
+  z-index: 999999999 !important;
+}
+
+.lightbox {
+  z-index: 9999999999 !important;
+}
+// FIN. LIGHTBOX
+
 // INICIO. Estilos de Botones
 .mdl-button.button-default {
   cursor: pointer;
@@ -281,6 +291,9 @@ html, body, h1, h2, h3, h4, h5 {
     background-color: transparent;
     color: $link-color !important;
     text-decoration: underline;
+    .material-icons {
+      color: $link-color;
+    }
   }
 }
 // FIN. Estilos de Botones
@@ -351,11 +364,19 @@ html, body {
 }
 // FIN HEADER
 
-.rol-card .rol-card {
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
-  position: relative;
+.rol-card {
+  margin-bottom: 25px;
+  @media (max-width: 599px) {
+    width: 100%;
+  }
+  @media (min-width: 600px) and (max-width: 840px) {
+    width: 70%;
+  }
+  .rol-card {
+    margin: 0;
+    width: 100%;
+    position: relative;
+  }
 }
 
 .tgr-container {
@@ -461,16 +482,16 @@ html, body {
   margin-top: 3px;
   display: block;
 }
+.border-white {
+  height: 3px;
+  background-color: #ffffff;
+}
 .tgr-results .tgr-content {
   margin-bottom: 25px;
-  .border-white {
-    height: 3px;
-    background-color: #ffffff;
-  }
   .tgr-card__head {
     padding: 17px 10px 14px 12px;
     background-color: $color-light-gray;
-    border-left: 6px solid #931c82;
+    border-left: 5px solid #931c82;
     border-bottom: none;
     color: $color-dark-blue-text;
     .material-icons {
@@ -490,7 +511,7 @@ html, body {
     }
   }
   .tgr-card__body {
-    border-left: 6px solid #931c82;
+    border-left: 5px solid #931c82;
     color: $color-dark-blue-text;
     .tgr-rol-row {
       .tgr-th-icon {
@@ -521,7 +542,7 @@ html, body {
     .tgr-card__subtitle {
       margin-left: 3px;
       font-size:16px;
-      color: $color-dark-blue-text;
+      color: $color-contribuciones !important;
       .tgr-card__tag {
         font-weight: 400;
       }
@@ -890,7 +911,6 @@ html, body {
   color: $color-primary;
   width: 100%;
   padding: 10px 6px 6px 6px;
-  border-bottom: 1px solid $color-light-gray2;
   &.background-lightgray {
     background-color: $color-light-gray;
   }
@@ -1012,8 +1032,8 @@ button.button-question {
   position: absolute;
   bottom: 80px;
   right: 0;
-  height: 35px;
-  width: 35px;
+  height: 42px;
+  width: 42px;
   min-width: 35px;
   z-index: 4;
   color: $color-white;
@@ -1021,8 +1041,8 @@ button.button-question {
     right: 20px;
   }
   @media (min-width: 481px) {
-    height: 42px;
-    width: 42px;
+    height: 50px;
+    width: 50px;
     min-width: 42px;
     bottom: 86px;
     right: 15px;
