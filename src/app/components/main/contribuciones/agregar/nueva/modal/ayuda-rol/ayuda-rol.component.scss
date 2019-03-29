@@ -2,6 +2,7 @@
 
 .close-dialog {
   text-align: right;
+  cursor: pointer;
   a {
     position: absolute;
     top: 6px;
@@ -20,11 +21,17 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: $color-dark-blue-text;
+    @media (min-width: 481px) {
+        font-size: 16px;
+    }
   }
   p {
     text-align: left;
     font-size: 14px;
     color: $color-dark-gray;
+    @media (min-width: 481px) {
+        font-size: 16px;
+    }
   }
   .column  {
     .img-row {

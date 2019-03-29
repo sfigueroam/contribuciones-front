@@ -12,9 +12,10 @@
   	padding: 10px 18px;
   	color: $color-dark-blue-text;
   	border-bottom: none;
-  	@media (min-width: 840px) {
-  	  border-bottom: 2px solid $color-dark-blue-text;
-  	}
+  	// descomentar en versión desktop
+  	//@media (min-width: 840px) {
+  	//  border-bottom: 2px solid $color-dark-blue-text;
+  	//}
   }
   .tgr-card__body {
     position: relative;
@@ -50,9 +51,10 @@
           vertical-align: bottom;
         }
       }
-      @media (min-width: 840px) {
-        display: none;
-      }
+      // descomentar en versión desktop
+      //@media (min-width: 840px) {
+      //  display: none;
+      //}
     }
 
     .tgr-card__search {
@@ -61,9 +63,10 @@
         padding-left: 9px;
         padding-right: 9px;
       }
-      @media (min-width: 840px) {
-        margin-top: 0;
-      }
+      // descomentar en versión desktop
+      //@media (min-width: 840px) {
+      //  margin-top: 0;
+      //}
     }
 
     .tgr-card__footer {
