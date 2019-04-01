@@ -1,5 +1,12 @@
-<a (click)="volver()">x
-  <p>
-    ayuda-condonacion works!
-  </p>
-  <a (click)="volver()">volver</a>
+<div class="close-dialog">
+  <a (click)="volver()">
+    <i class="material-icons">close</i>
+  </a>
+</div>
+<div class="dialog-body">
+  <h4>¿Qué es la <strong>Condonación</strong>?</h4>
+  <p>Texto de ayuda condonaciones</p>
+</div>
+<div class="dialog-footer">
+  <button class="mdl-button button-default-link" (click)="volver()">Entendido</button>
+</div>

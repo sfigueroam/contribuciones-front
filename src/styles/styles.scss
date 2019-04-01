@@ -149,7 +149,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .text-primary {
-  color: $color-primary;
+  color: $color-dark-blue-text;
 }
 
 .text-secondary {
@@ -365,7 +365,7 @@ html, body {
 // FIN HEADER
 
 .rol-card {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
   @media (max-width: 599px) {
     width: 100%;
   }
@@ -487,7 +487,7 @@ html, body {
   background-color: #ffffff;
 }
 .tgr-results .tgr-content {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
   .tgr-card__head {
     padding: 17px 10px 14px 12px;
     background-color: $color-light-gray;
@@ -1041,8 +1041,8 @@ button.button-question {
     right: 20px;
   }
   @media (min-width: 481px) {
-    height: 50px;
-    width: 50px;
+    height: 46px;
+    width: 46px;
     min-width: 42px;
     bottom: 86px;
     right: 15px;
