@@ -1,0 +1,73 @@
+@import '../../../../../../../styles/colors';
+
+.close-dialog {
+  text-align: right;
+  cursor: pointer;
+
+  a {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    color: rgba(84, 84, 85, .4);
+  }
+}
+
+.dialog-body {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+
+  h4 {
+    margin-top: 14px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: $color-dark-blue-text;
+    @media (min-width: 481px) {
+      font-size: 16px;
+    }
+  }
+
+  th {
+    text-align: left;
+  }
+  p {
+    font-size: 14px;
+    @media (min-width: 481px) {
+      font-size: 16px;
+    }
+  }
+
+  p.sub-title {
+    text-align: left;
+    color: $color-primary;
+
+  }
+
+  td.monto {
+    text-align: left;
+  }
+
+}
+
+.dialog-footer {
+  margin-top: 14px;
+  text-align: right;
+}
+
+div.scroll {
+  @media (max-width: 400px) {
+    width: 278px;
+    max-height: 325px;
+    overflow: scroll;
+
+  }
+}
+
+.tgr-condonacion {
+  color: $tgr-condonacion;
+}
+
+.tgr-tr--late {
+  color: $color-expired;
+}

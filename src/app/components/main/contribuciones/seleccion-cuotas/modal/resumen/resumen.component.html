@@ -1,0 +1,45 @@
+<div class="close-dialog">
+  <a (click)="volver()">
+    <i class="material-icons">close</i>
+  </a>
+</div>
+<div class="dialog-body">
+  <h4>Resumen de mis <strong>Cuotas</strong></h4>
+
+  <div class="scroll">
+    <div class="mdl-grid" *ngFor="let propiedad of propiedades">
+      <p class="sub-title"><strong>{{propiedad.splitName()}}</strong> - {{propiedad.roles[0].comuna}}</p>
+      <table class="mdl-data-table">
+        <thead>
+        <tr>
+          <th>ROL</th>
+          <th>Cuota</th>
+          <th>Vence</th>
+          <th>Monto $</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let rol of propiedad.roles">
+        <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
+          <td>{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
+          </td>
+          <td>{{cuota.numeroCuota}}</td>
+          <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+          <!--<td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : (cuota.liqParcial ? cuota.liqParcial.saldoTotal : 0)) | number}}</td>-->
+          <td class="monto"
+              [class.tgr-tr--late]="rol.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <p class="text-primary text-center">Total Deudas: <strong>$ {{total| number}}</strong></p>
+    <p class="tgr-condonacion" *ngIf="condonacion > 0">Condonación Aplicada: <strong>$ {{condonacion | number}}</strong>
+    </p>
+  </div>
+</div>
+<div class="mdl-layout-spacer"></div>
+<div class="dialog-footer">
+  <a class="" (click)="volver()">Volver al Carro</a>
+  <app-boton-pagar [total]=total [codigos]="codigos"></app-boton-pagar>
+</div>

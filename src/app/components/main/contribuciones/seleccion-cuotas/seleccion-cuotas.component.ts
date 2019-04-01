@@ -9,8 +9,14 @@ import {ContribucionesSugeridasService} from '../../../../services/contribucione
 import {Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
-import {AyudaDireccionComponent} from '../agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
+import {
+  CODIGO_LIST_PROPIEDADES,
+  CONDONACION_PROPIEDADES,
+  LIST_PROPIEDADES,
+  ResumenComponent,
+  TOTAL_PROPIEDADES
+} from './modal/resumen/resumen.component';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -22,8 +28,10 @@ export class SeleccionCuotasComponent implements OnInit {
   propiedades: Propiedad[] = [];
 
   tipo = TipoCuota;
-  seleccionada: TipoCuota;
+  seleccionada: TipoCuota = this.tipo.TODAS;
   cantidadSeleccionadas: number;
+
+  selectTipo: TipoCuota = this.tipo.TODAS;
 
   total: number;
   condonacion: number;
@@ -36,6 +44,11 @@ export class SeleccionCuotasComponent implements OnInit {
 
   urlPagoTgr: string;
 
+  existeVencidas = false;
+
+  selectedIcon: string;
+
+  result: ResumenCuotas;
 
   constructor(private router: Router,
               private user: UserService,
@@ -143,22 +156,53 @@ export class SeleccionCuotasComponent implements OnInit {
   }
 
   private recalcularTipo() {
-    const result = new ResumenCuotas();
+    const resultados = new ResumenCuotas();
     for (const propiedad of this.propiedades) {
       const resumen = propiedad.resumen();
-      result.total += resumen.total;
-      result.seleccionadas += resumen.seleccionadas;
-      result.vencidas += resumen.vencidas;
-      result.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
+      resultados.total += resumen.total;
+      resultados.seleccionadas += resumen.seleccionadas;
+      resultados.vencidas += resumen.vencidas;
+      resultados.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
     }
-    this.seleccionada = result.tipo();
-    this.cantidadSeleccionadas = result.seleccionadas;
+    this.seleccionada = resultados.tipo();
+    this.cantidadSeleccionadas = resultados.seleccionadas;
+    this.existeVencidas = resultados.vencidas > 0;
+
+    this.result = resultados;
+
+    this.updateIconSeleccion(resultados);
   }
 
   dialogAyudaCondonacion(): void {
     const pDialog = this.dialogService.showCustomDialog({
       component: AyudaCondonacionComponent,
       clickOutsideToClose: true,
+      isModal: true
+    });
+  }
+
+  //Todo pendiente termianar
+  private updateIconSeleccion(result: ResumenCuotas): void {
+    /*
+    if (this.seleccion === undefined) {
+      this.selectedIcon = CheckboxIcon.INDETERMINATE;
+    } else if (this.seleccion) {
+      this.selectedIcon = CheckboxIcon.SELECTED;
+    } else {
+      this.selectedIcon = CheckboxIcon.UNSELECTED;
+    }*/
+  }
+
+  private openDialogResumen() {
+    const pDialog = this.dialogService.showCustomDialog({
+      component: ResumenComponent,
+      clickOutsideToClose: true,
+      providers: [
+        {provide: LIST_PROPIEDADES, useValue: this.propiedades},
+        {provide: CODIGO_LIST_PROPIEDADES, useValue: this.listaContribuciones},
+        {provide: TOTAL_PROPIEDADES, useValue: this.total},
+        {provide: CONDONACION_PROPIEDADES, useValue: this.contribuciones}
+      ],
       isModal: true
     });
   }
