@@ -37,6 +37,7 @@ import { AyudaRolComponent } from './components/main/contribuciones/agregar/nuev
 import {LightboxModule} from 'ngx-lightbox';
 import {AyudaCondonacionComponent} from './components/main/contribuciones/seleccion-cuotas/modal/ayuda-condonacion/ayuda-condonacion.component';
 import {ResumenComponent} from './components/main/contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
+import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cuotas/modal/boton-pagar/boton-pagar.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -67,6 +68,7 @@ registerLocaleData(localeEs, 'es');
     AyudaRolComponent,
     AyudaCondonacionComponent,
     ResumenComponent,
+    BotonPagarComponent,
   ],
   imports: [
     BrowserModule,

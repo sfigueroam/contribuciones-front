@@ -119,13 +119,9 @@
       </mdl-icon>
     </button>
     <div class="mdl-layout-spacer"></div>
-    <form ngNoForm method="post" action="{{urlPagoTgr}}">
-      <input type="hidden" name="listaContribuciones" value="{{listaContribuciones}}"/>
-      <input *ngIf="deviceDetectService.device.mobile" type="hidden" name="canal" value="30M"/>
-      <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}
-      </button>
-    </form>
-    <p><strong>{{result.seleccionadas}}</strong> de {{result.total}} deudas seleccionadas</p>
+    <app-boton-pagar [codigos]="listaContribuciones" [total]="total"></app-boton-pagar>
+    <p class="cantidad-deudas-seleccionadas"><strong>{{result.seleccionadas}}</strong> de {{result.total}} deudas
+      seleccionadas</p>
   </div>
 </div>
 

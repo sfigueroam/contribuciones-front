@@ -9,10 +9,14 @@ import {ContribucionesSugeridasService} from '../../../../services/contribucione
 import {Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
-import {AyudaDireccionComponent} from '../agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
-import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
-import {ResumenComponent} from './modal/resumen/resumen.component';
+import {
+  CODIGO_LIST_PROPIEDADES,
+  CONDONACION_PROPIEDADES,
+  LIST_PROPIEDADES,
+  ResumenComponent,
+  TOTAL_PROPIEDADES
+} from './modal/resumen/resumen.component';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -193,6 +197,12 @@ export class SeleccionCuotasComponent implements OnInit {
     const pDialog = this.dialogService.showCustomDialog({
       component: ResumenComponent,
       clickOutsideToClose: true,
+      providers: [
+        {provide: LIST_PROPIEDADES, useValue: this.propiedades},
+        {provide: CODIGO_LIST_PROPIEDADES, useValue: this.listaContribuciones},
+        {provide: TOTAL_PROPIEDADES, useValue: this.total},
+        {provide: CONDONACION_PROPIEDADES, useValue: this.contribuciones}
+      ],
       isModal: true
     });
   }

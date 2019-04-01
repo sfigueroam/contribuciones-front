@@ -28,17 +28,46 @@
     }
   }
 
-  p {
+  th {
     text-align: left;
+  }
+  p {
     font-size: 14px;
-    color: $color-dark-gray;
     @media (min-width: 481px) {
       font-size: 16px;
     }
   }
+
+  p.sub-title {
+    text-align: left;
+    color: $color-primary;
+
+  }
+
+  td.monto {
+    text-align: left;
+  }
+
 }
 
 .dialog-footer {
   margin-top: 14px;
   text-align: right;
+}
+
+div.scroll {
+  @media (max-width: 400px) {
+    width: 278px;
+    max-height: 325px;
+    overflow: scroll;
+
+  }
+}
+
+.tgr-condonacion {
+  color: $tgr-condonacion;
+}
+
+.tgr-tr--late {
+  color: $color-expired;
 }
