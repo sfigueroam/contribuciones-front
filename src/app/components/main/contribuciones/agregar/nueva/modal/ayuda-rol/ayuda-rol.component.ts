@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs';
 })
 export class AyudaRolComponent implements OnInit {
 
-  private albums = [];
+  albums = [];
   private subscription: Subscription;
 
   constructor(
