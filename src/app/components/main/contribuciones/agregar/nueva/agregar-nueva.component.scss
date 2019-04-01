@@ -151,6 +151,10 @@
       }
     }
   }
+  &.mdl-button--colored:focus:not(:active) {
+    background-color: $link-color;
+    color: $color-white;
+  }
   @media (max-width: 480px){
    font-size: 14px;
   }
@@ -158,6 +162,7 @@
     color: $color-white;
   }
 }
+
 .tgr-pay.tgr-agregar-nueva{
   @media (max-width: 320px){
    margin-top: 12px;

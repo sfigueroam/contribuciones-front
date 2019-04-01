@@ -315,12 +315,20 @@ html, body {
     display: block;
     overflow: visible;
     margin-top: 64px;
+    @media (min-width: 840px) {
+      margin-top: 0;
+    }
 }
 .is-small-screen .mdl-layout__content {
-    margin-top: 56px;
+    //margin-top: 56px;
+    @media (min-width: 840px) {
+      margin-top: 0;
+    }
 }
 .mdl-layout__header {
-    position: fixed;
+    @media (max-width: 839px) {
+      position: fixed;
+    }
 }
 .mdl-layout__obfuscator {
     position: fixed;
@@ -675,7 +683,7 @@ html, body {
   overflow: hidden;
   background-color: $color-white;
   color: $color-default-dark;
-  padding: 20px 28px 20px 28px;
+  padding: 20px 12px 20px 12px;
   .mdl-badge[data-badge]:after {
     background-color: $color-warning;
   }
@@ -1062,7 +1070,7 @@ button.button-question {
 }
 
 .mdl-layout__content {
-  padding-bottom: 80px;
+  padding-bottom: 120px;
   position: static;
   // IOS SCROLLING
   -webkit-overflow-scrolling: touch;

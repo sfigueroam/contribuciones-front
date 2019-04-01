@@ -20,10 +20,10 @@
   </div>
 </div>
 
-<div class="mdl-grid switch-fee-text" *ngIf="propiedades.length > 0; else bodySinDeuda">
-  <div class="mdl-cell mdl-cell--4-col m-0auto mb-0 select-fee">
-    <p>Selecciona las cuotas que pagarás</p>
-    <div class="tgr-select tgr-select--buttons">
+<div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">
+  <div class="mdl-cell mdl-cell--8-col select-fee">
+    <p>Selecciona las deudas que pagarás</p>
+    <!-- <div class="tgr-select tgr-select--buttons">
       <ul class="filter">
         <li [class.active]="seleccionada === tipo.TODAS">
           <a (click)="seleccionar(tipo.TODAS)">
@@ -38,6 +38,20 @@
           </a>
         </li>
       </ul>
+    </div> -->
+    <div class="mdl-button-group">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect active">
+        Todas
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Ninguna
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Vencidas
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        No Vencidas
+      </button>
     </div>
   </div>
 </div>
@@ -71,19 +85,19 @@
 </div>
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0">
-  <div class="mdl-cell mdl-cell--4-col total-buy m-0auto">
-    <p *ngIf="complete" class="text-primary text-center">
-      Total Deuda Contribuciones: <strong>$ {{total | number}}</strong>
+  <div class="mdl-cell mdl-cell--5-col total-buy">
+    <p *ngIf="complete" class="monto-total">
+      Total Deuda Contribuciones:
+      <br><strong>$ {{total | number}}</strong>
     </p>
-    <div *ngIf="condonacion > 0">
-      <p class="tgr-condonacion text-center">
-        El pago de las deudas ha generado una condonación de <strong>$ {{condonacion | number}}</strong>, incluída en el
-        monto total a pagar
+    <div class="tgr-condonacion" *ngIf="condonacion > 0">
+      <p class="monto-condonacion">
+        El pago de las deudas ha generado una condonación de<strong>$ {{condonacion | number}}</strong>, incluída en el
+        monto total a pagar.
       </p>
-      <button type="button" class="ayuda-condonacion" (click)="dialogAyudaCondonacion()">
-        <p>
-          ¿Qué es <strong>Condonación</strong>?
-        </p>
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion" (click)="dialogAyudaCondonacion()">
+        <i class="material-icons">help</i>
+        ¿Qué es la <strong>Condonación</strong>?
       </button>
     </div>
   </div>

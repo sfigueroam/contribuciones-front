@@ -12,6 +12,119 @@
   }
 }
 
+.select-fee {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+  p {
+    font-size: 16px;
+    color: rgba(0,0,0,.54);
+    margin-bottom: 0;
+    text-align: center;
+  }
+  .mdl-button-group{
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    button{
+      background-color: $color-white;
+      color: $color-dark-blue-text;
+      display: inline-block;
+      margin: 0px;
+      box-shadow: none;
+      border: 1px solid #2f3c89;
+      border-left: none;
+      text-transform: none;
+      font-size: 14px;
+      @media (min-width: 351px) and (max-width: 480px) {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      @media (max-width: 361px) {
+        font-size: 11px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      &:first-of-type {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-left: 1px solid #2f3c89;
+      }
+      &:last-of-type {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-right: 1px solid #2f3c89;
+      }
+      &.active {
+        background-color: $color-dark-blue-text;
+        color: $color-white;
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $color-dark-blue-text;
+          color: $color-white;
+        }
+      }
+      &:hover {
+        background-color: $link-color;
+        color: $color-white;
+      }
+      &:active,
+      &:focus {
+        background-color: $color-dark-blue-text;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.total-buy {
+  margin-left: auto;
+  margin-right: auto;
+  .monto-total {
+    text-align: center;
+    font-size: 16px;
+    color: $color-dark-blue-text;
+  }
+  .tgr-condonacion {
+    text-align: center;
+    .monto-condonacion {
+      font-size: 16px;
+      color: $color-success;
+    }
+    .ayuda-condonacion {
+      box-shadow: none;
+      background-color: $gray-lightblue-background;
+      color: $color-dark-blue-text;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 26px;
+      font-size: 16px;
+      text-transform: none;
+      transition: .4s;
+      .material-icons {
+        vertical-align: sub;
+        &:hover,
+        &:focus,
+        &:active {
+          color: $color-dark-blue-text;
+        }
+      }
+      &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+          color: $color-dark-blue-text;
+          .material-icons {
+            color: $color-dark-blue-text;
+          }
+        }
+    }
+  }
+}
+
 .tgr-mini-footer{
   @media (max-width: 480) {
     padding-right: 5px;
@@ -57,13 +170,6 @@
     .mdl-badge[data-badge]:after {
         background-color: $color-warning;
     }
-}
-
-.select-fee p {
-  font-size: 16px;
-  color: rgba(0,0,0,.54);
-  margin-bottom: 0;
-  text-align: center;
 }
 
 .filter {
@@ -203,7 +309,7 @@
 }
 .tgr-target-wrapper {
   padding: 0 20px;
-  @media (min-width: 481px) and (max-width: 839px) {
+  @media (min-width: 481px) and (max-width: 600px) {
     padding-left: 100px;
     padding-right: 100px;
   }
@@ -212,8 +318,8 @@
     padding-right: 250px;
   }
   @media (min-width: 1280px) {
-    padding-left: 400px;
-    padding-right: 400px;
+    padding-left: 326px;
+    padding-right: 326px;
   }
 }
 .tgr-target-wave {
@@ -224,8 +330,4 @@
   line-height: 1;
   margin-bottom: 10px;
   margin-top: 40px;
-}
-
-.tgr-condonacion {
-  color: #00B344;
 }
