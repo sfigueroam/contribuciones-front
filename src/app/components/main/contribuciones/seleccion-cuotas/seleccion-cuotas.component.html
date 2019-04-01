@@ -23,6 +23,24 @@
 <div class="mdl-grid switch-fee-text" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--4-col m-0auto mb-0 select-fee">
     <p>Selecciona las cuotas que pagarás</p>
+    <!--//Todo pendiente termianar
+        <div  *ngIf="complete">
+          <div class="tgr-select" *ngIf="!existeVencidas">
+            <mdl-icon>{{selectedIcon}}</mdl-icon>
+            Seleccinar <strong>TODAS</strong> las deudas
+          </div>
+
+          <div class="tgr-select" *ngIf="existeVencidas">
+            <mdl-select [(ngModel)]="seleccionada" floating-label (change)="seleccionar(seleccionada)">
+              <mdl-option [value]="tipo.TODAS">Todas</mdl-option>
+              <mdl-option [value]="tipo.NINGUNA"> Ninguna</mdl-option>
+              <mdl-option [value]="tipo.VENCIDAS">Vencidas</mdl-option>
+              <mdl-option [value]="tipo.NO_VENCIDAS">No Vencidas</mdl-option>
+            </mdl-select>
+          </div>
+        </div>
+    -->
+
     <div class="tgr-select tgr-select--buttons">
       <ul class="filter">
         <li [class.active]="seleccionada === tipo.TODAS">
@@ -96,7 +114,7 @@
     <p>Estamos calculando tu monto a pagar</p>
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
-    <button mdl-button (click)="summaryDialog.show()" [disabled]="total <= 0">
+    <button mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">
       <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list
       </mdl-icon>
     </button>
@@ -107,6 +125,7 @@
       <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}
       </button>
     </form>
+    <p><strong>{{result.seleccionadas}}</strong> de {{result.total}} deudas seleccionadas</p>
   </div>
 </div>
 
