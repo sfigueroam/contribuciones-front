@@ -178,7 +178,6 @@ html, body, h1, h2, h3, h4, h5 {
 
 .text-danger {
   color: $color-danger;
-  //padding: 0;
 }
 
 // Colores de Fondo
@@ -1070,7 +1069,7 @@ button.button-question {
 }
 
 .mdl-layout__content {
-  padding-bottom: 120px;
+  padding-bottom: 130px;
   position: static;
   // IOS SCROLLING
   -webkit-overflow-scrolling: touch;
