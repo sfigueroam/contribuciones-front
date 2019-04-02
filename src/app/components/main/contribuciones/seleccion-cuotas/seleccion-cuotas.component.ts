@@ -17,6 +17,7 @@ import {
   ResumenComponent,
   TOTAL_PROPIEDADES
 } from './modal/resumen/resumen.component';
+import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -183,14 +184,13 @@ export class SeleccionCuotasComponent implements OnInit {
 
   //Todo pendiente termianar
   private updateIconSeleccion(result: ResumenCuotas): void {
-    /*
-    if (this.seleccion === undefined) {
+    if (result.tipo() === undefined) {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
-    } else if (this.seleccion) {
+    } else if (result.tipo() === TipoCuota.TODAS) {
       this.selectedIcon = CheckboxIcon.SELECTED;
     } else {
       this.selectedIcon = CheckboxIcon.UNSELECTED;
-    }*/
+    }
   }
 
   private openDialogResumen() {
@@ -205,5 +205,15 @@ export class SeleccionCuotasComponent implements OnInit {
       ],
       isModal: true
     });
+  }
+
+  seleccionarTodas() {
+    if (this.selectedIcon === CheckboxIcon.INDETERMINATE || this.selectedIcon === CheckboxIcon.UNSELECTED) {
+      this.seleccionar(TipoCuota.TODAS);
+    } else {
+      this.seleccionar(TipoCuota.NINGUNA);
+    }
+
+
   }
 }
