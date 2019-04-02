@@ -44,7 +44,6 @@
       <div class="tgr-card__search ">
         <mdl-select #autocompleteSelectTipoPropiedades
                     [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
-                    [autocomplete]="true"
                     (change)="autoCompletarPropiedad()"
                     error-msg="Debe seleccionar un tipo de propiedad"
                     [formControl]="tipoPropiedad"
@@ -193,7 +192,9 @@
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
               [disabled]="cantidadSeleccionadas == 0"
               (click)="asociarPropiedades()">
-        Agregar {{cantidadSeleccionadas}} propiedades
+        Agregar {{cantidadSeleccionadas}}<span
+        *ngIf="cantidadSeleccionadas != 1; else propiedadSingular">propiedades</span>
+        <ng-template #propiedadSingular> propiedad</ng-template>
       </button>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
         IR AL CARRO
