@@ -22,54 +22,31 @@
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--8-col select-fee">
-    <p>¿Qué deudas quieres pagar?</p>
-    <!-- <div class="tgr-select tgr-select--buttons">
-      <ul class="filter">
-        <li [class.active]="seleccionada === tipo.TODAS">
-          <a (click)="seleccionar(tipo.TODAS)">
-            <mdl-icon *ngIf="seleccionada === tipo.TODAS">done</mdl-icon>
-            Todas
-          </a>
-        </li>
-        <li [class.active]="seleccionada === tipo.VENCIDAS">
-          <a (click)="seleccionar(tipo.VENCIDAS)">
-            <mdl-icon *ngIf="seleccionada === tipo.VENCIDAS">done</mdl-icon>
-            Vencidas
-          </a>
-        </li>
-      </ul>
-    </div> -->
+    <div *ngIf="complete">
+      <div class="tgr-select" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
+        <mdl-icon>{{selectedIcon}}</mdl-icon>
+        Seleccionar <strong>TODAS</strong> las deudas
+      </div>
 
-    <!--//Todo pendiente termianar
-       <div  *ngIf="complete">
-         <div class="tgr-select" *ngIf="!existeVencidas">
-           <mdl-icon>{{selectedIcon}}</mdl-icon>
-           Seleccinar <strong>TODAS</strong> las deudas
-         </div>
-
-         <div class="tgr-select" *ngIf="existeVencidas">
-           <mdl-select [(ngModel)]="seleccionada" floating-label (change)="seleccionar(seleccionada)">
-             <mdl-option [value]="tipo.TODAS">Todas</mdl-option>
-             <mdl-option [value]="tipo.NINGUNA"> Ninguna</mdl-option>
-             <mdl-option [value]="tipo.VENCIDAS">Vencidas</mdl-option>
-             <mdl-option [value]="tipo.NO_VENCIDAS">No Vencidas</mdl-option>
-           </mdl-select>
-         </div>
-       </div>
-   -->
-    <div class="mdl-button-group">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect active">
-        Todas
-      </button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-        Ninguna
-      </button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-        Vencidas
-      </button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-        No Vencidas
-      </button>
+      <div class="mdl-button-group" *ngIf="existeVencidas">
+        <p>¿Qué deudas quieres pagar?</p>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                [class.active]="seleccionada == tipo.TODAS" (click)="seleccionar(tipo.TODAS)">
+          Todas
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                [class.active]="seleccionada == tipo.NINGUNA" (click)="seleccionar(tipo.NINGUNA)">
+          Ninguna
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                [class.active]="seleccionada == tipo.VENCIDAS" (click)="seleccionar(tipo.VENCIDAS)">
+          <span class="tgr-expired">Vencidas</span>
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                [class.active]="seleccionada == tipo.NO_VENCIDAS" (click)="seleccionar(tipo.NO_VENCIDAS)">
+          No Vencidas
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -113,7 +90,8 @@
         El pago de las deudas ha generado una condonación de <strong>$ {{condonacion | number}}</strong>, incluída en el
         monto total a pagar.
       </p>
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion" (click)="dialogAyudaCondonacion()">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
+              (click)="dialogAyudaCondonacion()">
         <i class="material-icons">help</i>
         ¿Qué es la <strong>Condonación</strong>?
       </button>
@@ -155,48 +133,3 @@
     </div>
   </div>
 </div>
-
-<mdl-dialog #summaryDialog
-            [mdl-dialog-config]="{
-              clickOutsideToClose: true,
-              styles:{'width': '700px'},
-              isModal: true,
-              classes: 'tgr-payment-detail',
-              enterTransitionDuration: 400,
-              leaveTransitionDuration: 400}">
-  <div class="drawer-shopping-cart active">
-    <p class="mdl-layout-title">Resumen de tus Cuotas</p>
-    <div class="mdl-dialog__content" *ngIf="complete">
-      <div class="tgr-propiedad" *ngFor="let propiedad of propiedades">
-        <div *ngIf="propiedad.total > 0">
-          <p class="sub-title"><strong>{{propiedad.splitName()}}</strong>($ {{propiedad.total | number}})</p>
-          <table class="mdl-data-table">
-            <thead>
-            <tr>
-              <th>ROL</th>
-              <th>Cuota</th>
-              <th>Vence</th>
-              <th>Monto</th>
-            </tr>
-            </thead>
-            <tbody *ngFor="let rol of propiedad.roles">
-            <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
-              <td>{{rol.rolComunaSiiCod | leadingZero:3}}-{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
-              </td>
-              <td>{{cuota.numeroCuota}}</td>
-              <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-              <!--<td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : (cuota.liqParcial ? cuota.liqParcial.saldoTotal : 0)) | number}}</td>-->
-              <td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="tgr-dialog__actions">
-      <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple
-              (click)="summaryDialog.close()">Cerrar
-      </button>
-    </div>
-  </div>
-</mdl-dialog>

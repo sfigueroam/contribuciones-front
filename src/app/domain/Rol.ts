@@ -142,12 +142,15 @@ export class Rol {
 
   seleccionar(tipo: TipoCuota) {
     for (const cuota of this.cuotas) {
+
       if (tipo === TipoCuota.TODAS) {
         cuota.intencionPago = true;
       } else if (tipo === TipoCuota.NINGUNA) {
         cuota.intencionPago = false;
       } else if (tipo === TipoCuota.VENCIDAS) {
         cuota.intencionPago = cuota.expired;
+      } else if (tipo === TipoCuota.NO_VENCIDAS) {
+        cuota.intencionPago = !cuota.expired;
       }
     }
     this.calcularTotal();
@@ -181,7 +184,10 @@ export class Rol {
         this.expired = true;
       }
       pagoTotal += cuota.liqTotal.saldoTotal;
-      condonacion += cuota.liqTotal.montoCondonacion;
+      //Valida que la el campo monto condonación exista en liqTotal
+      if (cuota.liqTotal.montoCondonacion !== undefined) {
+        condonacion += cuota.liqTotal.montoCondonacion;
+      }
       if (cuota.intencionPago && cuota.liqParcial) {
         pagoParcial += cuota.liqParcial.saldoTotal;
       } else {

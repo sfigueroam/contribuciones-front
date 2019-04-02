@@ -20,6 +20,8 @@ export class ResumenCuotas {
       return TipoCuota.NINGUNA;
     } else if (this.vencidas === this.vencidasSeleccionadas && this.vencidas === this.seleccionadas) {
       return TipoCuota.VENCIDAS;
+    } else if (this.seleccionadas === (this.total - this.vencidas)) {
+      return TipoCuota.NO_VENCIDAS;
     }
     return undefined;
   }
