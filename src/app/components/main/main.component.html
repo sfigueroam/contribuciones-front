@@ -18,7 +18,7 @@
           </button>
 
 
-          <button class="mdl-navigation__link cuenta-usuario"
+          <button class="mdl-navigation__link cuenta-usuario" *ngIf="logged"
                   #btnMenu="mdlButton"
                   (click)="menu.toggle($event, btnMenu)"
                   mdl-button
@@ -26,7 +26,6 @@
             <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
             <span class="account-user-text">Mi TGR</span>
           </button>
-          <!--<div *ngIf="!isActiveLogin" style="padding: 0px 56px 0px 47px"></div>-->
            <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
             <mdl-menu-item *ngIf="logged"
                            (click)="redirigirMiCuenta()"
