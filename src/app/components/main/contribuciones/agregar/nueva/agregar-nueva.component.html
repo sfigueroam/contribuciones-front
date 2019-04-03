@@ -192,9 +192,10 @@
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
               [disabled]="cantidadSeleccionadas == 0"
               (click)="asociarPropiedades()">
-        Agregar {{cantidadSeleccionadas}}<span
-        *ngIf="cantidadSeleccionadas != 1; else propiedadSingular">propiedades</span>
-        <ng-template #propiedadSingular> propiedad</ng-template>
+        <div [ngPlural]="cantidadSeleccionadas">
+          <ng-template ngPluralCase="=1">Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
+          <ng-template ngPluralCase="other">Agregar {{cantidadSeleccionadas}} propiedades</ng-template>
+        </div>
       </button>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
         IR AL CARRO
