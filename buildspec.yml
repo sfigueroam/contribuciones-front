@@ -7,7 +7,7 @@ phases:
     - cp ${CODEBUILD_SRC_DIR}/src/environments/environment.sample.ts ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
 
     # Replace variable whit sed command in environment file
-    - sed -i "s;BUILD_BOTON_PAGO_TGR_URL;${BUILD_BOTON_PAGO_TGR_URL};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
+    - sed -i "s;BUILD_URL_BOTON_PAGO_TGR;${BUILD_URL_BOTON_PAGO_TGR};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;BUILD_BACK_ENDPOINT;${BUILD_BACK_ENDPOINT};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;BUILD_ELASTICSEARCH_ENDPOINT;${BUILD_ELASTICSEARCH_ENDPOINT};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     - sed -i "s;BUILD_AUTHORIZE_URL;${BUILD_AUTHORIZE_URL};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
