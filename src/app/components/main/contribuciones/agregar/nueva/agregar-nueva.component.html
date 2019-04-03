@@ -51,7 +51,7 @@
                     floating-label>
           <mdl-option [value]="-1">Todos</mdl-option>
           <mdl-option
-            *ngFor="let tipo of tipoPropiedadesfrecuentes| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+            *ngFor="let tipo of tipoPropiedadesfrecuentes| orderBy: 'order' | matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
             [value]="tipo.id">{{tipo.descripcion | titlecase}}
           </mdl-option>
           <mdl-option class="separator" [disabled]="true"></mdl-option>
