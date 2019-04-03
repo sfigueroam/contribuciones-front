@@ -24,6 +24,7 @@ const urlsBase = {
 
 
 export const environment = {
+  isActiveLogin: false,
   googleAnalyticsCode: 'UA-136994548-1',
   snackbarTime: 5000,
   production: true,
