@@ -23,10 +23,10 @@
 <div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--8-col select-fee">
     <div *ngIf="complete">
-      <!-- <div class="tgr-select" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
+      <div class="tgr-select" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
         Seleccionar <strong>TODAS</strong> las deudas
-      </div> -->
+      </div>
       <div class="mdl-button-group" *ngIf="existeVencidas">
         <p>¿Qué deudas quieres pagar?</p>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
