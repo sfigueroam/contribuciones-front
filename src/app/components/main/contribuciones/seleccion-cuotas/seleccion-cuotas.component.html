@@ -23,11 +23,10 @@
 <div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--8-col select-fee">
     <div *ngIf="complete">
-      <div class="tgr-select" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
+      <!-- <div class="tgr-select" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
         Seleccionar <strong>TODAS</strong> las deudas
-      </div>
-
+      </div> -->
       <div class="mdl-button-group" *ngIf="existeVencidas">
         <p>¿Qué deudas quieres pagar?</p>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
@@ -40,7 +39,7 @@
         </button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
                 [class.active]="seleccionada == tipo.VENCIDAS" (click)="seleccionar(tipo.VENCIDAS)">
-          <span class="tgr-expired">Vencidas</span>
+          Vencidas
         </button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
                 [class.active]="seleccionada == tipo.NO_VENCIDAS" (click)="seleccionar(tipo.NO_VENCIDAS)">
@@ -87,8 +86,9 @@
     </p>
     <div class="tgr-condonacion" *ngIf="condonacion > 0">
       <p class="monto-condonacion">
-        El pago de las deudas ha generado una condonación de <strong>$ {{condonacion | number}}</strong>, incluída en el
-        monto total a pagar.
+        <!-- El pago de las deudas ha generado una condonación de <strong>$ {{condonacion | number}}</strong>, incluída en el
+        monto total a pagar. -->
+        Al pagar cada cuota vencida se aplica una condonación, cuyo total es de <strong>$ {{condonacion | number}}</strong>, y se incluye en el monto total a pagar.
       </p>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">

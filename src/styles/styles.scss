@@ -236,9 +236,6 @@ html, body, h1, h2, h3, h4, h5 {
     color: $color-dark-gray;
     margin-top: 12px;
     text-align: center;
-    @media (max-width: 480px) {
-      text-align: left;
-    }
   }
 }
 
@@ -269,6 +266,16 @@ html, body, h1, h2, h3, h4, h5 {
 // FIN. LIGHTBOX
 
 // INICIO. Estilos de Botones
+.mdl-button.button-primary-action {
+  background-color: $link-color;
+  color: #ffffff;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-dodgerblue-hover;
+  }
+}
+
 .mdl-button.button-default {
   cursor: pointer;
   color: $link-color;
