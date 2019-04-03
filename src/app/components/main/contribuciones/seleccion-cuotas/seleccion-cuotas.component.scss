@@ -353,12 +353,3 @@ p.cantidad-deudas-seleccionadas {
   height: 8px;
 }
 
-.mdl-button-group > button {
-  span.tgr-expired {
-    color: $color-expired;
-  }
-
-  &.active > span.tgr-expired {
-    color: $color-white
-  }
-}
