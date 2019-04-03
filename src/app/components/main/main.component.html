@@ -1,7 +1,7 @@
 <div class="demo-container demo-layout-transparent">
   <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-fixed-header>
     <mdl-layout-header mdl-layout-header>
-      <mdl-layout-header-row>
+      <mdl-layout-header-row [class.is-active-login]="isActiveLogin">
         <mdl-layout-spacer></mdl-layout-spacer>
         <a href="/">
           <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
