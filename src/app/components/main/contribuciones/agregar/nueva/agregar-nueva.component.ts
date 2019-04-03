@@ -205,7 +205,6 @@ export class AgregarNuevaComponent implements OnInit {
       for (const prop of data) {
         if (prop.id === 'H' || prop.id === 'L' || prop.id === 'Z') {
           prop.order = environment.frecuentesOrder[prop.id];
-          console.log(prop);
           this.tipoPropiedadesfrecuentes.push(prop);
         } else {
           this.tipoPropiedades.push(prop);

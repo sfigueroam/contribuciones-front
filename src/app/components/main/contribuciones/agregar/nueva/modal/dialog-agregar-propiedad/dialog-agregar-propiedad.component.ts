@@ -1,6 +1,7 @@
 import {Component, OnInit, InjectionToken, Inject} from '@angular/core';
 import {MdlDialogReference} from '@angular-mdl/core';
-import {Router} from '@angular/router';
+import {NavigationStart, Router, RouterEvent} from '@angular/router';
+import {filter, tap} from 'rxjs/operators';
 
 export const CANT_PROPIEDADES = new InjectionToken<number>('cant_propiedades');
 
@@ -20,6 +21,11 @@ export class DialogAgregarPropiedadComponent implements OnInit {
     @Inject(CANT_PROPIEDADES) cantPropiedades: number,
   ) {
     this.cantPropiedades = cantPropiedades;
+
+    this.router.events.pipe(
+      filter((event: RouterEvent) => event instanceof NavigationStart),
+      tap(() => this.dialog.hide())
+    ).subscribe();
   }
 
   ngOnInit() {

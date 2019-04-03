@@ -4,6 +4,8 @@ import {CANT_PROPIEDADES} from '../../../agregar/nueva/modal/dialog-agregar-prop
 import {Propiedad} from '../../../../../../domain/Propiedad';
 import {environment} from '../../../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../../../services/device-detect.service';
+import {filter, tap} from 'rxjs/operators';
+import {NavigationStart, Router, RouterEvent} from '@angular/router';
 
 export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 export const CODIGO_LIST_PROPIEDADES = new InjectionToken<number>('codigo_lista_propiedades');
@@ -25,6 +27,7 @@ export class ResumenComponent implements OnInit {
   constructor(
     private dialog: MdlDialogReference,
     private deviceDetectService: DeviceDetectService,
+    private router: Router,
     @Inject(LIST_PROPIEDADES) propiedades: Propiedad[],
     @Inject(CODIGO_LIST_PROPIEDADES) codigos: string,
     @Inject(TOTAL_PROPIEDADES) total: number,
@@ -36,6 +39,11 @@ export class ResumenComponent implements OnInit {
     this.codigos = codigos;
     this.total = total;
     this.condonacion = condonacion;
+
+    this.router.events.pipe(
+      filter((event: RouterEvent) => event instanceof NavigationStart),
+      tap(() => this.dialog.hide())
+    ).subscribe();
 
   }
 
