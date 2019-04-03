@@ -24,6 +24,11 @@ const urlsBase = {
 
 
 export const environment = {
+  frecuentesOrder: {
+    H: 1,
+    L: 2,
+    Z: 3
+  },
   isActiveLogin: false,
   googleAnalyticsCode: 'UA-136994548-1',
   snackbarTime: 5000,
