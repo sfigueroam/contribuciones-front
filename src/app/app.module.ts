@@ -38,6 +38,7 @@ import {LightboxModule} from 'ngx-lightbox';
 import {AyudaCondonacionComponent} from './components/main/contribuciones/seleccion-cuotas/modal/ayuda-condonacion/ayuda-condonacion.component';
 import {ResumenComponent} from './components/main/contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
 import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cuotas/modal/boton-pagar/boton-pagar.component';
+import {OrderModule} from 'ngx-order-pipe';
 
 
 registerLocaleData(localeEs, 'es');
@@ -82,6 +83,7 @@ registerLocaleData(localeEs, 'es');
     NgxCaptchaModule,
     DeviceDetectorModule.forRoot(),
     LightboxModule,
+    OrderModule,
 
 
   ],
