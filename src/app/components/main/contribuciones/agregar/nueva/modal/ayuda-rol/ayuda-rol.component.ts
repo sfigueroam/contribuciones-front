@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MdlDialogReference} from '@angular-mdl/core';
 import {Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent} from 'ngx-lightbox';
 import {Subscription} from 'rxjs';
+import {NavigationStart, Router, RouterEvent} from '@angular/router';
+import {filter, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-ayuda-rol',
@@ -17,7 +19,8 @@ export class AyudaRolComponent implements OnInit {
     private dialog: MdlDialogReference,
     private lightbox: Lightbox,
     private lightboxEvent: LightboxEvent,
-    private lighboxConfig: LightboxConfig
+    private lighboxConfig: LightboxConfig,
+    private router: Router
   ) {
 
     for (let i = 1; i <= 3; i++) {
@@ -32,6 +35,12 @@ export class AyudaRolComponent implements OnInit {
       this.albums.push(album);
     }
     this.lighboxConfig.fadeDuration = 1;
+
+    this.router.events.pipe(
+      filter((event: RouterEvent) => event instanceof NavigationStart),
+      tap(() => this.dialog.hide())
+    ).subscribe();
+
   }
 
   ngOnInit() {
