@@ -177,8 +177,7 @@
 
 <p class="contador-propiedades" [class.contador-hidden]="footerHidden"
    *ngIf="countPropiedades == 1; else propiedadesTemplate">Llevas <strong>{{countPropiedades}}</strong> propiedad en
-  el
-  carro</p>
+  el carro</p>
 <ng-template #propiedadesTemplate>
   <p class="contador-propiedades" [class.contador-hidden]="footerHidden">Llevas <strong>{{countPropiedades}}</strong>
     propiedades en el carro</p>
