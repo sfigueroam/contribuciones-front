@@ -8,28 +8,33 @@
 
   <div class="scroll">
     <div class="mdl-grid" *ngFor="let propiedad of propiedades">
-      <p class="sub-title"><strong>{{propiedad.splitName()}}</strong> - {{propiedad.roles[0].comuna}}</p>
-      <table class="mdl-data-table">
-        <thead>
-        <tr>
-          <th>ROL</th>
-          <th>Cuota</th>
-          <th>Vence</th>
-          <th>Monto $</th>
-        </tr>
-        </thead>
-        <tbody *ngFor="let rol of propiedad.roles">
-        <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
-          <td>{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
-          </td>
-          <td>{{cuota.numeroCuota}}</td>
-          <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-          <!--<td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : (cuota.liqParcial ? cuota.liqParcial.saldoTotal : 0)) | number}}</td>-->
-          <td class="monto"
-              [class.tgr-tr--late]="rol.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
-        </tr>
-        </tbody>
-      </table>
+      <div *ngIf="propiedad.resumen().seleccionadas > 0">
+        <p class="sub-title"><strong>{{propiedad.splitName()}}</strong> - {{propiedad.roles[0].comuna}}</p>
+        <table class="mdl-data-table" *ngIf="propiedad.roles.length > 0; else sinDeuda">
+          <thead>
+          <tr>
+            <th>ROL</th>
+            <th>Cuota</th>
+            <th>Vence</th>
+            <th>Monto $</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let rol of propiedad.roles">
+          <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
+            <td>{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
+            </td>
+            <td>{{cuota.numeroCuota}}</td>
+            <td>{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+            <!--<td>$ {{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : (cuota.liqParcial ? cuota.liqParcial.saldoTotal : 0)) | number}}</td>-->
+            <td class="monto"
+                [class.tgr-tr--late]="rol.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <ng-template #sinDeuda>
+          No registra deudas asociadas a este rol
+        </ng-template>
+      </div>
     </div>
   </div>
   <div>

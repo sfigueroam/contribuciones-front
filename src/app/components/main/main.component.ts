@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
 import {MdlDialogOutletService} from '@angular-mdl/core';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +14,7 @@ export class MainComponent implements OnInit {
 
   logged: boolean;
   index: number;
+  isActiveLogin: boolean;
 
   constructor(route: ActivatedRoute,
               private router: Router,
@@ -25,6 +27,7 @@ export class MainComponent implements OnInit {
     route.url.subscribe(() => {
       this.index = route.snapshot.firstChild.data['index'];
     });
+    this.isActiveLogin = environment.isActiveLogin;
   }
 
   ngOnInit() {

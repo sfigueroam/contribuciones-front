@@ -260,7 +260,6 @@ export class AgregarNuevaComponent implements OnInit {
         this.sinResultado = true;
       } else {
         this.agregarPropiedad(response);
-        this.onScroll();
       }
       this.offWait();
     }, () => {
@@ -343,6 +342,7 @@ export class AgregarNuevaComponent implements OnInit {
         }
       }
     }
+    this.onScroll();
 
     if (!estado) {
       this.propiedades.push(response);
@@ -400,6 +400,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.agregarPropiedad(pro);
       }
     }
+    this.onScroll();
   }
 
   asociarPropiedades() {
@@ -587,9 +588,15 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   onScroll() {
-    this.scroll.nativeElement.scrollIntoView();
-    const htmlScroll = this.scroll.nativeElement as HTMLElement;
-    htmlScroll.focus();
+    setTimeout(
+      () => {
+        this.scroll.nativeElement.scrollIntoView();
+        const htmlScroll = this.scroll.nativeElement as HTMLElement;
+        htmlScroll.focus();
+      },
+      200
+    );
+
   }
 
   dialogConfirmarAgregarPropiedad(): void {
