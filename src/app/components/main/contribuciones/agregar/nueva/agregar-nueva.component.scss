@@ -89,6 +89,11 @@
   color: #448aff;
   box-shadow: none;
   font-size: 14px;
+  //@media (max-width: 320px) {
+  //  float: right;
+  //  padding-left: 0;
+  //  margin-right: -12px;
+  //}
   @media (max-width: 480px){
     padding-right: 0;
     font-size: 13px;
@@ -169,22 +174,36 @@
   }
   //boton de pago
   .mdl-button:first-of-type {
+    font-size: 16px;
     @media (max-width: 340px) {
       float: left;
       margin-left: 0;
+      font-size: 14px;
     }
     @media (min-width: 341px) and (max-width: 480px) {
       float: left;
       margin-left: 10px;
+      font-size: 14px;
+    }
+    span {
+      font-size: 16px;
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
     }
   }
   .mdl-button:last-of-type {
-    @media (max-width: 480px) {
+    @media (max-width: 320px) {
+      float: right;
+      margin-right: -6px;
+    }
+    @media (min-width: 321px) and (max-width: 480px) {
       float: right;
       margin-right: 10px;
     }
   }
 }
+
 .mdl-textfield {
   width: 100%;
   &#direccion {
