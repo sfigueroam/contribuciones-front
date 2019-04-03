@@ -27,9 +27,6 @@
         <mdl-icon>{{selectedIcon}}</mdl-icon>
         Seleccionar <strong>TODAS</strong> las deudas
       </div>
-<<<<<<< HEAD
-      <div class="mdl-button-group" *ngIf="existeVencidas">
-=======
 
       <div *ngIf="existeSoloVencidas" (click)="seleccionarTodasVencidas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
@@ -37,7 +34,6 @@
       </div>
 
       <div class="mdl-button-group" *ngIf="existeVencidas && !existeSoloVencidas">
->>>>>>> 14ab3a198ec54f09a437ec948bbf116607200d31
         <p>¿Qué deudas quieres pagar?</p>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
                 [class.active]="seleccionada == tipo.TODAS" (click)="seleccionar(tipo.TODAS)">
