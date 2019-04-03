@@ -46,6 +46,8 @@ export class SeleccionCuotasComponent implements OnInit {
   urlPagoTgr: string;
 
   existeVencidas = false;
+  existeSoloVencidas = false;
+
 
   selectedIcon: string;
 
@@ -168,6 +170,7 @@ export class SeleccionCuotasComponent implements OnInit {
     this.seleccionada = resultados.tipo();
     this.cantidadSeleccionadas = resultados.seleccionadas;
     this.existeVencidas = resultados.vencidas > 0;
+    this.existeSoloVencidas = resultados.vencidas === resultados.total;
 
     this.result = resultados;
 
@@ -215,5 +218,13 @@ export class SeleccionCuotasComponent implements OnInit {
     }
 
 
+  }
+
+  seleccionarTodasVencidas() {
+    if (this.selectedIcon === CheckboxIcon.INDETERMINATE || this.selectedIcon === CheckboxIcon.UNSELECTED) {
+      this.seleccionar(TipoCuota.TODAS);
+    } else {
+      this.seleccionar(TipoCuota.NO_VENCIDAS);
+    }
   }
 }

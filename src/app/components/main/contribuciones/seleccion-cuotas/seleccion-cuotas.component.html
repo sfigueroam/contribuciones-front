@@ -27,7 +27,17 @@
         <mdl-icon>{{selectedIcon}}</mdl-icon>
         Seleccionar <strong>TODAS</strong> las deudas
       </div>
+<<<<<<< HEAD
       <div class="mdl-button-group" *ngIf="existeVencidas">
+=======
+
+      <div *ngIf="existeSoloVencidas" (click)="seleccionarTodasVencidas()">
+        <mdl-icon>{{selectedIcon}}</mdl-icon>
+        Seleccionar <strong>TODAS</strong> las deudas vencidas
+      </div>
+
+      <div class="mdl-button-group" *ngIf="existeVencidas && !existeSoloVencidas">
+>>>>>>> 14ab3a198ec54f09a437ec948bbf116607200d31
         <p>¿Qué deudas quieres pagar?</p>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
                 [class.active]="seleccionada == tipo.TODAS" (click)="seleccionar(tipo.TODAS)">
@@ -46,6 +56,8 @@
           No Vencidas
         </button>
       </div>
+
+
     </div>
   </div>
 </div>
@@ -88,7 +100,8 @@
       <p class="monto-condonacion">
         <!-- El pago de las deudas ha generado una condonación de <strong>$ {{condonacion | number}}</strong>, incluída en el
         monto total a pagar. -->
-        Al pagar cada cuota vencida se aplica una condonación, cuyo total es de <strong>$ {{condonacion | number}}</strong>, y se incluye en el monto total a pagar.
+        Al pagar cada cuota vencida se aplica una condonación, cuyo total es de
+        <strong>$ {{condonacion | number}}</strong>, y se incluye en el monto total a pagar.
       </p>
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">

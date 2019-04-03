@@ -21,6 +21,7 @@
     vertical-align: middle;
     margin-top: 10px;
     margin-bottom: 10px;
+
     p {
       width: 100%;
       margin-bottom: 8px;
@@ -66,6 +67,7 @@
       }
       &:nth-of-type(3) {
         color: $color-danger;
+
         &:hover {
           color: $color-white;
         }
