@@ -8,7 +8,7 @@
         </a>
         <mdl-layout-spacer></mdl-layout-spacer>
         <nav class="mdl-navigation">
-          <button class="mdl-navigation__link cuenta-usuario"  *ngIf="!logged"
+          <button class="mdl-navigation__link cuenta-usuario" *ngIf="!logged && isActiveLogin"
                   (click)="redirigirLogin()"
                   mdl-button
                   mdl-button-type="icon">
