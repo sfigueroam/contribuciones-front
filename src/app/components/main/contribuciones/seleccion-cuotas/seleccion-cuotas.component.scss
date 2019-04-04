@@ -94,7 +94,24 @@
 }
 
 .check-seleccion-deudas {
-  margin-bottom: 6px;
+  margin: 12px auto -14px auto;
+  @media (max-width: 599px) {
+    width: 100%;
+    margin-left: -10px;
+  }
+  @media (min-width: 600px) and (max-width: 839px) {
+    width: 70%;
+    margin-left: calc(15% - 8px);
+  }
+  @media (min-width: 840px) and (max-width: 1024px) {
+    width: 70%;
+    margin-left: calc(14% - 8px);
+  }
+  @media (min-width: 1025px) {
+    width: 70%;
+    margin-left: calc(14% - 12px);
+  }
+  
   mdl-icon.material-icons {
     vertical-align: bottom;
     cursor: pointer;
@@ -104,6 +121,7 @@
     margin-left: 6px;
     font-size: 16px;
     color: $color-dark-blue-text;
+    cursor: pointer;
   }
 }
 
@@ -156,8 +174,19 @@
     padding-right: 5px;
     padding-left: 5px;
   }
-  p {
+  .cantidad-deudas-seleccionadas {
+    width: 100%;
+    padding-left: 16px;
+    margin-top: -4px;
+    text-align: left;
     font-size: 16px;
+    color: $color-dark-gray;
+    @media (max-width: 480px) {
+      font-size: 15px;
+    }
+    span {
+      color: $color-dark-blue-text;
+    }
   }
 }
 

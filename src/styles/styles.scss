@@ -384,7 +384,7 @@ html, body {
   @media (max-width: 599px) {
     width: 100%;
   }
-  @media (min-width: 600px) and (max-width: 840px) {
+  @media (min-width: 600px) and (max-width: 839px) {
     width: 70%;
   }
   .rol-card {
@@ -724,11 +724,9 @@ html, body {
     font-size: 28px;
   }
   button.button-pay {
-
     background-color: $color-success;
     color: #fff;
     margin-top: -8px;
-    text-transform: none;
     a {
       text-decoration: none;
       color: white;

@@ -23,14 +23,14 @@
 <div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--8-col select-fee">
     <div *ngIf="complete && result.total > 0">
-      <div class="check-seleccion-deudas" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
+      <div class="check-seleccion-deudas no-vencidas" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
         <span>Seleccionar <strong>TODAS</strong> las deudas</span>
       </div>
 
-      <div *ngIf="existeSoloVencidas" (click)="seleccionarTodasVencidas()">
+      <div class="check-seleccion-deudas vencidas" *ngIf="existeSoloVencidas" (click)="seleccionarTodasVencidas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
-        <span>Seleccionar <strong>TODAS</strong> las deudas vencidas</span>
+        <span>Seleccionar <strong>TODAS</strong> las deudas</span>
       </div>
 
       <div class="mdl-button-group" *ngIf="existeVencidas && !existeSoloVencidas">
@@ -119,7 +119,7 @@
     </button>
     <div class="mdl-layout-spacer"></div>
     <app-boton-pagar [codigos]="listaContribuciones" [total]="total"></app-boton-pagar>
-    <p class="cantidad-deudas-seleccionadas"><strong>{{result.seleccionadas}}</strong> de {{result.total}} deudas
+    <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}}</strong></span> de {{result.total}} deudas
       seleccionadas</p>
   </div>
 </div>
