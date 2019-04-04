@@ -36,6 +36,8 @@ export class AgregarNuevaComponent implements OnInit {
   propiedadComponentList: QueryList<PropiedadComponent>;
 
   @ViewChild('scroll') scroll: ElementRef;
+  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
+  @ViewChild('scrollRol') scrollRol: ElementRef;
 
 
   wait = false;
@@ -609,7 +611,7 @@ export class AgregarNuevaComponent implements OnInit {
   onScroll() {
     setTimeout(
       () => {
-        this.scroll.nativeElement.scrollIntoView();
+        this.scroll.nativeElement.scrollIntoView({behavior: 'smooth'});
         const htmlScroll = this.scroll.nativeElement as HTMLElement;
         htmlScroll.focus();
       },
@@ -644,5 +646,21 @@ export class AgregarNuevaComponent implements OnInit {
       clickOutsideToClose: true,
       isModal: true
     });
+  }
+
+  autoScroll() {
+
+
+    //window.scrollBy(4000, 0);
+
+    /*if (this.switchActive === 'rol') {
+      this.scroll.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start'});
+      const htmlScroll = this.scrollRol.nativeElement as HTMLElement;
+      htmlScroll.focus();
+    } else {
+      this.scroll.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const htmlScroll = this.scrollDireccion.nativeElement as HTMLElement;
+      htmlScroll.focus();
+    }*/
   }
 }

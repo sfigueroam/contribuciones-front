@@ -57,6 +57,7 @@ export class RolCuotasComponent implements OnInit {
     }
   }
 
+
   private reloadChecked(): void {
     if (this.rol.allChecked()) {
       this.selectedIcon = CheckboxIcon.SELECTED;

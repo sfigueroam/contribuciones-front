@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
@@ -18,6 +18,8 @@ import {
   TOTAL_PROPIEDADES
 } from './modal/resumen/resumen.component';
 import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
+import {PropiedadComponent} from '../../shared/propiedad/propiedad.component';
+import {DireccionCuotasComponent} from './direccion-cuotas/direccion-cuotas.component';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -25,6 +27,9 @@ import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
   styleUrls: ['./seleccion-cuotas.component.scss']
 })
 export class SeleccionCuotasComponent implements OnInit {
+
+  @ViewChildren(DireccionCuotasComponent)
+  direccionCuotasComponentList: QueryList<DireccionCuotasComponent>;
 
   propiedades: Propiedad[] = [];
 
@@ -217,8 +222,6 @@ export class SeleccionCuotasComponent implements OnInit {
     } else {
       this.seleccionar(TipoCuota.NINGUNA);
     }
-
-
   }
 
   seleccionarTodasVencidas() {
@@ -230,7 +233,11 @@ export class SeleccionCuotasComponent implements OnInit {
   }
 
   abrirPrimerRol(): void {
+    const direccionCuotasList = this.direccionCuotasComponentList.toArray();
 
+    if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
+      direccionCuotasList[0].abrirPrimerRol();
+    }
   }
 
 }

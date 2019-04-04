@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import {Propiedad} from '../../../../../domain/Propiedad';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
+import {RolCuotasComponent} from '../rol-cuotas/rol-cuotas.component';
 
 @Component({
   selector: 'app-direccion-cuotas',
@@ -10,6 +11,9 @@ import {environment} from '../../../../../../environments/environment';
   styleUrls: ['./direccion-cuotas.component.scss']
 })
 export class DireccionCuotasComponent implements OnInit {
+
+  @ViewChildren(RolCuotasComponent)
+  rolCuotasComponentList: QueryList<RolCuotasComponent>;
 
   @Input()
   propiedad: Propiedad;
@@ -59,5 +63,14 @@ export class DireccionCuotasComponent implements OnInit {
       this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas',
         environment.snackbarTime);
     }
+  }
+
+  public abrirPrimerRol(): void {
+    const rolCuotasList = this.rolCuotasComponentList.toArray();
+    if (rolCuotasList !== undefined && rolCuotasList.length > 0) {
+      rolCuotasList[0].expanded = true;
+    }
+
+
   }
 }
