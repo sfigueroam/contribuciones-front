@@ -18,7 +18,7 @@ export class BotonPagarComponent implements OnInit {
 
   urlPagoTgr: string;
 
-  constructor(private deviceDetectService: DeviceDetectService) {
+  constructor(public deviceDetectService: DeviceDetectService) {
   }
 
   ngOnInit() {
