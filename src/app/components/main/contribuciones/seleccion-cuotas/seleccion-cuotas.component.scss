@@ -23,7 +23,7 @@
     margin-bottom: 10px;
     p {
       width: 100%;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-size: 16px;
       color: $color-dark-gray;
       text-align: center;
@@ -38,21 +38,21 @@
       border-left: none;
       text-transform: none;
       font-size: 14px;
-      @media (min-width: 320px) and (max-width: 350px) {
+      @media (max-width: 319px) {
         font-size: 11px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      @media (min-width: 320px) and (max-width: 350px) {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      @media (min-width: 351px) and (max-width: 480px) {
+        font-size: 12px;
         padding-left: 10px;
         padding-right: 10px;
       }
-      //@media (min-width: 351px) and (max-width: 480px) {
-      // font-size: 12px;
-      //padding-left: 5px;
-      //padding-right: 5px;
-      //}
-      //@media (max-width: 361px) {
-      //  font-size: 11px;
-      //  padding-left: 5px;
-      //  padding-right: 5px;
-      //}
       &:first-of-type {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
@@ -90,6 +90,20 @@
         color: $color-white;
       }
     }
+  }
+}
+
+.check-seleccion-deudas {
+  margin-bottom: 6px;
+  mdl-icon.material-icons {
+    vertical-align: bottom;
+    cursor: pointer;
+    color: $color-dark-blue-text;
+  }
+  span {
+    margin-left: 6px;
+    font-size: 16px;
+    color: $color-dark-blue-text;
   }
 }
 
@@ -320,18 +334,18 @@
   z-index: 2;
 }
 .tgr-target-wrapper {
-  padding: 0 20px;
+  padding: 0 10px;
   @media (min-width: 481px) and (max-width: 600px) {
     padding-left: 100px;
-    padding-right: 100px;
+    padding-right: 5px;
   }
   @media (min-width: 840px) and (max-width: 1279px) {
     padding-left: 250px;
-    padding-right: 250px;
+    padding-right: 140px;
   }
   @media (min-width: 1280px) {
     padding-left: 326px;
-    padding-right: 326px;
+    padding-right: 250px;
   }
 }
 .tgr-target-wave {

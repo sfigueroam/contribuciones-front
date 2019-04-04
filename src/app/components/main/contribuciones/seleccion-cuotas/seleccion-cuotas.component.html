@@ -23,14 +23,14 @@
 <div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">
   <div class="mdl-cell mdl-cell--8-col select-fee">
     <div *ngIf="complete && result.total > 0">
-      <div class="tgr-select" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
+      <div class="check-seleccion-deudas" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
-        Seleccionar <strong>TODAS</strong> las deudas
+        <span>Seleccionar <strong>TODAS</strong> las deudas</span>
       </div>
 
       <div *ngIf="existeSoloVencidas" (click)="seleccionarTodasVencidas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
-        Seleccionar <strong>TODAS</strong> las deudas vencidas
+        <span>Seleccionar <strong>TODAS</strong> las deudas vencidas</span>
       </div>
 
       <div class="mdl-button-group" *ngIf="existeVencidas && !existeSoloVencidas">
@@ -94,8 +94,6 @@
     </p>
     <div class="tgr-condonacion" *ngIf="condonacion > 0">
       <p class="monto-condonacion">
-        <!-- El pago de las deudas ha generado una condonación de <strong>$ {{condonacion | number}}</strong>, incluída en el
-        monto total a pagar. -->
         Al pagar cada cuota vencida se aplica una condonación, cuyo total es de
         <strong>$ {{condonacion | number}}</strong> y se incluye en el monto total que pagarás.
       </p>
