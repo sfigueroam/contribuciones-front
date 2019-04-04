@@ -35,7 +35,7 @@ export const environment = {
   //TODO: llamar a una url privada de cuenta de usuario sin client-id
   cuentaUrl: 'BUILD_CUENTA_USUARIO_URL' + '/redirect',
   pago: {
-    url: 'BUILD_BOTON_PAGO_TGR_URL'
+    url: 'BUILD_URL_BOTON_PAGO_TGR'
   },
   cognito: {
     authorizeURL: 'BUILD_AUTHORIZE_URL',
