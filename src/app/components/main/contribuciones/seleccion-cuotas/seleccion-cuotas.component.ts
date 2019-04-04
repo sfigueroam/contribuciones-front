@@ -85,6 +85,7 @@ export class SeleccionCuotasComponent implements OnInit {
         this.contribuciones.cargarRoles().then(
           () => {
             this.complete = true;
+            this.abrirPrimerRol();
             this.calcularTotal();
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
@@ -227,4 +228,9 @@ export class SeleccionCuotasComponent implements OnInit {
       this.seleccionar(TipoCuota.NO_VENCIDAS);
     }
   }
+
+  abrirPrimerRol(): void {
+
+  }
+
 }
