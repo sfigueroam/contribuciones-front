@@ -28,7 +28,7 @@ export const environment = {
     L: 2,
     Z: 3
   },
-  isActiveLogin: true,
+  isActiveLogin: false,
   googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
   snackbarTime: 5000,
   production: true,
