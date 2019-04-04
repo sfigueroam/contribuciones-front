@@ -23,6 +23,7 @@ import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
 import {CANT_PROPIEDADES, DialogAgregarPropiedadComponent} from './modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
 import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.component';
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
+import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -462,7 +463,24 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   volver() {
-    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+    if (this.cantidadSeleccionadas > 0) {
+      const pDialog = this.dialogService.showCustomDialog({
+        component: RecordarComponent,
+        providers: [{provide: CANT_PROPIEDADES_SELEC, useValue: this.cantidadSeleccionadas}],
+        isModal: true
+      });
+      pDialog.subscribe((dialogReference: MdlDialogReference) => {
+        dialogReference.onHide().subscribe(
+          data => {
+            if (data !== undefined && data === 'agregar') {
+              this.asociarPropiedades();
+            }
+          }
+        );
+      });
+    } else {
+      this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+    }
   }
 
   cargarDireccion(dire) {

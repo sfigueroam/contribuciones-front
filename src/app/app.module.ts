@@ -39,6 +39,7 @@ import {AyudaCondonacionComponent} from './components/main/contribuciones/selecc
 import {ResumenComponent} from './components/main/contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
 import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cuotas/modal/boton-pagar/boton-pagar.component';
 import {OrderModule} from 'ngx-order-pipe';
+import {RecordarComponent} from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -70,6 +71,7 @@ registerLocaleData(localeEs, 'es');
     AyudaCondonacionComponent,
     ResumenComponent,
     BotonPagarComponent,
+    RecordarComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +108,7 @@ registerLocaleData(localeEs, 'es');
     AyudaDireccionComponent,
     AyudaCondonacionComponent,
     ResumenComponent,
+    RecordarComponent,
   ],
   bootstrap: [AppComponent]
 })
