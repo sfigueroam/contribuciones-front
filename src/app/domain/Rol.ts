@@ -2,6 +2,7 @@ import {Cuota} from './Cuota';
 import {TipoCuota} from './TipoCuota';
 import {Observable, Subject} from 'rxjs';
 import {ResumenCuotas} from './ResumenCuotas';
+import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
 
 export class Rol {
 
@@ -41,6 +42,21 @@ export class Rol {
       this.cuotas = [];
     }
     this.calcularSufijoDireccion();
+
+
+    this.calcularRol();
+  }
+
+
+  calcularRol(): void {
+    if (this.rol === undefined) {
+      const rolIdConst = new LeadingZeroPipe().transform(this.rolId, 5);
+      const subRolIdConst = new LeadingZeroPipe().transform(this.subrolId, 3);
+
+      const rol = this.rolComunaSiiCod + '' + rolIdConst + '' + subRolIdConst;
+
+      this.rol = +rol;
+    }
   }
 
   private calcularSufijoDireccion() {
