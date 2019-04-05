@@ -175,7 +175,7 @@
    margin-top: 12px;
   }
   @media (min-width: 481px) and (max-width: 839px) {
-    width: 70%;
+    width: 75%;
   }
   @media (min-width: 840px) and (max-width: 1279px) {
     width: 50%;
@@ -192,8 +192,13 @@
       margin-left: 10px;
     }
     .material-icons {
+      margin-left: 0;
+      font-size: 20px !important;
       @media (max-width: 350px) {
         display: none;
+      }
+      @media (min-width: 481px) {
+        font-size: 24px !important;
       }
     }
   }

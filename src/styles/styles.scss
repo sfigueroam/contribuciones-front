@@ -342,11 +342,19 @@ html, body {
 }
 // FIN Esconder Address Bar en móvil
 
-// Inicio. Diálogos
+// ----- Inicio. Diálogos
 .dialog-backdrop {
     background: rgba(0,0,0,0.4) !important;
 }
-// Fin. Diálogos
+// Inicio. Diálogo RESUMEN
+#dialogo-resumen {
+  @media (max-width: 401px) {
+    max-height: 85%;
+    overflow-y: auto;
+  }
+}
+// Fin. Diálogo RESUMEN
+// ----- Fin. Diálogos
 
 // INICIO HEADER
 .cuenta-usuario {
