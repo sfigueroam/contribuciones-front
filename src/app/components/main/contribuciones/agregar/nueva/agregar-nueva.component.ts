@@ -310,14 +310,17 @@ export class AgregarNuevaComponent implements OnInit {
 
   inputDirecciones(event: any) {
     const inp = String.fromCharCode(event.keyCode);
-    if (this.direccion.value.length <= 2) {
+    if (this.direcciones == null) {
+      this.inputDireccionesTmp = '';
+    }
+    if (this.direccion.value != null && this.direccion.value.length <= 2) {
       this.direcciones = null;
       this.inputDireccionesTmp = '';
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
-      if (this.direccion.value.length > 2) {
+      if (this.direccion.value != null && this.direccion.value.length > 2) {
         if (!this.busquedaEnEjecucion) {
           this.busquedaEnEjecucion = true;
           setTimeout(

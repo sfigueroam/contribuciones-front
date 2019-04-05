@@ -108,7 +108,7 @@
       <br><strong>$ {{total | number}}</strong>
     </p>
 
-    <p *ngIf="existeVencidas && condonacion === 0" class="monto-total">
+    <p *ngIf="existeVencidas && (condonacion === 0 || showVencidasPorRoles)" class="monto-total">
       Seleccione todas las deudas vencidas de un ROL para acceder al benficio de <strong>Condonación por Pago
       Total</strong>
     </p>

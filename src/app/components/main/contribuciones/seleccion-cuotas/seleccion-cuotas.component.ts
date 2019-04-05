@@ -52,6 +52,7 @@ export class SeleccionCuotasComponent implements OnInit {
 
   existeVencidas = false;
   existeSoloVencidas = false;
+  showVencidasPorRoles = false;
 
 
   selectedIcon: string;
@@ -166,13 +167,23 @@ export class SeleccionCuotasComponent implements OnInit {
       resultados.seleccionadas += resumen.seleccionadas;
       resultados.vencidas += resumen.vencidas;
       resultados.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
+
+      resultados.vencidasRoles += resumen.vencidasRoles;
+      resultados.vencidasSeleccionadasRoles += resumen.vencidasSeleccionadasRoles;
     }
     this.seleccionada = resultados.tipo();
     this.cantidadSeleccionadas = resultados.seleccionadas;
     this.existeVencidas = resultados.vencidas > 0;
     this.existeSoloVencidas = resultados.vencidas === resultados.total;
 
+    console.log(this.result);
+
+    this.showVencidasPorRoles = +resultados.vencidasRoles > +resultados.vencidasSeleccionadasRoles;
+
     this.result = resultados;
+
+    console.log(this.result);
+    console.log(this.showVencidasPorRoles);
 
     this.updateIconSeleccion(resultados);
   }

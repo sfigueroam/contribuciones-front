@@ -79,6 +79,13 @@ export class Propiedad {
       result.seleccionadas += resumenRol.seleccionadas;
       result.vencidas += resumenRol.vencidas;
       result.vencidasSeleccionadas += resumenRol.vencidasSeleccionadas;
+
+      if (resumenRol.vencidas > 0) {
+        result.vencidasRoles += 1;
+        if (resumenRol.vencidasSeleccionadas > 0) {
+          result.vencidasSeleccionadasRoles += 1;
+        }
+      }
     }
     return result;
   }
