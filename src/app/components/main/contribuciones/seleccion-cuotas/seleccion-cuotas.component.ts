@@ -210,7 +210,7 @@ export class SeleccionCuotasComponent implements OnInit {
         {provide: LIST_PROPIEDADES, useValue: this.propiedades},
         {provide: CODIGO_LIST_PROPIEDADES, useValue: this.listaContribuciones},
         {provide: TOTAL_PROPIEDADES, useValue: this.total},
-        {provide: CONDONACION_PROPIEDADES, useValue: this.contribuciones}
+        {provide: CONDONACION_PROPIEDADES, useValue: this.condonacion}
       ],
       isModal: true
     });

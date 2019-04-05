@@ -9,6 +9,18 @@
         }
     }
     .tgr-dialog__options {
-        
+        @media (max-width: 365px) {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        @media (min-width: 366px) {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        button:first-of-type {
+            @media (max-width: 365px) {
+                margin-bottom: 16px;
+            } 
+        }
     }
 }
