@@ -88,6 +88,11 @@
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0">
   <div class="mdl-cell mdl-cell--5-col total-buy">
+    <div class="tgr-condonacion" *ngIf="condonacion > 0">
+      <p class="monto-condonacion">
+        Total sin Condonación: <strong>$ {{total + condonacion | number}}</strong>
+      </p>
+    </div>
     <p *ngIf="complete" class="monto-total">
       Total Deuda Contribuciones:
       <br><strong>$ {{total | number}}</strong>

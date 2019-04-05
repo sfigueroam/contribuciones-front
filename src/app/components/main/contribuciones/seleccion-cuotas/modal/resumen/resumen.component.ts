@@ -40,6 +40,10 @@ export class ResumenComponent implements OnInit {
     this.total = total;
     this.condonacion = condonacion;
 
+
+    console.log(this.total);
+    console.log(this.condonacion);
+
     this.router.events.pipe(
       filter((event: RouterEvent) => event instanceof NavigationStart),
       tap(() => this.dialog.hide())
