@@ -99,7 +99,7 @@
     font-size: 13px;
   }
   i.material-icons {
-    margin-left: -8px;
+    margin-left: -2px;
     margin-bottom: 2px;
   }
 }
@@ -190,6 +190,11 @@
     }
     @media (min-width: 321px) and (max-width: 480px) {
       margin-left: 10px;
+    }
+    .material-icons {
+      @media (max-width: 350px) {
+        display: none;
+      }
     }
   }
   .mdl-button:last-of-type {
