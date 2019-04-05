@@ -4,7 +4,7 @@
       <ng-template ngPluralCase="=1">Olvidaste agregar la propiedad que seleccionaste. ¿Quieres agregarla e ir al
         carro?
       </ng-template>
-      <ng-template ngPluralCase="other">Olvidaste agregar las {{cantPropiedades}} propiedades que seleccionaste.
+      <ng-template ngPluralCase="other">Olvidaste agregar las <strong>{{cantPropiedades}}</strong> propiedades que seleccionaste.
         ¿Quieres agregarlas e ir al carro?
       </ng-template>
     </p>
@@ -14,7 +14,7 @@
       Volver
     </button>
     <button class="mdl-button mdl-js-button mdl-button--primary button-primary-action" (click)="agregar()">
-      Agregar al Carro y continuar
+      Agregar e ir al Carro
     </button>
   </div>
 </div>

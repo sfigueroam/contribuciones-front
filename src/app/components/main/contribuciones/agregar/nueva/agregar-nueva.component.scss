@@ -84,7 +84,7 @@
 }
 .mdl-button.mdl-button--return {
   background: gray;
-  text-transform: capitalize;
+  text-transform: uppercase;
   background-color: transparent;
   color: #448aff;
   box-shadow: none;
@@ -194,14 +194,14 @@
   }
   .mdl-button:last-of-type {
     float: right;
-    font-size: 16px;
+    text-transform: uppercase;
+    font-size: 14px;
     @media (max-width: 340px) {
+      font-size: 13px;
       margin-right: 0;
-      font-size: 14px;
     }
     @media (min-width: 341px) and (max-width: 480px) {
       margin-right: 10px;
-      font-size: 14px;
     }
     span {
       font-size: 16px;

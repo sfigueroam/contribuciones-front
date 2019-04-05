@@ -17,9 +17,9 @@
             display: flex;
             justify-content: space-evenly;
         }
-        button:first-of-type {
+        button:last-of-type {
             @media (max-width: 365px) {
-                margin-bottom: 16px;
+                margin-bottom: 14px;
             } 
         }
     }
