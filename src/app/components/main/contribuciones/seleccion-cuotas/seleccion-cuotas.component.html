@@ -121,39 +121,40 @@
       </button>
     </div>
   </div>
+</div>
 
 
-  <div class="tgr-actions tgr-mini-footer" *ngIf="propiedades.length > 0; else footeractions">
-    <div *ngIf="!complete" class="tgr-loading2">
-      <mdl-spinner single-color active></mdl-spinner>
-      <p>Estamos calculando tu monto a pagar</p>
-    </div>
-    <div *ngIf="complete" class="tgr-actions__content">
-      <button mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">
-        <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list
-        </mdl-icon>
+<div class="tgr-actions tgr-mini-footer" *ngIf="propiedades.length > 0; else footeractions">
+  <div *ngIf="!complete" class="tgr-loading2">
+    <mdl-spinner single-color active></mdl-spinner>
+    <p>Estamos calculando tu monto a pagar</p>
+  </div>
+  <div *ngIf="complete" class="tgr-actions__content">
+    <button mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">
+      <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list
+      </mdl-icon>
+    </button>
+    <div class="mdl-layout-spacer"></div>
+    <app-boton-pagar [codigos]="listaContribuciones" [total]="total"></app-boton-pagar>
+    <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}}</strong></span>
+      de {{result.total}} deudas
+      seleccionadas</p>
+  </div>
+</div>
+
+<ng-template #footeractions>
+  <div class="tgr-actions tgr-mini-footer">
+    <p>No hay deudas seleccionadas para pagar</p>
+  </div>
+</ng-template>
+
+<div class="tgr-add" *ngIf="propiedades.length > 0">
+  <div class="tgr-target-wrapper">
+    <div class="tgr-target-wave tgr-target-wave--button">
+      <button mdl-button mdl-button-type="fab" mdl-colored="accent" class="new-rol"
+              [routerLink]="['/main/contribuciones/agregar/nueva']">
+        <mdl-icon>add</mdl-icon>
       </button>
-      <div class="mdl-layout-spacer"></div>
-      <app-boton-pagar [codigos]="listaContribuciones" [total]="total"></app-boton-pagar>
-      <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}}</strong></span>
-        de {{result.total}} deudas
-        seleccionadas</p>
     </div>
   </div>
-
-  <ng-template #footeractions>
-    <div class="tgr-actions tgr-mini-footer">
-      <p>No hay deudas seleccionadas para pagar</p>
-    </div>
-  </ng-template>
-
-  <div class="tgr-add" *ngIf="propiedades.length > 0">
-    <div class="tgr-target-wrapper">
-      <div class="tgr-target-wave tgr-target-wave--button">
-        <button mdl-button mdl-button-type="fab" mdl-colored="accent" class="new-rol"
-                [routerLink]="['/main/contribuciones/agregar/nueva']">
-          <mdl-icon>add</mdl-icon>
-        </button>
-      </div>
-    </div>
-  </div>
+</div>
