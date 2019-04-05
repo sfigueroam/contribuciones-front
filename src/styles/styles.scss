@@ -347,8 +347,8 @@ html, body {
     background: rgba(0,0,0,0.4) !important;
 }
 // Inicio. Diálogo RESUMEN
-#dialogo-resumen {
-  @media (max-width: 401px) {
+.dialogo-resumen-deudas {
+  @media (min-width: 401px) {
     max-height: 85%;
     overflow-y: auto;
   }

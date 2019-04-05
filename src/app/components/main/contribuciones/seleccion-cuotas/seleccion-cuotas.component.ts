@@ -212,6 +212,7 @@ export class SeleccionCuotasComponent implements OnInit {
         {provide: CONDONACION_PROPIEDADES, useValue: this.condonacion},
         {provide: EXISTE_VENCIDAS, useValue: this.existeVencidas}
       ],
+      classes: 'dialogo-resumen-deudas',
       isModal: true
     });
   }
