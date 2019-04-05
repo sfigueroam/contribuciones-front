@@ -105,7 +105,7 @@
     </p>
 
 
-    <div class="gray-border"></div>
+    <div *ngIf="existeVencidas" class="gray-border"></div>
 
     <p *ngIf="complete" class="monto-total texto">
       Monto total a pagar :
