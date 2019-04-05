@@ -38,10 +38,11 @@
     </div>
   </div>
   <div>
-    <p class="text-primary text-center">Total Deudas: <strong>$ {{total| number}}</strong></p>
-    <p class="tgr-condonacion" *ngIf="condonacion > 0">Condonación Aplicada: <strong>$ {{condonacion | number}}</strong>
-    <p class="tgr-condonacion" *ngIf="condonacion > 0">Total sin condonacion:
-      <strong>$ {{condonacion + total | number}}</strong>
+    <p class="text-primary text-center" *ngIf="existeVencidas">Pago parcial deudas vencidas:
+      <strong>$ {{total + condonacion| number}}</strong></p>
+    <p class="tgr-condonacion" *ngIf="condonacion > 0">Condonación por pago Total:
+      <strong>$ {{condonacion | number}}</strong>
+    <p class="text-primary text-center">Monto total a pagar: <strong>$ {{total | number}}</strong>
     </p>
   </div>
 </div>

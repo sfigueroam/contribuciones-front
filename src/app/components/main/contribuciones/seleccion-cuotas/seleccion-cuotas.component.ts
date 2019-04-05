@@ -12,7 +12,7 @@ import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
 import {
   CODIGO_LIST_PROPIEDADES,
-  CONDONACION_PROPIEDADES,
+  CONDONACION_PROPIEDADES, EXISTE_VENCIDAS,
   LIST_PROPIEDADES,
   ResumenComponent,
   TOTAL_PROPIEDADES
@@ -131,12 +131,6 @@ export class SeleccionCuotasComponent implements OnInit {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
           if (c.intencionPago) {
-            /*if (c.numeroCuota === '5-1988') {
-              console.log(c);
-            }
-            if (c.liqParcial === undefined) {
-              console.log(c);
-            }*/
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarra + ', ';
             } else {
@@ -210,7 +204,8 @@ export class SeleccionCuotasComponent implements OnInit {
         {provide: LIST_PROPIEDADES, useValue: this.propiedades},
         {provide: CODIGO_LIST_PROPIEDADES, useValue: this.listaContribuciones},
         {provide: TOTAL_PROPIEDADES, useValue: this.total},
-        {provide: CONDONACION_PROPIEDADES, useValue: this.condonacion}
+        {provide: CONDONACION_PROPIEDADES, useValue: this.condonacion},
+        {provide: EXISTE_VENCIDAS, useValue: this.existeVencidas}
       ],
       isModal: true
     });

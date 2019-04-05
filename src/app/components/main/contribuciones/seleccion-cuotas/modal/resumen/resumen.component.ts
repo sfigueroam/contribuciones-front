@@ -11,6 +11,7 @@ export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 export const CODIGO_LIST_PROPIEDADES = new InjectionToken<number>('codigo_lista_propiedades');
 export const TOTAL_PROPIEDADES = new InjectionToken<number>('total_propiedades');
 export const CONDONACION_PROPIEDADES = new InjectionToken<number>('condonacion_propiedades');
+export const EXISTE_VENCIDAS = new InjectionToken<number>('existe_vencidas');
 
 @Component({
   selector: 'app-resumen',
@@ -23,6 +24,7 @@ export class ResumenComponent implements OnInit {
   codigos: string;
   total: number;
   condonacion: number;
+  existeVencidas: boolean;
 
   constructor(
     private dialog: MdlDialogReference,
@@ -32,6 +34,7 @@ export class ResumenComponent implements OnInit {
     @Inject(CODIGO_LIST_PROPIEDADES) codigos: string,
     @Inject(TOTAL_PROPIEDADES) total: number,
     @Inject(CONDONACION_PROPIEDADES) condonacion: number,
+    @Inject(EXISTE_VENCIDAS) existeVencidas: boolean,
 
   ) {
 
@@ -39,10 +42,7 @@ export class ResumenComponent implements OnInit {
     this.codigos = codigos;
     this.total = total;
     this.condonacion = condonacion;
-
-
-    console.log(this.total);
-    console.log(this.condonacion);
+    this.existeVencidas = existeVencidas;
 
     this.router.events.pipe(
       filter((event: RouterEvent) => event instanceof NavigationStart),
