@@ -407,7 +407,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.onScroll();
   }
 
-  asociarPropiedades() {
+  asociarPropiedades(isConfirmar: boolean = true) {
     this.hidden = false;
 
     if ((this.user.rut != null && this.user.rut !== undefined) || this.user.email) {
@@ -429,7 +429,12 @@ export class AgregarNuevaComponent implements OnInit {
             for (const propiedad of listaPropiedades) {
               this.contribuciones.addPropiedad(propiedad);
             }
-            this.dialogConfirmarAgregarPropiedad();
+            if (isConfirmar) {
+              this.dialogConfirmarAgregarPropiedad();
+            } else {
+              this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+            }
+
           },
           err => {
             this.hidden = true;
@@ -445,8 +450,11 @@ export class AgregarNuevaComponent implements OnInit {
       for (const propiedad of propiedadesConRolesSeleccionados) {
         this.contribuciones.addPropiedad(propiedad);
       }
-      this.dialogConfirmarAgregarPropiedad();
-      //this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+      if (isConfirmar) {
+        this.dialogConfirmarAgregarPropiedad();
+      } else {
+        this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+      }
     }
   }
 
@@ -475,7 +483,7 @@ export class AgregarNuevaComponent implements OnInit {
         dialogReference.onHide().subscribe(
           data => {
             if (data !== undefined && data === 'agregar') {
-              this.asociarPropiedades();
+              this.asociarPropiedades(false);
             }
           }
         );
