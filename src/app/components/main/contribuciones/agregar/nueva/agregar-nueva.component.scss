@@ -169,20 +169,38 @@
 }
 
 .tgr-pay.tgr-agregar-nueva{
+  margin-left: auto;
+  margin-right: auto;
   @media (max-width: 320px){
    margin-top: 12px;
   }
-  //boton de pago
+  @media (min-width: 481px) and (max-width: 839px) {
+    width: 70%;
+  }
+  @media (min-width: 840px) and (max-width: 1279px) {
+    width: 50%;
+  }
+  @media (min-width: 1280px) {
+    width: 35%;
+  }
   .mdl-button:first-of-type {
+    float: left;
+    @media (max-width: 320px) {
+      margin-left: -6px;
+    }
+    @media (min-width: 321px) and (max-width: 480px) {
+      margin-left: 10px;
+    }
+  }
+  .mdl-button:last-of-type {
+    float: right;
     font-size: 16px;
     @media (max-width: 340px) {
-      float: left;
-      margin-left: 0;
+      margin-right: 0;
       font-size: 14px;
     }
     @media (min-width: 341px) and (max-width: 480px) {
-      float: left;
-      margin-left: 10px;
+      margin-right: 10px;
       font-size: 14px;
     }
     span {
@@ -190,16 +208,6 @@
       @media (max-width: 480px) {
         font-size: 14px;
       }
-    }
-  }
-  .mdl-button:last-of-type {
-    @media (max-width: 320px) {
-      float: right;
-      margin-right: -6px;
-    }
-    @media (min-width: 321px) and (max-width: 480px) {
-      float: right;
-      margin-right: 10px;
     }
   }
 }

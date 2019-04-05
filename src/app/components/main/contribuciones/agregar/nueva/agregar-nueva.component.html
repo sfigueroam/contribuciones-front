@@ -186,7 +186,9 @@
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">
-
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
+        IR AL CARRO
+      </button>
       <button id="agregar_propiedades" type="button"
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
               [disabled]="cantidadSeleccionadas == 0"
@@ -195,10 +197,6 @@
           <ng-template ngPluralCase="=1">Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
           <ng-template ngPluralCase="other">Agregar {{cantidadSeleccionadas}} propiedades</ng-template>
         </div>
-      </button>
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
-        IR AL CARRO
-        <i class="material-icons">keyboard_arrow_right</i>
       </button>
     </div>
   </div>
