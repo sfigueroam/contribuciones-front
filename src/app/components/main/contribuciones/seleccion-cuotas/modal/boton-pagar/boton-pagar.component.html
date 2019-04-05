@@ -1,6 +1,6 @@
 <form ngNoForm method="post" action="{{urlPagoTgr}}">
   <input type="hidden" name="listaContribuciones" value="{{codigos}}"/>
-  <input *ngIf="deviceDetectService.device.mobile" type="hidden" name="canal" value="30M"/>
+  <input *ngIf="deviceDetectService.device.mobile" type="hidden" name="CANAL" value="30M"/>
   <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}
   </button>
 </form>

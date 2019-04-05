@@ -176,14 +176,8 @@ export class SeleccionCuotasComponent implements OnInit {
     this.existeVencidas = resultados.vencidas > 0;
     this.existeSoloVencidas = resultados.vencidas === resultados.total;
 
-    console.log(this.result);
-
     this.showVencidasPorRoles = +resultados.vencidasRoles > +resultados.vencidasSeleccionadasRoles;
-
     this.result = resultados;
-
-    console.log(this.result);
-    console.log(this.showVencidasPorRoles);
 
     this.updateIconSeleccion(resultados);
   }
