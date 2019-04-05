@@ -128,26 +128,58 @@
 .total-buy {
   margin-left: auto;
   margin-right: auto;
+  @media (min-width: 600px) and (max-width: 839px) {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .gray-border {
+    height: 1px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    background-color: rgba(84, 84, 85, .45);
+    &.hidden {
+      display: none;
+    }
+  }
   .monto-total {
     text-align: center;
     font-size: 16px;
+    margin-bottom: 8px;
     color: $color-dark-blue-text;
-  }
-  .tgr-condonacion {
-    text-align: center;
-    .monto-condonacion {
-      font-size: 16px;
+    @media (min-width: 319px) and (max-width: 380px) {
+      font-size: 14px;
+    }
+    &.texto,
+    &.monto {
+      display: inline-block;
+    }
+    &.texto {
+      width: 70%;
+      text-align: left;
+    }
+    &.monto {
+      width: 30%;
+      text-align: right;
+    }
+    &.monto-condonacion {
       color: $color-success;
     }
+  }
+  .tgr-condonacion {
+    margin-top: 18px;
+    text-align: center;
     .ayuda-condonacion {
       box-shadow: none;
       background-color: $gray-lightblue-background;
       color: $color-dark-blue-text;
       font-family: 'Montserrat', sans-serif;
-      line-height: 26px;
+      line-height: 24px;
       font-size: 16px;
       text-transform: none;
       transition: .4s;
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
       .material-icons {
         vertical-align: sub;
         &:hover,
@@ -173,6 +205,12 @@
   @media (max-width: 480) {
     padding-right: 5px;
     padding-left: 5px;
+  }
+  p.sin-deudas {
+    font-size: 16px;
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
   }
   .cantidad-deudas-seleccionadas {
     width: 100%;

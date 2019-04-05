@@ -87,37 +87,43 @@
 </div>
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0">
-  <div class="mdl-cell mdl-cell--5-col total-buy">
+  <div class="mdl-cell mdl-cell--6-col total-buy">
 
-
-    <p *ngIf="existeVencidas" class="monto-total">
+    <p *ngIf="existeVencidas" class="monto-total texto">
       Pago parcial deudas vencidas:
-      <br><strong>$ {{total + condonacion | number}}</strong>
+    </p>
+    <p *ngIf="existeVencidas" class="monto-total monto">
+      <strong>$ {{total + condonacion | number}}</strong>
     </p>
 
 
-    <div class="tgr-condonacion" *ngIf="condonacion > 0">
-      <p class="monto-condonacion">
-        Condonación por <strong>Pago Total</strong>: <br><strong>$ {{condonacion | number}}</strong>
-      </p>
-    </div>
-
-
-    <p *ngIf="complete" class="monto-total">
-      Monto total a pagar
-      <br><strong>$ {{total | number}}</strong>
+    <p class="monto-total texto monto-condonacion" *ngIf="condonacion > 0">
+      Condonación por <strong>Pago Total</strong>:
     </p>
+    <p class="monto-total monto monto-condonacion" *ngIf="condonacion > 0">
+      <strong>$ {{condonacion | number}}</strong>
+    </p>
+
+
+    <div class="gray-border"></div>
+
+    <p *ngIf="complete" class="monto-total texto">
+      Monto total a pagar :
+    </p>
+    <p *ngIf="complete" class="monto-total monto">
+      <strong>$ {{total | number}}</strong>
+    </p>
+
 
     <p *ngIf="existeVencidas && (condonacion === 0 || showVencidasPorRoles)" class="monto-total">
-      Seleccione todas las deudas vencidas de un ROL para acceder al benficio de <strong>Condonación por Pago
-      Total</strong>
+      Selecciona todas las deudas vencidas de un ROL para acceder al benficio de <strong>Condonación por Pago Total</strong>
     </p>
 
     <div class="tgr-condonacion" *ngIf="condonacion > 0">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">
         <i class="material-icons">help</i>
-        ¿Qué es la <strong>Condonación</strong>?
+        ¿Qué es la <strong>Condonación por Pago Total</strong>?
       </button>
     </div>
   </div>
@@ -144,7 +150,7 @@
 
 <ng-template #footeractions>
   <div class="tgr-actions tgr-mini-footer">
-    <p>No hay deudas seleccionadas para pagar</p>
+    <p class="sin-deudas">No hay deudas seleccionadas para pagar</p>
   </div>
 </ng-template>
 
