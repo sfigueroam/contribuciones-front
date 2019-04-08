@@ -52,6 +52,40 @@ mdl-icon.material-icons {
   }
 }
 
+.mdl-data-table {
+  thead {
+    tr {
+      th {
+        color: $color-dark-gray;
+        @media (min-width: 481px) {
+          font-size: 14px;
+        }
+        mdl-icon {
+          color: $color-dark-blue-text;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        color: $color-dark-gray;
+        @media (min-width: 481px) {
+          font-size: 14px;
+        }
+        mdl-icon {
+          color: $color-dark-blue-text;
+          vertical-align: middle;
+        }
+        &.tgr-tr--late {
+          color: $color-danger !important;
+        }
+      }
+    }
+  }
+}
+
 .tgr-row {
   border-top: 1px solid #dddddd;
   padding: 10px 45px;

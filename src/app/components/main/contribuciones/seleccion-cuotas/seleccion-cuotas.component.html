@@ -90,7 +90,7 @@
   <div class="mdl-cell mdl-cell--6-col total-buy">
 
     <p *ngIf="existeVencidas" class="monto-total texto">
-      Monto total sin condonación :
+      Monto total :
     </p>
     <p *ngIf="existeVencidas" class="monto-total monto">
       <strong>$ {{total + condonacion | number}}</strong>
@@ -98,7 +98,7 @@
 
 
     <p class="monto-total texto monto-condonacion" *ngIf="condonacion > 0">
-      Condonación por <strong>Pago Total</strong> :
+      Condonación aplicada :
     </p>
     <p class="monto-total monto monto-condonacion" *ngIf="condonacion > 0">
       <strong>$ {{condonacion | number}}</strong>
