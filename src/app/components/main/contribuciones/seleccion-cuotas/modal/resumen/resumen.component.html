@@ -5,11 +5,10 @@
 </div>
 <div class="dialog-body">
   <h4>Resumen de mis <strong>Cuotas</strong></h4>
-
   <div class="scroll">
     <div class="mdl-grid" *ngFor="let propiedad of propiedades">
-      <div *ngIf="propiedad.resumen().seleccionadas > 0">
-        <p class="sub-title"><strong>{{propiedad.splitName()}}</strong> - {{propiedad.roles[0].comuna}}</p>
+      <div class="propiedad-container" *ngIf="propiedad.resumen().seleccionadas > 0">
+        <p class="sub-title"><strong>{{propiedad.splitName()  | titlecase}}</strong> - {{propiedad.roles[0].comuna | titlecase}}</p>
         <table class="mdl-data-table" *ngIf="propiedad.roles.length > 0; else sinDeuda">
           <thead>
           <tr>
@@ -37,17 +36,34 @@
       </div>
     </div>
   </div>
-  <div>
-    <p class="text-primary text-center" *ngIf="existeVencidas">Pago parcial deudas vencidas:
-      <strong>$ {{total + condonacion| number}}</strong></p>
-    <p class="tgr-condonacion" *ngIf="condonacion > 0">Condonación por pago Total:
+  <div class="resumen-montos">
+    <p class="monto-total texto" *ngIf="existeVencidas">
+      Monto total sin condonación :
+    </p>
+    <p class="monto-total monto" *ngIf="existeVencidas">
+      <strong>$ {{total + condonacion| number}}</strong>
+    </p>
+      
+    <p class="monto-total texto monto-condonacion" *ngIf="condonacion > 0">
+      Condonación por <strong>Pago Total</strong> :
+    </p>
+    <p class="monto-total monto monto-condonacion" *ngIf="condonacion > 0">
       <strong>$ {{condonacion | number}}</strong>
-    <p class="text-primary text-center">Monto total a pagar: <strong>$ {{total | number}}</strong>
+    </p>
+    
+    <div *ngIf="existeVencidas" class="gray-border"></div>
+    <p class="monto-total texto">
+      Monto total a pagar :
+    </p>
+    <p class="monto-total monto">
+      <strong>$ {{total | number}}</strong>
     </p>
   </div>
 </div>
-<div class="mdl-layout-spacer"></div>
-<div class="dialog-footer">
-  <a class="" (click)="volver()">Volver al Carro</a>
+<div class="tgr-dialog__options">
+  <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" (click)="volver();">
+    Volver al Carro
+  </button>
   <app-boton-pagar [total]=total [codigos]="codigos"></app-boton-pagar>
 </div>
+

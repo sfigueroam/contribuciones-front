@@ -90,7 +90,7 @@
   <div class="mdl-cell mdl-cell--6-col total-buy">
 
     <p *ngIf="existeVencidas" class="monto-total texto">
-      Pago parcial deudas vencidas:
+      Monto total sin condonación :
     </p>
     <p *ngIf="existeVencidas" class="monto-total monto">
       <strong>$ {{total + condonacion | number}}</strong>
@@ -98,7 +98,7 @@
 
 
     <p class="monto-total texto monto-condonacion" *ngIf="condonacion > 0">
-      Condonación por <strong>Pago Total</strong>:
+      Condonación por <strong>Pago Total</strong> :
     </p>
     <p class="monto-total monto monto-condonacion" *ngIf="condonacion > 0">
       <strong>$ {{condonacion | number}}</strong>
@@ -106,7 +106,6 @@
 
 
     <div *ngIf="existeVencidas" class="gray-border"></div>
-
     <p *ngIf="complete" class="monto-total texto">
       Monto total a pagar :
     </p>
@@ -115,8 +114,8 @@
     </p>
 
 
-    <p *ngIf="existeVencidas && (condonacion === 0 || showVencidasPorRoles)" class="monto-total">
-      Selecciona todas las deudas vencidas de un ROL para acceder al benficio de <strong>Condonación por Pago Total</strong>
+    <p *ngIf="existeVencidas && (condonacion === 0 || showVencidasPorRoles)" class="monto-total beneficio">
+      Selecciona todas las deudas vencidas de un ROL para acceder al beneficio de <strong>Condonación por Pago Total</strong>
     </p>
 
     <div class="tgr-condonacion" *ngIf="condonacion > 0">
@@ -136,7 +135,7 @@
     <p>Estamos calculando tu monto a pagar</p>
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
-    <button mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">
+    <button class="button-resumen" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">
       <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list
       </mdl-icon>
     </button>

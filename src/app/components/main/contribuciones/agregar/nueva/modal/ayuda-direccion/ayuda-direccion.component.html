@@ -11,7 +11,7 @@
   <p>Para buscar un departamento, bodega o estacionamiento, agrega la numeración correspondiente al final de la dirección,<br>
     Ejemplo: <span class="text-primary">Lira 297 1107, santiago</span>
   </p>
-  <div class="column has-text-centered">
+  <div class="column has-text-centered hidden">
     <div class="img-row" *ngFor="let image of albums; let i=index">
       <img class="img-frame" [src]="image.thumb" (click)="open(i)"/>
     </div>

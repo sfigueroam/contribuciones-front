@@ -7,6 +7,10 @@ html, body, h1, h2, h3, h4, h5 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 // Definiciones Generales Margen y Padding
 
 .m-0auto {
@@ -346,6 +350,31 @@ html, body {
 .dialog-backdrop {
     background: rgba(0,0,0,0.4) !important;
 }
+// Inicio. Diálogos eliminar ROL/DIR
+.mdl-dialog__content {
+  color: $color-dark-gray;
+  font-size: 16px;
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+.mdl-dialog__actions {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  button {
+    color: $link-color;
+    background-color: transparent !important;
+    &:hover,
+    &:focus,
+    &:active {
+      color: #448aff !important;
+      background-color: transparent !important;
+      text-decoration: underline;
+    }
+  }
+}
+// Fin. Diálogos eliminar ROL/DIR
 // Inicio. Diálogo RESUMEN
 .dialogo-resumen-deudas {
   @media (min-width: 401px) {
@@ -731,13 +760,36 @@ html, body {
   .mdl-28 {
     font-size: 28px;
   }
+  .button-resumen {
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: transparent;
+    }
+    .material-icons {
+      color: $color-dark-gray;
+      &:hover,
+      &:active,
+      &:focus {
+        color: #000000;
+      }
+    }
+  }
   button.button-pay {
     background-color: $color-success;
     color: #fff;
     margin-top: -8px;
     a {
       text-decoration: none;
-      color: white;
+      color: #ffffff;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color-success-hover;
+      a {
+        color: #ffffff !important;
+      }
     }
   }
   @media (min-width: 481px) and (max-width: 839px) {
@@ -1102,7 +1154,7 @@ button.button-question {
 }
 
 .mdl-layout__content {
-  padding-bottom: 130px;
+  padding-bottom: 145px;
   position: static;
   // IOS SCROLLING
   -webkit-overflow-scrolling: touch;
@@ -1146,10 +1198,6 @@ button.button-question {
 .mdl-layout__header-row .mdl-navigation:last-child .mdl-navigation__link{
 padding: 0;
 margin: 1px;
-}
-.tgr-actions.tgr-mini-footer .mdl-button:hover {
-  color: #000;
-  background-color: transparent;
 }
 .tgr-actions.tgr-mini-footer .mdl-button:hover .material-icons{
   color: #000;

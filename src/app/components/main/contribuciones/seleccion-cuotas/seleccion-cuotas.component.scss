@@ -13,7 +13,7 @@
 }
 
 .select-fee {
-  margin: -4px auto 16px auto;
+  margin: 6px auto 20px auto;
   .mdl-button-group{
     display: flex;
     flex-wrap: wrap;
@@ -132,6 +132,12 @@
     padding-left: 2%;
     padding-right: 2%;
   }
+  @media (min-width: 840px) and (max-width: 1279px) {
+    width: 40%;
+  }
+  @media (min-width: 1280px) {
+    width: 35%;
+  }
   .gray-border {
     height: 1px;
     margin-top: 8px;
@@ -164,6 +170,10 @@
     &.monto-condonacion {
       color: $color-success;
     }
+    &.beneficio {
+      margin-top: 24px;
+      margin-bottom: 22px;
+    }
   }
   .tgr-condonacion {
     margin-top: 18px;
@@ -189,14 +199,14 @@
         }
       }
       &:hover,
-        &:focus,
-        &:active {
-          text-decoration: underline;
+      &:focus,
+      &:active {
+        text-decoration: underline;
+        color: $color-dark-blue-text;
+        .material-icons {
           color: $color-dark-blue-text;
-          .material-icons {
-            color: $color-dark-blue-text;
-          }
         }
+      }
     }
   }
 }
@@ -327,6 +337,12 @@
   left: 0;
   text-align: center;
   padding-top: 10px;
+  p {
+    font-size: 16px;
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
 }
 .mdl-button {
   overflow: visible;
