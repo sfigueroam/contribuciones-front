@@ -114,7 +114,7 @@
     </p>
 
 
-    <p *ngIf="existeVencidas && (condonacion === 0 || showVencidasPorRoles)" class="monto-total beneficio">
+    <p *ngIf="existeVencidas && (result.vencidas != result.vencidasSeleccionadas)" class="monto-total beneficio">
       Selecciona todas las deudas vencidas de un ROL para acceder al beneficio de <strong>Condonación por Pago Total</strong>
     </p>
 
