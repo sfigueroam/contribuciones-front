@@ -23,6 +23,7 @@ import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
 import {CANT_PROPIEDADES, DialogAgregarPropiedadComponent} from './modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
 import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.component';
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
+import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -35,6 +36,8 @@ export class AgregarNuevaComponent implements OnInit {
   propiedadComponentList: QueryList<PropiedadComponent>;
 
   @ViewChild('scroll') scroll: ElementRef;
+  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
+  @ViewChild('scrollRol') scrollRol: ElementRef;
 
 
   wait = false;
@@ -204,6 +207,7 @@ export class AgregarNuevaComponent implements OnInit {
       this.tipoPropiedades = [];
       for (const prop of data) {
         if (prop.id === 'H' || prop.id === 'L' || prop.id === 'Z') {
+          prop.order = environment.frecuentesOrder[prop.id];
           this.tipoPropiedadesfrecuentes.push(prop);
         } else {
           this.tipoPropiedades.push(prop);
@@ -260,7 +264,6 @@ export class AgregarNuevaComponent implements OnInit {
         this.sinResultado = true;
       } else {
         this.agregarPropiedad(response);
-        this.onScroll();
       }
       this.offWait();
     }, () => {
@@ -307,14 +310,17 @@ export class AgregarNuevaComponent implements OnInit {
 
   inputDirecciones(event: any) {
     const inp = String.fromCharCode(event.keyCode);
-    if (this.direccion.value.length <= 2) {
+    if (this.direcciones == null) {
+      this.inputDireccionesTmp = '';
+    }
+    if (this.direccion.value != null && this.direccion.value.length <= 2) {
       this.direcciones = null;
       this.inputDireccionesTmp = '';
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
-      if (this.direccion.value.length > 2) {
+      if (this.direccion.value != null && this.direccion.value.length > 2) {
         if (!this.busquedaEnEjecucion) {
           this.busquedaEnEjecucion = true;
           setTimeout(
@@ -343,6 +349,7 @@ export class AgregarNuevaComponent implements OnInit {
         }
       }
     }
+    this.onScroll();
 
     if (!estado) {
       this.propiedades.push(response);
@@ -400,9 +407,10 @@ export class AgregarNuevaComponent implements OnInit {
         this.agregarPropiedad(pro);
       }
     }
+    this.onScroll();
   }
 
-  asociarPropiedades() {
+  asociarPropiedades(isConfirmar: boolean = true) {
     this.hidden = false;
 
     if ((this.user.rut != null && this.user.rut !== undefined) || this.user.email) {
@@ -424,7 +432,12 @@ export class AgregarNuevaComponent implements OnInit {
             for (const propiedad of listaPropiedades) {
               this.contribuciones.addPropiedad(propiedad);
             }
-            this.dialogConfirmarAgregarPropiedad();
+            if (isConfirmar) {
+              this.dialogConfirmarAgregarPropiedad();
+            } else {
+              this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+            }
+
           },
           err => {
             this.hidden = true;
@@ -440,8 +453,11 @@ export class AgregarNuevaComponent implements OnInit {
       for (const propiedad of propiedadesConRolesSeleccionados) {
         this.contribuciones.addPropiedad(propiedad);
       }
-      this.dialogConfirmarAgregarPropiedad();
-      //this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+      if (isConfirmar) {
+        this.dialogConfirmarAgregarPropiedad();
+      } else {
+        this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+      }
     }
   }
 
@@ -460,7 +476,24 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   volver() {
-    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+    if (this.cantidadSeleccionadas > 0) {
+      const pDialog = this.dialogService.showCustomDialog({
+        component: RecordarComponent,
+        providers: [{provide: CANT_PROPIEDADES_SELEC, useValue: this.cantidadSeleccionadas}],
+        isModal: true
+      });
+      pDialog.subscribe((dialogReference: MdlDialogReference) => {
+        dialogReference.onHide().subscribe(
+          data => {
+            if (data !== undefined && data === 'agregar') {
+              this.asociarPropiedades(false);
+            }
+          }
+        );
+      });
+    } else {
+      this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+    }
   }
 
   cargarDireccion(dire) {
@@ -587,9 +620,15 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   onScroll() {
-    this.scroll.nativeElement.scrollIntoView();
-    const htmlScroll = this.scroll.nativeElement as HTMLElement;
-    htmlScroll.focus();
+    setTimeout(
+      () => {
+        this.scroll.nativeElement.scrollIntoView({behavior: 'smooth'});
+        const htmlScroll = this.scroll.nativeElement as HTMLElement;
+        htmlScroll.focus();
+      },
+      200
+    );
+
   }
 
   dialogConfirmarAgregarPropiedad(): void {
@@ -618,5 +657,21 @@ export class AgregarNuevaComponent implements OnInit {
       clickOutsideToClose: true,
       isModal: true
     });
+  }
+
+  autoScroll() {
+
+
+    //window.scrollBy(4000, 0);
+
+    /*if (this.switchActive === 'rol') {
+      this.scroll.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start'});
+      const htmlScroll = this.scrollRol.nativeElement as HTMLElement;
+      htmlScroll.focus();
+    } else {
+      this.scroll.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const htmlScroll = this.scrollDireccion.nativeElement as HTMLElement;
+      htmlScroll.focus();
+    }*/
   }
 }

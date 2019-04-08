@@ -18,7 +18,9 @@ mdl-icon.material-icons {
 }
 
 .bar {
+  padding: 6px 6px 10px 6px;
   border-left: 5px solid #931c82;
+  border-bottom: 1px solid #ddd;
   .mdl-button.mdl-button--icon {
     .material-icons {
       color: $color-dark-blue-text;
@@ -37,11 +39,23 @@ mdl-icon.material-icons {
       font-weight: 400;
     }
   }
+  .wrapper {
+    .delete-this-rol {
+      .material-icons {
+        color: rgba(0, 0, 0, .3);
+      }
+    }
+    span {
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
 }
 
 .tgr-row {
-    padding: 10px 45px;
-    text-align: center;
+  border-top: 1px solid #dddddd;
+  padding: 10px 45px;
+  text-align: center;
 }
 
 .mdl-button.mdl-button--icon:hover {

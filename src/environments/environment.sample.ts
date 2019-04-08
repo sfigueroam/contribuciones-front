@@ -23,6 +23,12 @@ const urlsBase = {
 
 
 export const environment = {
+  frecuentesOrder: {
+    H: 1,
+    L: 2,
+    Z: 3
+  },
+  isActiveLogin: false,
   googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
   snackbarTime: 5000,
   production: true,
@@ -96,15 +102,15 @@ export const environment = {
       method: 'POST'
     },
     desasociarBienRaiz: {
-      url: urlsBase.api +  '/ClienteBienRaizWS/api/BienRaiz/bienraiz/desasociar',
+      url: urlsBase.api + '/ClienteBienRaizWS/api/BienRaiz/bienraiz/desasociar',
       method: 'POST'
     },
     recuperarDeudaRol: {
-      url: urlsBase.api +  '/RecuperaDeudaROLRS/api/bienraiz/deuda/rol/obtiene',
+      url: urlsBase.api + '/RecuperaDeudaROLRS/api/bienraiz/deuda/rol/obtiene',
       method: 'POST'
     },
     buscarBienRaiz: {
-      url: urlsBase.api +  '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin',
+      url: urlsBase.api + '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin',
       method: 'POST'
     }
   },

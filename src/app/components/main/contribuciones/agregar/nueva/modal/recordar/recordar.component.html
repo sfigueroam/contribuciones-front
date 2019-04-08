@@ -1,0 +1,20 @@
+<div class="tgr-dialog">
+  <div class="tgr-dialog__body">
+    <p [ngPlural]="cantPropiedades">
+      <ng-template ngPluralCase="=1">Olvidaste agregar la propiedad que seleccionaste. ¿Quieres agregarla e ir al
+        carro?
+      </ng-template>
+      <ng-template ngPluralCase="other">Olvidaste agregar las <strong>{{cantPropiedades}}</strong> propiedades que seleccionaste.
+        ¿Quieres agregarlas e ir al carro?
+      </ng-template>
+    </p>
+  </div>
+  <div class="tgr-dialog__options">
+    <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" (click)="volver();">
+      Volver
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--primary button-primary-action" (click)="agregar()">
+      Agregar e ir al Carro
+    </button>
+  </div>
+</div>

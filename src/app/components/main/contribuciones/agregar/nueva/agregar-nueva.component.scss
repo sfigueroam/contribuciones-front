@@ -84,17 +84,22 @@
 }
 .mdl-button.mdl-button--return {
   background: gray;
-  text-transform: capitalize;
+  text-transform: uppercase;
   background-color: transparent;
   color: #448aff;
   box-shadow: none;
   font-size: 14px;
+  //@media (max-width: 320px) {
+  //  float: right;
+  //  padding-left: 0;
+  //  margin-right: -12px;
+  //}
   @media (max-width: 480px){
     padding-right: 0;
     font-size: 13px;
   }
   i.material-icons {
-    margin-left: -8px;
+    margin-left: -2px;
     margin-bottom: 2px;
   }
 }
@@ -151,6 +156,10 @@
       }
     }
   }
+  &.mdl-button--colored:focus:not(:active) {
+    background-color: $link-color;
+    color: $color-white;
+  }
   @media (max-width: 480px){
    font-size: 14px;
   }
@@ -158,28 +167,61 @@
     color: $color-white;
   }
 }
+
 .tgr-pay.tgr-agregar-nueva{
+  margin-left: auto;
+  margin-right: auto;
   @media (max-width: 320px){
    margin-top: 12px;
   }
-  //boton de pago
+  @media (min-width: 481px) and (max-width: 839px) {
+    width: 75%;
+  }
+  @media (min-width: 840px) and (max-width: 1279px) {
+    width: 50%;
+  }
+  @media (min-width: 1280px) {
+    width: 35%;
+  }
   .mdl-button:first-of-type {
-    @media (max-width: 340px) {
-      float: left;
-      margin-left: 0;
+    float: left;
+    @media (max-width: 320px) {
+      margin-left: -6px;
     }
-    @media (min-width: 341px) and (max-width: 480px) {
-      float: left;
+    @media (min-width: 321px) and (max-width: 480px) {
       margin-left: 10px;
+    }
+    .material-icons {
+      margin-left: 0;
+      font-size: 20px !important;
+      @media (max-width: 350px) {
+        display: none;
+      }
+      @media (min-width: 481px) {
+        font-size: 24px !important;
+      }
     }
   }
   .mdl-button:last-of-type {
-    @media (max-width: 480px) {
-      float: right;
+    float: right;
+    text-transform: uppercase;
+    font-size: 14px;
+    @media (max-width: 340px) {
+      font-size: 13px;
+      margin-right: 0;
+    }
+    @media (min-width: 341px) and (max-width: 480px) {
       margin-right: 10px;
+    }
+    span {
+      font-size: 16px;
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
     }
   }
 }
+
 .mdl-textfield {
   width: 100%;
   &#direccion {

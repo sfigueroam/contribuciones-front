@@ -6,11 +6,17 @@ export class ResumenCuotas {
   vencidas: number;
   vencidasSeleccionadas: number;
 
+  vencidasRoles: number;
+  vencidasSeleccionadasRoles: number;
+
   public constructor() {
     this.total = 0;
     this.seleccionadas = 0;
     this.vencidas = 0;
     this.vencidasSeleccionadas = 0;
+
+    this.vencidasRoles = 0;
+    this.vencidasSeleccionadasRoles = 0;
   }
 
   tipo(): TipoCuota {
@@ -20,6 +26,8 @@ export class ResumenCuotas {
       return TipoCuota.NINGUNA;
     } else if (this.vencidas === this.vencidasSeleccionadas && this.vencidas === this.seleccionadas) {
       return TipoCuota.VENCIDAS;
+    } else if (this.seleccionadas === (this.total - this.vencidas)) {
+      return TipoCuota.NO_VENCIDAS;
     }
     return undefined;
   }

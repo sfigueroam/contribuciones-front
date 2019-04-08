@@ -12,10 +12,219 @@
   }
 }
 
+.select-fee {
+  margin: -4px auto 16px auto;
+  .mdl-button-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    p {
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: $color-dark-gray;
+      text-align: center;
+    }
+    button{
+      background-color: $color-white;
+      color: $color-dark-blue-text;
+      display: inline-block;
+      margin: 0px;
+      box-shadow: none;
+      border: 1px solid #2f3c89;
+      border-left: none;
+      text-transform: none;
+      font-size: 14px;
+      @media (max-width: 319px) {
+        font-size: 11px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      @media (min-width: 320px) and (max-width: 350px) {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      @media (min-width: 351px) and (max-width: 480px) {
+        font-size: 12px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      &:first-of-type {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-left: 1px solid #2f3c89;
+      }
+      &:last-of-type {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-right: 1px solid #2f3c89;
+      }
+      &:nth-of-type(3) {
+        color: $color-danger;
+
+        &:hover {
+          color: $color-white;
+        }
+      }
+      &.active {
+        background-color: $color-dark-blue-text;
+        color: $color-white;
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $color-dark-blue-text;
+          color: $color-white;
+        }
+      }
+      &:hover {
+        background-color: $link-color;
+        color: $color-white;
+      }
+      &:active,
+      &:focus {
+        background-color: $color-dark-blue-text;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.check-seleccion-deudas {
+  margin: 12px auto -14px auto;
+  @media (max-width: 599px) {
+    width: 100%;
+    margin-left: -10px;
+  }
+  @media (min-width: 600px) and (max-width: 839px) {
+    width: 70%;
+    margin-left: calc(15% - 8px);
+  }
+  @media (min-width: 840px) and (max-width: 1024px) {
+    width: 70%;
+    margin-left: calc(14% - 8px);
+  }
+  @media (min-width: 1025px) {
+    width: 70%;
+    margin-left: calc(14% - 12px);
+  }
+  
+  mdl-icon.material-icons {
+    vertical-align: bottom;
+    cursor: pointer;
+    color: $color-dark-blue-text;
+  }
+  span {
+    margin-left: 6px;
+    font-size: 16px;
+    color: $color-dark-blue-text;
+    cursor: pointer;
+  }
+}
+
+.total-buy {
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 600px) and (max-width: 839px) {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .gray-border {
+    height: 1px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    background-color: rgba(84, 84, 85, .45);
+    &.hidden {
+      display: none;
+    }
+  }
+  .monto-total {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: $color-dark-blue-text;
+    @media (min-width: 319px) and (max-width: 380px) {
+      font-size: 14px;
+    }
+    &.texto,
+    &.monto {
+      display: inline-block;
+    }
+    &.texto {
+      width: 70%;
+      text-align: left;
+    }
+    &.monto {
+      width: 30%;
+      text-align: right;
+    }
+    &.monto-condonacion {
+      color: $color-success;
+    }
+  }
+  .tgr-condonacion {
+    margin-top: 18px;
+    text-align: center;
+    .ayuda-condonacion {
+      box-shadow: none;
+      background-color: $gray-lightblue-background;
+      color: $color-dark-blue-text;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 24px;
+      font-size: 16px;
+      text-transform: none;
+      transition: .4s;
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
+      .material-icons {
+        vertical-align: sub;
+        &:hover,
+        &:focus,
+        &:active {
+          color: $color-dark-blue-text;
+        }
+      }
+      &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+          color: $color-dark-blue-text;
+          .material-icons {
+            color: $color-dark-blue-text;
+          }
+        }
+    }
+  }
+}
+
 .tgr-mini-footer{
   @media (max-width: 480) {
     padding-right: 5px;
     padding-left: 5px;
+  }
+  p.sin-deudas {
+    font-size: 16px;
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+  .cantidad-deudas-seleccionadas {
+    width: 100%;
+    padding-left: 16px;
+    margin-top: -4px;
+    text-align: left;
+    font-size: 16px;
+    color: $color-dark-gray;
+    @media (max-width: 480px) {
+      font-size: 15px;
+    }
+    span {
+      color: $color-dark-blue-text;
+    }
   }
 }
 
@@ -54,13 +263,6 @@
     .mdl-badge[data-badge]:after {
         background-color: $color-warning;
     }
-}
-
-.select-fee p {
-  font-size: 16px;
-  color: rgba(0,0,0,.54);
-  margin-bottom: 0;
-  text-align: center;
 }
 
 .filter {
@@ -199,18 +401,18 @@
   z-index: 2;
 }
 .tgr-target-wrapper {
-  padding: 0 20px;
-  @media (min-width: 481px) and (max-width: 839px) {
+  padding: 0 10px;
+  @media (min-width: 481px) and (max-width: 600px) {
     padding-left: 100px;
-    padding-right: 100px;
+    padding-right: 5px;
   }
   @media (min-width: 840px) and (max-width: 1279px) {
     padding-left: 250px;
-    padding-right: 250px;
+    padding-right: 140px;
   }
   @media (min-width: 1280px) {
-    padding-left: 400px;
-    padding-right: 400px;
+    padding-left: 326px;
+    padding-right: 250px;
   }
 }
 .tgr-target-wave {
@@ -224,5 +426,11 @@
 }
 
 .tgr-condonacion {
-  color: #00B344;
+  color: $tgr-condonacion;
 }
+
+p.cantidad-deudas-seleccionadas {
+  margin-bottom: 0px;
+  height: 8px;
+}
+

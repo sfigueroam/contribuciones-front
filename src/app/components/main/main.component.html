@@ -1,14 +1,15 @@
 <div class="demo-container demo-layout-transparent">
   <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-fixed-header>
     <mdl-layout-header mdl-layout-header>
-      <mdl-layout-header-row>
+      <mdl-layout-header-row [class.is-active-login]="isActiveLogin">
         <mdl-layout-spacer></mdl-layout-spacer>
         <a href="/">
           <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
         </a>
+
         <mdl-layout-spacer></mdl-layout-spacer>
-        <nav class="mdl-navigation">
-          <button class="mdl-navigation__link cuenta-usuario"  *ngIf="!logged"
+        <nav class="mdl-navigation" *ngIf="isActiveLogin">
+          <button class="mdl-navigation__link cuenta-usuario" *ngIf="!logged"
                   (click)="redirigirLogin()"
                   mdl-button
                   mdl-button-type="icon">
@@ -17,7 +18,7 @@
           </button>
 
 
-          <button class="mdl-navigation__link cuenta-usuario"  *ngIf="logged"
+          <button class="mdl-navigation__link cuenta-usuario" *ngIf="logged"
                   #btnMenu="mdlButton"
                   (click)="menu.toggle($event, btnMenu)"
                   mdl-button

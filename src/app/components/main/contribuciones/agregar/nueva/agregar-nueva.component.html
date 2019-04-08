@@ -10,7 +10,7 @@
     <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
     </div>
   </div>
-  <div class="tgr-card__head">
+  <div class="tgr-card__head" #scrollDireccion>
     <div class="tgr-switch">
       <button class="mdl-button mdl-js-button " [class.tgr-switch-active]="switchActive === 'rol'"
               (click)="changeSwith('rol')">
@@ -44,7 +44,6 @@
       <div class="tgr-card__search ">
         <mdl-select #autocompleteSelectTipoPropiedades
                     [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
-                    [autocomplete]="true"
                     (change)="autoCompletarPropiedad()"
                     error-msg="Debe seleccionar un tipo de propiedad"
                     [formControl]="tipoPropiedad"
@@ -52,7 +51,7 @@
                     floating-label>
           <mdl-option [value]="-1">Todos</mdl-option>
           <mdl-option
-            *ngFor="let tipo of tipoPropiedadesfrecuentes| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+            *ngFor="let tipo of tipoPropiedadesfrecuentes| orderBy: 'order' | matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
             [value]="tipo.id">{{tipo.descripcion | titlecase}}
           </mdl-option>
           <mdl-option class="separator" [disabled]="true"></mdl-option>
@@ -64,7 +63,7 @@
         <div class="tgr-newsearch" [class.is-suggesting]="searchDireccion">
           <mdl-textfield type="text"
                          [class.is-invalid]="direccion.invalid && direccion.touched"
-                         (focus)="ocultarToolbar()"
+                         (focus)="ocultarToolbar(); autoScroll();"
                          (blur)="mostrarToolbar(); existBusqueda()"
                          id="direccion"
                          name="direccion"
@@ -97,7 +96,7 @@
       </div>
     </div>
   </form>
-  <div class="tgr-card__body " [class.hidden]="switchActive === 'direccion'">
+  <div class="tgr-card__body " [class.hidden]="switchActive === 'direccion'" #scrollRol>
     <button type="button" class="ayuda-busqueda" (click)="dialogAyudaRol()">
       <p>
         <i class="material-icons">help</i>
@@ -118,7 +117,7 @@
           </mdl-option>
         </mdl-select>
         <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
-                       (focus)="ocultarToolbar()"
+                       (focus)="ocultarToolbar(); autoScroll();"
                        (blur)="mostrarToolbar()"
                        type="number"
                        id="rol"
@@ -130,7 +129,7 @@
                        floating-label></mdl-textfield>
         -
         <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
-                       (focus)="ocultarToolbar()"
+                       (focus)="ocultarToolbar() ; autoScroll();"
                        (blur)="mostrarToolbar()"
                        type="number"
                        id="subRol"
@@ -144,7 +143,7 @@
       <div class="tgr-card__footer">
         <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer"
            (click)="limpiarBusquda()">Limpiar Búsqueda</a>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-rol" type="submit"
                 [disabled]="formRol.invalid">
           <i class="material-icons">search</i>
           Buscar
@@ -178,8 +177,7 @@
 
 <p class="contador-propiedades" [class.contador-hidden]="footerHidden"
    *ngIf="countPropiedades == 1; else propiedadesTemplate">Llevas <strong>{{countPropiedades}}</strong> propiedad en
-  el
-  carro</p>
+  el carro</p>
 <ng-template #propiedadesTemplate>
   <p class="contador-propiedades" [class.contador-hidden]="footerHidden">Llevas <strong>{{countPropiedades}}</strong>
     propiedades en el carro</p>
@@ -188,16 +186,18 @@
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">
-
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
+        IR AL CARRO
+        <i class="material-icons">shopping_cart</i>
+      </button>
       <button id="agregar_propiedades" type="button"
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
               [disabled]="cantidadSeleccionadas == 0"
               (click)="asociarPropiedades()">
-        Agregar {{cantidadSeleccionadas}} propiedades
-      </button>
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
-        IR AL CARRO
-        <i class="material-icons">keyboard_arrow_right</i>
+        <div [ngPlural]="cantidadSeleccionadas">
+          <ng-template ngPluralCase="=1">Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
+          <ng-template ngPluralCase="other">Agregar {{cantidadSeleccionadas}} propiedades</ng-template>
+        </div>
       </button>
     </div>
   </div>

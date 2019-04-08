@@ -149,7 +149,7 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 .text-primary {
-  color: $color-primary;
+  color: $color-dark-blue-text;
 }
 
 .text-secondary {
@@ -178,7 +178,6 @@ html, body, h1, h2, h3, h4, h5 {
 
 .text-danger {
   color: $color-danger;
-  //padding: 0;
 }
 
 // Colores de Fondo
@@ -237,9 +236,6 @@ html, body, h1, h2, h3, h4, h5 {
     color: $color-dark-gray;
     margin-top: 12px;
     text-align: center;
-    @media (max-width: 480px) {
-      text-align: left;
-    }
   }
 }
 
@@ -270,6 +266,17 @@ html, body, h1, h2, h3, h4, h5 {
 // FIN. LIGHTBOX
 
 // INICIO. Estilos de Botones
+.mdl-button.button-primary-action {
+  background-color: $link-color;
+  color: #ffffff;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-dodgerblue-hover;
+  }
+}
+
 .mdl-button.button-default {
   cursor: pointer;
   color: $link-color;
@@ -315,23 +322,39 @@ html, body {
     display: block;
     overflow: visible;
     margin-top: 64px;
+    @media (min-width: 840px) {
+      margin-top: 0;
+    }
 }
 .is-small-screen .mdl-layout__content {
-    margin-top: 56px;
+    //margin-top: 56px;
+    @media (min-width: 840px) {
+      margin-top: 0;
+    }
 }
 .mdl-layout__header {
-    position: fixed;
+    @media (max-width: 839px) {
+      position: fixed;
+    }
 }
 .mdl-layout__obfuscator {
     position: fixed;
 }
 // FIN Esconder Address Bar en móvil
 
-// Inicio. Diálogos
+// ----- Inicio. Diálogos
 .dialog-backdrop {
     background: rgba(0,0,0,0.4) !important;
 }
-// Fin. Diálogos
+// Inicio. Diálogo RESUMEN
+.dialogo-resumen-deudas {
+  @media (min-width: 401px) {
+    max-height: 85%;
+    overflow-y: auto;
+  }
+}
+// Fin. Diálogo RESUMEN
+// ----- Fin. Diálogos
 
 // INICIO HEADER
 .cuenta-usuario {
@@ -365,11 +388,11 @@ html, body {
 // FIN HEADER
 
 .rol-card {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
   @media (max-width: 599px) {
     width: 100%;
   }
-  @media (min-width: 600px) and (max-width: 840px) {
+  @media (min-width: 600px) and (max-width: 839px) {
     width: 70%;
   }
   .rol-card {
@@ -487,7 +510,7 @@ html, body {
   background-color: #ffffff;
 }
 .tgr-results .tgr-content {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
   .tgr-card__head {
     padding: 17px 10px 14px 12px;
     background-color: $color-light-gray;
@@ -628,6 +651,28 @@ html, body {
 
 .mdl-layout__header-row{
   background-color: #ffffff;
+  &.is-active-login {
+    @media (max-width: 480px) {
+      padding-left: 72px;
+      padding-right: 16px;
+    }
+    @media (min-width: 481px) and (max-width: 839px) {
+      padding-left: 100px;
+      padding-right: 46px;
+    }
+    @media (min-width: 840px) and (max-width: 1279px) {
+      padding-left: 250px;
+      padding-right: 160px;
+    }
+    @media (min-width: 1280px) {
+      padding-left: 400px;
+      padding-right: 305px;
+    }
+  }
+  @media (max-width: 480px) {
+    padding-left: 72px;
+    padding-right: 72px;
+  }
   @media (min-width: 481px) and (max-width: 839px) {
     padding-left: 100px;
     padding-right: 100px;
@@ -675,7 +720,7 @@ html, body {
   overflow: hidden;
   background-color: $color-white;
   color: $color-default-dark;
-  padding: 20px 28px 20px 28px;
+  padding: 20px 12px 20px 12px;
   .mdl-badge[data-badge]:after {
     background-color: $color-warning;
   }
@@ -687,17 +732,12 @@ html, body {
     font-size: 28px;
   }
   button.button-pay {
-
     background-color: $color-success;
     color: #fff;
     margin-top: -8px;
-    text-transform: none;
     a {
       text-decoration: none;
       color: white;
-    }
-    @media (min-width: 1280px) {
-      width: 100px;
     }
   }
   @media (min-width: 481px) and (max-width: 839px) {
@@ -1041,8 +1081,8 @@ button.button-question {
     right: 20px;
   }
   @media (min-width: 481px) {
-    height: 50px;
-    width: 50px;
+    height: 46px;
+    width: 46px;
     min-width: 42px;
     bottom: 86px;
     right: 15px;
@@ -1062,7 +1102,7 @@ button.button-question {
 }
 
 .mdl-layout__content {
-  padding-bottom: 80px;
+  padding-bottom: 130px;
   position: static;
   // IOS SCROLLING
   -webkit-overflow-scrolling: touch;

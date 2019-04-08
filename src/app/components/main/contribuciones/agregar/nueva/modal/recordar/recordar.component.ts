@@ -1,24 +1,23 @@
-import {Component, OnInit, InjectionToken, Inject} from '@angular/core';
+import {Component, Inject, InjectionToken, OnInit} from '@angular/core';
 import {MdlDialogReference} from '@angular-mdl/core';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
 import {filter, tap} from 'rxjs/operators';
 
-export const CANT_PROPIEDADES = new InjectionToken<number>('cant_propiedades');
+export const CANT_PROPIEDADES_SELEC = new InjectionToken<number>('cant_propiedades_selec');
 
 @Component({
-  selector: 'app-dialog-agregar-propiedad',
-  templateUrl: './dialog-agregar-propiedad.component.html',
-  styleUrls: ['./dialog-agregar-propiedad.component.scss']
+  selector: 'app-recordar',
+  templateUrl: './recordar.component.html',
+  styleUrls: ['./recordar.component.scss']
 })
-export class DialogAgregarPropiedadComponent implements OnInit {
-
+export class RecordarComponent implements OnInit {
 
   cantPropiedades: number;
 
   constructor(
     private dialog: MdlDialogReference,
     private router: Router,
-    @Inject(CANT_PROPIEDADES) cantPropiedades: number,
+    @Inject(CANT_PROPIEDADES_SELEC) cantPropiedades: number,
   ) {
     this.cantPropiedades = cantPropiedades;
 
@@ -31,12 +30,12 @@ export class DialogAgregarPropiedadComponent implements OnInit {
   ngOnInit() {
   }
 
-  continuar(): void {
+  volver(): void {
     this.dialog.hide();
   }
 
-  exit(){
-    this.dialog.hide();
-    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+  agregar() {
+    this.dialog.hide('agregar');
+
   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
@@ -9,8 +9,17 @@ import {ContribucionesSugeridasService} from '../../../../services/contribucione
 import {Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
-import {AyudaDireccionComponent} from '../agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
+import {
+  CODIGO_LIST_PROPIEDADES,
+  CONDONACION_PROPIEDADES, EXISTE_VENCIDAS,
+  LIST_PROPIEDADES,
+  ResumenComponent,
+  TOTAL_PROPIEDADES
+} from './modal/resumen/resumen.component';
+import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
+import {PropiedadComponent} from '../../shared/propiedad/propiedad.component';
+import {DireccionCuotasComponent} from './direccion-cuotas/direccion-cuotas.component';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -19,11 +28,16 @@ import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condona
 })
 export class SeleccionCuotasComponent implements OnInit {
 
+  @ViewChildren(DireccionCuotasComponent)
+  direccionCuotasComponentList: QueryList<DireccionCuotasComponent>;
+
   propiedades: Propiedad[] = [];
 
   tipo = TipoCuota;
-  seleccionada: TipoCuota;
+  seleccionada: TipoCuota = this.tipo.TODAS;
   cantidadSeleccionadas: number;
+
+  selectTipo: TipoCuota = this.tipo.TODAS;
 
   total: number;
   condonacion: number;
@@ -36,6 +50,14 @@ export class SeleccionCuotasComponent implements OnInit {
 
   urlPagoTgr: string;
 
+  existeVencidas = false;
+  existeSoloVencidas = false;
+  showVencidasPorRoles = false;
+
+
+  selectedIcon: string;
+
+  result: ResumenCuotas;
 
   constructor(private router: Router,
               private user: UserService,
@@ -69,6 +91,7 @@ export class SeleccionCuotasComponent implements OnInit {
         this.contribuciones.cargarRoles().then(
           () => {
             this.complete = true;
+            this.abrirPrimerRol();
             this.calcularTotal();
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
@@ -109,12 +132,6 @@ export class SeleccionCuotasComponent implements OnInit {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
           if (c.intencionPago) {
-            /*if (c.numeroCuota === '5-1988') {
-              console.log(c);
-            }
-            if (c.liqParcial === undefined) {
-              console.log(c);
-            }*/
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarra + ', ';
             } else {
@@ -143,16 +160,26 @@ export class SeleccionCuotasComponent implements OnInit {
   }
 
   private recalcularTipo() {
-    const result = new ResumenCuotas();
+    const resultados = new ResumenCuotas();
     for (const propiedad of this.propiedades) {
       const resumen = propiedad.resumen();
-      result.total += resumen.total;
-      result.seleccionadas += resumen.seleccionadas;
-      result.vencidas += resumen.vencidas;
-      result.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
+      resultados.total += resumen.total;
+      resultados.seleccionadas += resumen.seleccionadas;
+      resultados.vencidas += resumen.vencidas;
+      resultados.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
+
+      resultados.vencidasRoles += resumen.vencidasRoles;
+      resultados.vencidasSeleccionadasRoles += resumen.vencidasSeleccionadasRoles;
     }
-    this.seleccionada = result.tipo();
-    this.cantidadSeleccionadas = result.seleccionadas;
+    this.seleccionada = resultados.tipo();
+    this.cantidadSeleccionadas = resultados.seleccionadas;
+    this.existeVencidas = resultados.vencidas > 0;
+    this.existeSoloVencidas = resultados.vencidas === resultados.total;
+
+    this.showVencidasPorRoles = +resultados.vencidasRoles > +resultados.vencidasSeleccionadasRoles;
+    this.result = resultados;
+
+    this.updateIconSeleccion(resultados);
   }
 
   dialogAyudaCondonacion(): void {
@@ -162,4 +189,56 @@ export class SeleccionCuotasComponent implements OnInit {
       isModal: true
     });
   }
+
+  //Todo pendiente termianar
+  private updateIconSeleccion(result: ResumenCuotas): void {
+    if (result.tipo() === undefined) {
+      this.selectedIcon = CheckboxIcon.INDETERMINATE;
+    } else if (result.tipo() === TipoCuota.TODAS) {
+      this.selectedIcon = CheckboxIcon.SELECTED;
+    } else {
+      this.selectedIcon = CheckboxIcon.UNSELECTED;
+    }
+  }
+
+  private openDialogResumen() {
+    const pDialog = this.dialogService.showCustomDialog({
+      component: ResumenComponent,
+      clickOutsideToClose: true,
+      providers: [
+        {provide: LIST_PROPIEDADES, useValue: this.propiedades},
+        {provide: CODIGO_LIST_PROPIEDADES, useValue: this.listaContribuciones},
+        {provide: TOTAL_PROPIEDADES, useValue: this.total},
+        {provide: CONDONACION_PROPIEDADES, useValue: this.condonacion},
+        {provide: EXISTE_VENCIDAS, useValue: this.existeVencidas}
+      ],
+      classes: 'dialogo-resumen-deudas',
+      isModal: true
+    });
+  }
+
+  seleccionarTodas() {
+    if (this.selectedIcon === CheckboxIcon.INDETERMINATE || this.selectedIcon === CheckboxIcon.UNSELECTED) {
+      this.seleccionar(TipoCuota.TODAS);
+    } else {
+      this.seleccionar(TipoCuota.NINGUNA);
+    }
+  }
+
+  seleccionarTodasVencidas() {
+    if (this.selectedIcon === CheckboxIcon.INDETERMINATE || this.selectedIcon === CheckboxIcon.UNSELECTED) {
+      this.seleccionar(TipoCuota.TODAS);
+    } else {
+      this.seleccionar(TipoCuota.NO_VENCIDAS);
+    }
+  }
+
+  abrirPrimerRol(): void {
+    const direccionCuotasList = this.direccionCuotasComponentList.toArray();
+
+    if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
+      direccionCuotasList[0].abrirPrimerRol();
+    }
+  }
+
 }
