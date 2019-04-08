@@ -8,6 +8,7 @@ import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
 import {TipoPropiedad} from '../domain/TipoPropiedad';
 import {Direccion} from '../domain/Direccion';
 import {ResponseResultado} from './contribuciones.service';
+import {TipoRecaptcha} from '../enum/TipoRecaptcha.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -91,7 +92,7 @@ export class ContribucionesBuscarRolService {
     });
   }
 
-  searchRolesForIds(idComuna: number, idRol: number, idSubRol: number): Promise<Propiedad> {
+  searchRolesForIds(idComuna: number, idRol: number, idSubRol: number, tokenCaptcha: string, tipo: TipoRecaptcha): Promise<Propiedad> {
 
     const leadingZeroPipe = new LeadingZeroPipe();
     return new Promise((resolve, reject) => {
@@ -99,10 +100,19 @@ export class ContribucionesBuscarRolService {
       const body = {
         'rol': leadingZeroPipe.transform(idRol.toString(), 5),
         'subrol': leadingZeroPipe.transform(idSubRol.toString(), 3),
-        'idcomuna': idComuna.toString()
+        'idcomuna': idComuna.toString(),
+        'token': tokenCaptcha
       };
 
-      this.requestService.request(environment.servicios.buscarBienRaiz, body).then((data: { curout: any[] }) => {
+      const buscarBienRaiz = Object.assign({}, environment.servicios.buscarBienRaiz);
+
+      if (tipo === TipoRecaptcha.V3) {
+        buscarBienRaiz.url = buscarBienRaiz.recaptcha.v3;
+      } else {
+        buscarBienRaiz.url = buscarBienRaiz.recaptcha.v2;
+      }
+
+      this.requestService.request(buscarBienRaiz, body).then((data: { curout: any[] }) => {
         if (data.curout.length === 0) {
           resolve(null);
 
