@@ -96,13 +96,14 @@
       <strong>$ {{total + condonacion | number}}</strong>
     </p>
 
-
-    <p class="monto-total texto monto-condonacion" *ngIf="condonacion > 0">
-      Condonación por <strong>Pago Total</strong>:
-    </p>
-    <p class="monto-total monto monto-condonacion" *ngIf="condonacion > 0">
-      <strong>$ {{condonacion | number}}</strong>
-    </p>
+    <div *ngIf="condonacion > 0">
+      <p class="monto-total texto monto-condonacion">
+        Condonación por <strong>Pago Total</strong>:
+      </p>
+      <p class="monto-total monto monto-condonacion">
+        <strong>$ {{condonacion | number}}</strong>
+      </p>
+    </div>
 
 
     <div *ngIf="existeVencidas" class="gray-border"></div>
@@ -116,7 +117,8 @@
 
 
     <p *ngIf="existeVencidas && (result.vencidas != result.vencidasSeleccionadas)" class="monto-total">
-      Selecciona todas las deudas vencidas de un ROL para acceder al benficio de <strong>Condonación por Pago Total</strong>
+      Selecciona todas las deudas vencidas de un ROL para acceder al benficio de <strong>Condonación por Pago
+      Total</strong>
     </p>
 
     <div class="tgr-condonacion" *ngIf="condonacion > 0">
