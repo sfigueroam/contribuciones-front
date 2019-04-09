@@ -35,6 +35,7 @@ export class Rol {
   isProcess = false;
 
   expired = false;
+  pagoTotal = true;
 
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
@@ -103,6 +104,7 @@ export class Rol {
         }
       }
     }
+
     return result;
   }
 
@@ -193,23 +195,42 @@ export class Rol {
     let pagoParcial = 0;
     let pagoTotal = 0;
     let condonacion = 0;
+
+    let totalExpirados = 0;
+    let totalExpiradosIntencionPago = 0;
     let total = true;
     this.expired = false;
     for (const cuota of this.cuotas) {
       if (cuota.expired) {
         this.expired = true;
       }
-      pagoTotal += cuota.liqTotal.saldoTotal;
+
+      if (cuota.intencionPago) {
+        pagoTotal += cuota.liqTotal.saldoTotal;
+      }
+
       //Valida que la el campo monto condonación exista en liqTotal
       if (cuota.liqTotal.montoCondonacion !== undefined) {
         condonacion += cuota.liqTotal.montoCondonacion;
       }
+      console.log('cuota.intencionPago', cuota.intencionPago);
+      console.log('cuota.liqParcial', cuota.liqParcial);
+
+      if (cuota.expired) {
+        totalExpirados++;
+      }
+      if (cuota.expired && cuota.intencionPago) {
+        totalExpiradosIntencionPago++;
+      }
+
       if (cuota.intencionPago && cuota.liqParcial) {
         pagoParcial += cuota.liqParcial.saldoTotal;
       } else {
         total = false;
       }
     }
+
+    total = total || (totalExpirados === totalExpiradosIntencionPago);
 
     if (total) {
       this.total = pagoTotal;
@@ -218,6 +239,12 @@ export class Rol {
       this.total = pagoParcial;
       this.condonacion = 0;
     }
+
+    this.pagoTotal = total;
+
+    console.log('total', total);
+    console.log('this.total', this.total);
+    console.log('this.condonacion', this.condonacion);
   }
 
   getCuotasDeseleccionadas(): { numeroFolio: string, fechaVencimiento: string, intencionPago: boolean }[] {
