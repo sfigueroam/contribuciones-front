@@ -326,18 +326,18 @@ html, body {
     display: block;
     overflow: visible;
     margin-top: 64px;
-    @media (min-width: 840px) {
+    @media (min-width: 480px) {
       margin-top: 0;
     }
 }
 .is-small-screen .mdl-layout__content {
     //margin-top: 56px;
-    @media (min-width: 840px) {
+    @media (min-width: 480px) {
       margin-top: 0;
     }
 }
 .mdl-layout__header {
-    @media (max-width: 839px) {
+    @media (max-width: 480px) {
       position: fixed;
     }
 }
@@ -346,9 +346,20 @@ html, body {
 }
 // FIN Esconder Address Bar en móvil
 
+// Inicio. Recaptcha
+.grecaptcha-badge {
+  display: none;
+}
+// Fin. Recaptcha
+
 // ----- Inicio. Diálogos
 .dialog-backdrop {
     background: rgba(0,0,0,0.4) !important;
+}
+
+.mdl-dialog.open {
+  overflow-y: auto;
+  max-height: 75%;
 }
 // Inicio. Diálogos eliminar ROL/DIR
 .mdl-dialog__content {

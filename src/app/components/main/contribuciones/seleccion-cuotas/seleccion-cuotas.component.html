@@ -98,7 +98,7 @@
 
     <div *ngIf="condonacion > 0">
       <p class="monto-total texto monto-condonacion">
-        Condonación por <strong>Pago Total</strong>:
+        Monto beneficio condonación :
       </p>
       <p class="monto-total monto monto-condonacion">
         <strong>$ {{condonacion | number}}</strong>
@@ -116,15 +116,15 @@
 
 
     <p *ngIf="existeVencidas && (result.vencidas != result.vencidasSeleccionadas)" class="monto-total beneficio">
-      Selecciona todas las deudas vencidas de un ROL para acceder al beneficio de <strong>Condonación por Pago
-      Total</strong>
+      Al pagar cuotas vencidas ya estás accediendo al beneficio de Condonación. Selecciona <strong>todas las cuotas vencidas de un ROL</strong> para conseguir un mayor beneficio a través de la Condonación por Pago Total.
     </p>
 
-    <div class="tgr-condonacion" *ngIf="condonacion > 0">
+  <!-- *ngIf="condonacion > 0" -->
+    <div class="tgr-condonacion" *ngIf="existeVencidas">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">
         <i class="material-icons">help</i>
-        ¿Qué es la <strong>Condonación por Pago Total</strong>?
+        ¿Qué es el beneficio de <strong>Condonación</strong>?
       </button>
     </div>
   </div>
