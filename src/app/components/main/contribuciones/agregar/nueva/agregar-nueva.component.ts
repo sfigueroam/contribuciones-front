@@ -373,7 +373,7 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
-  buscarDireccionPost() {
+  buscarDireccionPostRecaptcha(tokenCaptcha: string, tipo: TipoRecaptcha) {
     if (this.direccion.value === '' || this.direccion.value === null) {
       return;
     }
@@ -512,7 +512,7 @@ export class AgregarNuevaComponent implements OnInit {
 
   handleSuccessCaptcha2(token): void {
     if (this.switchActive === 'direccion') {
-      this.buscarDireccionPost();
+      this.buscarDireccionPostRecaptcha(token, TipoRecaptcha.V2);
     } else {
       this.buscarRolPost(token, TipoRecaptcha.V2);
     }
@@ -562,7 +562,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.reCaptchaV3Service.execute(this.recaptcha3.siteKey, this.recaptcha3.action, (token) => {
 
       if (this.switchActive === 'direccion') {
-        this.buscarDireccionPost();
+        this.buscarDireccionPostRecaptcha(token, TipoRecaptcha.V3);
       } else {
         this.buscarRolPost(token, TipoRecaptcha.V3);
       }
