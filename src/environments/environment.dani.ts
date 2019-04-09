@@ -1,9 +1,9 @@
 const endpoints = {
-  base: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev',
+  base: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
   lambdaRoles: '',
-  elastic: 'https://w2jmtnip5c.execute-api.us-east-1.amazonaws.com/dev',
-  validateRecaptcha: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev',
-  deviceDetect: 'https://bymg0l30z3.execute-api.us-east-1.amazonaws.com/dev'
+  elastic: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
+  validateRecaptcha: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev',
+  deviceDetect: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev'
 };
 
 const keyRecaptcha = {

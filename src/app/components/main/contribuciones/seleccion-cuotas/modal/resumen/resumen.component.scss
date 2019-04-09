@@ -25,8 +25,95 @@
   }
 }
 
+div.scroll {
+  overflow-x: auto;
+  overflow-y: scroll;
+  width: 100%;
+  background-color: $color-light-gray;
+  @media (min-width: 319px) and (max-width: 340px) {
+    max-height: 185px;
+  }
+  @media (min-width: 341px) and (max-width: 480px) {
+    max-height: 235px;
+  }
+  @media (min-width: 481px) {
+    max-height: 350px;
+  }
+  .mdl-grid {
+    background-color: $color-light-gray;
+    padding-top: 20px;
+    padding-left: 12px;
+    padding-left: 12px;
+    @media (min-width: 319px) and (max-width: 340px) {
+      padding-left: 5px;
+      padding-left: 5px;
+    }
+    &:last-of-type {
+      padding-bottom: 25px;
+    }
+    .propiedad-container {
+      margin-left: auto;
+      margin-right: auto;
+      .sub-title {
+        margin-top: 20px;
+        margin-bottom: 6px;
+        text-align: left;
+        font-size: 16px;
+        color: $color-dark-blue-text;
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+      .mdl-data-table {
+        background-color: $color-lighter-gray2;
+        thead {
+          tr {
+            th {
+              font-size: 14px;
+              color: $color-dark-gray;
+              text-align: left;
+              @media (min-width: 319px) and (max-width: 340px) {
+                font-size: 12px;
+              }
+              &:first-of-type {
+                padding-left: 20px;
+                @media (max-width: 480px) {
+                  padding-left: 8px;
+                  padding-right: 8px;
+                }
+              }
+            }
+          }
+        }
+        tbody {
+          tr {
+            td {
+              font-size: 14px;
+              color: $color-dark-gray;
+              text-align: left;
+              @media (min-width: 319px) and (max-width: 340px) {
+                font-size: 12px;
+              }
+              &:first-of-type {
+                padding-left: 20px;
+                @media (max-width: 480px) {
+                  padding-left: 8px;
+                  padding-right: 8px;
+                }
+              }
+              &.monto {
+                text-align: right;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .resumen-montos {
-  margin: 28px auto;
+  margin: 18px auto 15px auto;
   .gray-border {
     height: 1px;
     margin-top: 8px;
@@ -103,60 +190,6 @@
   }
 }
 
-div.scroll {
-  overflow-x: auto;
-  overflow-y: scroll;
-  width: 100%;
-  background-color: $color-light-gray;
-  @media (min-width: 319px) and (max-width: 340px) {
-    max-height: 195px;
-  }
-  @media (min-width: 341px) and (max-width: 480px) {
-    max-height: 250px;
-  }
-  @media (min-width: 481px) {
-    max-height: 350px;
-  }
-  .mdl-grid {
-    background-color: $color-light-gray;
-    padding-top: 20px;
-    padding-left: 15px;
-    padding-left: 15px;
-    &:last-of-type {
-      padding-bottom: 25px;
-    }
-    .propiedad-container {
-      margin-left: auto;
-      margin-right: auto;
-      .sub-title {
-        margin-top: 20px;
-        margin-bottom: 6px;
-        text-align: left;
-        font-size: 16px;
-        color: $color-dark-blue-text;
-        &:first-of-type {
-          margin-top: 0;
-        }
-        .mdl-data-table {
-          background-color: $color-lighter-gray2;
-          th {
-            text-align: left;
-          }
-          p {
-            font-size: 14px;
-            @media (min-width: 481px) {
-              font-size: 16px;
-            }
-          }
-          td.monto {
-            text-align: right;
-          }
-        }
-      }
-    }
-  }
-}
-
 .tgr-dialog__options {
     @media (max-width: 380px) {
       margin-top: 0;
@@ -168,11 +201,6 @@ div.scroll {
       justify-content: space-evenly;
       margin-top: 34px;
     }
-    button:last-of-type {
-        @media (max-width: 380px) {
-            margin-bottom: 14px;
-        } 
-    }
 }
 
 .tgr-condonacion {
@@ -180,5 +208,5 @@ div.scroll {
 }
 
 .tgr-tr--late {
-  color: $color-expired;
+  color: $color-expired !important;
 }

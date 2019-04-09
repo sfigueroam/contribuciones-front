@@ -352,6 +352,7 @@ html, body {
 }
 // Inicio. Diálogos eliminar ROL/DIR
 .mdl-dialog__content {
+  padding: 8px;
   color: $color-dark-gray;
   font-size: 16px;
   @media (max-width: 480px) {
@@ -815,21 +816,8 @@ html, body {
 //boton de pago
 .tgr-pay .mdl-button {
   background: $button-primary-color;
-  border-radius: 6px;
   color: #fff;
   display: inline-block;
-  //&:first-of-type {
-  //  @media (max-width: 480px) {
-  //    float: left;
-  //    margin-left: 10px;
-  //  }
-  //}
-  //&:last-of-type {
-  //  @media (max-width: 480px) {
-  //    float: right;
-  //    margin-right: 10px;
-  //  }
-  //}
 }
 
 .tgr-pay .mdl-button span {

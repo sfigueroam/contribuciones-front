@@ -44,7 +44,7 @@
             <span>{{cuota.numeroCuota}}</span>
           </td>
           <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(selectedIcon === icons.SELECTED ? cuota.liqTotal.saldoTotal
+          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.saldoTotal
             :
             cuota.liqParcial.saldoTotal) | number}}
           </td>
