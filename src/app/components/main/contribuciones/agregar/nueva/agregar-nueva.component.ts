@@ -79,6 +79,8 @@ export class AgregarNuevaComponent implements OnInit {
   selectAll: boolean;
   selectedIcon: string;
 
+  page = 1;
+
   @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
   recaptcha2: TgrReCaptcha;
   recaptcha3: TgrReCaptcha;
@@ -292,7 +294,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.contribucionesBuscarRol.searchDireccion(undefined,
       tipoPropiedad,
       this.direccion.value,
-      size).then((lista) => {
+      size, false, null, null).then((lista) => {
         this.direcciones = lista;
       },
       err => {
@@ -387,8 +389,9 @@ export class AgregarNuevaComponent implements OnInit {
     this.contribucionesBuscarRol.searchDireccion(undefined,
       tipoPropiedad,
       this.direccion.value,
-      size).then((lista) => {
+      size, true, tokenCaptcha, tipo).then((lista) => {
         this.direcciones = lista;
+        this.page = 1;
         this.agregarDireccionesAPropiedad();
         this.offWait();
         this.resetCaptcha2();
@@ -396,8 +399,14 @@ export class AgregarNuevaComponent implements OnInit {
 
       },
       () => {
-        this.error('Ha ocurrido un error al buscar una propiedad');
-        this.resetCaptcha2();
+
+        if (tipo === TipoRecaptcha.V3) {
+          this.executeCaptcha2();
+        } else {
+          this.resetCaptcha2();
+          this.error('Ocurrió un error al buscar direcciones');
+          this.offWait();
+        }
       });
   }
 
@@ -406,7 +415,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   agregarDireccionesAPropiedad(): void {
-    const propiedads = this.contribucionesBuscarRol.direccionToPropiedad(this.direcciones);
+    const propiedads = this.contribucionesBuscarRol.direccionToPropiedad(this.direcciones, this.page);
     if (propiedads) {
       for (const pro of propiedads) {
         this.agregarPropiedad(pro);

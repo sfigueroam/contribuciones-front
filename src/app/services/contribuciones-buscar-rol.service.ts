@@ -135,13 +135,26 @@ export class ContribucionesBuscarRolService {
   }
 
 
-  direccionToPropiedad(direcciones: Direccion[]): Propiedad[] {
+  direccionToPropiedad(direcciones: Direccion[], page: number): Propiedad[] {
     let propiedades: Propiedad[];
     const leadingZeroPipe = new LeadingZeroPipe();
     const propiedadMap = new Map<string, Propiedad>();
 
     if (direcciones) {
-      for (const dire of direcciones) {
+
+      let paginacion = environment.paginacion;
+      let end = 0;
+      let start = ((paginacion * page) - paginacion);
+      if (direcciones.length > (paginacion * page)) {
+        end = ((paginacion * page) - 1);
+      } else {
+        end = (direcciones.length - 1);
+      }
+
+
+      //for (const dire of direcciones) {
+      for (let i = start; i <= end; i++) {
+        const dire = direcciones[i];
         const idPropiedad = dire.idComunaSii + '-' + dire.rol;
         let propiedad = propiedadMap.get(idPropiedad);
         if (!propiedad) {
@@ -174,17 +187,27 @@ export class ContribucionesBuscarRolService {
     return propiedades;
   }
 
-  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
+  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number, isValidaRecaptcha: boolean, tokenCaptcha: string, tipo: TipoRecaptcha): Promise<Direccion[]> {
     const body = {
-      size: size,
       search: search,
-      tipoPropiedad: tipoPropiedad
+      tipoPropiedad: tipoPropiedad,
+      token: undefined
     };
     const propiedades = {
       url: environment.elastic.propiedades.url,
       method: environment.elastic.propiedades.method,
       body: body
     };
+
+    if (isValidaRecaptcha) {
+      if (tipo === TipoRecaptcha.V3) {
+        propiedades.url = environment.elastic.propiedades.recaptcha.v3;
+      } else if (tipo === TipoRecaptcha.V2) {
+        propiedades.url = environment.elastic.propiedades.recaptcha.v2;
+      }
+
+      body.token = tokenCaptcha;
+    }
 
     const direcciones = [];
     return new Promise((resolve, reject) => {
