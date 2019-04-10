@@ -705,4 +705,9 @@ export class AgregarNuevaComponent implements OnInit {
       htmlScroll.focus();
     }*/
   }
+
+  cargarMasDirecciones() {
+    this.page++;
+    this.agregarDireccionesAPropiedad();
+  }
 }

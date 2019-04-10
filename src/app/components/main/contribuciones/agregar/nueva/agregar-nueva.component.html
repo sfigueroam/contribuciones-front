@@ -159,8 +159,8 @@
 <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
   <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
 </div>
-<div #scroll class="mdl-cell mdl-cell--8-col tgr-results">
-  <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
+<div #scroll class="mdl-cell mdl-cell--8-col tgr-results" *ngIf="propiedades && propiedades.length > 1">
+  <div class="check-seleccion-propiedades">
     <mdl-icon (click)="selectAllProperies()"> {{selectedIcon}}</mdl-icon>
     <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
   </div>
@@ -172,6 +172,7 @@
                  (change)="updateSeleccionadaTotal()">
   </app-propiedad>
 
+  <a (click)="cargarMasDirecciones()">Cargar más resultados</a>
 </div>
 
 
@@ -186,7 +187,8 @@
   <div class="tgr-actions__content">
 
     <div class="tgr-pay tgr-agregar-nueva">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link" (click)="volver()">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link"
+              (click)="volver()">
         IR AL CARRO
         <i class="material-icons">shopping_cart</i>
       </button>
