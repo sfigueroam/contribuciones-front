@@ -8,6 +8,7 @@ import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
 import {TipoPropiedad} from '../domain/TipoPropiedad';
 import {Direccion} from '../domain/Direccion';
 import {ResponseResultado} from './contribuciones.service';
+import {TipoRecaptcha} from '../enum/TipoRecaptcha.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -91,7 +92,7 @@ export class ContribucionesBuscarRolService {
     });
   }
 
-  searchRolesForIds(idComuna: number, idRol: number, idSubRol: number): Promise<Propiedad> {
+  searchRolesForIds(idComuna: number, idRol: number, idSubRol: number, tokenCaptcha: string, tipo: TipoRecaptcha): Promise<Propiedad> {
 
     const leadingZeroPipe = new LeadingZeroPipe();
     return new Promise((resolve, reject) => {
@@ -99,10 +100,19 @@ export class ContribucionesBuscarRolService {
       const body = {
         'rol': leadingZeroPipe.transform(idRol.toString(), 5),
         'subrol': leadingZeroPipe.transform(idSubRol.toString(), 3),
-        'idcomuna': idComuna.toString()
+        'idcomuna': idComuna.toString(),
+        'token': tokenCaptcha
       };
 
-      this.requestService.request(environment.servicios.buscarBienRaiz, body).then((data: { curout: any[] }) => {
+      const buscarBienRaiz = Object.assign({}, environment.servicios.buscarBienRaiz);
+
+      if (tipo === TipoRecaptcha.V3) {
+        buscarBienRaiz.url = buscarBienRaiz.recaptcha.v3;
+      } else {
+        buscarBienRaiz.url = buscarBienRaiz.recaptcha.v2;
+      }
+
+      this.requestService.request(buscarBienRaiz, body).then((data: { curout: any[] }) => {
         if (data.curout.length === 0) {
           resolve(null);
 
@@ -125,13 +135,26 @@ export class ContribucionesBuscarRolService {
   }
 
 
-  direccionToPropiedad(direcciones: Direccion[]): Propiedad[] {
+  direccionToPropiedad(direcciones: Direccion[], page: number): Propiedad[] {
     let propiedades: Propiedad[];
     const leadingZeroPipe = new LeadingZeroPipe();
     const propiedadMap = new Map<string, Propiedad>();
 
     if (direcciones) {
-      for (const dire of direcciones) {
+
+      let paginacion = environment.paginacion;
+      let end = 0;
+      let start = ((paginacion * page) - paginacion);
+      if (direcciones.length > (paginacion * page)) {
+        end = ((paginacion * page) - 1);
+      } else {
+        end = (direcciones.length - 1);
+      }
+
+
+      //for (const dire of direcciones) {
+      for (let i = start; i <= end; i++) {
+        const dire = direcciones[i];
         const idPropiedad = dire.idComunaSii + '-' + dire.rol;
         let propiedad = propiedadMap.get(idPropiedad);
         if (!propiedad) {
@@ -164,17 +187,27 @@ export class ContribucionesBuscarRolService {
     return propiedades;
   }
 
-  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number): Promise<Direccion[]> {
+  searchDireccion(idComuna: number, tipoPropiedad: string, search: string, size: number, isValidaRecaptcha: boolean, tokenCaptcha: string, tipo: TipoRecaptcha): Promise<Direccion[]> {
     const body = {
-      size: size,
       search: search,
-      tipoPropiedad: tipoPropiedad
+      tipoPropiedad: tipoPropiedad,
+      token: undefined
     };
     const propiedades = {
       url: environment.elastic.propiedades.url,
       method: environment.elastic.propiedades.method,
       body: body
     };
+
+    if (isValidaRecaptcha) {
+      if (tipo === TipoRecaptcha.V3) {
+        propiedades.url = environment.elastic.propiedades.recaptcha.v3;
+      } else if (tipo === TipoRecaptcha.V2) {
+        propiedades.url = environment.elastic.propiedades.recaptcha.v2;
+      }
+
+      body.token = tokenCaptcha;
+    }
 
     const direcciones = [];
     return new Promise((resolve, reject) => {

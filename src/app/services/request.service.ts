@@ -31,7 +31,7 @@ export class RequestService {
     });
   }
 
-  public request(servicio: { url: string,  method: string }, body?): Promise<{}> {
+  public request(servicio: { url: string, method: string }, body?): Promise<{}> {
     let headers = {};
     if (this.jwtCognito.jwt !== undefined) {
       headers = new HttpHeaders({
@@ -80,7 +80,7 @@ export class RequestService {
     });
   }
 
-  public validaRecaptcha( servicio: { url: string, body: any, method: string}): Promise<{}> {
+  public validaRecaptcha(servicio: { url: string, body: any, method: string }): Promise<{}> {
     return new Promise((resolve, reject) => {
       this.http.request(servicio.method,
         servicio.url,

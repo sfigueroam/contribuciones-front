@@ -79,6 +79,8 @@ export class AgregarNuevaComponent implements OnInit {
   selectAll: boolean;
   selectedIcon: string;
 
+  page = 1;
+
   @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
   recaptcha2: TgrReCaptcha;
   recaptcha3: TgrReCaptcha;
@@ -257,9 +259,9 @@ export class AgregarNuevaComponent implements OnInit {
     this.countPropiedades = this.contribuciones.getCountPropiedad();
   }
 
-  buscarRolPost(): void {
+  buscarRolPost(tokenCaptcha: string, tipo: TipoRecaptcha): void {
     this.onWait();
-    this.contribucionesBuscarRol.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value).then((response) => {
+    this.contribucionesBuscarRol.searchRolesForIds(this.comuna.value, this.rol.value, this.subRol.value, tokenCaptcha, tipo).then((response) => {
       if (response === null) {
         this.sinResultado = true;
       } else {
@@ -267,8 +269,13 @@ export class AgregarNuevaComponent implements OnInit {
       }
       this.offWait();
     }, () => {
-      this.error('Ocurrió un error al buscar direcciones');
-      this.offWait();
+
+      if (tipo === TipoRecaptcha.V3) {
+        this.executeCaptcha2();
+      } else {
+        this.error('Ocurrió un error al buscar direcciones');
+        this.offWait();
+      }
     });
   }
 
@@ -287,7 +294,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.contribucionesBuscarRol.searchDireccion(undefined,
       tipoPropiedad,
       this.direccion.value,
-      size).then((lista) => {
+      size, false, null, null).then((lista) => {
         this.direcciones = lista;
       },
       err => {
@@ -368,7 +375,7 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
-  buscarDireccionPost() {
+  buscarDireccionPostRecaptcha(tokenCaptcha: string, tipo: TipoRecaptcha) {
     if (this.direccion.value === '' || this.direccion.value === null) {
       return;
     }
@@ -382,8 +389,9 @@ export class AgregarNuevaComponent implements OnInit {
     this.contribucionesBuscarRol.searchDireccion(undefined,
       tipoPropiedad,
       this.direccion.value,
-      size).then((lista) => {
+      size, true, tokenCaptcha, tipo).then((lista) => {
         this.direcciones = lista;
+        this.page = 1;
         this.agregarDireccionesAPropiedad();
         this.offWait();
         this.resetCaptcha2();
@@ -391,8 +399,14 @@ export class AgregarNuevaComponent implements OnInit {
 
       },
       () => {
-        this.error('Ha ocurrido un error al buscar una propiedad');
-        this.resetCaptcha2();
+
+        if (tipo === TipoRecaptcha.V3) {
+          this.executeCaptcha2();
+        } else {
+          this.resetCaptcha2();
+          this.error('Ocurrió un error al buscar direcciones');
+          this.offWait();
+        }
       });
   }
 
@@ -401,7 +415,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   agregarDireccionesAPropiedad(): void {
-    const propiedads = this.contribucionesBuscarRol.direccionToPropiedad(this.direcciones);
+    const propiedads = this.contribucionesBuscarRol.direccionToPropiedad(this.direcciones, this.page);
     if (propiedads) {
       for (const pro of propiedads) {
         this.agregarPropiedad(pro);
@@ -506,6 +520,14 @@ export class AgregarNuevaComponent implements OnInit {
 
 
   handleSuccessCaptcha2(token): void {
+    if (this.switchActive === 'direccion') {
+      this.buscarDireccionPostRecaptcha(token, TipoRecaptcha.V2);
+    } else {
+      this.buscarRolPost(token, TipoRecaptcha.V2);
+    }
+
+    /*
+
     this.recaptchaService.validaRecaptcha(token, TipoRecaptcha.V2).then(value => {
       if (this.switchActive === 'direccion') {
         this.buscarDireccionPost();
@@ -516,7 +538,7 @@ export class AgregarNuevaComponent implements OnInit {
     }).catch(reason => {
       this.error('Falló validación del ReCaptcha');
 
-    });
+    });*/
   }
 
   executeCaptcha2(): void {
@@ -547,16 +569,25 @@ export class AgregarNuevaComponent implements OnInit {
     this.onWait();
     this.scriptService.cleanup();
     this.reCaptchaV3Service.execute(this.recaptcha3.siteKey, this.recaptcha3.action, (token) => {
-      this.recaptchaService.validaRecaptcha(token, TipoRecaptcha.V3).then(value => {
-        if (this.switchActive === 'direccion') {
-          this.buscarDireccionPost();
-        } else {
-          this.buscarRolPost();
-        }
-      }).catch(reason => {
-        console.log(reason);
-        this.executeCaptcha2();
-      });
+
+      if (this.switchActive === 'direccion') {
+        this.buscarDireccionPostRecaptcha(token, TipoRecaptcha.V3);
+      } else {
+        this.buscarRolPost(token, TipoRecaptcha.V3);
+      }
+
+
+      /*
+            this.recaptchaService.validaRecaptcha(token, TipoRecaptcha.V3).then(value => {
+              if (this.switchActive === 'direccion') {
+                this.buscarDireccionPost();
+              } else {
+                this.buscarRolPost();
+              }
+            }).catch(reason => {
+              console.log(reason);
+              this.executeCaptcha2();
+            });*/
     });
   }
 
