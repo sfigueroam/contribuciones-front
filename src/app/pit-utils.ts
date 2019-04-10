@@ -1,3 +1,5 @@
+import {LeadingZeroPipe} from './pipes/leading-zero.pipe';
+
 export class PitUtils {
 
   constructor() {
@@ -40,5 +42,12 @@ export class PitUtils {
     valor = Math.floor(valor / 100000);
     result.comuna = ('000' + (valor)).substr(-3);
     return result;
+  }
+
+  static calcularRol(rolId, subrolId, rolComuna): number {
+    const rolIdConst = new LeadingZeroPipe().transform(rolId, 5);
+    const subRolIdConst = new LeadingZeroPipe().transform(subrolId, 3);
+    const rol = rolComuna + '' + rolIdConst + '' + subRolIdConst;
+    return +rol;
   }
 }

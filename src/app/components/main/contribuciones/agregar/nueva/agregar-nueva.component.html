@@ -159,8 +159,8 @@
 <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
   <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
 </div>
-<div #scroll class="mdl-cell mdl-cell--8-col tgr-results" *ngIf="propiedades && propiedades.length > 1">
-  <div class="check-seleccion-propiedades">
+<div #scroll class="mdl-cell mdl-cell--8-col tgr-results">
+  <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
     <mdl-icon (click)="selectAllProperies()"> {{selectedIcon}}</mdl-icon>
     <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
   </div>
@@ -172,7 +172,9 @@
                  (change)="updateSeleccionadaTotal()">
   </app-propiedad>
 
-  <a (click)="cargarMasDirecciones()">Cargar más resultados</a>
+  <div *ngIf="switchActive === 'direccion' && propiedades &&  propiedades.length > 1 ">
+    <a (click)="cargarMasDirecciones()">Cargar más resultados</a>
+  </div>
 </div>
 
 
