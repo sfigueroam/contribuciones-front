@@ -20,9 +20,6 @@ const urlsBase = {
   deviceDetect: endpoints.deviceDetect + '/detect'
 };
 
-
-
-
 export const environment = {
   frecuentesOrder: {
     H: 1,
