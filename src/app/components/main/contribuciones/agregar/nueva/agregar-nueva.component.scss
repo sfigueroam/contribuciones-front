@@ -106,7 +106,7 @@
 .tgr-actions{
   min-height: 70px;
   @media (max-width: 320px){
-    top: 507px;
+    //top: 0px;
     padding-right: 10px;
     padding-left: 10px;
 
@@ -417,6 +417,8 @@
 }
 .contador-propiedades {
   position: fixed;
+  -webkit-overflow-scrolling: touch;
+  -webkit-backface-visibility: hidden;
   text-align: center;
   background-color: $gray-lightblue-background;
   padding-top: 6px;
