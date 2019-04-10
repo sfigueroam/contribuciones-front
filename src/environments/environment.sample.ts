@@ -20,10 +20,8 @@ const urlsBase = {
   deviceDetect: endpoints.deviceDetect
 };
 
-
-
 export const environment = {
-  paginacion: 20,
+  paginacion: 30,
   frecuentesOrder: {
     H: 1,
     L: 2,
