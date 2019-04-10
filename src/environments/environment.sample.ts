@@ -1,7 +1,7 @@
 const endpoints = {
   base: 'BUILD_BACK_ENDPOINT',
   lambdaRoles: 'BUILD_BACK_ENDPOINT',
-  elastic: 'BUILD_ELASTICSEARCH_ENDPOINT',
+  elastic: 'BUILD_BACK_ENDPOINT',
   validateRecaptcha: 'BUILD_BACK_ENDPOINT',
   deviceDetect: 'BUILD_DEVICE_INFO_ENDPOINT'
 };
