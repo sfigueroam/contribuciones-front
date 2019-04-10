@@ -1,5 +1,9 @@
 @import '../../../../../styles/colors';
 
+.mdl-tabs__panel {
+	overflow: hidden;
+}
+
 .mdl-tabs__tab-bar {
 	background: $gray-header;
 	display: block;

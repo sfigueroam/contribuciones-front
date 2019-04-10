@@ -339,6 +339,8 @@ html, body {
 .mdl-layout__header {
     @media (max-width: 480px) {
       position: fixed;
+      -webkit-overflow-scrolling: touch;
+      -webkit-backface-visibility: hidden;
     }
 }
 .mdl-layout__obfuscator {
@@ -659,6 +661,10 @@ html, body {
   display: block;
   left: 0;
   min-height: 90px;
+  // position: fixed;
+  // -webkit-overflow-scrolling: touch;
+  // -webkit-backface-visibility: hidden;
+  position: -webkit-fixed;
   position: fixed;
   right: 0;
   z-index: 900;
@@ -1157,6 +1163,7 @@ button.button-question {
   position: static;
   // IOS SCROLLING
   -webkit-overflow-scrolling: touch;
+  -webkit-backface-visibility: hidden;
 }
 
 .mdl-button--raised.mdl-button--colored,
