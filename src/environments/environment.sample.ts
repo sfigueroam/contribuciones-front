@@ -15,14 +15,15 @@ const urlsBase = {
   api: endpoints.base + '/api',
   elastic: endpoints.elastic,
   lambdaRoles: endpoints.lambdaRoles + '/roles',
-  recaptcha2 : endpoints.validateRecaptcha + '/captcha/v2',
-  recaptcha3 : endpoints.validateRecaptcha + '/captcha/v3',
+  recaptcha2: endpoints.validateRecaptcha + '/captcha/v2/api',
+  recaptcha3: endpoints.validateRecaptcha + '/captcha/v3/api',
   deviceDetect: endpoints.deviceDetect
 };
 
 
 
 export const environment = {
+  paginacion: 20,
   frecuentesOrder: {
     H: 1,
     L: 2,
@@ -111,12 +112,17 @@ export const environment = {
     },
     buscarBienRaiz: {
       url: urlsBase.api + '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin',
-      method: 'POST'
-    }
+      method: 'POST',
+      recaptcha: {
+        v2: urlsBase.recaptcha2 + '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin',
+        v3: urlsBase.recaptcha3 + '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin'
+      }
+    },
+
   },
   elastic: {
     localidad: {
-      url: urlsBase.elastic + '/search/localidad',
+      url: urlsBase.elastic + '/elasticsearch/localidad',
       method: 'POST',
       body: {
         size: 400,
@@ -124,7 +130,7 @@ export const environment = {
       }
     },
     tiposPropiedades: {
-      url: urlsBase.elastic + '/search/tipo_propiedad',
+      url: urlsBase.elastic + '/elasticsearch/tipo_propiedad',
       method: 'POST',
       body: {
         size: 400,
@@ -132,8 +138,12 @@ export const environment = {
       }
     },
     propiedades: {
-      url: urlsBase.elastic + '/search/propiedad',
-      method: 'POST'
+      url: urlsBase.elastic + '/elasticsearch/propiedad',
+      method: 'POST',
+      recaptcha: {
+        v2: urlsBase.recaptcha2 + '/elasticsearch/propiedad',
+        v3: urlsBase.recaptcha3 + '/elasticsearch/propiedad'
+      }
     },
   },
   recaptcha: {
