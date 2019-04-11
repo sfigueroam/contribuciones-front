@@ -24,6 +24,7 @@ import {CANT_PROPIEDADES, DialogAgregarPropiedadComponent} from './modal/dialog-
 import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.component';
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
+import {PitUtils} from '../../../../../pit-utils';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -80,6 +81,8 @@ export class AgregarNuevaComponent implements OnInit {
   selectedIcon: string;
 
   page = 1;
+  paginacion: number;
+
 
   @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
   recaptcha2: TgrReCaptcha;
@@ -145,6 +148,7 @@ export class AgregarNuevaComponent implements OnInit {
     this.bottomToolbarHidden = !this.user.email && this.user.solicitarEmail;
 
     this.selectAll = false;
+    this.paginacion = environment.paginacion;
     this.updateIconSeleccion();
 
   }
@@ -229,7 +233,6 @@ export class AgregarNuevaComponent implements OnInit {
 
       const pDialog = this.dialogService.showCustomDialog(config);
       pDialog.subscribe((dialogReference: MdlDialogReference) => {
-        console.log('dialog visible', dialogReference);
         dialogReference.onHide().subscribe(
           () => this.bottomToolbarHidden = false
         );
@@ -356,7 +359,6 @@ export class AgregarNuevaComponent implements OnInit {
         }
       }
     }
-    this.onScroll();
 
     if (!estado) {
       this.propiedades.push(response);
@@ -390,6 +392,8 @@ export class AgregarNuevaComponent implements OnInit {
       tipoPropiedad,
       this.direccion.value,
       size, true, tokenCaptcha, tipo).then((lista) => {
+
+        lista = this.orderDirecciones(lista);
         this.direcciones = lista;
         this.page = 1;
         this.agregarDireccionesAPropiedad();
@@ -421,7 +425,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.agregarPropiedad(pro);
       }
     }
-    this.onScroll();
+
   }
 
   asociarPropiedades(isConfirmar: boolean = true) {
@@ -516,6 +520,7 @@ export class AgregarNuevaComponent implements OnInit {
     direcciones.push(new Direccion(dire));
     this.direcciones = direcciones;
     this.agregarDireccionesAPropiedad();
+    this.onScroll();
   }
 
 
@@ -575,19 +580,6 @@ export class AgregarNuevaComponent implements OnInit {
       } else {
         this.buscarRolPost(token, TipoRecaptcha.V3);
       }
-
-
-      /*
-            this.recaptchaService.validaRecaptcha(token, TipoRecaptcha.V3).then(value => {
-              if (this.switchActive === 'direccion') {
-                this.buscarDireccionPost();
-              } else {
-                this.buscarRolPost();
-              }
-            }).catch(reason => {
-              console.log(reason);
-              this.executeCaptcha2();
-            });*/
     });
   }
 
@@ -704,5 +696,34 @@ export class AgregarNuevaComponent implements OnInit {
       const htmlScroll = this.scrollDireccion.nativeElement as HTMLElement;
       htmlScroll.focus();
     }*/
+  }
+
+  cargarMasDirecciones() {
+    this.page++;
+    this.agregarDireccionesAPropiedad();
+  }
+
+  private orderDirecciones(lista: Direccion[]) {
+    return lista.sort((a, b) => {
+      const rolA = PitUtils.calcularRol(a.rol, a.subrol, a.idComunaSii);
+      const rolB = PitUtils.calcularRol(b.rol, b.subrol, b.idComunaSii);
+      return rolA - rolB;
+    });
+  }
+
+  mostrarPaginacion(): boolean {
+    if (this.direcciones != null) {
+      const cantidad = this.paginacion * this.page;
+      return cantidad < this.direcciones.length;
+    }
+    return false;
+  }
+
+  mostrarFinPaginacion(): boolean {
+    if (this.direcciones != null) {
+      const cantidad = this.paginacion * this.page;
+      return cantidad >= this.direcciones.length;
+    }
+    return false;
   }
 }
