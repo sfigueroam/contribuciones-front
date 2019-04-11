@@ -21,7 +21,7 @@ const urlsBase = {
 };
 
 export const environment = {
-  paginacion: 30,
+  paginacion: 20,
   frecuentesOrder: {
     H: 1,
     L: 2,
