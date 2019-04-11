@@ -361,7 +361,6 @@ html, body {
 
 .mdl-dialog.open {
   overflow-y: auto;
-  max-height: 75%;
 }
 // Inicio. Diálogos eliminar ROL/DIR
 .mdl-dialog__content {
@@ -767,7 +766,7 @@ html, body {
   overflow: hidden;
   background-color: $color-white;
   color: $color-default-dark;
-  padding: 20px 12px 20px 12px;
+  padding: 14px 12px 20px 12px;
   .mdl-badge[data-badge]:after {
     background-color: $color-warning;
   }
@@ -796,7 +795,6 @@ html, body {
   button.button-pay {
     background-color: $color-success;
     color: #fff;
-    margin-top: -8px;
     a {
       text-decoration: none;
       color: #ffffff;
