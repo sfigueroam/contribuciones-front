@@ -96,7 +96,9 @@ export class SeleccionCuotasComponent implements OnInit {
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
                 () => {
+                  //this.user.eliminarPropiedad(p.idDireccion);
                   this.calcularTotal();
+
                 }
               );
             }

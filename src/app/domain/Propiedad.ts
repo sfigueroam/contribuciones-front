@@ -49,6 +49,7 @@ export class Propiedad {
             () => {
               this.calcularTotal();
               this.changeSubject.next();
+
             }
           );
         }
