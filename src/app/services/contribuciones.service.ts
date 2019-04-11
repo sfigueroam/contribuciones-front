@@ -199,8 +199,10 @@ export class ContribucionesService {
         const index = this.propiedades.findIndex(p => p.idDireccion === idDireccion);
         const propiedad = this.propiedades[index];
         this.propiedades.splice(index, 1);
-        propiedad.changeSubject.next();
-        propiedad.changeSubject.complete();
+        if (propiedad !== undefined) {
+          propiedad.changeSubject.next();
+          propiedad.changeSubject.complete();
+        }
         resolve();
       }
     );
@@ -216,13 +218,16 @@ export class ContribucionesService {
           if (index >= 0) {
             rol = propiedad.roles[index];
             propiedad.roles.splice(index, 1);
-            rol.changeSubject.next();
-            rol.changeSubject.complete();
-            this.desasociarRol(rut, email, rol).then(
-              value => resolve(value),
-              err => reject(err)
-            );
-
+            if (propiedad.roles.length === 0) {
+              this.desasociarRol(rut, email, rol).then(
+                value => resolve(value),
+                err => reject(err)
+              );
+              return this.eliminarPropiedad(rut, email, propiedad.idDireccion);
+            } else {
+              rol.changeSubject.next();
+              rol.changeSubject.complete();
+            }
           }
         }
         if (!rol) {
@@ -243,8 +248,12 @@ export class ContribucionesService {
           if (index >= 0) {
             rol = propiedad.roles[index];
             propiedad.roles.splice(index, 1);
-            rol.changeSubject.next();
-            rol.changeSubject.complete();
+            if (propiedad.roles.length === 0) {
+              return this.eliminarPropiedadSinlogin(propiedad.idDireccion);
+            } else {
+              rol.changeSubject.next();
+              rol.changeSubject.complete();
+            }
           }
         }
         resolve();

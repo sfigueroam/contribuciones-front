@@ -53,9 +53,7 @@ export class Rol {
     if (this.rol === undefined) {
       const rolIdConst = new LeadingZeroPipe().transform(this.rolId, 5);
       const subRolIdConst = new LeadingZeroPipe().transform(this.subrolId, 3);
-
       const rol = this.rolComunaSiiCod + '' + rolIdConst + '' + subRolIdConst;
-
       this.rol = +rol;
     }
   }
@@ -213,8 +211,6 @@ export class Rol {
       if (cuota.liqTotal.montoCondonacion !== undefined) {
         condonacion += cuota.liqTotal.montoCondonacion;
       }
-      console.log('cuota.intencionPago', cuota.intencionPago);
-      console.log('cuota.liqParcial', cuota.liqParcial);
 
       if (cuota.expired) {
         totalExpirados++;
@@ -241,10 +237,6 @@ export class Rol {
     }
 
     this.pagoTotal = total;
-
-    console.log('total', total);
-    console.log('this.total', this.total);
-    console.log('this.condonacion', this.condonacion);
   }
 
   getCuotasDeseleccionadas(): { numeroFolio: string, fechaVencimiento: string, intencionPago: boolean }[] {
