@@ -48,11 +48,13 @@ export class PropiedadComponent implements OnInit {
 
   }
 
-  selectAllRol(): void {
-    this.seleccion = !this.seleccion;
-    this.updateIconSeleccion();
-    this.updateRoles();
-    this.change.emit();
+  selectAllRol(execute: boolean): void {
+    if (execute) {
+      this.seleccion = !this.seleccion;
+      this.updateIconSeleccion();
+      this.updateRoles();
+      this.change.emit();
+    }
   }
 
   updateRoles(): void {
