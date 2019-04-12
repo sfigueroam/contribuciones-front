@@ -380,6 +380,10 @@
     color: $color-dark-blue-text;
   }
   a {
+    font-size: 16px;
+    .material-icons {
+      margin-bottom: 8px;
+    }
   }
 }
 
