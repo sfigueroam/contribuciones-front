@@ -685,8 +685,8 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
-  autoScroll() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  autoScrollBuscar() {
+    window.scrollTo({top: 220, behavior: 'smooth'});
 
     //window.scrollBy(4000, 0);
 
