@@ -174,9 +174,9 @@
 
   <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias"
        *ngIf="switchActive === 'direccion' && propiedades &&  propiedades.length > 1 ">
-    <a *ngIf="mostrarPaginacion()" (click)="cargarMasDirecciones()">Cargar más resultados</a>
+    <a class="mdl-button button-default-link" *ngIf="mostrarPaginacion()" (click)="cargarMasDirecciones()">Cargar más resultados</a>
     <p *ngIf="mostrarFinPaginacion()">Si no encuentras tu propiedad entre los resultados, por favor modifica la búsqueda
-      e intenta nuevamente</p>
+      e intenta nuevamente.</p>
   </div>
 </div>
 

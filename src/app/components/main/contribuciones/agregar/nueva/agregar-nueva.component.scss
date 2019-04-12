@@ -375,12 +375,14 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-
   p {
     font-size: 16px;
     color: $color-dark-blue-text;
   }
+  a {
+  }
 }
+
 .tgr-results {
   display: flex;
   justify-content: flex-start;
