@@ -1,5 +1,5 @@
 <app-linea-tiempo [buscar]="true"></app-linea-tiempo>
-<div class="mdl-grid">
+<div #scrollup class="mdl-grid">
   <div class="mdl-cell mdl-cell--6-col m-0auto pay-title">
     <h5 class="title text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
     <p class="text-left">Busca una o más propiedades y agrégalas al carro.</p>
@@ -83,7 +83,7 @@
           <div *ngIf="showButtonLimpiarBusqueda" class="tgr-card__footer footer-direccion">
             <a class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>
           </div>
-          <ul class="tgr-suggestions">
+          <ul class="tgr-suggestions" *ngIf="searchDireccion">
             <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
                 (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
               titlecase}}
@@ -176,7 +176,7 @@
        *ngIf="switchActive === 'direccion' && propiedades &&  propiedades.length > 1 ">
     <a *ngIf="mostrarPaginacion()" (click)="cargarMasDirecciones()">Cargar más resultados</a>
     <p *ngIf="mostrarFinPaginacion()">Si no encuentras tu propiedad entre los resultados, por favor modifica la búsqueda
-      e intenta nuevamente</p>
+      e intenta nuevamente</p> <a (click)="upPage()">Subir</a>
   </div>
 </div>
 
