@@ -3,6 +3,12 @@
 @import '~@angular-mdl/popover/popover';
 @import '~@angular-mdl/select/select';
 
+.mdl-spinner {
+  &:not(.is-upgraded).is-active:after {
+    content: "Buscando...";
+  }
+}
+
 html, body, h1, h2, h3, h4, h5 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
