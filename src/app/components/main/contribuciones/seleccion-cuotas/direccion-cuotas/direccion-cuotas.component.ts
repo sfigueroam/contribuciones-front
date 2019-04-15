@@ -46,15 +46,15 @@ export class DireccionCuotasComponent implements OnInit {
   delete() {
     if (this.propiedad.isComplete) {
       this.dialogService.confirm(
-        'Eliminarás la dirección completa',
+        'Eliminarás el ROL completo, ¿estás seguro/a?',
         'CANCELAR',
         'ELIMINAR').subscribe(
         () => {
           this.user.eliminarPropiedad(this.propiedad.idDireccion).then(
-            () => this.mdlSnackbarService.showToast('Dirección eliminada', environment.snackbarTime),
+            () => this.mdlSnackbarService.showToast('Dirección eliminada.', environment.snackbarTime),
             err => {
               console.log(err);
-              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección', environment.snackbarTime);
+              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección.', environment.snackbarTime);
             }
           );
         }

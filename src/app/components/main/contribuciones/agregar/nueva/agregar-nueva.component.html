@@ -126,8 +126,9 @@
                        class="tgr-i-rol"
                        [formControl]="rol"
                        error-msg="Debe ingresar un Rol"
-                       floating-label></mdl-textfield>
-        -
+                       floating-label>
+        </mdl-textfield>
+        <span class="guion-rol">—</span>
         <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
                        (focus)="ocultarToolbar() ; autoScrollBuscar();"
                        (blur)="mostrarToolbar()"
@@ -138,7 +139,8 @@
                        label="Sub ROL"
                        [formControl]="subRol"
                        error-msg="Debe ingresar un Sub Rol"
-                       floating-label></mdl-textfield>
+                       floating-label>
+        </mdl-textfield>
       </div>
       <div class="tgr-card__footer">
         <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer"

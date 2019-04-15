@@ -380,7 +380,7 @@ html, body {
 .mdl-dialog__actions {
   display: flex;
   justify-content: space-evenly;
-  flex-direction: row;
+  //flex-direction: row;
   button {
     color: $link-color;
     background-color: transparent !important;

@@ -85,15 +85,15 @@ export class RolCuotasComponent implements OnInit {
     if (this.rol.isComplete) {
 
       this.dialogService.confirm(
-        'Eliminarás el ROL completo',
+        'Eliminarás el ROL completo, ¿estás seguro/a?',
         'CANCELAR',
         'ELIMINAR').subscribe(
         () => {
           this.user.eliminarRol(this.rol.rolComunaSiiCod, this.rol.rolId, this.rol.subrolId).then(
-            () => this.mdlSnackbarService.showToast('Rol eliminado', environment.snackbarTime),
+            () => this.mdlSnackbarService.showToast('Rol eliminado.', environment.snackbarTime),
             err => {
               console.log(err);
-              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección', environment.snackbarTime);
+              this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección.', environment.snackbarTime);
             }
           );
         }

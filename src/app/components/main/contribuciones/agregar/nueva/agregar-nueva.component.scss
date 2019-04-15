@@ -222,6 +222,13 @@
   }
 }
 
+@-moz-document url-prefix() { 
+  .guion-rol {
+      position: relative;
+      bottom: 27px;
+  }
+}
+
 .mdl-textfield {
   width: 100%;
   &#direccion {

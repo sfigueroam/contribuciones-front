@@ -1,11 +1,5 @@
 @import '../../../../../styles/colors';
 
-.tgr-container {
-	overflow-y: -webkit-paged-y;
-	webkit-column-count: 1;
-	column-count: 1;
-}
-
 .mdl-tabs__tab-bar {
 	background: $gray-header;
 	display: block;
