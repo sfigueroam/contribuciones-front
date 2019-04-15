@@ -4,6 +4,11 @@
       <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
     </button>
 
+    <ng-template #HtmlContent>
+      <p>Hello i'm a <strong>bold</strong> text!</p>
+    </ng-template>
+
+
     <div class="bar-text" (click)="toggle()">
       <h6>
         <i class="material-icons">{{icon}}</i>

@@ -68,17 +68,23 @@ div.scroll {
         thead {
           tr {
             th {
-              font-size: 14px;
+              font-size: 13px;
               color: $color-dark-gray;
               text-align: left;
-              @media (min-width: 319px) and (max-width: 340px) {
+              @media (min-width: 319px) and (max-width: 375px) {
                 font-size: 12px;
               }
               &:first-of-type {
                 padding-left: 20px;
                 @media (max-width: 480px) {
                   padding-left: 8px;
-                  padding-right: 8px;
+                  padding-right: 0;
+                }
+              }
+              &:nth-of-type(2) {
+                @media (max-width: 480px) {
+                  padding-left: 8px;
+                  padding-right: 0;
                 }
               }
             }
@@ -87,17 +93,23 @@ div.scroll {
         tbody {
           tr {
             td {
-              font-size: 14px;
+              font-size: 13px;
               color: $color-dark-gray;
               text-align: left;
-              @media (min-width: 319px) and (max-width: 340px) {
+              @media (min-width: 319px) and (max-width: 375px) {
                 font-size: 12px;
               }
               &:first-of-type {
                 padding-left: 20px;
                 @media (max-width: 480px) {
                   padding-left: 8px;
-                  padding-right: 8px;
+                  padding-right: 0;
+                }
+              }
+              &:nth-of-type(2) {
+                @media (max-width: 480px) {
+                  padding-left: 8px;
+                  padding-right: 0;
                 }
               }
               &.monto {
