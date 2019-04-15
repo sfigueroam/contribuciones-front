@@ -31,6 +31,7 @@ export const environment = {
   isActiveLogin: false,
   googleAnalyticsCode: 'UA-136994548-1',
   snackbarTime: 5000,
+  tooltipTime: 5000,
   production: true,
   cuentaUrl: 'http://localhost:4201' + '/redirect',
   pago: {

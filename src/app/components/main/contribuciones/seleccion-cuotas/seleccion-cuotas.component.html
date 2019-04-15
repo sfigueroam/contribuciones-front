@@ -73,6 +73,7 @@
           <i class="material-icons">add</i>
           Agregar propiedades
         </button>
+
       </div>
     </div>
   </div>
@@ -158,10 +159,14 @@
 <div class="tgr-add" *ngIf="propiedades.length > 0">
   <div class="tgr-target-wrapper">
     <div class="tgr-target-wave tgr-target-wave--button">
-      <button mdl-button mdl-button-type="fab" mdl-colored="accent" class="new-rol"
+      <button id="helpTooltip" placement="left" trigger="none" [tooltip]="HtmlContent" content-type="template"
+              mdl-button mdl-button-type="fab" mdl-colored="accent" class="new-rol"
               [routerLink]="['/main/contribuciones/agregar/nueva']">
         <mdl-icon>add</mdl-icon>
       </button>
+      <ng-template #HtmlContent>
+        <p>Hello i'm a <strong>bold</strong> text!</p>
+      </ng-template>
     </div>
   </div>
 </div>

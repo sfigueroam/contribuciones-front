@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
@@ -12,21 +12,22 @@ import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
 import {
   CODIGO_LIST_PROPIEDADES,
-  CONDONACION_PROPIEDADES, EXISTE_VENCIDAS,
+  CONDONACION_PROPIEDADES,
+  EXISTE_VENCIDAS,
   LIST_PROPIEDADES,
   ResumenComponent,
   TOTAL_PROPIEDADES
 } from './modal/resumen/resumen.component';
 import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
-import {PropiedadComponent} from '../../shared/propiedad/propiedad.component';
 import {DireccionCuotasComponent} from './direccion-cuotas/direccion-cuotas.component';
+import {TooltipDirective} from 'ng2-tooltip-directive';
 
 @Component({
   selector: 'app-seleccion-cuotas',
   templateUrl: './seleccion-cuotas.component.html',
   styleUrls: ['./seleccion-cuotas.component.scss']
 })
-export class SeleccionCuotasComponent implements OnInit {
+export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(DireccionCuotasComponent)
   direccionCuotasComponentList: QueryList<DireccionCuotasComponent>;
@@ -58,6 +59,9 @@ export class SeleccionCuotasComponent implements OnInit {
   selectedIcon: string;
 
   result: ResumenCuotas;
+  someTooltip: any;
+  @ViewChildren(TooltipDirective) tooltipDirective;
+
 
   constructor(private router: Router,
               private user: UserService,
@@ -66,6 +70,22 @@ export class SeleccionCuotasComponent implements OnInit {
               private mdlSnackbarService: MdlSnackbarService,
               private deviceDetectService: DeviceDetectService,
               private dialogService: MdlDialogService,) {
+  }
+
+  ngAfterViewInit() {
+
+
+    if (this.user.isFirst) {
+      setTimeout(
+        () => {
+          if (this.propiedades.length > 0) {
+            this.showHelp();
+          }
+        },
+        1000
+      );
+    }
+
   }
 
   ngOnInit() {
@@ -87,6 +107,9 @@ export class SeleccionCuotasComponent implements OnInit {
 
     this.user.getBienesRaices().then(
       (propiedades) => {
+        if (propiedades != null && propiedades.length > 0) {
+          this.user.isFirst = false;
+        }
         this.propiedades = propiedades;
         this.contribuciones.cargarRoles().then(
           () => {
@@ -237,10 +260,23 @@ export class SeleccionCuotasComponent implements OnInit {
 
   abrirPrimerRol(): void {
     const direccionCuotasList = this.direccionCuotasComponentList.toArray();
-
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
       direccionCuotasList[0].abrirPrimerRol();
     }
   }
 
+  private showHelp() {
+    const direccionCuotasList = this.direccionCuotasComponentList.toArray();
+    if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
+      direccionCuotasList[0].showHelp();
+    }
+    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip');
+    this.someTooltip.show();
+    setTimeout(
+      () => {
+        this.someTooltip.hide();
+      },
+      environment.tooltipTime
+    );
+  }
 }

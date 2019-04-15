@@ -17,6 +17,8 @@ export class UserService {
   email: string;
   solicitarEmail = true;
 
+  isFirst = true;
+
 
 
   constructor(private contributions: ContribucionesService,

@@ -1,8 +1,14 @@
 <mdl-card mdl-shadow="2" class="mdl-cell mdl-cell--4-col mb-10 rol-card">
   <mdl-card-title class="bar">
-    <button mdl-button mdl-button-type="icon" (click)="toggle()">
+    <button id="helpTooltip" placement="right" trigger="none" [tooltip]="HtmlContent" content-type="template" mdl-button
+            mdl-button-type="icon" (click)="toggle()">
       <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
     </button>
+
+    <ng-template #HtmlContent>
+      <p>Hello i'm a <strong>bold</strong> text!</p>
+    </ng-template>
+
 
     <div class="bar-text" (click)="toggle()">
       <h6>

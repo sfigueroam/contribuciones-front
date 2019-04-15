@@ -40,6 +40,7 @@ import {ResumenComponent} from './components/main/contribuciones/seleccion-cuota
 import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cuotas/modal/boton-pagar/boton-pagar.component';
 import {OrderModule} from 'ngx-order-pipe';
 import {RecordarComponent} from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
+import {TooltipModule} from 'ng2-tooltip-directive';
 
 
 registerLocaleData(localeEs, 'es');
@@ -86,6 +87,7 @@ registerLocaleData(localeEs, 'es');
     DeviceDetectorModule.forRoot(),
     LightboxModule,
     OrderModule,
+    TooltipModule,
 
 
   ],

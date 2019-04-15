@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren} from '@angular/core';
 import {Rol} from '../../../../../domain/Rol';
 import {Cuota} from '../../../../../domain/Cuota';
 import {TipoCuota} from '../../../../../domain/TipoCuota';
@@ -6,13 +6,14 @@ import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
+import {TooltipDirective} from 'ng2-tooltip-directive';
 
 @Component({
   selector: 'app-rol-cuotas',
   templateUrl: './rol-cuotas.component.html',
   styleUrls: ['./rol-cuotas.component.scss']
 })
-export class RolCuotasComponent implements OnInit {
+export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   @Input()
   rol: Rol;
@@ -25,6 +26,10 @@ export class RolCuotasComponent implements OnInit {
   // tabla de cuotas
   selectedIcon: CheckboxIcon;
   icons = CheckboxIcon;
+
+  someTooltip: any;
+  @ViewChildren(TooltipDirective) tooltipDirective;
+
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
@@ -49,7 +54,25 @@ export class RolCuotasComponent implements OnInit {
 
   }
 
+  showHelp() {
+    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip');
+    this.someTooltip.show();
+    setTimeout(
+      () => {
+        this.someTooltip.hide();
+      },
+      environment.tooltipTime
+    );
+
+
+  }
+
+  ngAfterViewInit() {
+
+  }
+
   toggle() {
+    this.someTooltip.hide();
     if (this.rol.isComplete) {
       this.expanded = !this.expanded;
     } else {
@@ -102,4 +125,6 @@ export class RolCuotasComponent implements OnInit {
       this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
     }
   }
+
+
 }

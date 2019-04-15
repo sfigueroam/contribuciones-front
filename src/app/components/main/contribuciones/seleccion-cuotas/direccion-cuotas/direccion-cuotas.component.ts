@@ -70,7 +70,13 @@ export class DireccionCuotasComponent implements OnInit {
     if (rolCuotasList !== undefined && rolCuotasList.length > 0) {
       rolCuotasList[0].expanded = true;
     }
-
-
   }
+
+  public showHelp(): void {
+    const rolCuotasList = this.rolCuotasComponentList.toArray();
+    if (rolCuotasList !== undefined && rolCuotasList.length > 0) {
+      rolCuotasList[0].showHelp();
+    }
+  }
+
 }
