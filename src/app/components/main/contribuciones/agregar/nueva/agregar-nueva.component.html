@@ -63,7 +63,7 @@
         <div class="tgr-newsearch" [class.is-suggesting]="searchDireccion">
           <mdl-textfield type="text"
                          [class.is-invalid]="direccion.invalid && direccion.touched"
-                         (focus)="ocultarToolbar(); autoScroll();"
+                         (focus)="ocultarToolbar(); autoScrollBuscar();"
                          (blur)="mostrarToolbar(); existBusqueda()"
                          id="direccion"
                          name="direccion"
@@ -117,7 +117,7 @@
           </mdl-option>
         </mdl-select>
         <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
-                       (focus)="ocultarToolbar(); autoScroll();"
+                       (focus)="ocultarToolbar(); autoScrollBuscar();"
                        (blur)="mostrarToolbar()"
                        type="number"
                        id="rol"
@@ -129,7 +129,7 @@
                        floating-label></mdl-textfield>
         -
         <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
-                       (focus)="ocultarToolbar() ; autoScroll();"
+                       (focus)="ocultarToolbar() ; autoScrollBuscar();"
                        (blur)="mostrarToolbar()"
                        type="number"
                        id="subRol"
