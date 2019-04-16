@@ -269,6 +269,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.sinResultado = true;
       } else {
         this.agregarPropiedad(response);
+        this.onScroll();
       }
       this.offWait();
     }, () => {
@@ -553,7 +554,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   resetCaptcha2(): void {
-    this.captchaElem.resetCaptcha();
+    this.captchaElem.reloadCaptcha();
   }
 
   buscarRol() {
@@ -569,8 +570,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   validarCaptcha(): void {
-    this.captchaElem.reloadCaptcha();
-    this.captchaElem.resetCaptcha();
+    this.resetCaptcha2();
+    //this.captchaElem.reloadCaptcha();
+    //this.captchaElem.resetCaptcha();
     this.onWait();
     this.scriptService.cleanup();
     this.reCaptchaV3Service.execute(this.recaptcha3.siteKey, this.recaptcha3.action, (token) => {
