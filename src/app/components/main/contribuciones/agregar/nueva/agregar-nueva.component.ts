@@ -647,12 +647,16 @@ export class AgregarNuevaComponent implements OnInit {
   onScroll() {
 
 
+    let scrollHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+
+    const pos = scrollHeight - 340;
     setTimeout(
       () => {
-        window.scrollTo({top: 568, behavior: 'smooth'});
-        /*    this.scroll.nativeElement.scrollIntoView({behavior: 'smooth'});
-            const htmlScroll = this.scroll.nativeElement as HTMLElement;
-            htmlScroll.focus();*/
+        window.scrollTo({top: pos, behavior: 'smooth'});
       },
       200
     );
@@ -688,7 +692,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   autoScrollBuscar() {
+
     window.scrollTo({top: 220, behavior: 'smooth'});
+
 
     //window.scrollBy(4000, 0);
 
@@ -709,11 +715,14 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   private orderDirecciones(lista: Direccion[]) {
-    return lista.sort((a, b) => {
-      const rolA = PitUtils.calcularRol(a.rol, a.subrol, a.idComunaSii);
-      const rolB = PitUtils.calcularRol(b.rol, b.subrol, b.idComunaSii);
-      return rolA - rolB;
-    });
+    if (lista !== null) {
+      return lista.sort((a, b) => {
+        const rolA = PitUtils.calcularRol(a.rol, a.subrol, a.idComunaSii);
+        const rolB = PitUtils.calcularRol(b.rol, b.subrol, b.idComunaSii);
+        return rolA - rolB;
+      });
+    }
+    return lista;
   }
 
   mostrarPaginacion(): boolean {

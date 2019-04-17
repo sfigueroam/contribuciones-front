@@ -72,7 +72,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   toggle() {
-    this.someTooltip.hide();
+    if (this.someTooltip !== undefined) {
+      this.someTooltip.hide();
+    }
     if (this.rol.isComplete) {
       this.expanded = !this.expanded;
     } else {
