@@ -269,6 +269,7 @@ export class AgregarNuevaComponent implements OnInit {
         this.sinResultado = true;
       } else {
         this.agregarPropiedad(response);
+        this.onScroll();
       }
       this.offWait();
     }, () => {
@@ -553,7 +554,7 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   resetCaptcha2(): void {
-    this.captchaElem.resetCaptcha();
+    this.captchaElem.reloadCaptcha();
   }
 
   buscarRol() {
@@ -569,8 +570,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   validarCaptcha(): void {
-    this.captchaElem.reloadCaptcha();
-    this.captchaElem.resetCaptcha();
+    this.resetCaptcha2();
+    //this.captchaElem.reloadCaptcha();
+    //this.captchaElem.resetCaptcha();
     this.onWait();
     this.scriptService.cleanup();
     this.reCaptchaV3Service.execute(this.recaptcha3.siteKey, this.recaptcha3.action, (token) => {
@@ -645,12 +647,16 @@ export class AgregarNuevaComponent implements OnInit {
   onScroll() {
 
 
+    let scrollHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+
+    const pos = scrollHeight - 340;
     setTimeout(
       () => {
-        window.scrollTo({top: 568, behavior: 'smooth'});
-        /*    this.scroll.nativeElement.scrollIntoView({behavior: 'smooth'});
-            const htmlScroll = this.scroll.nativeElement as HTMLElement;
-            htmlScroll.focus();*/
+        window.scrollTo({top: pos, behavior: 'smooth'});
       },
       200
     );
@@ -686,7 +692,9 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   autoScrollBuscar() {
+
     window.scrollTo({top: 220, behavior: 'smooth'});
+
 
     //window.scrollBy(4000, 0);
 
@@ -707,11 +715,14 @@ export class AgregarNuevaComponent implements OnInit {
   }
 
   private orderDirecciones(lista: Direccion[]) {
-    return lista.sort((a, b) => {
-      const rolA = PitUtils.calcularRol(a.rol, a.subrol, a.idComunaSii);
-      const rolB = PitUtils.calcularRol(b.rol, b.subrol, b.idComunaSii);
-      return rolA - rolB;
-    });
+    if (lista !== null) {
+      return lista.sort((a, b) => {
+        const rolA = PitUtils.calcularRol(a.rol, a.subrol, a.idComunaSii);
+        const rolB = PitUtils.calcularRol(b.rol, b.subrol, b.idComunaSii);
+        return rolA - rolB;
+      });
+    }
+    return lista;
   }
 
   mostrarPaginacion(): boolean {
