@@ -270,7 +270,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
       direccionCuotasList[0].showHelp();
     }
-    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip');
+    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip-buttonAdd');
     this.someTooltip.show();
     setTimeout(
       () => {
