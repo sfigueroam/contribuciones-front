@@ -55,7 +55,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   showHelp() {
-    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip');
+    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip' + this.rol.rol);
     this.someTooltip.show();
     setTimeout(
       () => {
@@ -63,12 +63,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       },
       environment.tooltipTime
     );
-
-
   }
 
   ngAfterViewInit() {
-
   }
 
   toggle() {
