@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
 import {MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
@@ -31,14 +31,13 @@ import {PitUtils} from '../../../../../pit-utils';
   templateUrl: './agregar-nueva.component.html',
   styleUrls: ['./agregar-nueva.component.scss']
 })
-export class AgregarNuevaComponent implements OnInit {
+export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
 
   /*  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
     @ViewChild('scrollRol') scrollRol: ElementRef;*/
-
 
 
   wait = false;
@@ -198,6 +197,14 @@ export class AgregarNuevaComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    /*  setTimeout(
+        () => {
+          this.dialogCorreo();
+        },
+        200);*/
+  }
+
   ngOnInit() {
 
     this.dialogoRecuperarPropiedadesEmail = environment.dialogoRecuperarPropiedadesEmail;
@@ -223,21 +230,6 @@ export class AgregarNuevaComponent implements OnInit {
       this.error('Ocurrió un error al obtener los tipos de propiedades');
     });
 
-    if (!this.user.email && this.user.solicitarEmail && this.dialogoRecuperarPropiedadesEmail) {
-
-      const config = {
-        component: AsociarCorreoComponent,
-        isModal: true,
-        clickOutsideToClose: true
-      };
-
-      const pDialog = this.dialogService.showCustomDialog(config);
-      pDialog.subscribe((dialogReference: MdlDialogReference) => {
-        dialogReference.onHide().subscribe(
-          () => this.bottomToolbarHidden = false
-        );
-      });
-    }
 
     this.loadCantidadPropiedadesEnCarro();
 
@@ -691,22 +683,27 @@ export class AgregarNuevaComponent implements OnInit {
     });
   }
 
+  dialogCorreo(): void {
+
+    if (!this.user.email && this.user.solicitarEmail && this.dialogoRecuperarPropiedadesEmail) {
+      const config = {
+        component: AsociarCorreoComponent,
+        isModal: true,
+        clickOutsideToClose: true
+      };
+
+      const pDialog = this.dialogService.showCustomDialog(config);
+      /*pDialog.subscribe((dialogReference: MdlDialogReference) => {
+        dialogReference.onHide().subscribe(
+          () => this.bottomToolbarHidden = false
+        );
+      });*/
+    }
+
+  }
+
   autoScrollBuscar() {
-
     window.scrollTo({top: 220, behavior: 'smooth'});
-
-
-    //window.scrollBy(4000, 0);
-
-    /*if (this.switchActive === 'rol') {
-      this.scroll.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start'});
-      const htmlScroll = this.scrollRol.nativeElement as HTMLElement;
-      htmlScroll.focus();
-    } else {
-      this.scroll.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const htmlScroll = this.scrollDireccion.nativeElement as HTMLElement;
-      htmlScroll.focus();
-    }*/
   }
 
   cargarMasDirecciones() {
