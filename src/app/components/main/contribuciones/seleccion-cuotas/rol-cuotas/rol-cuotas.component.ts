@@ -55,7 +55,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   showHelp() {
-    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip');
+    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip-rol');
     this.someTooltip.show();
     setTimeout(
       () => {
