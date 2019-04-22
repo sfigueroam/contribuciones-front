@@ -459,17 +459,19 @@ html, body {
 
   p {
     margin-bottom: 0 !important;
+    line-height: 20px;
   }
 
   &.tooltip-right {
     position: absolute !important;
-    //top: 293px !important;
-    //left: 153px;
+    left: 50px !important;
   }
 
   &.tooltip-left {
     position: fixed !important;
-    //top: 658px !important;
+    left: 56px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
