@@ -1,47 +1,13 @@
 @import '../../../../styles/colors';
 
-.mdl-dialog {
-  width: 90%;
-  max-width: 500px;
-  top: calc(50% - 150px);
-  text-align: center;
-  @media (max-width: 540px) {
-    top: calc(10%);
-  }
-  @media (max-width: 350px) {
-    top: 2%;
-  }
-}
-.mdl-dialog__title{
-  font-size: 18px;
-  color: #000;
-}
-.mdl-dialog__title .material-icons{
-  color: #44B24E;
-  font-size: 50px;
-  display: block;
-  margin-bottom: -12px;
-}
-.mdl-dialog__content{
-  padding-bottom: 15px;
-}
-.mdl-dialog__content p{
-  font-size: 16px;
-  color: $gray-6;
-  letter-spacing: -0.1px;
-  margin-bottom: 20px;
-}
-.mdl-dialog__content span{
-  color: #000
-}
-.mdl-dialog__content .spam{
+.spam{
   font-size: 14px;
   font-style: italic;
   letter-spacing: -.3px;
-  width: 83%;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 0;
+  margin-bottom: 14px;
 }
 
 .inner-form{
@@ -57,36 +23,93 @@
 .mdl-textfield {
   width: 100%;
 }
-.mdl-dialog__actions{
-  margin-right: auto;
+
+// Nuevos estilos
+.close-dialog {
+  text-align: right;
+  cursor: pointer;
+  a {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    color: rgba(84, 84, 85, .4);
+  }
+}
+
+.dialog-body {
+  width: 95%;
   margin-left: auto;
-  text-align: center;
-  display: block;
-  width: 81.1%;
+  margin-right: auto;
+
+  h4 {
+    margin-top: 14px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: $color-dark-blue-text;
+    @media (min-width: 481px) {
+      font-size: 18px;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 14px;
+    color: $color-dark-gray;
+    @media (min-width: 481px) {
+      font-size: 16px;
+    }
+  }
+
+  .column {
+    .img-row {
+      display: inline-block;
+
+      .img-frame {
+        margin: 10px;
+        border: 5px solid #fff;
+        cursor: pointer;
+        @media (max-width: 480px) {
+          width: 60px;
+          height: auto;
+        }
+        @media (min-width: 481px) {
+          width: 100px;
+          height: auto;
+        }
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+
+        &:hover,
+        &:focus,
+        &:active {
+          -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+        }
+      }
+    }
+  }
 }
-.mdl-button {
-  font-weight: 400;
-}
-.mdl-button--primary {
-  display: block;
-  width: 100%;
-  margin-bottom: 20px;
-}
-.mdl-button--raised {
-  background: rgb(63,81,181);
-}
-.mdl-button:hover {
-  background-color: rgba(158,158,158, 0.20);
-  color: rgb(0,0,0);
-}
-.mdl-button--raised:hover {
-  background: rgb(63,81,181);
-  color: #fff;
-}
-.mdl-button--raised[disabled]:hover {
-  background-color: rgba(0,0,0, 0.12);
-  color: #fff;
-}
-.mdl-button--accent.mdl-button--accent {
-    color: rgb(63,81,181);
+.tgr-dialog__options {
+  display: flex;
+  flex-direction: column;
+  .mdl-button.button-primary-action {
+    width: 50%;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+    &[disabled] {
+      &:hover {
+        background-color: rgba(0,0,0, 0.12);
+      }
+    }
+  }
+  button:last-of-type {
+      @media (max-width: 365px) {
+          margin-bottom: 14px;
+      } 
+  }
 }

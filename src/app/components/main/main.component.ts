@@ -71,7 +71,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       const config = {
         component: AsociarCorreoComponent,
         isModal: true,
-        clickOutsideToClose: true
+        classes: 'dialogo-correo'
       };
 
       const pDialog = this.dialogService.showCustomDialog(config);

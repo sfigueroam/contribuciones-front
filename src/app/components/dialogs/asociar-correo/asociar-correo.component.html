@@ -1,7 +1,6 @@
 <!--mdl-dialog #dialog class="mdl-dialog tgr-dialog"-->
-<form [formGroup]="formEmail" *ngIf="estado === estados.init; else verification">
-  <h3 class="mdl-dialog__title">Bienvenido/a al Pago de Contribuciones</h3>
-  <div class="mdl-dialog__content">
+<form class="dialog-body" [formGroup]="formEmail" *ngIf="estado === estados.init; else verification">
+  <h4>Bienvenido/a al <strong>Pago de Contribuciones</strong></h4>
     <p>Para facilitar tu proceso, puedes comenzar a guardar las propiedades que agregues o recuperar un pago anterior
       ingresando
       tu correo electrónico.</p>
@@ -10,18 +9,16 @@
                      autofocus></mdl-textfield>
     </div>
 
-  </div>
-  <div class="mdl-dialog__actions">
-    <button mdl-button (click)="asociarCorreo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+  <div class="tgr-dialog__options">
+    <button class="mdl-button mdl-js-button mdl-button--primary button-primary-action" mdl-button (click)="asociarCorreo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
             [disabled]="!formEmail.valid">Continuar
     </button>
-    <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
+    <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
   </div>
 </form>
 <ng-template #verification>
-  <form [formGroup]="formCode">
-    <div class="mdl-dialog__content">
-      <p>
+  <form class="dialog-body" [formGroup]="formCode">
+      <p class="mt-25 mb-0">
         Para continuar, ingresa el código de 6 dígitos que enviamos a la siguiente dirección:
         <span>{{correo}}</span>
       </p>
@@ -33,13 +30,12 @@
         </p>
       </div>
 
-    </div>
-    <div class="mdl-dialog__actions">
-      <button mdl-button (click)="ingresarCodigo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
+    <div class="tgr-dialog__options">
+      <button class="mdl-button mdl-js-button mdl-button--primary button-primary-action" mdl-button (click)="ingresarCodigo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
               [disabled]="!formCode.valid">Continuar
       </button>      
-      <button mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
-      <button mdl-button (click)="otroCorreo()" mdl-ripple mdl-colored="accent">Ingresar otro correo</button>
+      <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" mdl-button (click)="close()" mdl-ripple>Continuar sin correo</button>
+      <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" mdl-button (click)="otroCorreo()" mdl-ripple mdl-colored="accent">Ingresar otro correo</button>
     </div>
   </form>
 </ng-template>
