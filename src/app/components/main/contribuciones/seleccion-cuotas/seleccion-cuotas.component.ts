@@ -6,7 +6,7 @@ import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
 import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
@@ -64,17 +64,26 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private user: UserService,
               private contribuciones: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
               private deviceDetectService: DeviceDetectService,
-              private dialogService: MdlDialogService,) {
+              private dialogService: MdlDialogService) {
+    this.route.queryParams.subscribe(val => {
+      if (val.refresh !== undefined && val.refresh === 'true') {
+        if (this.user.email !== undefined) {
+          this.ngOnInit();
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {
+  }
 
-
+  openHelp() {
     if (this.user.isFirst) {
       setTimeout(
         () => {
@@ -85,10 +94,13 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         1000
       );
     }
-
   }
 
   ngOnInit() {
+
+    if (this.user.email !== undefined) {
+    }
+
     this.complete = false;
     this.seleccionada = TipoCuota.TODAS;
     this.urlPagoTgr = environment.pago.url;
@@ -107,10 +119,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
     this.user.getBienesRaices().then(
       (propiedades) => {
-        if (propiedades != null && propiedades.length > 0) {
-          this.user.isFirst = false;
-        }
+
         this.propiedades = propiedades;
+        this.openHelp();
         this.contribuciones.cargarRoles().then(
           () => {
             this.complete = true;
@@ -272,6 +283,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
     this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip-buttonAdd');
     this.someTooltip.show();
+    this.user.isFirst = false;
     setTimeout(
       () => {
         this.someTooltip.hide();
