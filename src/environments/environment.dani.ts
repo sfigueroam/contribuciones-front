@@ -32,6 +32,7 @@ export const environment = {
   googleAnalyticsCode: 'UA-136994548-1',
   snackbarTime: 5000,
   tooltipTime: 5000,
+  viewTooltip: true,
   production: true,
   cuentaUrl: 'http://localhost:4201' + '/redirect',
   pago: {
@@ -52,7 +53,7 @@ export const environment = {
   certificados: {
     anoDesde: 1955,
   },
-  dialogoRecuperarPropiedadesEmail: false,
+  dialogoRecuperarPropiedadesEmail: true,
   lambda: {
     enviarMailCodigoVerificacion: {
       url: urlsBase.lambdaRoles,
