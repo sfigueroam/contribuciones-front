@@ -1,16 +1,17 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewContainerRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
-import {MdlDialogOutletService} from '@angular-mdl/core';
+import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
+import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
 
   logged: boolean;
   index: number;
@@ -19,6 +20,7 @@ export class MainComponent implements OnInit {
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
+              private dialogService: MdlDialogService,
               private cognito: CognitoService,
               private vcRef: ViewContainerRef,
               private mdlDialogService: MdlDialogOutletService) {
@@ -30,6 +32,13 @@ export class MainComponent implements OnInit {
     this.isActiveLogin = environment.isActiveLogin;
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(
+      () => {
+        this.dialogCorreo();
+      },
+      200);
+  }
   ngOnInit() {
 
     this.logged = this.user.isLogged();
@@ -54,5 +63,24 @@ export class MainComponent implements OnInit {
 
   logout() {
     this.cognito.logout();
+  }
+
+  dialogCorreo(): void {
+
+    if (!this.user.email && this.user.solicitarEmail && environment.dialogoRecuperarPropiedadesEmail) {
+      const config = {
+        component: AsociarCorreoComponent,
+        isModal: true,
+        clickOutsideToClose: true
+      };
+
+      const pDialog = this.dialogService.showCustomDialog(config);
+      /*pDialog.subscribe((dialogReference: MdlDialogReference) => {
+        dialogReference.onHide().subscribe(
+          () => this.bottomToolbarHidden = false
+        );
+      });*/
+    }
+
   }
 }

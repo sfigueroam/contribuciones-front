@@ -6,7 +6,7 @@ import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
 import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
@@ -64,12 +64,21 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private user: UserService,
               private contribuciones: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
               private deviceDetectService: DeviceDetectService,
-              private dialogService: MdlDialogService,) {
+              private dialogService: MdlDialogService) {
+    this.route.queryParams.subscribe(val => {
+      if (val.refresh !== undefined && val.refresh === 'true') {
+        if (this.user.email !== undefined) {
+          this.ngOnInit();
+          this.ngAfterViewInit();
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {
