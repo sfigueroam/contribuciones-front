@@ -65,19 +65,19 @@ export const environment = {
       method: 'POST'
     },
     recuperar: {
-      url: urlsBase.lambdaRoles,
-      path: '/recuperar',
-      method: 'POST'
+      url: urlsBase.api,
+      path: '/contribuciones/v1/usuarios/{idUsuario}/roles',
+      method: 'GET'
     },
     asociar: {
-      url: urlsBase.lambdaRoles,
-      path: '/asociar',
+      url: urlsBase.api,
+      path: '/contribuciones/v1/usuarios/{idUsuario}/roles',
       method: 'POST'
     },
     desasociar: {
-      url: urlsBase.lambdaRoles,
-      path: '/desasociar',
-      method: 'POST'
+      url: urlsBase.api,
+      path: '/contribuciones/v1/usuarios/{idUsuario}/roles/{rol}',
+      method: 'DELETE'
     }
   },
   servicios: {
