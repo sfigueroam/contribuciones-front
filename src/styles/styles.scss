@@ -464,7 +464,6 @@ html, body {
 
   &.tooltip-right {
     position: absolute !important;
-    left: 50px !important;
   }
 
   &.tooltip-left {
@@ -478,8 +477,13 @@ html, body {
 .tooltip-right[_nghost-c14]::after {
   border-right-color: $link-color !important;
 }
-
 .tooltip-left[_nghost-c14]::after {
+  border-left-color: $link-color !important;
+}
+.tooltip-right::after {
+  border-right-color: $link-color !important;
+}
+.tooltip-left::after {
   border-left-color: $link-color !important;
 }
 
