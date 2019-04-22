@@ -308,12 +308,11 @@ export class ContribucionesService {
   rolesRecuperar(correo: string): Promise<Propiedad[]> {
     return new Promise<Propiedad[]>(
       (resolve, reject) => {
-        const body = {
-          correo: correo
-        };
-        this.requestService.lambda(environment.lambda.recuperar, body).then(
-          (response: { listaRoles: { direccion: string, rolId: number, rolComunaSiiCod: number }[] }) => {
-            resolve(this.util.procesarPropiedades(response.listaRoles));
+        const rec = Object.assign({}, environment.lambda.recuperar);
+        rec.path = rec.path.replace('{idUsuario}', correo);
+        this.requestService.lambda(rec, {}).then(
+          (response: { curout: { direccion: string, rolId: number, rolComunaSiiCod: number }[] }) => {
+            resolve(this.util.procesarPropiedades(response.curout));
           },
           err => reject(err)
         );
@@ -324,11 +323,11 @@ export class ContribucionesService {
   desasociar(correo: string, rol: string): Promise<ResponseResultado> {
     return new Promise<ResponseResultado>(
       (resolve, reject) => {
-        const body = {
-          correo: correo,
-          rol: rol
-        };
-        this.requestService.lambda(environment.lambda.desasociar, body).then(
+        const body = {};
+        const rec = Object.assign({}, environment.lambda.desasociar);
+        rec.path = rec.path.replace('{idUsuario}', correo);
+        rec.path = rec.path.replace('{rol}', rol);
+        this.requestService.lambda(rec, body).then(
           response => resolve(new ResponseResultado(response)),
           err => reject(err)
         );

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MdlDialogReference, MdlSnackbarService} from '@angular-mdl/core';
 import {ContribucionesService, ResponseResultado} from '../../../services/contribuciones.service';
@@ -77,14 +77,25 @@ export class AsociarCorreoComponent implements OnInit {
       (resultado: ResponseResultado) => {
         if (resultado.ok()) {
           this.user.email = this.correo;
-          this.service.getBienesRaicesByEmail(this.correo).then(
+          this.service.propiedades = undefined;
+          this.router.navigate(['main/contribuciones/seleccionar-cuotas'], {
+            queryParams: {'refresh': true},
+            skipLocationChange: true
+          });
+          /*this.user.getBienesRaices().then(
             (propiedades) => {
               if (propiedades.length > 0) {
-                this.router.navigate(['main/contribuciones/seleccionar-cuotas']);
+                this.router.navigate(['main/contribuciones/seleccionar-cuotas'], {
+                  queryParams: {'refresh': true},
+                  skipLocationChange: true
+                });
+              } else {
+                this.router.navigate(['main/contribuciones/agregar/nueva']);
               }
               this.close();
             }
-          );
+          );*/
+          this.close();
         } else {
           this.mdlSnackbarService.showToast(resultado.descripcion);
         }

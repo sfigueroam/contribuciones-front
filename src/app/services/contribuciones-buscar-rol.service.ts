@@ -247,10 +247,12 @@ export class ContribucionesBuscarRolService {
     return new Promise<ResponseResultado>(
       (resolve, reject) => {
         const body = {
-          correo: correo,
-          rol: rol
+          rolin: rol
         };
-        this.requestService.lambda(environment.lambda.asociar, body).then(
+
+        const rec = Object.assign({}, environment.lambda.asociar);
+        rec.path = rec.path.replace('{idUsuario}', correo);
+        this.requestService.lambda(rec, body).then(
           response => resolve(new ResponseResultado(response)),
           err => reject(err)
         );
