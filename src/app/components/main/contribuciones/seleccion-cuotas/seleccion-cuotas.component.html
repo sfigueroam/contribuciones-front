@@ -59,7 +59,8 @@
 </div>
 
 <ng-template #bodySinDeuda>
-  <div class="tgr-container">
+
+  <div *ngIf="!obteniendoDatos" class="tgr-container">
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
         <p>Actualmente no tienes propiedades ni deudas en tu carro. Te invitamos a buscar y agregar propiedades para
@@ -74,6 +75,15 @@
           Agregar propiedades
         </button>
 
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="obteniendoDatos" class="tgr-container">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+        <p>Estamos recuperando tus propiedades</p>
       </div>
     </div>
   </div>

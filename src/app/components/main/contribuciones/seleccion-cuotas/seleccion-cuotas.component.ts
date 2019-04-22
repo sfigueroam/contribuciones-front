@@ -85,7 +85,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   openHelp() {
-    if (this.user.isFirst) {
+    if (this.user.isFirst && environment.viewTooltip) {
       setTimeout(
         () => {
           if (this.propiedades.length > 0) {

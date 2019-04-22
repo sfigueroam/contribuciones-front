@@ -31,6 +31,7 @@ export const environment = {
   googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
   snackbarTime: 5000,
   tooltipTime: 5000,
+  viewTooltip: true,
   production: true,
   //TODO: llamar a una url privada de cuenta de usuario sin client-id
   cuentaUrl: 'BUILD_CUENTA_USUARIO_URL' + '/redirect',
@@ -52,7 +53,7 @@ export const environment = {
   certificados: {
     anoDesde: 1955,
   },
-  dialogoRecuperarPropiedadesEmail: false,
+  dialogoRecuperarPropiedadesEmail: true,
   lambda: {
     enviarMailCodigoVerificacion: {
       url: urlsBase.lambdaRoles,
@@ -65,19 +66,19 @@ export const environment = {
       method: 'POST'
     },
     recuperar: {
-      url: urlsBase.lambdaRoles,
-      path: '/recuperar',
-      method: 'POST'
+      url: urlsBase.api,
+      path: '/contribuciones/v1/usuarios/{idUsuario}/roles',
+      method: 'GET'
     },
     asociar: {
-      url: urlsBase.lambdaRoles,
-      path: '/asociar',
+      url: urlsBase.api,
+      path: '/contribuciones/v1/usuarios/{idUsuario}/roles',
       method: 'POST'
     },
     desasociar: {
-      url: urlsBase.lambdaRoles,
-      path: '/desasociar',
-      method: 'POST'
+      url: urlsBase.api,
+      path: '/contribuciones/v1/usuarios/{idUsuario}/roles/{rol}',
+      method: 'DELETE'
     }
   },
   servicios: {
