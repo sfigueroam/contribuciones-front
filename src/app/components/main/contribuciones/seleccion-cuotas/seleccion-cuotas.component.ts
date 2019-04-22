@@ -75,15 +75,15 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       if (val.refresh !== undefined && val.refresh === 'true') {
         if (this.user.email !== undefined) {
           this.ngOnInit();
-          this.ngAfterViewInit();
         }
       }
     });
   }
 
   ngAfterViewInit() {
+  }
 
-
+  openHelp() {
     if (this.user.isFirst) {
       setTimeout(
         () => {
@@ -94,10 +94,13 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         1000
       );
     }
-
   }
 
   ngOnInit() {
+
+    if (this.user.email !== undefined) {
+    }
+
     this.complete = false;
     this.seleccionada = TipoCuota.TODAS;
     this.urlPagoTgr = environment.pago.url;
@@ -116,10 +119,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
     this.user.getBienesRaices().then(
       (propiedades) => {
-        if (propiedades != null && propiedades.length > 0) {
-          this.user.isFirst = false;
-        }
+
         this.propiedades = propiedades;
+        this.openHelp();
         this.contribuciones.cargarRoles().then(
           () => {
             this.complete = true;
@@ -281,6 +283,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
     this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip-buttonAdd');
     this.someTooltip.show();
+    this.user.isFirst = false;
     setTimeout(
       () => {
         this.someTooltip.hide();
