@@ -54,6 +54,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   existeVencidas = false;
   existeSoloVencidas = false;
   showVencidasPorRoles = false;
+  obteniendoDatos = false;
 
 
   selectedIcon: string;
@@ -91,19 +92,20 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.showHelp();
           }
         },
-        1000
+        2000
       );
     }
   }
 
   ngOnInit() {
 
-    if (this.user.email !== undefined) {
-    }
-
     this.complete = false;
     this.seleccionada = TipoCuota.TODAS;
     this.urlPagoTgr = environment.pago.url;
+    if (this.user.email) {
+      this.obteniendoDatos = true;
+    }
+
     this.user.getRolesNoAsociados().then(
       (props: Propiedad[]) => {
         this.rolesSugeridos = 0;
@@ -119,7 +121,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
     this.user.getBienesRaices().then(
       (propiedades) => {
-
         this.propiedades = propiedades;
         this.openHelp();
         this.contribuciones.cargarRoles().then(
@@ -127,17 +128,18 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.complete = true;
             this.abrirPrimerRol();
             this.calcularTotal();
+            this.obteniendoDatos = false;
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
                 () => {
                   //this.user.eliminarPropiedad(p.idDireccion);
                   this.calcularTotal();
-
                 }
               );
             }
           },
           err => {
+            this.obteniendoDatos = false;
             console.log(err);
             this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles', environment.snackbarTime);
           }
@@ -145,6 +147,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       },
       err => {
         console.log(err);
+        this.obteniendoDatos = false;
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades', environment.snackbarTime);
       }
     );

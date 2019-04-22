@@ -117,10 +117,11 @@
 
 
     <p *ngIf="existeVencidas && (result.vencidas != result.vencidasSeleccionadas)" class="monto-total beneficio">
-      Al pagar cuotas vencidas ya estás accediendo al beneficio de Condonación. Selecciona <strong>todas las cuotas vencidas de un ROL</strong> para conseguir un mayor beneficio a través de la Condonación por Pago Total.
+      Al pagar cuotas vencidas ya estás accediendo al beneficio de Condonación. Selecciona <strong>todas las cuotas
+      vencidas de un ROL</strong> para conseguir un mayor beneficio a través de la Condonación por Pago Total.
     </p>
 
-  <!-- *ngIf="condonacion > 0" -->
+    <!-- *ngIf="condonacion > 0" -->
     <div class="tgr-condonacion" *ngIf="existeVencidas">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">
@@ -151,8 +152,16 @@
 </div>
 
 <ng-template #footeractions>
-  <div class="tgr-actions tgr-mini-footer">
+  <div *ngIf="!obteniendoDatos" class="tgr-actions tgr-mini-footer">
     <p class="sin-deudas">No hay deudas seleccionadas para pagar</p>
+  </div>
+
+
+  <div *ngIf="obteniendoDatos" class="tgr-actions tgr-mini-footer">
+    <div class="tgr-loading2">
+      <mdl-spinner single-color active></mdl-spinner>
+      <p class="sin-deudas">Obteniendo Datos</p>
+    </div>
   </div>
 </ng-template>
 
