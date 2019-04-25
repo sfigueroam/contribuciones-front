@@ -73,7 +73,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               private deviceDetectService: DeviceDetectService,
               private dialogService: MdlDialogService) {
     this.route.queryParams.subscribe(val => {
-      if (val.refresh !== undefined && val.refresh === 'true') {
+      if (val.refresh !== undefined && val.refresh === 'true' && this.complete !== undefined) {
         if (this.user.email !== undefined) {
           this.ngOnInit();
         }
@@ -92,12 +92,13 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.showHelp();
           }
         },
-        2000
+        300
       );
     }
   }
 
   ngOnInit() {
+    console.log('ngOnInit', this.complete);
 
     this.complete = false;
     this.seleccionada = TipoCuota.TODAS;
@@ -282,6 +283,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   private showHelp() {
     const direccionCuotasList = this.direccionCuotasComponentList.toArray();
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
+      console.log('direccionCuotasList[0].showHelp();');
       direccionCuotasList[0].showHelp();
     }
     this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip-buttonAdd');

@@ -34,6 +34,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
               private mdlSnackbarService: MdlSnackbarService) {
+
+
   }
 
   ngOnInit() {
@@ -50,6 +52,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         );
       }
     );
+
+    console.log(this.rol.rol);
 
 
   }
