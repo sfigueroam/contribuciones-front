@@ -5,7 +5,7 @@
       ingresando
       tu correo electrónico.</p>
     <div class="inner-form">
-      <mdl-textfield type="text" [formControl]="email" label="Ingresa tu Correo Electrónico" floating-label
+      <mdl-textfield type="email" [formControl]="email" label="Ingresa tu Correo Electrónico" floating-label
                      autofocus></mdl-textfield>
     </div>
 
@@ -25,10 +25,10 @@
       <div class="inner-code">
         <mdl-textfield type="text" [formControl]="code" label="Código de verificación" floating-label
                        autofocus></mdl-textfield>
-        <p class="spam">
-          Si no ves el correo que enviamos, espera 5 minutos o revisa la carpeta de spam.
-        </p>
       </div>
+      <p class="spam">
+        Si no ves el correo que enviamos, espera 5 minutos o revisa la carpeta de spam.
+      </p>
 
     <div class="tgr-dialog__options">
       <button class="mdl-button mdl-js-button mdl-button--primary button-primary-action" mdl-button (click)="ingresarCodigo()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple
