@@ -21,6 +21,12 @@ const urlsBase = {
 };
 
 export const environment = {
+
+  //AmplifyConfig
+  region: 'us-east-1',
+  userPoolId: 'us-east-1_x7At9leBD',
+  userPoolWebClientId: '4a3ihbi3bvmlr5drfpm2roqv6g',
+
   paginacion: 20,
   frecuentesOrder: {
     H: 1,
