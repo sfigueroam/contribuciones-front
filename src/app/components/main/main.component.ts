@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewContainerRef} from '@angular/core'
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
-import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
+import {MdlDialogOutletService, MdlDialogReference, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
 
@@ -16,6 +16,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
+  isAuthenticatedEmail: boolean;
+  isActiveLoginEmail: boolean;
 
   constructor(route: ActivatedRoute,
               private router: Router,
@@ -24,6 +26,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               private cognito: CognitoService,
               private vcRef: ViewContainerRef,
               private mdlDialogService: MdlDialogOutletService) {
+    this.isAuthenticatedEmail = false;
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
     route.url.subscribe(() => {
@@ -39,9 +42,12 @@ export class MainComponent implements OnInit, AfterViewInit {
       },
       200);
   }
-  ngOnInit() {
 
+  ngOnInit() {
+    this.isActiveLoginEmail = environment.dialogoRecuperarPropiedadesEmail;
     this.logged = this.user.isLogged();
+
+
   }
 
   tabChanged({index}) {
@@ -65,21 +71,48 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.cognito.logout();
   }
 
-  dialogCorreo(): void {
+  public async cerrarSesion() {
+    await this.cognito.signOutEmail();
+    await this.validSession();
+    this.router.navigate(['/'], {
+      skipLocationChange: true
+    });
 
-    if (!this.user.email && this.user.solicitarEmail && environment.dialogoRecuperarPropiedadesEmail) {
+  }
+
+  public async validSession() {
+    this.isAuthenticatedEmail = await this.cognito.isAuthenticatedMail();
+
+  }
+
+  public async dialogCorreo() {
+
+    if (!this.user.email && this.user.solicitarEmail && this.isActiveLoginEmail) {
       const config = {
         component: AsociarCorreoComponent,
         isModal: true,
         classes: 'dialogo-correo'
       };
 
-      const pDialog = this.dialogService.showCustomDialog(config);
-      /*pDialog.subscribe((dialogReference: MdlDialogReference) => {
-        dialogReference.onHide().subscribe(
-          () => this.bottomToolbarHidden = false
-        );
-      });*/
+
+      await this.validSession();
+      if (!this.isAuthenticatedEmail) {
+        const pDialog = this.dialogService.showCustomDialog(config);
+        pDialog.subscribe((dialogReference: MdlDialogReference) => {
+          dialogReference.onHide().subscribe(
+            data => {
+              this.validSession();
+            }
+          );
+        });
+      } else {
+        const userDetails = await this.cognito.getUserDetails();
+        console.log(userDetails);
+        this.user.email = userDetails;
+        this.router.navigate(['main/contribuciones/seleccionar-cuotas'], {
+          skipLocationChange: true
+        });
+      }
     }
 
   }

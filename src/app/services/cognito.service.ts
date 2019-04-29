@@ -1,10 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {CookieService} from 'ngx-cookie-service';
 import {UserService} from './user.service';
 import {delay} from 'q';
 import {JwtCognitoService} from './jwt-cognito.service';
+import {Auth} from 'aws-amplify';
+import {DOCUMENT} from '@angular/common';
+import {CognitoUser} from 'amazon-cognito-identity-js';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +19,22 @@ export class CognitoService {
   jwt: string;
   exp: Date;
 
-  constructor(private cookie: CookieService, private user: UserService, private jwtCognito: JwtCognitoService) {
+  private cognitoUser: CognitoUser & { challengeParam: { email: string } };
+
+  private window: Window;
+
+  constructor(private cookie: CookieService,
+              private user: UserService,
+              private jwtCognito: JwtCognitoService,
+              @Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView;
     this.helper = new JwtHelperService();
     if (this.cookie.check(environment.cognito.jwtCookieName)) {
       this.init(this.cookie.get(environment.cognito.jwtCookieName));
       this.authenticate();
     }
+
+
   }
 
   loginUrl(): string {
@@ -145,5 +158,74 @@ export class CognitoService {
         resolve();
       }
     );
+  }
+
+  /**
+   *
+   * Metodos para validacion por Email
+   *
+   */
+
+  public async signInEmail(email: string) {
+    this.cognitoUser = await Auth.signIn(email).then().catch(err => {
+      if (err.code === 'UserNotFoundException') {
+        return this.signUpEmail(email);
+      }
+      throw err;
+    });
+  }
+
+  public async signOutEmail() {
+    await Auth.signOut();
+  }
+
+  public async signUpEmail(email: string) {
+    const params = {
+      username: email,
+      password: this.getRandomString(30),
+      attributes: {
+        name: email
+      }
+    };
+    await Auth.signUp(params);
+  }
+
+  public async answerCustomChallenge(answer: string) {
+    this.cognitoUser = await Auth.sendCustomChallengeAnswer(this.cognitoUser, answer);
+    return this.isAuthenticatedMail();
+  }
+
+  public async isAuthenticatedMail() {
+    try {
+      await Auth.currentSession();
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  private getRandomString(bytes: number) {
+    const randomValues = new Uint8Array(bytes);
+    this.window.crypto.getRandomValues(randomValues);
+    return Array.from(randomValues).map(this.intToHex).join('');
+  }
+
+  private intToHex(nr: number) {
+    return nr.toString(16).padStart(2, '0');
+  }
+
+  public async getUserDetails() {
+    const email = await Auth.currentUserInfo();
+    this.user.email = email.username;
+    return this.user.email;
+  }
+
+  public async getToken() {
+    let tokenReturn;
+    await Auth.currentSession().then(token => {
+      tokenReturn = token;
+    });
+
+    return tokenReturn.accessToken.jwtToken;
   }
 }

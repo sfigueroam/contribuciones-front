@@ -1,13 +1,25 @@
 <div class="demo-container demo-layout-transparent">
   <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-fixed-header>
     <mdl-layout-header mdl-layout-header>
-      <mdl-layout-header-row [class.is-active-login]="isActiveLogin">
+      <mdl-layout-header-row [class.is-active-login]="isActiveLogin || isActiveLoginEmail">
         <mdl-layout-spacer></mdl-layout-spacer>
         <a href="/">
           <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
         </a>
 
         <mdl-layout-spacer></mdl-layout-spacer>
+
+
+        <nav class="mdl-navigation" *ngIf="isActiveLoginEmail">
+          <button class="mdl-navigation__link cuenta-usuario" *ngIf="isAuthenticatedEmail"
+                  (click)="cerrarSesion()"
+                  mdl-button
+                  mdl-button-type="icon">
+            <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
+            <span class="account-user-text">Salir</span>
+          </button>
+        </nav>
+
         <nav class="mdl-navigation" *ngIf="isActiveLogin">
           <button class="mdl-navigation__link cuenta-usuario" *ngIf="!logged"
                   (click)="redirigirLogin()"

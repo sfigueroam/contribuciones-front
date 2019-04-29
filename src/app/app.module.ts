@@ -31,9 +31,9 @@ import {AsociarCorreoComponent} from './components/dialogs/asociar-correo/asocia
 import {NgxCaptchaModule} from 'ngx-captcha';
 import {LineaTiempoComponent} from './components/main/contribuciones/linea-tiempo/linea-tiempo.component';
 import {DeviceDetectorModule} from 'ngx-device-detector';
-import { DialogAgregarPropiedadComponent } from './components/main/contribuciones/agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
-import { AyudaDireccionComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
-import { AyudaRolComponent } from './components/main/contribuciones/agregar/nueva/modal/ayuda-rol/ayuda-rol.component';
+import {DialogAgregarPropiedadComponent} from './components/main/contribuciones/agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
+import {AyudaDireccionComponent} from './components/main/contribuciones/agregar/nueva/modal/ayuda-direccion/ayuda-direccion.component';
+import {AyudaRolComponent} from './components/main/contribuciones/agregar/nueva/modal/ayuda-rol/ayuda-rol.component';
 import {LightboxModule} from 'ngx-lightbox';
 import {AyudaCondonacionComponent} from './components/main/contribuciones/seleccion-cuotas/modal/ayuda-condonacion/ayuda-condonacion.component';
 import {ResumenComponent} from './components/main/contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
@@ -41,6 +41,7 @@ import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cu
 import {OrderModule} from 'ngx-order-pipe';
 import {RecordarComponent} from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
 import {TooltipModule} from 'ng2-tooltip-directive';
+import {AmplifyAngularModule, AmplifyService} from 'aws-amplify-angular';
 
 
 registerLocaleData(localeEs, 'es');
@@ -88,6 +89,7 @@ registerLocaleData(localeEs, 'es');
     LightboxModule,
     OrderModule,
     TooltipModule,
+    AmplifyAngularModule,
 
 
   ],
@@ -101,7 +103,8 @@ registerLocaleData(localeEs, 'es');
       provide: DISABLE_NATIVE_VALIDITY_CHECKING,
       useValue: true
     },
-    CookieService
+    CookieService,
+    AmplifyService,
   ],
   entryComponents: [
     AsociarCorreoComponent,

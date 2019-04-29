@@ -24,6 +24,7 @@ export class UserService {
   constructor(private contributions: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private buscarRoles: ContribucionesBuscarRolService) {
+
   }
 
   redirectMiCuenta(): void {

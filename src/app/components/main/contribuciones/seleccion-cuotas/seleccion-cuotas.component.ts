@@ -21,6 +21,7 @@ import {
 import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
 import {DireccionCuotasComponent} from './direccion-cuotas/direccion-cuotas.component';
 import {TooltipDirective} from 'ng2-tooltip-directive';
+import {CognitoService} from '../../../../services/cognito.service';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -71,7 +72,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
               private deviceDetectService: DeviceDetectService,
-              private dialogService: MdlDialogService) {
+              private dialogService: MdlDialogService,
+              private cognito: CognitoService,) {
     this.route.queryParams.subscribe(val => {
       if (val.refresh !== undefined && val.refresh === 'true' && this.complete !== undefined) {
         if (this.user.email !== undefined) {
@@ -97,7 +99,13 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit() {
+  public async obtenerEmail() {
+    return await this.cognito.getUserDetails();
+  }
+
+  async ngOnInit() {
+
+
     console.log('ngOnInit', this.complete);
 
     this.complete = false;
