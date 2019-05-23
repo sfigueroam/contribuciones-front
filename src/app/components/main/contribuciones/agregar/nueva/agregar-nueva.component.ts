@@ -35,7 +35,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
-
+      
   /*  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
     @ViewChild('scrollRol') scrollRol: ElementRef;*/
 
