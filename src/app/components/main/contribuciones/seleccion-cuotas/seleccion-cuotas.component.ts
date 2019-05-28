@@ -116,7 +116,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       },
       (err) => {
         console.log(err);
-        console.log(err);
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles sugeridos', environment.snackbarTime);
       }
     );
