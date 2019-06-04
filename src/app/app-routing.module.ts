@@ -8,6 +8,8 @@ import {CertificadosComponent} from './components/main/certificados/certificados
 import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 import {LoginComponent} from './components/login/login.component';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
+import {ErrorObtenerComponent} from './components/main/certificados/obtener/error-obtener/error-obtener.component'
+import {ObtenerCertificadoErrorComponent} from './components/main/certificados/obtener/error-obtener/obtener-certificado-error/obtener-certificado-error.component';
 
 const routes: Routes = [
   {
@@ -52,7 +54,10 @@ const routes: Routes = [
   }, {
     path: 'main/contribuciones/certificados/obtener',
     component: ObtenerComponent
-  },
+  }, {
+    path: 'main/contribuciones/certificados/obtener/error-obtener/obtener-certificado-error',
+    component: ObtenerCertificadoErrorComponent
+  }
 ];
 
 @NgModule({
