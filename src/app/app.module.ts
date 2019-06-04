@@ -41,9 +41,6 @@ import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cu
 import {OrderModule} from 'ngx-order-pipe';
 import {RecordarComponent} from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
 import {TooltipModule} from 'ng2-tooltip-directive';
-import { ErrorObtenerComponent } from './components/main/certificados/obtener/error-obtener/error-obtener.component';
-import { ObtenerCertificadoErrorComponent } from './components/main/certificados/obtener/error-obtener/obtener-certificado-error/obtener-certificado-error.component';
-import { ObtenerHistorialErrorComponent } from './components/main/certificados/obtener/error-obtener/obtener-historial-error/obtener-historial-error.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -76,9 +73,6 @@ registerLocaleData(localeEs, 'es');
     ResumenComponent,
     BotonPagarComponent,
     RecordarComponent,
-    ErrorObtenerComponent,
-    ObtenerCertificadoErrorComponent,
-    ObtenerHistorialErrorComponent,
   ],
   imports: [
     BrowserModule,
