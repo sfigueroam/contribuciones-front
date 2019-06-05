@@ -6,7 +6,6 @@
         <a href="/">
           <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
         </a>
-        <p>prueba {{name}} javier</p>
 
         <mdl-layout-spacer></mdl-layout-spacer>
         <nav class="mdl-navigation" *ngIf="isActiveLogin">
@@ -25,7 +24,7 @@
                   mdl-button
                   mdl-button-type="icon">
             <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
-           <span class="account-user-text">Mi TGR</span>
+           <span class="account-user-text">Mi TGR {{name}}</span>
           </button>
            <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
             
