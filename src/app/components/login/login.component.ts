@@ -24,9 +24,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         //prueba
-            console.log(value);
-            console.log(this.identity);
-            console.log(this.exp);
+            console.log(value.name);
             
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
