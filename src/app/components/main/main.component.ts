@@ -17,9 +17,6 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
-  //probando el @input para recibir el parametro que viene de login
-  @Input() name: string;
-
 
   constructor(route: ActivatedRoute,
               private router: Router,
