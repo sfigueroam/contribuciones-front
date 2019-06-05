@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         //prueba
-            console.log(value.name);
+          //  console.log(value.name);
             
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
@@ -40,5 +40,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.exp = this.cognito.getExpirationDate();
+    console.log(this.identity.name);
   }
 }
