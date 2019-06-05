@@ -5,6 +5,8 @@ import {CognitoService} from '../../services/cognito.service';
 import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
+import {LoginComponent} from '../login/login.component';
+
 
 
 @Component({
@@ -17,7 +19,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
-
+  //input de nombre de usuario
+  @Input() name: string;
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
