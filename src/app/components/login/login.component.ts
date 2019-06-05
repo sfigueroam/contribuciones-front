@@ -15,7 +15,7 @@ import * as jwt_decode from 'jwt-decode';
 export class LoginComponent implements OnInit {
 
   identity: any;
-
+  name: string;
   exp: Date;
   
 
@@ -23,9 +23,7 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        //prueba
-          //  console.log(value.name);
-            
+        this.name = value.name;
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
@@ -40,6 +38,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.exp = this.cognito.getExpirationDate();
-    console.log(this.identity.name);
+    console.log(this.name);
+    
   }
 }
