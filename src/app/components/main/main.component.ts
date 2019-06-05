@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
@@ -16,6 +16,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
+  @Input() public name: string;
+
 
   constructor(route: ActivatedRoute,
               private router: Router,
