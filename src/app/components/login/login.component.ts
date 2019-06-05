@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
         this.identity = value;
         this.name = value.name;
         this.user.getBienesRaices().then(
-          () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas'], { queryParams: { name }}),
+          () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
             console.log(err);
             this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
