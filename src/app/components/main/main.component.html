@@ -2,10 +2,11 @@
   <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-fixed-header>
     <mdl-layout-header mdl-layout-header>
       <mdl-layout-header-row [class.is-active-login]="isActiveLogin">
-        <mdl-layout-spacer>prueba javier</mdl-layout-spacer>
+        <mdl-layout-spacer></mdl-layout-spacer>
         <a href="/">
           <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
         </a>
+        <p>prueba {{name}} javier</p>
 
         <mdl-layout-spacer></mdl-layout-spacer>
         <nav class="mdl-navigation" *ngIf="isActiveLogin">
