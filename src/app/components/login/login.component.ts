@@ -15,15 +15,15 @@ import * as jwt_decode from 'jwt-decode';
 export class LoginComponent implements OnInit {
 
   identity: any;
-  name: string;
+  name: "nombre";
   exp: Date;
-  
+
 
   constructor(private cognito: CognitoService, private route: ActivatedRoute, private router: Router, private user: UserService) {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        this.name = "nombre";
+
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
