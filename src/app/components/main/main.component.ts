@@ -6,6 +6,7 @@ import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
