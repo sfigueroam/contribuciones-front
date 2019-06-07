@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   identity: any;
   name: any;
   exp: Date;
+  rut: string;
   
 
   constructor(private cognito: CognitoService, private route: ActivatedRoute, private router: Router, private user: UserService) {
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.name = value.name;
+        this.rut = value.cognito.username;
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
@@ -36,8 +38,8 @@ export class LoginComponent implements OnInit {
     this.exp = this.cognito.getExpirationDate();
     
     
-    console.log(this.identity);
-    console.log(this.identity.username);
+    console.log(this.name);
+    console.log(this.rut);
     
   }
 }
