@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.exp = this.cognito.getExpirationDate();
     
     
-    console.log(this.name);
+    console.log(this.identity);
     
   }
 }
