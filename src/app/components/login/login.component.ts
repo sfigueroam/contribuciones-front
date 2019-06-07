@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     
     
     console.log(this.identity);
+    console.log(this.identity.username);
     
   }
 }
