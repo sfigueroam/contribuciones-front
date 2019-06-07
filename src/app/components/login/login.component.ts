@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.name = value.name;
-        this.rut = value.cognito.username;
+        this.rut = value.username;
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     
     
     console.log(this.name);
+    console.log(this.identity);
     console.log(this.rut);
     
   }
