@@ -7,8 +7,8 @@ export class UserDataService {
 
   nombre_usuario: string;
   
+  
   constructor() { }
   
-  
-  
+
 }
