@@ -277,6 +277,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   buscarDireccionSugeridos() {
     if (this.direccion.value === '' || this.direccion.value === null) {
+      this.sinResultado = true;
       return;
     }
     this.inputDireccionesTmp = this.direccion.value;
