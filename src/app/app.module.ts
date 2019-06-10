@@ -41,7 +41,7 @@ import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cu
 import {OrderModule} from 'ngx-order-pipe';
 import {RecordarComponent} from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
 import {TooltipModule} from 'ng2-tooltip-directive';
-
+import {UserDataService} from './user-data.service';
 
 registerLocaleData(localeEs, 'es');
 
@@ -88,10 +88,9 @@ registerLocaleData(localeEs, 'es');
     LightboxModule,
     OrderModule,
     TooltipModule,
-
-
   ],
   providers: [
+    [UserDataService],
     {provide: 'windowObject', useValue: window},
     {
       provide: LOCALE_ID,
@@ -114,5 +113,4 @@ registerLocaleData(localeEs, 'es');
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CognitoService} from '../../services/cognito.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
+import {UserDataService} from '../../user-data.service';
 
 
 @Component({
@@ -13,15 +14,17 @@ export class LoginComponent implements OnInit {
   identity: any;
   name: any;
   exp: Date;
-  rut: string;
   
 
-  constructor(private cognito: CognitoService, private route: ActivatedRoute, private router: Router, private user: UserService) {
+  constructor(private cognito: CognitoService, 
+              private route: ActivatedRoute, 
+              private router: Router, 
+              private user: UserService,
+              private userdataservice: UserDataService) {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
         this.name = value.name;
-        this.rut = value.rut;
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
@@ -36,11 +39,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.exp = this.cognito.getExpirationDate();
-    
+    this.userdataservice.nombre_usuario = this.name;
     
     console.log(this.name);
-    console.log(this.identity);
-    console.log(this.rut);
     
   }
 }
