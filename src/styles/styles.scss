@@ -419,33 +419,50 @@ html, body {
 
 // INICIO HEADER
 .cuenta-usuario {
-    width: auto;
-    height: auto;
-    min-width: 100%;
-    text-transform: none;
-    border-radius: 0;
-    .mdl-button--account-user {
-        display: block;
-        margin-top: -5px;
-        transition: .4s;
-        &:hover {
-          background-color: rgba(84, 84, 85, .2);
-          border-radius: 50%;
-          width: 24px;
-          height: 24px;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  text-transform: none;
+  border-radius: 0;
+  .mdl-button--account-user {
+      display: block;
+      margin-top: -5px;
+      transition: .4s;
+      &:hover {
+        background-color: rgba(84, 84, 85, .2);
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+      }
+  }
+  span.account-user-text {
+      display: block;
+      margin-top: 26px;
+      color: $color-dark-gray;
+      span.user {
+        text-transform: lowercase;
+        &::first-letter {
+          text-transform: uppercase !important;
         }
-    }
-    span.account-user-text {
-        display: block;
-        margin-top: 26px;
-        color: $color-dark-gray;
-    }
-    &:hover,
-    &:active,
-    &:focus {
-        background-color: transparent !important;
-        color: $color-dark-gray !important;
-    }
+      }
+  }
+  &:hover,
+  &:active,
+  &:focus {
+      background-color: transparent !important;
+      color: $color-dark-gray !important;
+  }
+}
+
+.mdl-menu__container.is-visible {
+  right: -77px !important;
+  top: 51px !important;
+  @media (max-width: 480px) {
+    right: 27px !important;
+  }
+  @media (max-width: 839px) and (min-width: 481px) {
+    right: -43px !important;
+  }
 }
 // FIN HEADER
 
