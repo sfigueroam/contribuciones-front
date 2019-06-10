@@ -10,7 +10,5 @@ export class UserDataService {
   
   constructor() { }
   
-  primer_nombre = this.nombre_usuario.split(' ')[0];
-  
-  
+
 }
