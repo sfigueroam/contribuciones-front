@@ -25,6 +25,8 @@ import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.c
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
 import {PitUtils} from '../../../../../pit-utils';
+//Probando logeo
+import {CognitoService} from '../../../../../services/cognito.service';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -39,7 +41,9 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   /*  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
     @ViewChild('scrollRol') scrollRol: ElementRef;*/
 
-
+//Probando logeo
+  logged: boolean;
+  
   wait = false;
   sinResultado = false;
   searchDireccion = false;
@@ -206,6 +210,9 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    
+    //Probando logeo
+    this.logged = this.user.isLogged();
 
     this.dialogoRecuperarPropiedadesEmail = environment.dialogoRecuperarPropiedadesEmail;
 
