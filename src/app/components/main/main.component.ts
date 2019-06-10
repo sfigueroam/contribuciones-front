@@ -46,7 +46,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.logged = this.user.isLogged();
-    this.usuariologin = this.userdataservice.nombre_usuario;
+    this.usuariologin = this.userdataservice.primer_nombre;
   }
 
   tabChanged({index}) {
