@@ -24,14 +24,17 @@
                   mdl-button
                   mdl-button-type="icon">
             <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
-            <span class="account-user-text">Hola, nombreUsuario</span>
+           <span class="account-user-text"> {{usuariologin}}</span>
           </button>
            <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
+            
+            <!--
             <mdl-menu-item *ngIf="logged"
                            (click)="redirigirMiCuenta()"
                            mdl-ripple mdl-menu-item-full-bleed-divider>
               Mi Cuenta
             </mdl-menu-item>
+            -->
             <mdl-menu-item *ngIf="logged"
                            (click)="logout()"
                            mdl-ripple>

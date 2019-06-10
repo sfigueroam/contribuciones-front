@@ -27,7 +27,7 @@ export const environment = {
     L: 2,
     Z: 3
   },
-  isActiveLogin: false,
+  isActiveLogin: true,
   googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
   snackbarTime: 5000,
   tooltipTime: 5000,
@@ -53,7 +53,7 @@ export const environment = {
   certificados: {
     anoDesde: 1955,
   },
-  dialogoRecuperarPropiedadesEmail: true,
+  dialogoRecuperarPropiedadesEmail: false,
   lambda: {
     enviarMailCodigoVerificacion: {
       url: urlsBase.lambdaRoles,

@@ -14,7 +14,7 @@ export class BotonPagarComponent implements OnInit {
   total: number;
 
   @Input()
-  codigos: number;
+  codigos: string;
 
   urlPagoTgr: string;
 

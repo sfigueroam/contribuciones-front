@@ -1,10 +1,13 @@
-import {AfterViewInit, Component, OnInit, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
 import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
+import {UserDataService} from '../../user-data.service';
+
+
 
 @Component({
   selector: 'app-main',
@@ -16,14 +19,15 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
-
+  usuariologin: string;
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
               private dialogService: MdlDialogService,
               private cognito: CognitoService,
               private vcRef: ViewContainerRef,
-              private mdlDialogService: MdlDialogOutletService) {
+              private mdlDialogService: MdlDialogOutletService,
+              private userdataservice: UserDataService) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
     route.url.subscribe(() => {
@@ -42,6 +46,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.logged = this.user.isLogged();
+    this.usuariologin = this.userdataservice.nombre_usuario;
   }
 
   tabChanged({index}) {
