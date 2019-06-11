@@ -19,7 +19,11 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
+  usuariologinmay: string;
   usuariologin: string;
+  usuario1: string;
+  usuario2: string;
+  usuario2min: string;
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
@@ -35,7 +39,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     });
     this.isActiveLogin = environment.isActiveLogin;
   }
-
+  
   ngAfterViewInit(): void {
     setTimeout(
       () => {
@@ -46,8 +50,20 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.logged = this.user.isLogged();
-    this.usuariologin = this.userdataservice.nombre_usuario.split(' ')[0];
-  }
+    if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null){
+      this.usuariologin = 'Contribuyente';
+    }   else{
+        this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
+        this.usuario1 = this.usuariologinmay.substring(0,1);
+        this.usuario2 = this.usuariologinmay.substring(1,100);
+        this.usuario2min = this.usuario2.toLowerCase();
+        this.usuariologin = this.usuario1.concat(this.usuario2min);
+        console.log(this.usuario1);
+        console.log(this.usuario2);
+        console.log(this.usuario2min);
+        console.log(this.usuariologin);
+      }
+    }
 
   tabChanged({index}) {
     this.index = index;
