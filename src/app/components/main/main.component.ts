@@ -50,17 +50,20 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.logged = this.user.isLogged();
-    this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
-    this.usuario1 = this.usuariologinmay.substring(0,1);
-    this.usuario2 = this.usuariologinmay.substring(1,100);
-    this.usuario2min = this.usuario2.toLowerCase();
-    this.usuariologin = this.usuario1.concat(this.usuario2min);
-    console.log(this.usuario1);
-    console.log(this.usuario2);
-    console.log(this.usuario2min);
-    console.log(this.usuariologin);
-    
-  }
+    if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null){
+      this.usuariologin = 'Usuario Autenticado';
+    }   else{
+        this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
+        this.usuario1 = this.usuariologinmay.substring(0,1);
+        this.usuario2 = this.usuariologinmay.substring(1,100);
+        this.usuario2min = this.usuario2.toLowerCase();
+        this.usuariologin = this.usuario1.concat(this.usuario2min);
+        console.log(this.usuario1);
+        console.log(this.usuario2);
+        console.log(this.usuario2min);
+        console.log(this.usuariologin);
+      }
+    }
 
   tabChanged({index}) {
     this.index = index;
