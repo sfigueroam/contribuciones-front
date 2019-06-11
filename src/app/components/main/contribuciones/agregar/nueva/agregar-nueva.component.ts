@@ -347,6 +347,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   private agregarPropiedad(response: Propiedad) {
     if (this.propiedades === undefined || this.propiedades == null) {
+      this.sinResultado = true;
       this.propiedades = [];
     }
     let estado = false;
