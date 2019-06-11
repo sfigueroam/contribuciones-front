@@ -51,8 +51,8 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     this.logged = this.user.isLogged();
     this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
-    this.usuario1 = this.usuariologinmay.substring(1,1);
-    this.usuario2 = this.usuariologinmay.substring(2,100);
+    this.usuario1 = this.usuariologinmay.substring(0,1);
+    this.usuario2 = this.usuariologinmay.substring(1,100);
     this.usuario2min = this.usuario2.toLowerCase();
     this.usuariologin = this.usuario1.concat(this.usuario2min);
     console.log(this.usuario1);
