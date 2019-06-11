@@ -1,42 +1,50 @@
 <div class="tgr-container ">
-  <div class="tgr-loading ->>hidden" [class.hidden]="hidden">
-    <figure>
-      <img class="tgr-star" src="../../../../assets/estrella.png" alt="">
-      <img class="tgr-tgr" src="../../../../assets/tgr.png" alt="">
-      <mdl-spinner single-color active></mdl-spinner>
-      <figcaption>Cargando</figcaption>
-    </figure>
+  <!--<div class="tgr-loading ->>hidden" [class.hidden]="hidden">-->
+  <!--  <figure>-->
+  <!--    <img class="tgr-star" src="../../../../assets/estrella.png" alt="">-->
+  <!--    <img class="tgr-tgr" src="../../../../assets/tgr.png" alt="">-->
+  <!--    <mdl-spinner single-color active></mdl-spinner>-->
+  <!--    <figcaption>Cargando</figcaption>-->
+  <!--  </figure>-->
+  <!--</div>-->
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col m-0auto pay-title">
+      <h5 class="title text-center text-mont">Propiedades <strong>Sugeridas</strong></h5>
+    </div>
   </div>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col m-0auto tgr-results">
+      <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+                     (change)="updateSeleccionadaTotal()">
+      </app-propiedad>
+    </div>
 
-  <div class="tgr-results">
-    <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
-                   (change)="updateSeleccionadaTotal()">
-    </app-propiedad>
-  </div>
-
-  <div class="tgr-actions">
-    <div class="tgr-actions__content">
-      <!--<div class="tgr-white">
-        <div class="tgr-cell-wait">
-          <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
+    <div class="tgr-actions">
+      <div class="tgr-actions__content">
+        <!--<div class="tgr-white">
+          <div class="tgr-cell-wait">
+            <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
+            </div>
+            <h5 class="tgr-cell-wait__feedback"></h5>
           </div>
-          <h5 class="tgr-cell-wait__feedback"></h5>
+        </div>-->
+        <div class="tgr-pay tgr-sugeridas">
+  
+          <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link"  (click)="volver()" >
+            Volver
+          </button>
+          
+          <button *ngIf="!cantidadSeleccionadas || cantidadSeleccionadas == 0" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
+            <div>Seleccione un rol</div>
+          </button>
+          
+          <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0" type="button"
+                  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="agregarPropiedad()">
+            <div *ngIf="cantidadSeleccionadas > 1; else uno">Agregar {{cantidadSeleccionadas}} propiedades</div>
+            <ng-template #uno>Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
+          </button>
+  
         </div>
-      </div>-->
-      <div class="tgr-pay tgr-sugeridas">
-        <button *ngIf="cantidadSeleccionadas && cantidadSeleccionadas != 0" type="button"
-                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="agregarPropiedad()">
-          <div *ngIf="cantidadSeleccionadas > 1; else uno">Agregar {{cantidadSeleccionadas}} propiedades</div>
-          <ng-template #uno>Agregar {{cantidadSeleccionadas}} propiedad</ng-template>
-        </button>
-
-        <button *ngIf="!cantidadSeleccionadas || cantidadSeleccionadas == 0" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
-          <div>Seleccione un rol</div>
-        </button>
-
-        <button type="button" class="mdl-button  mdl-button--raised mdl-button--return"  (click)="volver()" >
-          Volver
-        </button>
       </div>
     </div>
   </div>
