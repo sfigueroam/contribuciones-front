@@ -439,12 +439,12 @@ html, body {
       display: block;
       margin-top: 26px;
       color: $color-dark-gray;
-      span.user {
-        text-transform: lowercase;
-        &::first-letter {
-          text-transform: uppercase !important;
-        }
-      }
+      // span.user {
+      //   text-transform: lowercase;
+      //   &::first-letter {
+      //     text-transform: uppercase !important;
+      //   }
+      // }
   }
   &:hover,
   &:active,
