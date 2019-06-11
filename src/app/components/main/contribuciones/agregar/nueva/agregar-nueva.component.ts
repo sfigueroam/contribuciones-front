@@ -380,6 +380,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   buscarDireccionPostRecaptcha(tokenCaptcha: string, tipo: TipoRecaptcha) {
     if (this.direccion.value === '' || this.direccion.value === null) {
+      this.sinResultado = true; //borrar si no funciona
       return;
     }
     this.onWait();
