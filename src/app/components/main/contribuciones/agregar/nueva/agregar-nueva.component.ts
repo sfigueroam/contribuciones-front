@@ -329,6 +329,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
       this.inputDireccionesTmp = '';
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
+      this.sinResultado = true;
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
       if (this.direccion.value != null && this.direccion.value.length > 2) {
@@ -347,7 +348,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   private agregarPropiedad(response: Propiedad) {
     if (this.propiedades === undefined || this.propiedades == null) {
-      this.sinResultado = true;
       this.propiedades = [];
     }
     let estado = false;
