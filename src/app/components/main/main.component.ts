@@ -21,6 +21,9 @@ export class MainComponent implements OnInit, AfterViewInit {
   isActiveLogin: boolean;
   usuariologinmay: string;
   usuariologin: string;
+  usuario1: string;
+  usuario2: string;
+  usuario2min: string;
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
@@ -37,10 +40,6 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.isActiveLogin = environment.isActiveLogin;
   }
   
-  primeraMayuscula(string){
-  return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-  
   ngAfterViewInit(): void {
     setTimeout(
       () => {
@@ -52,7 +51,14 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     this.logged = this.user.isLogged();
     this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
-    this.usuariologin = this.primeraMayuscula(this.usuariologinmay.toLowerCase);
+    this.usuario1 = this.usuariologinmay.substring(1,1);
+    this.usuario2 = this.usuariologinmay.substring(2,100);
+    this.usuario2min = this.usuario2.toLowerCase();
+    this.usuariologin = this.usuario1.concat(this.usuario2min);
+    console.log(this.usuario1);
+    console.log(this.usuario2);
+    console.log(this.usuario2min);
+    console.log(this.usuariologin);
     
   }
 
