@@ -25,7 +25,7 @@
       <span class="rol-total" [class.tgr-tr--late]="rol.expired" *ngIf="rol.total >= 0"
             (click)="toggle()">$ {{rol.total | number}}</span>
       <button class="mdl-button mdl-js-button mdl-button--icon pointer delete-this-rol" (click)="delete()">
-        <i class="material-icons">close</i>
+        <i class="material-icons">cancel</i>
       </button>
     </div>
   </mdl-card-title>

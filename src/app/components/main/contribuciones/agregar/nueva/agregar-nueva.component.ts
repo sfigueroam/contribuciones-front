@@ -25,6 +25,8 @@ import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.c
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
 import {PitUtils} from '../../../../../pit-utils';
+//Probando logeo
+import {CognitoService} from '../../../../../services/cognito.service';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -35,10 +37,12 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
-      
+
   /*  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
     @ViewChild('scrollRol') scrollRol: ElementRef;*/
 
+//Probando logeo
+  logged: boolean;
 
   wait = false;
   sinResultado = false;
@@ -207,6 +211,9 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
+    //Probando logeo
+    this.logged = this.user.isLogged();
+
     this.dialogoRecuperarPropiedadesEmail = environment.dialogoRecuperarPropiedadesEmail;
 
     this.contribucionesBuscarRol.getComunas().then((data) => {
@@ -277,6 +284,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   buscarDireccionSugeridos() {
     if (this.direccion.value === '' || this.direccion.value === null) {
+      this.sinResultado = true;
       return;
     }
     this.inputDireccionesTmp = this.direccion.value;
@@ -321,6 +329,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
       this.inputDireccionesTmp = '';
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
+      this.sinResultado = true;
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
       if (this.direccion.value != null && this.direccion.value.length > 2) {

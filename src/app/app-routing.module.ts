@@ -9,6 +9,7 @@ import {AgregarComponent} from './components/main/contribuciones/agregar/agregar
 import {LoginComponent} from './components/login/login.component';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -52,7 +53,7 @@ const routes: Routes = [
   }, {
     path: 'main/contribuciones/certificados/obtener',
     component: ObtenerComponent
-  },
+  }
 ];
 
 @NgModule({

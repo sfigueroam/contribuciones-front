@@ -27,6 +27,7 @@
     "@angular/router": "^6.1.0",
     "@auth0/angular-jwt": "^2.0.0",
     "core-js": "^2.5.4",
+    "jwt-decode": "^2.2.0",
     "match-sorter": "^2.3.0",
     "ng2-tooltip-directive": "^2.1.9",
     "ngx-barcode": "^0.2.4",

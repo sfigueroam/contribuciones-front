@@ -6,6 +6,8 @@ import {CertificadoDeuda} from '../../../../domain/CertificadoDeuda';
 import {Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 
+declare let ga: Function;
+
 @Component({
   selector: 'app-obtener',
   templateUrl: './obtener.component.html',
@@ -55,18 +57,26 @@ export class ObtenerComponent implements OnInit {
             err => {
               console.error(err);
               this.mdlSnackbarService.showToast('Ocurrió un error al obtener el certificado de deuda', environment.snackbarTime);
+              //inclusión de google analytics en manejo de errores
+              /*
+              ga('send', 'exception', {
+              'exDescription': err.message,
+              'exFatal': false
+            });*/
+  
             }
           )
         );
       }
       if (this.historialPago) {
         promises.push(
-          this.service.getHistorialPago(rolId, this.ano).then(
-            historialPago => certificado.pago = historialPago,
-            err => {
-              console.error(err);
-              this.mdlSnackbarService.showToast('Ocurrió un error al obtener el historial de pago', environment.snackbarTime);
-            }
+    //      try {
+            this.service.getHistorialPago(rolId, this.ano).then(
+              historialPago => certificado.pago = historialPago,
+              err => {
+                console.error(err);
+                this.mdlSnackbarService.showToast('Ocurrió un error al obtener el historial de pago', environment.snackbarTime);
+              }
           )
         );
       }
