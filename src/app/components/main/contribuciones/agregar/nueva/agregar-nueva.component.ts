@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
@@ -284,7 +285,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   buscarDireccionSugeridos() {
     if (this.direccion.value === '' || this.direccion.value === null) {
-      this.sinResultado = true;
       return;
     }
     this.inputDireccionesTmp = this.direccion.value;
