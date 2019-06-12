@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ContribucionesBuscarRolService} from '../../../../../services/contribuciones-buscar-rol.service';
 import {Localidad} from '../../../../../domain/Localidad';
