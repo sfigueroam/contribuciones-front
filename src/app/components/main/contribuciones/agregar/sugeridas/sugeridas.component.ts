@@ -71,7 +71,8 @@ export class SugeridasComponent implements OnInit {
     }
     this.user.asociarRoles(roles).then(() => {
         this.contribuciones.propiedades = undefined;
-        this.sugeridas.clearPropiedades();
+        console.log('deberia ejecutar clearPropiedades') //borrar
+        //this.sugeridas.clearPropiedades(); 
         this.cargarRolesNoAsociados().then(() => {
           this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
         });
