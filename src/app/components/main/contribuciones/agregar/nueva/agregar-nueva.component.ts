@@ -70,6 +70,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   cantidadSeleccionadas: number;
   hidden: boolean;
+  resultadoSinPropiedades = 0;
 
   inputDireccionesTmp = '';
 
@@ -293,18 +294,22 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     if (tipoPropiedad === -1) {
       tipoPropiedad = '';
     }
-
+  
     this.contribucionesBuscarRol.searchDireccion(undefined,
       tipoPropiedad,
       this.direccion.value,
       size, false, null, null).then((lista) => {
+        
         this.direcciones = lista;
+
         if(this.direcciones == null || this.direcciones == undefined){ //cambio de victor Tomé
             this.sinResultado= true;}
+
       },
       err => {
         this.error(err);
       });
+    
   }
 
   onWait(): void {
@@ -397,6 +402,9 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
         lista = this.orderDirecciones(lista);
         this.direcciones = lista;
+        if(this.direcciones == null || this.direcciones == undefined){
+          console.log('entre aca y no hay resultados');
+          this.sinResultado=true;}
         this.page = 1;
         this.agregarDireccionesAPropiedad();
         this.offWait();
