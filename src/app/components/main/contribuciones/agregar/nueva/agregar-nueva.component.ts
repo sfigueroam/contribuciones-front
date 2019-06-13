@@ -301,9 +301,10 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
       size, false, null, null).then((lista) => {
         
         this.direcciones = lista;
-        if(this.direcciones == null || this.direcciones == undefined){
-          console.log('no hay resultados');
-          this.sinResultado= true;}
+
+        if(this.direcciones == null || this.direcciones == undefined){ //cambio de victor Tomé
+            this.sinResultado= true;}
+
       },
       err => {
         this.error(err);
