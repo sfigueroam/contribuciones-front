@@ -61,7 +61,6 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.usuariologin = this.usuario1.concat(this.usuario2min);
         console.log(this.usuario1);
         console.log(this.usuario2);
-        console.log(this.usuario2min);
         console.log(this.usuariologin);
       }
     }
