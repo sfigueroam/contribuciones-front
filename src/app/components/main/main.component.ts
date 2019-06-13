@@ -83,8 +83,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.cognito.redirectLogin();
   }
 
-  logout() {
-    this.cognito.logout();
+  logout() {    
     console.log('despues logout antes de redirigir');
     this.router.navigate(['/main/contribuciones/agregar/nueva']);
     console.log('redirigir');
@@ -93,6 +92,8 @@ export class MainComponent implements OnInit, AfterViewInit {
             location.reload();
         });
     console.log('refresh');
+    this.cognito.logout();
+
   }
 
   dialogCorreo(): void {
