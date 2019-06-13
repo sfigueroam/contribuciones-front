@@ -85,7 +85,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.cognito.logout();
-    this.router.navigate(['/main/contribuciones/agregar/nueva']);
+    this.router.navigate(['/main/contribuciones/agregar/nueva'])
     //reload de la pagina cambio jmora
     this.zone.runOutsideAngular(() => {
             location.reload();
