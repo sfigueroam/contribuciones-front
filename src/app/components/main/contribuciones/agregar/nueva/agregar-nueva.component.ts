@@ -25,8 +25,8 @@ import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.c
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
 import {PitUtils} from '../../../../../pit-utils';
-//Probando logeo
-import {CognitoService} from '../../../../../services/cognito.service';
+//cambio jmora
+import {LineaTiempoComponent} from '../../linea-tiempo/linea-tiempo.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -110,7 +110,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
               private reCaptchaV3Service: ReCaptchaV3Service,
               private scriptService: ScriptService,
               private deviceDetectService: DeviceDetectService,
-              private recaptchaService: RecaptchaService) {
+              private recaptchaService: RecaptchaService,
+              private lineaTiempoComponent: LineaTiempoComponent) {
 
     this.recaptcha2 = new TgrReCaptcha();
     this.viewRecaptcha2 = false;
@@ -211,6 +212,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.lineaTiempoComponent.buscar = true;
+    
     
     //Probando logeo
     this.logged = this.user.isLogged();
@@ -403,7 +406,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
         lista = this.orderDirecciones(lista);
         this.direcciones = lista;
         if(this.direcciones == null || this.direcciones == undefined){
-          console.log('entre aca y no hay resultados');
           this.sinResultado=true;}
         this.page = 1;
         this.agregarDireccionesAPropiedad();
