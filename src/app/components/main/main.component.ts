@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewContainerRef, NgZone} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
@@ -31,7 +31,8 @@ export class MainComponent implements OnInit, AfterViewInit {
               private cognito: CognitoService,
               private vcRef: ViewContainerRef,
               private mdlDialogService: MdlDialogOutletService,
-              private userdataservice: UserDataService) {
+              private userdataservice: UserDataService,
+              private zone: NgZone) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
     route.url.subscribe(() => {
