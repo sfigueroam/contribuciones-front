@@ -51,7 +51,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.logged = this.user.isLogged();
-    if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null){
+    if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null || this.userdataservice.nombre_usuario === undefined){
       this.usuariologin = 'Contribuyente';
     }   else{
         this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
