@@ -189,7 +189,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   onChange() {
-    console.log('ejecuta recalcularTipo en onChange()'); //borrar
     this.recalcularTipo();
   }
 

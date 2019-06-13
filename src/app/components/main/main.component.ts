@@ -84,6 +84,10 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.cognito.logout();
+    //reload de la pagina cambio jmora
+    this.zone.runOutsideAngular(() => {
+            location.reload();
+        });
   }
 
   dialogCorreo(): void {
