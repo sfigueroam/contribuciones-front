@@ -25,8 +25,6 @@ import {AyudaDireccionComponent} from './modal/ayuda-direccion/ayuda-direccion.c
 import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
 import {PitUtils} from '../../../../../pit-utils';
-//cambio jmora
-import {LineaTiempoComponent} from '../../linea-tiempo/linea-tiempo.component';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -110,8 +108,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
               private reCaptchaV3Service: ReCaptchaV3Service,
               private scriptService: ScriptService,
               private deviceDetectService: DeviceDetectService,
-              private recaptchaService: RecaptchaService,
-              private lineaTiempoComponent: LineaTiempoComponent) {
+              private recaptchaService: RecaptchaService) {
 
     this.recaptcha2 = new TgrReCaptcha();
     this.viewRecaptcha2 = false;
@@ -212,9 +209,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.lineaTiempoComponent.buscar = true;
-    
-    
+
     //Probando logeo
     this.logged = this.user.isLogged();
 
