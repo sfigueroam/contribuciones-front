@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         );
       }
     );
-  }
+  } 
 
   ngOnInit() {
 
@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     this.userdataservice.nombre_usuario = this.name;
     
     console.log(this.name);
+    console.log(this.identity); // probar contenido token cognito
     
   }
 }

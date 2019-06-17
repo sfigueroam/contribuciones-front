@@ -37,7 +37,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
-      
+
   /*  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
     @ViewChild('scrollRol') scrollRol: ElementRef;*/
 
@@ -211,7 +211,11 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61d8c75f9e14aa737f1e0c1ecb2bb325c23af2a4
     //Probando logeo
     this.logged = this.user.isLogged();
 
@@ -285,6 +289,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   buscarDireccionSugeridos() {
     if (this.direccion.value === '' || this.direccion.value === null) {
+      this.sinResultado = true;
       return;
     }
     this.inputDireccionesTmp = this.direccion.value;
@@ -335,6 +340,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
       this.inputDireccionesTmp = '';
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
+      this.sinResultado = true;
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
       if (this.direccion.value != null && this.direccion.value.length > 2) {
@@ -403,7 +409,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
         lista = this.orderDirecciones(lista);
         this.direcciones = lista;
         if(this.direcciones == null || this.direcciones == undefined){
-          console.log('entre aca y no hay resultados');
           this.sinResultado=true;}
         this.page = 1;
         this.agregarDireccionesAPropiedad();

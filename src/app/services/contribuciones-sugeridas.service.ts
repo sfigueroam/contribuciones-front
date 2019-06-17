@@ -76,7 +76,6 @@ export class ContribucionesSugeridasService {
   }
 
   clearPropiedades() {
-    console.log('realiza clear a propiedades'); //borrar
     this.rolesNoAsociados = undefined;
   }
 }
