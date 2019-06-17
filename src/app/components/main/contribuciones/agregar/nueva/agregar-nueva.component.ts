@@ -43,7 +43,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
 //Probando logeo
   logged: boolean;
-
+  
   wait = false;
   sinResultado = false;
   searchDireccion = false;
@@ -70,6 +70,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   cantidadSeleccionadas: number;
   hidden: boolean;
+  resultadoSinPropiedades = 0;
 
   inputDireccionesTmp = '';
 
@@ -211,6 +212,10 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61d8c75f9e14aa737f1e0c1ecb2bb325c23af2a4
     //Probando logeo
     this.logged = this.user.isLogged();
 
@@ -294,16 +299,22 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     if (tipoPropiedad === -1) {
       tipoPropiedad = '';
     }
-
+  
     this.contribucionesBuscarRol.searchDireccion(undefined,
       tipoPropiedad,
       this.direccion.value,
       size, false, null, null).then((lista) => {
+        
         this.direcciones = lista;
+
+        if(this.direcciones == null || this.direcciones == undefined){ //cambio de victor Tomé
+            this.sinResultado= true;}
+
       },
       err => {
         this.error(err);
       });
+    
   }
 
   onWait(): void {
@@ -397,6 +408,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
         lista = this.orderDirecciones(lista);
         this.direcciones = lista;
+        if(this.direcciones == null || this.direcciones == undefined){
+          this.sinResultado=true;}
         this.page = 1;
         this.agregarDireccionesAPropiedad();
         this.offWait();

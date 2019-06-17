@@ -75,6 +75,7 @@
                          label="Dirección"
                          error-msg="Debe ingresar al menos 3 caracteres">
           </mdl-textfield>
+          
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion"
                   type="submit"
                   [disabled]="formDireccion.invalid">
@@ -155,8 +156,8 @@
     </form>
   </div>
 </div>
-<div class="mdl-cell mdl-cell--8-col results-not-found">
-  <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
+<div [class.hidden]="!sinResultado" class="mdl-cell mdl-cell--8-col results-not-found">
+  <h3> No se encontraron resultados, por favor modifica la búsqueda e intenta
     nuevamente.</h3>
 </div>
 <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
