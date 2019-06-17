@@ -644,6 +644,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   limpiarFiltroDireccion() {
     this.formDireccion.reset();
     this.tipoPropiedad.setValue(-1);
+    this.sinResultado = false;
     this.selectTipo.searchQuery = '';
   }
 
