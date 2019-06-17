@@ -212,10 +212,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 61d8c75f9e14aa737f1e0c1ecb2bb325c23af2a4
     //Probando logeo
     this.logged = this.user.isLogged();
 
