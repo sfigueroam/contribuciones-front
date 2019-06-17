@@ -31,7 +31,7 @@ export const environment = {
   googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
   snackbarTime: 5000,
   tooltipTime: 5000,
-  viewTooltip: true,
+  viewTooltip: false,
   production: true,
   //TODO: llamar a una url privada de cuenta de usuario sin client-id
   cuentaUrl: 'BUILD_CUENTA_USUARIO_URL' + '/redirect',
