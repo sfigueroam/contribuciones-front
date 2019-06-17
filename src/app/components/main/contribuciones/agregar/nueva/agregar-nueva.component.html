@@ -143,8 +143,6 @@
                          error-msg="Debe ingresar un Sub Rol"
                          floating-label>
           </mdl-textfield>
-
-          
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion"
                   type="submit"
                   [disabled]="formDireccion.invalid">
@@ -156,11 +154,8 @@
     </div>
   </div>
 </div>
-
 <div [class.hidden]="!sinResultado" class="mdl-cell mdl-cell--8-col results-not-found">
-  <h3> No se encontraron resultados, por favor modifica la búsqueda e intenta
-
-    nuevamente.</h3>
+  <h3> No se encontraron resultados, por favor modifica la búsqueda e intenta nuevamente.</h3>
 </div>
 <div class="mdl-cell mdl-cell--6-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
   <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
