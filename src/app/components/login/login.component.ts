@@ -43,8 +43,5 @@ export class LoginComponent implements OnInit {
     this.exp = this.cognito.getExpirationDate();
     this.userdataservice.nombre_usuario = this.name;
     
-    console.log(this.name);
-    console.log(this.identity); // probar contenido token cognito
-    
   }
 }
