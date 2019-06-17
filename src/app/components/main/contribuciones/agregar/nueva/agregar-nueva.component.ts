@@ -37,7 +37,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(PropiedadComponent)
   propiedadComponentList: QueryList<PropiedadComponent>;
-      
+
   /*  @ViewChild('scrollDireccion') scrollDireccion: ElementRef;
     @ViewChild('scrollRol') scrollRol: ElementRef;*/
 
@@ -70,6 +70,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   cantidadSeleccionadas: number;
   hidden: boolean;
+  resultadoSinPropiedades = 0;
 
   inputDireccionesTmp = '';
 
@@ -210,7 +211,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    
+
+
     //Probando logeo
     this.logged = this.user.isLogged();
 
@@ -284,7 +286,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   buscarDireccionSugeridos() {
     if (this.direccion.value === '' || this.direccion.value === null) {
-      this.sinResultado = true;
+      //this.sinResultado = true;
       return;
     }
     this.inputDireccionesTmp = this.direccion.value;
@@ -294,16 +296,22 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     if (tipoPropiedad === -1) {
       tipoPropiedad = '';
     }
-
+  
     this.contribucionesBuscarRol.searchDireccion(undefined,
       tipoPropiedad,
       this.direccion.value,
       size, false, null, null).then((lista) => {
+        
         this.direcciones = lista;
+
+        if(this.direcciones == null || this.direcciones == undefined){ //cambio de victor Tomé
+            this.sinResultado= true;}
+
       },
       err => {
         this.error(err);
       });
+    
   }
 
   onWait(): void {
@@ -329,6 +337,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
       this.inputDireccionesTmp = '';
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
+      this.sinResultado = true;
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
       if (this.direccion.value != null && this.direccion.value.length > 2) {
@@ -397,6 +406,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
         lista = this.orderDirecciones(lista);
         this.direcciones = lista;
+        if(this.direcciones == null || this.direcciones == undefined){
+          this.sinResultado=true;}
         this.page = 1;
         this.agregarDireccionesAPropiedad();
         this.offWait();

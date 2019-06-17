@@ -143,12 +143,11 @@
                          error-msg="Debe ingresar un Sub Rol"
                          floating-label>
           </mdl-textfield>
-        </div>
-        <div class="tgr-card__footer">
-          <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer"
-             (click)="limpiarBusquda()">Limpiar Búsqueda</a>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-rol" type="submit"
-                  [disabled]="formRol.invalid">
+
+          
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion"
+                  type="submit"
+                  [disabled]="formDireccion.invalid">
             <i class="material-icons">search</i>
             Buscar
           </button>
@@ -157,8 +156,10 @@
     </div>
   </div>
 </div>
-<div class="mdl-cell mdl-cell--6-col results-not-found">
-  <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
+
+<div [class.hidden]="!sinResultado" class="mdl-cell mdl-cell--8-col results-not-found">
+  <h3> No se encontraron resultados, por favor modifica la búsqueda e intenta
+
     nuevamente.</h3>
 </div>
 <div class="mdl-cell mdl-cell--6-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">

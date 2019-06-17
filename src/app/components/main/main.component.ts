@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewContainerRef, NgZone} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CognitoService} from '../../services/cognito.service';
@@ -31,7 +31,8 @@ export class MainComponent implements OnInit, AfterViewInit {
               private cognito: CognitoService,
               private vcRef: ViewContainerRef,
               private mdlDialogService: MdlDialogOutletService,
-              private userdataservice: UserDataService) {
+              private userdataservice: UserDataService,
+              private zone: NgZone) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
     route.url.subscribe(() => {
@@ -48,20 +49,17 @@ export class MainComponent implements OnInit, AfterViewInit {
       200);
   }
   ngOnInit() {
-
-    this.logged = this.user.isLogged();
-    if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null){
-      this.usuariologin = 'Contribuyente';
+  
+   this.logged = this.user.isLogged();
+    if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null || this.userdataservice.nombre_usuario === undefined){
+      this.usuariologin = '';
     }   else{
         this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
         this.usuario1 = this.usuariologinmay.substring(0,1);
         this.usuario2 = this.usuariologinmay.substring(1,100);
         this.usuario2min = this.usuario2.toLowerCase();
         this.usuariologin = this.usuario1.concat(this.usuario2min);
-        console.log(this.usuario1);
-        console.log(this.usuario2);
-        console.log(this.usuario2min);
-        console.log(this.usuariologin);
+
       }
     }
 
@@ -82,7 +80,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.cognito.redirectLogin();
   }
 
-  logout() {
+  logout() {    
     this.cognito.logout();
   }
 
