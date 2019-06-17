@@ -486,6 +486,7 @@ html, body {
   }
 
   &.tooltip-left {
+    // top: 505px !important;
     position: fixed !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -784,12 +785,12 @@ html, body {
       padding-right: 46px;
     }
     @media (min-width: 840px) and (max-width: 1279px) {
-      padding-left: 250px;
+      padding-left: 214px;
       padding-right: 160px;
     }
     @media (min-width: 1280px) {
-      padding-left: 400px;
-      padding-right: 305px;
+      padding-left: 403px;
+      padding-right: 324px;
     }
   }
   @media (max-width: 480px) {
@@ -1208,7 +1209,7 @@ button.button-question {
   z-index: 4;
   color: $color-white;
   @media (min-width: 350px) {
-    right: 20px;
+    right: 0;
   }
   @media (min-width: 481px) {
     height: 46px;

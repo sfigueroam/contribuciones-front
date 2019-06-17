@@ -1,4 +1,4 @@
-<div class="mdl-grid">
+<div [class.hidden]="rolesSugeridos < 1" class="mdl-grid">
   <div class="mdl-cell mdl-cell--3-col-phone mdl-cell--4-col-desktop m-0auto text-center p-relative">
     <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
       <i mdl-button (click)="ocultarAlertaSugeridas = true" class="material-icons alert-remove">clear</i>

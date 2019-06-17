@@ -338,6 +338,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
             () => {
               this.buscarDireccionSugeridos();
               this.busquedaEnEjecucion = false;
+              this.sinResultado = true;
             },
             800);
         }

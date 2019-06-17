@@ -6,176 +6,178 @@
     <!--<h1 *ngIf="logged" >Hola, estoy logueado</h1>-->
   </div>
 </div>
-<div class="mdl-cell mdl-cell--8-col tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait">
-  <div class="tgr-cell-wait">
-    <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait">
+    <div class="tgr-cell-wait">
+      <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
+      </div>
     </div>
-  </div>
-  <div class="tgr-card__head" #scrollDireccion>
-    <div class="tgr-switch">
-      <button class="mdl-button mdl-js-button " [class.tgr-switch-active]="switchActive === 'rol'"
-              (click)="changeSwith('rol')">
-        ROL
-      </button>
-      <button class="mdl-button mdl-js-button" [class.tgr-switch-active]="switchActive === 'direccion'"
-              (click)="changeSwith('direccion')">
-        Dirección
-      </button>
+    <div class="tgr-card__head" #scrollDireccion>
+      <div class="tgr-switch">
+        <button class="mdl-button mdl-js-button " [class.tgr-switch-active]="switchActive === 'rol'"
+                (click)="changeSwith('rol')">
+          ROL
+        </button>
+        <button class="mdl-button mdl-js-button" [class.tgr-switch-active]="switchActive === 'direccion'"
+                (click)="changeSwith('direccion')">
+          Dirección
+        </button>
+      </div>
+  
+      <span class="tgr-card__title--text small-text">Buscar por:</span>
     </div>
-
-    <span class="tgr-card__title--text small-text">Buscar por:</span>
-  </div>
-  <ngx-invisible-recaptcha #captchaElem
-                           [siteKey]="recaptcha2.siteKey"
-                           (success)="handleSuccessCaptcha2($event)"
-                           [type]="recaptcha2.type"
-                           [badge]="recaptcha2.badge"
-                           [ngModel]="recaptcha"
-                           [ngModelOptions]="{ standalone: true }">
-  </ngx-invisible-recaptcha>
-
-  <form [formGroup]="formDireccion" (submit)="buscarDireccion()" autocomplete="off">
-    <div class="tgr-card__body body-direccion " [class.hidden]="switchActive === 'rol'">
-      <button type="button" class="ayuda-busqueda" (click)="dialogAyudaDireccion()">
+    <ngx-invisible-recaptcha #captchaElem
+                             [siteKey]="recaptcha2.siteKey"
+                             (success)="handleSuccessCaptcha2($event)"
+                             [type]="recaptcha2.type"
+                             [badge]="recaptcha2.badge"
+                             [ngModel]="recaptcha"
+                             [ngModelOptions]="{ standalone: true }">
+    </ngx-invisible-recaptcha>
+  
+    <form [formGroup]="formDireccion" (submit)="buscarDireccion()" autocomplete="off">
+      <div class="tgr-card__body body-direccion " [class.hidden]="switchActive === 'rol'">
+        <button type="button" class="ayuda-busqueda" (click)="dialogAyudaDireccion()">
+          <p>
+            <i class="material-icons">help</i>
+            ¿Cómo buscar por <strong>Dirección</strong>?
+          </p>
+        </button>
+        <div class="tgr-card__search ">
+          <mdl-select #autocompleteSelectTipoPropiedades
+                      [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
+                      (change)="autoCompletarPropiedad()"
+                      error-msg="Debe seleccionar un tipo de propiedad"
+                      [formControl]="tipoPropiedad"
+                      label="Tipo Propiedad"
+                      floating-label>
+            <mdl-option [value]="-1">Todos</mdl-option>
+            <mdl-option
+              *ngFor="let tipo of tipoPropiedadesfrecuentes| orderBy: 'order' | matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+              [value]="tipo.id">{{tipo.descripcion | titlecase}}
+            </mdl-option>
+            <mdl-option class="separator" [disabled]="true"></mdl-option>
+            <mdl-option
+              *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
+              [value]="tipo.id">{{tipo.descripcion | titlecase}}
+            </mdl-option>
+          </mdl-select>
+          <div class="tgr-newsearch" [class.is-suggesting]="searchDireccion">
+            <mdl-textfield type="text"
+                           [class.is-invalid]="direccion.invalid && direccion.touched"
+                           (focus)="ocultarToolbar(); autoScrollBuscar();"
+                           (blur)="mostrarToolbar(); existBusqueda()"
+                           id="direccion"
+                           name="direccion"
+                           [formControl]="direccion"
+                           (keyup)="inputDirecciones($event)"
+                           (ngModel)="direccionModel"
+                           floating-label
+                           label="Dirección"
+                           error-msg="Debe ingresar al menos 3 caracteres">
+            </mdl-textfield>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion"
+                    type="submit"
+                    [disabled]="formDireccion.invalid">
+              <i class="material-icons">search</i>
+              Buscar
+            </button>
+            <div *ngIf="showButtonLimpiarBusqueda" class="tgr-card__footer footer-direccion">
+              <a class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>
+            </div>
+            <ul class="tgr-suggestions" *ngIf="searchDireccion">
+              <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
+                  (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
+                titlecase}}
+                <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol |
+                  leadingZero:3}}
+                </small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="tgr-card__body " [class.hidden]="switchActive === 'direccion'" #scrollRol>
+      <button type="button" class="ayuda-busqueda" (click)="dialogAyudaRol()">
         <p>
           <i class="material-icons">help</i>
-          ¿Cómo buscar por <strong>Dirección</strong>?
+          ¿Cómo buscar por <strong>ROL</strong>?
         </p>
       </button>
-      <div class="tgr-card__search ">
-        <mdl-select #autocompleteSelectTipoPropiedades
-                    [class.is-invalid]="tipoPropiedad.touched && tipoPropiedad.invalid"
-                    (change)="autoCompletarPropiedad()"
-                    error-msg="Debe seleccionar un tipo de propiedad"
-                    [formControl]="tipoPropiedad"
-                    label="Tipo Propiedad"
-                    floating-label>
-          <mdl-option [value]="-1">Todos</mdl-option>
-          <mdl-option
-            *ngFor="let tipo of tipoPropiedadesfrecuentes| orderBy: 'order' | matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
-            [value]="tipo.id">{{tipo.descripcion | titlecase}}
-          </mdl-option>
-          <mdl-option class="separator" [disabled]="true"></mdl-option>
-          <mdl-option
-            *ngFor="let tipo of tipoPropiedades| matchSorter:'descripcion':autocompleteSelectTipoPropiedades.searchQuery"
-            [value]="tipo.id">{{tipo.descripcion | titlecase}}
-          </mdl-option>
-        </mdl-select>
-        <div class="tgr-newsearch" [class.is-suggesting]="searchDireccion">
-          <mdl-textfield type="text"
-                         [class.is-invalid]="direccion.invalid && direccion.touched"
+      <form [formGroup]="formRol" (ngSubmit)="buscarRol()" autocomplete="off">
+        <div class="tgr-card__search ">
+          <mdl-select #autocompleteSelectComuna [class.is-invalid]="comuna.touched && comuna.invalid"
+                      [autocomplete]="true"
+                      error-msg="Debe seleccionar una Comuna"
+                      [formControl]="comuna"
+                      label="Comuna"
+                      class="tgr-i-comuna"
+                      floating-label>
+            <mdl-option *ngFor="let local of localidad| matchSorter:'comuna,idSii':autocompleteSelectComuna.searchQuery"
+                        [value]="local.idSii">{{local.comuna | titlecase}} ({{local.idSii}})
+            </mdl-option>
+          </mdl-select>
+          <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
                          (focus)="ocultarToolbar(); autoScrollBuscar();"
-                         (blur)="mostrarToolbar(); existBusqueda()"
-                         id="direccion"
-                         name="direccion"
-                         [formControl]="direccion"
-                         (keyup)="inputDirecciones($event)"
-                         (ngModel)="direccionModel"
-                         floating-label
-                         label="Dirección"
-                         error-msg="Debe ingresar al menos 3 caracteres">
+                         (blur)="mostrarToolbar()"
+                         type="number"
+                         id="rol"
+                         name="rol"
+                         label="ROL"
+                         class="tgr-i-rol"
+                         [formControl]="rol"
+                         error-msg="Debe ingresar un Rol"
+                         floating-label>
           </mdl-textfield>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion"
-                  type="submit"
-                  [disabled]="formDireccion.invalid">
+          <span class="guion-rol">—</span>
+          <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
+                         (focus)="ocultarToolbar() ; autoScrollBuscar();"
+                         (blur)="mostrarToolbar()"
+                         type="number"
+                         id="subRol"
+                         name="subRol"
+                         class="tgr-i-subrol"
+                         label="Sub ROL"
+                         [formControl]="subRol"
+                         error-msg="Debe ingresar un Sub Rol"
+                         floating-label>
+          </mdl-textfield>
+        </div>
+        <div class="tgr-card__footer">
+          <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer"
+             (click)="limpiarBusquda()">Limpiar Búsqueda</a>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-rol" type="submit"
+                  [disabled]="formRol.invalid">
             <i class="material-icons">search</i>
             Buscar
           </button>
-          <div *ngIf="showButtonLimpiarBusqueda" class="tgr-card__footer footer-direccion">
-            <a class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusquda()">Limpiar Búsqueda</a>
-          </div>
-          <ul class="tgr-suggestions" *ngIf="searchDireccion">
-            <li class="tgr-suggestion" *ngFor="let dire of direcciones | matchSorter:'direccion'"
-                (click)="direccion.setValue(dire.direccion.toLowerCase()); searchDireccion = false; cargarDireccion(dire)">{{dire.direccion |
-              titlecase}}
-              <small>Rol: {{dire.idComunaSii | leadingZero:3}}-{{dire.rol | leadingZero:5}}-{{dire.subrol |
-                leadingZero:3}}
-              </small>
-            </li>
-          </ul>
         </div>
-      </div>
+      </form>
     </div>
-  </form>
-  <div class="tgr-card__body " [class.hidden]="switchActive === 'direccion'" #scrollRol>
-    <button type="button" class="ayuda-busqueda" (click)="dialogAyudaRol()">
-      <p>
-        <i class="material-icons">help</i>
-        ¿Cómo buscar por <strong>ROL</strong>?
-      </p>
-    </button>
-    <form [formGroup]="formRol" (ngSubmit)="buscarRol()" autocomplete="off">
-      <div class="tgr-card__search ">
-        <mdl-select #autocompleteSelectComuna [class.is-invalid]="comuna.touched && comuna.invalid"
-                    [autocomplete]="true"
-                    error-msg="Debe seleccionar una Comuna"
-                    [formControl]="comuna"
-                    label="Comuna"
-                    class="tgr-i-comuna"
-                    floating-label>
-          <mdl-option *ngFor="let local of localidad| matchSorter:'comuna,idSii':autocompleteSelectComuna.searchQuery"
-                      [value]="local.idSii">{{local.comuna | titlecase}} ({{local.idSii}})
-          </mdl-option>
-        </mdl-select>
-        <mdl-textfield [class.is-invalid]="rol.touched && rol.invalid"
-                       (focus)="ocultarToolbar(); autoScrollBuscar();"
-                       (blur)="mostrarToolbar()"
-                       type="number"
-                       id="rol"
-                       name="rol"
-                       label="ROL"
-                       class="tgr-i-rol"
-                       [formControl]="rol"
-                       error-msg="Debe ingresar un Rol"
-                       floating-label>
-        </mdl-textfield>
-        <span class="guion-rol">—</span>
-        <mdl-textfield [class.is-invalid]="subRol.touched && subRol.invalid"
-                       (focus)="ocultarToolbar() ; autoScrollBuscar();"
-                       (blur)="mostrarToolbar()"
-                       type="number"
-                       id="subRol"
-                       name="subRol"
-                       class="tgr-i-subrol"
-                       label="Sub ROL"
-                       [formControl]="subRol"
-                       error-msg="Debe ingresar un Sub Rol"
-                       floating-label>
-        </mdl-textfield>
-      </div>
-      <div class="tgr-card__footer">
-        <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer"
-           (click)="limpiarBusquda()">Limpiar Búsqueda</a>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-rol" type="submit"
-                [disabled]="formRol.invalid">
-          <i class="material-icons">search</i>
-          Buscar
-        </button>
-      </div>
-    </form>
   </div>
 </div>
-<div class="mdl-cell mdl-cell--8-col results-not-found">
+<div class="mdl-cell mdl-cell--6-col results-not-found">
   <h3 [class.hidden]="!sinResultado">No se encontraron resultados, por favor modifica la búsqueda e intenta
     nuevamente.</h3>
 </div>
-<div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
+<div class="mdl-cell mdl-cell--6-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
   <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
 </div>
-<div #scroll class="mdl-cell mdl-cell--8-col tgr-results">
+<div #scroll class="mdl-cell mdl-cell--6-col tgr-results">
   <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
     <mdl-icon (click)="selectAllProperies()"> {{selectedIcon}}</mdl-icon>
     <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
   </div>
 
-  <app-propiedad class="mdl-cell mdl-cell--8-col tgr-content mdl-shadow--3dp"
+  <app-propiedad class="mdl-cell mdl-cell--6-col tgr-content mdl-shadow--3dp"
                  *ngFor="let propiedad of propiedades"
                  [default-seleccion]=false
                  [propiedad]="propiedad"
                  (change)="updateSeleccionadaTotal()">
   </app-propiedad>
 
-  <div class="mdl-cell mdl-cell--8-col tgr-results-coincidencias"
+  <div class="mdl-cell mdl-cell--6-col tgr-results-coincidencias"
        *ngIf="switchActive === 'direccion' && propiedades &&  propiedades.length > 1 ">
     <a class="mdl-button button-default-link" *ngIf="mostrarPaginacion()" (click)="cargarMasDirecciones()">
       Cargar más resultados
