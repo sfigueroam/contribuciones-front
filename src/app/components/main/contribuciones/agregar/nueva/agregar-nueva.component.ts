@@ -286,7 +286,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   buscarDireccionSugeridos() {
     if (this.direccion.value === '' || this.direccion.value === null) {
-      //this.sinResultado = true;
       return;
     }
     this.inputDireccionesTmp = this.direccion.value;
@@ -335,6 +334,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     if (this.direccion.value != null && this.direccion.value.length <= 2) {
       this.direcciones = null;
       this.inputDireccionesTmp = '';
+      this.sinResultado = false; //Agregado para sacar el mensaje cuando se borra (Victor)
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
       this.sinResultado = true;
@@ -347,7 +347,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
             () => {
               this.buscarDireccionSugeridos();
               this.busquedaEnEjecucion = false;
-              this.sinResultado = true;
+              this.sinResultado = false;
             },
             800);
         }
@@ -644,6 +644,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   limpiarFiltroDireccion() {
     this.formDireccion.reset();
     this.tipoPropiedad.setValue(-1);
+    this.sinResultado = false;
     this.selectTipo.searchQuery = '';
   }
 
