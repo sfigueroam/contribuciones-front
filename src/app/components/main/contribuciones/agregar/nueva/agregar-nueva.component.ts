@@ -342,7 +342,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
       if (this.direccion.value != null && this.direccion.value.length > 2) {
-        this.sinResultado = false;
         if (!this.busquedaEnEjecucion) {
           this.busquedaEnEjecucion = true;
           setTimeout(
