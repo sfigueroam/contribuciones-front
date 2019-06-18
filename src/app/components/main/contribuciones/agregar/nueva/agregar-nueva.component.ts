@@ -332,7 +332,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     if (this.direcciones == null) {
       this.inputDireccionesTmp = '';
     }
-    if (this.direccion.value != null && this.direccion.value.length <= 2) {
+    if (this.direccion.value != null && this.direccion.value.length < 2) {
       this.direcciones = null;
       this.inputDireccionesTmp = '';
       this.sinResultado = false; //Agregado para sacar el mensaje cuando se borra (Victor)
