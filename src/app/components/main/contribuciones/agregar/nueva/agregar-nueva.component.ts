@@ -335,6 +335,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     if (this.direccion.value != null && this.direccion.value.length <= 2) {
       this.direcciones = null;
       this.inputDireccionesTmp = '';
+      this.sinResultado = false; //Agregado para sacar el mensaje cuando se borra (Victor)
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
       this.sinResultado = true;
