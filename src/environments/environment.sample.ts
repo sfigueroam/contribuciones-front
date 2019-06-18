@@ -46,7 +46,7 @@ export const environment = {
     logoutUri: 'BUILD_LOGOUT_URI',
     jwtCookieName: 'tgr-jwt',
     expCookieName: 'exp',
-    allowCookies: false,
+    allowCookies: true,
   },
   sizeResultSuggested: 10,
   sizeResultPage: 30,
