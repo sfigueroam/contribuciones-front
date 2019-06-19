@@ -21,6 +21,7 @@ import {
 import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
 import {DireccionCuotasComponent} from './direccion-cuotas/direccion-cuotas.component';
 import {TooltipDirective} from 'ng2-tooltip-directive';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -71,7 +72,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
               private deviceDetectService: DeviceDetectService,
-              private dialogService: MdlDialogService) {
+              private dialogService: MdlDialogService,
+              private cookieService: CookieService) {
     this.route.queryParams.subscribe(val => {
       if (val.refresh !== undefined && val.refresh === 'true' && this.complete !== undefined) {
         if (this.user.email !== undefined) {
@@ -98,6 +100,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.cookieService.deleteAll();
     console.log('ngOnInit', this.complete);
 
     this.complete = false;
