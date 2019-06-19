@@ -213,7 +213,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     //eliminar cookies prueba
-    this.cookieService.deleteAll();
+    this.cookieService.delete;
+    console.log('borrado de cookie');
 
     //Probando logeo
     this.logged = this.user.isLogged();
