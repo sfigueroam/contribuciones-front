@@ -26,7 +26,7 @@ import {AyudaRolComponent} from './modal/ayuda-rol/ayuda-rol.component';
 import {CANT_PROPIEDADES_SELEC, RecordarComponent} from './modal/recordar/recordar.component';
 import {PitUtils} from '../../../../../pit-utils';
 //Probando logeo
-import {CognitoService} from '../../../../../services/cognito.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-agregar-nueva',
@@ -110,7 +110,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
               private reCaptchaV3Service: ReCaptchaV3Service,
               private scriptService: ScriptService,
               private deviceDetectService: DeviceDetectService,
-              private recaptchaService: RecaptchaService) {
+              private recaptchaService: RecaptchaService,
+              private cookieService: CookieService) {
 
     this.recaptcha2 = new TgrReCaptcha();
     this.viewRecaptcha2 = false;
@@ -211,7 +212,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
+    //eliminar cookies prueba
+    this.cookieService.deleteAll();
 
     //Probando logeo
     this.logged = this.user.isLogged();
