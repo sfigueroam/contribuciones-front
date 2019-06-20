@@ -306,8 +306,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
         
         this.direcciones = lista;
 
-        if(this.direcciones == null || this.direcciones == undefined){ //cambio de victor Tomé
-            this.sinResultado= true;}
+        //if(this.direcciones == null || this.direcciones == undefined){ //cambio de victor Tomé
+        //    this.sinResultado= true;}
 
       },
       err => {
@@ -350,7 +350,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
             () => {
               this.buscarDireccionSugeridos();
               this.busquedaEnEjecucion = false;
-              this.sinResultado = false;
+              //this.sinResultado = false; se elimina mensaje de resultado antes de presionar boton buscar
             },
             800);
         }
