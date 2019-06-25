@@ -341,7 +341,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
       this.sinResultado = false; //Agregado para sacar el mensaje cuando se borra (Victor)
     } else if (event.keyCode === 13) {
       this.searchDireccion = false;
-      this.sinResultado = true;
+      //this.sinResultado = true;
     } else if (/[a-zA-Z0-9-_ ]/.test(inp) || event.keyCode === 8 || this.direccion.value !== this.inputDireccionesTmp) {
       this.searchDireccion = true;
       if (this.direccion.value != null && this.direccion.value.length > 2) {
