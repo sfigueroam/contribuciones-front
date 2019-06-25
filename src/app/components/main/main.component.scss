@@ -1,0 +1,52 @@
+@import '../../../styles/colors';
+
+.tgr_header-drawer {
+    .login_usuario {
+        background-color: $gray-lightblue-background;
+        text-align: center;
+        .user-logged {
+            margin-top: 20px;
+            margin-bottom: 25px;
+            p {
+                margin-bottom: 6px;
+                font-size: 16px;
+            }
+            h5 {
+                margin-top: 0;
+                margin-bottom: 12px;
+                font-size: 22px;
+                font-weight: 700;
+            }
+        }
+        .user-not_logged {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .mdl-button.button-basic-white {
+            font-size: 13px;
+            .material-icons {
+                font-size: 18px;
+            }
+        }
+    }
+    nav.mdl-navigation {
+        .mdl-navigation__link {
+            padding: 16px 22px;
+            color: $color-dark-gray;
+            .material-icons {
+                margin-right: 10px;
+            }
+            &:hover,
+            &:focus,
+            &:active{
+                background-color: $gray-lightblue-background;
+                margin-right: 14px;
+                border-bottom-right-radius: 30px;
+                border-top-right-radius: 30px;
+            }
+            &:nth-of-type(1) {
+                color: $color-dark-blue-text;
+            }
+        }
+    }
+}

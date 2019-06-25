@@ -143,16 +143,16 @@
                          error-msg="Debe ingresar un Sub Rol"
                          floating-label>
           </mdl-textfield>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-direccion"
+          <!-- BOTÓN ANTIGUO, EL LIMPIAR BÚSQUEDA SE REPITE EN AMBOS CUANDO APARECE -->
+          <div class="tgr-card__footer">
+              <a *ngIf="showButtonLimpiarBusqueda" class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusqudaRol()">Limpiar Búsqueda</a>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored boton-buscar-rol"
                   type="submit"
                   [disabled]="formRol.invalid">
             <i class="material-icons">search</i>
             Buscar
           </button>
-          <!-- limpiar busqueda agregado -->
-            <div *ngIf="showButtonLimpiarBusqueda" class="tgr-card__footer footer-direccion">
-              <a class="mdl-button button-default-link cursor-pointer" (click)="limpiarBusqudaDir()">Limpiar Búsqueda</a>
-            </div>
+          </div>
         </div>
       </form>
     </div>
