@@ -98,7 +98,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   public recaptcha: any = null;
   private totalRoles = 0;
-  showButtonLimpiarBusqueda = false;
+  showButtonLimpiarBusquedaRol = false;
+  showButtonLimpiarBusquedaDir = false;
 
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
@@ -531,7 +532,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   cargarDireccion(dire) {
-    this.showButtonLimpiarBusqueda = true;
+    this.showButtonLimpiarBusquedaDir = true;
     const direcciones = [];
     direcciones.push(new Direccion(dire));
     this.direcciones = direcciones;
@@ -573,13 +574,13 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   buscarRol() {
-    this.showButtonLimpiarBusqueda = true;
+    this.showButtonLimpiarBusquedaRol = true;
     this.searchDireccion = false;
     this.validarCaptcha();
   }
 
   buscarDireccion() {
-    this.showButtonLimpiarBusqueda = true;
+    this.showButtonLimpiarBusquedaDir = true;
     this.searchDireccion = false;
     this.validarCaptcha();
   }
@@ -630,13 +631,13 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     }
   }
 
-  limpiarBusquda() {
-    this.showButtonLimpiarBusqueda = false;
-    if (this.switchActive === 'direccion') {
-      this.limpiarFiltroDireccion();
-    } else {
-      this.limpiarFiltroRol();
-    }
+  limpiarBusqudaDir() {
+    this.showButtonLimpiarBusquedaDir = false;
+    this.limpiarFiltroDireccion();
+  }
+ limpiarBusqudaRol() {
+    this.showButtonLimpiarBusquedaRol = false;
+    this.limpiarFiltroRol();
   }
 
   limpiarFiltroRol() {
