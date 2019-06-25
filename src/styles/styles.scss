@@ -17,6 +17,12 @@ html, body, h1, h2, h3, h4, h5 {
   display: none;
 }
 
+.hidden-xs {
+  @media (max-width: 480px) {
+    display: none !important;
+  }
+}
+
 // Definiciones Generales Margen y Padding
 
 .m-0auto {
@@ -313,6 +319,29 @@ html, body, h1, h2, h3, h4, h5 {
     }
   }
 }
+
+.mdl-button.button-basic-white {
+  background-color: #ffffff;
+  color: $color-dark-gray;
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-dark-gray;
+  }
+  .material-icons {
+    font-size: 20px;
+    vertical-align: text-bottom;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-dark-gray;
+    }
+  }
+}
+
+.mdl-button.button-basic-white:hover .material-icons{
+  color: $color-dark-gray;
+}
 // FIN. Estilos de Botones
 
 // INICIO Esconder Address Bar en móvil
@@ -418,14 +447,34 @@ html, body {
 // ----- Fin. Diálogos
 
 // INICIO HEADER
+.mdl-layout__drawer-button {
+  @media (max-width: 480px) {
+    padding-left: 0;
+    }
+    @media (min-width: 481px) and (max-width: 839px) {
+      padding-left: 6%;
+    }
+    @media (min-width: 840px) and (max-width: 1279px) {
+      padding-left: 16%;
+    }
+    @media (min-width: 1280px) {
+      padding-left: 21%;
+    }
+    .material-icons {
+      color: $color-dark-blue-text;
+    }
+}
+
 .cuenta-usuario {
   width: auto;
   height: auto;
   min-width: 100%;
   text-transform: none;
   border-radius: 0;
+  opacity: 1;
   .mdl-button--account-user {
       display: block;
+      color: $color-dark-blue-text;
       margin-top: -5px;
       transition: .4s;
       &:hover {
@@ -438,19 +487,13 @@ html, body {
   span.account-user-text {
       display: block;
       margin-top: 26px;
-      color: $color-dark-gray;
-      // span.user {
-      //   text-transform: lowercase;
-      //   &::first-letter {
-      //     text-transform: uppercase !important;
-      //   }
-      // }
+      color: $color-dark-blue-text;
   }
   &:hover,
   &:active,
   &:focus {
       background-color: transparent !important;
-      color: $color-dark-gray !important;
+      // color: $color-dark-gray !important;
   }
 }
 
@@ -1271,7 +1314,7 @@ button.button-question {
   color: rgb(255,255,255);
 }
 .mdl-navigation__link.mdl-button.mdl-button--icon:hover i{
-  color: #424242;
+  color: $color-dark-blue-text;
 }
 
 .mdl-layout__header-row .mdl-navigation:last-child .mdl-navigation__link{

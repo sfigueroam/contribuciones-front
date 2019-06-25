@@ -25,6 +25,7 @@
             ],
             "styles": [
               "src/styles/styles.scss",
+              "./node_modules/material-design-icons/iconfont/material-icons.css",
               "./node_modules/ngx-lightbox/lightbox.css"
             ],
             "scripts": []

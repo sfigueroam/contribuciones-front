@@ -70,7 +70,7 @@
     }
 
     .tgr-card__footer {
-      padding-left: 0;
+      padding: 7px 10px 7px 0;
 
       &.footer-direccion {
         padding: 0;
@@ -492,7 +492,8 @@
   */
 }
 .tgr-i-rol, .tgr-i-subrol {
-  width: 31%;
+  // width: 31%;
+  width: calc(50% - 20px);
 }
 .tgr-i-rol {
   margin-right: 7px;
