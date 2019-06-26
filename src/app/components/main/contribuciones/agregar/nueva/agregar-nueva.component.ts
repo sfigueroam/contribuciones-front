@@ -643,6 +643,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   limpiarFiltroRol() {
     this.formRol.reset();
     this.selectComuna.searchQuery = '';
+    this.sinResultado = false;
   }
 
   limpiarFiltroDireccion() {
