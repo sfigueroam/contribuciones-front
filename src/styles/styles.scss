@@ -450,6 +450,7 @@ html, body {
 .mdl-layout__drawer-button {
   @media (max-width: 480px) {
     padding-left: 0;
+    position: fixed;
     }
     @media (min-width: 481px) and (max-width: 839px) {
       padding-left: 6%;
