@@ -10,6 +10,7 @@ if (environment.production) {
   enableProdMode();
 }
 
+var appID = environment.applicationIDnewrelic;
 //newRelicHeadScripts();
 googleAnalyticsHeadScripts(); 
 
