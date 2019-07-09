@@ -29,6 +29,7 @@ export const environment = {
   },
   isActiveLogin: true,
   googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
+  applicationIDnewrelic: 'BUILD_NEWRELIC_APPLICATION_ID',
   snackbarTime: 5000,
   tooltipTime: 5000,
   viewTooltip: false,
