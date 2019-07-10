@@ -29,12 +29,13 @@ export const environment = {
   },
   isActiveLogin: true,
   googleAnalyticsCode: 'BUILD_GOOGLE_ANALYTIC_CODE',
-  applicationIDnewrelic: 'BUILD_NEWRELIC_APPLICATION_ID',
+  //applicationIDnewrelic: 'BUILD_NEWRELIC_APPLICATION_ID',
+  applicationIDnewrelic: true,
   snackbarTime: 5000,
   tooltipTime: 5000,
   viewTooltip: false,
   production: true,
-  test: false,
+  test: true,
   //TODO: llamar a una url privada de cuenta de usuario sin client-id
   cuentaUrl: 'BUILD_CUENTA_USUARIO_URL' + '/redirect',
   pago: {
