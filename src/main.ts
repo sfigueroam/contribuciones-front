@@ -4,14 +4,17 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import {googleAnalyticsHeadScripts} from './assets/googleAnalytics/script';
-//import {newRelicHeadScripts} from './assets/newRelic/script';
+import {newRelicHeadScripts} from './assets/newRelic/scriptNewRelic';
 
 if (environment.production) {
   enableProdMode();
 }
 
-var appID = environment.applicationIDnewrelic;
-//newRelicHeadScripts();
+const newRelicBool = environment.applicationIDnewrelic;
+
+if (newRelicBool) {
+  newRelicHeadScripts();
+}
 googleAnalyticsHeadScripts(); 
 
 
