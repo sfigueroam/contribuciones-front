@@ -34,6 +34,7 @@ export const environment = {
   tooltipTime: 5000,
   viewTooltip: false,
   production: true,
+  test: false,
   //TODO: llamar a una url privada de cuenta de usuario sin client-id
   cuentaUrl: 'BUILD_CUENTA_USUARIO_URL' + '/redirect',
   pago: {
