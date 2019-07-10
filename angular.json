@@ -48,7 +48,7 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "applicationIDnewrelic": {
+            "test": {
               "fileReplacements": [
                  {
                   "replace": "src/environments/environment.ts",
