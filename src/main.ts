@@ -10,13 +10,15 @@ if (environment.production) {
   enableProdMode();
 }
 
+/*
 const newRelicBool = environment.applicationIDnewrelic;
 
+
+googleAnalyticsHeadScripts(); 
 if (newRelicBool) {
   newRelicHeadScripts();
 }
-googleAnalyticsHeadScripts(); 
-
+*/
 
 
 
