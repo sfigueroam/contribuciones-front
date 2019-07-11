@@ -33,7 +33,7 @@ phases:
     - echo file environment angular
     - more ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
     #- ng build --prod
-    - ng build --qa
+    - ng build --configuration prod
 
   post_build:
     commands:
