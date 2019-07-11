@@ -33,8 +33,8 @@ export const environment = {
   snackbarTime: 5000,
   tooltipTime: 5000,
   viewTooltip: false,
-  production: false,
-  test: true,
+  production: true,
+  test: false,
   //TODO: llamar a una url privada de cuenta de usuario sin client-id
   cuentaUrl: 'BUILD_CUENTA_USUARIO_URL' + '/redirect',
   pago: {
