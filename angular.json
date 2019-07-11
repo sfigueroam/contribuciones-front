@@ -52,7 +52,7 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "test": {
+            "dev": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
