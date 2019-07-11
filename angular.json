@@ -37,10 +37,6 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 },
-                {
-                 "replace": "src/index.html",
-                  "with": "src/index.newrelic.html"
-                },
               ],
               "optimization": true,
               "outputHashing": "all",
@@ -52,11 +48,15 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "test": {
+            "newrelicconf": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                 "replace": "src/index.html",
+                  "with": "src/index.newrelic.html"
                 },
               ],
               "optimization": true,
