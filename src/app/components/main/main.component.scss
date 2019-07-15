@@ -30,6 +30,10 @@
         }
     }
     nav.mdl-navigation {
+        hr {
+            margin-left: 22px;
+            margin-right: 22px;
+        }
         .mdl-navigation__link {
             padding: 16px 22px;
             color: $color-dark-gray;
@@ -44,7 +48,8 @@
                 border-bottom-right-radius: 30px;
                 border-top-right-radius: 30px;
             }
-            &:nth-of-type(1) {
+            &.highlight {
+                font-weight: 700;
                 color: $color-dark-blue-text;
             }
         }
