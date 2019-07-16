@@ -1,3 +1,4 @@
+import localeEs from '@angular/common/locales/es-CL';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { LightboxModule } from 'ngx-lightbox';
 import { OrderModule } from 'ngx-order-pipe';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 // Pipes
@@ -25,7 +27,6 @@ import { UserDataService } from './user-data.service';
 // Component
 import { AppComponent } from './components/app.component';
 import { CertificadosComponent } from './components/main/certificados/certificados.component';
-import localeEs from '@angular/common/locales/es-CL';
 import { registerLocaleData } from '@angular/common';
 import { SugeridasComponent } from './components/main/contribuciones/agregar/sugeridas/sugeridas.component';
 import { PropiedadComponent } from './components/main/shared/propiedad/propiedad.component';
@@ -49,10 +50,11 @@ import { AyudaCondonacionComponent } from './components/main/contribuciones/sele
 import { ResumenComponent } from './components/main/contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
 import { BotonPagarComponent } from './components/main/contribuciones/seleccion-cuotas/modal/boton-pagar/boton-pagar.component';
 import { RecordarComponent } from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
-import { TooltipModule } from 'ng2-tooltip-directive';
+import { DeudaFiscalComponent } from './components/deuda-fiscal/deuda-fiscal.component';
 
 
 registerLocaleData(localeEs, 'es');
+
 
 @NgModule({
   declarations: [
@@ -82,6 +84,7 @@ registerLocaleData(localeEs, 'es');
     ResumenComponent,
     BotonPagarComponent,
     RecordarComponent,
+    DeudaFiscalComponent,
   ],
   imports: [
     BrowserModule,
