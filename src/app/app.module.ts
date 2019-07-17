@@ -85,7 +85,7 @@ registerLocaleData(localeEs, 'es');
     ResumenComponent,
     BotonPagarComponent,
     RecordarComponent,
-    DeudaFiscalComponent,
+    DeudaFiscalComponent
   ],
   imports: [
     BrowserModule,
