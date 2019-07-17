@@ -66,8 +66,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   tabChanged({index}) {
     this.index = index;
     if (index === 0) {
-      // this.router.navigate(['centropago', 'contribuciones', 'seleccionar-cuotas']);
-      this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
+      this.router.navigate(['centropago', 'contribuciones', 'seleccionar-cuotas']);
+      // this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
     } else if (index === 1) {
       this.router.navigate(['/main/contribuciones/certificados']);
     }
