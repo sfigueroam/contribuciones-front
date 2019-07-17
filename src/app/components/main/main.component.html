@@ -42,27 +42,14 @@
                 <p>Bienvenido/a</p>
                 <h5 class="text-mont">{{usuariologin}}</h5>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="logout()">
-          CERRAR SESIÓN
-          <i class="material-icons">cancel</i>
-        </button>
+                  CERRAR SESIÓN
+                  <i class="material-icons">cancel</i>
+                </button>
             </div>
             <div class="user-not_logged" *ngIf="!logged">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="redirigirLogin()">
-          INICIAR SESIÓN
-        </button>
-<<<<<<< HEAD
-      </div>
-    </div>
-    <nav class="mdl-navigation">
-      <a href="#" class="mdl-navigation__link">Contribuciones</a>
-      <a href="#" class="mdl-navigation__link">Deudas Fiscales</a>
-      <hr>
-      <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
-      <a href="https://www.tesoreria.cl/IntClientePregosWSWeb/?RUT=0&DV=0&EMAIL=" class="mdl-navigation__link hidden-xs"><i class="material-icons">feedback</i>Formulario de Contacto</a>
-      <a href="https://ayuda.tgr.cl/hc/es-419/articles/360018206233-Pago-de-contribuciones-de-bienes-ra%C3%ADces-en-la-Tesorer%C3%ADa" class="mdl-navigation__link"><i class="material-icons">help_outline</i>Centro de Ayuda</a>
-    </nav>
-  </mdl-layout-drawer>
-=======
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="redirigirLogin()">
+                INICIAR SESIÓN
+              </button>
             </div>
         </div>
         <nav class="mdl-navigation">
@@ -78,6 +65,5 @@
     <mdl-layout-content>
         <router-outlet></router-outlet>
     </mdl-layout-content>
->>>>>>> feature/develop
 
 </mdl-layout>
