@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeudaFiscalService } from '../../services/deuda-fiscal.service';
 
 @Component({
   selector: 'app-deuda-fiscal',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeudaFiscalComponent implements OnInit {
 
-  constructor() { }
+  listadoDeuda: any[];
+
+  constructor( private deudaFiscalService: DeudaFiscalService ) {
+
+    this.listadoDeuda = deudaFiscalService.getListado();
+
+  }
 
   ngOnInit() {
   }

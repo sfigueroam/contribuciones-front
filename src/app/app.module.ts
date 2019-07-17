@@ -53,6 +53,7 @@ import { RecordarComponent } from './components/main/contribuciones/agregar/nuev
 import { DeudaFiscalComponent } from './components/deuda-fiscal/deuda-fiscal.component';
 
 
+
 registerLocaleData(localeEs, 'es');
 
 
