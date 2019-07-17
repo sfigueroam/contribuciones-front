@@ -1,78 +1,69 @@
 <mdl-layout #mdlLayout1="mdlLayout" mdl-layout-fixed-header>
-  <mdl-layout-header mdl-layout-header>
-    <mdl-layout-header-row [class.is-active-login]="isActiveLogin">
-      <mdl-layout-spacer></mdl-layout-spacer>
-      <a href="/">
-        <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
-      </a>
+    <mdl-layout-header mdl-layout-header>
+        <mdl-layout-header-row [class.is-active-login]="isActiveLogin">
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <a href="/">
+                <img src="../../../assets/tgr-logo.svg" alt="estrella TGR" height="30px" width="auto">
+            </a>
 
-      <mdl-layout-spacer></mdl-layout-spacer>
-      <nav class="mdl-navigation" *ngIf="isActiveLogin">
-        <button class="mdl-navigation__link cuenta-usuario" *ngIf="!logged"
-                (click)="redirigirLogin()"
-                mdl-button
-                mdl-button-type="icon">
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <nav class="mdl-navigation" *ngIf="isActiveLogin">
+                <button class="mdl-navigation__link cuenta-usuario" *ngIf="!logged" (click)="redirigirLogin()" mdl-button mdl-button-type="icon">
           <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
           <span class="account-user-text">Ingresar</span>
         </button>
 
 
-        <button class="mdl-navigation__link cuenta-usuario" *ngIf="logged"
-                #btnMenu="mdlButton"
-                (click)="menu.toggle($event, btnMenu)"
-                mdl-button
-                mdl-button-type="icon">
+                <button class="mdl-navigation__link cuenta-usuario" *ngIf="logged" #btnMenu="mdlButton" (click)="menu.toggle($event, btnMenu)" mdl-button mdl-button-type="icon">
           <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
          <span class="account-user-text">Bienvenido/a 
            <!--<span class="user">{{usuariologin}}</span>-->
          </span>
         </button>
-         <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
-          
-          <!--
+                <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
+
+                    <!--
           <mdl-menu-item *ngIf="logged"
                          (click)="redirigirMiCuenta()"
                          mdl-ripple mdl-menu-item-full-bleed-divider>
             Mi Cuenta
           </mdl-menu-item>
           -->
-          <mdl-menu-item *ngIf="logged"
-                         (click)="logout()"
-                         mdl-ripple>
-            Cerrar Sesión
-          </mdl-menu-item>
-        </mdl-menu>
-      </nav>
-    </mdl-layout-header-row>
-  </mdl-layout-header>
-  <mdl-layout-drawer class="tgr_header-drawer">
-    <div class="login_usuario">
-      <div class="user-logged" *ngIf="logged" >
-        <p>Bienvenido/a</p>
-        <h5 class="text-mont">{{usuariologin}}</h5>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="logout()">
-          CERRAR SESIÓN
-          <i class="material-icons">cancel</i>
-        </button>
-      </div>
-      <div class="user-not_logged" *ngIf="!logged" >
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="redirigirLogin()">
-          INICIAR SESIÓN
-        </button>
-      </div>
-    </div>
-    <nav class="mdl-navigation">
-      <a href="#" class="mdl-navigation__link">Contribuciones</a>
-      <a href="#" class="mdl-navigation__link">Deudas Fiscales</a>
-      <hr>
-      <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
-      <a href="https://www.tesoreria.cl/IntClientePregosWSWeb/?RUT=0&DV=0&EMAIL=" class="mdl-navigation__link hidden-xs"><i class="material-icons">feedback</i>Formulario de Contacto</a>
-      <a href="https://ayuda.tgr.cl/hc/es-419/articles/360018206233-Pago-de-contribuciones-de-bienes-ra%C3%ADces-en-la-Tesorer%C3%ADa" class="mdl-navigation__link"><i class="material-icons">help_outline</i>Centro de Ayuda</a>
-    </nav>
-  </mdl-layout-drawer>
+                    <mdl-menu-item *ngIf="logged" (click)="logout()" mdl-ripple>
+                        Cerrar Sesión
+                    </mdl-menu-item>
+                </mdl-menu>
+            </nav>
+        </mdl-layout-header-row>
+    </mdl-layout-header>
+    <mdl-layout-drawer class="tgr_header-drawer">
+        <div class="login_usuario">
+            <div class="user-logged" *ngIf="logged">
+                <p>Bienvenido/a</p>
+                <h5 class="text-mont">{{usuariologin}}</h5>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="logout()">
+                  CERRAR SESIÓN
+                  <i class="material-icons">cancel</i>
+                </button>
+            </div>
+            <div class="user-not_logged" *ngIf="!logged">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="redirigirLogin()">
+                INICIAR SESIÓN
+              </button>
+            </div>
+        </div>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago/deuda-fiscal']">Deudas Fiscales</a>
+            <a class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago/contribuciones/agregar/nueva']">Contribuciones</a>            
+            <hr>
+            <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
+            <a href="https://www.tesoreria.cl/IntClientePregosWSWeb/?RUT=0&DV=0&EMAIL=" class="mdl-navigation__link hidden-xs"><i class="material-icons">feedback</i>Formulario de Contacto</a>
+            <a href="https://ayuda.tgr.cl/hc/es-419/articles/360018206233-Pago-de-contribuciones-de-bienes-ra%C3%ADces-en-la-Tesorer%C3%ADa" class="mdl-navigation__link"><i class="material-icons">help_outline</i>Centro de Ayuda</a>
+        </nav>
+    </mdl-layout-drawer>
 
-  <mdl-layout-content>
-    <router-outlet></router-outlet>
-  </mdl-layout-content>
-  
+    <mdl-layout-content>
+        <router-outlet></router-outlet>
+    </mdl-layout-content>
+
 </mdl-layout>

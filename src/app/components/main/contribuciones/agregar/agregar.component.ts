@@ -27,7 +27,8 @@ export class AgregarComponent implements OnInit {
         this.isSugeridos = true;
       } else {
         this.isSugeridos = false;
-        this.router.navigate(['/main/contribuciones/agregar/nueva']);
+        this.router.navigate(['centropago', 'contribuciones', 'agregar', 'nueva']);
+        // this.router.navigate(['/main/contribuciones/agregar/nueva']);
       }
     }, () => {
       this.mdlSnackbarService.showSnackbar({
