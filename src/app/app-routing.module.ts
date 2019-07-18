@@ -33,26 +33,26 @@ const routes: Routes = [
     path: 'centropago/contribuciones',
     component: MainComponent,
     children: [ 
-      {
-        path: 'seleccionar-cuotas',
-        data: { index: 0 },
-        component: SeleccionCuotasComponent
-      },
+      // {
+      //   path: 'seleccionar-cuotas',
+      //   data: { index: 0 },
+      //   component: SeleccionCuotasComponent
+      // },
       {
         path: 'agregar',
         data: { index: 0 },
         component: AgregarComponent,
         children: [
-          {
-            path: 'sugeridas',
-            component: SugeridasComponent
-            },
-          {
-            path: 'nueva',
-            component: AgregarNuevaComponent
-            },
-          ]
-        },
+        //   {
+        //     path: 'sugeridas',
+        //     component: SugeridasComponent
+        //     },
+        //   {
+        //     path: 'nueva',
+        //     component: AgregarNuevaComponent
+        //     },
+        //   ]
+        // },
         {
           path: 'certificados',
           data: {index: 1},
@@ -68,21 +68,21 @@ const routes: Routes = [
     path: 'centropago/deuda-fiscal',
     component: DeudaFiscalComponent
     },
-  // {
-  //   path: 'centropago/contribuciones/seleccionar-cuotas',
-  //   data: { index: 0 },
-  //   component: SeleccionCuotasComponent
-  // },
-  // {
-  //   path: 'centropago/contribuciones/agregar/nueva',
-  //   data: { index: 0 },
-  //   component: AgregarNuevaComponent
-  // },
-  // {
-  //   path: 'centropago/contribuciones/agregar/sugeridas',
-  //   data: { index: 0 },
-  //   component: SugeridasComponent
-  // }
+  {
+    path: 'centropago/contribuciones/seleccionar-cuotas',
+    data: { index: 0 },
+    component: SeleccionCuotasComponent
+  },
+  {
+    path: 'centropago/contribuciones/agregar/nueva',
+    data: { index: 0 },
+    component: AgregarNuevaComponent
+  },
+  {
+    path: 'centropago/contribuciones/agregar/sugeridas',
+    data: { index: 0 },
+    component: SugeridasComponent
+  }
   ];
 
 @NgModule({
