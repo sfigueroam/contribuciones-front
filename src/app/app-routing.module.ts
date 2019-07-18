@@ -51,8 +51,8 @@ const routes: Routes = [
         //     path: 'nueva',
         //     component: AgregarNuevaComponent
         //     },
-        //   ]
-        // },
+          ]
+        },
         {
           path: 'certificados',
           data: {index: 1},
