@@ -13,73 +13,77 @@ import { DeudaFiscalComponent } from './components/deuda-fiscal/deuda-fiscal.com
 
 
 
-
 const routes: Routes = [
   {
     path: '',
     //redirectTo: '/centropago/contribuciones/seleccionar-cuotas',
     redirectTo: '/centropago/contribuciones/agregar/nueva',
     pathMatch: 'full'
-  },
+    },
   {
     path: 'login',
     component: LoginComponent
-  },
+    },
   {
     path: 'logout',
     redirectTo: '/centropago/contribuciones/seleccionar-cuotas',
     pathMatch: 'full'
-  },
+    },
   {
-    path: 'main/contribuciones',
+    path: 'centropago/contribuciones',
     component: MainComponent,
-    children: [
-      // {
-      //   path: 'seleccionar-cuotas',
-      //   data: {index: 0},
-      //   component: SeleccionCuotasComponent
-      // },
+    children: [ 
+      {
+        path: 'seleccionar-cuotas',
+        data: { index: 0 },
+        component: SeleccionCuotasComponent
+      },
       {
         path: 'agregar',
-        data: {index: 0},
+        data: { index: 0 },
         component: AgregarComponent,
         children: [
           {
             path: 'sugeridas',
             component: SugeridasComponent
-          }// ,
-          // {
-          //   path: 'nueva',
-          //   component: AgregarNuevaComponent
-          // },
-        ]
-      },
-      {
-        path: 'certificados',
-        data: {index: 1},
-        component: CertificadosComponent
-      }
-    ]
-  },
+            },
+          {
+            path: 'nueva',
+            component: AgregarNuevaComponent
+            },
+          ]
+        },
+        {
+          path: 'certificados',
+          data: {index: 1},
+          component: CertificadosComponent
+          }
+      ]
+    },
   {
     path: 'main/contribuciones/certificados/obtener',
     component: ObtenerComponent
-  },
+    },
   {
     path: 'centropago/deuda-fiscal',
     component: DeudaFiscalComponent
-  },
-  {
-    path: 'centropago/contribuciones/seleccionar-cuotas',
-    data: {index: 0},
-    component: SeleccionCuotasComponent
-  },
-  {
-    path: 'centropago/contribuciones/agregar/nueva',
-    data: {index: 0},
-    component: AgregarNuevaComponent
-  }
-];
+    },
+  // {
+  //   path: 'centropago/contribuciones/seleccionar-cuotas',
+  //   data: { index: 0 },
+  //   component: SeleccionCuotasComponent
+  // },
+  // {
+  //   path: 'centropago/contribuciones/agregar/nueva',
+  //   data: { index: 0 },
+  //   component: AgregarNuevaComponent
+  // },
+  // {
+  //   path: 'centropago/contribuciones/agregar/sugeridas',
+  //   data: { index: 0 },
+  //   component: SugeridasComponent
+  // }
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

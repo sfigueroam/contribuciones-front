@@ -188,7 +188,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   gotoSugeridas() {
-    this.router.navigate(['/main/contribuciones/agregar/sugeridas']);
+    // this.router.navigate(['/main/contribuciones/agregar/sugeridas']);
+    this.router.navigate(['/centropago/contribuciones/agregar/sugeridas']);
   }
 
   onChange() {
