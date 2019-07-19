@@ -8,6 +8,7 @@ import {CertificadosComponent} from './components/main/certificados/certificados
 import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 import {LoginComponent} from './components/login/login.component';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
+import { DeudaFiscalComponent } from './components/main/deuda-fiscal/deuda-fiscal.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,16 @@ const routes: Routes = [
   }, {
     path: 'main/contribuciones/certificados/obtener',
     component: ObtenerComponent
+  },
+  {
+    path: 'centropago/deuda-fiscal',
+    component: MainComponent,
+    children: [
+      {
+        path: 'listado',
+        component: DeudaFiscalComponent
+      }
+    ]
   }
 ];
 
