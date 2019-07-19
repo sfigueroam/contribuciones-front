@@ -71,10 +71,9 @@ export class SugeridasComponent implements OnInit {
     }
     this.user.asociarRoles(roles).then(() => {
         this.contribuciones.propiedades = undefined;
-        this.sugeridas.clearPropiedades();
+        this.sugeridas.clearPropiedades(); 
         this.cargarRolesNoAsociados().then(() => {
-          this.router.navigate(['centropago', 'contribuciones', 'seleccionar-cuotas']);
-          // this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
+          this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
         });
       },
       () => {
@@ -91,7 +90,6 @@ export class SugeridasComponent implements OnInit {
   }
 
   volver(): void {
-    this.router.navigate(['centropago', 'contribuciones', 'seleccionar-cuotas']);
-    // this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
+    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
   }
 }

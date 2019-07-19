@@ -35,9 +35,8 @@ export class DialogAgregarPropiedadComponent implements OnInit {
     this.dialog.hide();
   }
 
-  exit() {
+  exit(){
     this.dialog.hide();
-    this.router.navigate(['centropago', 'contribuciones', 'seleccionar-cuotas']);
-    // this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
+    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
   }
 }

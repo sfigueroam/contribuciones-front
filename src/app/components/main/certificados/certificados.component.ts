@@ -80,7 +80,6 @@ export class CertificadosComponent implements OnInit {
   }
 
   volver(): void {
-    this.router.navigate(['centropago', 'contribuciones', 'seleccionar-cuotas']);
-    // this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
+    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
   }
 }

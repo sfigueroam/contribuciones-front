@@ -78,14 +78,10 @@ export class AsociarCorreoComponent implements OnInit {
         if (resultado.ok()) {
           this.user.email = this.correo;
           this.service.propiedades = undefined;
-          this.router.navigate(['centropago', 'contribuciones', 'seleccionar-cuotas'], {
+          this.router.navigate(['main/contribuciones/seleccionar-cuotas'], {
             queryParams: {'refresh': true},
             skipLocationChange: true
           });
-          // this.router.navigate(['centropago/contribuciones/seleccionar-cuotas'], {
-          //   queryParams: {'refresh': true},
-          //   skipLocationChange: true
-          // });
 
           this.close();
         } else {

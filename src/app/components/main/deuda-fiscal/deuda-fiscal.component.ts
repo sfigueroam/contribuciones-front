@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DeudaFiscalService } from '../../services/deuda-fiscal.service';
+import { DeudaFiscalService } from '../../../services/deuda-fiscal.service';
+
 
 @Component({
   selector: 'app-deuda-fiscal',
@@ -8,11 +9,11 @@ import { DeudaFiscalService } from '../../services/deuda-fiscal.service';
 })
 export class DeudaFiscalComponent implements OnInit {
 
-  listadoDeuda: any[];
+  listado: any[];
 
   constructor( private deudaFiscalService: DeudaFiscalService ) {
 
-    this.listadoDeuda = deudaFiscalService.getListado();
+    this.listado = deudaFiscalService.getListado();
 
   }
 
