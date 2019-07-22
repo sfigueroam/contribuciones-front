@@ -11,7 +11,67 @@
     </div>
 
 
+    <br>    
+
+    
+    <div class="tgr-results">    
+        <div class="mdl-layout-spacer"></div>    
+        <app-deuda-fiscal-servicio class="tgr-content mdl-shadow--3dp" [servicio]="serv" *ngFor="let serv of listServicio">
+        </app-deuda-fiscal-servicio>
+        <div class="mdl-layout-spacer"></div>
+    </div>
+    
+
+
+    <br>
+
+    
     <div class="mdl-grid">
+        <div class="mdl-layout-spacer"></div>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td class="mdl-data-table__cell--non-numeric"> Nombre Servicio </td>
+                    <td class="mdl-data-table__cell--non-numeric"> Lista Formularios </td>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let servicio of listServicio">
+                    <td></td>
+                    <td> {{ servicio.servicioNom }}</td>                    
+                    <td> 
+                        <table *ngFor="let form of servicio.listFormulario">
+                            <tr>
+                                <td> {{ form.formNom }} </td>
+                                <td> 
+                                    <table *ngFor="let detalle of form.listDetalle">
+                                        <tr>
+                                                <td> {{ detalle.folio }} </td>
+                                                <td> {{ detalle.vencimiento }} </td>
+                                                <td> {{ detalle.montoTotal }} </td>
+                                                <td> {{ detalle.montoParcial }} </td>
+                                                <td> {{ detalle.reajuste }} </td>
+                                                <td> {{ detalle.interes }} </td>
+                                                <td> {{ detalle.multa }} </td>
+                                                <td> {{ detalle.condonacion }} </td>
+                                                <td> {{ detalle.porCondonacion }} </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>                            
+                        </table>
+                    </td>                    
+                </tr>                
+            </tbody>
+        </table>
+        <div class="mdl-layout-spacer"></div>
+    </div>
+
+
+    
+
+    <!-- <div class="mdl-grid">
         <div class="mdl-layout-spacer"></div>
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
@@ -33,7 +93,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let deuda of listado">
+                <tr *ngFor="let deuda of listDeuda">
                     <td></td>
                     <td> {{ deuda.servicioNom }}</td>
                     <td> {{ deuda.servicioId }}</td>
@@ -52,6 +112,6 @@
             </tbody>
         </table>
         <div class="mdl-layout-spacer"></div>
-    </div>
+    </div> -->
 
 </div>

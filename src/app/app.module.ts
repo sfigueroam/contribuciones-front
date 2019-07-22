@@ -54,7 +54,9 @@ import { ResumenComponent } from './components/main/contribuciones/seleccion-cuo
 import { BotonPagarComponent } from './components/main/contribuciones/seleccion-cuotas/modal/boton-pagar/boton-pagar.component';
 import { RecordarComponent } from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
 import { DeudaFiscalComponent } from './components/main/deuda-fiscal/deuda-fiscal.component';
-
+import { DeudaFiscalServicioComponent } from './components/main/deuda-fiscal-servicio/deuda-fiscal-servicio.component';
+import { DeudaFiscalFormularioComponent } from './components/main/deuda-fiscal-formulario/deuda-fiscal-formulario.component';
+import { DeudaFiscalDetalleComponent } from './components/main/deuda-fiscal-detalle/deuda-fiscal-detalle.component';
 
 
 
@@ -89,6 +91,9 @@ registerLocaleData(localeEs, 'es');
     BotonPagarComponent,
     RecordarComponent,
     DeudaFiscalComponent,
+    DeudaFiscalServicioComponent,
+    DeudaFiscalFormularioComponent,
+    DeudaFiscalDetalleComponent,    
   ],
   imports: [
     BrowserModule,

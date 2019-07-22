@@ -1,0 +1,21 @@
+
+<div class="border-white"></div>
+
+<div class="tgr-card__head">
+  
+  <div>
+      <label class="tgr-th-icon">
+        <mdl-icon></mdl-icon>
+      </label>
+  </div>
+  <p class="tgr-card__title--text"> {{ servicio.servicioNom }} </p>
+  
+</div>
+
+<div class="tgr-card__body">
+  
+  <app-deuda-fiscal-formulario [formulario]="form" *ngFor="let form of servicio.listFormulario">
+
+  </app-deuda-fiscal-formulario>
+
+</div>
