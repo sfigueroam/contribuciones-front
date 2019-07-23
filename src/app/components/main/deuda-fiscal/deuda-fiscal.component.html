@@ -17,25 +17,37 @@
             <thead>
                 <tr>
                     <td></td>
+                    <td class="mdl-data-table__cell--non-numeric"> Nombre Servicio </td>
+                    <td class="mdl-data-table__cell--non-numeric"> Id Servicio </td>
+                    <td class="mdl-data-table__cell--non-numeric"> Nombre Formulario</td>
+                    <td class="mdl-data-table__cell--non-numeric"> N° Formulario</td>
                     <td class="mdl-data-table__cell--non-numeric"> Folio </td>
                     <td class="mdl-data-table__cell--non-numeric"> Vencimiento </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Monto </td>
+                    <td class="mdl-data-table__cell--non-numeric"> Monto Total</td>
                     <td class="mdl-data-table__cell--non-numeric"> Monto Parcial</td>
                     <td class="mdl-data-table__cell--non-numeric"> Reajuste </td>
                     <td class="mdl-data-table__cell--non-numeric"> Interes </td>
                     <td class="mdl-data-table__cell--non-numeric"> Multa </td>
+                    <td class="mdl-data-table__cell--non-numeric"> Condonación </td>
+                    <td class="mdl-data-table__cell--non-numeric"> % Condonación </td>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let deuda of listado">
                     <td></td>
+                    <td> {{ deuda.servicioNom }}</td>
+                    <td> {{ deuda.servicioId }}</td>
+                    <td> {{ deuda.formNom }}</td>
+                    <td> {{ deuda.formNum }}</td>
                     <td> {{ deuda.folio }}</td>
-                    <td> {{ deuda.vencimiento }}</td>
-                    <td> {{ deuda.monto }}</td>
-                    <td> {{ deuda.montoParcial }}</td>
+                    <td> {{ deuda.vencimiento | date:'shortDate' }}</td>
+                    <td> {{ deuda.montoTotal | currency:'CLP'}}</td>
+                    <td> {{ deuda.montoParcial | currency:'CLP' }}</td>
                     <td> {{ deuda.reajuste }}</td>
                     <td> {{ deuda.interes }}</td>
                     <td> {{ deuda.multa }}</td>
+                    <td> {{ deuda.condonacion }}</td>
+                    <td> {{ deuda.porCondonacion | percent:'2.2-2' }}</td>
                 </tr>
             </tbody>
         </table>
