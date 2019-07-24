@@ -5,7 +5,7 @@ import { DeudaFiscalService } from '../../../services/deuda-fiscal.service';
 @Component({
   selector: 'app-deuda-fiscal',
   templateUrl: './deuda-fiscal.component.html',
-  styleUrls: ['./deuda-fiscal.component.css']
+  styleUrls: ['./deuda-fiscal.component.scss']
 })
 export class DeudaFiscalComponent implements OnInit {
 

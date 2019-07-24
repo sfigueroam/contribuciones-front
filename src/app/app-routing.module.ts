@@ -9,6 +9,7 @@ import {AgregarComponent} from './components/main/contribuciones/agregar/agregar
 import {LoginComponent} from './components/login/login.component';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
 import { DeudaFiscalComponent } from './components/main/deuda-fiscal/deuda-fiscal.component';
+import { CentroPagoComponent } from './components/main/centro-pago/centro-pago.component';
 
 
 const routes: Routes = [
@@ -56,12 +57,16 @@ const routes: Routes = [
     component: ObtenerComponent
   },
   {
-    path: 'centropago/deuda-fiscal',
+    path: 'centropago',
     component: MainComponent,
     children: [
       {
-        path: 'listado',
+        path: 'deuda-fiscal/listado',
         component: DeudaFiscalComponent
+      },
+      {
+        path: 'inicio',
+        component: CentroPagoComponent
       }
     ]
   }

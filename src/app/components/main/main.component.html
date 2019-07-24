@@ -53,6 +53,7 @@
             </div>
         </div>
         <nav class="mdl-navigation">
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','inicio']">Centro de Pago</a>
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="logged">Deudas Fiscales</a>
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
             <hr>
