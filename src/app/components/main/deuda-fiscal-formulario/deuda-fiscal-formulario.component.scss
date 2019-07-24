@@ -1,0 +1,454 @@
+@import '../../../../styles/colors';
+.pay-title {
+    &.sel-cuotas-title {
+        margin-bottom: 0;
+    }
+    &.sel-cuotas-subtitle {
+        margin-top: 0;
+        p {
+            margin-top: 7px;
+        }
+    }
+}
+
+.select-fee {
+    margin: 6px auto 14px auto;
+    .mdl-button-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        vertical-align: middle;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        p {
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: $color-dark-gray;
+            text-align: center;
+        }
+        button {
+            background-color: $color-white;
+            color: $color-dark-blue-text;
+            display: inline-block;
+            margin: 0px;
+            box-shadow: none;
+            border: 1px solid #2f3c89;
+            border-left: none;
+            text-transform: none;
+            font-size: 14px;
+            @media (max-width: 319px) {
+                font-size: 11px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            @media (min-width: 320px) and (max-width: 350px) {
+                font-size: 12px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            @media (min-width: 351px) and (max-width: 480px) {
+                font-size: 12px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            &:first-of-type {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border-left: 1px solid #2f3c89;
+            }
+            &:last-of-type {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-right: 1px solid #2f3c89;
+            }
+            &:nth-of-type(3) {
+                color: $color-danger;
+                &:hover {
+                    color: $color-white;
+                }
+            }
+            &.active {
+                background-color: $color-dark-blue-text;
+                color: $color-white;
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: $color-dark-blue-text;
+                    color: $color-white;
+                }
+            }
+            &:hover {
+                background-color: $link-color;
+                color: $color-white;
+            }
+            &:active,
+            &:focus {
+                background-color: $color-dark-blue-text;
+                color: $color-white;
+            }
+        }
+    }
+}
+
+.check-seleccion-deudas {
+    margin: 12px auto -14px auto;
+    @media (max-width: 599px) {
+        width: 100%;
+        margin-left: -10px;
+    }
+    @media (min-width: 600px) and (max-width: 839px) {
+        width: 70%;
+        margin-left: calc(15% - 8px);
+    }
+    @media (min-width: 840px) and (max-width: 1024px) {
+        width: 70%;
+        margin-left: calc(14% - 8px);
+    }
+    @media (min-width: 1025px) {
+        width: 70%;
+        margin-left: calc(14% - 12px);
+    }
+    mdl-icon.material-icons {
+        vertical-align: bottom;
+        cursor: pointer;
+        color: $color-dark-blue-text;
+    }
+    span {
+        margin-left: 6px;
+        font-size: 16px;
+        color: $color-dark-blue-text;
+        cursor: pointer;
+    }
+}
+
+.total-buy {
+    margin-left: auto;
+    margin-right: auto;
+    @media (min-width: 600px) and (max-width: 839px) {
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    @media (min-width: 840px) and (max-width: 1279px) {
+        width: 40%;
+    }
+    @media (min-width: 1280px) {
+        width: 35%;
+    }
+    .gray-border {
+        height: 2px;
+        margin-top: 8px;
+        margin-bottom: 12px;
+        background-color: rgba(84, 84, 85, .45);
+        &.hidden {
+            display: none;
+        }
+    }
+    .monto-total {
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: $color-dark-blue-text;
+        @media (min-width: 319px) and (max-width: 380px) {
+            font-size: 14px;
+        }
+        &.texto,
+        &.monto {
+            display: inline-block;
+        }
+        &.texto {
+            width: 70%;
+            text-align: left;
+        }
+        &.monto {
+            width: 30%;
+            text-align: right;
+        }
+        &.monto-condonacion {
+            color: $color-success;
+        }
+        &.beneficio {
+            margin-top: 24px;
+            margin-bottom: 22px;
+        }
+    }
+    .tgr-condonacion {
+        margin-top: 18px;
+        text-align: center;
+        .ayuda-condonacion {
+            box-shadow: none;
+            background-color: $gray-lightblue-background;
+            color: $color-dark-blue-text;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 24px;
+            font-size: 16px;
+            text-transform: none;
+            transition: .4s;
+            @media (max-width: 480px) {
+                font-size: 14px;
+            }
+            .material-icons {
+                vertical-align: sub;
+                &:hover,
+                &:focus,
+                &:active {
+                    color: $color-dark-blue-text;
+                }
+            }
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: underline;
+                color: $color-dark-blue-text;
+                .material-icons {
+                    color: $color-dark-blue-text;
+                }
+            }
+        }
+    }
+}
+
+.tgr-mini-footer {
+    @media (max-width: 480) {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    p.sin-deudas {
+        font-size: 16px;
+        @media (max-width: 480px) {
+            font-size: 14px;
+        }
+    }
+    .cantidad-deudas-seleccionadas {
+        width: 100%;
+        padding-left: 16px;
+        margin-top: 0;
+        text-align: left;
+        font-size: 16px;
+        color: $color-dark-gray;
+        @media (max-width: 480px) {
+            font-size: 15px;
+        }
+        span {
+            color: $color-dark-blue-text;
+        }
+    }
+}
+
+.new-rol {
+    @media (max-width: 420px) {
+        bottom: 85px;
+    }
+}
+
+.alert-new-rol {
+    background-color: $color-warning;
+    color: $color-white;
+    padding: 10px 15px;
+    border-radius: 2px;
+    position: relative;
+    p {
+        margin: 0;
+        line-height: 20px;
+    }
+    i.alert-remove {
+        position: absolute;
+        top: 3px;
+        right: 4px;
+        font-size: 18px;
+        opacity: .5;
+        cursor: pointer;
+    }
+}
+
+.notifications {
+    cursor: pointer;
+    position: absolute;
+    top: 11px;
+    right: -50px;
+    color: $color-default-dark;
+    .mdl-badge[data-badge]:after {
+        background-color: $color-warning;
+    }
+}
+
+.filter {
+    margin-top: 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 0;
+    text-align: center;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filter li {
+    display: block;
+    float: left;
+    height: inherit;
+    line-height: 30px;
+    margin-right: 10px;
+    margin-top: 0;
+    position: relative;
+}
+
+.filter .material-icons {
+    color: #fff;
+    display: none;
+    line-height: 1;
+}
+
+.filter a {
+    background: $color-light;
+    border-radius: 32px;
+    border: 1px solid $color-filter;
+    color: $color-80;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    padding: 0 15px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.filter .active .material-icons {
+    display: inline-block;
+    float: left;
+    font-size: 20px;
+    padding-top: 4px;
+    font-weight: bold;
+    padding-right: 3px;
+}
+
+.filter .active a {
+    background: $color-filter;
+    color: #fff;
+    padding-left: 10px;
+}
+
+.tgr-loading2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding-top: 10px;
+    p {
+        font-size: 16px;
+        @media (max-width: 480px) {
+            font-size: 14px;
+        }
+    }
+}
+
+.mdl-button {
+    overflow: visible;
+}
+
+.drawer-shopping-cart {
+    padding-bottom: 70px;
+    >.mdl-layout-title {
+        line-height: 56px;
+        text-align: center;
+        padding-right: 16px;
+        margin-left: 15px;
+    }
+    .sub-title {
+        color: $gray-87;
+        font-size: 16px;
+        margin-left: 15px;
+        margin-top: 30px;
+        text-align: center;
+    }
+    table {
+        th {
+            width: 25%;
+            text-align: left;
+            padding-left: 24px;
+            &:last-of-type {
+                text-align: right;
+            }
+            @media (max-width: 500px) {
+                padding-left: 4px;
+            }
+        }
+        td {
+            width: 25%;
+            text-align: left;
+            padding-left: 24px;
+            &:last-of-type {
+                text-align: right;
+            }
+            @media (max-width: 500px) {
+                padding-left: 4px;
+            }
+        }
+    }
+    .tgr-dialog__actions {
+        text-align: center;
+    }
+}
+
+.mdl-dialog__content {
+    @media (max-width: 500px) {
+        padding: 10px 0 24px 0;
+    }
+}
+
+.mdl-dialog__content .tgr-propiedad:first-child .sub-title {
+    margin-top: 0;
+}
+
+@media (min-width: 481px) {
+    .drawer-shopping-cart {
+        table {
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+.tgr-add {
+    position: fixed;
+    bottom: 5px;
+    right: 1px;
+    z-index: 2;
+}
+
+.tgr-target-wrapper {
+    padding: 0 10px;
+    @media (min-width: 481px) and (max-width: 600px) {
+        padding-left: 100px;
+        padding-right: 5px;
+    }
+    @media (min-width: 840px) and (max-width: 1279px) {
+        padding-left: 250px;
+        padding-right: 140px;
+    }
+    @media (min-width: 1280px) {
+        padding-left: 326px;
+        padding-right: 250px;
+    }
+}
+
+.tgr-target-wave {
+    position: relative;
+}
+
+.drawer-shopping-cart .mdl-layout-title {
+    line-height: 1;
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+
+.tgr-condonacion {
+    color: $tgr-condonacion;
+}
+
+p.cantidad-deudas-seleccionadas {
+    margin-bottom: 0px;
+    height: 8px;
+}

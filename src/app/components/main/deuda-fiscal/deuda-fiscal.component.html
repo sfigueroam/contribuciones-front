@@ -1,117 +1,190 @@
+<!-- <div [class.hidden]="rolesSugeridos < 1" class="mdl-grid">
+
+    <div class="mdl-cell mdl-cell--3-col-phone mdl-cell--4-col-desktop m-0auto text-center p-relative">
+        <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
+            <i mdl-button (click)="ocultarAlertaSugeridas = true" class="material-icons alert-remove">clear</i>
+            <p>Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT</p>
+        </div>
+        <div [class.hidden]="rolesSugeridos < 1" class="notifications">
+            <div (click)="gotoSugeridas()">
+                <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
+            </div>
+        </div>
+    </div>
+
+</div> -->
+
+
+<!-- <app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo> -->
+
+
 <div class="tgr-container">
 
-
     <div class="mdl-grid">
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-cell mdl-cell--12-col m-0auto pay-title">
-            <h5 class="title text-center text-mont">Ver Mis <strong>Deudas Fiscales</strong></h5>
-            <p class="text-left">Selecciona una o más deudas y agrégalas al carro.</p>
+        <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-title">
+            <h5 class="title text-center text-mont">Seleccionar Mis <strong>Deudas Fiscales</strong></h5>
         </div>
-        <div class="mdl-layout-spacer"></div>
     </div>
-
-
-    <br>    
-
-    
-    <div class="tgr-results">    
-        <div class="mdl-layout-spacer"></div>    
-        <app-deuda-fiscal-servicio class="tgr-content mdl-shadow--3dp" [servicio]="serv" *ngFor="let serv of listServicio">
-        </app-deuda-fiscal-servicio>
-        <div class="mdl-layout-spacer"></div>
-    </div>
-    
-
-
-    <br>
-
-    
-    <div class="mdl-grid">
-        <div class="mdl-layout-spacer"></div>
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-                <tr>
-                    <td></td>
-                    <td class="mdl-data-table__cell--non-numeric"> Nombre Servicio </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Lista Formularios </td>                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let servicio of listServicio">
-                    <td></td>
-                    <td> {{ servicio.servicioNom }}</td>                    
-                    <td> 
-                        <table *ngFor="let form of servicio.listFormulario">
-                            <tr>
-                                <td> {{ form.formNom }} </td>
-                                <td> 
-                                    <table *ngFor="let detalle of form.listDetalle">
-                                        <tr>
-                                                <td> {{ detalle.folio }} </td>
-                                                <td> {{ detalle.vencimiento }} </td>
-                                                <td> {{ detalle.montoTotal }} </td>
-                                                <td> {{ detalle.montoParcial }} </td>
-                                                <td> {{ detalle.reajuste }} </td>
-                                                <td> {{ detalle.interes }} </td>
-                                                <td> {{ detalle.multa }} </td>
-                                                <td> {{ detalle.condonacion }} </td>
-                                                <td> {{ detalle.porCondonacion }} </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>                            
-                        </table>
-                    </td>                    
-                </tr>                
-            </tbody>
-        </table>
-        <div class="mdl-layout-spacer"></div>
-    </div>
-
-
-    
-
-    <!-- <div class="mdl-grid">
-        <div class="mdl-layout-spacer"></div>
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-                <tr>
-                    <td></td>
-                    <td class="mdl-data-table__cell--non-numeric"> Nombre Servicio </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Id Servicio </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Nombre Formulario</td>
-                    <td class="mdl-data-table__cell--non-numeric"> N° Formulario</td>
-                    <td class="mdl-data-table__cell--non-numeric"> Folio </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Vencimiento </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Monto Total</td>
-                    <td class="mdl-data-table__cell--non-numeric"> Monto Parcial</td>
-                    <td class="mdl-data-table__cell--non-numeric"> Reajuste </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Interes </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Multa </td>
-                    <td class="mdl-data-table__cell--non-numeric"> Condonación </td>
-                    <td class="mdl-data-table__cell--non-numeric"> % Condonación </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let deuda of listDeuda">
-                    <td></td>
-                    <td> {{ deuda.servicioNom }}</td>
-                    <td> {{ deuda.servicioId }}</td>
-                    <td> {{ deuda.formNom }}</td>
-                    <td> {{ deuda.formNum }}</td>
-                    <td> {{ deuda.folio }}</td>
-                    <td> {{ deuda.vencimiento | date:'shortDate' }}</td>
-                    <td> {{ deuda.montoTotal | currency:'CLP'}}</td>
-                    <td> {{ deuda.montoParcial | currency:'CLP' }}</td>
-                    <td> {{ deuda.reajuste }}</td>
-                    <td> {{ deuda.interes }}</td>
-                    <td> {{ deuda.multa }}</td>
-                    <td> {{ deuda.condonacion }}</td>
-                    <td> {{ deuda.porCondonacion | percent:'2.2-2' }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="mdl-layout-spacer"></div>
-    </div> -->
 
 </div>
+
+<div class="mdl-grid" *ngIf="listServicio.length > 0; else bodySinDeuda">
+
+    <div class="mdl-cell mdl-cell--8-col select-fee">
+        <div *ngIf="complete && result.total > 0">
+            <div class="check-seleccion-deudas no-vencidas" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
+                <mdl-icon> {{ selectedIcon }} </mdl-icon>
+                <span>Seleccionar <strong>TODAS</strong> las deudas</span>
+            </div>
+
+            <div class="check-seleccion-deudas vencidas" *ngIf="existeSoloVencidas" (click)="seleccionarTodasVencidas()">
+                <mdl-icon> {{ selectedIcon }} </mdl-icon>
+                <span>Seleccionar <strong>TODAS</strong> las deudas vencidas</span>
+            </div>
+
+            <div class="mdl-button-group" *ngIf="existeVencidas && !existeSoloVencidas">
+                <p>¿Qué deudas quieres pagar?</p>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" [class.active]="seleccionada == tipo.TODAS" (click)="seleccionar(tipo.TODAS)">
+            Todas
+          </button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" [class.active]="seleccionada == tipo.NINGUNA" (click)="seleccionar(tipo.NINGUNA)">
+            Ninguna
+          </button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" [class.active]="seleccionada == tipo.VENCIDAS" (click)="seleccionar(tipo.VENCIDAS)">
+            Vencidas
+          </button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" [class.active]="seleccionada == tipo.NO_VENCIDAS" (click)="seleccionar(tipo.NO_VENCIDAS)">
+            No Vencidas
+          </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<ng-template #bodySinDeuda>
+
+    <div *ngIf="!obteniendoDatos" class="tgr-container">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+                <p>Actualmente no tienes propiedades guardadas ni deudas en tu carro. Te invitamos a buscar y agregar propiedades para pagar.
+                </p>
+            </div>
+        </div>
+        <div class="mdl-grid">
+            <div class="tgr-actions__content">
+                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/main/contribuciones/agregar/nueva']">
+            <i class="material-icons">add</i>
+            Agregar propiedades
+          </button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="obteniendoDatos" class="tgr-container">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+                <!--<p>Estamos recuperando tus propiedades</p>-->
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+<div class="mdl-grid" *ngFor="let servicio of listServicio">
+    <div class="mdl-cell mdl-cell--6-col m-0auto rol-card" *ngIf="servicio.listFormulario.length > 0">
+        <app-deuda-fiscal-servicio (change)="onChange()" [servicio]="servicio"></app-deuda-fiscal-servicio>
+    </div>
+</div>
+
+<div class="mdl-grid" *ngIf="listServicio.length > 0">
+    <div class="mdl-cell mdl-cell--6-col total-buy">
+
+        <p *ngIf="existeVencidas" class="monto-total texto">
+            Monto total :
+        </p>
+        <p *ngIf="existeVencidas" class="monto-total monto">
+            <strong>$ {{ total + condonacion | number }}</strong>
+        </p>
+
+        <div *ngIf="condonacion > 0">
+            <p class="monto-total texto monto-condonacion">
+                Monto beneficio condonación :
+            </p>
+            <p class="monto-total monto monto-condonacion">
+                <strong>$ {{condonacion | number}}</strong>
+            </p>
+        </div>
+
+
+        <div *ngIf="existeVencidas" class="gray-border"></div>
+        <p *ngIf="complete" class="monto-total texto">
+            Monto total a pagar :
+        </p>
+        <p *ngIf="complete" class="monto-total monto">
+            <strong>$ {{total | number}}</strong>
+        </p>
+
+
+        <p *ngIf="existeVencidas && (result.vencidas != result.vencidasSeleccionadas)" class="monto-total beneficio">
+            Al pagar cuotas vencidas ya estás accediendo al beneficio de Condonación. Selecciona <strong>todas las cuotas
+        vencidas de un ROL</strong> para conseguir un mayor beneficio a través de la Condonación por Pago Total.
+        </p>
+
+        <!-- *ngIf="condonacion > 0" -->
+        <div class="tgr-condonacion" *ngIf="existeVencidas">
+            <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion" (click)="dialogAyudaCondonacion()">
+          <i class="material-icons">help</i>
+          ¿Qué es el beneficio de <strong>Condonación</strong>?
+        </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="tgr-actions tgr-mini-footer" *ngIf="listServicio.length > 0; else footeractions">
+    <div *ngIf="!complete" class="tgr-loading2">
+        <mdl-spinner single-color active></mdl-spinner>
+        <p>Estamos calculando tu monto a pagar</p>
+    </div>
+    <div *ngIf="complete" class="tgr-actions__content">
+        <button class="button-resumen" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">
+        <mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list
+        </mdl-icon>
+      </button>
+        <div class="mdl-layout-spacer"></div>
+        <app-boton-pagar [codigos]="listaContribuciones" [total]="total"></app-boton-pagar>
+        <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}}</strong></span> de {{result.total}} deudas seleccionadas
+        </p>
+    </div>
+</div> -->
+
+<!-- <ng-template #footeractions>
+    <div *ngIf="!obteniendoDatos" class="tgr-actions tgr-mini-footer">
+        <p class="sin-deudas">No hay deudas seleccionadas para pagar</p>
+    </div>
+
+
+    <div *ngIf="obteniendoDatos" class="tgr-actions tgr-mini-footer">
+        <div class="tgr-loading2">
+            <mdl-spinner single-color active></mdl-spinner>
+            <p class="sin-deudas">Obteniendo Datos</p>
+        </div>
+    </div>
+</ng-template> -->
+
+<!-- <div class="tgr-add" *ngIf="propiedades.length > 0">
+    <div class="tgr-target-wrapper">
+        <div class="tgr-target-wave tgr-target-wave--button">
+            <button id="helpTooltip-buttonAdd" placement="left" trigger="none" [tooltip]="HtmlContent" content-type="template" mdl-button mdl-button-type="fab" mdl-colored="accent" class="new-rol" [routerLink]="['/main/contribuciones/agregar/nueva']">
+          <mdl-icon>add</mdl-icon>
+        </button>
+            <ng-template #HtmlContent>
+                <p>Busca y agrega nuevas propiedades.</p>
+            </ng-template>
+        </div>
+    </div>
+</div> -->

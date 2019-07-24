@@ -1,4 +1,6 @@
 import { DFDetalle } from './DFDetalle';
+import { TipoCuota } from './TipoCuota';
+import { Observable, Subject } from 'rxjs';
 
 export class DFFormulario {
 
@@ -17,8 +19,25 @@ export class DFFormulario {
 
     listDetalle: DFDetalle[];
 
+    isComplete = true;
 
-    public constructor ( servicioId:number, formNum: number, formNom: string, listDetalle ) {
+  completeSubject: Subject<any> = new Subject<any>();
+  completeStream: Observable<any> = this.completeSubject.asObservable();
+
+  changeSubject: Subject<any> = new Subject<any>();
+  changeStream: Observable<any> = this.changeSubject.asObservable();
+
+  total: number;
+
+  sufijoDireccion: string;
+
+  isProcess = false;
+
+  expired = false;
+  pagoTotal = true;
+
+
+    public constructor ( servicioId: number, formNum: number, formNom: string, listDetalle: DFDetalle[] ) {
 
         this.servicioId = servicioId;
         this.formNum = formNum;
@@ -26,5 +45,23 @@ export class DFFormulario {
         this.listDetalle = listDetalle;
 
     }
+
+    seleccionar( tipo: TipoCuota ) {
+
+        for (const detalle of this.listDetalle) {
+
+          if (tipo === TipoCuota.TODAS) {
+            detalle.intencionPago = true;
+          } else if (tipo === TipoCuota.NINGUNA) {
+            detalle.intencionPago = false;
+          } else if (tipo === TipoCuota.VENCIDAS) {
+            detalle.intencionPago = detalle.expired;
+          } else if (tipo === TipoCuota.NO_VENCIDAS) {
+            detalle.intencionPago = !detalle.expired;
+          }
+        }
+        // this.calcularTotal();
+        // this.changeSubject.next();
+      }
 
 }

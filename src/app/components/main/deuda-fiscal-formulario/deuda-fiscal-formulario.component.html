@@ -1,1 +1,65 @@
-<h4> {{ formulario.formNom }} </h4>
+<mdl-card mdl-shadow="2" class="mdl-cell mdl-cell--4-col mb-10 rol-card">
+    <mdl-card-title class="bar">
+        <button id="helpTooltip{{ formulario.formNum }}" placement="right" trigger="none" [tooltip]="HtmlContent" content-type="template" mdl-button class="helpTooltip-rol" mdl-button-type="icon" (click)="toggle()">
+            <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
+          </button>
+
+        <ng-template #HtmlContent>
+            <p>Revisa el detalle de tus deudas.</p>
+        </ng-template>
+
+
+        <div class="bar-text" (click)="toggle()">
+            <h6>
+                <i class="material-icons"> {{ icon }} </i> {{ formulario.formNom | titlecase }}
+            </h6>
+
+        </div>
+        <div class="mdl-layout-spacer"></div>
+        <div class="wrapper">
+            <span class="rol-total" [class.tgr-tr--late]="formulario.expired" *ngIf="formulario.total >= 0" (click)="toggle()">$ {{ formulario.total | number }}</span>
+            <button class="mdl-button mdl-js-button mdl-button--icon pointer delete-this-rol" (click)="delete()">
+              <i class="material-icons">cancel</i>
+            </button>
+        </div>
+    </mdl-card-title>
+    <div [class.hidden]="!expanded">
+        <div *ngIf="formulario.listDetalle.length > 0">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                <thead>
+                    <tr>
+                        <th (click)="selectAllNone()">
+                            <mdl-icon> {{ selectedIcon }}</mdl-icon>
+                        </th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-cuota">Folio</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">Monto</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">Reajuste</th>
+                        <th class="tgr-monto">Interés</th>
+                        <th class="tgr-monto">Multa</th>
+                        <th class="tgr-monto">Condonación</th>
+                        <th class="tgr-monto">% Condonación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let detalle of formulario.listDetalle" (click)="checkCuota(detalle)">
+                        <td>
+                            <mdl-icon> {{ detalle.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
+                        </td>
+                        <td> {{ detalle.folio }} </td>
+                        <td> {{ detalle.vencimiento | date:'dd/MMM'}}</td>
+                        <td> {{ ( formulario.pagoTotal ? detalle.montoTotal : detalle.montoParcial ) | currency:'CLP':'symbol':'4.2-2' }} </td>
+                        <th> {{ detalle.reajuste | currency:'CLP':'symbol':'4.2-2' }} </th>
+                        <th> {{ detalle.interes | currency:'CLP':'symbol':'4.2-2' }} </th>
+                        <th> {{ detalle.multa | currency:'CLP':'symbol':'4.2-2' }} </th>
+                        <th> {{ detalle.condonacion | currency:'CLP':'symbol':'4.2-2' }} </th>
+                        <th> {{ detalle.porCondonacion | percent }} </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tgr-row" *ngIf="formulario.listDetalle.length == 0">
+            No registras deudas asociadas a este Formulario
+        </div>
+    </div>
+</mdl-card>

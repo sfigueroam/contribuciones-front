@@ -1,4 +1,4 @@
-export class DFDeuda {
+export class DFDeudaFiscal {
 
     servicioId: number;
     servicioNom: string;

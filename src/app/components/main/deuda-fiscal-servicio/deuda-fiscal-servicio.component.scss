@@ -1,46 +1,56 @@
-
-.tgr-card__body {
-  padding: 0;
+@import '../../../../styles/colors';
+.hidden {
+    display: none;
 }
 
-.tgr-card__head {
-  .space {
-    visibility: hidden;
-  }
-  .tgr-th-icon {
-    .material-icons {
-      line-height: 1.5;
-      color: #2f3c89;
-      float: left;
-      margin-right: 4px;
-      margin-top: -6px;
-      margin-bottom: -6px;
+.bar {
+    border-left: 5px solid #931c82;
+    .bar-text {
+        padding-top: 0;
+        padding-bottom: 0;
+        cursor: pointer;
+        .mdl-button.mdl-button--icon {
+            vertical-align: top;
+            color: $color-dark-blue-text;
+        }
+        h6 {
+            .direccion {
+                margin-bottom: 0;
+                color: $color-dark-blue-text;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 21px;
+            }
+            .comuna {
+                //margin-top: 5px;
+                margin-bottom: 0;
+                color: $color-dark-blue-text;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 21px;
+            }
+        }
     }
-  }
-  .tgr-card__title--text {
-    line-height: 20px;
-    font-weight: 700;
-  }
-}
-
-.tgr-card__body {
-  .tgr-rol-row {
-    .tgr-th-icon {
-      .material-icons {
-        color: #2f3c89;
-        float: left;
-        line-height: 0 !important;
-        margin-right: 4px;
-        margin-top: -6px;
-        margin-bottom: -6px;
-      }
+    .wrapper {
+        span {
+            font-size: 16px;
+            cursor: pointer;
+        }
     }
-  }
 }
 
-.tgr-th-icon {
-  top: -2px;
+.mdl-button.mdl-button--icon:hover {
+    background: #CFCFCF;
 }
-label.tgr-th-icon{
-  float: left;
+
+.bar-text .mdl-button.mdl-button--icon:hover .material-icons {
+    color: #252e60;
+}
+
+.bar-text~.wrapper .mdl-button.mdl-button--icon:hover .material-icons {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.tgr-tr--late {
+    color: $color-expired;
 }

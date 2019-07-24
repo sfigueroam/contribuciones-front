@@ -1,17 +1,14 @@
 <div class="border-white"></div>
 <div class="tgr-card__head" *ngIf="propiedad.roles.length > 0">
-  <div [class.space]="propiedad.roles.length === 1">
-    <label (click)="selectAllRol(propiedad.roles.length > 1)" class="tgr-th-icon">
+    <div [class.space]="propiedad.roles.length === 1">
+        <label (click)="selectAllRol(propiedad.roles.length > 1)" class="tgr-th-icon">
     <mdl-icon>{{selectedIcon}}</mdl-icon>
-  </label>
-  </div>
-  <p class="tgr-card__title--text">{{propiedad.splitName()  | titlecase}} </p>
-  <p class="tgr-card__title--comuna">{{propiedad.roles[0].comuna | titlecase}} </p>
+    </label>
+    </div>
+    <p class="tgr-card__title--text">{{propiedad.splitName() | titlecase}} </p>
+    <p class="tgr-card__title--comuna">{{propiedad.roles[0].comuna | titlecase}} </p>
 </div>
 <div class="tgr-card__body">
-  <div class="tgr-rol-row" app-propiedad-rol *ngFor="let roles of propiedad.roles | orderBy: 'rol'"
-       [default-seleccion]="defaulSeleccion"
-       [rol]="roles"
-       (change)="updatePropiedades()">
-  </div>
+    <div class="tgr-rol-row" app-propiedad-rol *ngFor="let roles of propiedad.roles | orderBy: 'rol'" [default-seleccion]="defaulSeleccion" [rol]="roles" (change)="updatePropiedades()">
+    </div>
 </div>

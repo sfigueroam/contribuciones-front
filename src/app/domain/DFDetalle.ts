@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 
 
 export class DFDetalle {
@@ -15,14 +15,23 @@ export class DFDetalle {
     condonacion: number;
     porCondonacion: number;
 
+    expired: boolean;
+    intencionPago = true;
 
-    constructor ( servId:number, formNum: number,
-                  fol:number, venc:Date, mtoTot:number, 
-                  mtoPar:number, mtoRea:number, mtoInt:number, 
-                  mtoMul:number, mtoCond:number, porCond:number ) {
-        
+    // liqParcial: CuotaDetalle;
+    //   liqTotal: CuotaDetalle;
+
+  changeSubject: Subject<any> = new Subject<any>();
+  changeStream: Observable<any> = this.changeSubject.asObservable();
+
+
+    constructor ( servId: number, formNum: number,
+                  fol: number, venc: Date, mtoTot: number,
+                  mtoPar: number, mtoRea: number, mtoInt: number,
+                  mtoMul: number, mtoCond: number, porCond: number ) {
+
         this.servicioId = servId;
-        this.formNum = formNum;            
+        this.formNum = formNum;
         this.folio = fol;
         this.vencimiento = venc;
         this.montoTotal = mtoTot;
@@ -33,6 +42,18 @@ export class DFDetalle {
         this.condonacion = mtoCond;
         this.porCondonacion = porCond;
 
+    }
+
+    changeIntencionPago(value: boolean = !this.intencionPago) {
+        this.intencionPago = value;
+        this.changeSubject.next();
+    }
+
+
+    private isExpired(): boolean {
+        const date = new Date();
+        date.setHours(0, 0, 0, 0);
+        return (date.getTime() - this.vencimiento.getTime() > 0);
     }
 
 }

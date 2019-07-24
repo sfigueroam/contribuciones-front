@@ -56,7 +56,8 @@ import { RecordarComponent } from './components/main/contribuciones/agregar/nuev
 import { DeudaFiscalComponent } from './components/main/deuda-fiscal/deuda-fiscal.component';
 import { DeudaFiscalServicioComponent } from './components/main/deuda-fiscal-servicio/deuda-fiscal-servicio.component';
 import { DeudaFiscalFormularioComponent } from './components/main/deuda-fiscal-formulario/deuda-fiscal-formulario.component';
-import { DeudaFiscalDetalleComponent } from './components/main/deuda-fiscal-detalle/deuda-fiscal-detalle.component';
+
+
 
 
 
@@ -93,7 +94,7 @@ registerLocaleData(localeEs, 'es');
     DeudaFiscalComponent,
     DeudaFiscalServicioComponent,
     DeudaFiscalFormularioComponent,
-    DeudaFiscalDetalleComponent,    
+
   ],
   imports: [
     BrowserModule,

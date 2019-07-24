@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DFDeuda } from '../domain/DFDeuda';
+import { DFDeudaFiscal } from '../domain/DFDeudaFiscal';
 import { DFServicio } from '../domain/DFServicio';
 import { DFFormulario } from '../domain/DFFormulario';
 import { DFDetalle } from '../domain/DFDetalle';
@@ -13,7 +13,7 @@ import { DFDetalle } from '../domain/DFDetalle';
 
 
     // Declaración de variables
-    private listDeuda: DFDeuda[];                   // Listado de deudas fiscales.
+    private listDeuda: DFDeudaFiscal[];                   // Listado de deudas fiscales.
 
     private listServicio: DFServicio[];             // Listado de servicios.
 
@@ -25,13 +25,13 @@ import { DFDetalle } from '../domain/DFDetalle';
     // Declaración constructor
     constructor(  ) {
 
-        console.log("Servicio de deuda fiscal listo!!");    
-    
+        console.log('Servicio de deuda fiscal listo!!');
+
         this.listDeuda = [
                {
-                   servicioNom: "Servicio de Impuestos Internos",
+                   servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: "Formulario 21",
+                   formNom: 'Formulario 21',
                    formNum: 21,
                    folio: 38155,
                    vencimiento: new Date(2019, 5, 9),
@@ -41,12 +41,12 @@ import { DFDetalle } from '../domain/DFDetalle';
                    interes: 0,
                    multa: 0,
                    condonacion: 0,
-                   porCondonacion: 0 
+                   porCondonacion: 0
                },
                {
-                   servicioNom: "Servicio de Impuestos Internos",
+                   servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: "Formulario 22",
+                   formNom: 'Formulario 22',
                    formNum: 22,
                    folio: 38187,
                    vencimiento: new Date(2019, 5, 9),
@@ -59,9 +59,9 @@ import { DFDetalle } from '../domain/DFDetalle';
                    porCondonacion: 0
                },
                {
-                   servicioNom: "Servicio de Impuestos Internos",
+                   servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: "Formulario 23",
+                   formNom: 'Formulario 23',
                    formNum: 23,
                    folio: 94493,
                    vencimiento: new Date(2019, 1, 9),
@@ -74,9 +74,9 @@ import { DFDetalle } from '../domain/DFDetalle';
                    porCondonacion: 0
                },
                {
-                   servicioNom: "Servicio de Impuestos Internos",
+                   servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: "Formulario 24",
+                   formNom: 'Formulario 24',
                    formNum: 24,
                    folio: 94495,
                    vencimiento: new Date(2019, 1, 9),
@@ -89,11 +89,11 @@ import { DFDetalle } from '../domain/DFDetalle';
                    porCondonacion: 0
                },
                {
-                    servicioNom: "Otro Servicio de Impuestos Internos",
+                    servicioNom: 'Otro Servicio de Impuestos Internos',
                     servicioId: 2,
-                    formNom: "Formulario 21",
+                    formNom: 'Formulario 21',
                     formNum: 21,
-                    folio: 94495,
+                    folio: 94498,
                     vencimiento: new Date(2019, 1, 9),
                     montoTotal: 27396,
                     montoParcial: 27396,
@@ -104,11 +104,11 @@ import { DFDetalle } from '../domain/DFDetalle';
                     porCondonacion: 0
                 },
                 {
-                     servicioNom: "Otro Servicio de Impuestos Internos",
+                     servicioNom: 'Otro Servicio de Impuestos Internos',
                      servicioId: 2,
-                     formNom: "Formulario 22",
+                     formNom: 'Formulario 22',
                      formNum: 22,
-                     folio: 94495,
+                     folio: 94895,
                      vencimiento: new Date(2019, 1, 9),
                      montoTotal: 27396,
                      montoParcial: 27396,
@@ -118,20 +118,20 @@ import { DFDetalle } from '../domain/DFDetalle';
                      condonacion: 0,
                      porCondonacion: 0
                  }
-        ]; 
+        ];
 
     }
 
 
     // Método que obtiene el listado de las deudas.
-    getListDeuda(): DFDeuda[]{
+    getListDeuda(): DFDeudaFiscal[] {
 
         return this.listDeuda;
     }
 
 
     // Método que obtiene la lista de los servicios.
-    getListServicio(): DFServicio[]{
+    getListServicio(): DFServicio[] {
 
         this.listServicio = [];
 
@@ -153,7 +153,7 @@ import { DFDetalle } from '../domain/DFDetalle';
 
 
     // Método que obtiene la lista de los formularios por servicio.
-    getListFormulario( servicioId:number ): DFFormulario[] {
+    getListFormulario( servicioId: number ): DFFormulario[] {
 
         this.listFormulario = [];
 
@@ -177,7 +177,7 @@ import { DFDetalle } from '../domain/DFDetalle';
 
 
     // Método que obtiene el detalle de las deudas por formulario y servicio.
-    getListDetalle( servicioId:number, formNum: number ): DFDetalle[]{
+    getListDetalle( servicioId: number, formNum: number ): DFDetalle[]{
 
         this.listDetalle = [];
 
@@ -205,4 +205,4 @@ import { DFDetalle } from '../domain/DFDetalle';
 
 
 
-  }    
+  }
