@@ -39,29 +39,4 @@ export class DeudaFiscalServicioComponent implements OnInit {
     this.change.emit();
   }
 
-
-  delete() {
-    // if (this.servicio.isComplete) {
-
-    //   this.dialogService.confirm(
-    //     'Eliminarás el ROL completo, ¿estás seguro/a?',
-    //     'CANCELAR',
-    //     'ELIMINAR').subscribe(
-    //     () => {
-    //       this.user.eliminarPropiedad(this.propiedad.idDireccion).then(
-    //         () => this.mdlSnackbarService.showToast('Dirección eliminada.', environment.snackbarTime),
-    //         err => {
-    //           console.log(err);
-    //           this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección.', environment.snackbarTime);
-    //         }
-    //       );
-    //     }
-    //   );
-
-    // } else {
-    //   this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas',
-    //     environment.snackbarTime);
-    // }
-  }
-
 }

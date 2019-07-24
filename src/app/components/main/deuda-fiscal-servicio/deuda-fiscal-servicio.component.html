@@ -1,24 +1,28 @@
 <div class="border-white"></div>
 
 <div mdl-shadow="2" class="background-lightgray bar">
+
     <div class="bar-text" (click)="toggle()">
         <button mdl-button mdl-button-type="icon">
-      <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
-    </button>
+            <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
+        </button>
         <h6 class="pointer">
             <p class="direccion"> {{ servicio.servicioNom | titlecase }} </p>
-
         </h6>
     </div>
+
     <div class="mdl-layout-spacer"></div>
+    
     <div class="wrapper">
-        <span [class.tgr-tr--late]="servicio.expired" *ngIf="servicio.total >= 0" (click)="toggle()">$ {{ servicio.total | number }}
-    </span>
-        <button mdl-button mdl-js-button pointer delete-this-rol mdl-button-type="icon" (click)="delete()">      
-      <i class="material-icons">cancel</i>
-    </button>
+
+        <span [class.tgr-tr--late]="servicio.expired" *ngIf="servicio.total >= 0" (click)="toggle()">
+            $ {{ servicio.total | number }}
+        </span>
+
     </div>
+
 </div>
+
 
 <div [class.hidden]="!expanded" *ngFor="let formulario of servicio?.listFormulario">
     <app-deuda-fiscal-formulario (change)="onChange()" [formulario]="formulario"></app-deuda-fiscal-formulario>

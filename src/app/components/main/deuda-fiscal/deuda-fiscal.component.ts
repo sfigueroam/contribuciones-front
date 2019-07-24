@@ -44,10 +44,10 @@ export class DeudaFiscalComponent implements OnInit {
 
 
 
-  constructor( private _deudaFiscalService: DeudaFiscalService,
+  constructor( private deudaFiscalService: DeudaFiscalService,
                private dialogService: MdlDialogService, ) {
 
-    this.listServicio = _deudaFiscalService.getListServicio();
+    this.listServicio = deudaFiscalService.getListServicio();
 
   }
 

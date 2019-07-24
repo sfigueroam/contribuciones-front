@@ -48,30 +48,7 @@ export class DeudaFiscalFormularioComponent implements OnInit {
       this.formulario.seleccionar( TipoCuota.TODAS );
     }
   }
-
-
-  delete() {
-    // if (this.rol.isComplete) {
-
-    //   this.dialogService.confirm(
-    //     'Eliminarás el ROL completo, ¿estás seguro/a?',
-    //     'CANCELAR',
-    //     'ELIMINAR').subscribe(
-    //     () => {
-    //       this.user.eliminarRol(this.rol.rolComunaSiiCod, this.rol.rolId, this.rol.subrolId).then(
-    //         () => this.mdlSnackbarService.showToast('Rol eliminado.', environment.snackbarTime),
-    //         err => {
-    //           console.log(err);
-    //           this.mdlSnackbarService.showToast('Ocurrió un error al eliminar la dirección.', environment.snackbarTime);
-    //         }
-    //       );
-    //     }
-    //   );
-    // } else {
-    //   this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
-    // }
-  }
-
+  
 
   toggle() {
     if (this.someTooltip !== undefined) {

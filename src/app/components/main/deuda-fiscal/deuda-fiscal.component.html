@@ -74,10 +74,11 @@
         </div>
         <div class="mdl-grid">
             <div class="tgr-actions__content">
+                
                 <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/main/contribuciones/agregar/nueva']">
-            <i class="material-icons">add</i>
-            Agregar propiedades
-          </button>
+                    <i class="material-icons">add</i>
+                    Agregar propiedades
+                </button>
 
             </div>
         </div>
@@ -94,11 +95,13 @@
 
 </ng-template>
 
+
 <div class="mdl-grid" *ngFor="let servicio of listServicio">
     <div class="mdl-cell mdl-cell--6-col m-0auto rol-card" *ngIf="servicio.listFormulario.length > 0">
         <app-deuda-fiscal-servicio (change)="onChange()" [servicio]="servicio"></app-deuda-fiscal-servicio>
     </div>
 </div>
+
 
 <div class="mdl-grid" *ngIf="listServicio.length > 0">
     <div class="mdl-cell mdl-cell--6-col total-buy">
