@@ -53,7 +53,7 @@
             </div>
         </div>
         <nav class="mdl-navigation">
-            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']">Deudas Fiscales</a>
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="logged">Deudas Fiscales</a>
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
             <hr>
             <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
