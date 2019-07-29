@@ -46,11 +46,11 @@
                         <td> <mdl-icon> {{ detalle.intencionPago ? 'check_box' : 'check_box_outline_blank' }} </mdl-icon> </td>
                         <td> {{ detalle.folio }} </td>
                         <td> {{ detalle.vencimiento | date:'dd/MMM'}}</td>
-                        <td> {{ ( formulario.pagoTotal ? detalle.montoTotal : detalle.montoParcial ) | currency:'CLP':'symbol':'4.2-2' }} </td>
-                        <th> {{ detalle.reajuste | currency:'CLP':'symbol':'4.2-2' }} </th>
-                        <th> {{ detalle.interes | currency:'CLP':'symbol':'4.2-2' }} </th>
-                        <th> {{ detalle.multa | currency:'CLP':'symbol':'4.2-2' }} </th>
-                        <th> {{ detalle.condonacion | currency:'CLP':'symbol':'4.2-2' }} </th>
+                        <td> {{ ( formulario.pagoTotal ? detalle.montoTotal : detalle.montoParcial ) | currency:'CLP':'symbol':'4.0-0' }} </td>
+                        <th> {{ detalle.reajuste | currency:'CLP':'symbol':-'4.0-0' }} </th>
+                        <th> {{ detalle.interes | currency:'CLP':'symbol':'4.0-0' }} </th>
+                        <th> {{ detalle.multa | currency:'CLP':'symbol':'4.0-0' }} </th>
+                        <th> {{ detalle.condonacion | currency:'CLP':'symbol':'4.0-0' }} </th>
                         <th> {{ detalle.porCondonacion | percent }} </th>
                     </tr>                    
                 </tbody>
