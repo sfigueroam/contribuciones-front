@@ -53,7 +53,7 @@
             </div>
         </div>
         <nav class="mdl-navigation">
-            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="logged">Deudas Fiscales</a>
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="!logged">Deudas Fiscales</a>
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
             <hr>
             <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
@@ -61,22 +61,16 @@
             <a href="https://ayuda.tgr.cl/hc/es-419/articles/360018206233-Pago-de-contribuciones-de-bienes-ra%C3%ADces-en-la-Tesorer%C3%ADa" class="mdl-navigation__link"><i class="material-icons">help_outline</i>Centro de Ayuda</a>
         </nav>
     </mdl-layout-drawer>
-
     <mdl-layout-content>
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-          <div class="mdl-tabs__tab-bar">
-              <a href="#starks-panel" class="mdl-tabs__tab is-active">Starks</a>
-              <a href="#lannisters-panel" class="mdl-tabs__tab">Lannisters</a>
-          </div>
-        
-          <div class="mdl-tabs__panel is-active" id="starks-panel">
-            <router-outlet></router-outlet>
-          </div>
-          <div class="mdl-tabs__panel" id="lannisters-panel">
-            <router-outlet></router-outlet>
-          </div>
+            <div class="mdl-tabs__tab-bar">
+                <a href="#starks-panel" class="mdl-tabs__tab is-active" [routerLink]="['/centropago','deuda-fiscal','listado']" >Deudas Fiscales</a>
+                <a href="#lannisters-panel" class="mdl-tabs__tab"[routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
+            </div>                  
+            <div class="mdl-tabs__panel is-active" id="starks-panel">
+                    <router-outlet></router-outlet>
+            </div>                   
         </div>
-        <router-outlet></router-outlet>
     </mdl-layout-content>
 
 </mdl-layout>
