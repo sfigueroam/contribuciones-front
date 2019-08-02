@@ -54,7 +54,7 @@
         </div>
         <nav class="mdl-navigation">
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="!logged">Deudas Fiscales</a>
-            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','contribuciones','agregar','nueva']">Contribuciones</a>
             <hr>
             <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
             <a href="https://www.tesoreria.cl/IntClientePregosWSWeb/?RUT=0&DV=0&EMAIL=" class="mdl-navigation__link hidden-xs"><i class="material-icons">feedback</i>Formulario de Contacto</a>
@@ -64,21 +64,8 @@
 
     <mdl-layout-content>
 
-            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-
-                    <div class="mdl-tabs__tab-bar">
-                        <a href="#starks-panel" class="mdl-tabs__tab is-active" [routerLink]="['/centropago','deuda-fiscal','listado']" >Deudas Fiscales</a>
-                        <a href="#lannisters-panel" class="mdl-tabs__tab"[routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
-                    </div>                  
-                    <div class="mdl-tabs__panel is-active" id="starks-panel">
-                            <router-outlet></router-outlet>
-                    </div>                   
-                    
-                  </div>
-
-
-
-        
+        <router-outlet></router-outlet>
+            
     </mdl-layout-content>
 
 </mdl-layout>

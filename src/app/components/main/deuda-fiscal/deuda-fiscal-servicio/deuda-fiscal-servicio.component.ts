@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DFServicio } from '../../../domain/DFServicio';
-import { CheckboxIcon } from '../../../domain/CheckboxIcon';
+import { DFServicio } from '../../../../domain/DFServicio';
+import { CheckboxIcon } from '../../../../domain/CheckboxIcon';
 import { MdlDialogService } from '@angular-mdl/core';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../../services/user.service';
 
 
 

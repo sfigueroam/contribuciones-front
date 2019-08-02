@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DFFormulario } from '../../../domain/DFFormulario';
+import { DFFormulario } from '../../../../domain/DFFormulario';
 import { MdlSnackbarService } from '@angular-mdl/core';
-import { CheckboxIcon } from '../../../domain/CheckboxIcon';
-import { TipoCuota } from '../../../domain/TipoCuota';
+import { CheckboxIcon } from '../../../../domain/CheckboxIcon';
+import { TipoCuota } from '../../../../domain/TipoCuota';
 import { DFDetalle } from 'src/app/domain/DFDetalle';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 
 
