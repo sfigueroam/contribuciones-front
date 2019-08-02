@@ -5,16 +5,17 @@
         carro?
       </ng-template>
       <ng-template ngPluralCase="other">Olvidaste agregar las <strong>{{cantPropiedades}}</strong> propiedades que seleccionaste.
-        ¿Quieres agregarlas e ir al carro?
+        ¿Quieres agregarlas para pagar?
       </ng-template>
     </p>
   </div>
   <div class="tgr-dialog__options">
-    <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" (click)="volver();">
-      Volver
+    <!--<button class="mdl-button mdl-js-button mdl-button--primary button-default-link" (click)="volver();"> -->
+    <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" (click)="exit()"> 
+      Continuar sin agregar
     </button>
     <button class="mdl-button mdl-js-button mdl-button--primary button-primary-action" (click)="agregar()">
-      Agregar e ir al Carro
+      Agregar para pagar
     </button>
   </div>
 </div>

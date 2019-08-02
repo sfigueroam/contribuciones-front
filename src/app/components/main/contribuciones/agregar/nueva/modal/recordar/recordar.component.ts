@@ -33,6 +33,11 @@ export class RecordarComponent implements OnInit {
   volver(): void {
     this.dialog.hide();
   }
+  
+  exit(){
+    this.dialog.hide();
+    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+  }
 
   agregar() {
     this.dialog.hide('agregar');

@@ -56,6 +56,7 @@ $color-primary-contrast : #dd0117;
 $color-primary: #252e60;
 $color-primary-hover: #090b16;
 $color-contribuciones: #931C82;
+$color-deudas_fiscales: #48A9E1;
 $color-dark-blue-text: #2f3c89;
 $color-secondary: #4b4b4b;
 $color-active-link: #4151aa;
@@ -89,4 +90,12 @@ $color-twitter-hover: #22a5e5;
 $color-google-hover: #bd311f;
 $color-tgr-lighter-gray: #ecf2f5;
 
-$tgr-condonacion: #00B344
+$tgr-condonacion: #00B344;
+
+// SHADOWS
+//$mdl-shadow--3dp : (0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12));
+@mixin box-shadow-3dp {
+  -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+     -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);       
+          box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+}

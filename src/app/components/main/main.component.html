@@ -9,26 +9,22 @@
             <mdl-layout-spacer></mdl-layout-spacer>
             <nav class="mdl-navigation" *ngIf="isActiveLogin">
                 <button class="mdl-navigation__link cuenta-usuario" *ngIf="!logged" (click)="redirigirLogin()" mdl-button mdl-button-type="icon">
-          <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
-          <span class="account-user-text">Ingresar</span>
-        </button>
-
+                    <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
+                    <span class="account-user-text">Ingresar</span>
+                </button>
 
                 <button class="mdl-navigation__link cuenta-usuario" *ngIf="logged" #btnMenu="mdlButton" (click)="menu.toggle($event, btnMenu)" mdl-button mdl-button-type="icon">
-          <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
-         <span class="account-user-text">Bienvenido/a 
-           <!--<span class="user">{{usuariologin}}</span>-->
-         </span>
-        </button>
+                    <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
+                    <span class="account-user-text">Bienvenido/a 
+                    <!--<span class="user">{{usuariologin}}</span>-->
+                    </span>
+                </button>
                 <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
-
-                    <!--
-          <mdl-menu-item *ngIf="logged"
+                <!-- <mdl-menu-item *ngIf="logged"
                          (click)="redirigirMiCuenta()"
                          mdl-ripple mdl-menu-item-full-bleed-divider>
-            Mi Cuenta
-          </mdl-menu-item>
-          -->
+                             Mi Cuenta
+                    </mdl-menu-item> -->
                     <mdl-menu-item *ngIf="logged" (click)="logout()" mdl-ripple>
                         Cerrar Sesión
                     </mdl-menu-item>
@@ -42,14 +38,14 @@
                 <p>Bienvenido/a</p>
                 <h5 class="text-mont">{{usuariologin}}</h5>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="logout()">
-          CERRAR SESIÓN
-          <i class="material-icons">cancel</i>
-        </button>
+                    CERRAR SESIÓN
+                    <i class="material-icons">cancel</i>
+                </button>
             </div>
             <div class="user-not_logged" *ngIf="!logged">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="redirigirLogin()">
-          INICIAR SESIÓN
-        </button>
+                    INICIAR SESIÓN
+                </button>
             </div>
         </div>
         <nav class="mdl-navigation">
@@ -62,14 +58,26 @@
         </nav>
     </mdl-layout-drawer>
     <mdl-layout-content>
-        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-            <div class="mdl-tabs__tab-bar">
-                <a href="#starks-panel" class="mdl-tabs__tab is-active" [routerLink]="['/centropago','deuda-fiscal','listado']" >Deudas Fiscales</a>
-                <a href="#lannisters-panel" class="mdl-tabs__tab"[routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
-            </div>                  
-            <div class="mdl-tabs__panel is-active" id="starks-panel">
-                    <router-outlet></router-outlet>
-            </div>                   
+        <!--<app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo>-->
+        <app-linea-tiempo *ngIf="!logged"></app-linea-tiempo>
+        <div class="mdl-grid" *ngIf="logged">
+            <div class="mdl-cell mdl-cell--8-col m-lr-auto">
+                <h1 class="tgr-page_title text-center text-mont">Mi <strong>Centro de Pago</strong></h1>
+                <p class="tgr-page_subtitle text-center">¿Qué deudas quieres pagar?</p>
+            </div>
+        </div>
+        <div class="mdl-grid">
+            <div class="tgr-card_container m-lr-auto mdl-cell mdl-cell--6-col">
+                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                    <div class="tgr-tabs mdl-tabs__tab-bar" *ngIf="logged">
+                        <a href="#deudas-fiscales" class="mdl-tabs__tab is-active tab-deudas_fiscales" [routerLink]="['/centropago','deuda-fiscal','listado']" >Deudas Fiscales</a>
+                        <a href="#deudas-contribuciones" class="mdl-tabs__tab tab-contribuciones" [routerLink]="['/main','contribuciones','agregar','nueva']">Contribuciones</a>
+                    </div>                  
+                    <div class="tgr-tabs_panel mdl-tabs__panel is-active">
+                        <router-outlet></router-outlet>
+                    </div>                   
+                </div>
+            </div>
         </div>
     </mdl-layout-content>
 

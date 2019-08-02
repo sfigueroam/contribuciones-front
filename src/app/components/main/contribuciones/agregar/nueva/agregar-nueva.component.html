@@ -1,13 +1,12 @@
-<app-linea-tiempo [buscar]="true"></app-linea-tiempo>
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--6-col m-0auto pay-title">
-    <h5 class="title text-center text-mont">Buscar Mis <strong>Propiedades</strong></h5>
-    <p class="text-left">Busca una o más propiedades y agrégalas al carro.</p>
-    <!--<h1 *ngIf="logged" >Hola, estoy logueado</h1>-->
+<!--<app-linea-tiempo [buscar]="true"></app-linea-tiempo>-->
+
+  <div class="text-center m-lr-auto">
+    <h2 class="tgr-page_title inside-card text-center text-mont">Buscar Mis <strong>Propiedades</strong></h2>
+    <p class="tgr-page_subtitle inside-card text-center">Busca una o más propiedades para pagar.</p>
   </div>
-</div>
+
 <div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--6-col tgr-content tgr-search mdl-shadow--3dp" [class.wait]="wait">
+  <div class="mdl-cell mdl-cell--12-col tgr-content tgr-search" [class.wait]="wait">
     <div class="tgr-cell-wait">
       <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active">
       </div>
@@ -158,50 +157,54 @@
     </div>
   </div>
 </div>
-<div [class.hidden]="!sinResultado" class="mdl-cell mdl-cell--8-col results-not-found">
-  <h3> No se encontraron resultados, por favor modifica la búsqueda e intenta nuevamente.</h3>
-</div>
-<div class="mdl-cell mdl-cell--6-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
-  <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
-</div>
-<div #scroll class="mdl-cell mdl-cell--6-col tgr-results">
-  <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
-    <mdl-icon (click)="selectAllProperies()"> {{selectedIcon}}</mdl-icon>
-    <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
+<div class="mdl-grid">
+  <div [class.hidden]="!sinResultado" class="mdl-cell mdl-cell--12-col results-not-found">
+    <h3> No se encontraron resultados, por favor modifica la búsqueda e intenta nuevamente.</h3>
   </div>
-
-  <app-propiedad class="mdl-cell mdl-cell--6-col tgr-content mdl-shadow--3dp"
-                 *ngFor="let propiedad of propiedades"
-                 [default-seleccion]=false
-                 [propiedad]="propiedad"
-                 (change)="updateSeleccionadaTotal()">
-  </app-propiedad>
-
-  <div class="mdl-cell mdl-cell--6-col tgr-results-coincidencias"
-       *ngIf="switchActive === 'direccion' && propiedades &&  propiedades.length > 1 ">
-    <a class="mdl-button button-default-link" *ngIf="mostrarPaginacion()" (click)="cargarMasDirecciones()">
-      Cargar más resultados
-    </a>
-    <div *ngIf="mostrarFinPaginacion()">
-      <p>Si no encuentras tu propiedad entre los resultados, por favor modifica la búsqueda
-        e intenta nuevamente.</p>
-
-      <a class="mdl-button button-default-link boton-subir" (click)="upPage()">
-        <i class="material-icons">arrow_upward</i>
-        Subir
+</div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col tgr-results-coincidencias" *ngIf="propiedades && propiedades.length > 0">
+    <p> Se encontraron <strong>{{totalRoles}}</strong> coincidencias en la búsqueda</p>
+  </div>
+</div>
+<div class="mdl-grid">
+  <div #scroll class="mdl-cell mdl-cell--12-col tgr-results">
+    <div class="check-seleccion-propiedades" *ngIf="propiedades && propiedades.length > 1">
+      <mdl-icon (click)="selectAllProperies()"> {{selectedIcon}}</mdl-icon>
+      <span>Seleccionar <strong>TODAS</strong> las propiedades</span>
+    </div>
+  
+    <app-propiedad class="tgr-content"
+                   *ngFor="let propiedad of propiedades"
+                   [default-seleccion]=false
+                   [propiedad]="propiedad"
+                   (change)="updateSeleccionadaTotal()">
+    </app-propiedad>
+  
+    <div class="mdl-cell mdl-cell--12-col tgr-results-coincidencias results-bottom_options"
+         *ngIf="switchActive === 'direccion' && propiedades &&  propiedades.length > 1 ">
+      <a class="mdl-button button-default-link" *ngIf="mostrarPaginacion()" (click)="cargarMasDirecciones()">
+        Cargar más resultados
       </a>
+      <div *ngIf="mostrarFinPaginacion()">
+        <p>Si no encuentras tu propiedad entre los resultados, por favor modifica la búsqueda
+          e intenta nuevamente.</p>
+  
+        <a class="mdl-button button-default-link boton-subir" (click)="upPage()">
+          <i class="material-icons">arrow_upward</i>
+          Subir
+        </a>
+      </div>
     </div>
   </div>
-
 </div>
 
 
 <p class="contador-propiedades" [class.contador-hidden]="footerHidden"
-   *ngIf="countPropiedades == 1; else propiedadesTemplate">Llevas <strong>{{countPropiedades}}</strong> propiedad en
-  el carro</p>
+   *ngIf="countPropiedades == 1; else propiedadesTemplate">Llevas <strong>{{countPropiedades}}</strong> propiedad para pagar.</p>
 <ng-template #propiedadesTemplate>
   <p class="contador-propiedades" [class.contador-hidden]="footerHidden">Llevas <strong>{{countPropiedades}}</strong>
-    propiedades en el carro</p>
+    propiedades para pagar.</p>
 </ng-template>
 <div class="tgr-actions" [class.tgr-actions-hidden]="footerHidden">
   <div class="tgr-actions__content">
@@ -210,7 +213,7 @@
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link"
               (click)="volver()">
         <i class="material-icons">shopping_cart</i>
-        IR AL CARRO
+        IR A PAGAR
       </button>
       <button id="agregar_propiedades" type="button"
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"

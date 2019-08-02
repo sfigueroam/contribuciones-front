@@ -25,7 +25,8 @@ html, body, h1, h2, h3, h4, h5 {
 
 // Definiciones Generales Margen y Padding
 
-.m-0auto {
+.m-0auto,
+.m-lr-auto {
   margin-left: auto;
   margin-right: auto;
 }
@@ -116,6 +117,10 @@ html, body, h1, h2, h3, h4, h5 {
 
 .py-15 {
   padding: 15px 0;
+}
+
+.pb-25 {
+  padding-bottom: 25px;
 }
 
 .pl-10 {
@@ -236,11 +241,34 @@ html, body, h1, h2, h3, h4, h5 {
 }
 
 //
-.title {
-  margin: 0 auto 5px auto;
+.title,
+.tgr-page_title {
+  margin-top: 16px;
+  margin-bottom: 5px;
   line-height: 24px;
+  font-size: 20px;
+  color: $color-dark-blue-text;
+  @media (max-width: 480px) {
+    margin-top: 10px;
+  }
+  &.inside-card {
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 18px;
+  }
 }
 
+.tgr-page_subtitle {
+  font-size: 16px;
+  color: $color-dark-gray;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  &.inside-card {
+  }
+}
+
+// inicio. BORRAR EVENTUALMENTE
 .pay-title {
   color: $color-dark-blue-text;
   margin-top: 16px;
@@ -254,6 +282,7 @@ html, body, h1, h2, h3, h4, h5 {
     text-align: center;
   }
 }
+// fin. BORRAR EVENTUALMENTE
 
 .mdl-grid {
   padding-top: 0;
@@ -566,18 +595,6 @@ html, body {
   }
 }
 
-.tgr-container {
-  padding-left: 0;
-  padding-right: 0;
-  max-width: 1240px;
-  margin-left: auto;
-  margin-right: auto;
-  @media (max-width: 1260px) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-
 .tgr-content {
   background: #ffffff;
   border-radius: 4px;
@@ -586,7 +603,7 @@ html, body {
 
 // encabezado card
 .tgr-card__head {
-  border-bottom: 2px solid $color-dark-blue-text;
+  //border-bottom: 2px solid $color-dark-blue-text;
   color: $color-primary;
   overflow: hidden;
   padding: 20px 16px;
@@ -669,17 +686,13 @@ html, body {
   margin-top: 3px;
   display: block;
 }
-.border-white {
-  height: 3px;
-  background-color: #ffffff;
-}
+
 .tgr-results .tgr-content {
   margin-bottom: 18px;
   .tgr-card__head {
     padding: 17px 10px 14px 12px;
     background-color: $color-light-gray;
     border-left: 5px solid #931c82;
-    border-bottom: none;
     color: $color-dark-blue-text;
     .material-icons {
       color: $color-dark-blue-text;
@@ -699,6 +712,8 @@ html, body {
   }
   .tgr-card__body {
     border-left: 5px solid #931c82;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
     color: $color-dark-blue-text;
     .tgr-rol-row {
       .tgr-th-icon {
@@ -743,18 +758,6 @@ html, body {
 
 .tgr-header .mdl-layout__drawer-button {
   color: #767777 !important;
-}
-
-.mdl-tabs__tab {
-  font-size: 12px;
-}
-
-.mdl-tabs__tab .mdl-tabs__ripple-container .mdl-ripple {
-  background: $color-violet;
-}
-
-.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after {
-  background: $color-violet;
 }
 
 .tgr-card-container .mdl-data-table {

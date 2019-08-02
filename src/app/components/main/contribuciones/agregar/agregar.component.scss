@@ -1,23 +1,8 @@
 @import '../../../../../styles/colors';
 
-.mdl-tabs__tab-bar {
-	background: $gray-header;
-	display: block;
-	padding-top: 10px;
-}
-.tgr-tabs .mdl-tabs__tab {
-	font-weight: 500;
-	text-transform: none;
-	font-size: 1rem;
-}
 .mdl-tabs__panel {
 	padding: 16px 0;
 }
-.tgr-tabs .is-active {
-	color: $color-primary;
-	font-weight: 600;
-}
-
 .mdl-button:hover{
   color: #fff;
 }

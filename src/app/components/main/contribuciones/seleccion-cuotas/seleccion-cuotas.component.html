@@ -1,5 +1,5 @@
 <div [class.hidden]="rolesSugeridos < 1" class="mdl-grid">
-  <div class="mdl-cell mdl-cell--3-col-phone mdl-cell--4-col-desktop m-0auto text-center p-relative">
+  <div class="mdl-cell mdl-cell--12-col m-lr-auto text-center p-relative">
     <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
       <i mdl-button (click)="ocultarAlertaSugeridas = true" class="material-icons alert-remove">clear</i>
       <p>Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT</p>
@@ -11,17 +11,13 @@
     </div>
   </div>
 </div>
-<app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo>
-<div class="tgr-container">
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-title">
-      <h5 class="title text-center text-mont">Seleccionar Mis <strong>Deudas</strong></h5>
-    </div>
-  </div>
+<!--<app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo>-->
+<div class="text-center m-lr-auto">
+  <h2 class="tgr-page_title inside-card text-center text-mont">Seleccionar <strong>Mis Deudas</strong></h2>
 </div>
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">
-  <div class="mdl-cell mdl-cell--8-col select-fee">
+  <div class="mdl-cell mdl-cell--12-col select-fee">
     <div *ngIf="complete && result.total > 0">
       <div class="check-seleccion-deudas no-vencidas" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
@@ -60,10 +56,10 @@
 
 <ng-template #bodySinDeuda>
 
-  <div *ngIf="!obteniendoDatos" class="tgr-container">
+  <div class="pb-25" *ngIf="!obteniendoDatos">
     <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
-        <p>Actualmente no tienes propiedades guardadas ni deudas en tu carro. Te invitamos a buscar y agregar propiedades para
+      <div class="mdl-cell mdl-cell--12-col m-lr-auto pay-title sel-cuotas-subtitle">
+        <p>Actualmente no tienes deudas ni propiedades guardadas. Te invitamos a buscar y agregar propiedades para
           pagar.</p>
       </div>
     </div>
@@ -74,16 +70,6 @@
           <i class="material-icons">add</i>
           Agregar propiedades
         </button>
-
-      </div>
-    </div>
-  </div>
-
-
-  <div *ngIf="obteniendoDatos" class="tgr-container">
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
-        <!--<p>Estamos recuperando tus propiedades</p>-->
       </div>
     </div>
   </div>
@@ -91,14 +77,14 @@
 </ng-template>
 
 <div class="mdl-grid" *ngFor="let propiedad of propiedades">
-  <div class="mdl-cell mdl-cell--6-col m-0auto rol-card"
+  <div class="mdl-cell mdl-cell--12-col m-lr-auto rol-card"
        *ngIf="propiedad.roles.length > 0">
     <app-direccion-cuotas (change)="onChange()" [propiedad]="propiedad"></app-direccion-cuotas>
   </div>
 </div>
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0">
-  <div class="mdl-cell mdl-cell--6-col total-buy">
+  <div class="mdl-cell mdl-cell--12-col total-buy">
 
     <p *ngIf="existeVencidas" class="monto-total texto">
       Monto total :
@@ -116,7 +102,6 @@
       </p>
     </div>
 
-
     <div *ngIf="existeVencidas" class="gray-border"></div>
     <p *ngIf="complete" class="monto-total texto">
       Monto total a pagar :
@@ -125,13 +110,11 @@
       <strong>$ {{total | number}}</strong>
     </p>
 
-
     <p *ngIf="existeVencidas && (result.vencidas != result.vencidasSeleccionadas)" class="monto-total beneficio">
       Al pagar cuotas vencidas ya estás accediendo al beneficio de Condonación. Selecciona <strong>todas las cuotas
       vencidas de un ROL</strong> para conseguir un mayor beneficio a través de la Condonación por Pago Total.
     </p>
 
-    <!-- *ngIf="condonacion > 0" -->
     <div class="tgr-condonacion" *ngIf="existeVencidas">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">

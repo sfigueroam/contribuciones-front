@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Rol} from '../../../../domain/Rol';
+// Probando logeo
+import {UserService} from '../../../../services/user.service';
+import {CognitoService} from '../../../../services/cognito.service';
 
 @Component({
   selector: 'app-linea-tiempo',
@@ -8,7 +11,9 @@ import {Rol} from '../../../../domain/Rol';
 })
 export class LineaTiempoComponent implements OnInit {
 
-
+  // Probando logeo
+  logged: boolean;
+  
   @Input()
   buscar: boolean;
   @Input()
@@ -20,9 +25,13 @@ export class LineaTiempoComponent implements OnInit {
   doneSeleccionar: boolean;
 
 
-  constructor() { }
+  constructor(
+    // Probando logeo
+    private user: UserService ) { }
 
   ngOnInit() {
+    // Probando logeo
+    this.logged = this.user.isLogged();
   }
 
 }
