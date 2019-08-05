@@ -90,6 +90,8 @@
         }
     }
     .tgr-tabs_panel {
+        padding-left: 12px;
+        padding-right: 12px;
         @media (min-width: 840px) {
             @include box-shadow-3dp;
             height: fit-content;

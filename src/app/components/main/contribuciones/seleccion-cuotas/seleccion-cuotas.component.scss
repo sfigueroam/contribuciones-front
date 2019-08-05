@@ -94,23 +94,24 @@
 }
 
 .check-seleccion-deudas {
-  margin: 12px auto -14px auto;
+  margin-top: -5px;
+  margin-bottom: -6px;
   @media (max-width: 599px) {
     width: 100%;
     margin-left: -10px;
   }
-  @media (min-width: 600px) and (max-width: 839px) {
-    width: 70%;
-    margin-left: calc(15% - 8px);
-  }
-  @media (min-width: 840px) and (max-width: 1024px) {
-    width: 70%;
-    margin-left: calc(14% - 8px);
-  }
-  @media (min-width: 1025px) {
-    width: 70%;
-    margin-left: calc(14% - 12px);
-  }
+  // @media (min-width: 600px) and (max-width: 839px) {
+  //   width: 70%;
+  //   margin-left: calc(15% - 8px);
+  // }
+  // @media (min-width: 840px) and (max-width: 1024px) {
+  //   width: 70%;
+  //   margin-left: calc(14% - 8px);
+  // }
+  // @media (min-width: 1025px) {
+  //   width: 70%;
+  //   margin-left: calc(14% - 12px);
+  // }
   
   mdl-icon.material-icons {
     vertical-align: bottom;
@@ -132,12 +133,12 @@
     padding-left: 2%;
     padding-right: 2%;
   }
-  @media (min-width: 840px) and (max-width: 1279px) {
-    width: 40%;
-  }
-  @media (min-width: 1280px) {
-    width: 35%;
-  }
+  // @media (min-width: 840px) and (max-width: 1279px) {
+  //   width: 40%;
+  // }
+  // @media (min-width: 1280px) {
+  //   width: 35%;
+  // }
   .gray-border {
     height: 2px;
     margin-top: 8px;
@@ -160,11 +161,11 @@
       display: inline-block;
     }
     &.texto {
-      width: 70%;
+      width: 60%;
       text-align: left;
     }
     &.monto {
-      width: 30%;
+      width: 40%;
       text-align: right;
     }
     &.monto-condonacion {
