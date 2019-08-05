@@ -13,8 +13,7 @@ import { ResumenComponent } from '../../contribuciones/seleccion-cuotas/modal/re
 
 @Component({
   selector: 'app-deuda-fiscal-listado',
-  templateUrl: './deuda-fiscal-listado.component.html',
-  styleUrls: ['./deuda-fiscal-listado.component.scss']
+  templateUrl: './deuda-fiscal-listado.component.html'
 })
 export class DeudaFiscalListadoComponent implements OnInit {
 

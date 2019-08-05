@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DFServicio } from '../../../../domain/DFServicio';
-import { CheckboxIcon } from '../../../../domain/CheckboxIcon';
 import { MdlDialogService } from '@angular-mdl/core';
+import { DFServicio } from '../../../../domain/DFServicio';
 import { UserService } from '../../../../services/user.service';
-
 
 
 
@@ -16,17 +14,32 @@ import { UserService } from '../../../../services/user.service';
 export class DeudaFiscalServicioComponent implements OnInit {
 
 
+  
+  mtoServ: number;     // Monto a pagar por servicio
+  
+  indMto: boolean;    // Indicador de monto total/parcial a mostrar ( true: muestra total/oculta parcial; false: oculta total/muestra parcial )
+
+  expanded: boolean;
+
+  
   @Input() servicio: DFServicio;
 
   @Output() change: EventEmitter<any> = new EventEmitter();
 
-  expanded: boolean;
 
   constructor( private user: UserService,
-               private dialogService: MdlDialogService, ) { }
+               private dialogService: MdlDialogService ) {
+
+    this.indMto = true;    
+    this.expanded = true;        
+
+  }
 
 
   ngOnInit() {
+
+    this.mtoServ = this.obtenerMonto( this.indMto );
+
   }
 
 
@@ -37,6 +50,29 @@ export class DeudaFiscalServicioComponent implements OnInit {
 
   onChange() {
     this.change.emit();
+  }
+
+
+  // Método que calcula el monto a pagar por servicio.
+  obtenerMonto( indMto: boolean ): number{
+
+    let mto: number = 0;
+
+    for ( let formulario of this.servicio.listFormulario ) { 
+
+      for ( let det of formulario.listDetalle ) {
+
+        if ( indMto ){
+          mto = mto + det.montoTotal;
+        } else {
+          mto = mto + det.montoParcial;
+        }
+
+      }            
+
+    }
+
+    return mto;
   }
 
 }
