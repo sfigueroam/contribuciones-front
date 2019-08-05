@@ -76,10 +76,10 @@ export class CertificadosComponent implements OnInit {
         this.certificados.roles.push(rol.rol);
       }
     }
-    this.router.navigate(['/main/contribuciones/certificados/obtener']);
+    this.router.navigate(['/centropago/contribuciones/certificados/obtener']);
   }
 
   volver(): void {
-    this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+    this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
   }
 }

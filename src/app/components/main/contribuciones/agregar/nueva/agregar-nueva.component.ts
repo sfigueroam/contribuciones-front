@@ -470,7 +470,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
             if (isConfirmar) {
               this.dialogConfirmarAgregarPropiedad();
             } else {
-              this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+              this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
             }
 
           },
@@ -491,7 +491,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
       if (isConfirmar) {
         this.dialogConfirmarAgregarPropiedad();
       } else {
-        this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+        this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
       }
     }
   }
@@ -527,7 +527,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
         );
       });
     } else {
-      this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+      this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
     }
   }
 

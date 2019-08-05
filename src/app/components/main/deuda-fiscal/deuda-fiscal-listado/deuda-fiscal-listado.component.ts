@@ -1,51 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { DeudaFiscalService } from '../../../services/deuda-fiscal.service';
-import { DFServicio } from '../../../domain/DFServicio';
-import { DFResumen } from '../../../domain/DFResumen';
-import { CheckboxIcon } from '../../../domain/CheckboxIcon';
-import { TipoCuota } from '../../../domain/TipoCuota';
 import { MdlDialogService } from '@angular-mdl/core';
-import { AyudaCondonacionComponent } from '../contribuciones/seleccion-cuotas/modal/ayuda-condonacion/ayuda-condonacion.component';
-import { ResumenComponent } from '../contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
 
+import { DeudaFiscalService } from '../../../../services/deuda-fiscal.service';
 
+import { DFServicio } from '../../../../domain/DFServicio';
+import { DFResumen } from '../../../../domain/DFResumen';
+import { TipoCuota } from '../../../../domain/TipoCuota';
+import { CheckboxIcon } from '../../../../domain/CheckboxIcon';
 
-
+import { AyudaCondonacionComponent } from '../../contribuciones/seleccion-cuotas/modal/ayuda-condonacion/ayuda-condonacion.component';
+import { ResumenComponent } from '../../contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
 
 @Component({
-  selector: 'app-deuda-fiscal',
-  templateUrl: './deuda-fiscal.component.html',
-  styleUrls: ['./deuda-fiscal.component.scss']
+  selector: 'app-deuda-fiscal-listado',
+  templateUrl: './deuda-fiscal-listado.component.html'
 })
-export class DeudaFiscalComponent implements OnInit {
+export class DeudaFiscalListadoComponent implements OnInit {
 
+  total: number;
+  condonacion: number;
 
   selectedIcon: string;
-
   complete: boolean;
 
+  tipo = TipoCuota;
   result: DFResumen;
-
   listServicio: DFServicio[] = [];
 
   existeSoloVencidas = false;
-
   existeVencidas = false;
-
   obteniendoDatos = false;
-
-  tipo = TipoCuota;
 
   seleccionada: TipoCuota = this.tipo.TODAS;
 
-  total: number;
-
-  condonacion: number;
-
-
-
+ 
   constructor( private deudaFiscalService: DeudaFiscalService,
-               private dialogService: MdlDialogService, ) {
+               private dialogService: MdlDialogService) {
 
     this.listServicio = deudaFiscalService.getListServicio();
 
@@ -110,6 +100,5 @@ export class DeudaFiscalComponent implements OnInit {
       isModal: true
     });
   }
-
 
 }

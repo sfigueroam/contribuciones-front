@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
           this.name = value.username;
         }
         this.user.getBienesRaices().then(
-          () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
+          () => this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']),
           (err) => {
             console.log(err);
-            this.router.navigate(['/main/contribuciones/seleccionar-cuotas']);
+            this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
           }
         );
       }

@@ -1,40 +1,43 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from './components/main/main.component';
-import {SeleccionCuotasComponent} from './components/main/contribuciones/seleccion-cuotas/seleccion-cuotas.component';
-import {AgregarNuevaComponent} from './components/main/contribuciones/agregar/nueva/agregar-nueva.component';
-import {SugeridasComponent} from './components/main/contribuciones/agregar/sugeridas/sugeridas.component';
-import {CertificadosComponent} from './components/main/certificados/certificados.component';
-import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
-import {LoginComponent} from './components/login/login.component';
-import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
-import { DeudaFiscalComponent } from './components/main/deuda-fiscal/deuda-fiscal.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MainComponent } from './components/main/main.component';
+import { SeleccionCuotasComponent } from './components/main/contribuciones/seleccion-cuotas/seleccion-cuotas.component';
+import { AgregarNuevaComponent } from './components/main/contribuciones/agregar/nueva/agregar-nueva.component';
+import { SugeridasComponent } from './components/main/contribuciones/agregar/sugeridas/sugeridas.component';
+import { CertificadosComponent } from './components/main/certificados/certificados.component';
+import { AgregarComponent } from './components/main/contribuciones/agregar/agregar.component';
+import { LoginComponent } from './components/login/login.component';
+import { ObtenerComponent } from './components/main/certificados/obtener/obtener.component';
+import { DeudaFiscalListadoComponent } from './components/main/deuda-fiscal/deuda-fiscal-listado/deuda-fiscal-listado.component';
+
 
 
 const routes: Routes = [
   {
     path: '',
-    //redirectTo: '/main/contribuciones/seleccionar-cuotas',
-    redirectTo: '/main/contribuciones/agregar/nueva',
+    redirectTo: '/centropago/contribuciones/agregar/nueva',
     pathMatch: 'full'
-  }, {
+  }, 
+  {
     path: 'login',
     component: LoginComponent
-  }, {
+  }, 
+  {
     path: 'logout',
-    redirectTo: '/main/contribuciones/seleccionar-cuotas',
+    redirectTo: '/centropago/contribuciones/seleccionar-cuotas',
     pathMatch: 'full'
-  }, {
-    path: 'main/contribuciones',
+  }, 
+  {
+    path: 'centropago/contribuciones',
     component: MainComponent,
     children: [
       {
         path: 'seleccionar-cuotas',
-        data: {index: 0},
+        data: { index: 0 },
         component: SeleccionCuotasComponent
       }, {
         path: 'agregar',
-        data: {index: 0},
+        data: { index: 0 },
         component: AgregarComponent,
         children: [
           {
@@ -47,12 +50,12 @@ const routes: Routes = [
         ]
       }, {
         path: 'certificados',
-        data: {index: 1},
+        data: { index: 1 },
         component: CertificadosComponent
       }
     ]
   }, {
-    path: 'main/contribuciones/certificados/obtener',
+    path: 'centropago/contribuciones/certificados/obtener',
     component: ObtenerComponent
   },
   {
@@ -61,7 +64,7 @@ const routes: Routes = [
     children: [
       {
         path: 'listado',
-        component: DeudaFiscalComponent
+        component: DeudaFiscalListadoComponent
       }
     ]
   }

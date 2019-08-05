@@ -42,7 +42,7 @@ export class ObtenerComponent implements OnInit {
     this.historialPago = this.service.historialPago;
 
     if (this.rolesId == null || this.rolesId.length === 0) {
-       this.router.navigate(['/main/contribuciones/certificados']);
+       this.router.navigate(['/centropago/contribuciones/certificados']);
     }
 
     const promises = [];
@@ -91,6 +91,6 @@ export class ObtenerComponent implements OnInit {
     );
   }
   volver(): void{
-    this.router.navigate(['/main/contribuciones/certificados']);
+    this.router.navigate(['/centropago/contribuciones/certificados']);
   }
 }
