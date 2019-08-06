@@ -239,11 +239,15 @@
 .suggested {
   @media (max-width: 839px) {
     width: calc(90% - 16px);
-    //margin-top: 0;
   }
   @media (min-width: 840px) {
     width: calc(93% - 16px);
-    //margin-top: 20px;
+  }
+  &.margin-top {
+    margin-top: 0;
+    @media (max-width: 839px) {
+      margin-top: 20px;
+    }
   }
   .alert-new-rol {
     background-color: #ffddd3;
@@ -277,6 +281,12 @@
     }
     @media (min-width: 840px) {
       right: 18px;
+    }
+    &.margin-top {
+      margin-top: 0;
+      @media (max-width: 839px) {
+        margin-top: 10px;
+      }
     }
     .mdl-badge[data-badge]:after {
         background-color: #ff5e25;
