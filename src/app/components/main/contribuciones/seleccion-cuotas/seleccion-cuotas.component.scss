@@ -239,9 +239,11 @@
 .suggested {
   @media (max-width: 839px) {
     width: calc(90% - 16px);
+    //margin-top: 0;
   }
   @media (min-width: 840px) {
     width: calc(93% - 16px);
+    //margin-top: 20px;
   }
   .alert-new-rol {
     background-color: #ffddd3;

@@ -7,14 +7,12 @@
   <!--    <figcaption>Cargando</figcaption>-->
   <!--  </figure>-->
   <!--</div>-->
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col m-0auto pay-title">
-      <h5 class="title text-center text-mont">Propiedades <strong>Sugeridas</strong></h5>
-    </div>
+  <div class="text-center m-lr-auto">
+    <h2 class="tgr-page_title inside-card text-center text-mont">Seleccionar <strong>Mis Deudas</strong></h2>
   </div>
   <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--8-col m-0auto tgr-results">
-      <app-propiedad class="tgr-content mdl-shadow--3dp" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
+    <div class="mdl-cell mdl-cell--12-col m-lr-auto tgr-results width-all-100">
+      <app-propiedad class="tgr-content" *ngFor="let propiedad of propiedades" [propiedad]="propiedad"
                      (change)="updateSeleccionadaTotal()">
       </app-propiedad>
     </div>
@@ -31,7 +29,7 @@
         <div class="tgr-pay tgr-sugeridas">
   
           <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--return button-default-link"  (click)="volver()" >
-            Volver
+            IR A PAGAR
           </button>
           
           <button *ngIf="!cantidadSeleccionadas || cantidadSeleccionadas == 0" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>

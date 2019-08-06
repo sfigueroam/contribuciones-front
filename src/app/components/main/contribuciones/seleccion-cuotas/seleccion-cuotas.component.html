@@ -1,11 +1,11 @@
-<div class="mdl-grid p-relative mt-10" [class.hidden]="rolesSugeridos < 1">
-  <div class="mdl-cell mdl-cell--12-col text-center suggested">
-    <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
+<div class="mdl-grid p-relative" [class.hidden]="rolesSugeridos < 1"> <!-- [class.hidden]="rolesSugeridos < 1" -->
+  <div class="mdl-cell mdl-cell--12-col text-center suggested" [class.mt-20]="rolesSugeridos >= 1"> <!-- [class.mt-20]="rolesSugeridos >= 1" -->
+    <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1"> <!-- [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1" -->
       <i mdl-button (click)="ocultarAlertaSugeridas = true" class="material-icons alert-remove">clear</i>
       <p>Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT</p>
     </div>
   </div>
-  <div class="notifications p-absolute" [class.hidden]="rolesSugeridos < 1">
+  <div class="notifications p-absolute" [class.hidden]="rolesSugeridos < 1" [class.mt-10]="rolesSugeridos >= 1"> <!-- [class.hidden]="rolesSugeridos < 1" [class.mt-10]="rolesSugeridos >= 1" -->
     <div (click)="gotoSugeridas()">
       <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
     </div>
