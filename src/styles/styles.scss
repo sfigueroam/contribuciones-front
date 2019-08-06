@@ -235,12 +235,14 @@ html, body, h1, h2, h3, h4, h5 {
   background-color: $color-warning;
 }
 
-//
+.p-absolute {
+  position: absolute;
+}
+
 .p-relative {
   position: relative;
 }
 
-//
 .title,
 .tgr-page_title {
   margin-top: 16px;

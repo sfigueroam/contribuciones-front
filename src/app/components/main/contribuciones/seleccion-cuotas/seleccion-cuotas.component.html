@@ -1,13 +1,13 @@
-<div [class.hidden]="rolesSugeridos < 1" class="mdl-grid">
-  <div class="mdl-cell mdl-cell--12-col m-lr-auto text-center p-relative">
+<div class="mdl-grid p-relative" [class.hidden]="rolesSugeridos < 1">
+  <div class="mdl-cell mdl-cell--12-col text-center suggested">
     <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
       <i mdl-button (click)="ocultarAlertaSugeridas = true" class="material-icons alert-remove">clear</i>
       <p>Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT</p>
     </div>
-    <div [class.hidden]="rolesSugeridos < 1" class="notifications">
-      <div (click)="gotoSugeridas()">
-        <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
-      </div>
+  </div>
+  <div class="notifications p-absolute" [class.hidden]="rolesSugeridos < 1">
+    <div (click)="gotoSugeridas()">
+      <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
     </div>
   </div>
 </div>
@@ -26,7 +26,7 @@
 
       <div class="check-seleccion-deudas vencidas" *ngIf="existeSoloVencidas" (click)="seleccionarTodasVencidas()">
         <mdl-icon>{{selectedIcon}}</mdl-icon>
-        <span>Seleccionar <strong>TODAS</strong> las deudas vencidas</span>
+        <span>Seleccionar <strong>TODAS</strong> las deudas</span>
       </div>
 
       <div class="mdl-button-group" *ngIf="existeVencidas && !existeSoloVencidas">
@@ -48,8 +48,6 @@
           No Vencidas
         </button>
       </div>
-
-
     </div>
   </div>
 </div>
@@ -118,7 +116,7 @@
     <div class="tgr-condonacion" *ngIf="existeVencidas">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">
-        <i class="material-icons">help</i>
+        <!--<i class="material-icons">help</i>-->
         ¿Qué es el beneficio de <strong>Condonación</strong>?
       </button>
     </div>
