@@ -81,7 +81,7 @@
             @media (max-width: 325px) {
                 font-size: 12px;
             }
-            @media (max-width: 380px) {
+            @media (min-width: 326px) and (max-width: 380px) {
                 font-size: 13px;
             }
             @media (min-width: 840px) {
