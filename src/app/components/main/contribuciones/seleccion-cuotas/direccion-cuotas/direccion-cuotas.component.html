@@ -1,9 +1,9 @@
 <div mdl-shadow="2" class="background-lightgray bar" >
-  <div class="bar-text" (click)="toggle()">
-    <button mdl-button mdl-button-type="icon" >
-      <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
-    </button>
-    <h6 class="pointer">
+  <div class="bar-text"> <!-- (click)="toggle()" -->
+    <!--<button mdl-button mdl-button-type="icon" >-->
+    <!--  <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>-->
+    <!--</button>-->
+    <h6>
       <p class="direccion">{{propiedad.splitName() | titlecase}} </p>
       <p class="comuna">{{comuna | titlecase}}</p>
      </h6>  

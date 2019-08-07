@@ -1,6 +1,16 @@
 @import "../../contribuciones/agregar/sugeridas/sugeridas.component";
 .tgr-card__title--text{
-  color: $color-primary
+  color: $color-primary;
+  font-size: 16px;
+  @media (max-width: 839px) {
+    font-size: 14px;
+  }
+}
+.tgr-card__subtitle {
+  font-size: 16px;
+  @media (max-width: 839px) {
+    font-size: 14px;
+  }
 }
 
 .tgr-card__body {

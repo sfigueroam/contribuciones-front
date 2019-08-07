@@ -20,6 +20,16 @@
   .tgr-card__title--text {
     line-height: 20px;
     font-weight: 700;
+    font-size: 16px;
+    @media (max-width: 839px) {
+      font-size: 14px;
+    }
+  }
+  .tgr-card__title--comuna {
+    font-size: 16px;
+    @media (max-width: 839px) {
+      font-size: 14px;
+    }
   }
 }
 

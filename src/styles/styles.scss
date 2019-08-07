@@ -714,7 +714,7 @@ html, body {
     .tgr-card__title--text {
       color: $color-dark-blue-text;
       margin-bottom: 0;
-      font-size: 16px;
+      //font-size: 16px;
       font-weight: 500;
     }
     .tgr-card__title--comuna {
@@ -750,14 +750,14 @@ html, body {
       .material-icons {
         color: $color-dark-blue-text;
       }
-      .tgr-card__title--text {
-        font-size: 16px;
-        color: $color-dark-blue-text;
-      }
+      // .tgr-card__title--text {
+      //   font-size: 16px;
+      //   color: $color-dark-blue-text;
+      // }
     }
     .tgr-card__subtitle {
       margin-left: 3px;
-      font-size:16px;
+      //font-size:16px;
       color: $color-contribuciones !important;
       .tgr-card__tag {
         font-weight: 400;

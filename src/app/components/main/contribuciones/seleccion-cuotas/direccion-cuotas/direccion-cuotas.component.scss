@@ -8,12 +8,8 @@
   .bar-text {
     padding-top: 0;
     padding-bottom: 0;
-    cursor: pointer;
-    .mdl-button.mdl-button--icon {
-      vertical-align: top;
-      color: $color-dark-blue-text;
-    }
     h6 {
+      margin-left: 38px;
       .direccion {
         margin-bottom: 0;
         color: $color-dark-blue-text;
@@ -39,7 +35,6 @@
   .wrapper {
     span {
       font-size: 16px;
-      cursor: pointer;
       @media (max-width: 839px) {
         font-size: 14px;
       }
