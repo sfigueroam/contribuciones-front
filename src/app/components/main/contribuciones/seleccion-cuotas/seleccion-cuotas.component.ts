@@ -22,6 +22,8 @@ import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
 import {DireccionCuotasComponent} from './direccion-cuotas/direccion-cuotas.component';
 import {TooltipDirective} from 'ng2-tooltip-directive';
 import { CookieService } from 'ngx-cookie-service';
+//Probando logeo
+import {CognitoService} from '../../../../services/cognito.service';
 
 @Component({
   selector: 'app-seleccion-cuotas',
@@ -41,6 +43,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   selectTipo: TipoCuota = this.tipo.TODAS;
 
+  //Probando logeo
+  logged: boolean;
   total: number;
   condonacion: number;
   complete: boolean;
@@ -100,6 +104,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    //Probando logeo
+    this.logged = this.user.isLogged();
     this.cookieService.deleteAll();
     console.log('ngOnInit', this.complete);
 

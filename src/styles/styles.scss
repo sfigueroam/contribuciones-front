@@ -111,6 +111,10 @@ html, body, h1, h2, h3, h4, h5 {
   padding-top: 0;
 }
 
+.pt-20 {
+  padding-top: 20px;
+}
+
 .py-8 {
   padding: 8px 0;
 }
@@ -252,6 +256,10 @@ html, body, h1, h2, h3, h4, h5 {
   color: $color-dark-blue-text;
   @media (max-width: 480px) {
     margin-top: 10px;
+  }
+  @media (max-width: 839px) {
+    margin-top: 4px;
+    margin-bottom: 0;
   }
   &.inside-card {
     margin-top: 0;
