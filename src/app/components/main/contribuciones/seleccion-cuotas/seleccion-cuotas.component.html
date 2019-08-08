@@ -55,9 +55,9 @@
 <ng-template #bodySinDeuda>
 
   <div class="pb-25" *ngIf="!obteniendoDatos">
-    <div class="mdl-grid" [class.pt-20]="logged">
-      <div class="mdl-cell mdl-cell--12-col m-lr-auto pay-title sel-cuotas-subtitle">
-        <p>Actualmente no tienes deudas ni propiedades guardadas. Te invitamos a buscar y agregar propiedades para
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col text-center mt-0 m-lr-auto" [class.padding-top]="logged">
+        <p class="tgr-page_subtitle inside-card">Actualmente no tienes deudas ni propiedades guardadas. Te invitamos a buscar y agregar propiedades para
           pagar.</p>
       </div>
     </div>

@@ -256,6 +256,7 @@ html, body, h1, h2, h3, h4, h5 {
   color: $color-dark-blue-text;
   @media (max-width: 480px) {
     margin-top: 10px;
+    margin-bottom: 0;
   }
   @media (max-width: 839px) {
     margin-top: 4px;
@@ -273,8 +274,11 @@ html, body, h1, h2, h3, h4, h5 {
   font-size: 16px;
   color: $color-dark-gray;
   margin-bottom: 8px;
-  margin-top: 8px;
+  margin-top: 0;
   &.inside-card {
+    @media (max-width: 839px) {
+      font-size: 14px;
+    }
   }
 }
 

@@ -1,32 +1,4 @@
-<!-- <div [class.hidden]="rolesSugeridos < 1" class="mdl-grid">
-
-    <div class="mdl-cell mdl-cell--3-col-phone mdl-cell--4-col-desktop m-0auto text-center p-relative">
-        <div class="alert-new-rol" [class.hidden]="ocultarAlertaSugeridas || rolesSugeridos < 1">
-            <i mdl-button (click)="ocultarAlertaSugeridas = true" class="material-icons alert-remove">clear</i>
-            <p>Encontramos nuevas propiedades disponibles para pago asociadas a tu RUT</p>
-        </div>
-        <div [class.hidden]="rolesSugeridos < 1" class="notifications">
-            <div (click)="gotoSugeridas()">
-                <mdl-icon [mdl-badge]="rolesSugeridos" mdl-badge-overlap>notifications</mdl-icon>
-            </div>
-        </div>
-    </div>
-
-</div> -->
-
-
 <!-- <app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo> -->
-
-
-<div class="tgr-container">
-
-  <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-title">
-          <h5 class="title text-center text-mont">Seleccionar Mis <strong>Deudas Fiscales</strong></h5>
-      </div>
-  </div>
-
-</div>
 
 <div class="mdl-grid" *ngIf="listServicio.length > 0; else bodySinDeuda">
 

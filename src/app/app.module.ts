@@ -55,8 +55,16 @@ import { BotonPagarComponent } from './components/main/contribuciones/seleccion-
 import { RecordarComponent } from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
 import { DeudaFiscalServicioComponent } from './components/main/deuda-fiscal/deuda-fiscal-servicio/deuda-fiscal-servicio.component';
 import { DeudaFiscalFormularioComponent } from './components/main/deuda-fiscal/deuda-fiscal-formulario/deuda-fiscal-formulario.component';
-import { CentroPagoComponent } from './components/centro-pago/centro-pago.component';
 import { DeudaFiscalListadoComponent } from './components/main/deuda-fiscal/deuda-fiscal-listado/deuda-fiscal-listado.component';
+import { FormContactoComponent } from './components/form-contacto/form-contacto.component';
+
+
+// Angular material
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
+import 'hammerjs';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -92,8 +100,8 @@ registerLocaleData(localeEs, 'es');
     RecordarComponent,    
     DeudaFiscalServicioComponent,
     DeudaFiscalFormularioComponent,
-    CentroPagoComponent,
     DeudaFiscalListadoComponent,
+    FormContactoComponent
     
   ],
   imports: [
@@ -110,7 +118,10 @@ registerLocaleData(localeEs, 'es');
     LightboxModule,
     OrderModule,
     TooltipModule,
+    MatButtonModule, MatCheckboxModule,MatSelectModule,MatFormFieldModule,MatInputModule,
+    BrowserAnimationsModule
   ],
+  exports: [MatButtonModule, MatCheckboxModule,MatSelectModule,MatFormFieldModule,MatInputModule],
   providers: [
     [UserDataService],
     {provide: 'windowObject', useValue: window},
