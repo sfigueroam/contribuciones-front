@@ -86,14 +86,14 @@
         <div id="name" class="mdl-grid">
           <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-            <mat-form-field>
-              <mat-label>Tipo Solicitud</mat-label>
-              <mat-select [(value)]="selected">
-                <mat-option *ngFor="let tipoSolicitud of tipoSolicitudes" [value]="tipoSolicitud.value">
-                  {{tipoSolicitud.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <!--<mat-form-field>-->
+            <!--  <mat-label>Tipo Solicitud</mat-label>-->
+            <!--  <mat-select [(value)]="selected">-->
+            <!--    <mat-option *ngFor="let tipoSolicitud of tipoSolicitudes" [value]="tipoSolicitud.value">-->
+            <!--      {{tipoSolicitud.viewValue}}-->
+            <!--    </mat-option>-->
+            <!--  </mat-select>-->
+            <!--</mat-form-field>-->
             
             <!--<select>-->
             <!--  <option value="C">Consulta</option>-->
@@ -101,7 +101,7 @@
             <!--  <option value="C">Reclamo</option>-->
             <!--  <option value="C">Felicitación</option>-->
             <!--</select>-->
-            <input class="mdl-textfield__input" type="text" id="radioCSR" name="radioCSR" value="{{ selected }}" hidden>
+            <!--<input class="mdl-textfield__input" type="text" id="radioCSR" name="radioCSR" value="{{ selected }}" hidden>-->
             
 
 
