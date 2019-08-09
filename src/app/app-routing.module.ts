@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { MainComponent } from './components/main/main.component';
 import { SeleccionCuotasComponent } from './components/main/contribuciones/seleccion-cuotas/seleccion-cuotas.component';
 import { AgregarNuevaComponent } from './components/main/contribuciones/agregar/nueva/agregar-nueva.component';

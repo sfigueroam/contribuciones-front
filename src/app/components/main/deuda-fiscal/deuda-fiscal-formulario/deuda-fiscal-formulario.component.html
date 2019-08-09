@@ -37,11 +37,11 @@
                         <th class="mdl-data-table__cell--non-numeric tgr-cuota">Folio</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-monto">Monto</th>
-                        <!-- <th class="mdl-data-table__cell--non-numeric tgr-monto">Reajuste</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">Reajuste</th>
                         <th class="tgr-monto">Interés</th>
                         <th class="tgr-monto">Multa</th>
                         <th class="tgr-monto">Condonación</th>
-                        <th class="tgr-monto">% Condonación</th> -->
+                        <th class="tgr-monto">% Condonación</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,11 +50,11 @@
                         <td> {{ detalle.folio }} </td>
                         <td> {{ detalle.vencimiento | date:'dd/MMM'}}</td>
                         <td> {{ ( formulario.pagoTotal ? detalle.montoTotal : detalle.montoParcial ) | currency:'CLP':'symbol':'4.0-0' }} </td>
-                        <!-- <th> {{ detalle.reajuste | currency:'CLP':'symbol':-'4.0-0' }} </th>
+                        <th> {{ detalle.reajuste | currency:'CLP':'symbol':-'4.0-0' }} </th>
                         <th> {{ detalle.interes | currency:'CLP':'symbol':'4.0-0' }} </th>
                         <th> {{ detalle.multa | currency:'CLP':'symbol':'4.0-0' }} </th>
                         <th> {{ detalle.condonacion | currency:'CLP':'symbol':'4.0-0' }} </th>
-                        <th> {{ detalle.porCondonacion | percent }} </th> -->
+                        <th> {{ detalle.porCondonacion | percent }} </th>
                     </tr>                    
                 </tbody>
             </table>

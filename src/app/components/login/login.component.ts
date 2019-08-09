@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
           this.name = value.username;
         }
         this.user.getBienesRaices().then(
-          () => this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']),
+          () => this.router.navigate(['/centropago','deuda-fiscal','listado']),
           (err) => {
             console.log(err);
             this.router.navigate(['/centropago/contribuciones/seleccionar-cuotas']);
