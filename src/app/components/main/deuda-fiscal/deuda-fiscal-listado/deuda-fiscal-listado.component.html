@@ -2,7 +2,7 @@
 
 <div class="mdl-grid" *ngIf="listServicio.length > 0; else bodySinDeuda">
 
-  <div class="mdl-cell mdl-cell--8-col select-fee">
+  <div class="mdl-cell mdl-cell--12-col select-fee">
       <div *ngIf="complete && result.total > 0">
           <div class="check-seleccion-deudas no-vencidas" *ngIf="!existeVencidas" (click)="seleccionarTodas()">
               <mdl-icon> {{ selectedIcon }} </mdl-icon>
@@ -39,7 +39,7 @@
 
   <div *ngIf="!obteniendoDatos" class="tgr-container">
       <div class="mdl-grid">
-          <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+          <div class="mdl-cell mdl-cell--12-col m-lr-auto pay-title sel-cuotas-subtitle">
               <p>Actualmente no tienes propiedades guardadas ni deudas en tu carro. Te invitamos a buscar y agregar propiedades para pagar.
               </p>
           </div>
@@ -59,7 +59,7 @@
 
   <div *ngIf="obteniendoDatos" class="tgr-container">
       <div class="mdl-grid">
-          <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+          <div class="mdl-cell mdl-cell--12-col m-lr-auto pay-title sel-cuotas-subtitle">
               <!--<p>Estamos recuperando tus propiedades</p>-->
           </div>
       </div>
@@ -69,14 +69,14 @@
 
 
 <div class="mdl-grid" *ngFor="let servicio of listServicio">
-  <div class="mdl-cell mdl-cell--6-col m-0auto rol-card" *ngIf="servicio.listFormulario.length > 0">
+  <div class="mdl-cell mdl-cell--12-col m-lr-auto rol-card" *ngIf="servicio.listFormulario.length > 0">
       <app-deuda-fiscal-servicio (change)="onChange()" [servicio]="servicio"></app-deuda-fiscal-servicio>
   </div>
 </div>
 
 
 <div class="mdl-grid" *ngIf="listServicio.length > 0">
-  <div class="mdl-cell mdl-cell--6-col total-buy">
+  <div class="mdl-cell mdl-cell--12-col total-buy">
 
       <p *ngIf="existeVencidas" class="monto-total texto">
           Monto total :
