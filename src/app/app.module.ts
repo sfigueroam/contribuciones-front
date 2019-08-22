@@ -65,6 +65,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import 'hammerjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ResumenPagoComponent } from './components/main/shared/resumen-pago/resumen-pago.component';
+import { BotoneraComponent } from './components/main/shared/botonera/botonera.component';
 
 
 
@@ -101,8 +103,9 @@ registerLocaleData(localeEs, 'es');
     DeudaFiscalServicioComponent,
     DeudaFiscalFormularioComponent,
     DeudaFiscalListadoComponent,
-    FormContactoComponent
-    
+    FormContactoComponent,
+    ResumenPagoComponent,
+    BotoneraComponent    
   ],
   imports: [
     BrowserModule,

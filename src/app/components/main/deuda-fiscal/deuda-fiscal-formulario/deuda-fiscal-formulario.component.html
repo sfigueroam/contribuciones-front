@@ -2,7 +2,10 @@
 
     <mdl-card-title class="bar">
 
-        <button id="helpTooltip{{ formulario.formNum }}" placement="right" trigger="none" [tooltip]="HtmlContent" content-type="template" mdl-button class="helpTooltip-rol" mdl-button-type="icon" (click)="toggle()">
+        <button id="helpTooltip{{formulario.formNum}}" placement="right" trigger="none" 
+                [tooltip]="HtmlContent" content-type="template" 
+                mdl-button class="helpTooltip-rol" mdl-button-type="icon" 
+                (click)="mostrarOcultar()">
             <mdl-icon>{{expanded ? 'expand_less' : 'expand_more'}}</mdl-icon>
         </button>
 
@@ -33,22 +36,22 @@
             <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                 <thead>
                     <tr>
-                        <th (click)="selectAllNone()"> <mdl-icon> {{ selectedIcon }}</mdl-icon> </th>
+                        <th (click)="seleccionarTodasNinguna()"> <mdl-icon> {{ formulario.intencionPago ? 'check_box' : 'check_box_outline_blank' }} </mdl-icon> </th>
                         <th class="mdl-data-table__cell--non-numeric tgr-cuota">Folio</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-monto">Monto</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-monto">Reajuste</th>
-                        <th class="tgr-monto">Interés</th>
-                        <th class="tgr-monto">Multa</th>
-                        <th class="tgr-monto">Condonación</th>
-                        <th class="tgr-monto">% Condonación</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">Interés</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">Multa</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">Condonación</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">% Condonación</th>                        
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let detalle of formulario.listDetalle" (click)="checkCuota(detalle)">
+                    <tr *ngFor="let detalle of formulario.listDetalle" (click)="seleccionarDetalle(detalle)">
                         <td> <mdl-icon> {{ detalle.intencionPago ? 'check_box' : 'check_box_outline_blank' }} </mdl-icon> </td>
                         <td> {{ detalle.folio }} </td>
-                        <td> {{ detalle.vencimiento | date:'dd/MMM'}}</td>
+                        <td> {{ detalle.vencimiento | date:'dd/MM/yyyy'}}</td>
                         <td> {{ ( formulario.pagoTotal ? detalle.montoTotal : detalle.montoParcial ) | currency:'CLP':'symbol':'4.0-0' }} </td>
                         <th> {{ detalle.reajuste | currency:'CLP':'symbol':-'4.0-0' }} </th>
                         <th> {{ detalle.interes | currency:'CLP':'symbol':'4.0-0' }} </th>

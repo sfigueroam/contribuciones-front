@@ -36,6 +36,8 @@ export class DFFormulario {
   expired = false;
   pagoTotal = true;
 
+    intencionPago: boolean = false;
+
 
     public constructor ( servicioId: number, formNum: number, formNom: string, listDetalle: DFDetalle[] ) {
 
@@ -60,8 +62,29 @@ export class DFFormulario {
             detalle.intencionPago = !detalle.expired;
           }
         }
-        // this.calcularTotal();
-        // this.changeSubject.next();
+         this.calcularTotal();
+         this.changeSubject.next();
       }
+
+
+    private calcularTotal() {
+
+        let mtoTotal = 0;
+        let mtoParcial = 0;
+        this.expired = false;
+
+        for (const det of this.listDetalle) {
+          mtoTotal += det.montoTotal;
+          mtoParcial += det.montoParcial;
+
+          if (det.expired) {
+            this.expired = true;
+          }
+        }
+
+        this.montoTotal = mtoTotal;
+        this.montoParcial = mtoParcial;
+      }
+
 
 }

@@ -1,0 +1,28 @@
+<div class="text-center m-lr-auto">
+    <h2 class="tgr-page_title inside-card text-center text-mont">Seleccionar <strong>Mis Deudas</strong></h2>
+</div>
+<div class="mdl-grid">
+
+  <div class="mdl-cell mdl-cell--12-col select-fee">
+      <div>
+          <div class="check-seleccion-deudas no-vencidas" *ngIf="deudasVigentes && !deudasVencidas" (click)="seleccionar()">
+              <mdl-icon> {{ seleccionIcon }} </mdl-icon>
+              <span>Seleccionar <strong>TODAS</strong> las deudas</span>              
+          </div>
+
+          <div class="check-seleccion-deudas vencidas" *ngIf="!deudasVigentes && deudasVencidas" (click)="seleccionar()">
+              <mdl-icon> {{ seleccionIcon }} </mdl-icon>
+              <span>Seleccionar <strong>TODAS</strong> las deudas vencidas</span>              
+          </div>
+
+          <div class="mdl-button-group" *ngIf="deudasVigentes && deudasVencidas">
+              <p>¿Qué deudas quieres pagar?</p>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="seleccionarTodas()" >Todas</button>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="seleccionarNinguna()">Ninguna</button>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="seleccionarVencidas()">Vencidas</button>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="seleccionarVigentes()">No Vencidas</button>
+          </div>
+      </div>
+  </div>
+
+</div>

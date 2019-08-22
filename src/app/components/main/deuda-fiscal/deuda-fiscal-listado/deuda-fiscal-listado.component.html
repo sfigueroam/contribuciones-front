@@ -1,6 +1,6 @@
 <!-- <app-linea-tiempo [seleccionar]="propiedades.length > 0 " [doneBuscar]="propiedades.length > 0 "></app-linea-tiempo> -->
 
-<div class="mdl-grid" *ngIf="listServicio.length > 0; else bodySinDeuda">
+<!-- <div class="mdl-grid" *ngIf="listServicio.length > 0; else bodySinDeuda">
 
   <div class="mdl-cell mdl-cell--12-col select-fee">
       <div *ngIf="complete && result.total > 0">
@@ -33,9 +33,9 @@
 
       </div>
   </div>
-</div>
+</div> -->
 
-<ng-template #bodySinDeuda>
+<!-- <ng-template #bodySinDeuda>
 
   <div *ngIf="!obteniendoDatos" class="tgr-container">
       <div class="mdl-grid">
@@ -59,65 +59,34 @@
 
   <div *ngIf="obteniendoDatos" class="tgr-container">
       <div class="mdl-grid">
-          <div class="mdl-cell mdl-cell--12-col m-lr-auto pay-title sel-cuotas-subtitle">
-              <!--<p>Estamos recuperando tus propiedades</p>-->
+          <div class="mdl-cell mdl-cell--12-col m-lr-auto pay-title sel-cuotas-subtitle">              
           </div>
       </div>
   </div>
 
-</ng-template>
+</ng-template> -->
 
+
+
+<app-botonera [deudasVigentes]="deudasVigentes" [deudasVencidas]="deudasVencidas" [listado]="listServicio" [tipoDeuda]="tipoDeuda"></app-botonera>
 
 <div class="mdl-grid" *ngFor="let servicio of listServicio">
-  <div class="mdl-cell mdl-cell--12-col m-lr-auto rol-card" *ngIf="servicio.listFormulario.length > 0">
-      <app-deuda-fiscal-servicio (change)="onChange()" [servicio]="servicio"></app-deuda-fiscal-servicio>
-  </div>
+    <div class="mdl-cell mdl-cell--12-col m-lr-auto rol-card" *ngIf="servicio.listFormulario.length > 0">
+        <app-deuda-fiscal-servicio [servicio]="servicio"></app-deuda-fiscal-servicio>
+    </div>
 </div>
 
-
-<div class="mdl-grid" *ngIf="listServicio.length > 0">
-  <div class="mdl-cell mdl-cell--12-col total-buy">
-
-      <p *ngIf="existeVencidas" class="monto-total texto">
-          Monto total :
-      </p>
-      <p *ngIf="existeVencidas" class="monto-total monto">
-          <strong>$ {{ total + condonacion | number }}</strong>
-      </p>
-
-      <div *ngIf="condonacion > 0">
-          <p class="monto-total texto monto-condonacion">
-              Monto beneficio condonación :
-          </p>
-          <p class="monto-total monto monto-condonacion">
-              <strong>$ {{condonacion | number}}</strong>
-          </p>
-      </div>
+<app-resumen-pago [resumen]="resumen" [existeVencidas]="deudasVencidas" [condonacion]="20000" [complete]="true"></app-resumen-pago>
 
 
-      <div *ngIf="existeVencidas" class="gray-border"></div>
-      <p *ngIf="complete" class="monto-total texto">
-          Monto total a pagar :
-      </p>
-      <p *ngIf="complete" class="monto-total monto">
-          <strong>$ {{total | number}}</strong>
-      </p>
 
 
-      <p *ngIf="existeVencidas && (result.vencidas != result.vencidasSeleccionadas)" class="monto-total beneficio">
-          Al pagar cuotas vencidas ya estás accediendo al beneficio de Condonación. Selecciona <strong>todas las cuotas
-      vencidas de un ROL</strong> para conseguir un mayor beneficio a través de la Condonación por Pago Total.
-      </p>
 
-      <!-- *ngIf="condonacion > 0" -->
-      <div class="tgr-condonacion" *ngIf="existeVencidas">
-          <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion" (click)="dialogAyudaCondonacion()">
-        <i class="material-icons">help</i>
-        ¿Qué es el beneficio de <strong>Condonación</strong>?
-      </button>
-      </div>
-  </div>
-</div>
+
+
+
+
+
 
 
 <!-- <div class="tgr-actions tgr-mini-footer" *ngIf="listServicio.length > 0; else footeractions">

@@ -18,5 +18,5 @@
 
 
 <div [class.hidden]="!expanded" *ngFor="let formulario of servicio?.listFormulario">
-    <app-deuda-fiscal-formulario (change)="onChange()" [formulario]="formulario"></app-deuda-fiscal-formulario>
+    <app-deuda-fiscal-formulario [formulario]="formulario"></app-deuda-fiscal-formulario>
 </div>

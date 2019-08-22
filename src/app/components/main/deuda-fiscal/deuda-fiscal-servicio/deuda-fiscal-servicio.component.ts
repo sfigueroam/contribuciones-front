@@ -15,14 +15,15 @@ export class DeudaFiscalServicioComponent implements OnInit {
 
 
   
-  mtoServ: number;     // Monto a pagar por servicio
+  mtoServ: number;      // Monto a pagar por servicio
   
-  indMto: boolean;    // Indicador de monto total/parcial a mostrar ( true: muestra total/oculta parcial; false: oculta total/muestra parcial )
+  indMto: boolean;      // Indicador de monto total/parcial a mostrar ( true: muestra total/oculta parcial; false: oculta total/muestra parcial )
 
   expanded: boolean;
 
   
   @Input() servicio: DFServicio;
+  
 
   @Output() change: EventEmitter<any> = new EventEmitter();
 
@@ -49,6 +50,7 @@ export class DeudaFiscalServicioComponent implements OnInit {
 
 
   onChange() {
+    console.log("change del servicio");
     this.change.emit();
   }
 

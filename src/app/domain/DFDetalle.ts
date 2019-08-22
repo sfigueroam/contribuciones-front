@@ -16,7 +16,7 @@ export class DFDetalle {
     porCondonacion: number;
 
     expired: boolean;
-    intencionPago = true;
+    intencionPago = false;
 
     // liqParcial: CuotaDetalle;
     //   liqTotal: CuotaDetalle;

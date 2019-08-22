@@ -87,10 +87,10 @@
             @media (min-width: 840px) {
                 @include box-shadow-3dp;
             }
-            &.tab-deudas_fiscales {
-                padding-right: 0;
-                padding-left: 0;
-            }
+            // &.tab-deudas_fiscales {
+            //     padding-right: 0;
+            //     padding-left: 0;
+            // }
             &.is-active {
                 font-weight: 700;
                 &.tab-deudas_fiscales {

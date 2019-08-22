@@ -13,30 +13,25 @@ import { DFDetalle } from '../domain/DFDetalle';
 
 
     // Declaración de variables
-    private listDeuda: DFDeudaFiscal[];                   // Listado de deudas fiscales.
-
+    private listDeuda: DFDeudaFiscal[];             // Listado de deudas fiscales.
     private listServicio: DFServicio[];             // Listado de servicios.
-
     private listFormulario: DFFormulario[];         // Listado de formularios.
-
     private listDetalle: DFDetalle[];               // Listado de detalle.
 
 
     // Declaración constructor
     constructor(  ) {
 
-        console.log('Servicio de deuda fiscal listo!!');
-
         this.listDeuda = [
                {
                    servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: 'Formulario 21',
-                   formNum: 21,
-                   folio: 38155,
-                   vencimiento: new Date(2019, 5, 9),
-                   montoTotal: 273332,
-                   montoParcial: 273332,
+                   formNom: 'Formulario 47',
+                   formNum: 47,
+                   folio: 16,
+                   vencimiento: new Date(2019, 11, 1),
+                   montoTotal: 60926,
+                   montoParcial: 70926,
                    reajuste: 0,
                    interes: 0,
                    multa: 0,
@@ -46,12 +41,12 @@ import { DFDetalle } from '../domain/DFDetalle';
                {
                    servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: 'Formulario 22',
-                   formNum: 22,
-                   folio: 38187,
-                   vencimiento: new Date(2019, 5, 9),
-                   montoTotal: 15405,
-                   montoParcial: 15405,
+                   formNom: 'Formulario 47',
+                   formNum: 47,
+                   folio: 17,
+                   vencimiento: new Date(2019, 11, 1),
+                   montoTotal: 109667,
+                   montoParcial: 119667,
                    reajuste: 0,
                    interes: 0,
                    multa: 0,
@@ -61,12 +56,12 @@ import { DFDetalle } from '../domain/DFDetalle';
                {
                    servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: 'Formulario 23',
-                   formNum: 23,
-                   folio: 94493,
-                   vencimiento: new Date(2019, 1, 9),
-                   montoTotal: 479324,
-                   montoParcial: 479324,
+                   formNom: 'Formulario 47',
+                   formNum: 47,
+                   folio: 18,
+                   vencimiento: new Date(2019, 11, 1),
+                   montoTotal: 158408,
+                   montoParcial: 168408,
                    reajuste: 0,
                    interes: 0,
                    multa: 0,
@@ -76,12 +71,12 @@ import { DFDetalle } from '../domain/DFDetalle';
                {
                    servicioNom: 'Servicio de Impuestos Internos',
                    servicioId: 1,
-                   formNom: 'Formulario 24',
-                   formNum: 24,
-                   folio: 94495,
-                   vencimiento: new Date(2019, 1, 9),
-                   montoTotal: 27396,
-                   montoParcial: 27396,
+                   formNom: 'Formulario 47',
+                   formNum: 47,
+                   folio: 19,
+                   vencimiento: new Date(2019, 11, 1),
+                   montoTotal: 207149,
+                   montoParcial: 217149,
                    reajuste: 0,
                    interes: 0,
                    multa: 0,
@@ -94,9 +89,9 @@ import { DFDetalle } from '../domain/DFDetalle';
                     formNom: 'Formulario 21',
                     formNum: 21,
                     folio: 94498,
-                    vencimiento: new Date(2019, 1, 9),
+                    vencimiento: new Date(2019, 11, 1),
                     montoTotal: 27396,
-                    montoParcial: 27396,
+                    montoParcial: 28396,
                     reajuste: 0,
                     interes: 0,
                     multa: 0,
@@ -109,9 +104,9 @@ import { DFDetalle } from '../domain/DFDetalle';
                      formNom: 'Formulario 22',
                      formNum: 22,
                      folio: 94895,
-                     vencimiento: new Date(2019, 1, 9),
-                     montoTotal: 27396,
-                     montoParcial: 27396,
+                     vencimiento: new Date(2019, 11, 1),
+                     montoTotal: 28396,
+                     montoParcial: 29396,
                      reajuste: 0,
                      interes: 0,
                      multa: 0,
@@ -138,8 +133,6 @@ import { DFDetalle } from '../domain/DFDetalle';
         for ( let i = 0; i < this.listDeuda.length ; i++ ) {
 
             if ( !this.listServicio.find( x => x.servicioId === this.listDeuda[i].servicioId ) ) {
-
-                console.log( this.listDeuda[i].servicioNom );
 
                 this.listServicio.push( new DFServicio( this.listDeuda[i].servicioId, this.listDeuda[i].servicioNom, this.getListFormulario( this.listDeuda[i].servicioId ) ) );
 
@@ -203,6 +196,54 @@ import { DFDetalle } from '../domain/DFDetalle';
 
     }
 
+
+    getExisteDeudasVigentes(): boolean{
+
+        let res: boolean = false;
+        let fec: Date = new Date();
+        let cont: number = 0;
+
+        for(let serv of this.listServicio){
+            for(let form of serv.listFormulario){
+                for(let det of form.listDetalle){
+                    if(det.vencimiento.getTime() >= fec.getTime()){
+                        cont = cont + 1;        
+                    }                    
+                }        
+            }        
+        }
+
+        if( cont>0 ){
+            res = true;
+        }
+
+        return res;
+
+    }
+
+    getExisteDeudasVencidas(): boolean{
+
+        let res: boolean = false;
+        let fec: Date = new Date();
+        let cont: number = 0;
+
+        for(let serv of this.listServicio){
+            for(let form of serv.listFormulario){
+                for(let det of form.listDetalle){
+                    if(det.vencimiento.getTime() < fec.getTime()){
+                        cont = cont + 1;        
+                    }                    
+                }        
+            }        
+        }
+
+        if( cont>0 ){
+            res = true;
+        }
+
+        return res;
+
+    }
 
 
   }
