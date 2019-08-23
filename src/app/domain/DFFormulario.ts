@@ -34,7 +34,7 @@ export class DFFormulario {
   isProcess = false;
 
   expired = false;
-  pagoTotal = true;
+  pagoTotal = false;
 
     intencionPago: boolean = false;
 

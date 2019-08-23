@@ -14,18 +14,18 @@ import { UserService } from '../../../../services/user.service';
 export class DeudaFiscalServicioComponent implements OnInit {
 
 
-  
+
   mtoServ: number;      // Monto a pagar por servicio
-  
+
   indMto: boolean;      // Indicador de monto total/parcial a mostrar ( true: muestra total/oculta parcial; false: oculta total/muestra parcial )
 
   expanded: boolean;
 
-  
-  @Input() servicio: DFServicio;
-  
 
-  @Output() change: EventEmitter<any> = new EventEmitter();
+  @Input() servicio: DFServicio;
+
+
+  // @Output() change: EventEmitter<any> = new EventEmitter();
 
 
   constructor( private user: UserService,
@@ -39,7 +39,7 @@ export class DeudaFiscalServicioComponent implements OnInit {
 
   ngOnInit() {
 
-    this.mtoServ = this.obtenerMonto( this.indMto );
+    //this.mtoServ = this.obtenerMonto( this.indMto );
 
   }
 
@@ -51,7 +51,28 @@ export class DeudaFiscalServicioComponent implements OnInit {
 
   onChange() {
     console.log("change del servicio");
-    this.change.emit();
+    // this.change.emit();
+  }
+
+  actualizarMonto( indMontoTotal: boolean ) {
+
+    let monto: number = 0;
+
+    for (let form of this.servicio.listFormulario) {
+      for (let det of form.listDetalle) {
+        if (det.intencionPago) {
+          if (indMontoTotal) {
+            monto = monto + det.montoTotal;
+          } else {
+            monto = monto + det.montoParcial;
+          }
+        } 
+
+      }
+    }
+
+    this.mtoServ = monto;
+
   }
 
 

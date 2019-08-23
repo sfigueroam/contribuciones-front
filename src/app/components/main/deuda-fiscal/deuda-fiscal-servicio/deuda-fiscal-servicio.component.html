@@ -3,11 +3,11 @@
     <div class="bar-text">
         <h6>
             <p class="direccion"> {{ servicio.servicioNom | titlecase }} </p>
-        </h6>        
+        </h6>
     </div>
 
     <div class="mdl-layout-spacer"></div>
-    
+
     <div class="wrapper">
         <span [class.tgr-tr--late]="servicio.expired">
            {{ mtoServ | currency:'CLP':'symbol' }}
@@ -18,5 +18,5 @@
 
 
 <div [class.hidden]="!expanded" *ngFor="let formulario of servicio?.listFormulario">
-    <app-deuda-fiscal-formulario [formulario]="formulario"></app-deuda-fiscal-formulario>
+    <app-deuda-fiscal-formulario (actualizarMonto)="actualizarMonto( $event )" [formulario]="formulario"></app-deuda-fiscal-formulario>
 </div>

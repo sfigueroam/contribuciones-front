@@ -30,21 +30,21 @@ export class DeudaFiscalListadoComponent implements OnInit {
 
 
 
-  
+
 
   existeSoloVencidas = false;
   existeVencidas = false;
   obteniendoDatos = false;
 
-  
 
- 
+
+
   constructor( private deudaFiscalService: DeudaFiscalService,
                private dialogService: MdlDialogService) {
 
-    this.resumen = new ResumenCuotas();            
-    this.tipoDeuda = "fiscal";                
-    
+    this.resumen = new ResumenCuotas();
+    this.tipoDeuda = 'fiscal';
+
     this.listServicio = deudaFiscalService.getListServicio();
     this.deudasVigentes = deudaFiscalService.getExisteDeudasVigentes();
     this.deudasVencidas = deudaFiscalService.getExisteDeudasVencidas();
