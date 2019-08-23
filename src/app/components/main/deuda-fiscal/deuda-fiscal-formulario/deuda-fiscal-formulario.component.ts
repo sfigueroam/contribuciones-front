@@ -93,11 +93,13 @@ export class DeudaFiscalFormularioComponent implements OnInit {
     if ( cont === this.formulario.listDetalle.length ) {
       this.mtoForm = mtoTotal;
       this.formulario.pagoTotal = true;
-    } else {
-      this.mtoForm = mtoParcial;
-      this.formulario.pagoTotal = false;
-    }
+      this.formulario.total = mtoTotal;
 
+    } else {
+      this.mtoForm = mtoParcial;      
+      this.formulario.pagoTotal = false;
+      this.formulario.total = mtoParcial;
+    }
 
     this.actualizarMonto.emit(this.formulario.pagoTotal);
 

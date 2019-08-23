@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ResumenCuotas } from 'src/app/domain/ResumenCuotas';
+import { DFResumen } from '../../../../domain/DFResumen';
 
 @Component({
   selector: 'app-resumen-pago',
@@ -8,17 +8,19 @@ import { ResumenCuotas } from 'src/app/domain/ResumenCuotas';
 })
 export class ResumenPagoComponent implements OnInit {
 
-  @Input() existeVencidas: boolean;
-
+  @Input() total: number;
+  
   @Input() condonacion: number;
+
+  @Input() existeVencidas: boolean;
 
   @Input() complete: boolean;
 
-  @Input() resumen: ResumenCuotas;
+  @Input() resumen: DFResumen;
+
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

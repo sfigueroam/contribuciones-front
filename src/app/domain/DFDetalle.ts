@@ -16,13 +16,13 @@ export class DFDetalle {
     porCondonacion: number;
 
     expired: boolean;
-    intencionPago = false;
+    intencionPago: boolean;
 
     // liqParcial: CuotaDetalle;
     //   liqTotal: CuotaDetalle;
 
-  changeSubject: Subject<any> = new Subject<any>();
-  changeStream: Observable<any> = this.changeSubject.asObservable();
+    changeSubject: Subject<any> = new Subject<any>();
+    changeStream: Observable<any> = this.changeSubject.asObservable();
 
 
     constructor ( servId: number, formNum: number,
@@ -41,6 +41,7 @@ export class DFDetalle {
         this.multa = mtoMul;
         this.condonacion = mtoCond;
         this.porCondonacion = porCond;
+        this.intencionPago = false;
 
     }
 

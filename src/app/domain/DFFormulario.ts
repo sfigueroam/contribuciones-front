@@ -21,22 +21,19 @@ export class DFFormulario {
 
     isComplete = true;
 
-  completeSubject: Subject<any> = new Subject<any>();
-  completeStream: Observable<any> = this.completeSubject.asObservable();
+    completeSubject: Subject<any> = new Subject<any>();
+    completeStream: Observable<any> = this.completeSubject.asObservable();
 
-  changeSubject: Subject<any> = new Subject<any>();
-  changeStream: Observable<any> = this.changeSubject.asObservable();
+    changeSubject: Subject<any> = new Subject<any>();
+    changeStream: Observable<any> = this.changeSubject.asObservable();
 
-  total: number;
+    total: number = 0;  // Monto total por formulario.
+    sufijoDireccion: string;
+    isProcess = false;
+    expired = false;
+    pagoTotal = false;
 
-  sufijoDireccion: string;
-
-  isProcess = false;
-
-  expired = false;
-  pagoTotal = false;
-
-    intencionPago: boolean = false;
+    intencionPago: boolean;
 
 
     public constructor ( servicioId: number, formNum: number, formNom: string, listDetalle: DFDetalle[] ) {
@@ -45,6 +42,9 @@ export class DFFormulario {
         this.formNum = formNum;
         this.formNom = formNom;
         this.listDetalle = listDetalle;
+
+        this.total = 0;
+        this.intencionPago = false;
 
     }
 

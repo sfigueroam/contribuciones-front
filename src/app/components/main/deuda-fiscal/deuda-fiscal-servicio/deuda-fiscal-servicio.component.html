@@ -1,9 +1,7 @@
 <div mdl-shadow="2" class="background-lightgray bar">
 
     <div class="bar-text">
-        <h6>
-            <p class="direccion"> {{ servicio.servicioNom | titlecase }} </p>
-        </h6>
+        <h6><p class="direccion"> {{ servicio.servicioNom | titlecase }} </p></h6>
     </div>
 
     <div class="mdl-layout-spacer"></div>
@@ -17,6 +15,6 @@
 </div>
 
 
-<div [class.hidden]="!expanded" *ngFor="let formulario of servicio?.listFormulario">
-    <app-deuda-fiscal-formulario (actualizarMonto)="actualizarMonto( $event )" [formulario]="formulario"></app-deuda-fiscal-formulario>
+<div [class.hidden]="!mostrar" *ngFor="let formulario of servicio.listFormulario">
+    <app-deuda-fiscal-formulario [formulario]="formulario" (actualizarMonto)="actualizarMonto($event)"></app-deuda-fiscal-formulario>
 </div>

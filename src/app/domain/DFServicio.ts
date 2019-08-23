@@ -26,6 +26,8 @@ export class DFServicio {
         this.servicioNom = servicioNom;
         this.listFormulario = listFormulario;
 
+        this.total = 0;
+
     }
 
     seleccionar( tipo: TipoCuota ) {

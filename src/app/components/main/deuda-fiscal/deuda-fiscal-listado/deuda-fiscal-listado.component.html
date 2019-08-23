@@ -72,11 +72,11 @@
 
 <div class="mdl-grid" *ngFor="let servicio of listServicio">
     <div class="mdl-cell mdl-cell--12-col m-lr-auto rol-card" *ngIf="servicio.listFormulario.length > 0">
-        <app-deuda-fiscal-servicio [servicio]="servicio"></app-deuda-fiscal-servicio>
+        <app-deuda-fiscal-servicio [servicio]="servicio" (actualizarResumen)="actualizarResumen($event)"></app-deuda-fiscal-servicio>
     </div>
 </div>
 
-<app-resumen-pago [resumen]="resumen" [existeVencidas]="deudasVencidas" [condonacion]="20000" [complete]="true"></app-resumen-pago>
+<app-resumen-pago [resumen]="resumen" [total]="resumen.total" [condonacion]="15000"  [existeVencidas]="deudasVencidas" [complete]="true"></app-resumen-pago>
 
 
 

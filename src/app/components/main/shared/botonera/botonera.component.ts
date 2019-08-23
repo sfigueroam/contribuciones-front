@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { CheckboxIcon } from '../../../../domain/CheckboxIcon';
+
 
 @Component({
   selector: 'app-botonera',
@@ -17,11 +18,11 @@ export class BotoneraComponent implements OnInit {
   @Input() deudasVigentes: boolean;   // Indicador de deudas vigentes (true: tiene deudas vigentes; false: no tiene deudas vigentes)
   @Input() tipoDeuda: string;         // Indicador del tipo de deuda (fiscal/contribuciones)
   @Input() listado: any[];            // Listado de las deudas
-  
+
   
   constructor() {
     this.seleccionIcon = CheckboxIcon.UNSELECTED
-    this.seleccionInd = false;
+    this.seleccionInd = false;  
   }
 
 
@@ -47,8 +48,8 @@ export class BotoneraComponent implements OnInit {
   seleccionarTodas(): void{
 
     let opcion = "todas";
-    this.marcarSeleccion(opcion);    
-
+    this.marcarSeleccion(opcion); 
+    
   }
 
 

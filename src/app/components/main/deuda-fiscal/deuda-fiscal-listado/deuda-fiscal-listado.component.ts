@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MdlDialogService } from '@angular-mdl/core';
-
 import { DeudaFiscalService } from '../../../../services/deuda-fiscal.service';
-
 import { DFServicio } from '../../../../domain/DFServicio';
-import { TipoCuota } from '../../../../domain/TipoCuota';
-import { CheckboxIcon } from '../../../../domain/CheckboxIcon';
-
-import { AyudaCondonacionComponent } from '../../contribuciones/seleccion-cuotas/modal/ayuda-condonacion/ayuda-condonacion.component';
-import { ResumenComponent } from '../../contribuciones/seleccion-cuotas/modal/resumen/resumen.component';
-import { ResumenCuotas } from '../../../../domain/ResumenCuotas';
+import { DFResumen } from '../../../../domain/DFResumen';
 
 @Component({
   selector: 'app-deuda-fiscal-listado',
@@ -26,10 +18,7 @@ export class DeudaFiscalListadoComponent implements OnInit {
 
   //variables usadas en resumen-pago
   complete: boolean;  
-  resumen: ResumenCuotas;
-
-
-
+  resumen: DFResumen;
 
 
   existeSoloVencidas = false;
@@ -39,10 +28,9 @@ export class DeudaFiscalListadoComponent implements OnInit {
 
 
 
-  constructor( private deudaFiscalService: DeudaFiscalService,
-               private dialogService: MdlDialogService) {
+  constructor( private deudaFiscalService: DeudaFiscalService ) {
 
-    this.resumen = new ResumenCuotas();
+    this.resumen = new DFResumen();
     this.tipoDeuda = 'fiscal';
 
     this.listServicio = deudaFiscalService.getListServicio();
@@ -50,8 +38,26 @@ export class DeudaFiscalListadoComponent implements OnInit {
     this.deudasVencidas = deudaFiscalService.getExisteDeudasVencidas();
 
   }
+  
 
   ngOnInit() { }
+
+
+  /******************************************************* 
+   * Método que actualiza el resumen de pago.
+   *******************************************************/
+  actualizarResumen(indResumen: boolean): void {
+
+    console.log("actualizarResumen");
+
+    let monto: number = 0;
+    for ( let serv of this.listServicio) {
+      monto = monto + serv.total;
+    }
+
+    this.resumen.total = monto;
+
+  }
 
 
 }
