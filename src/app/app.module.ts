@@ -56,7 +56,6 @@ import { RecordarComponent } from './components/main/contribuciones/agregar/nuev
 import { DeudaFiscalServicioComponent } from './components/main/deuda-fiscal/deuda-fiscal-servicio/deuda-fiscal-servicio.component';
 import { DeudaFiscalFormularioComponent } from './components/main/deuda-fiscal/deuda-fiscal-formulario/deuda-fiscal-formulario.component';
 import { DeudaFiscalListadoComponent } from './components/main/deuda-fiscal/deuda-fiscal-listado/deuda-fiscal-listado.component';
-import { FormContactoComponent } from './components/form-contacto/form-contacto.component';
 
 
 // Angular material
@@ -103,7 +102,6 @@ registerLocaleData(localeEs, 'es');
     DeudaFiscalServicioComponent,
     DeudaFiscalFormularioComponent,
     DeudaFiscalListadoComponent,
-    FormContactoComponent,
     ResumenPagoComponent,
     BotoneraComponent    
   ],

@@ -10,7 +10,7 @@ import { AgregarComponent } from './components/main/contribuciones/agregar/agreg
 import { LoginComponent } from './components/login/login.component';
 import { ObtenerComponent } from './components/main/certificados/obtener/obtener.component';
 import { DeudaFiscalListadoComponent } from './components/main/deuda-fiscal/deuda-fiscal-listado/deuda-fiscal-listado.component';
-import { FormContactoComponent } from './components/form-contacto/form-contacto.component';
+
 
 
 
@@ -69,10 +69,6 @@ const routes: Routes = [
         component: DeudaFiscalListadoComponent
       }
     ]
-  }, 
-  {
-    path: 'contacto',
-    component: FormContactoComponent
   }
 ];
 
