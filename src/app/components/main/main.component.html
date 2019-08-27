@@ -49,8 +49,14 @@
             </div>
         </div>
         <nav class="mdl-navigation">
+<<<<<<< HEAD
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="!logged">Fiscales</a>
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','contribuciones','agregar','nueva']">Contribuciones</a>            
+=======
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="logged">Fiscales</a>
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','contribuciones','agregar','nueva']">Contribuciones</a>
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/contacto']">Formulario de Contacto</a>
+>>>>>>> develop
             <hr>
             <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
             <a href="https://www.tesoreria.cl/IntClientePregosWSWeb/?RUT=0&DV=0&EMAIL=" class="mdl-navigation__link hidden-xs"><i class="material-icons">feedback</i>Formulario de Contacto</a>
@@ -67,17 +73,60 @@
             </div>
         </div>
         <div class="mdl-grid">
-            <div class="tgr-card_container m-lr-auto mdl-cell mdl-cell--6-col">
+            <div class="mdl-layout-spacer"></div>
+            <div class="tgr-card_container mdl-cell mdl-cell--6-col" [class.m-lr-auto]="!logged">
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                     <div class="tgr-tabs mdl-tabs__tab-bar" *ngIf="!logged">
                         <a href="#deudas-fiscales" class="mdl-tabs__tab tab-deudas_fiscales" routerLinkActive="is-active" [routerLink]="['/centropago','deuda-fiscal','listado']" >Fiscales</a>
                         <a href="#deudas-contribuciones" class="mdl-tabs__tab tab-contribuciones" routerLinkActive="is-active" [routerLink]="['/centropago','contribuciones','seleccionar-cuotas']">Contribuciones</a>
-                    </div>                  
+                    </div>    
                     <div class="tgr-tabs_panel mdl-tabs__panel is-active">
                         <router-outlet></router-outlet>
                     </div>                   
                 </div>
             </div>
+            <div class="tgr-resumen tgr-card_container mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone mt-50" *ngIf="logged"> <!-- *ngIf="logged" -->
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col tgr-resumen_titulo">
+                        <h5>RESUMEN DE DEUDAS SELECCIONADAS PARA PAGAR</h5>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col tgr-resumen_deuda fiscales">
+                        <h6>FISCALES</h6>
+                        <div class="tgr-resumen_deuda__montos">
+                            <p>Monto Total</p>
+                            <p>$ 123.456.789</p>
+                        </div>
+                        <div class="tgr-resumen_deuda__montos">
+                            <p>Condonación</p>
+                            <p>$ - 123.456.789</p>
+                        </div>
+                        <div class="tgr-resumen_deuda__montos">
+                            <p>Total Fiscales</p>
+                            <p>$ 123.456.789</p>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col tgr-resumen_deuda contribuciones">
+                        <h6>CONTRIBUCIONES</h6>
+                        <div class="tgr-resumen_deuda__montos">
+                            <p>Monto Total</p>
+                            <p>$ 123.456.789</p>
+                        </div>
+                        <div class="tgr-resumen_deuda__montos">
+                            <p>Condonación</p>
+                            <p>$ - 123.456.789</p>
+                        </div>
+                        <div class="tgr-resumen_deuda__montos">
+                            <p>Total Fiscales</p>
+                            <p>$ 123.456.789</p>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col tgr-resumen_total text-center">
+                        <h6 class="tgr-resumen_total__titulo">MONTO TOTAL A PAGAR</h6>
+                        <h6 class="tgr-resumen_total__monto">$ 123.456.789</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
         </div>
     </mdl-layout-content>
 </mdl-layout>

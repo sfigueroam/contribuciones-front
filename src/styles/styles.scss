@@ -67,6 +67,10 @@ html, body, h1, h2, h3, h4, h5 {
   margin-top: 40px;
 }
 
+.mt-50 {
+  margin-top: 50px;
+}
+
 .mb-0 {
   margin-bottom: 0;
 }
@@ -249,22 +253,14 @@ html, body, h1, h2, h3, h4, h5 {
 
 .title,
 .tgr-page_title {
-  margin-top: 16px;
-  margin-bottom: 5px;
+  margin-top: 4px;
+  margin-bottom: 0;
   line-height: 24px;
   font-size: 20px;
   color: $color-dark-blue-text;
-  @media (max-width: 480px) {
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
-  @media (max-width: 839px) {
-    margin-top: 4px;
-    margin-bottom: 0;
-  }
   &.inside-card {
     margin-top: 0;
-    padding-top: 20px;
+    padding-top: 16px;
     padding-bottom: 10px;
     font-size: 18px;
   }
@@ -419,6 +415,7 @@ html, body {
     }
 }
 .mdl-layout__header {
+  min-height: 50px;
     @media (max-width: 480px) {
       position: fixed;
       -webkit-overflow-scrolling: touch;
@@ -503,10 +500,10 @@ html, body {
       padding-left: 6%;
     }
     @media (min-width: 840px) and (max-width: 1279px) {
-      padding-left: 16%;
+      padding-left: 8%;
     }
     @media (min-width: 1280px) {
-      padding-left: 21%;
+      padding-left: 12%;
     }
     .material-icons {
       color: $color-dark-blue-text;
@@ -546,13 +543,16 @@ html, body {
 }
 
 .mdl-menu__container.is-visible {
-  right: -77px !important;
+  right: -128px !important;
   top: 51px !important;
   @media (max-width: 480px) {
     right: 27px !important;
   }
-  @media (max-width: 839px) and (min-width: 481px) {
+  @media (min-width: 481px) and (max-width: 839px) {
     right: -43px !important;
+  }
+  @media (min-width: 1280px) {
+    right: -178px !important;
   }
 }
 // FIN HEADER
@@ -839,6 +839,7 @@ html, body {
 }
 
 .mdl-layout__header-row{
+  height: 50px;
   background-color: #ffffff;
   &.is-active-login {
     @media (max-width: 480px) {
@@ -846,16 +847,16 @@ html, body {
       padding-right: 16px;
     }
     @media (min-width: 481px) and (max-width: 839px) {
-      padding-left: 100px;
+      padding-left: 95px;
       padding-right: 46px;
     }
     @media (min-width: 840px) and (max-width: 1279px) {
-      padding-left: 214px;
-      padding-right: 160px;
+      padding-left: 155px;
+      padding-right: 85px;
     }
     @media (min-width: 1280px) {
-      padding-left: 403px;
-      padding-right: 324px;
+      padding-left: 276px;
+      padding-right: 185px;
     }
   }
   @media (max-width: 480px) {
