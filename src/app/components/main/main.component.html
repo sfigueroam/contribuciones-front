@@ -70,7 +70,7 @@
             <div class="mdl-layout-spacer"></div>
             <div class="tgr-card_container mdl-cell mdl-cell--6-col" [class.m-lr-auto]="!logged">
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                    <div class="tgr-tabs mdl-tabs__tab-bar" *ngIf="!logged">
+                    <div class="tgr-tabs mdl-tabs__tab-bar" *ngIf="logged">
                         <a href="#deudas-fiscales" class="mdl-tabs__tab tab-deudas_fiscales" routerLinkActive="is-active" [routerLink]="['/centropago','deuda-fiscal','listado']" >Fiscales</a>
                         <a href="#deudas-contribuciones" class="mdl-tabs__tab tab-contribuciones" routerLinkActive="is-active" [routerLink]="['/centropago','contribuciones','seleccionar-cuotas']">Contribuciones</a>
                     </div>    
