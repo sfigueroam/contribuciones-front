@@ -127,4 +127,7 @@ export class DeudaFiscalFormularioComponent implements OnInit {
     this.calcularMonto();
   }
 
+
+  toggle(): void { }
+
 }
