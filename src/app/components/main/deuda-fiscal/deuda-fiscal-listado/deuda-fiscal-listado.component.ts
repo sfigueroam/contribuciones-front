@@ -16,6 +16,9 @@ export class DeudaFiscalListadoComponent implements OnInit {
 
   listServicio: DFServicio[] = [];  // Listado de deudas fiscales obtenidas del servicio.
 
+  montoTotal: number; // Monto total a pagar
+  montoCondonacion: number; // Monto total de condonacion
+
   //variables usadas en resumen-pago
   complete: boolean;  
   resumen: DFResumen;
@@ -25,6 +28,8 @@ export class DeudaFiscalListadoComponent implements OnInit {
   existeVencidas = false;
   obteniendoDatos = false;
 
+
+  opcion: string = "todas";
 
 
 
@@ -57,6 +62,10 @@ export class DeudaFiscalListadoComponent implements OnInit {
 
     this.resumen.total = monto;
 
+  }
+
+  calcularMonto(opcion: string): void{
+    console.log("calcularMonto: " + opcion);
   }
 
 

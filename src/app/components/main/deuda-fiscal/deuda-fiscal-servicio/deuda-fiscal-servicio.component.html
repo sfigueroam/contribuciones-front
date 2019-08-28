@@ -8,7 +8,7 @@
 
     <div class="wrapper">
         <span [class.tgr-tr--late]="servicio.expired">
-           {{ mtoServ | currency:'CLP':'symbol' }}
+           {{ servicio.total | currency:'CLP':'symbol' }}
         </span>
     </div>
 

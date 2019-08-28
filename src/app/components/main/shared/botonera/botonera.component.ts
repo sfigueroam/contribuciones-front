@@ -19,10 +19,13 @@ export class BotoneraComponent implements OnInit {
   @Input() tipoDeuda: string;         // Indicador del tipo de deuda (fiscal/contribuciones)
   @Input() listado: any[];            // Listado de las deudas
 
+  @Output() calcularMonto: EventEmitter<string>;
+
   
   constructor() {
     this.seleccionIcon = CheckboxIcon.UNSELECTED
     this.seleccionInd = false;  
+    this.calcularMonto = new EventEmitter();
   }
 
 
@@ -153,7 +156,7 @@ export class BotoneraComponent implements OnInit {
 
           switch(opcion) { 
             case "vencidas": {
-              if(det.vencimiento.getTime() < fec.getTime()){
+              if(det.expired){
                 det.intencionPago = true;
               }else{
                 det.intencionPago = false;
@@ -161,7 +164,7 @@ export class BotoneraComponent implements OnInit {
               break; 
             } 
             case "vigentes": { 
-              if(det.vencimiento.getTime() >= fec.getTime()){
+              if(!det.expired){
                 det.intencionPago = true;
               }else{
                 det.intencionPago = false;
@@ -193,6 +196,9 @@ export class BotoneraComponent implements OnInit {
                break; 
             } 
           }
+
+          this.calcularMonto.emit(opcion);
+
         }
       }
     }

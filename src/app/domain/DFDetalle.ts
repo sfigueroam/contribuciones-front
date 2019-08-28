@@ -28,7 +28,8 @@ export class DFDetalle {
     constructor ( servId: number, formNum: number,
                   fol: number, venc: Date, mtoTot: number,
                   mtoPar: number, mtoRea: number, mtoInt: number,
-                  mtoMul: number, mtoCond: number, porCond: number ) {
+                  mtoMul: number, mtoCond: number, porCond: number,
+                  expired: boolean ) {
 
         this.servicioId = servId;
         this.formNum = formNum;
@@ -42,6 +43,7 @@ export class DFDetalle {
         this.condonacion = mtoCond;
         this.porCondonacion = porCond;
         this.intencionPago = false;
+        this.expired = expired;
 
     }
 
