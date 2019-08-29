@@ -4,6 +4,7 @@ import { CheckboxIcon } from '../../../../domain/CheckboxIcon';
 import { DFDetalle } from 'src/app/domain/DFDetalle';
 import { DFFormulario } from '../../../../domain/DFFormulario';
 import { environment } from '../../../../../environments/environment';
+import { DeudaFiscalService } from '../../../../services/deuda-fiscal.service';
 
 
 @Component({
@@ -26,18 +27,19 @@ export class DeudaFiscalFormularioComponent implements OnInit {
   selectedIcon: CheckboxIcon;
 
 
-  constructor( private mdlSnackbarService: MdlSnackbarService ) {
+  constructor( private deudaFiscalService: DeudaFiscalService,
+               private mdlSnackbarService: MdlSnackbarService ) {
     this.actualizarMonto = new EventEmitter();
   }
 
 
   ngOnInit() {
 
-    this.expanded = false;
+    this.expanded = true;
     this.icon = 'assignment';
 
     this.selectedIcon = CheckboxIcon.UNSELECTED;
-    if (this.formulario.intencionPago) {
+    if (this.formulario.pagoTotal) {
       this.selectedIcon = CheckboxIcon.SELECTED;
     }
 
@@ -78,28 +80,28 @@ export class DeudaFiscalFormularioComponent implements OnInit {
    ************************************************************************/
   calcularMonto(): void {
 
-    let cont: number = 0;
-    let mtoTotal: number = 0;
-    let mtoParcial: number = 0;
+    let cnt: number = 0;
+    let mtoTot: number = 0;
+    let mtoPar: number = 0;
+    let mtoCnd: number = 0;
 
     for ( let det of this.formulario.listDetalle ) {
       if ( det.intencionPago ) {
-        mtoTotal = mtoTotal + det.montoTotal;
-        mtoParcial = mtoParcial + det.montoParcial;
-        cont = cont + 1;
+        mtoTot+=det.montoTotal;
+        mtoPar+=det.montoParcial;
+        mtoCnd+=det.condonacion;
+        cnt++;
       }
     }
 
-    if ( cont === this.formulario.listDetalle.length ) {
-      this.mtoForm = mtoTotal;
-      this.formulario.pagoTotal = true;
-      this.formulario.total = mtoTotal;
+    this.formulario.total = mtoTot;
+    this.formulario.parcial = mtoPar;
 
+    if (cnt === this.formulario.listDetalle.length){
+      this.formulario.pagoTotal = true;      
     } else {
-      this.mtoForm = mtoParcial;      
-      this.formulario.pagoTotal = false;
-      this.formulario.total = mtoParcial;
-    }
+      this.formulario.pagoTotal = false;      
+    }   
 
     this.actualizarMonto.emit(this.formulario.pagoTotal);
 
@@ -112,19 +114,13 @@ export class DeudaFiscalFormularioComponent implements OnInit {
    ************************************************************************/
   seleccionarTodasNinguna(): void {
 
-    let opcion: boolean;
-    if (this.formulario.intencionPago) {
-      opcion = false;
-    } else {
-      opcion = true;
-    }
-
-    this.formulario.intencionPago = opcion;
-    for (let det of this.formulario.listDetalle) {
-      det.intencionPago = opcion;
+    this.formulario.pagoTotal = !this.formulario.pagoTotal;
+    for ( let det of this.formulario.listDetalle ) {
+      det.intencionPago = this.formulario.pagoTotal;
     }
 
     this.calcularMonto();
+    
   }
 
 

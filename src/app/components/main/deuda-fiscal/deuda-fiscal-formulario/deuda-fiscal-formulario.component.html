@@ -17,8 +17,8 @@
         <div class="mdl-layout-spacer"></div>
 
         <div class="wrapper">
-            <span class="rol-total" [class.tgr-tr--late]="formulario.expired" (click)="toggle()">
-               {{ mtoForm | currency:'CLP':'symbol' }}
+            <span class="rol-total" [class.tgr-tr--late]="formulario.expired">
+               {{ ( formulario.pagoTotal ? formulario.total : formulario.parcial ) | currency:'CLP':'symbol' }}
             </span>
         </div>
 
@@ -34,16 +34,16 @@
                 <thead>
                     <tr>
                         <th (click)="seleccionarTodasNinguna()">
-                            <mdl-icon> {{ formulario.intencionPago ? 'check_box' : 'check_box_outline_blank' }} </mdl-icon>
+                            <mdl-icon> {{ formulario.pagoTotal ? 'check_box' : 'check_box_outline_blank' }} </mdl-icon>
                         </th>
                         <th class="mdl-data-table__cell--non-numeric tgr-cuota">Folio</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-monto">Monto</th>
-                        <th class="mdl-data-table__cell--non-numeric tgr-monto">Reajuste</th>
+                        <!-- <th class="mdl-data-table__cell--non-numeric tgr-monto">Reajuste</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-monto">Interés</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-monto">Multa</th>
                         <th class="mdl-data-table__cell--non-numeric tgr-monto">Condonación</th>
-                        <th class="mdl-data-table__cell--non-numeric tgr-monto">% Condonación</th>
+                        <th class="mdl-data-table__cell--non-numeric tgr-monto">% Condonación</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -51,15 +51,18 @@
                         <td>
                             <mdl-icon> {{ detalle.intencionPago ? 'check_box' : 'check_box_outline_blank' }} </mdl-icon>
                         </td>
-                        <td> {{ detalle.folio }} </td>
-                        <td> {{ detalle.vencimiento | date:'dd/MM/yyyy'}}</td>
-                        <td> {{ ( formulario.pagoTotal ? detalle.montoTotal : detalle.montoParcial ) | currency:'CLP':'symbol':'4.0-0' }} </td>
-                        <th> {{ detalle.reajuste | currency:'CLP':'symbol':'4.0-0' }} </th>
+                        <td [class.tgr-tr--late]="detalle.expired"> {{ detalle.folio }} </td>
+                        <td [class.tgr-tr--late]="detalle.expired"> {{ detalle.vencimiento | date:'dd/MM/yyyy'}}</td>
+                        <td [class.tgr-tr--late]="detalle.expired"> {{ detalle.montoTotal | currency:'CLP':'symbol':'4.0-0' }}</td>
+                        
+                        <!-- <th> {{ detalle.reajuste | currency:'CLP':'symbol':'4.0-0' }} </th>
                         <th> {{ detalle.interes | currency:'CLP':'symbol':'4.0-0' }} </th>
                         <th> {{ detalle.multa | currency:'CLP':'symbol':'4.0-0' }} </th>
                         <th> {{ detalle.condonacion | currency:'CLP':'symbol':'4.0-0' }} </th>
-                        <th> {{ detalle.porCondonacion | percent }} </th>
+                        <th> {{ detalle.porCondonacion | percent }} </th> -->
                     </tr>
+                    
+                
                 </tbody>
             </table>
 

@@ -49,7 +49,7 @@
             </div>
         </div>
         <nav class="mdl-navigation">
-            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="!logged">Fiscales</a>
+            <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','deuda-fiscal','listado']" *ngIf="logged">Fiscales</a>
             <a href="#" class="mdl-navigation__link" routerLinkActive="highlight" [routerLink]="['/centropago','contribuciones','agregar','nueva']">Contribuciones</a>            
             <hr>
             <a href="https://www.tgr.cl" class="mdl-navigation__link highlight"><i class="material-icons">laptop_chromebook</i>Ir a tgr.cl</a>
@@ -71,7 +71,7 @@
             <div class="tgr-card_container mdl-cell mdl-cell--6-col" [class.m-lr-auto]="!logged">
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                     <div class="tgr-tabs mdl-tabs__tab-bar" *ngIf="logged">
-                        <a href="#deudas-fiscales" class="mdl-tabs__tab tab-deudas_fiscales" routerLinkActive="is-active" [routerLink]="['/centropago','deuda-fiscal','listado']" >Fiscales</a>
+                        <a href="#deudas-fiscales" class="mdl-tabs__tab tab-deudas_fiscales" routerLinkActive="is-active" [routerLink]="['/centropago','deuda-fiscal','listado']">Fiscales</a>
                         <a href="#deudas-contribuciones" class="mdl-tabs__tab tab-contribuciones" routerLinkActive="is-active" [routerLink]="['/centropago','contribuciones','seleccionar-cuotas']">Contribuciones</a>
                     </div>    
                     <div class="tgr-tabs_panel mdl-tabs__panel is-active">

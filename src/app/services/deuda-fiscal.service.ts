@@ -38,7 +38,7 @@ import { UserService } from './user.service';
     getListDeudaPrueba(rut: number): DFDeudaFiscal[] {
 
         
-        if(rut === 1374582 ){
+        if(rut === 1374582 ){ //deudas no vencidas
             this.listDeuda = [
                 {
                     servicioNom: 'Servicio de Impuestos Internos',
@@ -62,6 +62,99 @@ import { UserService } from './user.service';
                     formNum: 47,
                     folio: 17,
                     vencimiento: new Date(2019, 11, 1),
+                    montoTotal: 109667,
+                    montoParcial: 119667,
+                    reajuste: 0,
+                    interes: 0,
+                    multa: 0,
+                    condonacion: 0,
+                    porCondonacion: 0
+                },
+                {
+                    servicioNom: 'Servicio de Impuestos Internos',
+                    servicioId: 1,
+                    formNom: 'Formulario 47',
+                    formNum: 47,
+                    folio: 18,
+                    vencimiento: new Date(2019, 11, 1),
+                    montoTotal: 158408,
+                    montoParcial: 168408,
+                    reajuste: 0,
+                    interes: 0,
+                    multa: 0,
+                    condonacion: 0,
+                    porCondonacion: 0
+                },
+                {
+                    servicioNom: 'Servicio de Impuestos Internos',
+                    servicioId: 1,
+                    formNom: 'Formulario 47',
+                    formNum: 47,
+                    folio: 19,
+                    vencimiento: new Date(2019, 11, 1),
+                    montoTotal: 207149,
+                    montoParcial: 217149,
+                    reajuste: 0,
+                    interes: 0,
+                    multa: 0,
+                    condonacion: 0,
+                    porCondonacion: 0
+                },
+                {
+                     servicioNom: 'Otro Servicio de Impuestos Internos',
+                     servicioId: 2,
+                     formNom: 'Formulario 21',
+                     formNum: 21,
+                     folio: 94498,
+                     vencimiento: new Date(2019, 11, 1),
+                     montoTotal: 27396,
+                     montoParcial: 28396,
+                     reajuste: 0,
+                     interes: 0,
+                     multa: 0,
+                     condonacion: 0,
+                     porCondonacion: 0
+                 },
+                 {
+                      servicioNom: 'Otro Servicio de Impuestos Internos',
+                      servicioId: 2,
+                      formNom: 'Formulario 22',
+                      formNum: 22,
+                      folio: 94895,
+                      vencimiento: new Date(2019, 11, 1),
+                      montoTotal: 28396,
+                      montoParcial: 29396,
+                      reajuste: 0,
+                      interes: 0,
+                      multa: 0,
+                      condonacion: 0,
+                      porCondonacion: 0
+                  }
+         ];
+        } else if ( rut === 10066110 ) { //deudas vencidas
+            this.listDeuda = [
+                {
+                    servicioNom: 'Servicio de Impuestos Internos',
+                    servicioId: 1,
+                    formNom: 'Formulario 47',
+                    formNum: 47,
+                    folio: 16,
+                    vencimiento: new Date(2018, 11, 1),
+                    montoTotal: 60926,
+                    montoParcial: 70926,
+                    reajuste: 0,
+                    interes: 0,
+                    multa: 0,
+                    condonacion: 0,
+                    porCondonacion: 0
+                },
+                {
+                    servicioNom: 'Servicio de Impuestos Internos',
+                    servicioId: 1,
+                    formNom: 'Formulario 47',
+                    formNum: 47,
+                    folio: 17,
+                    vencimiento: new Date(2018, 11, 1),
                     montoTotal: 109667,
                     montoParcial: 119667,
                     reajuste: 0,
@@ -106,7 +199,7 @@ import { UserService } from './user.service';
                      formNom: 'Formulario 21',
                      formNum: 21,
                      folio: 94498,
-                     vencimiento: new Date(2019, 11, 1),
+                     vencimiento: new Date(2018, 11, 1),
                      montoTotal: 27396,
                      montoParcial: 28396,
                      reajuste: 0,
@@ -130,101 +223,8 @@ import { UserService } from './user.service';
                       condonacion: 0,
                       porCondonacion: 0
                   }
-         ];
-        } else if ( rut === 15331738 ) {
-            this.listDeuda = [
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 16,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 60926,
-                    montoParcial: 70926,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 17,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 109667,
-                    montoParcial: 119667,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 18,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 158408,
-                    montoParcial: 168408,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 19,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 207149,
-                    montoParcial: 217149,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                     servicioNom: 'Otro Servicio de Impuestos Internos',
-                     servicioId: 2,
-                     formNom: 'Formulario 21',
-                     formNum: 21,
-                     folio: 94498,
-                     vencimiento: new Date(2019, 11, 1),
-                     montoTotal: 27396,
-                     montoParcial: 28396,
-                     reajuste: 0,
-                     interes: 0,
-                     multa: 0,
-                     condonacion: 0,
-                     porCondonacion: 0
-                 },
-                 {
-                      servicioNom: 'Otro Servicio de Impuestos Internos',
-                      servicioId: 2,
-                      formNom: 'Formulario 22',
-                      formNum: 22,
-                      folio: 94895,
-                      vencimiento: new Date(2019, 11, 1),
-                      montoTotal: 28396,
-                      montoParcial: 29396,
-                      reajuste: 0,
-                      interes: 0,
-                      multa: 0,
-                      condonacion: 0,
-                      porCondonacion: 0
-                  }
          ];                
-        } else if( rut === 13269887 ) {
+        } else if( rut === 12182216 ) { // deudas vencidas y no vencidas
             this.listDeuda = [
                 {
                     servicioNom: 'Servicio de Impuestos Internos',
@@ -262,7 +262,7 @@ import { UserService } from './user.service';
                     formNom: 'Formulario 47',
                     formNum: 47,
                     folio: 18,
-                    vencimiento: new Date(2019, 11, 1),
+                    vencimiento: new Date(2018, 11, 1),
                     montoTotal: 158408,
                     montoParcial: 168408,
                     reajuste: 0,
@@ -277,7 +277,7 @@ import { UserService } from './user.service';
                     formNom: 'Formulario 47',
                     formNum: 47,
                     folio: 19,
-                    vencimiento: new Date(2019, 11, 1),
+                    vencimiento: new Date(2018, 11, 1),
                     montoTotal: 207149,
                     montoParcial: 217149,
                     reajuste: 0,
@@ -317,99 +317,8 @@ import { UserService } from './user.service';
                       porCondonacion: 0
                   }
          ];
-        } else if ( rut === 5780976 ) {
-            this.listDeuda = [
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 16,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 60926,
-                    montoParcial: 70926,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 17,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 109667,
-                    montoParcial: 119667,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 18,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 158408,
-                    montoParcial: 168408,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                    servicioNom: 'Servicio de Impuestos Internos',
-                    servicioId: 1,
-                    formNom: 'Formulario 47',
-                    formNum: 47,
-                    folio: 19,
-                    vencimiento: new Date(2019, 11, 1),
-                    montoTotal: 207149,
-                    montoParcial: 217149,
-                    reajuste: 0,
-                    interes: 0,
-                    multa: 0,
-                    condonacion: 0,
-                    porCondonacion: 0
-                },
-                {
-                     servicioNom: 'Otro Servicio de Impuestos Internos',
-                     servicioId: 2,
-                     formNom: 'Formulario 21',
-                     formNum: 21,
-                     folio: 94498,
-                     vencimiento: new Date(2019, 11, 1),
-                     montoTotal: 27396,
-                     montoParcial: 28396,
-                     reajuste: 0,
-                     interes: 0,
-                     multa: 0,
-                     condonacion: 0,
-                     porCondonacion: 0
-                 },
-                 {
-                      servicioNom: 'Otro Servicio de Impuestos Internos',
-                      servicioId: 2,
-                      formNom: 'Formulario 22',
-                      formNum: 22,
-                      folio: 94895,
-                      vencimiento: new Date(2019, 11, 1),
-                      montoTotal: 28396,
-                      montoParcial: 29396,
-                      reajuste: 0,
-                      interes: 0,
-                      multa: 0,
-                      condonacion: 0,
-                      porCondonacion: 0
-                  }
-         ];
+        } else if ( rut === 4670812 ) { //sin deudas fiscales
+            this.listDeuda = [];
         } else {
             this.listDeuda = [
                 {
@@ -493,7 +402,7 @@ import { UserService } from './user.service';
                       formNom: 'Formulario 22',
                       formNum: 22,
                       folio: 94895,
-                      vencimiento: new Date(2018, 11, 1),
+                      vencimiento: new Date(2019, 11, 1),
                       montoTotal: 28396,
                       montoParcial: 29396,
                       reajuste: 0,
@@ -556,6 +465,7 @@ import { UserService } from './user.service';
     // Método que obtiene el detalle de las deudas por formulario y servicio.
     getListDetalle( servicioId: number, formNum: number ): DFDetalle[]{
 
+        let fec = new Date();
         this.listDetalle = [];
 
         for ( let i = 0; i < this.listDeuda.length ; i++ ) {
@@ -564,10 +474,17 @@ import { UserService } from './user.service';
 
                 if ( !this.listDetalle.find( x => x.folio === this.listDeuda[i].folio ) ) {
 
+                    
+                    let expired = false;
+                    if (this.listDeuda[i].vencimiento.getTime() < fec.getTime()) {
+                        expired = true;
+                    }
+
                     this.listDetalle.push( new DFDetalle( this.listDeuda[i].servicioId, this.listDeuda[i].formNum,
                                                           this.listDeuda[i].folio, this.listDeuda[i].vencimiento, this.listDeuda[i].montoTotal,
                                                           this.listDeuda[i].montoParcial, this.listDeuda[i].reajuste, this.listDeuda[i].interes,
-                                                          this.listDeuda[i].multa, this.listDeuda[i].condonacion, this.listDeuda[i].porCondonacion ));
+                                                          this.listDeuda[i].multa, this.listDeuda[i].condonacion, this.listDeuda[i].porCondonacion,
+                                                          expired ));
     
                 }
 
@@ -584,13 +501,12 @@ import { UserService } from './user.service';
     getExisteDeudasVigentes(): boolean{
 
         let res: boolean = false;
-        let fec: Date = new Date();
         let cont: number = 0;
 
         for(let serv of this.listServicio){
             for(let form of serv.listFormulario){
                 for(let det of form.listDetalle){
-                    if(det.vencimiento.getTime() >= fec.getTime()){
+                    if(!det.expired){
                         cont = cont + 1;        
                     }                    
                 }        
@@ -608,13 +524,12 @@ import { UserService } from './user.service';
     getExisteDeudasVencidas(): boolean{
 
         let res: boolean = false;
-        let fec: Date = new Date();
         let cont: number = 0;
 
         for(let serv of this.listServicio){
             for(let form of serv.listFormulario){
                 for(let det of form.listDetalle){
-                    if(det.vencimiento.getTime() < fec.getTime()){
+                    if(det.expired){
                         cont = cont + 1;        
                     }                    
                 }        
@@ -628,6 +543,5 @@ import { UserService } from './user.service';
         return res;
 
     }
-
 
   }

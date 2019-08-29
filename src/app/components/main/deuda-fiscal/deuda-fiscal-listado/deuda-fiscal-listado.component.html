@@ -66,17 +66,35 @@
 
 </ng-template> -->
 
-
-
-<app-botonera [deudasVigentes]="deudasVigentes" [deudasVencidas]="deudasVencidas" [listado]="listServicio" [tipoDeuda]="tipoDeuda"></app-botonera>
-
-<div class="mdl-grid" *ngFor="let servicio of listServicio">
-    <div class="mdl-cell mdl-cell--12-col m-lr-auto rol-card" *ngIf="servicio.listFormulario.length > 0">
-        <app-deuda-fiscal-servicio [servicio]="servicio" (actualizarResumen)="actualizarResumen($event)"></app-deuda-fiscal-servicio>
-    </div>
+<div class="text-center m-lr-auto">
+    <h2 class="tgr-page_title inside-card text-center text-mont">Seleccionar <strong>Mis Deudas</strong></h2>
 </div>
 
-<app-resumen-pago [resumen]="resumen" [total]="resumen.total" [condonacion]="15000"  [existeVencidas]="deudasVencidas" [complete]="true"></app-resumen-pago>
+<div *ngIf="listServicio.length > 0; else bodySinDeuda">
+
+    <app-botonera [deudasVigentes]="deudasVigentes" [deudasVencidas]="deudasVencidas" [listado]="listServicio" [tipoDeuda]="tipoDeuda" (calcularMonto)="calcularMonto($event)"></app-botonera>
+    <div class="mdl-grid" *ngFor="let servicio of listServicio">        
+        <div class="mdl-cell mdl-cell--12-col m-lr-auto rol-card">
+            <app-deuda-fiscal-servicio [servicio]="servicio" (actualizarResumen)="actualizarResumen($event)"></app-deuda-fiscal-servicio>
+        </div>
+    
+    </div>
+    <app-resumen-pago [resumen]="resumen" [total]="montoTotal" [condonacion]="montoCondonacion"  [existeVencidas]="deudasVencidas" [complete]="true"></app-resumen-pago>
+</div>
+
+<ng-template #bodySinDeuda>
+
+    <div class="pb-25" >
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col text-center mt-0 m-lr-auto" [class.padding-top]="logged">
+                <p class="tgr-page_subtitle inside-card">Actualmente no tienes deudas fiscales para pagar.</p>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>
+
+
 
 
 

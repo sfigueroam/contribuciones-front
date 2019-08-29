@@ -11,12 +11,13 @@ export class DeudaFiscalServicioComponent implements OnInit {
   
   mtoServ: number;  // Monto total a pagar por servicio
   mostrar: boolean; // Indicador que muestra/oculta el listado de formularios por servicio
+  indPagoTotal: boolean;
 
   @Input() servicio: DFServicio;  // Detalle de servicio
 
   @Output() actualizarResumen: EventEmitter<any>; // Indicador de actualización de resumen
 
-
+  
   constructor ( ) {
     this.mostrar = true;        
     this.actualizarResumen = new EventEmitter();
@@ -32,16 +33,23 @@ export class DeudaFiscalServicioComponent implements OnInit {
    *                - true: Pago total del formulario.
    *                - false: Pago parcial del formulario.
    ************************************************************/
-  actualizarMonto( indMontoTotal: boolean ) {
+  actualizarMonto( indPagoTotal: boolean ) {
 
-    let monto: number = 0;
+    let mtoTot: number = 0;
+    let mtoPar: number = 0;
+    let mtoCnd: number = 0;
 
     for (let form of this.servicio.listFormulario) {      
-      monto = monto + form.total;      
+      mtoTot += form.total;
+      mtoPar += form.parcial;
+      mtoCnd += form.condonacion;
     }
 
-    this.mtoServ = monto;
-    this.servicio.total = monto;
+    this.servicio.total = mtoTot;
+    this.servicio.parcial = mtoPar;
+    this.servicio.condonacion = mtoCnd;
+
+    this.indPagoTotal = indPagoTotal;
 
     this.actualizarResumen.emit(true);
 
