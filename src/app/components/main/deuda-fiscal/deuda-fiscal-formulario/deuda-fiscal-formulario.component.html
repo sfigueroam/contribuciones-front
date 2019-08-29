@@ -53,7 +53,7 @@
                         </td>
                         <td [class.tgr-tr--late]="detalle.expired"> {{ detalle.folio }} </td>
                         <td [class.tgr-tr--late]="detalle.expired"> {{ detalle.vencimiento | date:'dd/MM/yyyy'}}</td>
-                        <td [class.tgr-tr--late]="detalle.expired"> {{ ( formulario.pagoTotal ? detalle.montoTotal : detalle.montoParcial ) | currency:'CLP':'symbol':'4.0-0' }}</td>
+                        <td [class.tgr-tr--late]="detalle.expired"> {{ detalle.montoTotal | currency:'CLP':'symbol':'4.0-0' }}</td>
                         
                         <!-- <th> {{ detalle.reajuste | currency:'CLP':'symbol':'4.0-0' }} </th>
                         <th> {{ detalle.interes | currency:'CLP':'symbol':'4.0-0' }} </th>

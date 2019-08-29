@@ -172,21 +172,21 @@ export class BotoneraComponent implements OnInit {
               break; 
             } 
             case "todas": { 
-              form.intencionPago = true;
+              form.pagoTotal = true;
               det.intencionPago = true;
               break; 
             } 
             case "ninguna": { 
-              form.intencionPago = false;
+              form.pagoTotal = false;
               det.intencionPago = false;
               break; 
             } 
             case "seleccionar": {               
               if(this.seleccionInd){
-                form.intencionPago = true;
+                form.pagoTotal = true;
                 det.intencionPago = true;
               }else{
-                form.intencionPago = false;
+                form.pagoTotal = false;
                 det.intencionPago = false;
               }
               break; 
