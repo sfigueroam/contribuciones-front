@@ -100,7 +100,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.cookieService.deleteAll();
+    //this.cookieService.deleteAll();
     console.log('ngOnInit', this.complete);
 
     this.complete = false;
