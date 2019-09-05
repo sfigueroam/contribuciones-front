@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   identity: any;
   name: any;
   exp: Date;
+  provider: any;
   
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.name = value.name;
+        this.provider = value.providerName;
         if(this.name == undefined || this.name == null){
           this.name = value.username;
         }
@@ -43,6 +45,8 @@ export class LoginComponent implements OnInit {
     this.exp = this.cognito.getExpirationDate();
     this.userdataservice.nombre_usuario = this.name;
     console.log(this.identity);
+    console.log(this.provider);
+    
     
   }
 }
