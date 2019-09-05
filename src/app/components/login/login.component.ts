@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   identity: any;
   name: any;
   exp: Date;
+  provider_array: any;
   provider: any;
   
   constructor(private cognito: CognitoService, 
@@ -25,7 +26,9 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.name = value.name;
-        this.provider = value.identities[0];
+        this.provider_array = value.identities[0];
+        this.provider = this.provider_array.providerName;
+        
         if(this.name == undefined || this.name == null){
           this.name = value.username;
         }
