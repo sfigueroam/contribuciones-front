@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.name = value.name;
-        this.provider = value[0].providerName;
+        this.provider = value.identities[0];
         if(this.name == undefined || this.name == null){
           this.name = value.username;
         }
