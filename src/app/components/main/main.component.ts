@@ -6,6 +6,7 @@ import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
 import {UserDataService} from '../../user-data.service';
+import {CookieService} from 'ngx-cookie-service';
 
 
 
@@ -32,6 +33,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               private vcRef: ViewContainerRef,
               private mdlDialogService: MdlDialogOutletService,
               private userdataservice: UserDataService,
+              private cookieService: CookieService,
               private zone: NgZone) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
@@ -80,7 +82,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.cognito.redirectLogin();
   }
 
-  logout() {    
+  logout() {   
+    this.cookieService.delete("providerCookie");
     this.cognito.logout();
   }
 
