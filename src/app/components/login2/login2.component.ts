@@ -43,7 +43,7 @@ export class Login2Component implements OnInit {
       window.location.href = this.loginUrl();
     } else {
       console.log("provider con data");
-      //window.location.href = '/main/contribuciones/agregar/nueva';
+      window.location.href = '/main/contribuciones/agregar/nueva';
     }
     
   }
