@@ -3,6 +3,7 @@ import {CognitoService} from '../../services/cognito.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {UserDataService} from '../../user-data.service';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute, 
               private router: Router, 
               private user: UserService,
+              private cookieService: CookieService,
               private userdataservice: UserDataService) {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
@@ -47,6 +49,8 @@ export class LoginComponent implements OnInit {
 
     this.exp = this.cognito.getExpirationDate();
     this.userdataservice.nombre_usuario = this.name;
+    //crea cookie con el valor del provider:
+    this.cookieService.set("providerCookie", this.provider);
     console.log(this.identity);
     console.log(this.provider);
     

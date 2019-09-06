@@ -17,6 +17,8 @@ const routes: Routes = [
     redirectTo: '/main/contribuciones/agregar/nueva',
     pathMatch: 'full'
   }, {
+    path: 'main/contribuciones/login2'
+  }, {
     path: 'login',
     component: LoginComponent
   }, {
