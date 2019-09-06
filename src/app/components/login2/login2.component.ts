@@ -36,10 +36,13 @@ export class Login2Component implements OnInit {
   ngOnInit() {
     //rescata la cookie y valida que no venga vacia:
     this.provider = this.cookieService.get("providerCookie");
-    
+    console.log("provider en login2: ");
+    console.log(this.provider);
     if (this.provider == "") {
+      console.log("provider vacio");
       window.location.href = this.loginUrl();
     } else {
+      console.log("provider con data");
       window.location.href = '/main/contribuciones/agregar/nueva';
     }
     
