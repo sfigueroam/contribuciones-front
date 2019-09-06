@@ -40,7 +40,7 @@ export class Login2Component implements OnInit {
     console.log(this.provider);
     if (this.provider == "") {
       console.log("provider vacio");
-      //window.location.href = this.loginUrl();
+      window.location.href = this.loginUrl();
     } else {
       console.log("provider con data");
       //window.location.href = '/main/contribuciones/agregar/nueva';
