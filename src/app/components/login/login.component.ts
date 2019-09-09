@@ -51,10 +51,7 @@ export class LoginComponent implements OnInit {
     this.userdataservice.nombre_usuario = this.name;
     
     //crea cookie con el valor del provider:
-    this.cookieService.set("providerCookie", this.provider, 3600000);
-    var cuki = this.cookieService.get("providerCookie");
-    console.log("cookie");
-    console.log(cuki);
+    this.cookieService.set("providerCookie", this.provider);
     console.log(this.identity);
     console.log(this.provider);
     

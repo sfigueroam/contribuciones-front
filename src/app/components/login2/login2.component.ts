@@ -39,9 +39,10 @@ export class Login2Component implements OnInit {
     console.log("provider en login2: ");
     console.log(this.provider);
     if (this.provider == "") {
-      //window.location.href = this.loginUrl();
+      window.location.href = this.loginUrl();
     } else {
-      //window.location.href = '/main/contribuciones/agregar/nueva';
+      this.cookieService.delete("providerCookie");
+      window.location.href = '/main/contribuciones/agregar/nueva';
     }
     
   }

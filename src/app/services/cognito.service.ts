@@ -75,6 +75,7 @@ export class CognitoService {
     if (environment.cognito.allowCookies) {
       this.cookie.delete(environment.cognito.jwtCookieName);
       this.cookie.delete(environment.cognito.expCookieName);
+      this.cookie.delete("providerCookie");
     }
   }
 
