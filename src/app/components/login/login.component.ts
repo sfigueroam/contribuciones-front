@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
     //crea cookie con el valor del provider:
     this.cookieService.set("providerCookie", this.provider, 3600000);
     var cuki = this.cookieService.get("providerCookie");
+    console.log("cookie");
     console.log(cuki);
     console.log(this.identity);
     console.log(this.provider);
