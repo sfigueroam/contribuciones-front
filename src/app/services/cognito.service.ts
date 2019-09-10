@@ -33,11 +33,12 @@ export class CognitoService {
   }
 
   logoutUrl(): string {
-    return environment.cognito.logoutURL
+    return 'https://tgr.cl'
+  /*  return environment.cognito.logoutURL
       + '?client_id='
       + environment.cognito.clientId
       + '&logout_uri='
-      + environment.cognito.logoutUri;
+      + environment.cognito.logoutUri;*/
   }
 
   private username(): string {
