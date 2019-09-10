@@ -29,7 +29,7 @@ provider: any;
     console.log("provider en login2: ");
     console.log(this.provider);
     if (this.provider == "") {
-      window.location.href = '/main/contribuciones/agregar/nueva';
+      //window.location.href = '/main/contribuciones/agregar/nueva';
     } else {
           this.cognito.removeCookies();
           window.location.href = '/main/contribuciones/agregar/nueva';
