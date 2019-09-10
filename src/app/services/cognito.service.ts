@@ -33,7 +33,6 @@ export class CognitoService {
   }
 
   logoutUrl(): string {
-    //return 'https://www.tgr.cl/'
     return environment.cognito.logoutURL
       + '?client_id='
       + environment.cognito.clientId
@@ -76,7 +75,6 @@ export class CognitoService {
     if (environment.cognito.allowCookies) {
       this.cookie.delete(environment.cognito.jwtCookieName);
       this.cookie.delete(environment.cognito.expCookieName);
-      this.cookie.deleteAll();
       this.cookie.delete("providerCookie");
     }
   }
