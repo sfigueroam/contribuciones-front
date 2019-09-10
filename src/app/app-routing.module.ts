@@ -8,7 +8,8 @@ import {CertificadosComponent} from './components/main/certificados/certificados
 import {AgregarComponent} from './components/main/contribuciones/agregar/agregar.component';
 import {LoginComponent} from './components/login/login.component';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
-import {Login2Component} from './components/login2/login2.component';
+import {ConclaveComponent} from './components/conclave/conclave.component';
+import {SinclaveComponent} from './components/sinclave/sinclave.component';
 
 const routes: Routes = [
   {
@@ -17,9 +18,13 @@ const routes: Routes = [
     redirectTo: '/main/contribuciones/agregar/nueva',
     pathMatch: 'full'
   }, {
-    path: 'main/contribuciones/login2',
-    component: Login2Component 
+    path: 'main/contribuciones/conclave',
+    component: ConclaveComponent 
   }, {
+    path: 'main/contribuciones/sinclave',
+    component: SinclaveComponent 
+  },
+  {
     path: 'login',
     component: LoginComponent
   }, {

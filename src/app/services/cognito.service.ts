@@ -33,7 +33,7 @@ export class CognitoService {
   }
 
   logoutUrl(): string {
-    return 'https://tgr.cl'
+    return 'https://www.tgr.cl/'
   /*  return environment.cognito.logoutURL
       + '?client_id='
       + environment.cognito.clientId

@@ -42,7 +42,8 @@ import {OrderModule} from 'ngx-order-pipe';
 import {RecordarComponent} from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
 import {TooltipModule} from 'ng2-tooltip-directive';
 import {UserDataService} from './user-data.service';
-import { Login2Component } from './components/login2/login2.component';
+import { ConclaveComponent } from './components/conclave/conclave.component';
+import { SinclaveComponent } from './components/sinclave/sinclave.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -74,7 +75,8 @@ registerLocaleData(localeEs, 'es');
     ResumenComponent,
     BotonPagarComponent,
     RecordarComponent,
-    Login2Component,
+    ConclaveComponent,
+    SinclaveComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,17 +7,14 @@ import {UserDataService} from '../../user-data.service';
 import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../../environments/environment';
 
-
 @Component({
-  selector: 'app-login2',
-  templateUrl: './login2.component.html',
-  styleUrls: ['./login2.component.css']
+  selector: 'app-sinclave',
+  templateUrl: './sinclave.component.html',
+  styleUrls: ['./sinclave.component.css']
 })
+export class SinclaveComponent implements OnInit {
 
-export class Login2Component implements OnInit {
-
-  provider: any;
-
+provider: any;
 
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
@@ -25,26 +22,19 @@ export class Login2Component implements OnInit {
               private user: UserService,
               private cookieService: CookieService) { }
 
-  loginUrl(): string {
-    return environment.cognito.authorizeURL
-      + '?response_type=token&client_id='
-      + environment.cognito.clientId
-      + '&redirect_uri='
-      + environment.cognito.redirectUri;
-  }
-
   ngOnInit() {
-    //rescata la cookie y valida que no venga vacia:
+    
+        //rescata la cookie y valida que no venga vacia:
     this.provider = this.cookieService.get("providerCookie");
     console.log("provider en login2: ");
     console.log(this.provider);
     if (this.provider == "") {
-      window.location.href = this.loginUrl();
+      window.location.href = '/main/contribuciones/agregar/nueva';
     } else {
-      //this.cookieService.delete("providerCookie");
-      window.location.href = '/main/contribuciones/seleccionar-cuotas';
+          this.cookieService.delete("providerCookie");
+          this.cookieService.deleteAll();
+          this.cognito.logout();
     }
-    
   }
 
 }
