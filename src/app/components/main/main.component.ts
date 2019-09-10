@@ -85,8 +85,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   logout() {   
     this.cookieService.delete("providerCookie");
     this.cookieService.deleteAll();
-    window.location.href = 'https://www.tgr.cl/';
-    //this.cognito.logout();
+    //window.location.href = 'https://www.tgr.cl/';
+    this.cognito.logout();
   }
 
   dialogCorreo(): void {
