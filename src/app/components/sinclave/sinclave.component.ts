@@ -31,9 +31,7 @@ provider: any;
     if (this.provider == "") {
       window.location.href = '/main/contribuciones/agregar/nueva';
     } else {
-          this.cookieService.delete("providerCookie");
-          this.cookieService.deleteAll();
-          //this.cognito.logout();
+          this.cognito.removeCookies();
           window.location.href = '/main/contribuciones/agregar/nueva';
     }
   }
