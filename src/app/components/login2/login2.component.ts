@@ -41,8 +41,8 @@ export class Login2Component implements OnInit {
     if (this.provider == "") {
       window.location.href = this.loginUrl();
     } else {
-      this.cookieService.delete("providerCookie");
-      window.location.href = '/main/contribuciones/agregar/nueva';
+      //this.cookieService.delete("providerCookie");
+      window.location.href = '/main/contribuciones/seleccionar-cuotas';
     }
     
   }

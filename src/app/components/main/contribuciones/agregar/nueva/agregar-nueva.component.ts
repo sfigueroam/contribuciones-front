@@ -100,6 +100,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   private totalRoles = 0;
   showButtonLimpiarBusquedaRol = false;
   showButtonLimpiarBusquedaDir = false;
+  provider: any;
 
 
   constructor(private contribucionesBuscarRol: ContribucionesBuscarRolService,
@@ -213,9 +214,13 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    //eliminar cookies prueba
-    //this.cookieService.deleteAll();
-    //console.log('borrado de cookie');
+    //valida que no se encuentre logueado
+    this.provider = this.cookieService.get("providerCookie");
+    console.log("provider en login2: ");
+    console.log(this.provider);
+    if (this.provider != "") {
+      this.cookieService.delete("providerCookie");
+    } 
 
     //Probando logeo
     this.logged = this.user.isLogged();
