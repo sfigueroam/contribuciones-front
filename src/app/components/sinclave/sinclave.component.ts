@@ -32,7 +32,7 @@ provider: any;
       //window.location.href = '/main/contribuciones/agregar/nueva';
     } else {
           this.cognito.removeCookies();
-          //this.cookieService.delete("providerCookie");
+          this.cookieService.delete('providerCookie');
           //window.location.href = '/main/contribuciones/agregar/nueva';
           this.provider = this.cookieService.get("providerCookie");
           console.log(this.provider);
