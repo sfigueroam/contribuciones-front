@@ -33,7 +33,8 @@ provider: any;
     } else {
           this.cookieService.delete("providerCookie");
           this.cookieService.deleteAll();
-          this.cognito.logout();
+          //this.cognito.logout();
+          window.location.href = '/main/contribuciones/agregar/nueva';
     }
   }
 
