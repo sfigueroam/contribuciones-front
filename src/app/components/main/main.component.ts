@@ -83,8 +83,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   logout() {   
-    this.cookieService.delete("providerCookie");
-    this.cookieService.deleteAll();
+    this.cookieService.delete('providerCookie','/');
+    this.cookieService.deleteAll('/');
     this.cognito.logout();
   }
 

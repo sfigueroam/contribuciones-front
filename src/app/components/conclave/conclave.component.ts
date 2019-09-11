@@ -41,7 +41,6 @@ export class ConclaveComponent implements OnInit {
     if (this.provider == "") {
       window.location.href = this.loginUrl();
     } else {
-      //this.cookieService.delete("providerCookie");
       window.location.href = '/main/contribuciones/seleccionar-cuotas';
     }
     
