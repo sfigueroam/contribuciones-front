@@ -22,13 +22,6 @@ provider: any;
               private user: UserService,
               private cookieService: CookieService) { }
 
-  logout() {   
-    this.cookieService.delete("providerCookie");
-    this.cookieService.deleteAll();
-    this.cognito.logout();
-  }
-
-
   ngOnInit() {
     
         //rescata la cookie y valida que no venga vacia:
@@ -38,7 +31,9 @@ provider: any;
     if (this.provider == "") {
       window.location.href = '/main/contribuciones/agregar/nueva';
     } else {
-          this.logout();
+          this.cookieService.delete('providerCookie','/');
+          this.cookieService.deleteAll('/');
+          this.cognito.logout();
     }
   }
 
