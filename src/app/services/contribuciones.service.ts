@@ -143,9 +143,12 @@ export class ContribucionesService {
                 }
                 //Javier
                 const liquidable = this.propiedades;
-                console.log('liquidable: ' || liquidable);
-                console.log('data: ' || data);
-                console.log('data2: ' || data2);
+                console.log('liquidable: ');
+                console.log(liquidable);
+                console.log('data: ');
+                console.log(data);
+                console.log('data2: ');
+                console.log(data2);
                 
                 rol.isProcess = true;
                 resolve();
