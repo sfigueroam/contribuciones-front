@@ -130,6 +130,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.propiedades = propiedades;
         this.openHelp();
         this.noLiquidable = this.contribuciones.noLiquidable
+        console.log(this.noLiquidable);
         
         this.contribuciones.cargarRoles().then(
           () => {

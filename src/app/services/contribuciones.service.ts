@@ -14,7 +14,6 @@ import {Direccion} from '../domain/Direccion';
 export class ContribucionesService {
 
   propiedades: Propiedad[];
-  //javier
   noLiquidable: boolean;
 
   constructor(private requestService: RequestService, private util: UtilService) {
@@ -144,12 +143,6 @@ export class ContribucionesService {
                   const cuota = mapCuotas.get(deuda.numeroCuota);
                   cuota.liqParcial = new CuotaDetalle(deuda);
                 }
-                console.log('no liquidable: ');
-                console.log(this.noLiquidable);
-                console.log('data: ');
-                console.log(data);
-                console.log('data no liq: ');
-                console.log(data.noLiq);
                 rol.isProcess = true;
                 resolve();
               },
