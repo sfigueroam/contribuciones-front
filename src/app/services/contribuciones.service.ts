@@ -141,6 +141,9 @@ export class ContribucionesService {
                   const cuota = mapCuotas.get(deuda.numeroCuota);
                   cuota.liqParcial = new CuotaDetalle(deuda);
                 }
+                //Javier
+                const liquidable = this.propiedades;
+                console.log(liquidable);
                 rol.isProcess = true;
                 resolve();
               },
@@ -166,7 +169,7 @@ export class ContribucionesService {
   private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
     const body = {
       'idRol': rol,
-      'listaCuotas': Array.from(cuotas.values())
+      'listaCuotas': Array.from(cuotas.values()),
     };
     return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
   }
