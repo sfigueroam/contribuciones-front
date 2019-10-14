@@ -129,8 +129,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       (propiedades) => {
         this.propiedades = propiedades;
         this.openHelp();
-        this.noLiquidable = this.contribuciones.noLiquidable
-        console.log(this.noLiquidable);
         
         this.contribuciones.cargarRoles().then(
           () => {
@@ -138,6 +136,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.abrirPrimerRol();
             this.calcularTotal();
             this.obteniendoDatos = false;
+            this.noLiquidable = this.contribuciones.noLiquidable
+            console.log(this.noLiquidable);
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
                 () => {
