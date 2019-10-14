@@ -104,7 +104,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     const noLiqArr: Array<{noLiq: boolean}> = [];
-    var i = 0;
+    var i = 1;
     //this.cookieService.deleteAll();
     console.log('ngOnInit', this.complete);
 
