@@ -144,6 +144,10 @@ export class ContribucionesService {
                 }
                 console.log('no liquidable: ');
                 console.log(noLiquidable);
+                console.log('data: ');
+                console.log(data);
+                console.log('data no liq: ');
+                console.log(data.noLiq);
                 rol.isProcess = true;
                 resolve();
               },
