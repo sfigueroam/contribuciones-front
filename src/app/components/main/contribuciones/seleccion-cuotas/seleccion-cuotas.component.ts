@@ -157,7 +157,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     );
     //javier
     console.log(this.propiedades);
-    console.log(Propiedad[]);
+    
 
   }
   
