@@ -155,9 +155,12 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades', environment.snackbarTime);
       }
     );
-
+    //javier
+    console.log(this.propiedades);
+    console.log(Propiedad[]);
 
   }
+  
 
   private calcularTotal() {
     let total = 0;
