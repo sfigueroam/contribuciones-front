@@ -94,7 +94,7 @@
   <div class="mdl-cell mdl-cell--6-col m-0auto rol-card"
        *ngIf="propiedad.roles.length > 0">
     <!-- prueba-->
-  <div  *ngif="noLiquidable = true">mensaje</div>
+  <div  *ngif="noLiquidable">mensaje</div>
     <app-direccion-cuotas (change)="onChange()" [propiedad]="propiedad"></app-direccion-cuotas>
   </div>
 </div>
