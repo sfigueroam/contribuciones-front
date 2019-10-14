@@ -128,7 +128,8 @@ export class ContribucionesService {
     } else {
       return new Promise(
         (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
-          (data: { listaDeudaRol: any[] }) => {
+          (data: { listaDeudaRol: any[], noLiq: any }) => {
+            const noLiquidable = data.noLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudaRol) {
               const cuota = new Cuota(deuda);
@@ -141,7 +142,8 @@ export class ContribucionesService {
                   const cuota = mapCuotas.get(deuda.numeroCuota);
                   cuota.liqParcial = new CuotaDetalle(deuda);
                 }
-                console.log(data.listaDeudaRol[5]);
+                console.log('no liquidable: ');
+                console.log(noLiquidable);
                 rol.isProcess = true;
                 resolve();
               },
