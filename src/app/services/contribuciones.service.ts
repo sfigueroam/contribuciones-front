@@ -14,6 +14,8 @@ import {Direccion} from '../domain/Direccion';
 export class ContribucionesService {
 
   propiedades: Propiedad[];
+  //javier
+  noLiquidable: boolean;
 
   constructor(private requestService: RequestService, private util: UtilService) {
 
@@ -129,7 +131,7 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
           (data: { listaDeudaRol: any[], noLiq: any }) => {
-            const noLiquidable = data.noLiq;
+            this.noLiquidable = data.noLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudaRol) {
               const cuota = new Cuota(deuda);
@@ -143,7 +145,7 @@ export class ContribucionesService {
                   cuota.liqParcial = new CuotaDetalle(deuda);
                 }
                 console.log('no liquidable: ');
-                console.log(noLiquidable);
+                console.log(this.noLiquidable);
                 console.log('data: ');
                 console.log(data);
                 console.log('data no liq: ');

@@ -34,6 +34,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   direccionCuotasComponentList: QueryList<DireccionCuotasComponent>;
 
   propiedades: Propiedad[] = [];
+  //javier
+  noLiquidable: boolean;
 
   tipo = TipoCuota;
   seleccionada: TipoCuota = this.tipo.TODAS;
@@ -127,6 +129,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       (propiedades) => {
         this.propiedades = propiedades;
         this.openHelp();
+        this.noLiquidable = this.contribuciones.noLiquidable
+        
         this.contribuciones.cargarRoles().then(
           () => {
             this.complete = true;
@@ -155,9 +159,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades', environment.snackbarTime);
       }
     );
-    //javier
-    console.log(this.propiedades);
-    
 
   }
   
