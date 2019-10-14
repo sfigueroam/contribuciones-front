@@ -141,15 +141,7 @@ export class ContribucionesService {
                   const cuota = mapCuotas.get(deuda.numeroCuota);
                   cuota.liqParcial = new CuotaDetalle(deuda);
                 }
-                //Javier
-                const liquidable = this.propiedades;
-                console.log('liquidable: ');
-                console.log(liquidable);
-                console.log('data: ');
-                console.log(data);
-                console.log('data2: ');
-                console.log(data2);
-                
+                console.log(data.listaDeudaRol[5]);
                 rol.isProcess = true;
                 resolve();
               },
