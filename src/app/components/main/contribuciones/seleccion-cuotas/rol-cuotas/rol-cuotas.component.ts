@@ -7,6 +7,7 @@ import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
 import {TooltipDirective} from 'ng2-tooltip-directive';
+import {UserDataService} from '../../../../../user-data.service';
 
 @Component({
   selector: 'app-rol-cuotas',
@@ -19,6 +20,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   rol: Rol;
   @Output()
   change: EventEmitter<any> = new EventEmitter();
+  noLiquidable: boolean;
+  
 
   expanded: boolean;
   icon: string;
@@ -26,6 +29,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   // tabla de cuotas
   selectedIcon: CheckboxIcon;
   icons = CheckboxIcon;
+  
 
   someTooltip: any;
   @ViewChildren(TooltipDirective) tooltipDirective;
@@ -33,12 +37,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
-              private mdlSnackbarService: MdlSnackbarService) {
+              private mdlSnackbarService: MdlSnackbarService,
+              private userdataservice: UserDataService) {
 
-
+  
   }
 
   ngOnInit() {
+    this.noLiquidable = this.userdataservice.deudaNoLiquidable;
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
