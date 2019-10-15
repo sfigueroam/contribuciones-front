@@ -150,7 +150,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                   this.calcularTotal();
                 }
               );
-              noLiqVar = this.contribuciones.noLiquidable;
+              this.noLiqVar = this.contribuciones.noLiquidable;
               //i = i+1;
               console.log(this.noLiqVar);
             }
