@@ -65,6 +65,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   showHelp() {
+    this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+    console.log('no liquidable: ');
+    console.log(this.noLiquidable);
     this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip' + this.rol.rol);
     this.someTooltip.show();
     setTimeout(
@@ -80,9 +83,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   toggle() {
     //javier
-    this.noLiquidable = this.userdataservice.deudaNoLiquidable;
-    console.log('no liquidable: ');
-    console.log(this.noLiquidable);
     if (this.someTooltip !== undefined) {
       this.someTooltip.hide();
     }
