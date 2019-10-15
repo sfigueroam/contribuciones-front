@@ -7,6 +7,7 @@ import {RequestService} from './request.service';
 import {CuotaDetalle} from '../domain/CuotaDetalle';
 import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
+import {UserDataService} from '../user-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,9 @@ export class ContribucionesService {
   propiedades: Propiedad[];
   noLiquidable: boolean;
 
-  constructor(private requestService: RequestService, private util: UtilService) {
+  constructor(private requestService: RequestService, 
+              private util: UtilService,
+              private userdataservice: UserDataService,) {
 
   }
 
@@ -130,7 +133,7 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
           (data: { listaDeudaRol: any[], noLiq: any }) => {
-            this.noLiquidable = data.noLiq;
+            this.userdataservice.deudaNoLiquidable = data.noLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudaRol) {
               const cuota = new Cuota(deuda);
