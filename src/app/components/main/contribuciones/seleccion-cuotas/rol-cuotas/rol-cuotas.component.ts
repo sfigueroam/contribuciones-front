@@ -76,10 +76,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-          //javier
-      this.noLiquidable = this.userdataservice.deudaNoLiquidable;
-      console.log('no liquidable: ');
-      console.log(this.noLiquidable);
   }
 
   toggle() {
@@ -115,6 +111,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
+      //javier
+      this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+      console.log('no liquidable: ');
+      console.log(this.noLiquidable);
   }
 
   delete() {
