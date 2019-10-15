@@ -53,9 +53,15 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       () => null,
       (err) => console.log(err),
       () => {
+        this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+        console.log('no liquidable1: ');
+        console.log(this.noLiquidable);
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
+        this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+        console.log('no liquidable2: ');
+        console.log(this.noLiquidable);
       }
     );
 
@@ -65,9 +71,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   showHelp() {
-    this.noLiquidable = this.userdataservice.deudaNoLiquidable;
-    console.log('no liquidable: ');
-    console.log(this.noLiquidable);
     this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip' + this.rol.rol);
     this.someTooltip.show();
     setTimeout(
