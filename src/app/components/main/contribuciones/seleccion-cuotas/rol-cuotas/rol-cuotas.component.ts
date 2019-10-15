@@ -58,9 +58,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         );
       }
     );
-    this.noLiquidable = this.userdataservice.deudaNoLiquidable;
-    console.log('no liquidable: ');
-    console.log(this.noLiquidable);
+
     console.log(this.rol.rol);
 
 
@@ -86,6 +84,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     if (this.rol.isComplete) {
       this.expanded = !this.expanded;
+      //javier
+      this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+      console.log('no liquidable: ');
+      console.log(this.noLiquidable);
     } else {
       this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
     }
