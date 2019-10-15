@@ -35,6 +35,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   propiedades: Propiedad[] = [];
   //javier
+  noLiqVar: boolean;
 
 
   tipo = TipoCuota;
@@ -65,7 +66,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   result: ResumenCuotas;
   someTooltip: any;
   @ViewChildren(TooltipDirective) tooltipDirective;
-    noLiqArr: any;
 
 
   constructor(private router: Router,
@@ -103,8 +103,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    const noLiqArr: Array<{noLiq: boolean}> = [];
-    var i = 1;
+    //const noLiqArr: Array<{noLiq: boolean}> = [];
+    //var i = 1;
     //this.cookieService.deleteAll();
     console.log('ngOnInit', this.complete);
 
@@ -150,9 +150,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                   this.calcularTotal();
                 }
               );
-              this.noLiqArr[i] = this.contribuciones.noLiquidable;
-              i = i+1;
-              console.log(this.noLiqArr[i]);
+              noLiqVar = this.contribuciones.noLiquidable;
+              //i = i+1;
+              console.log(this.noLiqVar);
             }
           },
           err => {

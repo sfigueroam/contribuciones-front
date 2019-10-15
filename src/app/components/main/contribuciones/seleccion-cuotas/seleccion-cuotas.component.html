@@ -106,6 +106,10 @@
     <p *ngIf="existeVencidas" class="monto-total monto">
       <strong>$ {{total + condonacion | number}}</strong>
     </p>
+    <!-- <p> agregado de prueba -->
+    <p *ngIf="noLiqVar" class="monto-total texto">
+      Existen deudas no liquidables
+    </p>
 
     <div *ngIf="condonacion > 0">
       <p class="monto-total texto monto-condonacion">
