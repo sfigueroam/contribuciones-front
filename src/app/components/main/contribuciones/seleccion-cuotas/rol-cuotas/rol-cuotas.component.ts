@@ -44,9 +44,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.noLiquidable = this.userdataservice.deudaNoLiquidable;
-    console.log('no liquidable: ');
-    console.log(this.noLiquidable);
+
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
@@ -60,7 +58,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         );
       }
     );
-
+    this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+    console.log('no liquidable: ');
+    console.log(this.noLiquidable);
     console.log(this.rol.rol);
 
 
