@@ -20,10 +20,6 @@
         leadingZero:3}}
       </p>
     </div>
-    <!-- javier -->
-    <div class="tgr-row">
-      este rol posee deudas no liquidables
-    </div>
     <div class="mdl-layout-spacer"></div>
     <div class="wrapper">
       <span class="rol-total" [class.tgr-tr--late]="rol.expired" *ngIf="rol.total >= 0"
@@ -60,9 +56,17 @@
             cuota.liqParcial.saldoTotal) | number}}
           </td>
         </tr>
+            <!-- javier -->
+      <div class="tgr-row">
+        este rol posee deudas no liquidables1
+      </div>
         </tbody>
       </table>
     </div>
+      <!-- javier -->
+      <div class="tgr-row">
+        este rol posee deudas no liquidables2
+      </div>
     <div class="tgr-row" *ngIf="rol.cuotas.length == 0">
       No registras deudas asociadas a este ROL
     </div>
