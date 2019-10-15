@@ -21,6 +21,10 @@
       </p>
     </div>
     <div class="mdl-layout-spacer"></div>
+      <!-- javier -->
+      <div class="tgr-row" *ngIf="noLiquidable">
+        este rol posee deudas no liquidables
+      </div>
     <div class="wrapper">
       <span class="rol-total" [class.tgr-tr--late]="rol.expired" *ngIf="rol.total >= 0"
             (click)="toggle()">$ {{rol.total | number}}</span>
