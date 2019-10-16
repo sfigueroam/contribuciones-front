@@ -1,4 +1,4 @@
-<mdl-card mdl-shadow="2" class="mdl-cell mdl-cell--4-col mb-10 rol-card">
+<mdl-card class="mdl-cell mdl-cell--4-col mb-10 rol-card mdl-shadow--2dp">
   <mdl-card-title class="bar">
     <button id="helpTooltip{{rol.rol}}" placement="right" trigger="none" [tooltip]="HtmlContent" content-type="template"
             mdl-button class="helpTooltip-rol"
@@ -30,9 +30,18 @@
       </button>
     </div>
   </mdl-card-title>
+  <!-- DEUDA NO LIQUIDABLE - INICIO -->
+  <div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidable">
+    <i class="material-icons">warning</i>
+    <div class="info">
+      <p><strong>Este ROL posee deudas no liquidables.</strong></p>
+      <p>Acércate a la oficina de TGR más cercana para regularizar</p>
+    </div>
+  </div>
+  <!-- DEUDA NO LIQUIDABLE - FIN -->
   <div [class.hidden]="!expanded">
     <div *ngIf="rol.cuotas.length > 0">
-      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <table class="mdl-data-table mdl-js-data-table">
         <thead>
         <tr>
           <th (click)="selectAllNone()">
