@@ -86,6 +86,25 @@ mdl-icon.material-icons {
   }
 }
 
+.deuda-no-liquidable {
+  display: flex;
+  align-items: center;
+  padding: 12px 6px 10px 16px;
+  border-bottom: 1px solid #ddd;
+  .material-icons {
+    color: $color-warning-warmer;
+  }
+  .info {
+    margin-left: 10px;
+    p {
+      margin-bottom: 0;
+      strong {
+        color: $color-warning-warmer;
+      }
+    }
+  }
+}
+
 .tgr-row {
   border-top: 1px solid #dddddd;
   padding: 10px 45px;
