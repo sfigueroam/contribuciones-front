@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../../../services/device-detect.service';
+import {UserDataService} from '../../../../../../user-data.service';
 
 @Component({
   selector: 'app-boton-pagar',
@@ -17,12 +18,29 @@ export class BotonPagarComponent implements OnInit {
   codigos: string;
 
   urlPagoTgr: string;
+  user_conex: string;
+  sinClave: boolean;
+  claveTgr: boolean;
+  claveUnica: boolean;
 
-  constructor(public deviceDetectService: DeviceDetectService) {
+  constructor(public deviceDetectService: DeviceDetectService,
+              private userdataservice: UserDataService) {
   }
 
   ngOnInit() {
+    this.user_conex = this.userdataservice.conex_usuario;
+    console.log(this.user_conex);
+    if (this.user_conex == "") {
+      this.sinClave = true;
+    }
+    if (this.user_conex == "ClaveTesoreria"){
+      this.claveTgr = true;
+    }
+    if (this.user_conex == "ClaveUnica"){
+      this.claveUnica = true;
+    }
     this.urlPagoTgr = environment.pago.url;
+    
   }
 
 }
