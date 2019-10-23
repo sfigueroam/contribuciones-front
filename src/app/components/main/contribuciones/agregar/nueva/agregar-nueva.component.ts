@@ -173,7 +173,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   mostrarFooter(): void {
     this.footerHidden = false;
-    console.log("device " || this.deviceDetectService);
   }
 
   ocultarFooter(): void {
@@ -224,6 +223,8 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
     } */
 
     //Probando logeo
+    console.log("device " || this.deviceDetectService);
+    
     this.logged = this.user.isLogged();
 
     this.dialogoRecuperarPropiedadesEmail = environment.dialogoRecuperarPropiedadesEmail;
@@ -640,6 +641,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   limpiarBusqudaDir() {
     this.showButtonLimpiarBusquedaDir = false;
     this.limpiarFiltroDireccion();
+        console.log("device " || this.deviceDetectService);
   }
  limpiarBusqudaRol() {
     this.showButtonLimpiarBusquedaRol = false;
