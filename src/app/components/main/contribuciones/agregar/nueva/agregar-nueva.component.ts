@@ -173,6 +173,7 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
 
   mostrarFooter(): void {
     this.footerHidden = false;
+    console.log("device " || this.deviceDetectService);
   }
 
   ocultarFooter(): void {
