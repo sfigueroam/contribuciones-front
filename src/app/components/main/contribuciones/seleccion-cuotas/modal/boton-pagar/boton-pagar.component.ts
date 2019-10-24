@@ -28,18 +28,22 @@ export class BotonPagarComponent implements OnInit {
   }
 
   ngOnInit() {
- /*   this.user_conex = this.userdataservice.conex_usuario;
+    this.user_conex = this.userdataservice.conex_usuario;
     console.log(this.user_conex);
     if (this.user_conex == "") {
       this.sinClave = true;
+      console.log("sin clave" || this.sinClave);
     }
     if (this.user_conex == "ClaveTesoreria"){
       this.claveTgr = true;
+      console.log("sin clave" || this.claveTgr);
     }
     if (this.user_conex == "ClaveUnica"){
       this.claveUnica = true;
-    }*/
-    this.urlPagoTgr = environment.pago.url;
+      console.log("sin clave" || this.claveUnica);
+    }
+    
+    //this.urlPagoTgr = environment.pago.url;
     
   }
 
