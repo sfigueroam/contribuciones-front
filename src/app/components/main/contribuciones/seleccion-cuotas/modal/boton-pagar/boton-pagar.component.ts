@@ -28,7 +28,7 @@ export class BotonPagarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user_conex = this.userdataservice.conex_usuario;
+ /*   this.user_conex = this.userdataservice.conex_usuario;
     console.log(this.user_conex);
     if (this.user_conex == "") {
       this.sinClave = true;
@@ -38,7 +38,7 @@ export class BotonPagarComponent implements OnInit {
     }
     if (this.user_conex == "ClaveUnica"){
       this.claveUnica = true;
-    }
+    }*/
     this.urlPagoTgr = environment.pago.url;
     
   }
