@@ -19,9 +19,9 @@ export class BotonPagarComponent implements OnInit {
 
   urlPagoTgr: string;
   user_conex: string;
-  sinClave: boolean;
-  claveTgr: boolean;
-  claveUnica: boolean;
+  sinClave: boolean = false;
+  claveTgr: boolean = false;
+  claveUnica: boolean = false;
 
   constructor(public deviceDetectService: DeviceDetectService,
               private userdataservice: UserDataService) {
