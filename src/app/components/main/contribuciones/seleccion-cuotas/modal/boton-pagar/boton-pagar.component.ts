@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../../../../environments/environment';
-import {DeviceDetectService} from '../../../../../../../../device-detect.service';
-import {UserDataService} from '../../../../../../../user-data.service';
+import {DeviceDetectService} from '../../../../../services/device-detect.service';
+import {UserDataService} from '../../../../user-data.service';
 
 @Component({
   selector: 'app-boton-pagar',
