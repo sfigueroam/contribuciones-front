@@ -10,8 +10,8 @@ export class CanalServiceService{
   conex_usuario : string;
   reg : string;
 
-  constructor(public deviceDetectService: DeviceDetectService,
-              public userdataservice: UserDataService){
+  constructor(private deviceDetectService: DeviceDetectService,
+              private userdataservice: UserDataService){
               }
     
   

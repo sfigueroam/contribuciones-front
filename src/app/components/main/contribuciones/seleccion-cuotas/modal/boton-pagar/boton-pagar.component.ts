@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../../../services/device-detect.service';
 import {UserDataService} from '../../../../../../user-data.service';
-import {CanalServiceService} from '../../../../../../canal.service.service'
+import {CanalServiceService} from 'src/app/services/canal-service.service';
 
 @Component({
   selector: 'app-boton-pagar',
@@ -20,6 +20,8 @@ export class BotonPagarComponent implements OnInit {
 
   urlPagoTgr: string;
   
+  canal: string;
+  
   constructor(public deviceDetectService: DeviceDetectService,
               public userdataservice: UserDataService,
               public canalService: CanalServiceService) {
@@ -29,7 +31,7 @@ export class BotonPagarComponent implements OnInit {
 
   ngOnInit() {
 
-    
+    this.canal = this.canalService.reg;
     //this.urlPagoTgr = environment.pago.url;
     
   }

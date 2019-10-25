@@ -9,28 +9,9 @@ export class UserDataService {
   //javier
   deudaNoLiquidable: boolean;
   conex_usuario: string;
-  sinClave: boolean = false;
-  claveTgr: boolean = false;
-  claveUnica: boolean = false;
   
   constructor() { }
   
-  conexion_Usuario(){
-    
-    if (this.conex_usuario == "") {
-      this.sinClave = true;
-      return this.sinClave;
-    }
-    if (this.conex_usuario == "ClaveTesoreria"){
-      this.claveTgr = true;
-      return this.claveTgr;
-    }
-    if (this.conex_usuario == "ClaveUnica"){
-      this.claveUnica = true;
-      return this.claveUnica;
-    }
-    
-  }
     
 
 }
