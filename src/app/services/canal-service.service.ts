@@ -15,7 +15,7 @@ export class CanalServiceService{
               }
     
   
-    detectaConexion():string{
+    detectaConexion():void{
       this.conex_usuario = this.userdataservice.conex_usuario;
       if (this.conex_usuario == "") {
         this.reg = "SC";
@@ -26,6 +26,6 @@ export class CanalServiceService{
       if (this.conex_usuario == "ClaveUnica"){
         this.reg = "CU";
       }
-      return(this.reg);
-  }
+      
+    }
 }
