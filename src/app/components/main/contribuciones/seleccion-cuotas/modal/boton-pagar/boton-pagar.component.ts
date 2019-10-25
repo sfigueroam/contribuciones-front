@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../../../services/device-detect.service';
 import {UserDataService} from '../../../../../../user-data.service';
-import {CanalServiceService} from 'src/app/services/canal-service.service';
 
 @Component({
   selector: 'app-boton-pagar',

@@ -44,7 +44,6 @@ import {TooltipModule} from 'ng2-tooltip-directive';
 import {UserDataService} from './user-data.service';
 import { ConclaveComponent } from './components/conclave/conclave.component';
 import { SinclaveComponent } from './components/sinclave/sinclave.component';
-import {CanalServiceService} from './services/canal-service.service';
 
 registerLocaleData(localeEs, 'es');
 
@@ -78,7 +77,6 @@ registerLocaleData(localeEs, 'es');
     RecordarComponent,
     ConclaveComponent,
     SinclaveComponent,
-    CanalServiceService,
   ],
   imports: [
     BrowserModule,
