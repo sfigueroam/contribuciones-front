@@ -5,9 +5,7 @@
   <input *ngIf="deviceDetectService.device.tablet" type="hidden" name="CANAL" value="30T"/>
   <input *ngIf="deviceDetectService.device.smartTv" type="hidden" name="CANAL" value="30TV"/>
   <input *ngIf="deviceDetectService.device.desktop" type="hidden" name="CANAL" value="30D"/>-->
-  <input *ngIf="userdataservice.sinClave" name="CANAL" value="30MSC"/>
-  <input *ngIf="userdataservice.claveTgr" name="CANAL" value="30MCT"/>
-  <input *ngIf="userdataservice.claveUnica" name="CANAL" value="30MCU"/>
+  <input type="hidden" name="CANAL" value="{{canalService}}"/>
   <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}
   </button>
 </form>
