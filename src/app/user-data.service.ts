@@ -20,17 +20,14 @@ export class UserDataService {
     if (this.conex_usuario == "") {
       this.sinClave = true;
       return this.sinClave;
-      console.log("sin clave" || this.sinClave);
     }
     if (this.conex_usuario == "ClaveTesoreria"){
       this.claveTgr = true;
       return this.claveTgr;
-      console.log("sin clave" || this.claveTgr);
     }
     if (this.conex_usuario == "ClaveUnica"){
       this.claveUnica = true;
       return this.claveUnica;
-      console.log("sin clave" || this.claveUnica);
     }
     
   }
