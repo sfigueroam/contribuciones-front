@@ -30,7 +30,7 @@ export class BotonPagarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.canal = this.userdataservice.reg;
+    // this.canal = this.userdataservice.reg;
     this.urlPagoTgr = environment.pago.url;
     
   }
