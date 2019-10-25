@@ -20,7 +20,7 @@ export class BotonPagarComponent implements OnInit {
   urlPagoTgr: string;
   
   constructor(public deviceDetectService: DeviceDetectService,
-              private userdataservice: UserDataService) {
+              public userdataservice: UserDataService) {
   }
 
 
