@@ -23,15 +23,14 @@ export class BotonPagarComponent implements OnInit {
   canal: string;
   
   constructor(public deviceDetectService: DeviceDetectService,
-              public userdataservice: UserDataService,
-              public canalserviceservice: CanalServiceService) {
+              public userdataservice: UserDataService) {
   }
 
 
 
   ngOnInit() {
 
-    this.canal = this.canalserviceservice.reg.toString();
+    this.canal = this.userdataservice.reg;
     //this.urlPagoTgr = environment.pago.url;
     
   }
