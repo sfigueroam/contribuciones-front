@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../../../services/device-detect.service';
+import {UserDataService} from '../../../../../../user-data.service';
 
 @Component({
   selector: 'app-boton-pagar',
@@ -17,12 +18,21 @@ export class BotonPagarComponent implements OnInit {
   codigos: string;
 
   urlPagoTgr: string;
-
-  constructor(public deviceDetectService: DeviceDetectService) {
+  
+  canal: string;
+  
+  
+  constructor(public deviceDetectService: DeviceDetectService,
+              public userdataservice: UserDataService) {
   }
 
+
+
   ngOnInit() {
+
+    // this.canal = this.userdataservice.reg;
     this.urlPagoTgr = environment.pago.url;
+    
   }
 
 }
