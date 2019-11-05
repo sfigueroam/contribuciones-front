@@ -1026,12 +1026,13 @@ html, body {
     background-color: $color-success;
     color: #fff;
     font-size: 14px;
-    @media (max-width: 479px) {
-      width: 60%;
-    }
-    @media (min-width: 480px) {
-      width: 45%;
-    }
+    width: auto;
+    // @media (max-width: 479px) {
+    //   width: 60%;
+    // }
+    // @media (min-width: 480px) {
+    //   width: 45%;
+    // }
     @media (max-width: 839px) {
       font-size: 13px;
     }
