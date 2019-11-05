@@ -943,7 +943,7 @@ html, body {
   }
 }
 .tgr-actions.tgr-mini-footer {
-  min-height: 40px;
+  min-height: 58px;
   text-align: center;
   overflow: hidden;
   background-color: #ffffff;
@@ -1018,7 +1018,7 @@ html, body {
       &:hover,
       &:active,
       &:focus {
-        color: #000000;
+        color: #000000 !important;
       }
     }
   }
