@@ -3,8 +3,14 @@
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  margin-bottom: 1px;
-  margin-top: 24px;
+  margin-bottom: 0;
+  margin-top: 15px;
+  @media (max-width: 479px) {
+    margin-top: 8px;
+  }
+  @media (min-width: 1025px) {
+    margin-bottom: 6px;
+  }
   .pasos {
     text-align: center;
     .bullet {
@@ -23,13 +29,16 @@
     }
     p {
       text-align: center;
-      margin-top: 6px;
+      margin-top: 4px;
       color: rgba(0, 0, 0, .4);
       font-size: 16px;
       line-height: 18px;
+      @media (min-width: 1025px) {
+        line-height: 22px;
+      }
       &.active {
         color: $link-color;
-        font-weight: 500;
+        font-weight: 600;
       }
       &.done {
         color: $color-dark-blue-text;

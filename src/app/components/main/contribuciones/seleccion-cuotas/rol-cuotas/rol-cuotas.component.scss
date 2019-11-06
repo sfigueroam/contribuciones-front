@@ -32,11 +32,17 @@ mdl-icon.material-icons {
       font-size: 16px;
       color: $color-dark-blue-text;
       font-weight: 500;
+      @media (max-width: 479px) {
+        font-size: 14px;
+      }
     }
     .el-rol {
       font-size: 16px;
       color: $color-contribuciones;
       font-weight: 400;
+      @media (max-width: 479px) {
+        font-size: 14px;
+      }
     }
   }
   .wrapper {
@@ -48,6 +54,9 @@ mdl-icon.material-icons {
     span {
       font-size: 16px;
       cursor: pointer;
+      @media (max-width: 479px) {
+        font-size: 14px;
+      }
     }
   }
 }

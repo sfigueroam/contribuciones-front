@@ -9,6 +9,10 @@
   }
 }
 
+body {
+    background-color: $gray-lightblue-background;
+}
+
 html, body, h1, h2, h3, h4, h5 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
@@ -117,6 +121,7 @@ html, body, h1, h2, h3, h4, h5 {
 .py-15 {
   padding: 15px 0;
 }
+
 
 .pl-10 {
   padding-left: 10px;
@@ -237,21 +242,27 @@ html, body, h1, h2, h3, h4, h5 {
 
 //
 .title {
-  margin: 0 auto 5px auto;
+  margin: 0 auto 6px auto;
   line-height: 24px;
 }
 
 .pay-title {
   color: $color-dark-blue-text;
-  margin-top: 16px;
-  @media (max-width: 480px) {
-    margin-top: 10px;
-  }
+  // margin-top: 16px;
+  // @media (max-width: 480px) {
+    // margin-top: 10px;
+  // }
+  // MEJORA ESPACIADO TÍTULOS
+  margin-top: 4px;
+  margin-bottom: 16px;
   p {
     font-size: 16px;
     color: $color-dark-gray;
-    margin-top: 12px;
+    // margin-top: 12px;
     text-align: center;
+    // MEJORA ESPACIADO TÍTULOS
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -339,6 +350,45 @@ html, body, h1, h2, h3, h4, h5 {
   }
 }
 
+.mdl-button.mdl-button--return {
+  background: gray;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #448aff;
+  box-shadow: none;
+  font-size: 14px;
+  @media (max-width: 480px){
+    // padding-right: 0;
+    font-size: 13px;
+  }
+  i.material-icons {
+    margin-left: -2px;
+    margin-bottom: 2px;
+    &:focus,
+    &:active,
+    &:hover {
+      color: $link-color;
+    }
+  }
+  &:focus,
+  &:active,
+  &:hover {
+    box-shadow: none;
+    background-color: #ffffff;
+    color: $link-color;
+    text-decoration: underline;
+  }
+  &.border-button {
+    border: 1px solid $link-color;
+    border-radius: 2px;
+    // &:focus,
+    // &:active,
+    // &:hover {
+    //   text-decoration: none;
+    // }
+  }
+}
+
 .mdl-button.button-basic-white:hover .material-icons{
   color: $color-dark-gray;
 }
@@ -352,7 +402,8 @@ html, body {
 .mdl-layout {
     min-height: 100%;
     height: auto;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .mdl-layout__drawer {
     position: fixed;
@@ -361,16 +412,16 @@ html, body {
     display: block;
     overflow: visible;
     margin-top: 64px;
-    @media (min-width: 480px) {
+    @media (min-width: 481px) {
       margin-top: 0;
     }
 }
-.is-small-screen .mdl-layout__content {
+// .is-small-screen .mdl-layout__content {
     //margin-top: 56px;
-    @media (min-width: 480px) {
-      margin-top: 0;
-    }
-}
+    // @media (min-width: 480px) {
+      // margin-top: 0;
+    // }
+// }
 .mdl-layout__header {
     @media (max-width: 480px) {
       position: fixed;
@@ -486,6 +537,7 @@ html, body {
       }
   }
   span.account-user-text {
+      min-width: 18px;
       display: block;
       margin-top: 26px;
       color: $color-dark-blue-text;
@@ -778,7 +830,7 @@ html, body {
 .tgr-actions {
   background: #fff;
   bottom: 0;
-  box-shadow: 0px 3px 26px 0px rgba(168, 168, 168, 1);
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, .4);
   display: block;
   left: 0;
   min-height: 90px;
@@ -809,10 +861,20 @@ html, body {
     //padding-left: 16px;
     //padding-right: 16px;
   }
+  .tgr-footer_total {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    p {
+      margin-bottom: 0;
+      color: #2f3c89;
+    }
+  }
 }
 
 .tgr-mini-footer .tgr-actions__content {
   display: flex;
+  align-items: center;
   flex-flow: row wrap;
   justify-content: space-between;
 }
@@ -881,12 +943,60 @@ html, body {
   }
 }
 .tgr-actions.tgr-mini-footer {
-  min-height: 40px;
+  min-height: 58px;
   text-align: center;
   overflow: hidden;
-  background-color: $color-white;
+  background-color: #ffffff;
   color: $color-default-dark;
-  padding: 14px 12px 20px 12px;
+  // padding: 14px 12px 20px 12px; OLD
+  @media (max-width: 340px) {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  padding: 8px 12px 4px 12px;
+  &.obt-data {
+    padding: 16px;
+  }
+  &.no-data {
+    padding-bottom: 0;
+    padding-top: 15px;
+  }
+  &.footer_not_logged {
+    padding-top: 16px;
+    padding-bottom: 16px;
+      @media (max-width: 480) {
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+      p.sin-deudas {
+        font-size: 16px;
+        @media (max-width: 480px) {
+          font-size: 14px;
+        }
+      }
+      .cantidad-deudas-seleccionadas {
+        width: 100%;
+        height: 8px;
+        padding-left: 16px;
+        margin-top: 0;
+        margin-bottom: 0px;
+        text-align: left;
+        font-size: 16px;
+        color: $color-dark-gray;
+        @media (max-width: 480px) {
+          font-size: 15px;
+        }
+        span {
+          color: $color-dark-blue-text;
+        }
+      }
+      .mdl-button {
+        overflow: visible;
+      }
+      .button-pay {
+        width: 100%;
+      }
+  }
   .mdl-badge[data-badge]:after {
     background-color: $color-warning;
   }
@@ -908,13 +1018,24 @@ html, body {
       &:hover,
       &:active,
       &:focus {
-        color: #000000;
+        color: #000000 !important;
       }
     }
   }
   button.button-pay {
     background-color: $color-success;
     color: #fff;
+    font-size: 14px;
+    width: auto;
+    // @media (max-width: 479px) {
+    //   width: 60%;
+    // }
+    // @media (min-width: 480px) {
+    //   width: 45%;
+    // }
+    @media (max-width: 839px) {
+      font-size: 13px;
+    }
     a {
       text-decoration: none;
       color: #ffffff;
@@ -929,13 +1050,14 @@ html, body {
     }
   }
   @media (min-width: 481px) and (max-width: 839px) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 40px;
+    padding-right: 40px;
+    
   }
 
   @media (min-width: 840px) and (max-width: 1279px) {
-    padding-left: 250px;
-    padding-right: 250px;
+    padding-left: 200px;
+    padding-right: 200px;
   }
 
   @media (min-width: 1280px) {
@@ -1075,6 +1197,22 @@ html, body {
   left: 4px;
 }
 
+.tgr-loading2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  padding-top: 10px;
+  p {
+    margin-bottom: 0;
+    font-size: 16px;
+    @media (max-width: 839px) {
+      font-size: 14px;
+    }
+  }
+}
 
 .mdl-data-table td, .mdl-data-table th {
   @media (max-width: 360px) {
@@ -1323,7 +1461,7 @@ padding: 0;
 margin: 1px;
 }
 .tgr-actions.tgr-mini-footer .mdl-button:hover .material-icons{
-  color: #000;
+  color: inherit;
 }
 .tgr-payment-detail{
   max-height: 80vh;

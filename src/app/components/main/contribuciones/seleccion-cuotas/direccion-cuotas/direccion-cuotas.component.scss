@@ -20,6 +20,9 @@
         font-size: 16px;
         font-weight: 700;
         line-height: 21px;
+        @media (max-width: 479px) {
+          font-size: 14px;
+        }
       }
       .comuna {
         //margin-top: 5px;
@@ -28,6 +31,9 @@
         font-size: 16px;
         font-weight: 400;
         line-height: 21px;
+        @media (max-width: 479px) {
+          font-size: 14px;
+        }
       }
     }
   }
@@ -35,6 +41,9 @@
     span {
       font-size: 16px;
       cursor: pointer;
+      @media (max-width: 479px) {
+        font-size: 14px;
+      }
     }
   }
 }
