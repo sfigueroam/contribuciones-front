@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     
     //crea cookie con el valor del provider:
     this.cookieService.set("providerCookie", this.provider);
-    this.userdataservice.conex_usuario = this.provider;
+    //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
     console.log('provider : ' || this.provider);
     
