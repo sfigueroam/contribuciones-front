@@ -41,18 +41,18 @@ export class BotonPagarComponent implements OnInit {
     this.tablet = this.deviceDetectService.device.tablet;
     this.smartTv = this.deviceDetectService.device.smartTv;
     this.mobile = this.deviceDetectService.device.mobile;
-    // if (this.desktop) {
-    //   this.canal = this.form + "30D" + this.conex;
-    // }
-    // if (this.tablet) {
-    //   this.canal = this.form + "30T" + this.conex;
-    // }
-    // if (this.smartTv) {
-    //   this.canal = this.form + "30S" + this.conex;
-    // }
-    // if (this.mobile) {
-    //   this.canal = this.form + "30M" + this.conex;
-    // }
+    if (this.desktop) {
+      this.canal = this.form + "30D" + this.conex;
+    }
+    if (this.tablet) {
+      this.canal = this.form + "30T" + this.conex;
+    }
+    if (this.smartTv) {
+      this.canal = this.form + "30S" + this.conex;
+    }
+    if (this.mobile) {
+      this.canal = this.form + "30M" + this.conex;
+    }
     
     this.urlPagoTgr = environment.pago.url;
     
