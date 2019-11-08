@@ -16,4 +16,13 @@ export class DeviceDetectService {
   isDeviceDesktop(): boolean{
     return this.device.desktop;
   }
+  isDeviceMobile(): boolean{
+    return this.device.mobile;
+  }
+  isDeviceSmartTv(): boolean{
+    return this.device.smartTv;
+  }
+  isDeviceTablet(): boolean{
+    return this.device.tablet;
+  }
 }
