@@ -28,6 +28,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   usuario2min: string;
   canal: string;
   reg: string;
+  providerConex: string;
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
@@ -69,13 +70,14 @@ export class MainComponent implements OnInit, AfterViewInit {
     //   }
     this.canal = '';
     this.reg = '';
-      if (this.userdataservice.conex_usuario == "") {
+    this.providerConex = this.cookieService.get("providerCookie")
+      if (this.providerConex == "") {
         this.reg = 'SC';
       }
-      if (this.userdataservice.conex_usuario == "ClaveTesoreria"){
+      if (this.providerConex == "ClaveTesoreria"){
         this.reg = 'CT';
       }
-      if (this.userdataservice.conex_usuario == "ClaveUnica"){
+      if (this.providerConex == "ClaveUnica"){
         this.reg = 'CU';
       }
       if (this.devicedetectservice.isDeviceDesktop){
@@ -91,6 +93,7 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.canal = '30T' + this.reg;
       }
       console.log(this.canal);
+      console.log(this.providerConex);
       this.userdataservice.canal = this.canal;
     
   }
