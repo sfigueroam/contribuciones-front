@@ -80,18 +80,18 @@ export class MainComponent implements OnInit, AfterViewInit {
       if (this.providerConex == "ClaveUnica"){
         this.reg = 'CU';
       }
-      if (this.devicedetectservice.isDeviceDesktop){
-        this.canal = '30D' + this.reg; 
-      }
-      if (this.devicedetectservice.isDeviceMobile){
+      if (this.devicedetectservice.device.mobile){
         this.canal = '30M' + this.reg; 
       }
-      if (this.devicedetectservice.isDeviceSmartTv){
+      if (this.devicedetectservice.device.tablet){
+        this.canal = '30T' + this.reg; 
+      }
+      if (this.devicedetectservice.device.smartTv){
         this.canal = '30S' + this.reg;
       }
-      // if (this.devicedetectservice.isDeviceTablet){
-      //   this.canal = '30T' + this.reg;
-      // }
+      if (this.devicedetectservice.device.desktop){
+        this.canal = '30D' + this.reg;
+      }
       console.log(this.canal);
       console.log(this.providerConex);
       this.userdataservice.canal = this.canal;
