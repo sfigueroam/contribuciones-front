@@ -33,6 +33,7 @@ export class BotonPagarComponent implements OnInit {
 
   ngOnInit() {
     this.canal = '';
+    this.reg = '';
       if (this.userdataservice.conex_usuario == "") {
         this.reg = 'SC';
       }

@@ -22,19 +22,19 @@ export class UserDataService {
       //   this.reg = 'CT';
       // }
       // if (this.conex_usuario == "ClaveUnica"){
-      //   this.reg = "CU";
+      //   this.reg = 'CU';
       // }
       // if (this.deviceDetectService.isDeviceDesktop){
-      //   this.canal = "30D" + this.reg; 
+      //   this.canal = '30D' + this.reg; 
       // }
       // if (this.deviceDetectService.isDeviceMobile){
-      //   this.canal = "30M" + this.reg; 
+      //   this.canal = '30M' + this.reg; 
       // }
       // if (this.deviceDetectService.isDeviceSmartTv){
-      //   this.canal = "30S" + this.reg;
+      //   this.canal = '30S' + this.reg;
       // }
       // if (this.deviceDetectService.isDeviceTablet){
-      //   this.canal = "30T" + this.reg;
+      //   this.canal = '30T' + this.reg;
       // }
       // return this.canal;
     // }
