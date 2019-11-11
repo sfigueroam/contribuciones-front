@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
       }
       if (this.provider == "ClaveTesoreria"){
         console.log("clavetesoreria");
-        this.canalRecibido = "CT";
+        this.canalRecibido = 'CT';
       }
       if (this.provider == "ClaveUnica"){
         console.log("claveunica");
