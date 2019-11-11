@@ -4,7 +4,7 @@
   <!--<input *ngIf="deviceDetectService.device.tablet" type="hidden" name="CANAL" value="30T"/>-->
   <!--<input *ngIf="deviceDetectService.device.smartTv" type="hidden" name="CANAL" value="30TV"/>-->
   <!--<input *ngIf="deviceDetectService.device.desktop" type="hidden" name="CANAL" value="30D"/>-->
-  <input type="hidden" name="CANAL" value="{{canalRecibido}}"/>
+  <input type="hidden" name="CANAL" value="userdataservice.detectaConexion()"/>
   <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}
   </button>
 </form>
