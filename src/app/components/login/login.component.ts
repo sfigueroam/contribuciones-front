@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
     console.log(this.provider);
-    
+    this.canal = '';
     //prueba de componente para canal
     if (this.provider == "") {
         this.reg = 'SC';
@@ -76,7 +76,16 @@ export class LoginComponent implements OnInit {
         this.reg = 'CU';
       }
       if (this.devicedetectservice.isDeviceDesktop){
-        this.canal = "30D" + this.reg; 
+        this.canal = '30D' + this.reg; 
+      }
+      if (this.devicedetectservice.isDeviceMobile){
+        this.canal = '30M' + this.reg; 
+      }
+      if (this.devicedetectservice.isDeviceSmartTv){
+        this.canal = '30S' + this.reg;
+      }
+      if (this.devicedetectservice.isDeviceTablet){
+        this.canal = '30T' + this.reg;
       }
     
     console.log(this.reg);
