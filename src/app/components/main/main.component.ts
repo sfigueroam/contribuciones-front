@@ -6,6 +6,7 @@ import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
 import {UserDataService} from '../../user-data.service';
+import {DeviceDetectService} from '../../services/device-detect.service'
 import {CookieService} from 'ngx-cookie-service';
 
 
@@ -25,6 +26,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   usuario1: string;
   usuario2: string;
   usuario2min: string;
+  canal: string;
+  reg: string;
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
@@ -34,6 +37,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               private mdlDialogService: MdlDialogOutletService,
               private userdataservice: UserDataService,
               private cookieService: CookieService,
+              private devicedetectservice: DeviceDetectService,
               private zone: NgZone) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
@@ -53,17 +57,42 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   
    this.logged = this.user.isLogged();
-    if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null || this.userdataservice.nombre_usuario === undefined){
-      this.usuariologin = '';
-    }   else{
-        this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
-        this.usuario1 = this.usuariologinmay.substring(0,1);
-        this.usuario2 = this.usuariologinmay.substring(1,100);
-        this.usuario2min = this.usuario2.toLowerCase();
-        this.usuariologin = this.usuario1.concat(this.usuario2min);
+    // if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null || this.userdataservice.nombre_usuario === undefined){
+    //   this.usuariologin = '';
+    // }   else{
+    //     this.usuariologinmay = this.userdataservice.nombre_usuario.split(' ')[0];
+    //     this.usuario1 = this.usuariologinmay.substring(0,1);
+    //     this.usuario2 = this.usuariologinmay.substring(1,100);
+    //     this.usuario2min = this.usuario2.toLowerCase();
+    //     this.usuariologin = this.usuario1.concat(this.usuario2min);
 
+    //   }
+    this.canal = '';
+    this.reg = '';
+      if (this.userdataservice.conex_usuario == "") {
+        this.reg = 'SC';
       }
-    }
+      if (this.userdataservice.conex_usuario == "ClaveTesoreria"){
+        this.reg = 'CT';
+      }
+      if (this.userdataservice.conex_usuario == "ClaveUnica"){
+        this.reg = 'CU';
+      }
+      if (this.devicedetectservice.isDeviceDesktop){
+        this.canal = '30D' + this.reg; 
+      }
+      if (this.devicedetectservice.isDeviceMobile){
+        this.canal = '30M' + this.reg; 
+      }
+      if (this.devicedetectservice.isDeviceSmartTv){
+        this.canal = '30S' + this.reg;
+      }
+      if (this.devicedetectservice.isDeviceTablet){
+        this.canal = '30T' + this.reg;
+      }
+      console.log(this.canal);
+    
+  }
 
   tabChanged({index}) {
     this.index = index;
