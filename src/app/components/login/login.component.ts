@@ -65,12 +65,15 @@ export class LoginComponent implements OnInit {
     
     //prueba de componente para canal
     if (this.provider == "") {
+        console.log("sin clave");
         this.canalRecibido = "SC";
       }
       if (this.provider == "ClaveTesoreria"){
+        console.log("clavetesoreria");
         this.canalRecibido = "CT";
       }
       if (this.provider == "ClaveUnica"){
+        console.log("claveunica");
         this.canalRecibido = "CU";
       }
     
