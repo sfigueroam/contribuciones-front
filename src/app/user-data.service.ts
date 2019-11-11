@@ -23,16 +23,16 @@ export class UserDataService {
   constructor(public deviceDetectService: DeviceDetectService) { }
 
       // detectaConexion():string{
-      detectaConexion(){
-      if (this.conex_usuario == "") {
-        this.reg = "SC";
-      }
-      if (this.conex_usuario == "ClaveTesoreria"){
-        this.reg = "CT";
-      }
-      if (this.conex_usuario == "ClaveUnica"){
-        this.reg = "CU";
-      }
+      // detectaConexion(){
+      // if (this.conex_usuario == "") {
+      //   this.reg = "SC";
+      // }
+      // if (this.conex_usuario == "ClaveTesoreria"){
+      //   this.reg = "CT";
+      // }
+      // if (this.conex_usuario == "ClaveUnica"){
+      //   this.reg = "CU";
+      // }
       // if (this.deviceDetectService.isDeviceDesktop){
       //   this.canal = "30D" + this.reg; 
       // }
@@ -46,7 +46,7 @@ export class UserDataService {
       //   this.canal = "30T" + this.reg;
       // }
       // return this.canal;
-    }
+    // }
   
     
 

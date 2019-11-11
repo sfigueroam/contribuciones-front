@@ -64,8 +64,16 @@ export class LoginComponent implements OnInit {
     console.log('name: ' || this.name);
     
     //prueba de componente para canal
-    this.userdataservice.detectaConexion();
-    this.canalRecibido = this.userdataservice.reg;
+    if (this.provider == "") {
+        this.canalRecibido = "SC";
+      }
+      if (this.provider == "ClaveTesoreria"){
+        this.canalRecibido = "CT";
+      }
+      if (this.provider == "ClaveUnica"){
+        this.canalRecibido = "CU";
+      }
+    
     console.log("canal: " || this.canalRecibido);
     
     
