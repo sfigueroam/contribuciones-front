@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   exp: Date;
   provider_array: any;
   provider: any;
+  //borrar esta variable
+  canalRecibido: string;
   
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
@@ -60,6 +62,10 @@ export class LoginComponent implements OnInit {
     console.log(this.identity);
     console.log('provider : ' || this.provider);
     console.log('name: ' || this.name);
+    
+    //prueba de componente para canal
+    this.canalRecibido = this.userdataservice.reg;
+    console.log("canal: " || this.canalRecibido);
     
     
   }
