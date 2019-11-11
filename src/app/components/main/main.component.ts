@@ -91,6 +91,7 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.canal = '30T' + this.reg;
       }
       console.log(this.canal);
+      this.userdataservice.canal = this.canal;
     
   }
 

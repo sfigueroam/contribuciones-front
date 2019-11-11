@@ -10,6 +10,7 @@ export class UserDataService {
   //javier
   deudaNoLiquidable: boolean;
   conex_usuario: string;
+  canal: string;
   
   constructor(public deviceDetectService: DeviceDetectService) { }
 
