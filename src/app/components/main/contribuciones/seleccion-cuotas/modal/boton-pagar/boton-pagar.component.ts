@@ -19,7 +19,7 @@ export class BotonPagarComponent implements OnInit {
 
   urlPagoTgr: string;
   
-  canalRecibido: string;
+  canal: string;
   
   
   
@@ -30,7 +30,7 @@ export class BotonPagarComponent implements OnInit {
 
 
   ngOnInit() {
-    this.canalRecibido = this.userdataservice.canal;
+    this.canal = this.userdataservice.canalRecibido;
     
     this.urlPagoTgr = environment.pago.url;
     

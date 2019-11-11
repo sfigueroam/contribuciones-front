@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   exp: Date;
   provider_array: any;
   provider: any;
+  reg: string;
   //borrar esta variable
   canalRecibido: string;
   
@@ -60,24 +61,21 @@ export class LoginComponent implements OnInit {
     this.cookieService.set("providerCookie", this.provider);
     //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
-    console.log('provider : ' || this.provider);
-    console.log('name: ' || this.name);
+    console.log(this.provider);
     
     //prueba de componente para canal
     if (this.provider == "") {
-        console.log("sin clave");
-        this.canalRecibido = "SC";
+        this.reg = 'SC';
       }
       if (this.provider == "ClaveTesoreria"){
-        console.log("clavetesoreria");
-        this.canalRecibido = 'CT';
+        this.reg = 'CT';
       }
       if (this.provider == "ClaveUnica"){
-        console.log("claveunica");
-        this.canalRecibido = "CU";
+        this.reg = 'CU';
       }
     
-    console.log(this.canalRecibido);
+    console.log(this.reg);
+    this.userdataservice.canalRecibido = this.reg;
     
     
   }

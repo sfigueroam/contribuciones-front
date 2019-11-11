@@ -18,17 +18,17 @@ export class UserDataService {
   tablet: string;
   smartTv: string;
   mobile: string;
-  canal: string;
+  canalRecibido: string;
 
   constructor(public deviceDetectService: DeviceDetectService) { }
 
       // detectaConexion():string{
       // detectaConexion(){
       // if (this.conex_usuario == "") {
-      //   this.reg = "SC";
+      //   this.reg = 'SC';
       // }
       // if (this.conex_usuario == "ClaveTesoreria"){
-      //   this.reg = "CT";
+      //   this.reg = 'CT';
       // }
       // if (this.conex_usuario == "ClaveUnica"){
       //   this.reg = "CU";
