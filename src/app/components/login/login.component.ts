@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
         this.canalRecibido = "CU";
       }
     
-    console.log("canal: " || this.canalRecibido);
+    console.log(this.canalRecibido);
     
     
   }
