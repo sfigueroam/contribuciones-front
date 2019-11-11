@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {UserDataService} from '../../user-data.service';
 import {CookieService} from 'ngx-cookie-service';
-
+import {DeviceDetectService} from '../../services/device-detect.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   provider_array: any;
   provider: any;
   reg: string;
+  canal: string;
   //borrar esta variable
   canalRecibido: string;
   
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
               private router: Router, 
               private user: UserService,
               private cookieService: CookieService,
-              private userdataservice: UserDataService) {
+              private userdataservice: UserDataService,
+              private devicedetectservice: DeviceDetectService) {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
@@ -73,9 +75,13 @@ export class LoginComponent implements OnInit {
       if (this.provider == "ClaveUnica"){
         this.reg = 'CU';
       }
+      if (this.devicedetectservice.isDeviceDesktop){
+        this.canal = "30D" + this.reg; 
+      }
     
     console.log(this.reg);
-    this.userdataservice.canalRecibido = this.reg;
+    console.log(this.canal)
+    this.userdataservice.canalRecibido = this.canal;
     
     
   }
