@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {UserDataService} from '../../user-data.service';
 import {CookieService} from 'ngx-cookie-service';
-import {DeviceDetectService} from '../../services/device-detect.service';
+// import {DeviceDetectService} from '../../services/device-detect.service';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
               private router: Router, 
               private user: UserService,
               private cookieService: CookieService,
-              private userdataservice: UserDataService,
-              private devicedetectservice: DeviceDetectService) {
+              private userdataservice: UserDataService) {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
@@ -64,33 +63,33 @@ export class LoginComponent implements OnInit {
     //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
     console.log(this.provider);
-    this.canal = '';
-    //prueba de componente para canal
-    if (this.provider == "") {
-        this.reg = 'SC';
-      }
-      if (this.provider == "ClaveTesoreria"){
-        this.reg = 'CT';
-      }
-      if (this.provider == "ClaveUnica"){
-        this.reg = 'CU';
-      }
-      if (this.devicedetectservice.isDeviceDesktop){
-        this.canal = '30D' + this.reg; 
-      }
-      if (this.devicedetectservice.isDeviceMobile){
-        this.canal = '30M' + this.reg; 
-      }
-      if (this.devicedetectservice.isDeviceSmartTv){
-        this.canal = '30S' + this.reg;
-      }
-      if (this.devicedetectservice.isDeviceTablet){
-        this.canal = '30T' + this.reg;
-      }
+    // this.canal = '';
+    // //prueba de componente para canal
+    // if (this.provider == "") {
+    //     this.reg = 'SC';
+    //   }
+    //   if (this.provider == "ClaveTesoreria"){
+    //     this.reg = 'CT';
+    //   }
+    //   if (this.provider == "ClaveUnica"){
+    //     this.reg = 'CU';
+    //   }
+    //   if (this.devicedetectservice.isDeviceDesktop){
+    //     this.canal = '30D' + this.reg; 
+    //   }
+    //   if (this.devicedetectservice.isDeviceMobile){
+    //     this.canal = '30M' + this.reg; 
+    //   }
+    //   if (this.devicedetectservice.isDeviceSmartTv){
+    //     this.canal = '30S' + this.reg;
+    //   }
+    //   if (this.devicedetectservice.isDeviceTablet){
+    //     this.canal = '30T' + this.reg;
+    //   }
     
-    console.log(this.reg);
-    console.log(this.canal)
-    this.userdataservice.canalRecibido = this.canal;
+    // console.log(this.reg);
+    // console.log(this.canal)
+    // this.userdataservice.canalRecibido = this.canal;
     
     
   }

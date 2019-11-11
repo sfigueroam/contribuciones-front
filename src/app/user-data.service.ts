@@ -10,16 +10,7 @@ export class UserDataService {
   //javier
   deudaNoLiquidable: boolean;
   conex_usuario: string;
-  reg: string;
-  //temporal
-  recibeCanal: string;
-  conex: string;
-  desktop: boolean;
-  tablet: string;
-  smartTv: string;
-  mobile: string;
-  canalRecibido: string;
-
+  
   constructor(public deviceDetectService: DeviceDetectService) { }
 
       // detectaConexion():string{
