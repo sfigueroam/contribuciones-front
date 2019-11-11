@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../../../../environments/environment';
-import {DeviceDetectService} from '../../../../../../services/device-detect.service';
 import {UserDataService} from '../../../../../../user-data.service';
 
 @Component({
@@ -25,10 +24,8 @@ export class BotonPagarComponent implements OnInit {
   
   
   
-  constructor(public deviceDetectService: DeviceDetectService,
-              public userdataservice: UserDataService) {
+  constructor(public userdataservice: UserDataService) {
   }
-
 
 
   ngOnInit() {

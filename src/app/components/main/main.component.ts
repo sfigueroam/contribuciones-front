@@ -89,9 +89,9 @@ export class MainComponent implements OnInit, AfterViewInit {
       if (this.devicedetectservice.isDeviceSmartTv){
         this.canal = '30S' + this.reg;
       }
-      if (this.devicedetectservice.isDeviceTablet){
-        this.canal = '30T' + this.reg;
-      }
+      // if (this.devicedetectservice.isDeviceTablet){
+      //   this.canal = '30T' + this.reg;
+      // }
       console.log(this.canal);
       console.log(this.providerConex);
       this.userdataservice.canal = this.canal;
