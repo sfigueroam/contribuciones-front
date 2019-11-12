@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {DeviceDetectService} from '../app/services/device-detect.service';
 
 @Injectable({
   providedIn: 'root'
