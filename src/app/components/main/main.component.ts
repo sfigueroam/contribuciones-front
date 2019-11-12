@@ -74,12 +74,15 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.reg = '';
     this.providerConex = this.cookieService.get("providerCookie")
       if (this.providerConex == "") {
+        console.log(this.reg);
         this.reg = 'SC';
       }
       if (this.providerConex == "ClaveTesoreria"){
+        console.log(this.reg);
         this.reg = 'CT';
       }
       if (this.providerConex == "ClaveUnica"){
+        console.log(this.reg);
         this.reg = 'CU';
       }
       if (this.devicedetectservice.device.mobile){
