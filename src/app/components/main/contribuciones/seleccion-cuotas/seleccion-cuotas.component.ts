@@ -8,7 +8,7 @@ import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
 import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
-// import {DeviceDetectService} from '../../../../services/device-detect.service';
+import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
 import {
   CODIGO_LIST_PROPIEDADES,
@@ -66,6 +66,11 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   result: ResumenCuotas;
   someTooltip: any;
+  
+  // prueba de dispositivo
+  mobile: boolean;
+  desktop: boolean;
+  
   @ViewChildren(TooltipDirective) tooltipDirective;
 
 
@@ -75,7 +80,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               private contribuciones: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
-              // private deviceDetectService: DeviceDetectService,
+              private deviceDetectService: DeviceDetectService,
               private dialogService: MdlDialogService,
               private cookieService: CookieService,
               private userdataservice: UserDataService) {
@@ -105,9 +110,13 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    //const noLiqArr: Array<{noLiq: boolean}> = [];
-    //var i = 1;
-    //this.cookieService.deleteAll();
+    // prueba de deteccion de dispositivo
+      this.mobile = this.deviceDetectService.isDeviceMobile();
+      console.log(this.mobile);
+      this.desktop = this.deviceDetectService.isDeviceDesktop();
+      console.log(this.desktop);
+
+
     console.log('ngOnInit', this.complete);
 
     this.complete = false;
