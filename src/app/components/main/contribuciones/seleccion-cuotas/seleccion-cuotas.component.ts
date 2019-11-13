@@ -70,6 +70,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   // prueba de dispositivo
   mobile: boolean;
   desktop: boolean;
+  reg: string;
+  canal: string;
+  providerConex: string;
   
   @ViewChildren(TooltipDirective) tooltipDirective;
 
@@ -111,11 +114,41 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // prueba de deteccion de dispositivo
-      this.mobile = this.deviceDetectService.isDeviceMobile();
-      console.log(this.mobile);
-      this.desktop = this.deviceDetectService.isDeviceDesktop();
-      console.log(this.desktop);
-
+    this.canal = '';
+    this.reg = '';
+    this.providerConex = this.cookieService.get("providerCookie")
+      if (this.providerConex == "") {
+        console.log(this.reg);
+        this.reg = 'SC';
+      }
+      if (this.providerConex == "ClaveTesoreria"){
+        console.log(this.reg);
+        this.reg = 'CT';
+      }
+      if (this.providerConex == "ClaveUnica"){
+        console.log(this.reg);
+        this.reg = 'CU';
+      }
+    
+      if (this.deviceDetectService.device.mobile){
+        console.log("mobile");
+        this.canal = '30M' + this.reg; 
+      }
+      if (this.deviceDetectService.device.tablet){
+        console.log("tablet");
+        this.canal = '30T' + this.reg; 
+      }
+      if (this.deviceDetectService.device.smartTv){
+        console.log("smarttv");
+        this.canal = '30S' + this.reg;
+      }
+      if (this.deviceDetectService.device.desktop){
+        console.log("desktop");
+        this.canal = '30D' + this.reg;
+      }
+      console.log(this.canal);
+      console.log(this.providerConex);
+      this.userdataservice.canal = this.canal;
 
     console.log('ngOnInit', this.complete);
 
