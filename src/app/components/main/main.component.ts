@@ -41,7 +41,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               private mdlDialogService: MdlDialogOutletService,
               private userdataservice: UserDataService,
               private cookieService: CookieService,
-              private devicedetectservice: DeviceDetectService,
+              public devicedetectservice: DeviceDetectService,
               private zone: NgZone) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;

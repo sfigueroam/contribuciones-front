@@ -8,7 +8,7 @@ import {UserService} from '../../../../services/user.service';
 import {ContribucionesSugeridasService} from '../../../../services/contribuciones-sugeridas.service';
 import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
-import {DeviceDetectService} from '../../../../services/device-detect.service';
+// import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
 import {
   CODIGO_LIST_PROPIEDADES,
@@ -75,7 +75,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               private contribuciones: ContribucionesService,
               private sugeridas: ContribucionesSugeridasService,
               private mdlSnackbarService: MdlSnackbarService,
-              private deviceDetectService: DeviceDetectService,
+              // private deviceDetectService: DeviceDetectService,
               private dialogService: MdlDialogService,
               private cookieService: CookieService,
               private userdataservice: UserDataService) {
