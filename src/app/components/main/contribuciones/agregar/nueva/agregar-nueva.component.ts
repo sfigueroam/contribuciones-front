@@ -641,10 +641,6 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   limpiarBusqudaDir() {
     this.showButtonLimpiarBusquedaDir = false;
     this.limpiarFiltroDireccion();
-        console.log("desk " || this.deviceDetectService.device.desktop.valueOf.toString);
-        console.log("movile " || this.deviceDetectService.device.mobile.valueOf.toString);
-        console.log("tv " || this.deviceDetectService.device.smartTv.valueOf.toString);
-        console.log("tablet " || this.deviceDetectService.device.tablet.valueOf.toString);
   }
  limpiarBusqudaRol() {
     this.showButtonLimpiarBusquedaRol = false;
