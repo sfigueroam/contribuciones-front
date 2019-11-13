@@ -85,10 +85,10 @@ export class MainComponent implements OnInit, AfterViewInit {
         console.log(this.reg);
         this.reg = 'CU';
       }
-      if (this.devicedetectservice.device.mobile){
-        console.log("mobile");
-        this.canal = '30M' + this.reg; 
-      }
+      // if (this.devicedetectservice.device.mobile){
+      //   console.log("mobile");
+      //   this.canal = '30M' + this.reg; 
+      // }
       if (this.devicedetectservice.device.tablet){
         console.log("tablet");
         this.canal = '30T' + this.reg; 
