@@ -6,7 +6,7 @@ import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
 import {UserDataService} from '../../user-data.service';
-import {DeviceDetectService} from '../../services/device-detect.service'
+// import {DeviceDetectService} from '../../services/device-detect.service'
 import {CookieService} from 'ngx-cookie-service';
 
 
@@ -41,7 +41,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               private mdlDialogService: MdlDialogOutletService,
               private userdataservice: UserDataService,
               private cookieService: CookieService,
-              public devicedetectservice: DeviceDetectService,
+              // public devicedetectservice: DeviceDetectService,
               private zone: NgZone) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
@@ -61,8 +61,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   
    this.logged = this.user.isLogged();
-   this.usuariologin = this.userdataservice.nombre_usuario;
-   console.log(this.usuariologin);
+  // this.usuariologin = this.userdataservice.nombre_usuario;
+  // console.log(this.usuariologin);
     // if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null || this.userdataservice.nombre_usuario === undefined){
     //   this.usuariologin = '';
     // }   else{
@@ -73,21 +73,21 @@ export class MainComponent implements OnInit, AfterViewInit {
     //     this.usuariologin = this.usuario1.concat(this.usuario2min);
 
     //   }
-    this.canal = '';
-    this.reg = '';
-    this.providerConex = this.cookieService.get("providerCookie")
-      if (this.providerConex == "") {
-        console.log(this.reg);
-        this.reg = 'SC';
-      }
-      if (this.providerConex == "ClaveTesoreria"){
-        console.log(this.reg);
-        this.reg = 'CT';
-      }
-      if (this.providerConex == "ClaveUnica"){
-        console.log(this.reg);
-        this.reg = 'CU';
-      }
+    // this.canal = '';
+    // this.reg = '';
+    // this.providerConex = this.cookieService.get("providerCookie")
+    //   if (this.providerConex == "") {
+    //     console.log(this.reg);
+    //     this.reg = 'SC';
+    //   }
+    //   if (this.providerConex == "ClaveTesoreria"){
+    //     console.log(this.reg);
+    //     this.reg = 'CT';
+    //   }
+    //   if (this.providerConex == "ClaveUnica"){
+    //     console.log(this.reg);
+    //     this.reg = 'CU';
+    //   }
       // prueba funcion mobile
       // this.mobile = this.devicedetectservice.isDeviceMobile();
       // console.log(this.mobile);
@@ -109,9 +109,9 @@ export class MainComponent implements OnInit, AfterViewInit {
       //   console.log("desktop");
       //   this.canal = '30D' + this.reg;
       // }
-      console.log(this.canal);
-      console.log(this.providerConex);
-      this.userdataservice.canal = this.canal;
+      // console.log(this.canal);
+      // console.log(this.providerConex);
+      // this.userdataservice.canal = this.canal;
     
   }
 
