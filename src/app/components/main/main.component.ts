@@ -31,6 +31,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   providerConex: string;
   // variables prueba
   mobile: boolean;
+  desktop: boolean;
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
@@ -88,23 +89,26 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.reg = 'CU';
       }
       // prueba funcion mobile
-      this.mobile = this.devicedetectservice.isDeviceDesktop();
-      if (this.devicedetectservice.device.mobile){
-        console.log("mobile");
-        this.canal = '30M' + this.reg; 
-      }
-      if (this.devicedetectservice.device.tablet){
-        console.log("tablet");
-        this.canal = '30T' + this.reg; 
-      }
-      if (this.devicedetectservice.device.smartTv){
-        console.log("smarttv");
-        this.canal = '30S' + this.reg;
-      }
-      if (this.devicedetectservice.device.desktop){
-        console.log("desktop");
-        this.canal = '30D' + this.reg;
-      }
+      this.mobile = this.devicedetectservice.isDeviceMobile();
+      console.log(this.mobile);
+      this.desktop = this.devicedetectservice.isDeviceDesktop();
+      console.log(this.desktop);
+      // if (this.devicedetectservice.device.mobile){
+      //   console.log("mobile");
+      //   this.canal = '30M' + this.reg; 
+      // }
+      // if (this.devicedetectservice.device.tablet){
+      //   console.log("tablet");
+      //   this.canal = '30T' + this.reg; 
+      // }
+      // if (this.devicedetectservice.device.smartTv){
+      //   console.log("smarttv");
+      //   this.canal = '30S' + this.reg;
+      // }
+      // if (this.devicedetectservice.device.desktop){
+      //   console.log("desktop");
+      //   this.canal = '30D' + this.reg;
+      // }
       console.log(this.canal);
       console.log(this.providerConex);
       this.userdataservice.canal = this.canal;
