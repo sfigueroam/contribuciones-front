@@ -214,16 +214,9 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    //valida que no se encuentre logueado
-    /*this.provider = this.cookieService.get("providerCookie");
-    console.log("provider en login2: ");
-    console.log(this.provider);
-    if (this.provider != "") {
-      this.cookieService.delete("providerCookie");
-    } */
+
 
     //Probando logeo
-    console.log("device " || this.deviceDetectService);
     
     this.logged = this.user.isLogged();
 

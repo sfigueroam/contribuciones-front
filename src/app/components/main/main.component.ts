@@ -6,7 +6,6 @@ import {MdlDialogOutletService, MdlDialogService} from '@angular-mdl/core';
 import {environment} from '../../../environments/environment';
 import {AsociarCorreoComponent} from '../dialogs/asociar-correo/asociar-correo.component';
 import {UserDataService} from '../../user-data.service';
-// import {DeviceDetectService} from '../../services/device-detect.service'
 import {CookieService} from 'ngx-cookie-service';
 
 
@@ -26,12 +25,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   usuario1: string;
   usuario2: string;
   usuario2min: string;
-  canal: string;
-  reg: string;
-  providerConex: string;
-  // variables prueba
-  mobile: boolean;
-  desktop: boolean;
+
   constructor(route: ActivatedRoute,
               private router: Router,
               private user: UserService,
@@ -41,7 +35,6 @@ export class MainComponent implements OnInit, AfterViewInit {
               private mdlDialogService: MdlDialogOutletService,
               private userdataservice: UserDataService,
               private cookieService: CookieService,
-              // public devicedetectservice: DeviceDetectService,
               private zone: NgZone) {
     this.mdlDialogService.setDefaultViewContainerRef(this.vcRef);
     this.index = 0;
@@ -73,45 +66,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     //     this.usuariologin = this.usuario1.concat(this.usuario2min);
 
     //   }
-    // this.canal = '';
-    // this.reg = '';
-    // this.providerConex = this.cookieService.get("providerCookie")
-    //   if (this.providerConex == "") {
-    //     console.log(this.reg);
-    //     this.reg = 'SC';
-    //   }
-    //   if (this.providerConex == "ClaveTesoreria"){
-    //     console.log(this.reg);
-    //     this.reg = 'CT';
-    //   }
-    //   if (this.providerConex == "ClaveUnica"){
-    //     console.log(this.reg);
-    //     this.reg = 'CU';
-    //   }
-      // prueba funcion mobile
-      // this.mobile = this.devicedetectservice.isDeviceMobile();
-      // console.log(this.mobile);
-      // this.desktop = this.devicedetectservice.isDeviceDesktop();
-      // console.log(this.desktop);
-      // if (this.devicedetectservice.device.mobile){
-      //   console.log("mobile");
-      //   this.canal = '30M' + this.reg; 
-      // }
-      // if (this.devicedetectservice.device.tablet){
-      //   console.log("tablet");
-      //   this.canal = '30T' + this.reg; 
-      // }
-      // if (this.devicedetectservice.device.smartTv){
-      //   console.log("smarttv");
-      //   this.canal = '30S' + this.reg;
-      // }
-      // if (this.devicedetectservice.device.desktop){
-      //   console.log("desktop");
-      //   this.canal = '30D' + this.reg;
-      // }
-      // console.log(this.canal);
-      // console.log(this.providerConex);
-      // this.userdataservice.canal = this.canal;
+ 
     
   }
 

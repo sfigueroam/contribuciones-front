@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
   provider: any;
   reg: string;
   canal: string;
-  //borrar esta variable
-  canalRecibido: string;
+
   
   constructor(private cognito: CognitoService, 
               private route: ActivatedRoute, 
@@ -31,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        //this.name = value.name;
+        this.name = value.name;
         this.provider_array = value.identities[0];
         this.provider = this.provider_array.providerName;
         
@@ -63,34 +62,6 @@ export class LoginComponent implements OnInit {
     //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
     console.log(this.provider);
-    // this.canal = '';
-    // //prueba de componente para canal
-    // if (this.provider == "") {
-    //     this.reg = 'SC';
-    //   }
-    //   if (this.provider == "ClaveTesoreria"){
-    //     this.reg = 'CT';
-    //   }
-    //   if (this.provider == "ClaveUnica"){
-    //     this.reg = 'CU';
-    //   }
-    //   if (this.devicedetectservice.isDeviceDesktop){
-    //     this.canal = '30D' + this.reg; 
-    //   }
-    //   if (this.devicedetectservice.isDeviceMobile){
-    //     this.canal = '30M' + this.reg; 
-    //   }
-    //   if (this.devicedetectservice.isDeviceSmartTv){
-    //     this.canal = '30S' + this.reg;
-    //   }
-    //   if (this.devicedetectservice.isDeviceTablet){
-    //     this.canal = '30T' + this.reg;
-    //   }
-    
-    // console.log(this.reg);
-    // console.log(this.canal)
-    // this.userdataservice.canalRecibido = this.canal;
-    
     
   }
 }
