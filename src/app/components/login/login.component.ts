@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
         }
         // revisar el despliegue del nombre en qa
         if (this.provider == "ClaveUnica"){
-          // this.name = value.name['nombres'][0]['apellidos'][0];
-          this.name = value.name;
+          this.name = value.name['nombres'][0][1];
+          // this.name = value.name;
         }
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
