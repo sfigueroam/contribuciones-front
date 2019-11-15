@@ -62,6 +62,6 @@ export class LoginComponent implements OnInit {
     //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
     console.log(this.provider);
-    
+    console.log(this.name);
   }
 }
