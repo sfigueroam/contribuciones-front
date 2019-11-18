@@ -247,8 +247,11 @@
     height: 36px;
     bottom: 86px;
     right: -132px;
-    @media (min-width: 1280px) {
+    @media (min-width: 1280px) and (max-width: 1549px) {
       right: -180px;
+    }
+    @media (min-width: 1550px) {
+      right: -150px;
     }
   }
 }
