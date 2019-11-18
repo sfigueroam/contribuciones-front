@@ -242,6 +242,12 @@
   @media (max-width: 420px) {
     bottom: 85px;
   }
+  &.desktop {
+    width: 250px;
+    height: 36px;
+    bottom: 86px;
+    right: -132px;
+  }
 }
 
 .alert-new-rol {
