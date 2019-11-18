@@ -247,6 +247,9 @@
     height: 36px;
     bottom: 86px;
     right: -132px;
+    @media (min-width: 1280px) {
+      right: -180px;
+    }
   }
 }
 
