@@ -43,7 +43,10 @@ export class LoginComponent implements OnInit {
         
         // this.name_array = JSON.stringify(value.name);
         this.name_array = JSON.parse(value.name);
+        this.name = this.name_array['nombres'][0];
+        
         console.log("name_array: ", this.name_array);
+        console.log("name: ", this.name);
         // JSON.parse(this.name_array, (key, value) => {
         //   if (key === 'nombres'){
         //     return value;
