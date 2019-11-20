@@ -13,6 +13,7 @@ import {CookieService} from 'ngx-cookie-service';
 export class LoginComponent implements OnInit {
 
   identity: any;
+  name_array: any;
   name: any;
   exp: Date;
   provider_array: any;
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        this.name = value.name;
+        this.name_array = value.name;
+        this.name = this.name_array["nombres"];
         // this.name = Object.entries(this.identity)[11][0];
         // this.name = value.name.nombres[1];
         // let name2 = value.name["nombres"][1];
