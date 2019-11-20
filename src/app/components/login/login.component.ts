@@ -13,8 +13,9 @@ import {CookieService} from 'ngx-cookie-service';
 export class LoginComponent implements OnInit {
 
   identity: any;
-  name_array: string[] ;
+  name_array: string;
   name: any;
+  fin: number;
   exp: Date;
   provider_array: any;
   provider: any;
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.name_array = value.name;
-        this.name = this.name_array[14];
+        this.fin = this.name_array.search(",");
+        this.name = this.name_array.substring(13, this.fin - 1);
         // this.name = Object.entries(this.identity)[11][0];
         // this.name = value.name.nombres[1];
         // let name2 = value.name["nombres"][1];
