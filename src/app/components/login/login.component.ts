@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   identity: any;
   name_array: string;
   name: any;
+  inicio: number;
   fin: number;
   exp: Date;
   provider_array: any;
@@ -32,15 +33,17 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
+        
         // this.name_array = value.name;
-        this.name_array = value.name.json()['nombres'];
-        
-        
-        
         // this.fin = this.name_array.search(",");
         // this.name = this.name_array.substring(13, this.fin - 1);
+        
         this.provider_array = value.identities[0];
         this.provider = this.provider_array.providerName;
+        
+        this.name_array = JSON.stringify(value.name);
+        console.log("name_array: ", this.name_array);
+
         
         if(this.name == undefined || this.name == null){
           this.name = "";
