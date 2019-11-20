@@ -13,7 +13,7 @@ import {CookieService} from 'ngx-cookie-service';
 export class LoginComponent implements OnInit {
 
   identity: any;
-  name_array: any;
+  name_array: string[] ;
   name: any;
   exp: Date;
   provider_array: any;
