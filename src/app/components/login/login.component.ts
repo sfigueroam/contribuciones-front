@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        var obj = JSON.parse(this.identity);
-        this.name = obj['name'];
+        this.name = value.name;
         // this.name = Object.entries(this.identity)[11][0];
         // this.name = value.name.nombres[1];
         // let name2 = value.name["nombres"][1];
@@ -67,6 +66,6 @@ export class LoginComponent implements OnInit {
     //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
     console.log(this.provider);
-    console.log(this.name);
+    console.log("nombre en login: ", this.name);
   }
 }
