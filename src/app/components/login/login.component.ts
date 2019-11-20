@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       value => {
         this.identity = value;
         this.name_array = value.name;
-        this.name = this.name_array[0];
+        this.name = this.name_array[14];
         // this.name = Object.entries(this.identity)[11][0];
         // this.name = value.name.nombres[1];
         // let name2 = value.name["nombres"][1];
