@@ -33,35 +33,22 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        
-        // this.name_array = value.name;
-        // this.fin = this.name_array.search(",");
-        // this.name = this.name_array.substring(13, this.fin - 1);
+
         
         this.provider_array = value.identities[0];
         this.provider = this.provider_array.providerName;
         
-        // this.name_array = JSON.stringify(value.name);
+
         this.name_array = JSON.parse(value.name);
         this.name = this.name_array['nombres'][0];
         
         console.log("name_array: ", this.name_array);
         console.log("name: ", this.name);
-        // JSON.parse(this.name_array, (key, value) => {
-        //   if (key === 'nombres'){
-        //     return value;
-        //   } 
-        // });
-        // console.log("nombre_: ", this.name);
-        
+
         if(this.name == undefined || this.name == null){
           this.name = "";
         }
-        // revisar el despliegue del nombre en qa
-        // if (this.provider == "ClaveUnica"){
-        //   this.name = value.name.nombres[0];
-        //   // this.name = value.name;
-        // }
+
         this.user.getBienesRaices().then(
           () => this.router.navigate(['/main/contribuciones/seleccionar-cuotas']),
           (err) => {
@@ -83,6 +70,5 @@ export class LoginComponent implements OnInit {
     //this.userdataservice.conex_usuario = this.provider;
     console.log(this.identity);
     console.log(this.provider);
-    console.log("nombre en login: ", this.name);
   }
 }
