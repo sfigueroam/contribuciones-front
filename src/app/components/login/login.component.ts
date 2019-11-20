@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        this.name = value.name[7];
+        this.name = value.name["nombres"];
         // let name2 = value.name["nombres"][1];
         this.provider_array = value.identities[0];
         this.provider = this.provider_array.providerName;
