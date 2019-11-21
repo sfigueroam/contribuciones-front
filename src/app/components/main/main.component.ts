@@ -20,11 +20,11 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
-  // usuariologinmay: string;
+  usuariologinmay: string;
   usuariologin: string;
-  // usuario1: string;
-  // usuario2: string;
-  // usuario2min: string;
+  usuario1: string;
+  usuario2: string;
+  usuario2min: string;
 
   constructor(route: ActivatedRoute,
               private router: Router,
@@ -54,9 +54,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   
    this.logged = this.user.isLogged();
-   
-   this.usuariologin = this.userdataservice.nombre_usuario;
-    console.log('nombre usuario: ',this.usuariologin);
+  // this.usuariologin = this.userdataservice.nombre_usuario;
+  // console.log(this.usuariologin);
     // if (this.userdataservice.nombre_usuario === '' || this.userdataservice.nombre_usuario === null || this.userdataservice.nombre_usuario === undefined){
     //   this.usuariologin = '';
     // }   else{

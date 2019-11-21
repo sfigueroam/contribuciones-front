@@ -24,7 +24,7 @@
                 mdl-button-type="icon">
           <i class="material-icons account_circle mdl-button--account-user pointer">account_circle</i>
          <span class="account-user-text">Bienvenido/a 
-           <!--<span class="user">{{usuariologin}}</span>-->
+           <span class="user">{{usuariologin}}</span>
          </span>
         </button>
          <mdl-menu #menu="mdlMenu" mdl-menu-position="bottom-right">
@@ -49,7 +49,7 @@
     <div class="login_usuario">
       <div class="user-logged" *ngIf="logged" >
         <p>Bienvenido/a</p>
-        <!--<h5 class="text-mont">{{usuariologin}}</h5>-->
+        <h5 class="text-mont">{{usuariologin}}</h5>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button-basic-white" (click)="logout()">
           CERRAR SESIÓN
           <i class="material-icons">cancel</i>
