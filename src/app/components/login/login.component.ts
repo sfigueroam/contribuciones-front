@@ -69,7 +69,6 @@ export class LoginComponent implements OnInit {
 
     this.exp = this.cognito.getExpirationDate();
     this.userdataservice.nombre_usuario = this.name;
-    
     //crea cookie con el valor del provider:
     this.cookieService.set("providerCookie", this.provider);
     //this.userdataservice.conex_usuario = this.provider;
