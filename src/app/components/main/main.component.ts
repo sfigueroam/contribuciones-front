@@ -20,11 +20,11 @@ export class MainComponent implements OnInit, AfterViewInit {
   logged: boolean;
   index: number;
   isActiveLogin: boolean;
-  usuariologinmay: string;
+  // usuariologinmay: string;
   usuariologin: string;
-  usuario1: string;
-  usuario2: string;
-  usuario2min: string;
+  // usuario1: string;
+  // usuario2: string;
+  // usuario2min: string;
 
   constructor(route: ActivatedRoute,
               private router: Router,
