@@ -242,18 +242,6 @@
   @media (max-width: 420px) {
     bottom: 85px;
   }
-  &.desktop {
-    width: 250px;
-    height: 36px;
-    bottom: 86px;
-    right: -132px;
-    @media (min-width: 1280px) and (max-width: 1549px) {
-      right: -180px;
-    }
-    @media (min-width: 1550px) {
-      right: -130px;
-    }
-  }
 }
 
 .alert-new-rol {
