@@ -39,9 +39,13 @@ export class LoginComponent implements OnInit {
         this.provider = this.provider_array.providerName;
         
         console.log(value.name);
-
-        this.name_array = JSON.parse(value.name);
+        if (value.name.length < 18){
+          this.name = "";
+        }
+        else{
+          this.name_array = JSON.parse(value.name);
         this.name = this.name_array['nombres'][0];
+        }
         
         console.log("name_array: ", this.name_array);
         console.log("name: ", this.name);
