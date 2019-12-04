@@ -175,6 +175,7 @@ export class ContribucionesService {
       'idRol': rol,
       'listaCuotas': Array.from(cuotas.values()),
     };
+    console.log("body de getDeudaByRol", body);
     return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
   }
 
