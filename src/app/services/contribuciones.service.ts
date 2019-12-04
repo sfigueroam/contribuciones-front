@@ -68,6 +68,7 @@ export class ContribucionesService {
           (data: { curout: any }) => {
             this.propiedades = this.util.procesarPropiedades(data.curout);
             resolve(this.propiedades);
+            console.log("Lista propiedades updateBienesRaices",this.propiedades);
           }
         ).catch((err) => {
           console.error(err);
@@ -82,6 +83,7 @@ export class ContribucionesService {
     if (this.propiedades) {
       return new Promise((resolve) => {
         resolve(this.propiedades);
+        console.log("lista propiedades getBienesRaices 1",this.propiedades);
       });
     } else {
       return this.updateBienesRaices(rut);
