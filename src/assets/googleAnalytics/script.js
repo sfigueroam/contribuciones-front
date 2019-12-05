@@ -16,7 +16,7 @@ export function googleAnalyticsHeadScripts() {
   '})(window,document,\'script\',\'dataLayer\',\'' + environment.googleAnalyticsCode + '\');';
 
   head.insertBefore(googleAnalyticsSecondScript, head.firstChild);
-  head.insertBefore(googleAnalyticsFirstScript, head.firstChild);
+  body.insertBefore(googleAnalyticsFirstScript, body.firstChild);
 }
 
 export function googleAnalytics(url) {
