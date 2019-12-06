@@ -68,6 +68,7 @@ export class ContribucionesService {
           (data: { curout: any }) => {
             this.propiedades = this.util.procesarPropiedades(data.curout);
             resolve(this.propiedades);
+            console.log("Lista propiedades updateBienesRaices",this.propiedades);
           }
         ).catch((err) => {
           console.error(err);
@@ -76,12 +77,13 @@ export class ContribucionesService {
       }
     );
   }
-
+// lista propiedades con toda su data
   getBienesRaices(rut: number): Promise<Propiedad[]> {
 
     if (this.propiedades) {
       return new Promise((resolve) => {
         resolve(this.propiedades);
+        console.log("lista propiedades getBienesRaices 1",this.propiedades);
       });
     } else {
       return this.updateBienesRaices(rut);
@@ -122,7 +124,8 @@ export class ContribucionesService {
       }
     }
   }
-
+//JMS: Llamado a servicio que carga la deuda del rol 
+// getDeudaByRol llama la cuota (servicio antiguo)
   private cargarRol(rol: Rol): Promise<any> {
     if (rol.cuotas.length > 0) {
       return new Promise((resolve, reject) => {
@@ -167,12 +170,13 @@ export class ContribucionesService {
     obtenerBienRaizAsociado.url = obtenerBienRaizAsociado.url + '/' + rut;
     return this.requestService.request(obtenerBienRaizAsociado);
   }
-
+//JMS: Servicio específico que carga la deuda del rol
   private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
     const body = {
       'idRol': rol,
       'listaCuotas': Array.from(cuotas.values()),
     };
+    console.log("body de getDeudaByRol", body);
     return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
   }
 
