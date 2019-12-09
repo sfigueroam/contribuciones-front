@@ -223,7 +223,7 @@ export class ContribucionesService {
   private getDeudaByRol(rol: number): Promise<{}>{
     const idRol = rol;
     console.log("rol getDeudaByRol", idRol);
-    return this.requestService.request(environment.servicios.recuperarDeudaRol, idRol);
+    return this.requestService.request2(environment.servicios.recuperarDeudaRol, idRol);
   }
   
 

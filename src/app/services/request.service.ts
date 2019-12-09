@@ -61,6 +61,37 @@ export class RequestService {
       );
     });
   }
+  // JMS: funcion que llama al servicio tierra del back para buscar cuotas
+    public request2(servicio: { url: string, method: string }, rol): Promise<{}> {
+    let headers = {};
+    if (this.jwtCognito.jwt !== undefined) {
+      headers = new HttpHeaders({
+        Authorization: this.jwtCognito.jwt
+      });
+    }
+
+    return new Promise((resolve, reject) => {
+      this.http.request(servicio.method,
+        servicio.url,
+        {
+          body: rol,
+          responseType: 'json',
+          headers: headers
+
+        }
+      ).subscribe(
+        data => {
+          resolve(data);
+        },
+        err => {
+          console.log('Error', err);
+          reject();
+        }
+      );
+    });
+  }
+  
+  
 
   public requestElastic(servicio: { url: string, body: any, method: string }): Promise<{}> {
     return new Promise((resolve, reject) => {
