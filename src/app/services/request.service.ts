@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JwtCognitoService} from './jwt-cognito.service';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +32,7 @@ export class RequestService {
       );
     });
   }
-
+// JMS: request del servicio que accede a tierra
   public request(servicio: { url: string, method: string }, body?): Promise<{}> {
     let headers = {};
     if (this.jwtCognito.jwt !== undefined) {
@@ -100,4 +102,19 @@ export class RequestService {
     });
   }
 
+  // public getDeuda(url: string, rol: number): Promise <{}> {
+  //   const urlDeuda = url + '/' + rol;
+  //   return new Promise((resolve, reject) => {
+  //     this.http.request(urlDeuda).subscribe(
+  //       data => {
+  //         resolve(data);
+  //       },
+  //       err => {
+  //         console.log('Error', err);
+  //         reject();
+  //       }
+  //     );
+  //   });
+  // }
 }
+
