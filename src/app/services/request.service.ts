@@ -62,7 +62,7 @@ export class RequestService {
     });
   }
   // JMS: funcion que llama al servicio tierra del back para buscar cuotas
-    public request2(servicio: { url: string, method: string }, rol): Promise<{}> {
+    public request2(servicio: { url: string, method: string }, rol?): Promise<{}> {
     let headers = {};
     if (this.jwtCognito.jwt !== undefined) {
       headers = new HttpHeaders({
