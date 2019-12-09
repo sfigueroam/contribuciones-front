@@ -168,6 +168,7 @@ export class ContribucionesService {
       return new Promise((resolve, reject) => {
         resolve();
       });
+      console.log("cargarRol en servicio contribuciones", rol);
 
     } else {
       return new Promise(
@@ -179,6 +180,7 @@ export class ContribucionesService {
               const cuota = new Cuota(deuda);
               mapCuotas.set(cuota.numeroCuota, cuota);
               rol.cuotas.push(cuota);
+              console.log("cuota", cuota);
             }
             this.getDeudaByRol(rol.rol).then(
               (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
@@ -219,9 +221,9 @@ export class ContribucionesService {
   //   return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
   // }
   private getDeudaByRol(rol: number): Promise<{}>{
-    const idRol = 1900102013;
-    console.log("body de getDeudaByRol", idRol);
-    return this.requestService.request(environment.servicios.recuperarDeudaRol, rol);
+    const idRol = rol;
+    console.log("rol getDeudaByRol", idRol);
+    return this.requestService.request(environment.servicios.recuperarDeudaRol, idRol);
   }
   
 
