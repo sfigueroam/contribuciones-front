@@ -74,7 +74,7 @@ export class RequestService {
       this.http.request(servicio.method,
         servicio.url,
         {
-          body: 1900102013,
+          body: rol,
           responseType: 'json',
           headers: headers
 
