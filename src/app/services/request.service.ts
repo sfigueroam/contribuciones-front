@@ -75,9 +75,8 @@ export class RequestService {
         servicio.url,
         {
           body: rol,
-          responseType: 'json',
-          headers: headers
-
+          responseType: 'json'
+          // headers: headers
         }
       ).subscribe(
         data => {
@@ -85,7 +84,6 @@ export class RequestService {
         },
         err => {
           console.log('Error', err);
-          console.log("error en metodo");
           reject();
         }
       );
