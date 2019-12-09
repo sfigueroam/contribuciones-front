@@ -168,7 +168,7 @@ export class ContribucionesService {
       return new Promise((resolve, reject) => {
         resolve();
       });
-      console.log("cargarRol en servicio contribuciones", rol);
+      // console.log("cargarRol en servicio contribuciones", rol);
 
     } else {
       return new Promise(
