@@ -167,8 +167,9 @@ export class ContribucionesService {
     if (rol.cuotas.length > 0) {
       return new Promise((resolve, reject) => {
         resolve();
+        console.log("cargarRol en servicio contribuciones", rol.cuotas);
       });
-      // console.log("cargarRol en servicio contribuciones", rol);
+      
 
     } else {
       return new Promise(
