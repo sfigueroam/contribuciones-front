@@ -85,6 +85,7 @@ export class RequestService {
         },
         err => {
           console.log('Error', err);
+          console.log("error en metodo");
           reject();
         }
       );
