@@ -227,7 +227,8 @@ export class ContribucionesService {
   // JMS: servicio directo sin pasar por request.service
   obtieneDeuda(rol: number): Observable<any>{
     const idRol = rol;
-    const url = environment.servicios.urlApiObtieneDeuda.url + idRol;
+    // const url = environment.servicios.urlApiObtieneDeuda.url + idRol;
+    const url = 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/liquidacion/deudasrol/' + idRol;
     console.log("rol obtieneDeuda servicio contribuciones", idRol);
     console.log("url de environment", url)
     return this.http.get(url);
