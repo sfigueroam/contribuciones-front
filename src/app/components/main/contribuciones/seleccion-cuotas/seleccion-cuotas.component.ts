@@ -118,10 +118,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     // JMS: carga de cuotas
     this.contribuciones.obtieneDeuda(1900102013).subscribe(
         data => {
-          data.data.forEach(element=>{
-            this.listacuotas.push(element);
+            this.listacuotas = data;
             console.log("lista cuotas",this.listacuotas)
-          })
         },(errorServicio) => {
           if(errorServicio.status == 404){
           }
