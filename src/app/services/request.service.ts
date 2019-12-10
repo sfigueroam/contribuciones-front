@@ -73,11 +73,7 @@ export class RequestService {
     return new Promise((resolve, reject) => {
       this.http.request(servicio.method,
         'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/liquidacion/deudasrol/1900102013',
-        {
-          body: rol,
-          responseType: 'json',
-          headers: headers
-        }
+        rol
       ).subscribe(
         data => {
           resolve(data);
