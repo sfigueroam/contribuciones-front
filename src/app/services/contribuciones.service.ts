@@ -227,7 +227,7 @@ export class ContribucionesService {
   // JMS: servicio directo sin pasar por request.service
   obtieneDeuda(rol: number): Observable<any>{
     const idRol = rol;
-    const url = environment.urlApiObtieneDeuda + idRol;
+    const url = environment.servicios.urlApiObtieneDeuda.url + idRol;
     console.log("rol obtieneDeuda servicio contribuciones", idRol);
     console.log("url de environment", url)
     return this.http.get(url);
