@@ -62,30 +62,30 @@ export class RequestService {
     });
   }
   // JMS: funcion que llama al servicio tierra del back para buscar cuotas
-    public request2(servicio: { url: string, method: string }, rol?): Promise<{}> {
-    let headers = {};
-    if (this.jwtCognito.jwt !== undefined) {
-      headers = new HttpHeaders({
-        Authorization: this.jwtCognito.jwt
-      });
-    }
+  //   public request2(servicio: { url: string, method: string }, rol?): Promise<{}> {
+  //   let headers = {};
+  //   if (this.jwtCognito.jwt !== undefined) {
+  //     headers = new HttpHeaders({
+  //       Authorization: this.jwtCognito.jwt
+  //     });
+  //   }
 
-    return new Promise((resolve, reject) => {
-      this.http.request(servicio.method,
-        'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/liquidacion/deudasrol/1900102013',
-        rol
-      ).subscribe(
-        data => {
-          resolve(data);
-        },
-        err => {
-          console.log('Error', err);
-          console.log("url a resolver", servicio.url);
-          reject();
-        }
-      );
-    });
-  }
+  //   return new Promise((resolve, reject) => {
+  //     this.http.request(servicio.method,
+  //       'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/liquidacion/deudasrol/1900102013',
+  //       rol
+  //     ).subscribe(
+  //       data => {
+  //         resolve(data);
+  //       },
+  //       err => {
+  //         console.log('Error', err);
+  //         console.log("url a resolver", servicio.url);
+  //         reject();
+  //       }
+  //     );
+  //   });
+  // }
   
   
 

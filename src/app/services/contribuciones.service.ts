@@ -8,6 +8,8 @@ import {CuotaDetalle} from '../domain/CuotaDetalle';
 import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
 import {UserDataService} from '../user-data.service';
+import {HttpClient} from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,8 @@ export class ContribucionesService {
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
-              private userdataservice: UserDataService,) {
+              private userdataservice: UserDataService,
+              private http: HttpClient) {
 
   }
 
@@ -213,18 +216,20 @@ export class ContribucionesService {
     return this.requestService.request(obtenerBienRaizAsociado);
   }
 //JMS: Servicio específico que carga la deuda del rol
-  // private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
-  //   const body = {
-  //     'idRol': rol,
-  //     'listaCuotas': Array.from(cuotas.values()),
-  //   };
-  //   console.log("body de getDeudaByRol", body);
-  //   return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
-  // }
-  private getDeudaByRol(rol: number): Promise<{}>{
+  private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
+    const body = {
+      'idRol': rol,
+      'listaCuotas': Array.from(cuotas.values()),
+    };
+    console.log("body de getDeudaByRol", body);
+    return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
+  }
+  // JMS: servicio directo sin pasar por request.service
+  obtieneDeuda(rol: number): Observable<any>{
     const idRol = rol;
-    console.log("rol getDeudaByRol", idRol);
-    return this.requestService.request2(environment.servicios.recuperarDeudaRol, idRol);
+    const url = environment.urlApiObtieneDeuda + idRol;
+    console.log("rol obtieneDeuda servicio contribuciones", idRol);
+    return this.http.get(url);
   }
   
 

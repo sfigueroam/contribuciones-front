@@ -73,6 +73,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   reg: string;
   canal: string;
   providerConex: string;
+  // JMS: variable que trae las cuotas
+  listacuotas: any;
   
   @ViewChildren(TooltipDirective) tooltipDirective;
 
@@ -113,6 +115,30 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    // JMS: carga de cuotas
+    this.contribuciones.obtieneDeuda(1900102013).subscribe(
+        data => {
+          data.data.forEach(element=>{
+            this.listacuotas.push(element);
+            console.log("lista cuotas",this.listacuotas)
+          })
+        },(errorServicio) => {
+          if(errorServicio.status == 404){
+          }
+           if(errorServicio.status == 500){
+            // this.errorServidor = true;
+            // this.enEspera = false;
+            // this.botonVolver = true;
+          }
+          
+          if(errorServicio.status == 403){
+            // this.enEspera = false;
+            // this.captcha2= true;
+          }
+        }
+    );
+    
+    
     // prueba de deteccion de dispositivo
     this.canal = '';
     this.reg = '';
