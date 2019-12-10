@@ -229,6 +229,7 @@ export class ContribucionesService {
     const idRol = rol;
     const url = environment.urlApiObtieneDeuda + idRol;
     console.log("rol obtieneDeuda servicio contribuciones", idRol);
+    console.log("url de environment", url)
     return this.http.get(url);
   }
   
