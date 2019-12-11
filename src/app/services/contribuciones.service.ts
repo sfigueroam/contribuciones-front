@@ -246,10 +246,56 @@ export class ContribucionesService {
     }
   }
   // JMS: Nuevo metodo para cargar cada unos de los roles
-  cargaRol(rol: Rol): Observable<any> {
-      console.log("rol dentro de cargarol",rol)
-      return this.obtieneDeuda(rol.rol);
-  }
+  // cargaRol(rol: Rol): Observable<any> {
+  //     console.log("rol dentro de cargarol",rol.rol);
+  //     (data: any[]) => {
+  //           const mapCuotas = new Map<string, Cuota>();
+  //           for (const deuda of data) {
+  //             const cuota = new Cuota(deuda);
+  //             mapCuotas.set(cuota.numeroCuota, cuota);
+  //             rol.cuotas.push(cuota);
+  //             console.log("cuota", cuota);
+  //           }
+  //     return this.obtieneDeuda(rol.rol);
+  // } 
+  // }
+  cargaRol(rol: Rol): Promise<any> {
+     if (rol.cuotas.length > 0) {
+       return new Promise((resolve, reject) => {
+         resolve();
+         console.log("cargarRol en servicio contribuciones", rol.cuotas);
+       });
+      
+
+     } else {
+       return new Promise(
+         (resolve, reject) => this.getDeudaByRol(rol.rol).then(
+           (data: { listaDeudaRol: any[], noLiq: any }) => {
+             this.userdataservice.deudaNoLiquidable = data.noLiq;
+             const mapCuotas = new Map<string, Cuota>();
+             for (const deuda of data.listaDeudaRol) {
+               const cuota = new Cuota(deuda);
+               mapCuotas.set(cuota.numeroCuota, cuota);
+               rol.cuotas.push(cuota);
+               console.log("cuota", cuota);
+             }
+             this.getDeudaByRol(rol.rol).then(
+               (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
+                 for (const deuda of data2.listaDeudaRol) {
+                   const cuota = mapCuotas.get(deuda.numeroCuota);
+                   cuota.liqParcial = new CuotaDetalle(deuda);
+                 }
+                 rol.isProcess = true;
+                 resolve();
+               },
+               (err) => reject(err)
+             );
+           },
+           (err) => reject(err)
+         )
+       );
+     }
+  };
   
 
 
