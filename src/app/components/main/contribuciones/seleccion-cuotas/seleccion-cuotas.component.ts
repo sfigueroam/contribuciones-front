@@ -203,31 +203,31 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.contribuciones.cargaRoles();
         console.log("propiedad prueba", propiedades)
         // JMS: fin prueba
-        this.contribuciones.cargarRoles().then(
-          () => {
-            console.log("lista propiedades seleccion de cuotas",propiedades);
+        // this.contribuciones.cargarRoles().then(
+        //   () => {
+        //     console.log("lista propiedades seleccion de cuotas",propiedades);
             
-            this.complete = true;
-            this.abrirPrimerRol();
-            this.calcularTotal();
-            this.obteniendoDatos = false;
-            for (const p of this.propiedades) {
-              p.changeStream.subscribe(
-                () => {
-                  //this.user.eliminarPropiedad(p.idDireccion);
-                  this.calcularTotal();
-                }
-              );
-              this.noLiqVar = this.userdataservice.deudaNoLiquidable;
-              console.log(this.noLiqVar);
-            }
-          },
-          err => {
-            this.obteniendoDatos = false;
-            console.log(err);
-            this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles', environment.snackbarTime);
-          }
-        );
+        //     this.complete = true;
+        //     this.abrirPrimerRol();
+        //     this.calcularTotal();
+        //     this.obteniendoDatos = false;
+        //     for (const p of this.propiedades) {
+        //       p.changeStream.subscribe(
+        //         () => {
+        //           //this.user.eliminarPropiedad(p.idDireccion);
+        //           this.calcularTotal();
+        //         }
+        //       );
+        //       this.noLiqVar = this.userdataservice.deudaNoLiquidable;
+        //       console.log(this.noLiqVar);
+        //     }
+        //   },
+        //   err => {
+        //     this.obteniendoDatos = false;
+        //     console.log(err);
+        //     this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles', environment.snackbarTime);
+        //   }
+        // );
       },
       err => {
         console.log(err);
