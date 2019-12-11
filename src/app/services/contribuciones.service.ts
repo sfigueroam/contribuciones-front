@@ -235,8 +235,8 @@ export class ContribucionesService {
   }
   // JMS: Nuevo metodo para cargar los roles del front
    async cargaRoles(): Promise<any> {
-    for (const propiedad of this.propiedades) {
-      for (const rol of propiedad.roles) {
+    for (const propiedad1 of this.propiedades) {
+      for (const rol of propiedad1.roles) {
         if (!rol.isProcess) {
           await this.cargaRol(rol);
         }

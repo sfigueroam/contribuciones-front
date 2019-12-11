@@ -201,6 +201,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.openHelp();
         // JMS: prueba del carga roles
         this.contribuciones.cargaRoles();
+        console.log("propiedad prueba", propiedades)
         // JMS: fin prueba
         this.contribuciones.cargarRoles().then(
           () => {
