@@ -128,7 +128,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             // this.enEspera = false;
             // this.botonVolver = true;
           }
-          
           if(errorServicio.status == 403){
             // this.enEspera = false;
             // this.captcha2= true;
@@ -200,7 +199,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       (propiedades) => {
         this.propiedades = propiedades;
         this.openHelp();
-        
+        // JMS: prueba del carga roles
+        this.contribuciones.cargaRoles();
+        // JMS: fin prueba
         this.contribuciones.cargarRoles().then(
           () => {
             console.log("lista propiedades seleccion de cuotas",propiedades);

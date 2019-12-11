@@ -233,6 +233,21 @@ export class ContribucionesService {
     console.log("url de environment", url)
     return this.http.get(url);
   }
+  // JMS: Nuevo metodo para cargar los roles del front
+   async cargaRoles(): Promise<any> {
+    for (const propiedad of this.propiedades) {
+      for (const rol of propiedad.roles) {
+        if (!rol.isProcess) {
+          await this.cargaRol(rol);
+        }
+        rol.complete();
+      }
+    }
+  }
+  // JMS: Nuevo metodo para cargar cada unos de los roles
+  cargaRol(rol: Rol): Observable<any> {
+      return this.obtieneDeuda(rol.rol);
+  }
   
 
 
