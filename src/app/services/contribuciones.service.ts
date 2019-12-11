@@ -239,7 +239,8 @@ export class ContribucionesService {
       for (const rol of propiedad.roles) {
         console.log("rol dentro cargaRoles", rol)
         if (!rol.isProcess) {
-          await this.cargaRol(rol);
+          // await this.cargaRol(rol);
+          console.log("propiedades ", this.propiedades)
         }
         rol.complete();
       }
