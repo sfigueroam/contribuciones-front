@@ -71,7 +71,7 @@ export class ContribucionesService {
           (data: { curout: any }) => {
             this.propiedades = this.util.procesarPropiedades(data.curout);
             resolve(this.propiedades);
-            console.log("Lista propiedades updateBienesRaices",this.propiedades);
+            // console.log("Lista propiedades updateBienesRaices",this.propiedades);
           }
         ).catch((err) => {
           console.error(err);
@@ -86,7 +86,7 @@ export class ContribucionesService {
     if (this.propiedades) {
       return new Promise((resolve) => {
         resolve(this.propiedades);
-        console.log("lista propiedades getBienesRaices 1",this.propiedades);
+        // console.log("lista propiedades getBienesRaices 1",this.propiedades);
       });
     } else {
       return this.updateBienesRaices(rut);
@@ -229,15 +229,15 @@ export class ContribucionesService {
     const idRol = rol;
     // const url = environment.servicios.urlApiObtieneDeuda.url + idRol;
     const url = 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/liquidacion/deudasrol/' + idRol;
-    console.log("rol obtieneDeuda servicio contribuciones", idRol);
-    console.log("url de environment", url)
+    // console.log("rol obtieneDeuda servicio contribuciones", idRol);
+    // console.log("url de environment", url)
     return this.http.get(url);
   }
   // JMS: Nuevo metodo para cargar los roles del front
    async cargaRoles(): Promise<any> {
     for (const propiedad of this.propiedades) {
       for (const rol of propiedad.roles) {
-        console.log("rol dentro cargaRoles", rol)
+        // console.log("rol dentro cargaRoles", rol)
         // if (!rol.isProcess) {
         //     await this.cargaRol(rol);
         //   console.log("propiedades ", this.propiedades)
