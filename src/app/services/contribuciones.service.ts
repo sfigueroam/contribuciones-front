@@ -238,10 +238,10 @@ export class ContribucionesService {
     for (const propiedad of this.propiedades) {
       for (const rol of propiedad.roles) {
         console.log("rol dentro cargaRoles", rol)
-        if (!rol.isProcess) {
-            await this.cargaRol(rol);
-          console.log("propiedades ", this.propiedades)
-        }
+        // if (!rol.isProcess) {
+        //     await this.cargaRol(rol);
+        //   console.log("propiedades ", this.propiedades)
+        // }
         rol.complete();
       }
     }
@@ -260,43 +260,43 @@ export class ContribucionesService {
   //     return this.obtieneDeuda(rol.rol);
   // } 
   // }
-  cargaRol(rol: Rol): Promise<any> {
-     if (rol.cuotas.length > 0) {
-       return new Promise((resolve, reject) => {
-         resolve();
-         console.log("cargarRol en servicio contribuciones", rol.cuotas);
-       });
+  // cargaRol(rol: Rol): Promise<any> {
+  //   if (rol.cuotas.length > 0) {
+  //     return new Promise((resolve, reject) => {
+  //       resolve();
+  //       console.log("cargarRol en servicio contribuciones", rol.cuotas);
+  //     });
       
 
-     } else {
-       return new Promise(
-         (resolve, reject) => this.getDeudaByRol(rol.rol).then(
-           (data: { listaDeudaRol: any[], noLiq: any }) => {
-             this.userdataservice.deudaNoLiquidable = data.noLiq;
-             const mapCuotas = new Map<string, Cuota>();
-             for (const deuda of data.listaDeudaRol) {
-               const cuota = new Cuota(deuda);
-               mapCuotas.set(cuota.numeroCuota, cuota);
-               rol.cuotas.push(cuota);
-               console.log("cuota", cuota);
-             }
-             this.getDeudaByRol(rol.rol).then(
-               (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
-                 for (const deuda of data2.listaDeudaRol) {
-                   const cuota = mapCuotas.get(deuda.numeroCuota);
-                   cuota.liqParcial = new CuotaDetalle(deuda);
-                 }
-                 rol.isProcess = true;
-                 resolve();
-               },
-               (err) => reject(err)
-             );
-           },
-           (err) => reject(err)
-         )
-       );
-     }
-  };
+  //   } else {
+  //     return new Promise(
+  //       (resolve, reject) => this.getDeudaByRol(rol.rol).then(
+  //         (data: { listaDeudaRol: any[], noLiq: any }) => {
+  //           this.userdataservice.deudaNoLiquidable = data.noLiq;
+  //           const mapCuotas = new Map<string, Cuota>();
+  //           for (const deuda of data.listaDeudaRol) {
+  //             const cuota = new Cuota(deuda);
+  //             mapCuotas.set(cuota.numeroCuota, cuota);
+  //             rol.cuotas.push(cuota);
+  //             console.log("cuota", cuota);
+  //           }
+  //           this.getDeudaByRol(rol.rol).then(
+  //             (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
+  //               for (const deuda of data2.listaDeudaRol) {
+  //                 const cuota = mapCuotas.get(deuda.numeroCuota);
+  //                 cuota.liqParcial = new CuotaDetalle(deuda);
+  //               }
+  //               rol.isProcess = true;
+  //               resolve();
+  //             },
+  //             (err) => reject(err)
+  //           );
+  //         },
+  //         (err) => reject(err)
+  //       )
+  //     );
+  //   }
+  // };
   
 
 

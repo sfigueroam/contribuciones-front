@@ -119,21 +119,17 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     this.contribuciones.obtieneDeuda(1900102013).subscribe(
         data => {
             this.listacuotas = data;
-            console.log("lista cuotas",this.listacuotas)
+            // console.log("lista cuotas",this.listacuotas)
         },(errorServicio) => {
           if(errorServicio.status == 404){
           }
            if(errorServicio.status == 500){
-            // this.errorServidor = true;
-            // this.enEspera = false;
-            // this.botonVolver = true;
           }
           if(errorServicio.status == 403){
-            // this.enEspera = false;
-            // this.captcha2= true;
           }
         }
     );
+    
     
     
     // prueba de deteccion de dispositivo
@@ -202,7 +198,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.openHelp();
         // JMS: prueba del carga roles
         this.contribuciones.cargaRoles();
-        console.log("propiedad prueba", propiedades)
+        console.log("propiedades despues de cargaRoles", propiedades);
+        console.log("lista cuotas", this.listacuotas);
         // JMS: fin prueba
         // this.contribuciones.cargarRoles().then(
         //   () => {
