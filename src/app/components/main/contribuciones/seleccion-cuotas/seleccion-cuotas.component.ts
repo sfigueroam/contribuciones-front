@@ -209,7 +209,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             data => {
                 this.listacuotas = data;
                 console.log("lista cuotas",this.listacuotas)
+                console.log("data ", data)
                 rol.cuotas = this.listacuotas;
+                this.userdataservice.deudaNoLiquidable = data.noLiq;
                 console.log("rol ", rol)
               },(errorServicio) => {
                 if(errorServicio.status == 404){
@@ -222,6 +224,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             );
           }
         }
+        
         console.log("propiedades despues de proceso ", propiedades)
 
         // JMS: llenar la lista de propiedades
