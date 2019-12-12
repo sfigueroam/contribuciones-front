@@ -194,6 +194,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles sugeridos', environment.snackbarTime);
       }
     );
+    
 //JMS: acá carga los roles de las propiedades
     this.user.getBienesRaices().then(
       (propiedades) => {
