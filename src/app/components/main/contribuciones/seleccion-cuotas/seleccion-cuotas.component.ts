@@ -208,7 +208,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.contribuciones.obtieneDeuda(rol.rol).subscribe(
             data => {
                 this.listacuotas = data;
-                // console.log("lista cuotas",this.listacuotas)
+                console.log("lista cuotas",this.listacuotas)
+                rol.cuotas = this.listacuotas;
+                console.log("rol ", rol)
               },(errorServicio) => {
                 if(errorServicio.status == 404){
                 }
@@ -218,9 +220,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 }
               }
             );
-            rol.cuotas = this.listacuotas;
-            console.log("rol ", rol);
-            console.log("lista cuotas ", this.listacuotas);
           }
         }
 
