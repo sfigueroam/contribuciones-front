@@ -204,19 +204,22 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           for (let rol of propiedad.roles){
             console.log("propiedad ", propiedad);
             console.log("rol ", rol);
-            // this.contribuciones.obtieneDeuda(propiedad.roles.rol).subscribe(
-            // data => {
-            //     this.listacuotas = data;
-            //     console.log("lista cuotas",this.listacuotas)
-            //   },(errorServicio) => {
-            //     if(errorServicio.status == 404){
-            //     }
-            //     if(errorServicio.status == 500){
-            //     }
-            //     if(errorServicio.status == 403){
-            //     }
-            //   }
-            // );
+            // JMS: llama a servicio que obtiene cuota
+            this.contribuciones.obtieneDeuda(rol.rol).subscribe(
+            data => {
+                this.listacuotas = data;
+                console.log("lista cuotas",this.listacuotas)
+              },(errorServicio) => {
+                if(errorServicio.status == 404){
+                }
+                if(errorServicio.status == 500){
+                }
+                if(errorServicio.status == 403){
+                }
+              }
+            );
+            rol.cuotas = this.listacuotas;
+            console.log("rol ", rol);
           }
         }
 
