@@ -222,6 +222,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             );
           }
         }
+        console.log("propiedades despues de proceso ", propiedades)
 
         // JMS: llenar la lista de propiedades
         
