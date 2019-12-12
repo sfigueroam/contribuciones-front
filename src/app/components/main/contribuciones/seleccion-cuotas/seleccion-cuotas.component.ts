@@ -199,19 +199,30 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         // JMS: prueba del carga roles
         this.contribuciones.cargaRoles();
         console.log("propiedades despues de cargaRoles", propiedades);
-        this.contribuciones.obtieneDeuda(1900102013).subscribe(
-        data => {
-            this.listacuotas = data;
-            console.log("lista cuotas",this.listacuotas)
-        },(errorServicio) => {
-          if(errorServicio.status == 404){
-          }
-           if(errorServicio.status == 500){
-          }
-          if(errorServicio.status == 403){
+        const totalPropiedades = propiedades.length;
+        for (let propiedad of propiedades){
+          for (let rol of propiedad.roles){
+            console.log("propiedad ", propiedad);
+            console.log("rol ", rol);
+            // this.contribuciones.obtieneDeuda(propiedad.roles.rol).subscribe(
+            // data => {
+            //     this.listacuotas = data;
+            //     console.log("lista cuotas",this.listacuotas)
+            //   },(errorServicio) => {
+            //     if(errorServicio.status == 404){
+            //     }
+            //     if(errorServicio.status == 500){
+            //     }
+            //     if(errorServicio.status == 403){
+            //     }
+            //   }
+            // );
           }
         }
-    );
+
+        // JMS: llenar la lista de propiedades
+        
+        console.log("total propiedades: ", totalPropiedades);
         
         
         this.imprimeListas();
