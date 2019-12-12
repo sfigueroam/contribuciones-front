@@ -116,19 +116,19 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // JMS: carga de cuotas
-    this.contribuciones.obtieneDeuda(1900102013).subscribe(
-        data => {
-            this.listacuotas = data;
-            // console.log("lista cuotas",this.listacuotas)
-        },(errorServicio) => {
-          if(errorServicio.status == 404){
-          }
-           if(errorServicio.status == 500){
-          }
-          if(errorServicio.status == 403){
-          }
-        }
-    );
+    // this.contribuciones.obtieneDeuda(1900102013).subscribe(
+    //     data => {
+    //         this.listacuotas = data;
+    //         // console.log("lista cuotas",this.listacuotas)
+    //     },(errorServicio) => {
+    //       if(errorServicio.status == 404){
+    //       }
+    //       if(errorServicio.status == 500){
+    //       }
+    //       if(errorServicio.status == 403){
+    //       }
+    //     }
+    // );
     
     
     
@@ -199,6 +199,21 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         // JMS: prueba del carga roles
         this.contribuciones.cargaRoles();
         console.log("propiedades despues de cargaRoles", propiedades);
+        this.contribuciones.obtieneDeuda(1900102013).subscribe(
+        data => {
+            this.listacuotas = data;
+            // console.log("lista cuotas",this.listacuotas)
+        },(errorServicio) => {
+          if(errorServicio.status == 404){
+          }
+           if(errorServicio.status == 500){
+          }
+          if(errorServicio.status == 403){
+          }
+        }
+    );
+        
+        
         this.imprimeListas();
         // JMS: fin prueba
         // this.contribuciones.cargarRoles().then(
