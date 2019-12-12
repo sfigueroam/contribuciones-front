@@ -202,7 +202,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.contribuciones.obtieneDeuda(1900102013).subscribe(
         data => {
             this.listacuotas = data;
-            // console.log("lista cuotas",this.listacuotas)
+            console.log("lista cuotas",this.listacuotas)
         },(errorServicio) => {
           if(errorServicio.status == 404){
           }
