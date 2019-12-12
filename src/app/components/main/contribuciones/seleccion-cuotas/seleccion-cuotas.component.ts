@@ -209,9 +209,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             data => {
                 this.listacuotas = data;
                 console.log("lista cuotas",this.listacuotas)
-                console.log("data ", data)
+                console.log("data ", data.outNoLiq)
                 rol.cuotas = this.listacuotas;
-                this.userdataservice.deudaNoLiquidable = data.noLiq;
+                this.userdataservice.deudaNoLiquidable = data.outNoLiq;
                 console.log("rol ", rol)
               },(errorServicio) => {
                 if(errorServicio.status == 404){
