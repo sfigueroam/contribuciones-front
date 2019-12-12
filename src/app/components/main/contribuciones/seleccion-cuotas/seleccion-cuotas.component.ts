@@ -199,7 +199,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         // JMS: prueba del carga roles
         this.contribuciones.cargaRoles();
         console.log("propiedades despues de cargaRoles", propiedades);
-        console.log("lista cuotas", this.listacuotas);
+        this.imprimeListas;
         // JMS: fin prueba
         // this.contribuciones.cargarRoles().then(
         //   () => {
@@ -235,6 +235,11 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     );
 
   }
+  private imprimeListas(){
+    console.log("ListaCuotas",this.listacuotas);
+    console.log("propiedades",this.propiedades);
+  }
+  
   
 
   private calcularTotal() {
