@@ -60,7 +60,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
     );
 
-    console.log(this.rol.rol);
+    console.log("rol en rol-cuotas:", this.rol.rol);
 
 
   }
