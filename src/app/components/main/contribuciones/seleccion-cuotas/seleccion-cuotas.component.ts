@@ -199,28 +199,30 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.openHelp();
         // JMS: prueba del carga roles
         this.contribuciones.cargaRoles();
-        console.log("propiedades despues de cargaRoles", propiedades);
+        // console.log("propiedades despues de cargaRoles", propiedades);
         // const totalPropiedades = propiedades.length;
         for (let propiedad of propiedades){
           for (let rol of propiedad.roles){
-            console.log("propiedad ", propiedad);
-            console.log("rol ", rol);
+            // console.log("propiedad ", propiedad);
+            // console.log("rol ", rol);
             // JMS: llama a servicio que obtiene cuota
             this.contribuciones.obtieneDeuda(rol.rol).subscribe(
             data => {
                 this.listacuotas = data;
-                console.log("lista cuotas",this.listacuotas)
-                console.log("data ", data.outNoLiq)
+                // console.log("lista cuotas",this.listacuotas)
+                // console.log("data ", data.outNoLiq)
                 rol.cuotas = this.listacuotas;
                 this.userdataservice.deudaNoLiquidable = data.outNoLiq;
-                console.log("rol ", rol);
-                const mapCuotas = new Map<string, Cuota>();
-                for (const deuda of data.listaDeudaRol) {
-                  const cuota = new Cuota(deuda);
-                  mapCuotas.set(cuota.numeroCuota, cuota);
-                  rol.cuotas.push(cuota);
-                  console.log("cuotas ", cuota);
-                }
+                // console.log("rol ", rol);
+                // JMS: mapea las cuotas pero tiene problemas con el length
+                // const mapCuotas = new Map<string, Cuota>();
+                // for (const deuda of data.listaDeudaRol) {
+                //   const cuota = new Cuota(deuda);
+                //   mapCuotas.set(cuota.numeroCuota, cuota);
+                //   rol.cuotas.push(cuota);
+                //   console.log("cuotas ", cuota);
+                // }
+                console.log("propiedades con toda la data",propiedades);
               },(errorServicio) => {
                 if(errorServicio.status == 404){
                 }
