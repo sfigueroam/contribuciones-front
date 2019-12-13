@@ -209,6 +209,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.contribuciones.obtieneDeuda(rol.rol).subscribe(
             data => {
                 this.listacuotas = data;
+                console.log("data", data);
                 // console.log("lista cuotas",this.listacuotas)
                 // console.log("data ", data.outNoLiq)
                 rol.cuotas = this.listacuotas;
@@ -222,6 +223,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 //   rol.cuotas.push(cuota);
                 //   console.log("cuotas ", cuota);
                 // }
+                
                 console.log("lista cuotas lenght ", this.listacuotas.length);
                 console.log("propiedades con toda la data",propiedades);
               },(errorServicio) => {
