@@ -219,6 +219,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                   const cuota = new Cuota(deuda);
                   mapCuotas.set(cuota.numeroCuota, cuota);
                   rol.cuotas.push(cuota);
+                  console.log("cuotas ", cuota);
                 }
               },(errorServicio) => {
                 if(errorServicio.status == 404){
