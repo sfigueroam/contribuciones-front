@@ -217,7 +217,10 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 // console.log("rol ", rol);
                 // JMS: mapea las cuotas pero tiene problemas con el length
                 const mapCuotas = new Map<string, Cuota>();
+                console.log("mapcuotas");
+                console.log("Cuota despues map", Cuota)
                 for (const deuda of data.listaDeudas.nroCuota) {
+                  console.log("nro cuota",data.listaDeudas.nroCuota);
                   const cuota = new Cuota(deuda);
                   mapCuotas.set(cuota.numeroCuota, cuota);
                   console.log("cuotas1", cuota);
