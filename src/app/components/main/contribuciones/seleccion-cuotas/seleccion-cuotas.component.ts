@@ -220,6 +220,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 for (const deuda of data.listaDeudas.nroCuota) {
                   const cuota = new Cuota(deuda);
                   mapCuotas.set(cuota.numeroCuota, cuota);
+                  console.log("cuotas1", cuota);
                   rol.cuotas.push(cuota);
                   console.log("cuotas ", cuota);
                 }
