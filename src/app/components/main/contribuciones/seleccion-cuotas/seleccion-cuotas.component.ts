@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
+import {Cuota} from '../../../../domain/Cuota';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
@@ -212,7 +213,13 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 console.log("data ", data.outNoLiq)
                 rol.cuotas = this.listacuotas;
                 this.userdataservice.deudaNoLiquidable = data.outNoLiq;
-                console.log("rol ", rol)
+                console.log("rol ", rol);
+                const mapCuotas = new Map<string, Cuota>();
+                for (const deuda of data.listaDeudaRol) {
+                  const cuota = new Cuota(deuda);
+                  mapCuotas.set(cuota.numeroCuota, cuota);
+                  rol.cuotas.push(cuota);
+                }
               },(errorServicio) => {
                 if(errorServicio.status == 404){
                 }
