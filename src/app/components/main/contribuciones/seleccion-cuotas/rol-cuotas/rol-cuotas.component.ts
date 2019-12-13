@@ -112,6 +112,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   checkCuota(cuota: Cuota) {
+    console.log("cuota ", cuota);
     cuota.changeIntencionPago();
   }
 
