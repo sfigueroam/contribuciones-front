@@ -410,6 +410,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   abrirPrimerRol(): void {
     const direccionCuotasList = this.direccionCuotasComponentList.toArray();
+    console.log("direccion cuotas list", direccionCuotasList);
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
       direccionCuotasList[0].abrirPrimerRol();
     }
