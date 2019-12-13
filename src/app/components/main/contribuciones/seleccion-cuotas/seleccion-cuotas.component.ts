@@ -209,6 +209,10 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.contribuciones.obtieneDeuda(rol.rol).subscribe(
             data => {
                 this.listacuotas = data;
+                this.complete = true;
+                this.abrirPrimerRol();
+                this.calcularTotal();
+                this.obteniendoDatos = false;
                 console.log("data", data);
                 // console.log("lista cuotas",this.listacuotas)
                 // console.log("data ", data.outNoLiq)
@@ -244,11 +248,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         console.log("propiedades despues de proceso ", propiedades)
 
         // JMS: llenar la lista de propiedades
-        
-        
-        
-        
-        this.imprimeListas();
+
         // JMS: fin prueba
         // this.contribuciones.cargarRoles().then(
         //   () => {
