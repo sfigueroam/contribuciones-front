@@ -166,17 +166,15 @@ export class ContribucionesService {
   
   //JMS: se modifica servicio con nuevas directrices
 
-  // private cargarRol(rol: Rol): Promise<any> {
+  // private cargaRol(rol: Rol): Promise<any> {
   //   if (rol.cuotas.length > 0) {
   //     return new Promise((resolve, reject) => {
   //       resolve();
-  //       console.log("cargarRol en servicio contribuciones", rol.cuotas);
   //     });
-      
 
   //   } else {
   //     return new Promise(
-  //       (resolve, reject) => this.getDeudaByRol(rol.rol).then(
+  //       (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
   //         (data: { listaDeudaRol: any[], noLiq: any }) => {
   //           this.userdataservice.deudaNoLiquidable = data.noLiq;
   //           const mapCuotas = new Map<string, Cuota>();
@@ -184,9 +182,8 @@ export class ContribucionesService {
   //             const cuota = new Cuota(deuda);
   //             mapCuotas.set(cuota.numeroCuota, cuota);
   //             rol.cuotas.push(cuota);
-  //             console.log("cuota", cuota);
   //           }
-  //           this.getDeudaByRol(rol.rol).then(
+  //           this.getDeudaByRol(rol.rol, rol.getCuotasDeseleccionadas()).then(
   //             (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
   //               for (const deuda of data2.listaDeudaRol) {
   //                 const cuota = mapCuotas.get(deuda.numeroCuota);
@@ -203,7 +200,6 @@ export class ContribucionesService {
   //     );
   //   }
   // }
-  
 
 
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
@@ -234,18 +230,18 @@ export class ContribucionesService {
     return this.http.get(url);
   }
   // JMS: Nuevo metodo para cargar los roles del front
-   async cargaRoles(): Promise<any> {
-    for (const propiedad of this.propiedades) {
-      for (const rol of propiedad.roles) {
-        // console.log("rol dentro cargaRoles", rol)
-        // if (!rol.isProcess) {
-        //     await this.cargaRol(rol);
-        //   console.log("propiedades ", this.propiedades)
-        // }
-        rol.complete();
-      }
-    }
-  }
+  // async cargaRoles(): Promise<any> {
+  //   for (const propiedad of this.propiedades) {
+  //     for (const rol of propiedad.roles) {
+  //       console.log("rol dentro cargaRoles", rol)
+  //       if (!rol.isProcess) {
+  //           await this.cargaRol(rol);
+  //         console.log("propiedades ", this.propiedades)
+  //       }
+  //       rol.complete();
+  //     }
+  //   }
+  // }
   // JMS: Nuevo metodo para cargar cada unos de los roles
   // cargaRol(rol: Rol): Observable<any> {
   //     console.log("rol dentro de cargarol",rol.rol);
@@ -255,7 +251,7 @@ export class ContribucionesService {
   //             const cuota = new Cuota(deuda);
   //             mapCuotas.set(cuota.numeroCuota, cuota);
   //             rol.cuotas.push(cuota);
-  //             console.log("cuota", cuota);
+  //             console.log ("cuota", cuota);
   //           }
   //     return this.obtieneDeuda(rol.rol);
   // } 

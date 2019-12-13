@@ -198,7 +198,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.propiedades = propiedades;
         this.openHelp();
         // JMS: prueba del carga roles
-        this.contribuciones.cargaRoles();
+        // this.contribuciones.cargaRoles();
         // console.log("propiedades despues de cargaRoles", propiedades);
         // const totalPropiedades = propiedades.length;
         for (let propiedad of propiedades){
@@ -220,17 +220,17 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 this.userdataservice.deudaNoLiquidable = data.outNoLiq;
                 // console.log("rol ", rol);
                 // JMS: mapea las cuotas pero tiene problemas con el length
-                const mapCuotas = new Map<string, Cuota>();
-                console.log("mapcuotas");
-                console.log("Cuota despues map", Cuota)
-                for (const deuda of data.listaDeudas.nroCuota) {
-                  console.log("nro cuota",data.listaDeudas.nroCuota);
-                  const cuota = new Cuota(deuda);
-                  mapCuotas.set(cuota.numeroCuota, cuota);
-                  console.log("cuotas1", cuota);
-                  rol.cuotas.push(cuota);
-                  console.log("cuotas ", cuota);
-                }
+                // const mapCuotas = new Map<string, Cuota>();
+                // console.log("mapcuotas");
+                // console.log("Cuota despues map", Cuota)
+                // for (const deuda of data.listaDeudas.nroCuota) {
+                //   console.log("nro cuota",data.listaDeudas.nroCuota);
+                //   const cuota = new Cuota(deuda);
+                //   mapCuotas.set(cuota.numeroCuota, cuota);
+                //   console.log("cuotas1", cuota);
+                //   rol.cuotas.push(cuota);
+                //   console.log("cuotas ", cuota);
+                // }
                 
                 console.log("propiedades con toda la data",propiedades);
               },(errorServicio) => {
