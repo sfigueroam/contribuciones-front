@@ -62,7 +62,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
     console.log("rol en rol-cuotas:", this.rol.rol);
     console.log("rol completo:", this.rol);
-    console.log("rol completo:", this.rol.cuotas);
+    console.log("rol is complete", this.rol.isComplete);
 
 
   }
