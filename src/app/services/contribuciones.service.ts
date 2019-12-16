@@ -235,7 +235,9 @@ export class ContribucionesService {
       'idRol': rol
       // 'listaCuotas': Array.from(cuotas.values()),
     };
-    return this.requestService.request2(environment.servicios.urlApiObtieneDeuda, body);
+    const url = Object.assign({}, environment.servicios.urlApiObtieneDeuda);
+    url.url = url.url + '/' + body.idRol;
+    return this.requestService.request2(url, body);
   }
 
 
