@@ -236,8 +236,8 @@ export class ContribucionesService {
 // JMS: copia de captura de rol nuevo servico
   private obtieneDeuda(rol, cuotas?: any): Promise<{}> {
     const body = {
-      'idRol': rol
-      // 'listaCuotas': Array.from(cuotas.values()),
+      'idRol': rol,
+      'listaCuotas': Array.from(cuotas.values()),
     };
     const url = Object.assign({}, environment.servicios.urlApiObtieneDeuda);
     url.url = url.url + '/' + body.idRol;
