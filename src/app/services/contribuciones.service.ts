@@ -168,6 +168,8 @@ export class ContribucionesService {
       for (const rol of propiedad.roles) {
         console.log("rol.isProcess", rol.isProcess);
         console.log("rol.cuotas", rol.cuotas)
+        console.log("rol", rol);
+        console.log("propiedad", propiedad);
         if (!rol.isProcess) {
           await this.cargaRol(rol);
         }
