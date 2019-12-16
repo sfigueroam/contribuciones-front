@@ -60,8 +60,9 @@ export class RequestService {
     });
   }
   // JMS: copia de request para nuevo servicio
-    public request2(servicio: { url: string, method: string }, rol?): Promise<{}> {
+    public request2(servicio: { url: string, method: string }, body?): Promise<{}> {
     let headers = {};
+    console.log("this.jwrCognito.jwt", this.jwtCognito.jwt)
     if (this.jwtCognito.jwt !== undefined) {
       headers = new HttpHeaders({
         Authorization: this.jwtCognito.jwt
@@ -72,13 +73,14 @@ export class RequestService {
       this.http.request(servicio.method,
         servicio.url,
         {
-          body: rol,
+          body: body,
           responseType: 'json',
           headers: headers
         }
       ).subscribe(
         data => {
           resolve(data);
+          console.log("data dentro de request2",data);
         },
         err => {
           console.log('Error', err);
