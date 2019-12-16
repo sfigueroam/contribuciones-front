@@ -241,6 +241,7 @@ export class ContribucionesService {
     };
     const url = Object.assign({}, environment.servicios.urlApiObtieneDeuda);
     url.url = url.url + '/' + body.idRol;
+    console.log(url);
     return this.requestService.request2(url, body);
   }
 
