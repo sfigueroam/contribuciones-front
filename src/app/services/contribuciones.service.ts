@@ -139,6 +139,8 @@ export class ContribucionesService {
               const cuota = new Cuota(deuda);
               mapCuotas.set(cuota.numeroCuota, cuota);
               rol.cuotas.push(cuota);
+              console.log("data ", data);
+              console.log("listaDeudaRol", data.listaDeudaRol);
             }
             this.getDeudaByRol(rol.rol, rol.getCuotasDeseleccionadas()).then(
               (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
