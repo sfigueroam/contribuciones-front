@@ -82,15 +82,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   toggle() {
-    //javier
     if (this.someTooltip !== undefined) {
       this.someTooltip.hide();
     }
-    // if (this.rol.isComplete) {
-    //   this.expanded = !this.expanded;
-    // } else {
-    //   this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
-    // }
+    if (this.rol.isComplete) {
+      this.expanded = !this.expanded;
+    } else {
+      this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
+    }
   }
 
 
