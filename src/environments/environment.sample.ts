@@ -111,6 +111,11 @@ export const environment = {
       url: urlsBase.api + '/RecuperaDeudaROLRS/api/bienraiz/deuda/rol/obtiene',
       method: 'POST'
     },
+    // JMS: nuevo para buscar en nuevo servicio tierra
+    urlApiObtieneDeuda: { 
+      url: 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/liquidacion/deudasrol', 
+      method: 'GET' 
+    }, 
     buscarBienRaiz: {
       url: urlsBase.api + '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin',
       method: 'POST',
