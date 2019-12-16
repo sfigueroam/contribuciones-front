@@ -8,8 +8,6 @@ import {CuotaDetalle} from '../domain/CuotaDetalle';
 import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
 import {UserDataService} from '../user-data.service';
-import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +19,7 @@ export class ContribucionesService {
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
-              private userdataservice: UserDataService,
-              private http: HttpClient) {
+              private userdataservice: UserDataService,) {
 
   }
 
@@ -71,7 +68,6 @@ export class ContribucionesService {
           (data: { curout: any }) => {
             this.propiedades = this.util.procesarPropiedades(data.curout);
             resolve(this.propiedades);
-            // console.log("Lista propiedades updateBienesRaices",this.propiedades);
           }
         ).catch((err) => {
           console.error(err);
@@ -80,13 +76,12 @@ export class ContribucionesService {
       }
     );
   }
-// lista propiedades con toda su data
+
   getBienesRaices(rut: number): Promise<Propiedad[]> {
 
     if (this.propiedades) {
       return new Promise((resolve) => {
         resolve(this.propiedades);
-        // console.log("lista propiedades getBienesRaices 1",this.propiedades);
       });
     } else {
       return this.updateBienesRaices(rut);
@@ -127,8 +122,7 @@ export class ContribucionesService {
       }
     }
   }
-//JMS: Llamado a servicio que carga la deuda del rol 
-// getDeudaByRol llama la cuota (servicio antiguo)
+
   private cargarRol(rol: Rol): Promise<any> {
     if (rol.cuotas.length > 0) {
       return new Promise((resolve, reject) => {
@@ -163,44 +157,6 @@ export class ContribucionesService {
       );
     }
   }
-  
-  //JMS: se modifica servicio con nuevas directrices
-
-  // private cargaRol(rol: Rol): Promise<any> {
-  //   if (rol.cuotas.length > 0) {
-  //     return new Promise((resolve, reject) => {
-  //       resolve();
-  //     });
-
-  //   } else {
-  //     return new Promise(
-  //       (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
-  //         (data: { listaDeudaRol: any[], noLiq: any }) => {
-  //           this.userdataservice.deudaNoLiquidable = data.noLiq;
-  //           const mapCuotas = new Map<string, Cuota>();
-  //           for (const deuda of data.listaDeudaRol) {
-  //             const cuota = new Cuota(deuda);
-  //             mapCuotas.set(cuota.numeroCuota, cuota);
-  //             rol.cuotas.push(cuota);
-  //           }
-  //           this.getDeudaByRol(rol.rol, rol.getCuotasDeseleccionadas()).then(
-  //             (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
-  //               for (const deuda of data2.listaDeudaRol) {
-  //                 const cuota = mapCuotas.get(deuda.numeroCuota);
-  //                 cuota.liqParcial = new CuotaDetalle(deuda);
-  //               }
-  //               rol.isProcess = true;
-  //               resolve();
-  //             },
-  //             (err) => reject(err)
-  //           );
-  //         },
-  //         (err) => reject(err)
-  //       )
-  //     );
-  //   }
-  // }
-
 
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
     return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
@@ -211,90 +167,14 @@ export class ContribucionesService {
     obtenerBienRaizAsociado.url = obtenerBienRaizAsociado.url + '/' + rut;
     return this.requestService.request(obtenerBienRaizAsociado);
   }
-//JMS: Servicio específico que carga la deuda del rol
+
   private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
     const body = {
       'idRol': rol,
       'listaCuotas': Array.from(cuotas.values()),
     };
-    console.log("body de getDeudaByRol", body);
     return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
   }
-  // JMS: servicio directo sin pasar por request.service
-  obtieneDeuda(rol: number): Observable<any>{
-    const idRol = rol;
-    // const url = environment.servicios.urlApiObtieneDeuda.url + idRol;
-    const url = 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/liquidacion/deudasrol/' + idRol;
-    // console.log("rol obtieneDeuda servicio contribuciones", idRol);
-    // console.log("url de environment", url)
-    return this.http.get(url);
-  }
-  // JMS: Nuevo metodo para cargar los roles del front
-  // async cargaRoles(): Promise<any> {
-  //   for (const propiedad of this.propiedades) {
-  //     for (const rol of propiedad.roles) {
-  //       console.log("rol dentro cargaRoles", rol)
-  //       if (!rol.isProcess) {
-  //           await this.cargaRol(rol);
-  //         console.log("propiedades ", this.propiedades)
-  //       }
-  //       rol.complete();
-  //     }
-  //   }
-  // }
-  // JMS: Nuevo metodo para cargar cada unos de los roles
-  // cargaRol(rol: Rol): Observable<any> {
-  //     console.log("rol dentro de cargarol",rol.rol);
-  //     (data: any[]) => {
-  //           const mapCuotas = new Map<string, Cuota>();
-  //           for (const deuda of data) {
-  //             const cuota = new Cuota(deuda);
-  //             mapCuotas.set(cuota.numeroCuota, cuota);
-  //             rol.cuotas.push(cuota);
-  //             console.log ("cuota", cuota);
-  //           }
-  //     return this.obtieneDeuda(rol.rol);
-  // } 
-  // }
-  // cargaRol(rol: Rol): Promise<any> {
-  //   if (rol.cuotas.length > 0) {
-  //     return new Promise((resolve, reject) => {
-  //       resolve();
-  //       console.log("cargarRol en servicio contribuciones", rol.cuotas);
-  //     });
-      
-
-  //   } else {
-  //     return new Promise(
-  //       (resolve, reject) => this.getDeudaByRol(rol.rol).then(
-  //         (data: { listaDeudaRol: any[], noLiq: any }) => {
-  //           this.userdataservice.deudaNoLiquidable = data.noLiq;
-  //           const mapCuotas = new Map<string, Cuota>();
-  //           for (const deuda of data.listaDeudaRol) {
-  //             const cuota = new Cuota(deuda);
-  //             mapCuotas.set(cuota.numeroCuota, cuota);
-  //             rol.cuotas.push(cuota);
-  //             console.log("cuota", cuota);
-  //           }
-  //           this.getDeudaByRol(rol.rol).then(
-  //             (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
-  //               for (const deuda of data2.listaDeudaRol) {
-  //                 const cuota = mapCuotas.get(deuda.numeroCuota);
-  //                 cuota.liqParcial = new CuotaDetalle(deuda);
-  //               }
-  //               rol.isProcess = true;
-  //               resolve();
-  //             },
-  //             (err) => reject(err)
-  //           );
-  //         },
-  //         (err) => reject(err)
-  //       )
-  //     );
-  //   }
-  // };
-  
-
 
   eliminarPropiedad(rut: number, correo: string, idDireccion: string): Promise<any> {
     return new Promise<any>(

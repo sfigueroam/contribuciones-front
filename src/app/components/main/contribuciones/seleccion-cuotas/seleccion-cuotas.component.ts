@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
-import {Cuota} from '../../../../domain/Cuota';
 import {Propiedad} from '../../../../domain/Propiedad';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
@@ -74,8 +73,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   reg: string;
   canal: string;
   providerConex: string;
-  // JMS: variable que trae las cuotas
-  listacuotas: any;
   
   @ViewChildren(TooltipDirective) tooltipDirective;
 
@@ -116,23 +113,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // JMS: carga de cuotas
-    // this.contribuciones.obtieneDeuda(1900102013).subscribe(
-    //     data => {
-    //         this.listacuotas = data;
-    //         // console.log("lista cuotas",this.listacuotas)
-    //     },(errorServicio) => {
-    //       if(errorServicio.status == 404){
-    //       }
-    //       if(errorServicio.status == 500){
-    //       }
-    //       if(errorServicio.status == 403){
-    //       }
-    //     }
-    // );
-    
-    
-    
     // prueba de deteccion de dispositivo
     this.canal = '';
     this.reg = '';
@@ -191,90 +171,37 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles sugeridos', environment.snackbarTime);
       }
     );
-    
-//JMS: acá carga los roles de las propiedades
+
     this.user.getBienesRaices().then(
       (propiedades) => {
         this.propiedades = propiedades;
         this.openHelp();
-        // JMS: prueba del carga roles
-        // this.contribuciones.cargaRoles();
-        // console.log("propiedades despues de cargaRoles", propiedades);
-        // const totalPropiedades = propiedades.length;
-        for (let propiedad of propiedades){
-          for (let rol of propiedad.roles){
-            // console.log("propiedad ", propiedad);
-            // console.log("rol ", rol);
-            // JMS: llama a servicio que obtiene cuota
-            this.contribuciones.obtieneDeuda(rol.rol).subscribe(
-            data => {
-                this.listacuotas = data;
-                this.complete = true;
-                this.abrirPrimerRol();
-                this.calcularTotal();
-                this.obteniendoDatos = false;
-                console.log("data", data);
-                // console.log("lista cuotas",this.listacuotas)
-                // console.log("data ", data.outNoLiq)
-                rol.cuotas = this.listacuotas;
-                this.userdataservice.deudaNoLiquidable = data.outNoLiq;
-                // console.log("rol ", rol);
-                // JMS: mapea las cuotas pero tiene problemas con el length
-                // const mapCuotas = new Map<string, Cuota>();
-                // console.log("mapcuotas");
-                // console.log("Cuota despues map", Cuota)
-                // for (const deuda of data.listaDeudas.nroCuota) {
-                //   console.log("nro cuota",data.listaDeudas.nroCuota);
-                //   const cuota = new Cuota(deuda);
-                //   mapCuotas.set(cuota.numeroCuota, cuota);
-                //   console.log("cuotas1", cuota);
-                //   rol.cuotas.push(cuota);
-                //   console.log("cuotas ", cuota);
-                // }
-                
-                console.log("propiedades con toda la data",propiedades);
-              },(errorServicio) => {
-                if(errorServicio.status == 404){
-                }
-                if(errorServicio.status == 500){
-                }
-                if(errorServicio.status == 403){
-                }
-              }
-            );
-          }
-        }
         
-        console.log("propiedades despues de proceso ", propiedades)
-
-        // JMS: llenar la lista de propiedades
-
-        // JMS: fin prueba
-        // this.contribuciones.cargarRoles().then(
-        //   () => {
-        //     console.log("lista propiedades seleccion de cuotas",propiedades);
+        this.contribuciones.cargarRoles().then(
+          () => {
+            console.log(propiedades);
             
-        //     this.complete = true;
-        //     this.abrirPrimerRol();
-        //     this.calcularTotal();
-        //     this.obteniendoDatos = false;
-        //     for (const p of this.propiedades) {
-        //       p.changeStream.subscribe(
-        //         () => {
-        //           //this.user.eliminarPropiedad(p.idDireccion);
-        //           this.calcularTotal();
-        //         }
-        //       );
-        //       this.noLiqVar = this.userdataservice.deudaNoLiquidable;
-        //       console.log(this.noLiqVar);
-        //     }
-        //   },
-        //   err => {
-        //     this.obteniendoDatos = false;
-        //     console.log(err);
-        //     this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles', environment.snackbarTime);
-        //   }
-        // );
+            this.complete = true;
+            this.abrirPrimerRol();
+            this.calcularTotal();
+            this.obteniendoDatos = false;
+            for (const p of this.propiedades) {
+              p.changeStream.subscribe(
+                () => {
+                  //this.user.eliminarPropiedad(p.idDireccion);
+                  this.calcularTotal();
+                }
+              );
+              this.noLiqVar = this.userdataservice.deudaNoLiquidable;
+              console.log(this.noLiqVar);
+            }
+          },
+          err => {
+            this.obteniendoDatos = false;
+            console.log(err);
+            this.mdlSnackbarService.showToast('Ocurrió un error al cargar los roles', environment.snackbarTime);
+          }
+        );
       },
       err => {
         console.log(err);
@@ -284,11 +211,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     );
 
   }
-  private imprimeListas(){
-    console.log("ListaCuotas",this.listacuotas);
-    console.log("propiedades",this.propiedades);
-  }
-  
   
 
   private calcularTotal() {
@@ -410,7 +332,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   abrirPrimerRol(): void {
     const direccionCuotasList = this.direccionCuotasComponentList.toArray();
-    console.log("direccion cuotas list", direccionCuotasList);
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
       direccionCuotasList[0].abrirPrimerRol();
     }

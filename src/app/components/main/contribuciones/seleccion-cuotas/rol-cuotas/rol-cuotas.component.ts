@@ -60,9 +60,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
     );
 
-    console.log("rol en rol-cuotas:", this.rol.rol);
-    console.log("rol completo:", this.rol);
-    console.log("rol is complete", this.rol.isComplete);
+    console.log(this.rol.rol);
 
 
   }
@@ -82,6 +80,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   toggle() {
+    //javier
     if (this.someTooltip !== undefined) {
       this.someTooltip.hide();
     }
@@ -113,7 +112,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   checkCuota(cuota: Cuota) {
-    console.log("cuota ", cuota);
     cuota.changeIntencionPago();
   }
 
