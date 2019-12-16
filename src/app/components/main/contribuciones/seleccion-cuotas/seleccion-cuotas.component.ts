@@ -178,7 +178,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         console.log("propiedades", propiedades);
         this.openHelp();
         
-        this.contribuciones.cargarRoles().then(
+        this.contribuciones.cargaRoles().then(
           () => {
             console.log(propiedades);
             
