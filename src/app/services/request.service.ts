@@ -59,6 +59,34 @@ export class RequestService {
       );
     });
   }
+  // JMS: copia de request para nuevo servicio
+    public request2(servicio: { url: string, method: string }, rol?): Promise<{}> {
+    let headers = {};
+    if (this.jwtCognito.jwt !== undefined) {
+      headers = new HttpHeaders({
+        Authorization: this.jwtCognito.jwt
+      });
+    }
+
+    return new Promise((resolve, reject) => {
+      this.http.request(servicio.method,
+        servicio.url,
+        {
+          body: rol,
+          responseType: 'json',
+          headers: headers
+        }
+      ).subscribe(
+        data => {
+          resolve(data);
+        },
+        err => {
+          console.log('Error', err);
+          reject();
+        }
+      );
+    });
+  }
 
   public requestElastic(servicio: { url: string, body: any, method: string }): Promise<{}> {
     return new Promise((resolve, reject) => {
