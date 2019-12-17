@@ -209,7 +209,7 @@ export class Rol {
 
       //Valida que la el campo monto condonación exista en liqTotal
       if (cuota.liqTotal.condonaTotal !== undefined) {
-        condonacion += cuota.liqTotal.montoTotalTotal;
+        condonacion += cuota.liqTotal.condonaTotal;
       }
 
       if (cuota.expired) {
