@@ -60,10 +60,11 @@
           <td [class.tgr-tr--late]="cuota.expired">
             <span>{{cuota.numeroCuota}}</span>
           </td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
-          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.saldoTotal
+          <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVcto | date:'dd/MMM'}}</td>
+          <!--<td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>-->
+          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal
             :
-            cuota.liqParcial.saldoTotal) | number}}
+            cuota.liqParcial.montoTotalParcial) | number}}
           </td>
         </tr>
         </tbody>
