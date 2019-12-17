@@ -19,6 +19,7 @@ export class Cuota {
 
   public constructor(init?: any) {
     this.clasificacion = init.clasificacion;
+    console.log("this.clasificacion", this.clasificacion);
     // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
     this.fechaVcto = this.formatDate(init.fechaVcto);
     this.fechaVencimientoOriginal = init.fechaVcto;
