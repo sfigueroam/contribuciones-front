@@ -192,7 +192,9 @@ export class ContribucionesService {
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
               console.log("data1", data);
+              console.log("data.listaDeudas", data.listaDeudas);
               const cuota = new Cuota(deuda);
+              console.log("cuota", cuota);
               mapCuotas.set(cuota.numeroCuota, cuota);
               rol.cuotas.push(cuota);
               console.log("data2 ", data);
