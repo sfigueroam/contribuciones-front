@@ -79,7 +79,6 @@ export class RequestService {
       ).subscribe(
         data => {
           resolve(data);
-          console.log("data dentro de request2",data);
         },
         err => {
           console.log('Error', err);

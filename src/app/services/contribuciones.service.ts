@@ -187,19 +187,20 @@ export class ContribucionesService {
     } else {
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
-          (data: { listaDeudaRol: any[], noLiq: any }) => {
-            this.userdataservice.deudaNoLiquidable = data.noLiq;
+          (data: { listaDeudas: any[], outNoLiq: any }) => {
+            this.userdataservice.deudaNoLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
-            for (const deuda of data.listaDeudaRol) {
+            for (const deuda of data.listaDeudas) {
+              console.log("data1", data);
               const cuota = new Cuota(deuda);
               mapCuotas.set(cuota.numeroCuota, cuota);
               rol.cuotas.push(cuota);
-              console.log("data ", data);
-              console.log("listaDeudaRol", data.listaDeudaRol);
+              console.log("data2 ", data);
+              console.log("listaDeudaRol", data.listaDeudas);
             }
             this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
-              (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
-                for (const deuda of data2.listaDeudaRol) {
+              (data2: { listaDeudas: { numeroCuota: string }[] }) => {
+                for (const deuda of data2.listaDeudas) {
                   const cuota = mapCuotas.get(deuda.numeroCuota);
                   cuota.liqParcial = new CuotaDetalle(deuda);
                 }
