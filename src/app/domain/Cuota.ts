@@ -3,11 +3,11 @@ import {Observable, Subject} from 'rxjs';
 
 export class Cuota {
   clasificacion: string;
-  fechaVencimiento: Date;
+  fechaVcto: Date;
   fechaVencimientoOriginal: string;
-  folio: string;
+  formFolio: string;
   numeroCuota: string;
-  tipoDeuda: string;
+  clienteTipo: string;
   intencionPago = true;
   expired: boolean;
 
@@ -19,11 +19,14 @@ export class Cuota {
 
   public constructor(init?: any) {
     this.clasificacion = init.clasificacion;
-    this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
-    this.fechaVencimientoOriginal = init.fechaVencimiento;
-    this.folio = init.folio;
+    // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
+    this.fechaVcto = this.formatDate(init.fechaVcto);
+    this.fechaVencimientoOriginal = init.fechaVcto;
+    // this.folio = init.folio;
+    this.formFolio = init.formFolio;
     this.numeroCuota = init.numeroCuota;
-    this.tipoDeuda = init.tipoDeuda;
+    // this.tipoDeuda = init.tipoDeuda;
+    this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
 
     this.liqTotal = new CuotaDetalle(init);
@@ -42,10 +45,12 @@ export class Cuota {
   private isExpired(): boolean {
     const date = new Date();
     date.setHours(0, 0, 0, 0);
-    return (date.getTime() - this.fechaVencimiento.getTime() > 0);
+    // return (date.getTime() - this.fechaVencimiento.getTime() > 0);
+    return (date.getTime() - this.fechaVcto.getTime() > 0);
   }
 
   getYear(): any {
-    this.fechaVencimiento.getFullYear();
+    // this.fechaVencimiento.getFullYear();
+    this.fechaVcto.getFullYear();
   }
 }

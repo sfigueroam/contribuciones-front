@@ -243,7 +243,7 @@ export class Rol {
     const cuotasRequest: any = [];
     for (const cuota of this.cuotas) {
       cuotasRequest.push({
-        numeroFolio: cuota.folio,
+        numeroFolio: cuota.formFolio,
         fechaVencimiento: cuota.fechaVencimientoOriginal,
         intencionPago: false
       });
