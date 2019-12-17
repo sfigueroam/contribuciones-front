@@ -192,14 +192,14 @@ export class ContribucionesService {
             console.log("no liquidable", data.outNoLiq);
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
-              console.log("data1", data);
-              console.log("data.listaDeudas", data.listaDeudas);
+              // console.log("data1", data);
+              // console.log("data.listaDeudas", data.listaDeudas);
               const cuota = new Cuota(deuda);
-              console.log("cuota", cuota);
+              // console.log("cuota", cuota);
               mapCuotas.set(cuota.numeroCuota, cuota);
               rol.cuotas.push(cuota);
-              console.log("data2 ", data);
-              console.log("listaDeudaRol", data.listaDeudas);
+              // console.log("data2 ", data);
+              // console.log("listaDeudaRol", data.listaDeudas);
             }
             this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
               (data2: { listaDeudas: { numeroCuota: string }[] }) => {
