@@ -24,7 +24,7 @@ export class Cuota {
     console.log("this.clasificacion", this.clasificacion);
     // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
     this.fechaVctoStr = init.fechaVcto;
-    this.fechaVctoStr2 = this.fechaVctoStr.substring(0,9);
+    this.fechaVctoStr2 = this.fechaVctoStr.substring(0,10);
     console.log("this.fechaVctoStr",this.fechaVctoStr);
     console.log("this.fechaVctoStr2",this.fechaVctoStr2);
     this.fechaVcto = this.formatDate(this.fechaVctoStr.substring(0,9));
