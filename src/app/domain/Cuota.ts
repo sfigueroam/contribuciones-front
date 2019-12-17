@@ -6,7 +6,7 @@ export class Cuota {
   fechaVcto: Date;
   fechaVctoStr: string;
   fechaVctoStr2: string;
-  fechaVencimientoOriginal: string;
+  fechaVencimientoOriginal: Date;
   formFolio: string;
   numeroCuota: string;
   clienteTipo: string;
@@ -26,17 +26,18 @@ export class Cuota {
     this.clasificacion = "S";
     console.log("this.clasificacion", this.clasificacion);
     this.fechaVencimientoOriginal = init.fechaVcto;
+    this.fechaVcto = this.fechaVencimientoOriginal;
     console.log(this.fechaVencimientoOriginal);
-    this.year = this.fechaVencimientoOriginal.substring(0,4);
-    console.log(this.year);
-    this.month = this.fechaVencimientoOriginal.substring(5,7);
-    console.log(this.month);
-    this.day = this.fechaVencimientoOriginal.substring(8,10);
-    console.log(this.year);
-    this.fechaVctoStr = this.day + "-" + this.month + "-" + this.year;
-    console.log(this.fechaVctoStr);
-    this.fechaVcto = this.formatDate(this.fechaVctoStr);
-    console.log(this.fechaVcto);
+    // this.year = this.fechaVencimientoOriginal.substring(0,4);
+    // console.log(this.year);
+    // this.month = this.fechaVencimientoOriginal.substring(5,7);
+    // console.log(this.month);
+    // this.day = this.fechaVencimientoOriginal.substring(8,10);
+    // console.log(this.year);
+    // this.fechaVctoStr = this.day + "-" + this.month + "-" + this.year;
+    // console.log(this.fechaVctoStr);
+    // this.fechaVcto = this.formatDate(this.fechaVctoStr);
+    // console.log(this.fechaVcto);
     
     
     
