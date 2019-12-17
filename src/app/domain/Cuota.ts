@@ -35,7 +35,7 @@ export class Cuota {
     console.log(this.year);
     this.fechaVctoStr = this.day + "-" + this.month + "-" + this.year;
     console.log(this.fechaVctoStr);
-    this.fechaVcto = new Date(this.fechaVctoStr);
+    this.fechaVcto = this.formatDate(this.fechaVctoStr);
     console.log(this.fechaVcto);
     
     
