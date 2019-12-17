@@ -5,6 +5,7 @@ export class Cuota {
   clasificacion: string;
   fechaVcto: Date;
   fechaVctoStr: string;
+  fechaVctoStr2: string;
   fechaVencimientoOriginal: string;
   formFolio: string;
   numeroCuota: string;
@@ -23,6 +24,7 @@ export class Cuota {
     console.log("this.clasificacion", this.clasificacion);
     // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
     this.fechaVctoStr = init.fechaVcto;
+    this.fechaVctoStr2 = this.fechaVctoStr.substring(0,9);
     console.log("this.fechaVctoStr",this.fechaVctoStr);
     this.fechaVcto = this.formatDate(this.fechaVctoStr.substring(0,9));
     console.log("this.fechaVcto", this.fechaVcto);
