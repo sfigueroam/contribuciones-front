@@ -44,7 +44,6 @@ import {TooltipModule} from 'ng2-tooltip-directive';
 import {UserDataService} from './user-data.service';
 import { ConclaveComponent } from './components/conclave/conclave.component';
 import { SinclaveComponent } from './components/sinclave/sinclave.component';
-import { MomentModule } from 'ngx-moment';
 
 registerLocaleData(localeEs, 'es');
 
@@ -93,7 +92,6 @@ registerLocaleData(localeEs, 'es');
     LightboxModule,
     OrderModule,
     TooltipModule,
-    MomentModule,
   ],
   providers: [
     [UserDataService],

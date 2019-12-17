@@ -1,11 +1,10 @@
 import {CuotaDetalle} from './CuotaDetalle';
 import {Observable, Subject} from 'rxjs';
-import * as moment from 'moment';
 
 export class Cuota {
   clasificacion: string;
   fechaVcto: Date;
-  fechaVctoStr: Date;
+  fechaVctoStr: string;
   fechaVctoStr2: string;
   fechaVencimientoOriginal: string;
   formFolio: string;
@@ -13,6 +12,9 @@ export class Cuota {
   clienteTipo: string;
   intencionPago = true;
   expired: boolean;
+  day: string;
+  month: string;
+  year:string;
 
   liqParcial: CuotaDetalle;
   liqTotal: CuotaDetalle;
@@ -24,10 +26,19 @@ export class Cuota {
     this.clasificacion = "S";
     console.log("this.clasificacion", this.clasificacion);
     this.fechaVencimientoOriginal = init.fechaVcto;
-    var dateObj = new Date(this.fechaVencimientoOriginal);
-    var momentObj = moment(dateObj);
-    var momentString = momentObj.format('DD-MM-YYYY');
-    console.log("momentString", momentString);
+    console.log(this.fechaVencimientoOriginal);
+    this.year = this.fechaVencimientoOriginal.substring(0,4);
+    console.log(this.year);
+    this.month = this.fechaVencimientoOriginal.substring(5,2);
+    console.log(this.month);
+    this.year = this.fechaVencimientoOriginal.substring(8,2);
+    console.log(this.year);
+    this.fechaVctoStr = this.day + "-" + this.month + "-" + this.year;
+    console.log(this.fechaVctoStr);
+    this.fechaVcto = new Date(this.fechaVctoStr);
+    console.log(this.fechaVcto);
+    
+    
     
 
     
