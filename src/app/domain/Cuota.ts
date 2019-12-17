@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs';
 export class Cuota {
   clasificacion: string;
   fechaVcto: Date;
+  fechaVctoStr: string;
   fechaVencimientoOriginal: string;
   formFolio: string;
   numeroCuota: string;
@@ -21,7 +22,9 @@ export class Cuota {
     this.clasificacion = "S";
     console.log("this.clasificacion", this.clasificacion);
     // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
-    this.fechaVcto = this.formatDate(init.fechaVcto);
+    this.fechaVctoStr = init.fechaVcto;
+    console.log("this.fechaVctoStr",this.fechaVctoStr);
+    this.fechaVcto = this.formatDate(this.fechaVctoStr.substring(0,9));
     console.log("this.fechaVcto", this.fechaVcto);
     this.fechaVencimientoOriginal = init.fechaVcto;
     // this.folio = init.folio;
