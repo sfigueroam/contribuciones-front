@@ -1,23 +1,35 @@
 export class CuotaDetalle {
-  codigoBarra: string;
-  condonacion: number;
-  interes: number;
-  montoCondonacion: number;
-  multa: number;
-  nroRol: number;
-  reajuste: number;
-  saldoOriginal: number;
-  saldoTotal: number;
+  codigoBarraParcial: string;
+  codigoBarraTotal: string;
+  condonaParcial: number;
+  condonaTotal: number;
+  esCuoton: string
+  interesesParcial: number;
+  interesesTotal: number;
+  montoNetoParcial: number;
+  montoNetoTotal: number;
+  montoTotalParcial: number;
+  montoTotalTotal: number;
+  multasParcial: number;
+  multasTotal: number;
+  reajustesParcial: number;
+  reajustesTotal: number;
+  rutRol: number;
 
   public constructor(init?: any) {
-    this.codigoBarra = init.codigoBarra;
-    this.condonacion = init.condonacion;
-    this.interes = init.interes;
-    this.montoCondonacion = init.montoCondonacion;
-    this.multa = init.multa;
-    this.nroRol = init.nroRol;
-    this.reajuste = init.reajuste;
-    this.saldoOriginal = init.saldoOriginal;
-    this.saldoTotal = init.saldoTotal;
+    this.codigoBarraParcial = init.codigoBarraParcial;
+    this.codigoBarraTotal = init.codigoBarraTotal;
+    this.condonaParcial = init.condonaParcial;
+    this.condonaTotal = init.condonaTotal;
+    this.esCuoton = init.esCuoton;
+    this.interesesParcial = init.interesesParcial;
+    this.interesesTotal = init.interesesTotal;
+    this.montoTotalParcial = init.montoTotalParcial;
+    this.montoTotalTotal = init.montoTotalTotal;
+    this.multasParcial = init.multasParcial;
+    this.multasTotal = init.multasTotal;
+    this.reajustesParcial = init.reajustesParcial;
+    this.reajustesTotal = init.reajustesTotal;
+    this.rutRol = init.rutRol;
   }
 }

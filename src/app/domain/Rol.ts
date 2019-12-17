@@ -204,12 +204,12 @@ export class Rol {
       }
 
       if (cuota.intencionPago) {
-        pagoTotal += cuota.liqTotal.saldoTotal;
+        pagoTotal += cuota.liqTotal.montoTotalTotal;
       }
 
       //Valida que la el campo monto condonación exista en liqTotal
-      if (cuota.liqTotal.montoCondonacion !== undefined) {
-        condonacion += cuota.liqTotal.montoCondonacion;
+      if (cuota.liqTotal.condonaTotal !== undefined) {
+        condonacion += cuota.liqTotal.montoTotalTotal;
       }
 
       if (cuota.expired) {
@@ -220,7 +220,7 @@ export class Rol {
       }
 
       if (cuota.intencionPago && cuota.liqParcial) {
-        pagoParcial += cuota.liqParcial.saldoTotal;
+        pagoParcial += cuota.liqParcial.montoTotalParcial;
       } else {
         total = false;
       }
