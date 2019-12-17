@@ -18,10 +18,11 @@ export class Cuota {
   changeStream: Observable<any> = this.changeSubject.asObservable();
 
   public constructor(init?: any) {
-    this.clasificacion = init.clasificacion;
+    this.clasificacion = "S";
     console.log("this.clasificacion", this.clasificacion);
     // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
     this.fechaVcto = this.formatDate(init.fechaVcto);
+    console.log("this.fechaVcto", this.fechaVcto);
     this.fechaVencimientoOriginal = init.fechaVcto;
     // this.folio = init.folio;
     this.formFolio = init.formFolio;
