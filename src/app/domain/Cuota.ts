@@ -28,6 +28,7 @@ export class Cuota {
     this.fechaVencimientoOriginal = init.fechaVcto;
     this.fechaVcto = this.fechaVencimientoOriginal;
     console.log(this.fechaVencimientoOriginal);
+    console.log(this.fechaVcto);
     // this.year = this.fechaVencimientoOriginal.substring(0,4);
     // console.log(this.year);
     // this.month = this.fechaVencimientoOriginal.substring(5,7);
