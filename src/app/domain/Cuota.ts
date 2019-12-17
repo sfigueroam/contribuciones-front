@@ -31,6 +31,7 @@ export class Cuota {
     console.log("this.clasificacion", this.clasificacion);
     // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
     this.fechaVctoStr = init.fechaVcto;
+    console.log("this.fechaVctoStr", this.fechaVctoStr);
     this.fechaVctoStr1 = moment(this.fechaVctoStr);
     console.log("this.fechaVctoStr1", this.fechaVctoStr1);
     
