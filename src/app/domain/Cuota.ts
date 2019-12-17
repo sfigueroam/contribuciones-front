@@ -1,5 +1,8 @@
 import {CuotaDetalle} from './CuotaDetalle';
 import {Observable, Subject} from 'rxjs';
+import { MomentModule } from 'ngx-moment';
+ 
+
 
 export class Cuota {
   clasificacion: string;
@@ -18,6 +21,9 @@ export class Cuota {
 
   changeSubject: Subject<any> = new Subject<any>();
   changeStream: Observable<any> = this.changeSubject.asObservable();
+  
+
+
 
   public constructor(init?: any) {
     this.clasificacion = "S";
