@@ -62,7 +62,6 @@ export class RequestService {
   // JMS: copia de request para nuevo servicio
     public request2(servicio: { url: string, method: string }, body?): Promise<{}> {
     let headers = {};
-    console.log("this.jwrCognito.jwt", this.jwtCognito.jwt)
     if (this.jwtCognito.jwt !== undefined) {
       headers = new HttpHeaders({
         Authorization: this.jwtCognito.jwt
