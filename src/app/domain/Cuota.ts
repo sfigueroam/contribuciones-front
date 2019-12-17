@@ -1,5 +1,6 @@
 import {CuotaDetalle} from './CuotaDetalle';
 import {Observable, Subject} from 'rxjs';
+import * as moment from 'moment';
 
 export class Cuota {
   clasificacion: string;
@@ -22,19 +23,16 @@ export class Cuota {
   public constructor(init?: any) {
     this.clasificacion = "S";
     console.log("this.clasificacion", this.clasificacion);
-    // this.fechaVencimiento = this.formatDate(init.fechaVencimiento);
-    this.fechaVctoStr = init.fechaVcto;
-    // this.fechaVctoStr2 = this.fechaVctoStr.substring(0,10);
-    this.fechaVctoStr2 = this.fechaVctoStr.toDateString();
-    console.log("this.fechaVctoStr",this.fechaVctoStr);
-    console.log("this.fechaVctoStr2",this.fechaVctoStr2);
-    // this.fechaVcto = this.formatDate(this.fechaVctoStr.substring(0,9));
-    console.log("this.fechaVcto", this.fechaVcto);
     this.fechaVencimientoOriginal = init.fechaVcto;
-    // this.folio = init.folio;
+    var dateObj = new Date(this.fechaVencimientoOriginal);
+    var momentObj = moment(dateObj);
+    var momentString = momentObj.format('DD-MM-YYYY');
+    console.log("momentString", momentString);
+    
+
+    
     this.formFolio = init.formFolio;
     this.numeroCuota = init.numeroCuota;
-    // this.tipoDeuda = init.tipoDeuda;
     this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
 
