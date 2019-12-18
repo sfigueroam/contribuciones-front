@@ -24,14 +24,15 @@ export class Cuota {
 
   public constructor(init?: any) {
     this.clasificacion = "S";
-    this.numeroCuota = init.nroCuota;
     this.fechaVencimientoOriginal = init.fechaVcto;
     this.year = this.fechaVencimientoOriginal.substring(0,4);
     this.month = this.fechaVencimientoOriginal.substring(5,7);
     this.day = this.fechaVencimientoOriginal.substring(8,10);
     this.fechaVctoStr = this.day + "-" + this.month + "-" + this.year;
     this.fechaVcto = this.formatDate(this.fechaVctoStr);
+
     this.formFolio = init.formFolio;
+    this.numeroCuota = init.numeroCuota;
     this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
     this.liqTotal = new CuotaDetalle(init);
