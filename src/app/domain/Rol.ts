@@ -174,7 +174,6 @@ export class Rol {
   cuotasSeleccionadas(): Cuota[] {
     const cuotas = [];
     for (const cuota of this.cuotas) {
-      console.log("intencion de pago", cuota.intencionPago, cuota.expired, cuota);
       if (cuota.intencionPago) {
         cuotas.push(cuota);
         console.log('cuota.numeroCuota', cuota.numeroCuota);
