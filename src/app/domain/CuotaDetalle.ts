@@ -15,6 +15,7 @@ export class CuotaDetalle {
   reajustesParcial: number;
   reajustesTotal: number;
   rutRol: number;
+  nroCuota: string;  
 
   public constructor(init?: any) {
     this.codigoBarraParcial = init.codigoBarraParcial;
@@ -31,5 +32,6 @@ export class CuotaDetalle {
     this.reajustesParcial = init.reajustesParcial;
     this.reajustesTotal = init.reajustesTotal;
     this.rutRol = init.rutRol;
+    this.nroCuota = init.nroCuota;
   }
 }

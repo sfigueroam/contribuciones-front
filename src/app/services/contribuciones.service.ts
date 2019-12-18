@@ -166,9 +166,9 @@ export class ContribucionesService {
   async cargaRoles(): Promise<any> {
     for (const propiedad of this.propiedades) {
       for (const rol of propiedad.roles) {
-        console.log("rol.cuotas", rol.cuotas)
-        console.log("rol.cuotas.length", rol.cuotas.length);
-        console.log("rol", rol);
+        // console.log("rol.cuotas", rol.cuotas)
+        // console.log("rol.cuotas.length", rol.cuotas.length);
+        // console.log("rol", rol);
         if (!rol.isProcess) {
           await this.cargaRol(rol);
         }

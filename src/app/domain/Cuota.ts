@@ -35,8 +35,8 @@ export class Cuota {
     this.numeroCuota = init.numeroCuota;
     this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
-
     this.liqTotal = new CuotaDetalle(init);
+    this.liqParcial = new CuotaDetalle(init);
   }
 
   changeIntencionPago(value: boolean = !this.intencionPago) {
