@@ -62,9 +62,7 @@
           </td>
           <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVcto | date:'dd/MMM'}}</td>
           <!--<td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>-->
-          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal
-            :
-            cuota.liqParcial.montoTotalParcial) | number}}
+          <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal : cuota.liqParcial.montoTotalParcial) | number}}
           </td>
         </tr>
         </tbody>
