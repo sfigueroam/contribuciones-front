@@ -92,7 +92,6 @@ export class Rol {
 
     for (const cuota of this.cuotas) {
       result.total++;
-      console.log("result.total (rol)", result.total);
       if (cuota.intencionPago) {
         result.seleccionadas++;
       }
@@ -187,7 +186,6 @@ export class Rol {
       }
     }
     return cuotas;
-    console.log("cuotas cuotasSeleccionadas()", cuotas);
   }
 
   private calcularTotal() {
