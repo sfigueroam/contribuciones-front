@@ -181,13 +181,13 @@ export class Rol {
         cuotas.push(cuota);
         console.log('cuota.numeroCuota', cuota.numeroCuota);
         console.log('this.condonacion', this.condonacion);
-        console.log('cuota.liqTotal.saldoTotal', cuota.liqTotal.montoTotalTotal);
+        console.log('cuota.liqTotal.montoTotalTotal', cuota.liqTotal.montoTotalTotal);
         console.log('cuota.liqParcial', cuota.liqParcial);
-        console.log('cuota.liqParcial.saldoTotal', cuota.liqParcial.montoTotalParcial);
-        console.log("cuotas cuotasSeleccionadas()", cuota);
+        console.log('cuota.liqParcial.montoTotalParcial', cuota.liqParcial.montoTotalParcial);
       }
     }
     return cuotas;
+    console.log("cuotas cuotasSeleccionadas()", cuotas);
   }
 
   private calcularTotal() {
