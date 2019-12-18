@@ -92,6 +92,7 @@ export class Rol {
 
     for (const cuota of this.cuotas) {
       result.total++;
+      console.log("result.total (rol)", result.total);
       if (cuota.intencionPago) {
         result.seleccionadas++;
       }
@@ -183,6 +184,7 @@ export class Rol {
         console.log('cuota.liqTotal.saldoTotal', cuota.liqTotal.montoTotalTotal);
         console.log('cuota.liqParcial', cuota.liqParcial);
         console.log('cuota.liqParcial.saldoTotal', cuota.liqParcial.montoTotalParcial);
+        console.log("cuotas cuotasSeleccionadas()", cuota);
       }
     }
     return cuotas;
