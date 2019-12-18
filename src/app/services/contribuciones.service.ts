@@ -196,7 +196,7 @@ export class ContribucionesService {
               // console.log("data.listaDeudas", data.listaDeudas);
               const cuota = new Cuota(deuda);
               // console.log("cuota", cuota);
-              mapCuotas.set(cuota.numeroCuota, cuota);
+              mapCuotas.set(cuota.nroCuota, cuota);
               rol.cuotas.push(cuota);
               // console.log("data2 ", data);
               // console.log("listaDeudaRol", data.listaDeudas);
