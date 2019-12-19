@@ -180,7 +180,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         
         this.contribuciones.cargaRoles().then(
           () => {
-            console.log(propiedades);
+            // console.log(propiedades);
             
             this.complete = true;
             this.abrirPrimerRol();
@@ -194,7 +194,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 }
               );
               this.noLiqVar = this.userdataservice.deudaNoLiquidable;
-              console.log(this.noLiqVar);
+              // console.log(this.noLiqVar);
             }
           },
           err => {

@@ -57,6 +57,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           () => this.reloadChecked()
         );
         this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+        console.log("no liquidable en rol-cuotas", this.noLiquidable);
       }
     );
 
