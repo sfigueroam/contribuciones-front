@@ -58,7 +58,8 @@
             <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
           </td>
           <td [class.tgr-tr--late]="cuota.expired">
-            <span>{{cuota.numeroCuota}}</span>
+            <!--<span>{{cuota.numeroCuota}}</span>-->
+            <span>{{cuota.liqTotal.nroCuota}}</span>
           </td>
           <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVcto | date:'dd/MMM'}}</td>
           <!--<td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>-->
