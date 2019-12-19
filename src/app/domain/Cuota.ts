@@ -8,7 +8,7 @@ export class Cuota {
   fechaVctoStr2: string;
   fechaVencimientoOriginal: string;
   formFolio: string;
-  numeroCuota: string;
+  nroCuota: string;
   clienteTipo: string;
   intencionPago = true;
   expired: boolean;
@@ -32,7 +32,7 @@ export class Cuota {
     this.fechaVcto = this.formatDate(this.fechaVctoStr);
 
     this.formFolio = init.formFolio;
-    this.numeroCuota = init.numeroCuota;
+    this.nroCuota = init.nroCuota;
     this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
     this.liqTotal = new CuotaDetalle(init);
