@@ -189,6 +189,8 @@ export class ContribucionesService {
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             this.userdataservice.deudaNoLiquidable = data.outNoLiq;
+            console.log("data", data);
+            console.log("data no liquidable", data.outNoLiq);
             // console.log("no liquidable", data.outNoLiq);
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
