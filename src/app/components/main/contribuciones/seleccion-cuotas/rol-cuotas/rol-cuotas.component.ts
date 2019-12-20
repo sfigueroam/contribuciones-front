@@ -39,6 +39,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
               private dialogService: MdlDialogService,
               private mdlSnackbarService: MdlSnackbarService,
               private userdataservice: UserDataService) {
+        this.noLiquidable = false
 
   
   }
@@ -56,7 +57,15 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+        // this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+        if (this.userdataservice.deudaNoLiquidable){
+          console.log("this.noLiquidable true: ", this.noLiquidable);
+          this.noLiquidable = true;
+        }
+        else{
+          console.log("this.noLiquidable false: ", this.noLiquidable);
+          this.noLiquidable = false;
+        }
         console.log("no liquidable en rol-cuotas", this.noLiquidable);
       }
     );
