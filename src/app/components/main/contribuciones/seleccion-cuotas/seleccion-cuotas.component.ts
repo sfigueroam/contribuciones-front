@@ -36,7 +36,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   propiedades: Propiedad[] = [];
   //javier
-  noLiqVar: boolean;
+  noLiqVar: string;
 
 
   tipo = TipoCuota;

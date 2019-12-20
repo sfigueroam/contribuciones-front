@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserDataService {
 
   nombre_usuario: string;
-  deudaNoLiquidable: boolean;
+  deudaNoLiquidable: string;
   conex_usuario: string;
   canal: string;
   
