@@ -181,8 +181,9 @@ export class Rol {
         console.log('cuota.numeroCuota', cuota.numeroCuota);
         console.log('this.condonacion', this.condonacion);
         console.log('cuota.liqTotal.montoTotalTotal', cuota.liqTotal.montoTotalTotal);
-        console.log('cuota.liqParcial', cuota.liqParcial);
-        console.log('cuota.liqParcial.montoTotalParcial', cuota.liqParcial.montoTotalParcial);
+        // console.log('cuota.liqParcial', cuota.liqParcial);
+        console.log('cuota.liqParcial.montoTotalParcial', cuota.liqTotal.montoTotalParcial);
+        // console.log('cuota.liqParcial.montoTotalParcial', cuota.liqParcial.montoTotalParcial);
       }
     }
     return cuotas;
@@ -219,10 +220,15 @@ export class Rol {
       }
 
       if (cuota.intencionPago && cuota.liqParcial) {
-        pagoParcial += cuota.liqParcial.montoTotalParcial;
+        pagoParcial += cuota.liqTotal.montoTotalParcial;
       } else {
         total = false;
       }
+      // if (cuota.intencionPago && cuota.liqParcial) {
+      //   pagoParcial += cuota.liqParcial.montoTotalParcial;
+      // } else {
+      //   total = false;
+      // }
     }
 
     total = total || (totalExpirados === totalExpiradosIntencionPago);
