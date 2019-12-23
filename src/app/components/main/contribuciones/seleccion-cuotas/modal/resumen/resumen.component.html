@@ -25,7 +25,7 @@
             <td [class.tgr-tr--late]="cuota.expired">{{cuota.numeroCuota}}</td>
             <td [class.tgr-tr--late]="cuota.expired">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
             <!--<td class="monto" [class.tgr-tr--late]="cuota.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}-->
-            <td class="monto" [class.tgr-tr--late]="cuota.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal) | number}}
+            <td class="monto" [class.tgr-tr--late]="cuota.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqTotal.saldoTotal) | number}}
                 
             </td>
           </tr>
