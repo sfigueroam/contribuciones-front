@@ -233,7 +233,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
             } else {
-              codigos += c.liqParcial.codigoBarraTotal + ', ';
+              codigos += c.liqParcial.codigoBarraParcial + ', ';
             }
           }
         }
