@@ -207,7 +207,9 @@ export class ContribucionesService {
               (data2: { listaDeudas: { numeroCuota: string }[] }) => {
                 for (const deuda of data2.listaDeudas) {
                   const cuota = mapCuotas.get(deuda.numeroCuota);
-                  cuota.liqParcial = new CuotaDetalle(deuda);
+                  // JMS
+                  // cuota.liqParcial = new CuotaDetalle(deuda);
+                  cuota.liqTotal = new CuotaDetalle(deuda);
                 }
                 rol.isProcess = true;
                 resolve();

@@ -218,8 +218,9 @@ export class Rol {
       if (cuota.expired && cuota.intencionPago) {
         totalExpiradosIntencionPago++;
       }
-
-      if (cuota.intencionPago && cuota.liqParcial) {
+// JMS
+      // if (cuota.intencionPago && cuota.liqParcial) {
+      if (cuota.intencionPago && cuota.liqTotal) {
         pagoParcial += cuota.liqTotal.montoTotalParcial;
       } else {
         total = false;

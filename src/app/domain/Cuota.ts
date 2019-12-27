@@ -16,7 +16,7 @@ export class Cuota {
   month: string;
   year:string;
 
-  liqParcial: CuotaDetalle;
+  // liqParcial: CuotaDetalle;
   liqTotal: CuotaDetalle;
 
   changeSubject: Subject<any> = new Subject<any>();
@@ -36,7 +36,7 @@ export class Cuota {
     this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
     this.liqTotal = new CuotaDetalle(init);
-    this.liqParcial = new CuotaDetalle(init);
+    // this.liqParcial = new CuotaDetalle(init);
   }
 
   changeIntencionPago(value: boolean = !this.intencionPago) {
