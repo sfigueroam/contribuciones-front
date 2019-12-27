@@ -189,40 +189,41 @@ export class ContribucionesService {
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             this.userdataservice.deudaNoLiquidable = data.outNoLiq;
-            console.log("data", data);
-            console.log("data no liquidable", data.outNoLiq);
-            // console.log("no liquidable", data.outNoLiq);
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
-              // console.log("data1", data);
-              // console.log("data.listaDeudas", data.listaDeudas);
-              const cuota = new Cuota(deuda);
-              // console.log("cuota", cuota);
+              let cuota = new Cuota(deuda);
               mapCuotas.set(cuota.numeroCuota, cuota);
               rol.cuotas.push(cuota);
-              // console.log("data2 ", data);
-              // console.log("listaDeudaRol", data.listaDeudas);
+              cuota = mapCuotas.get(deuda.numeroCuota);
+              cuota.liqTotal = new CuotaDetalle(deuda);
             }
-            // this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
-            //   (data: { listaDeudas: { numeroCuota: string }[] }) => {
-            //     for (const deuda of data.listaDeudas) {
-            //       console.log("data2", data);
-            //       const cuota = mapCuotas.get(deuda.numeroCuota);
-            //       // JMS
-            //       // cuota.liqParcial = new CuotaDetalle(deuda);
-            //       cuota.liqTotal = new CuotaDetalle(deuda);
-            //     }
-            //     rol.isProcess = true;
-            //     resolve();
-            //   },
-            //   (err) => reject(err)
-            // );
+            rol.isProcess = true;
+            resolve();
           },
           (err) => reject(err)
         )
-      );
+      )
     }
-  }
+    }
+    //         this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
+    //           (data: { listaDeudas: { numeroCuota: string }[] }) => {
+    //             for (const deuda of data.listaDeudas) {
+    //               console.log("data2", data);
+    //               const cuota = mapCuotas.get(deuda.numeroCuota);
+    //               // JMS
+    //               cuota.liqTotal = new CuotaDetalle(deuda);
+    //             }
+    //             rol.isProcess = true;
+    //             resolve();
+    //           },
+    //           (err) => reject(err)
+    //         );
+    //       },
+    //       (err) => reject(err)
+    //     )
+    //   );
+    // }
+  
 
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
     return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
