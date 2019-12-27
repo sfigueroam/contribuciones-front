@@ -182,7 +182,7 @@ export class Rol {
         console.log('this.condonacion', this.condonacion);
         console.log('cuota.liqTotal.montoTotalTotal', cuota.liqTotal.montoTotalTotal);
         // console.log('cuota.liqParcial', cuota.liqParcial);
-        console.log('cuota.liqParcial.montoTotalParcial', cuota.liqTotal.montoTotalParcial);
+        console.log('cuota.liqTotal.montoTotalParcial', cuota.liqTotal.montoTotalParcial);
         // console.log('cuota.liqParcial.montoTotalParcial', cuota.liqParcial.montoTotalParcial);
       }
     }

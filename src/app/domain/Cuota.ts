@@ -15,6 +15,7 @@ export class Cuota {
   day: string;
   month: string;
   year:string;
+  // noLiqFlag: boolean;
 
   // liqParcial: CuotaDetalle;
   liqTotal: CuotaDetalle;
@@ -34,6 +35,7 @@ export class Cuota {
     this.formFolio = init.formFolio;
     this.numeroCuota = init.numeroCuota;
     this.clienteTipo = init.clienteTipo;
+    // this.noLiqFlag = init.outNoLiq;
     this.expired = this.isExpired();
     this.liqTotal = new CuotaDetalle(init);
     // this.liqParcial = new CuotaDetalle(init);

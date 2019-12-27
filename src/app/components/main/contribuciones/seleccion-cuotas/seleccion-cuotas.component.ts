@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {TipoCuota} from '../../../../domain/TipoCuota';
 import {Propiedad} from '../../../../domain/Propiedad';
+import {Cuota} from '../../../../domain/Cuota';
 import {ContribucionesService} from '../../../../services/contribuciones.service';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {ResumenCuotas} from '../../../../domain/ResumenCuotas';
@@ -35,6 +36,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   direccionCuotasComponentList: QueryList<DireccionCuotasComponent>;
 
   propiedades: Propiedad[] = [];
+  cuota: Cuota[] = [];
   //javier
   noLiqVar: string;
 
@@ -194,6 +196,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                 }
               );
               this.noLiqVar = this.userdataservice.deudaNoLiquidable;
+              // this.noLiqVar = cuota.
               // console.log(this.noLiqVar);
             }
           },

@@ -204,8 +204,9 @@ export class ContribucionesService {
               // console.log("listaDeudaRol", data.listaDeudas);
             }
             this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
-              (data2: { listaDeudas: { numeroCuota: string }[] }) => {
-                for (const deuda of data2.listaDeudas) {
+              (data: { listaDeudas: { numeroCuota: string }[] }) => {
+                for (const deuda of data.listaDeudas) {
+                  console.log("data2", data);
                   const cuota = mapCuotas.get(deuda.numeroCuota);
                   // JMS
                   // cuota.liqParcial = new CuotaDetalle(deuda);
