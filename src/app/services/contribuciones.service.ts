@@ -203,20 +203,20 @@ export class ContribucionesService {
               // console.log("data2 ", data);
               // console.log("listaDeudaRol", data.listaDeudas);
             }
-            this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
-              (data: { listaDeudas: { numeroCuota: string }[] }) => {
-                for (const deuda of data.listaDeudas) {
-                  console.log("data2", data);
-                  const cuota = mapCuotas.get(deuda.numeroCuota);
-                  // JMS
-                  // cuota.liqParcial = new CuotaDetalle(deuda);
-                  cuota.liqTotal = new CuotaDetalle(deuda);
-                }
-                rol.isProcess = true;
-                resolve();
-              },
-              (err) => reject(err)
-            );
+            // this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
+            //   (data: { listaDeudas: { numeroCuota: string }[] }) => {
+            //     for (const deuda of data.listaDeudas) {
+            //       console.log("data2", data);
+            //       const cuota = mapCuotas.get(deuda.numeroCuota);
+            //       // JMS
+            //       // cuota.liqParcial = new CuotaDetalle(deuda);
+            //       cuota.liqTotal = new CuotaDetalle(deuda);
+            //     }
+            //     rol.isProcess = true;
+            //     resolve();
+            //   },
+            //   (err) => reject(err)
+            // );
           },
           (err) => reject(err)
         )
