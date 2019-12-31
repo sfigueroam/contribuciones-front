@@ -58,6 +58,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           () => this.reloadChecked()
         );
         // this.noLiquidable = this.userdataservice.deudaNoLiquidable;
+        console.log("rol.noLiquidable", this.rol.noLiquidable)
         if (this.userdataservice.deudaNoLiquidable == "true"){
           console.log("this.noLiquidable true: ", this.noLiquidable);
           this.noLiquidable = true;
