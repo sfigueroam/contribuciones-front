@@ -188,7 +188,9 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
-            this.userdataservice.deudaNoLiquidable = data.outNoLiq;
+            // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
+            // JMS
+            rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
               let cuota = new Cuota(deuda);
