@@ -19,7 +19,7 @@ export class Rol {
   subrolId: number;
   cuotas: Cuota[];
   // JMS
-  noLiquidable: boolean;
+  noLiquidable: string;
 
   isComplete = false;
 

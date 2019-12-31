@@ -20,7 +20,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   rol: Rol;
   @Output()
   change: EventEmitter<any> = new EventEmitter();
-  noLiquidable: boolean;
+  noLiquidable: string;
+  noLiquidablebool: boolean;
   
 
   expanded: boolean;
@@ -39,7 +40,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
               private dialogService: MdlDialogService,
               private mdlSnackbarService: MdlSnackbarService,
               private userdataservice: UserDataService) {
-        this.noLiquidable = false
+        this.noLiquidablebool = false
 
   
   }
@@ -60,13 +61,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         // this.noLiquidable = this.userdataservice.deudaNoLiquidable;
         console.log("rol.noLiquidable", this.rol.noLiquidable)
         this.noLiquidable = this.rol.noLiquidable;
-        if (this.noLiquidable == true){
+        if (this.noLiquidable == "true"){
           console.log("this.noLiquidable true: ", this.noLiquidable);
-          this.noLiquidable = true;
+          this.noLiquidablebool = true;
         }
         else{
           console.log("this.noLiquidable false: ", this.noLiquidable);
-          this.noLiquidable = false;
+          this.noLiquidablebool = false;
         }
         console.log("no liquidable en rol-cuotas", this.noLiquidable);
       }
