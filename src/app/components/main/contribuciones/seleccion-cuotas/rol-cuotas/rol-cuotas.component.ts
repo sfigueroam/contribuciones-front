@@ -59,15 +59,15 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         );
         // this.noLiquidable = this.userdataservice.deudaNoLiquidable;
         console.log("rol.noLiquidable", this.rol.noLiquidable)
-        if (this.userdataservice.deudaNoLiquidable == "true"){
-          console.log("this.noLiquidable true: ", this.noLiquidable);
-          this.noLiquidable = true;
-        }
-        else{
-          console.log("this.noLiquidable false: ", this.noLiquidable);
-          this.noLiquidable = false;
-        }
-        console.log("no liquidable en rol-cuotas", this.noLiquidable);
+        // if (this.userdataservice.deudaNoLiquidable == "true"){
+        //   console.log("this.noLiquidable true: ", this.noLiquidable);
+        //   this.noLiquidable = true;
+        // }
+        // else{
+        //   console.log("this.noLiquidable false: ", this.noLiquidable);
+        //   this.noLiquidable = false;
+        // }
+        // console.log("no liquidable en rol-cuotas", this.noLiquidable);
       }
     );
 
