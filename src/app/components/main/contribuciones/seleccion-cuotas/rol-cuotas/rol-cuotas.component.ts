@@ -62,14 +62,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         console.log("rol.noLiquidable", this.rol.noLiquidable)
         this.noLiquidable = this.rol.noLiquidable;
         if (this.noLiquidable == "true"){
-          console.log("this.noLiquidable true: ", this.noLiquidable);
+          // console.log("this.noLiquidable true: ", this.noLiquidable);
           this.noLiquidablebool = true;
         }
         else{
-          console.log("this.noLiquidable false: ", this.noLiquidable);
+          // console.log("this.noLiquidable false: ", this.noLiquidable);
           this.noLiquidablebool = false;
         }
-        console.log("no liquidable en rol-cuotas", this.noLiquidable);
+        // console.log("no liquidable en rol-cuotas", this.noLiquidable);
       }
     );
 
