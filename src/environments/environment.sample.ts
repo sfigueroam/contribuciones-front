@@ -113,7 +113,7 @@ export const environment = {
     },
     // JMS: nuevo para buscar en nuevo servicio tierra
     urlApiObtieneDeuda: { 
-      url: urlsBase.base + '/servicios-recaudacion/v1/liquidacion/deudasrol', 
+      url: endpoints.base + '/servicios-recaudacion/v1/liquidacion/deudasrol', 
       method: 'GET' 
     }, 
     buscarBienRaiz: {
