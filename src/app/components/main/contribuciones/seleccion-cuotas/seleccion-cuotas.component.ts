@@ -238,16 +238,16 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
-              objMultiAR["listaCid"]["idMoneda"] = 0;
-              objMultiAR["listaCid"]["codigoBarra"] = c.liqTotal.codigoBarraTotal;
-              objMultiAR["listaCid"]["montoTotal"] = c.liqTotal.montoTotalTotal;
+              objMultiAR["listaCid"][0]["idMoneda"] = 0;
+              objMultiAR["listaCid"][0]["codigoBarra"] = c.liqTotal.codigoBarraTotal;
+              objMultiAR["listaCid"][0]["montoTotal"] = c.liqTotal.montoTotalTotal;
               objMultiAR["usuario"] = this.canal;
               objMultiAR["montoTotalPagar"] = this.total;
             } else {
               codigos += c.liqTotal.codigoBarraParcial + ', ';
-              objMultiAR["listaCid"]["idMoneda"] = 0;
-              objMultiAR["listaCid"]["codigoBarra"] = c.liqTotal.codigoBarraParcial;
-              objMultiAR["listaCid"]["montoTotal"] = c.liqTotal.montoTotalTotal;
+              objMultiAR["listaCid"][0]["idMoneda"] = 0;
+              objMultiAR["listaCid"][0]["codigoBarra"] = c.liqTotal.codigoBarraParcial;
+              objMultiAR["listaCid"][0]["montoTotal"] = c.liqTotal.montoTotalTotal;
               objMultiAR["usuario"] = this.canal;
               objMultiAR["montoTotalPagar"] = this.total;
             }
