@@ -228,22 +228,35 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     this.condonacion = condonacion;
     this.recalcularTipo();
 
+// JMS: donde se arman los codigos que van en el boton pagar
+// JMS: acá debo armar el json que va a ir al servicio del multi ar
     let codigos = 'on, ';
+    let objMultiAR = {};
     for (const p of this.propiedades) {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
+              objMultiAR["listaCid"]["idMoneda"] = 0;
+              objMultiAR["listaCid"]["codigoBarra"] = c.liqTotal.codigoBarraTotal;
+              objMultiAR["listaCid"]["montoTotal"] = c.liqTotal.montoTotalTotal;
+              objMultiAR["usuario"] = this.canal;
+              objMultiAR["montoTotalPagar"] = this.total;
             } else {
-              // codigos += c.liqParcial.codigoBarraParcial + ', ';
               codigos += c.liqTotal.codigoBarraParcial + ', ';
+              objMultiAR["listaCid"]["idMoneda"] = 0;
+              objMultiAR["listaCid"]["codigoBarra"] = c.liqTotal.codigoBarraParcial;
+              objMultiAR["listaCid"]["montoTotal"] = c.liqTotal.montoTotalTotal;
+              objMultiAR["usuario"] = this.canal;
+              objMultiAR["montoTotalPagar"] = this.total;
             }
           }
         }
       }
     }
     this.listaContribuciones = codigos;
+    console.log("objMultiAR ", objMultiAR);
   }
 
   gotoSugeridas() {

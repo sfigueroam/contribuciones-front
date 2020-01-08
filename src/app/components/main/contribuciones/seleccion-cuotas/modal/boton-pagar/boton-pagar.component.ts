@@ -31,8 +31,8 @@ export class BotonPagarComponent implements OnInit {
   ngOnInit() {
     
     this.canalRecibido = this.userdataservice.canal;
-    console.log(this.codigos);
-    // this.urlPagoTgr = environment.pago.url;
+    // console.log("códigos para pago", this.codigos);
+    this.urlPagoTgr = environment.pago.url;
     
   }
 
