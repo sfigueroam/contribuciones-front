@@ -231,25 +231,36 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 // JMS: donde se arman los codigos que van en el boton pagar
 // JMS: acá debo armar el json que va a ir al servicio del multi ar
     let codigos = 'on, ';
-    let objMultiAR = {};
+    let objMultiAR = {
+      "listaCid": [
+        {
+          "idMoneda": 0,
+          "codigoBarra": "12059200005319123103014410",
+          "montoTotal": 877892
+        }
+      ],
+      "usuario": "PruebaIngreso",
+      "montoTotalPagar": "1523374"
+    };
+    console.log("objMultiAR", objMultiAR);
     for (const p of this.propiedades) {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
-              objMultiAR["listaCid"][0]["idMoneda"] = 0;
-              objMultiAR["listaCid"][0]["codigoBarra"] = c.liqTotal.codigoBarraTotal;
-              objMultiAR["listaCid"][0]["montoTotal"] = c.liqTotal.montoTotalTotal;
-              objMultiAR["usuario"] = this.canal;
-              objMultiAR["montoTotalPagar"] = this.total;
+              // objMultiAR ={"listaCid";
+              // objMultiAR["listaCid"][0]["codigoBarra"] = c.liqTotal.codigoBarraTotal;
+              // objMultiAR["listaCid"][0]["montoTotal"] = c.liqTotal.montoTotalTotal;
+              // objMultiAR["usuario"] = this.canal;
+              // objMultiAR["montoTotalPagar"] = this.total;
             } else {
               codigos += c.liqTotal.codigoBarraParcial + ', ';
-              objMultiAR["listaCid"][0]["idMoneda"] = 0;
-              objMultiAR["listaCid"][0]["codigoBarra"] = c.liqTotal.codigoBarraParcial;
-              objMultiAR["listaCid"][0]["montoTotal"] = c.liqTotal.montoTotalTotal;
-              objMultiAR["usuario"] = this.canal;
-              objMultiAR["montoTotalPagar"] = this.total;
+              // objMultiAR["listaCid"][0]["idMoneda"] = 0;
+              // objMultiAR["listaCid"][0]["codigoBarra"] = c.liqTotal.codigoBarraParcial;
+              // objMultiAR["listaCid"][0]["montoTotal"] = c.liqTotal.montoTotalTotal;
+              // objMultiAR["usuario"] = this.canal;
+              // objMultiAR["montoTotalPagar"] = this.total;
             }
           }
         }
