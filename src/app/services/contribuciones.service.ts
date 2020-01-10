@@ -267,10 +267,16 @@ export class ContribucionesService {
   }
 
   getMultiAR(multiARIn: string): Promise<any> {
-    return new Promise((resolve) => {
-      console.log("ingresa a getmultiar", multiARIn)
-        resolve();
-    });
+      return new Promise(
+        (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
+          (cidUnico: any[] ) => {
+            // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
+            // JMS
+            resolve();
+          },
+          (err) => reject(err)
+        )
+      )
   }
 
   eliminarPropiedad(rut: number, correo: string, idDireccion: string): Promise<any> {
