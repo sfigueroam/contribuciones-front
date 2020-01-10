@@ -253,15 +253,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
-              this.multiARObj = {
-                listaCid: [
-                  {
-                    idMoneda: 0,
-                    codigoBarra: c.liqTotal.codigoBarraParcial,
-                    montoTotal: c.liqTotal.montoTotalTotal
-                  }
-                ]
-              };
+              this.multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalTotal});
             console.log("multiar", this.multiARObj);
             } else {
               codigos += c.liqTotal.codigoBarraParcial + ', ';
