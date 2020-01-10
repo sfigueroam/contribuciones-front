@@ -8,6 +8,6 @@
   <!--<input *ngIf="deviceDetectService.device.desktop" type="hidden" name="CANAL" value="30D"/>-->
   <!--<input type="hidden" name="CANAL" value="{{canalRecibido}}"/>-->
   <!--<button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}-->
-  <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}} (click)="pagar()">
+  <button mdl-button class="button-pay" [disabled]="total <= 0" (click)="pagar()">Ir a Pagar $ {{total | number}}>
   </button>
 </form>
