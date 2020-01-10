@@ -77,7 +77,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   providerConex: string;
   
   // JMS: arrglo de multiAR
-  multiARObj : any;
+  multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}]}; 
   
   @ViewChildren(TooltipDirective) tooltipDirective;
 
@@ -234,7 +234,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 // JMS: donde se arman los codigos que van en el boton pagar
 // JMS: acá debo armar el json que va a ir al servicio del multi ar
     let codigos = 'on, ';
-    var multiAR = JSON.parse(this.multiARObj);
+    // var multiAR = JSON.parse(this.multiARObj);
     // let objMultiAR = {
     //   "listaCid": [
     //     {
@@ -253,12 +253,12 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
-              multiAR.push = {
-                "listaCid": [
+              this.multiARObj = {
+                listaCid: [
                   {
-                    "idMoneda": 0,
-                    "codigoBarra": c.liqTotal.codigoBarraParcial,
-                    "montoTotal": c.liqTotal.montoTotalTotal
+                    idMoneda: 0,
+                    codigoBarra: c.liqTotal.codigoBarraParcial,
+                    montoTotal: c.liqTotal.montoTotalTotal
                   }
                 ]
               };
