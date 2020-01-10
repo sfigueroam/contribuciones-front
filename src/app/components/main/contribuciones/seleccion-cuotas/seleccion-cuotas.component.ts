@@ -200,7 +200,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
                   this.calcularTotal();
                 }
               );
-              this.noLiqVar = this.userdataservice.deudaNoLiquidable;
+              // this.noLiqVar = this.userdataservice.deudaNoLiquidable;
               // this.noLiqVar = cuota.
               // console.log(this.noLiqVar);
             }
@@ -261,6 +261,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     multiARObj.montoTotalPagar = total.toString();
     multiARString = JSON.stringify(multiARObj);
     this.multiARString2 = multiARString;
+    this.userdataservice.multiAR_Cid = multiARString;
     console.log("objMultiAR ", multiARObj);
     // console.log("multiARString", this.multiARString);
   }
