@@ -252,12 +252,12 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
-              this.multiARObj = {
+              this.multiARObj.push = {
                 "listaCid": [
                   {
                     "idMoneda": 0,
-                    "codigoBarra": "12059200005319123103014410",
-                    "montoTotal": 877892
+                    "codigoBarra": c.liqTotal.codigoBarraParcial,
+                    "montoTotal": c.liqTotal.montoTotalTotal
                   }
                 ]
               };
