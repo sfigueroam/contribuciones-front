@@ -271,13 +271,13 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
           (cidUnico: any[] ) => {
-            this.cidUnicoOut = cidUnico;
+            this.userdataservice.cidUnico = cidUnico;
             // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
             // JMS
             console.log("cidUnico en getmultiar", cidUnico);
             resolve();
-            console.log("cidunicoout en getmultiar", this.cidUnicoOut);
-            return(this.cidUnicoOut);
+            // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
+            // return(this.cidUnicoOut);
           },
           (err) => reject(err)
         )
