@@ -12,6 +12,7 @@ import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
 import {
+  MULTI_AR_CODIGOS,
   CODIGO_LIST_PROPIEDADES,
   CONDONACION_PROPIEDADES,
   EXISTE_VENCIDAS,
@@ -75,6 +76,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   reg: string;
   canal: string;
   providerConex: string;
+  multiARString: string;
   
   // JMS: arrglo de multiAR
   // multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
@@ -266,7 +268,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     this.listaContribuciones = codigos;
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
+    this.multiARString = JSON.stringify(multiARObj);
     console.log("objMultiAR ", multiARObj);
+    console.log("multiARString", this.multiARString);
   }
 
   gotoSugeridas() {
