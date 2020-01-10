@@ -16,6 +16,7 @@ export class ContribucionesService {
 
   propiedades: Propiedad[];
   noLiquidable: boolean;
+  cidUnicoOut: any[];
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
@@ -270,9 +271,11 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
           (cidUnico: any[] ) => {
+            this.cidUnicoOut = cidUnico;
             // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
             // JMS
             resolve();
+            return(this.cidUnicoOut);
           },
           (err) => reject(err)
         )

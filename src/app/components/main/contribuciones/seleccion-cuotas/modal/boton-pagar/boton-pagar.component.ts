@@ -23,6 +23,7 @@ export class BotonPagarComponent implements OnInit {
   reg: string;
   multiAR: string;
   cidUnico: any;
+  cidUnicoString: string;
   
   
   
@@ -48,6 +49,8 @@ export class BotonPagarComponent implements OnInit {
     
     this.cidUnico = this.contribucionesservice.getMultiAR(this.multiAR);
     console.log("cidUnico", this.cidUnico);
+    this.cidUnicoString = JSON.stringify(this.cidUnico);
+    console.log("cidunico string", this.cidUnicoString);
   }
   
   
