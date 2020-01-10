@@ -263,13 +263,13 @@ export class ContribucionesService {
     const url = Object.assign({}, environment.servicios.urlApiMultiAR);
     console.log("url", url)
     // console.log(url);
-    return this.requestService.request2(url, multiARJ);
+    return this.requestService.multiARrequest(url, multiARJ);
   }
 
   getMultiAR(multiARIn: string): Promise<any> {
     return new Promise((resolve) => {
       console.log("ingresa a getmultiar", multiARIn)
-        resolve(this.propiedades);
+        resolve();
     });
   }
 
