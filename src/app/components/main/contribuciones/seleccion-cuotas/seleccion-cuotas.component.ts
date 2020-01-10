@@ -224,6 +224,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   private calcularTotal() {
     let multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
+    // let multiARObj = {};
     let total = 0;
     let condonacion = 0;
     for (const p of this.propiedades) {
@@ -237,19 +238,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 // JMS: donde se arman los codigos que van en el boton pagar
 // JMS: acá debo armar el json que va a ir al servicio del multi ar
     let codigos = 'on, ';
-    // var multiAR = JSON.parse(this.multiARObj);
-    // let objMultiAR = {
-    //   "listaCid": [
-    //     {
-    //       "idMoneda": 0,
-    //       "codigoBarra": "12059200005319123103014410",
-    //       "montoTotal": 877892
-    //     }
-    //   ],
-    //   "usuario": "PruebaIngreso",
-    //   "montoTotalPagar": "1523374"
-    // };
-    // console.log("objMultiAR", this);
+
     for (const p of this.propiedades) {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
@@ -266,6 +255,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       }
     }
     this.listaContribuciones = codigos;
+    multiARObj.listaCid.splice(0);
+    console.log("objmutiar sin elemento 0", multiARObj);
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
     this.multiARString = JSON.stringify(multiARObj);
