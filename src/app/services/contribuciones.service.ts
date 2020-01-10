@@ -259,13 +259,16 @@ export class ContribucionesService {
   // JMS: servicio para acceder a lambda de multi AR
   public obtieneMultiAR(multiARJson): Promise<{}> {
     const multiARJ = multiARJson;
+    console.log("multiARJ", multiARJ);
     const url = Object.assign({}, environment.servicios.urlApiMultiAR);
+    console.log("url", url)
     // console.log(url);
     return this.requestService.request2(url, multiARJ);
   }
 
   getMultiAR(multiARIn: string): Promise<any> {
     return new Promise((resolve) => {
+      console.log("ingresa a getmultiar", multiARIn)
         resolve(this.propiedades);
     });
   }
