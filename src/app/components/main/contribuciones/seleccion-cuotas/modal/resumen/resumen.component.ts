@@ -8,7 +8,7 @@ import {filter, tap} from 'rxjs/operators';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
 
 export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
-export const MULTI_AR_CODIGOS = new InjectionToken<number>('multiARString');
+export const MULTI_AR_CODIGOS = new InjectionToken<number>('multiAR_Resumen');
 export const CODIGO_LIST_PROPIEDADES = new InjectionToken<number>('codigo_lista_propiedades');
 export const TOTAL_PROPIEDADES = new InjectionToken<number>('total_propiedades');
 export const CONDONACION_PROPIEDADES = new InjectionToken<number>('condonacion_propiedades');

@@ -17,7 +17,7 @@ export class BotonPagarComponent implements OnInit {
   codigos: string;
   
   @Input()
-  multiARString: string;
+  multiAR_Resumen: string;
 
   urlPagoTgr: string;
   
@@ -41,8 +41,8 @@ export class BotonPagarComponent implements OnInit {
     
   }
   pagar(){
-    this.multiAR = JSON.stringify(this.multiARString);
+    this.multiAR = JSON.stringify(this.multiAR_Resumen);
     console.log("multiAr", this.multiAR);
-    console.log("MultiARString", this.multiARString);
+    console.log("MultiARString", this.multiAR_Resumen);
     }
 }
