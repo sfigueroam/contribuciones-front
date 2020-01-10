@@ -234,6 +234,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 // JMS: donde se arman los codigos que van en el boton pagar
 // JMS: acá debo armar el json que va a ir al servicio del multi ar
     let codigos = 'on, ';
+    var multiAR = JSON.parse(this.multiARObj);
     // let objMultiAR = {
     //   "listaCid": [
     //     {
@@ -252,7 +253,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
-              this.multiARObj.push = {
+              multiAR.push = {
                 "listaCid": [
                   {
                     "idMoneda": 0,
