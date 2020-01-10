@@ -255,7 +255,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       }
     }
     this.listaContribuciones = codigos;
-    multiARObj.listaCid.splice(0);
+    multiARObj.listaCid.splice(0, 1);
     console.log("objmutiar sin elemento 0", multiARObj);
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
