@@ -76,7 +76,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   reg: string;
   canal: string;
   providerConex: string;
-  multiARString: string;
+  multiARString2: string;
   
   // JMS: arrglo de multiAR
   // multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
@@ -224,7 +224,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   private calcularTotal() {
     let multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
-    // let multiARObj = {};
+    let multiARString;
     let total = 0;
     let condonacion = 0;
     for (const p of this.propiedades) {
@@ -259,7 +259,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     // console.log("objmutiar sin elemento 0", multiARObj);
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
-    this.multiARString = JSON.stringify(multiARObj);
+    multiARString = JSON.stringify(multiARObj);
+    this.multiARString2 = multiARString;
     console.log("objMultiAR ", multiARObj);
     // console.log("multiARString", this.multiARString);
   }
@@ -327,7 +328,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       clickOutsideToClose: true,
       providers: [
         {provide: LIST_PROPIEDADES, useValue: this.propiedades},
-        {provide: MULTI_AR_CODIGOS, useValue: this.multiARString},
+        {provide: MULTI_AR_CODIGOS, useValue: this.multiARString2},
         {provide: CODIGO_LIST_PROPIEDADES, useValue: this.listaContribuciones},
         {provide: TOTAL_PROPIEDADES, useValue: this.total},
         {provide: CONDONACION_PROPIEDADES, useValue: this.condonacion},

@@ -44,5 +44,5 @@ export class BotonPagarComponent implements OnInit {
     this.multiAR = JSON.stringify(this.multiAR_Resumen);
     console.log("multiAr", this.multiAR);
     console.log("MultiARString", this.multiAR_Resumen);
-    }
+  }
 }
