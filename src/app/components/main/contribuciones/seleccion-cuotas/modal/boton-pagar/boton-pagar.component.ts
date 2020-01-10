@@ -15,6 +15,9 @@ export class BotonPagarComponent implements OnInit {
 
   @Input()
   codigos: string;
+  
+  @Input()
+  multiARString: string;
 
   urlPagoTgr: string;
   

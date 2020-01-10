@@ -256,12 +256,12 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
     this.listaContribuciones = codigos;
     multiARObj.listaCid.splice(0, 1);
-    console.log("objmutiar sin elemento 0", multiARObj);
+    // console.log("objmutiar sin elemento 0", multiARObj);
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
     this.multiARString = JSON.stringify(multiARObj);
     console.log("objMultiAR ", multiARObj);
-    console.log("multiARString", this.multiARString);
+    // console.log("multiARString", this.multiARString);
   }
 
   gotoSugeridas() {
@@ -327,6 +327,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       clickOutsideToClose: true,
       providers: [
         {provide: LIST_PROPIEDADES, useValue: this.propiedades},
+        {provide: MULTI_AR_CODIGOS, useValue: this.multiARString},
         {provide: CODIGO_LIST_PROPIEDADES, useValue: this.listaContribuciones},
         {provide: TOTAL_PROPIEDADES, useValue: this.total},
         {provide: CONDONACION_PROPIEDADES, useValue: this.condonacion},
