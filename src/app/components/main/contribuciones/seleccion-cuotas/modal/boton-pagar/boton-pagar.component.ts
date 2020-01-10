@@ -35,10 +35,14 @@ export class BotonPagarComponent implements OnInit {
   ngOnInit() {
     
     this.canalRecibido = this.userdataservice.canal;
-    this.multiAR = JSON.stringify(this.multiARString);
+
     // console.log("códigos para pago", this.codigos);
-    this.urlPagoTgr = environment.pago.url;
+    // this.urlPagoTgr = environment.pago.url;
     
   }
-
+  pagar(){
+    this.multiAR = JSON.stringify(this.multiARString);
+    console.log("multiAr", this.multiAR);
+    console.log("MultiARString", this.multiARString);
+    }
 }
