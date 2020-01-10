@@ -116,6 +116,10 @@ export const environment = {
       url: endpoints.base + '/servicios-recaudacion/v1/liquidacion/deudasrol', 
       method: 'GET' 
     }, 
+    urlApiMultiAR: {
+      url: endpoints.base + '/servicios-recaudacion/v1/liquidacion/ingresamultiar', 
+      method: 'POST' 
+    }, 
     buscarBienRaiz: {
       url: urlsBase.api + '/BienRaizWS/api/BienRaiz/bienraiz/obtener/rolin',
       method: 'POST',

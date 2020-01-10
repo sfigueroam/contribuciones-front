@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../../../../environments/environment';
 import {UserDataService} from '../../../../../../user-data.service';
+import {ContribucionesService} from '../../../../../../services/contribuciones.service';
 
 @Component({
   selector: 'app-boton-pagar',
@@ -16,19 +17,18 @@ export class BotonPagarComponent implements OnInit {
   @Input()
   codigos: string;
   
-  @Input()
-  multiAR_Resumen: string;
-
   urlPagoTgr: string;
   
   canalRecibido: string;
   reg: string;
   multiAR: string;
+  cidUnico: any;
   
   
   
   
-  constructor(public userdataservice: UserDataService) {
+  constructor(public userdataservice: UserDataService,
+              public contribucionesservice: ContribucionesService) {
   }
 
 
@@ -41,10 +41,14 @@ export class BotonPagarComponent implements OnInit {
     
   }
   pagar(){
-    this.multiAR = JSON.stringify(this.multiAR_Resumen);
-    console.log("multiAr", this.multiAR);
-    console.log("MultiARString", this.multiAR_Resumen);
     this.multiAR = this.userdataservice.multiAR_Cid;
+    // this.canalRecibido = this.userdataservice.canal;
     console.log("multi ar por servicio", this.multiAR);
+  
+    
+    this.cidUnico = this.contribucionesservice.getMultiAR(this.multiAR);
+    console.log("cidUnico", this.cidUnico);
   }
+  
+  
 }

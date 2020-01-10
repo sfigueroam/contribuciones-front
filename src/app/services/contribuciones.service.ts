@@ -226,6 +226,7 @@ export class ContribucionesService {
     //   );
     // }
   
+  
 
   private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
     return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
@@ -255,7 +256,19 @@ export class ContribucionesService {
     // console.log(url);
     return this.requestService.request2(url, body);
   }
+  // JMS: servicio para acceder a lambda de multi AR
+  public obtieneMultiAR(multiARJson): Promise<{}> {
+    const multiARJ = multiARJson;
+    const url = Object.assign({}, environment.servicios.urlApiMultiAR);
+    // console.log(url);
+    return this.requestService.request2(url, multiARJ);
+  }
 
+  getMultiAR(multiARIn: string): Promise<any> {
+    return new Promise((resolve) => {
+        resolve(this.propiedades);
+    });
+  }
 
   eliminarPropiedad(rut: number, correo: string, idDireccion: string): Promise<any> {
     return new Promise<any>(
