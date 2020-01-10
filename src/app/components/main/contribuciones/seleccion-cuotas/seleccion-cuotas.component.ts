@@ -77,7 +77,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   providerConex: string;
   
   // JMS: arrglo de multiAR
-  multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
+  // multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
   
   @ViewChildren(TooltipDirective) tooltipDirective;
 
@@ -221,6 +221,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   
 
   private calcularTotal() {
+    let multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
     let total = 0;
     let condonacion = 0;
     for (const p of this.propiedades) {
@@ -253,19 +254,19 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
-              this.multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
+              multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
             } else {
               codigos += c.liqTotal.codigoBarraParcial + ', ';
-              this.multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
+              multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
             }
           }
         }
       }
     }
     this.listaContribuciones = codigos;
-    this.multiARObj.usuario = this.canal;
-    this.multiARObj.montoTotalPagar = total.toString();
-    console.log("objMultiAR ", this.multiARObj);
+    multiARObj.usuario = this.canal;
+    multiARObj.montoTotalPagar = total.toString();
+    console.log("objMultiAR ", multiARObj);
   }
 
   gotoSugeridas() {
