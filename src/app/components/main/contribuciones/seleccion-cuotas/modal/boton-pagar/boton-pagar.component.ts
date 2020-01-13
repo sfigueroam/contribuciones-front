@@ -50,8 +50,11 @@ export class BotonPagarComponent implements OnInit {
     
     // this.cidUnico1 = this.contribucionesservice.getMultiAR(this.multiAR);
     // this.cidUnico1 = this.contribucionesservice.getMultiAR(this.multiAR);
+    
+    
     this.contribucionesservice.getMultiAR(this.multiAR).then(function(val){
       this.cidUnico1 = val;
+      console.log("val", val);
     });
     // this.cidUnicoString = JSON.stringify(this.cidUnico1);
     
