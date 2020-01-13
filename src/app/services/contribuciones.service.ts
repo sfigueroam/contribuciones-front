@@ -273,8 +273,8 @@ export class ContribucionesService {
           (cidUnico: any[] ) => {
             let cidUnicoString = JSON.stringify(cidUnico);
             // JMS
-            resolve(cidUnicoString);
-            this.userdataservice.cidUnico = cidUnicoString;
+            resolve(this.userdataservice.cidUnico);
+            // this.userdataservice.cidUnico = cidUnicoString;
             // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
             // return(this.cidUnicoOut);
             console.log("cidUnico en getmultiar", cidUnico);
