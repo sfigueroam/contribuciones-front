@@ -47,15 +47,18 @@ export class BotonPagarComponent implements OnInit {
     // this.canalRecibido = this.userdataservice.canal;
     console.log("multi ar por servicio", this.multiAR);
   
+    const promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
+    console.log("promesa", promesa);
+    
     
     // this.cidUnico1 = this.contribucionesservice.getMultiAR(this.multiAR);
     // this.cidUnico1 = this.contribucionesservice.getMultiAR(this.multiAR);
     
     
-    this.contribucionesservice.getMultiAR(this.multiAR).then(function(val){
-      this.cidUnico1 = val;
-      console.log("val", val);
-    });
+    // this.contribucionesservice.getMultiAR(this.multiAR).then(function(val){
+    //   this.cidUnico1 = val;
+    //   console.log("val", val);
+    // });
     // this.cidUnicoString = JSON.stringify(this.cidUnico1);
     
     this.cidUnico = this.userdataservice.cidUnico;
