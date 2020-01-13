@@ -37,8 +37,7 @@ export class BotonPagarComponent implements OnInit {
   ngOnInit() {
     
     this.canalRecibido = this.userdataservice.canal;
-    this.cidUnico = this.userdataservice.cidUnico;
-    console.log("userdata service antes del boton", this.userdataservice.cidUnico);
+    this.userdataservice.cidUnico = '';
 
     // console.log("códigos para pago", this.codigos);
     // this.urlPagoTgr = environment.pago.url;
@@ -56,8 +55,11 @@ export class BotonPagarComponent implements OnInit {
     
     this.cidUnico = this.userdataservice.cidUnico;
     console.log("cidUnico desde userdataservice", this.cidUnico);
-    console.log("cidunico directo userdataservice", this.userdataservice.cidUnico)
+    console.log("cidunico directo userdataservice", this.userdataservice.cidUnico);
     console.log("cidUnico2", this.cidUnico1);
+    console.log("cid unico desglosado", this.cidUnico1.e.__zone_symbol__value);
+    console.log("cid unico desglosado2", this.cidUnico1.e);
+    console.log("cid unico desglosado3", this.cidUnico1.codigoBarra);
   }
   
   
