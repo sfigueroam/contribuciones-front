@@ -8,9 +8,6 @@ import {CuotaDetalle} from '../domain/CuotaDetalle';
 import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
 import {UserDataService} from '../user-data.service';
-import { Observable } from 'rxjs';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +16,7 @@ export class ContribucionesService {
 
   propiedades: Propiedad[];
   noLiquidable: boolean;
-  cidUnicoOut: string;
+  cidUnicoOut: any[];
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
@@ -274,15 +271,16 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
           (cidUnico: any[] ) => {
-            let cidUnicoString = cidUnico["codigoBarra"];
-            this.cidUnicoOut = cidUnico["codigoBarra"];
+            let cidUnicoString = JSON.stringify(cidUnico);
             // JMS
-            this.userdataservice.cidUnico = this.cidUnicoOut;
-            console.log("cidUnico en getmultir", cidUnico);
-            console.log("cid string getmultiar", cidUnicoString);
             resolve(cidUnico);
-
-            // return cidUnicoString;
+            cidUnicoString = cidUnico["codigoBarra"];
+            // return(cidUnicoString);
+            // this.userdataservice.cidUnico = cidUnicoString;
+            // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
+            // return(this.cidUnicoOut);
+            console.log("cidUnico en getmultiar", cidUnico);
+            console.log("cid string getmultiar", cidUnicoString);
           },
           (err) => reject(err)
         )
