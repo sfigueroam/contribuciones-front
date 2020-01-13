@@ -50,7 +50,7 @@ export class BotonPagarComponent implements OnInit {
     const promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
     promesa.then(function(value){
       console.log(value);
-      this.cidUnico = value;
+      // this.cidUnico = value;
     });
     // console.log("promesa", promesa);
     
@@ -65,10 +65,10 @@ export class BotonPagarComponent implements OnInit {
     // });
     // this.cidUnicoString = JSON.stringify(this.cidUnico1);
     
-    this.cidUnico = this.userdataservice.cidUnico;
-    console.log("cidUnico desde userdataservice", this.cidUnico);
-    console.log("cidunico directo userdataservice", this.userdataservice.cidUnico)
-    console.log("cidUnico2", this.cidUnicoString);
+    // this.cidUnico = this.userdataservice.cidUnico;
+    // console.log("cidUnico desde userdataservice", this.cidUnico);
+    // console.log("cidunico directo userdataservice", this.userdataservice.cidUnico)
+    // console.log("cidUnico2", this.cidUnicoString);
   }
   
   
