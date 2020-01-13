@@ -276,7 +276,8 @@ export class ContribucionesService {
             // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
             // JMS
             console.log("cidUnico en getmultiar", cidUnico);
-            resolve();
+            console.log("cid string getmultiar", cidUnicoString);
+            resolve(cidUnico);
             // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
             // return(this.cidUnicoOut);
           },
