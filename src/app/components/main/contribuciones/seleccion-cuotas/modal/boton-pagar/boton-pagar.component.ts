@@ -55,9 +55,12 @@ export class BotonPagarComponent implements OnInit {
       console.log("value2", value.codigoBarra);
       
       
-      return(value);
+      return value;
     });
-    console.log("promesa", this.promesa);
+    setTimeout(function(){
+        console.log("promesa", this.promesa);
+    })
+
   };
   
   
