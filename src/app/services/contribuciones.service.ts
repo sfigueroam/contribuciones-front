@@ -16,7 +16,7 @@ export class ContribucionesService {
 
   propiedades: Propiedad[];
   noLiquidable: boolean;
-  cidUnicoOut: any[];
+  cidUnicoOut: string;
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
@@ -272,10 +272,11 @@ export class ContribucionesService {
         (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
           (cidUnico: any[] ) => {
             let cidUnicoString = cidUnico["codigoBarra"];
+            this.cidUnicoOut = cidUnico["codigoBarra"];
             // JMS
-            this.userdataservice.cidUnico = cidUnicoString;
-            resolve(cidUnicoString);
-            this.userdataservice.cidUnico = cidUnicoString;
+            this.userdataservice.cidUnico = this.cidUnicoOut;
+            resolve(this.cidUnicoOut);
+            // this.userdataservice.cidUnico = cidUnicoString;
             // cidUnicoString = cidUnico["codigoBarra"];
             // return(cidUnicoString);
             // this.userdataservice.cidUnico = cidUnicoString;
