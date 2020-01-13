@@ -276,6 +276,7 @@ export class ContribucionesService {
             // JMS
             this.userdataservice.cidUnico = this.cidUnicoOut;
             resolve(this.cidUnicoOut);
+            this.userdataservice.cidUnico = this.cidUnicoOut;
             // this.userdataservice.cidUnico = cidUnicoString;
             // cidUnicoString = cidUnico["codigoBarra"];
             // return(cidUnicoString);
