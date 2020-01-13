@@ -57,9 +57,9 @@ export class BotonPagarComponent implements OnInit {
     console.log("cidUnico desde userdataservice", this.cidUnico);
     console.log("cidunico directo userdataservice", this.userdataservice.cidUnico);
     console.log("cidUnico2", this.cidUnico1);
-    console.log("cid unico desglosado", this.cidUnico1.e.__zone_symbol__value);
-    console.log("cid unico desglosado2", this.cidUnico1.e);
-    console.log("cid unico desglosado3", this.cidUnico1.codigoBarra);
+    // console.log("cid unico desglosado", this.cidUnico1.e.__zone_symbol__value);
+    // console.log("cid unico desglosado2", this.cidUnico1.e);
+    // console.log("cid unico desglosado3", this.cidUnico1.codigoBarra);
   }
   
   

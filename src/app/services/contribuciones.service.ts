@@ -278,7 +278,7 @@ export class ContribucionesService {
             this.cidUnicoOut = cidUnico["codigoBarra"];
             // JMS
             this.userdataservice.cidUnico = this.cidUnicoOut;
-            resolve(this.cidUnicoOut);
+            // resolve(this.cidUnicoOut);
             this.userdataservice.cidUnico = this.cidUnicoOut;
             // this.userdataservice.cidUnico = cidUnicoString;
             // cidUnicoString = cidUnico["codigoBarra"];
@@ -288,6 +288,7 @@ export class ContribucionesService {
             // return(this.cidUnicoOut);
             console.log("cidUnico en getmultiar", cidUnico);
             console.log("cid string getmultiar", cidUnicoString);
+            return cidUnicoString;
           },
           (err) => reject(err)
         )
