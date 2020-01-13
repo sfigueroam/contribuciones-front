@@ -25,7 +25,7 @@ export class BotonPagarComponent implements OnInit {
   cidUnico: any;
   cidUnico1: any;
   cidUnicoString: string;
-  
+  promesa: any;
   
   
   
@@ -47,23 +47,21 @@ export class BotonPagarComponent implements OnInit {
     // this.canalRecibido = this.userdataservice.canal;
     console.log("multi ar por servicio", this.multiAR);
   
-    const promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
-    promesa.then(function(value){
+    this.promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
+    this.promesa.then(function(value){
       // let cidUnico3 = value;
       // console.log("cidUnico3", this.cidUnico3);
       // this.userdataservice.cidUnico = value;
       console.log("value2", value.codigoBarra);
-      let canal = this.userdataservice.canal;
-      console.log("canal", canal);
       
       
       return(value);
     });
-    // console.log("servicio", this.userdataservice.cidUnico)
-    // console.log("promesa", promesa);
+    
   }
   async pagar2(){
     let resPagar = await this.pagar();
+    console.log("promesa", this.promesa);
     console.log("pagar2", resPagar);
   }
 }
