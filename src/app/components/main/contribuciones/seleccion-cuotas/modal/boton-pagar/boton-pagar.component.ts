@@ -37,6 +37,8 @@ export class BotonPagarComponent implements OnInit {
   ngOnInit() {
     
     this.canalRecibido = this.userdataservice.canal;
+    this.cidUnico = this.userdataservice.cidUnico;
+    console.log("userdata service antes del boton", this.userdataservice.cidUnico);
 
     // console.log("códigos para pago", this.codigos);
     // this.urlPagoTgr = environment.pago.url;

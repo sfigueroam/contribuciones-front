@@ -8,6 +8,9 @@ import {CuotaDetalle} from '../domain/CuotaDetalle';
 import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
 import {UserDataService} from '../user-data.service';
+import { Observable } from 'rxjs';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
