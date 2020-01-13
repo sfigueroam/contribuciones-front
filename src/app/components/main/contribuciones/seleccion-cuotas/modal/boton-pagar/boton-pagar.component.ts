@@ -51,11 +51,12 @@ export class BotonPagarComponent implements OnInit {
     promesa.then(function(value){
       // let cidUnico3 = value;
       // console.log("cidUnico3", this.cidUnico3);
-      this.userdataservice.cidUnico = value;
+      // this.userdataservice.cidUnico = value;
       console.log("value2", value);
+      
       // return(value);
     });
-    console.log("servicio", this.userdataservice.cidUnico)
+    // console.log("servicio", this.userdataservice.cidUnico)
     // console.log("promesa", promesa);
   }
 }
