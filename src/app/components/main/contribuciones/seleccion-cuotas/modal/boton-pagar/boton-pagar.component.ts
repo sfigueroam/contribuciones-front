@@ -50,7 +50,7 @@ export class BotonPagarComponent implements OnInit {
     const promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
     promesa.then(function(value){
       console.log(value);
-      this.cidUnico = value.codigoBarra;
+      this.cidUnico = value;
     });
     // console.log("promesa", promesa);
     
