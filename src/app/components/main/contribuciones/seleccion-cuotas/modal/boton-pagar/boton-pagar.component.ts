@@ -48,7 +48,7 @@ export class BotonPagarComponent implements OnInit {
     console.log("multi ar por servicio", this.multiAR);
   
     const promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
-    promesa.then(function(value){
+    promesa.then(async function(value){
       // let cidUnico3 = value;
       // console.log("cidUnico3", this.cidUnico3);
       // this.userdataservice.cidUnico = value;
