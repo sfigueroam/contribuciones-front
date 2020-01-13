@@ -53,6 +53,9 @@ export class BotonPagarComponent implements OnInit {
       // console.log("cidUnico3", this.cidUnico3);
       // this.userdataservice.cidUnico = value;
       console.log("value2", value.codigoBarra);
+      let canal = this.userdataservice.canal;
+      console.log("canal", canal);
+      
       
       return(value);
     });
