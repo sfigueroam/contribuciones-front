@@ -272,14 +272,13 @@ export class ContribucionesService {
         (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
           (cidUnico: any[] ) => {
             let cidUnicoString = JSON.stringify(cidUnico);
-            this.userdataservice.cidUnico = cidUnicoString;
-            // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
             // JMS
-            console.log("cidUnico en getmultiar", cidUnico);
-            console.log("cid string getmultiar", cidUnicoString);
             resolve(cidUnicoString);
+            this.userdataservice.cidUnico = cidUnicoString;
             // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
             // return(this.cidUnicoOut);
+            console.log("cidUnico en getmultiar", cidUnico);
+            console.log("cid string getmultiar", cidUnicoString);
           },
           (err) => reject(err)
         )
