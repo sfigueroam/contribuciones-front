@@ -54,9 +54,13 @@ export class BotonPagarComponent implements OnInit {
       // this.userdataservice.cidUnico = value;
       console.log("value2", value);
       
-      // return(value);
+      return(value);
     });
     // console.log("servicio", this.userdataservice.cidUnico)
     // console.log("promesa", promesa);
+  }
+  pagar2(){
+    let resPagar = this.pagar();
+    console.log("pagar2", resPagar);
   }
 }
