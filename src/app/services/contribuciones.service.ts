@@ -279,16 +279,16 @@ export class ContribucionesService {
             // JMS
             this.userdataservice.cidUnico = this.cidUnicoOut;
             // resolve(this.cidUnicoOut);
-            this.userdataservice.cidUnico = this.cidUnicoOut;
+            // this.userdataservice.cidUnico = this.cidUnicoOut;
             // this.userdataservice.cidUnico = cidUnicoString;
             // cidUnicoString = cidUnico["codigoBarra"];
             // return(cidUnicoString);
             // this.userdataservice.cidUnico = cidUnicoString;
             // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
-            // return(this.cidUnicoOut);
+            resolve(cidUnico);
             console.log("cidUnico en getmultiar", cidUnico);
             console.log("cid string getmultiar", cidUnicoString);
-            return cidUnicoString;
+            // return cidUnicoString;
           },
           (err) => reject(err)
         )
