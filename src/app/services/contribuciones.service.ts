@@ -277,7 +277,7 @@ export class ContribucionesService {
             // JMS
             console.log("cidUnico en getmultiar", cidUnico);
             console.log("cid string getmultiar", cidUnicoString);
-            resolve(cidUnico);
+            resolve(cidUnicoString);
             // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
             // return(this.cidUnicoOut);
           },
