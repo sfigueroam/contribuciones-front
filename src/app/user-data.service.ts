@@ -9,7 +9,7 @@ export class UserDataService {
   multiAR_Cid: string;
   conex_usuario: string;
   canal: string;
-  cidUnico: any[];
+  cidUnico: string;
   
   constructor() { }
 

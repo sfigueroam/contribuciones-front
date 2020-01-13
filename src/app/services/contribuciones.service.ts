@@ -271,7 +271,8 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
           (cidUnico: any[] ) => {
-            this.userdataservice.cidUnico = cidUnico;
+            let cidUnicoString = JSON.stringify(cidUnico);
+            this.userdataservice.cidUnico = cidUnicoString;
             // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
             // JMS
             console.log("cidUnico en getmultiar", cidUnico);
