@@ -271,10 +271,10 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
           (cidUnico: any[] ) => {
-            let cidUnicoString = JSON.stringify(cidUnico);
+            let cidUnicoString = cidUnico["codigoBarra"];
             // JMS
             resolve(cidUnicoString);
-            cidUnicoString = cidUnico["codigoBarra"];
+            // cidUnicoString = cidUnico["codigoBarra"];
             // return(cidUnicoString);
             // this.userdataservice.cidUnico = cidUnicoString;
             // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
