@@ -42,7 +42,7 @@ export class BotonPagarComponent implements OnInit {
     // this.urlPagoTgr = environment.pago.url;
     
   }
-  pagar(){
+  async pagar(){
     this.multiAR = this.userdataservice.multiAR_Cid;
     // this.canalRecibido = this.userdataservice.canal;
     console.log("multi ar por servicio", this.multiAR);
@@ -59,8 +59,8 @@ export class BotonPagarComponent implements OnInit {
     // console.log("servicio", this.userdataservice.cidUnico)
     // console.log("promesa", promesa);
   }
-  pagar2(){
-    let resPagar = this.pagar();
+  async pagar2(){
+    let resPagar = await this.pagar();
     console.log("pagar2", resPagar);
   }
 }
