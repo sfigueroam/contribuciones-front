@@ -40,7 +40,8 @@ export class BotonPagarComponent implements OnInit {
 
     // console.log("códigos para pago", this.codigos);
     // this.urlPagoTgr = environment.pago.url;
-    
+    this.cidUnico = this.promesa;
+    console.log("valor promesa", this.cidUnico);
   }
   pagar(){
     this.multiAR = this.userdataservice.multiAR_Cid;
@@ -64,4 +65,9 @@ export class BotonPagarComponent implements OnInit {
     console.log("promesa", this.promesa);
     console.log("pagar2", resPagar);
   }
+  
+  
+  // JMS: prueba con suscribe
+  
+  
 }
