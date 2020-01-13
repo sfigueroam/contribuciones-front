@@ -273,7 +273,9 @@ export class ContribucionesService {
           (cidUnico: any[] ) => {
             let cidUnicoString = cidUnico["codigoBarra"];
             // JMS
+            this.userdataservice.cidUnico = cidUnicoString;
             resolve(cidUnicoString);
+            this.userdataservice.cidUnico = cidUnicoString;
             // cidUnicoString = cidUnico["codigoBarra"];
             // return(cidUnicoString);
             // this.userdataservice.cidUnico = cidUnicoString;
