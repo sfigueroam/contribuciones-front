@@ -88,33 +88,33 @@ export class RequestService {
     });
   }
   // JMS: request para servicio de multi ar
-  public multiARrequest(servicio: { url: string, method: string }, body?): Promise<{}> {
-    let headers = {};
-    if (this.jwtCognito.jwt !== undefined) {
-      headers = new HttpHeaders({
-        Authorization: this.jwtCognito.jwt
-      });
-    }
-
-    return new Promise((resolve, reject) => {
-      this.http.request(servicio.method,
-        servicio.url,
-        {
-          body: body,
-          responseType: 'json',
-          headers: headers
-        }
-      ).subscribe(
-        data => {
-          resolve(data);
-        },
-        err => {
-          console.log('Error', err);
-          reject();
-        }
-      );
-    });
-  }
+  //public multiARrequest(servicio: { url: string, method: string }, body?): Promise<{}> {
+  //  let headers = {};
+  //  if (this.jwtCognito.jwt !== undefined) {
+  //    headers = new HttpHeaders({
+  //      Authorization: this.jwtCognito.jwt
+  //    });
+  //  }
+ //
+  //  return new Promise((resolve, reject) => {
+  //    this.http.request(servicio.method,
+  //      servicio.url,
+  //      {
+  //        body: body,
+  //        responseType: 'json',
+  //        headers: headers
+  //      }
+  //    ).subscribe(
+  //      data => {
+  //        resolve(data);
+  //      },
+  //      err => {
+  //        console.log('Error', err);
+  //        reject();
+  //      }
+  //    );
+  //  });
+  //}
 
   public requestElastic(servicio: { url: string, body: any, method: string }): Promise<{}> {
     return new Promise((resolve, reject) => {

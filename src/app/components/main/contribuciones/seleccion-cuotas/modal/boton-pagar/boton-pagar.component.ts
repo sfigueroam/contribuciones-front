@@ -47,7 +47,7 @@ export class BotonPagarComponent implements OnInit {
     this.multiAR = this.userdataservice.multiAR_Cid;
     this.contribucionesservice.postMultiaR(this.multiAR).subscribe(
       (data) => {
-        this.cidUnico = data.codigoBarra;
+        this.cidUnico = 'on, ' + data.codigoBarra + ',';
         console.log("this.cidUnico", this.cidUnico);
       });
   };
