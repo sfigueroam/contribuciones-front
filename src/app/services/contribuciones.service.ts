@@ -275,14 +275,10 @@ export class ContribucionesService {
       return this.http.post(url, multiAR);
   }
   
-  postPago(listaContribuciones, canal): Observable <any>{
+  postPago(cidUnicoCanal): Observable <any>{
     const url = environment.pago.url;
     console.log("url", url);
-    const body = {
-      'listaContribuciones': listaContribuciones,
-      'canal': canal,
-    };
-    return this.http.post(url, body);
+    return this.http.post(url, cidUnicoCanal);
   }
   
   

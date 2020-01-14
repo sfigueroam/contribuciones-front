@@ -8,10 +8,9 @@ export class UserDataService {
   nombre_usuario: string;
   multiAR_Cid: string;
   conex_usuario: string;
-  // Relativos al pago:
-  cidUnico: any;
   canal: string;
-    
+  cidUnico: any;
+  
   constructor() { }
 
     
