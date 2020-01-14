@@ -1,5 +1,5 @@
 <form ngNoForm method="post" action="{{urlPagoTgr}}">
-  <input type="hidden" name="listaContribuciones" value="{{cidUnico}}"/>
+  <input type="hidden" name="listaContribuciones" value="{{this.cidUnico}}"/>
   <input type="hidden" name="CANAL" value="{{canalRecibido}}"/>
   <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
 </form>
