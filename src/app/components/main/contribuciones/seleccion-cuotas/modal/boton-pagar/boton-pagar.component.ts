@@ -44,7 +44,7 @@ export class BotonPagarComponent implements OnInit {
 
   }
   //JMS : prueba sin promesa
-  pagar(){
+  obtieneCidUnico(){
     this.multiAR = this.userdataservice.multiAR_Cid;
     this.contribucionesservice.postMultiaR(this.multiAR).subscribe(
       (data) => {
@@ -52,13 +52,8 @@ export class BotonPagarComponent implements OnInit {
         console.log("this.cidUnico", this.cidUnico);
       });
     // Incorporación del pago
-    this.pagoString = this.cidUnico + ',' + this.canalRecibido
-    this.contribucionesservice.postPago(this.pagoString).subscribe();
   };
   
-  // botonPago(){
-    
-  // }
  
   
   

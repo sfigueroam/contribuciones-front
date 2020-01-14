@@ -77,6 +77,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   canal: string;
   providerConex: string;
   multiARString2: string;
+  cidUnico: string;
   
   // JMS: arrglo de multiAR
   // multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
@@ -338,6 +339,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       classes: 'dialogo-resumen-deudas',
       isModal: true
     });
+    this.obtieneCidUnico();
   }
 
   seleccionarTodas() {
@@ -379,4 +381,15 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       environment.tooltipTime
     );
   }
+  public obtieneCidUnico(){
+    // this.multiAR = this.userdataservice.multiAR_Cid;
+    this.contribuciones.postMultiaR(this.multiARString2).subscribe(
+      (data) => {
+        this.cidUnico = 'on, ' + data.codigoBarra + ', ';
+        console.log("this.cidUnico", this.cidUnico);
+        this.userdataservice.cidUnico = this.cidUnico;
+      });
+    // Incorporación del pago
+  };
+  
 }
