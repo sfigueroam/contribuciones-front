@@ -6,7 +6,6 @@ import {environment} from '../../../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../../../services/device-detect.service';
 import {filter, tap} from 'rxjs/operators';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
-import {UserDataService} from '../../../../../../user-data.service'
 
 export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 export const MULTI_AR_CODIGOS = new InjectionToken<number>('multiAR_Resumen');
@@ -28,16 +27,11 @@ export class ResumenComponent implements OnInit {
   condonacion: number;
   existeVencidas: boolean;
   multiARString: string;
-  
-  cidUnico: string;
-  canal: string;
-  urlPagoTgr: string;
 
   constructor(
     private dialog: MdlDialogReference,
     private deviceDetectService: DeviceDetectService,
     private router: Router,
-    private userDataService: UserDataService,
     @Inject(LIST_PROPIEDADES) propiedades: Propiedad[],
     @Inject(MULTI_AR_CODIGOS) multiARString: string,
     @Inject(CODIGO_LIST_PROPIEDADES) codigos: string,
@@ -62,9 +56,6 @@ export class ResumenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cidUnico = this.userDataService.cidUnico;
-    this.canal = this.userDataService.canal;
-    this.urlPagoTgr = environment.pago.url;
   }
 
 
