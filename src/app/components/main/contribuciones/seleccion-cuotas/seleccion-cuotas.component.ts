@@ -324,8 +324,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private openDialogResumen() {
-    this.obtieneCidUnico();
+  public openDialogResumen() {
     const pDialog = this.dialogService.showCustomDialog({
       component: ResumenComponent,
       clickOutsideToClose: true,
@@ -382,6 +381,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     );
   }
   public obtieneCidUnico(){
+    this.openDialogResumen();
     // this.multiAR = this.userdataservice.multiAR_Cid;
     this.contribuciones.postMultiaR(this.multiARString2).subscribe(
       (data) => {
