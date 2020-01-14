@@ -22,10 +22,10 @@
           <tr *ngFor="let cuota of rol.cuotasSeleccionadas()">
             <td>{{rol.rolId | leadingZero:5}}-{{rol.subrolId | leadingZero:3}}
             </td>
-            <td [class.tgr-tr--late]="cuota.expired">{{cuota.numeroCuota}}</td>
-            <td [class.tgr-tr--late]="cuota.expired">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>
+            <td [class.tgr-tr--late]="cuota.expired">{{cuota.liqTotal.nroCuota}}</td>
+            <td [class.tgr-tr--late]="cuota.expired">{{cuota.fechaVcto | date:'dd/MMM'}}</td>
             <!--<td class="monto" [class.tgr-tr--late]="cuota.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqParcial.saldoTotal) | number}}-->
-            <td class="monto" [class.tgr-tr--late]="cuota.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.saldoTotal : cuota.liqTotal.saldoTotal) | number}}
+            <td class="monto" [class.tgr-tr--late]="cuota.expired">{{(rol.condonacion > 0 ? cuota.liqTotal.montoTotalTotal : cuota.liqTotal.montoTotalTotal) | number}}
                 
             </td>
           </tr>
