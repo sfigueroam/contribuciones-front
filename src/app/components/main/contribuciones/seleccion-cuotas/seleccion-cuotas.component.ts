@@ -325,6 +325,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   private openDialogResumen() {
+    this.obtieneCidUnico();
     const pDialog = this.dialogService.showCustomDialog({
       component: ResumenComponent,
       clickOutsideToClose: true,
@@ -339,7 +340,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       classes: 'dialogo-resumen-deudas',
       isModal: true
     });
-    this.obtieneCidUnico();
   }
 
   seleccionarTodas() {
