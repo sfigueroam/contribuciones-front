@@ -39,7 +39,7 @@ export class BotonPagarComponent implements OnInit {
     this.canalRecibido = this.userdataservice.canal;
 
     // console.log("códigos para pago", this.codigos);
-    // this.urlPagoTgr = environment.pago.url;
+    this.urlPagoTgr = environment.pago.url;
 
   }
   //JMS : prueba sin promesa
