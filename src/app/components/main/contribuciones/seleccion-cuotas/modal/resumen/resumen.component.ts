@@ -6,6 +6,8 @@ import {environment} from '../../../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../../../services/device-detect.service';
 import {filter, tap} from 'rxjs/operators';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
+import {ContribucionesService} from '../../../../../../services/contribuciones.service';
+import {UserDataService} from '../../../../../../user-data.service';
 
 export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 export const MULTI_AR_CODIGOS = new InjectionToken<number>('multiAR_Resumen');
@@ -27,11 +29,14 @@ export class ResumenComponent implements OnInit {
   condonacion: number;
   existeVencidas: boolean;
   multiARString: string;
+  cidUnico: string;
 
   constructor(
     private dialog: MdlDialogReference,
     private deviceDetectService: DeviceDetectService,
     private router: Router,
+    private contribuciones: ContribucionesService,
+    private userdataservice: UserDataService,
     @Inject(LIST_PROPIEDADES) propiedades: Propiedad[],
     @Inject(MULTI_AR_CODIGOS) multiARString: string,
     @Inject(CODIGO_LIST_PROPIEDADES) codigos: string,
@@ -56,10 +61,21 @@ export class ResumenComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.obtieneCidUnico;
   }
 
 
   volver(): void {
     this.dialog.hide();
   }
+  public obtieneCidUnico(){
+    // this.multiAR = this.userdataservice.multiAR_Cid;
+    this.contribuciones.postMultiaR(this.multiARString).subscribe(
+      (data) => {
+        this.cidUnico = 'on, ' + data.codigoBarra + ', ';
+        console.log("this.cidUnico", this.cidUnico);
+        this.userdataservice.cidUnico = this.cidUnico;
+      });
+    // Incorporación del pago
+  };
 }
