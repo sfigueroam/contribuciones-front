@@ -26,6 +26,7 @@ export class BotonPagarComponent implements OnInit {
   cidUnico1: any;
   cidUnicoString: string;
   promesa: any;
+  pagoString: string;
   
   
   
@@ -47,35 +48,18 @@ export class BotonPagarComponent implements OnInit {
     this.multiAR = this.userdataservice.multiAR_Cid;
     this.contribucionesservice.postMultiaR(this.multiAR).subscribe(
       (data) => {
-        this.cidUnico = 'on, ' + data.codigoBarra + ',';
+        this.cidUnico = 'on, ' + data.codigoBarra;
         console.log("this.cidUnico", this.cidUnico);
       });
+    // Incorporación del pago
+    this.pagoString = this.cidUnico + ',' + this.canalRecibido
+    this.contribucionesservice.postPago(this.pagoString).subscribe();
   };
   
-  
-//  pagar(){
-//    this.multiAR = this.userdataservice.multiAR_Cid;
-//    // this.canalRecibido = this.userdataservice.canal;
-//    console.log("multi ar por servicio", this.multiAR);
-//  
-//    this.promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
-//    this.promesa.then(function(value){
-//      // let cidUnico3 = value;
-//      // console.log("cidUnico3", this.cidUnico3);
-//      // this.userdataservice.cidUnico = value;
-//      console.log("value2", value.codigoBarra);
-//      
-//      
-//      return value;
-//    });
-//    setTimeout(function(){
-//        console.log("promesa", this.promesa);
-//    })
-//
-//  };
-  
-  
-  // JMS: prueba con suscribe
+  // botonPago(){
+    
+  // }
+ 
   
   
 }

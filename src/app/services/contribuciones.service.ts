@@ -273,7 +273,13 @@ export class ContribucionesService {
       const url = environment.servicios.urlMultiAR;
       console.log("url", url);
       return this.http.post(url, multiAR);
-    }
+  }
+  
+  postPago(cidUnicoCanal): Observable <any>{
+    const url = environment.pago.url;
+    console.log("url", url);
+    return this.http.post(url, cidUnicoCanal);
+  }
   
   
 //JMS : antiuua forma con promesa
