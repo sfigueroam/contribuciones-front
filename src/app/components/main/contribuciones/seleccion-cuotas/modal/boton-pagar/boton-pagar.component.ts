@@ -54,7 +54,7 @@ export class BotonPagarComponent implements OnInit {
       });
     // Incorporación del pago
     // this.pagoString = this.cidUnico + ',' + this.canalRecibido
-    // this.contribucionesservice.postPago(this.cidUnico, this.canalRecibido).subscribe();
+    this.contribucionesservice.postPago(this.cidUnico, this.canalRecibido).subscribe();
   };
   
   // botonPago(){
