@@ -271,7 +271,9 @@ export class ContribucionesService {
   // JMS: nueva forma sin promesa
   postMultiaR(multiAR): Observable <any> {
       const url = Object.assign({}, environment.servicios.urlApiMultiAR);
+      console.log("url", url);
       const url2 = url.toString();
+      console.log("url2", url2);
       return this.http.post(url2, multiAR);
     }
   
