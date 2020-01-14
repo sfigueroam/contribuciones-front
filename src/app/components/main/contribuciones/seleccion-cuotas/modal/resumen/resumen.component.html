@@ -65,6 +65,11 @@
   <button class="mdl-button mdl-js-button mdl-button--primary button-default-link" (click)="volver();">
     Volver al Carro
   </button>
-  <app-boton-pagar [total]=total [codigos]="codigos"></app-boton-pagar>
+  <!--<app-boton-pagar [total]=total [codigos]="codigos"></app-boton-pagar>-->
+  <form ngNoForm>
+    <input type="hidden" name="listaContribuciones" value="{{cidUnico}}"/>
+    <input type="hidden" name="CANAL" value="{{canal}}"/>
+    <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
+  </form>
 </div>
 
