@@ -8,6 +8,8 @@ import {CuotaDetalle} from '../domain/CuotaDetalle';
 import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
 import {UserDataService} from '../user-data.service';
+import { Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,8 @@ export class ContribucionesService {
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
-              private userdataservice: UserDataService,) {
+              private userdataservice: UserDataService,
+              private http : HttpClient) {
 
   }
 
@@ -258,34 +261,36 @@ export class ContribucionesService {
     return this.requestService.request2(url, body);
   }
   // JMS: servicio para acceder a lambda de multi AR
-  public obtieneMultiAR(multiARJson): Promise<{}> {
-    const multiARJ = multiARJson;
-    console.log("multiARJ", multiARJ);
-    const url = Object.assign({}, environment.servicios.urlApiMultiAR);
-    console.log("url", url)
-    // console.log(url);
-    return this.requestService.multiARrequest(url, multiARJ);
-  }
-
-  getMultiAR(multiARIn: string): Promise<any> {
-      return new Promise(
-        (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
-          (cidUnico: any[] ) => {
-            let cidUnicoString = JSON.stringify(cidUnico);
-            // JMS
-            resolve(cidUnico);
-            cidUnicoString = cidUnico["codigoBarra"];
-            // return(cidUnicoString);
-            // this.userdataservice.cidUnico = cidUnicoString;
-            // console.log("cidunicoout en getmultiar", this.cidUnicoOut);
-            // return(this.cidUnicoOut);
-            console.log("cidUnico en getmultiar", cidUnico);
-            console.log("cid string getmultiar", cidUnicoString);
-          },
-          (err) => reject(err)
-        )
-      )
-  }
+  //public obtieneMultiAR(multiARJson): Promise<{}> {
+  //  const multiARJ = multiARJson;
+  //  console.log("multiARJ", multiARJ);
+  //  const url = Object.assign({}, environment.servicios.urlApiMultiAR);
+  //  console.log("url", url)
+  //  return this.requestService.multiARrequest(url, multiARJ);
+  //}
+  // JMS: nueva forma sin promesa
+  postMultiaR(multiAR): Observable <any> {
+      const url = Object.assign({}, environment.servicios.urlApiMultiAR);
+      const url2 = url.toString();
+      return this.http.post(url2, multiAR);
+    }
+  
+  
+//JMS : antiuua forma con promesa
+//  getMultiAR(multiARIn: string): Promise<any> {
+//      return new Promise(
+//        (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
+//          (cidUnico: any[] ) => {
+//            let cidUnicoString = JSON.stringify(cidUnico);
+//            resolve(cidUnico);
+//            cidUnicoString = cidUnico["codigoBarra"];
+//            console.log("cidUnico en getmultiar", cidUnico);
+//            console.log("cid string getmultiar", cidUnicoString);
+//          },
+//          (err) => reject(err)
+//        )
+//      )
+//  }
 
   eliminarPropiedad(rut: number, correo: string, idDireccion: string): Promise<any> {
     return new Promise<any>(

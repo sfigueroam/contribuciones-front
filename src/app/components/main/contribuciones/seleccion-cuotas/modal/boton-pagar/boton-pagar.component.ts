@@ -42,26 +42,38 @@ export class BotonPagarComponent implements OnInit {
     // this.urlPagoTgr = environment.pago.url;
 
   }
+  //JMS : prueba sin promesa
   pagar(){
     this.multiAR = this.userdataservice.multiAR_Cid;
-    // this.canalRecibido = this.userdataservice.canal;
-    console.log("multi ar por servicio", this.multiAR);
+    this.contribucionesservice.postMultiaR(this.multiAR).subscribe(
+      (data) => {
+        this.cidUnico = data;
+        console.log("data dentro subscribe", data);
+        console.log("this.cidUnico", this.cidUnico);
+      });
+  }
   
-    this.promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
-    this.promesa.then(function(value){
-      // let cidUnico3 = value;
-      // console.log("cidUnico3", this.cidUnico3);
-      // this.userdataservice.cidUnico = value;
-      console.log("value2", value.codigoBarra);
-      
-      
-      return value;
-    });
-    setTimeout(function(){
-        console.log("promesa", this.promesa);
-    })
-
-  };
+  
+//  pagar(){
+//    this.multiAR = this.userdataservice.multiAR_Cid;
+//    // this.canalRecibido = this.userdataservice.canal;
+//    console.log("multi ar por servicio", this.multiAR);
+//  
+//    this.promesa = Promise.resolve(this.contribucionesservice.getMultiAR(this.multiAR));
+//    this.promesa.then(function(value){
+//      // let cidUnico3 = value;
+//      // console.log("cidUnico3", this.cidUnico3);
+//      // this.userdataservice.cidUnico = value;
+//      console.log("value2", value.codigoBarra);
+//      
+//      
+//      return value;
+//    });
+//    setTimeout(function(){
+//        console.log("promesa", this.promesa);
+//    })
+//
+//  };
   
   
   // JMS: prueba con suscribe
