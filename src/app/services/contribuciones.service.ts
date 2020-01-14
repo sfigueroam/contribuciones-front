@@ -272,8 +272,6 @@ export class ContribucionesService {
   postMultiaR(multiAR): Observable <any> {
       const url = environment.servicios.urlMultiAR;
       console.log("url", url);
-      const url2 = url.toString();
-      console.log("url2", url2);
       return this.http.post(url, multiAR);
     }
   
