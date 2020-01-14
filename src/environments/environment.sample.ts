@@ -116,6 +116,8 @@ export const environment = {
       url: endpoints.base + '/servicios-recaudacion/v1/liquidacion/deudasrol', 
       method: 'GET' 
     }, 
+    urlMultiAR: endpoints.base + '/servicios-recaudacion/v1/liquidacion/ingresamultiar',
+    
     urlApiMultiAR: {
       url: endpoints.base + '/servicios-recaudacion/v1/liquidacion/ingresamultiar', 
       method: 'POST' 
