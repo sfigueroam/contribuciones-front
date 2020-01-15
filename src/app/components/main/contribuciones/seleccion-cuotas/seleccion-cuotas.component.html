@@ -147,7 +147,7 @@
     <mdl-spinner single-color active></mdl-spinner>
     <p>Estamos calculando tu monto a pagar</p>
   </div>
-  <div *ngIf="complete" class="tgr-actions__content">
+  <div *ngIf="complete" class="tgr-actions__content" align="right">
     <button class="button-pay" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
       <!--<button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>-->
       <!--<mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list</mdl-icon>-->
