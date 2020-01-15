@@ -80,7 +80,7 @@ export class ResumenComponent implements OnInit {
     this.contribuciones.postMultiaR(this.multiARString).subscribe(
       (data) => {
         this.cidUnico = 'on, ' + data.codigoBarra + ', ';
-        console.log("this.cidUnico", this.cidUnico);
+        console.log("this.cidUnico resumen", this.cidUnico);
         this.userdataservice.cidUnico = this.cidUnico;
       });
     // Incorporación del pago

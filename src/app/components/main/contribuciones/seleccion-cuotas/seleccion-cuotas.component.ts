@@ -386,7 +386,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     this.contribuciones.postMultiaR(this.multiARString2).subscribe(
       (data) => {
         this.cidUnico = 'on, ' + data.codigoBarra + ', ';
-        console.log("this.cidUnico", this.cidUnico);
+        console.log("this.cidUnico seleccion", this.cidUnico);
         this.userdataservice.cidUnico = this.cidUnico;
       });
     // Incorporación del pago
