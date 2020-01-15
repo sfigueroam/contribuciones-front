@@ -65,21 +65,21 @@ export class ResumenComponent implements OnInit {
   ngOnInit() {
     this.canal = this.userdataservice.canal;
     this.urlPagoTgr = environment.pago.url;
-    this.obtieneCidUnico();
+    // this.obtieneCidUnico();
   }
 
 
   volver(): void {
     this.dialog.hide();
   }
-  public obtieneCidUnico(){
-    // this.multiAR = this.userdataservice.multiAR_Cid;
-    this.contribuciones.postMultiaR(this.multiARString).subscribe(
-      (data) => {
-        this.cidUnico = 'on, ' + data.codigoBarra + ', ';
-        console.log("this.cidUnico", this.cidUnico);
-        this.userdataservice.cidUnico = this.cidUnico;
-      });
-    // Incorporación del pago
-  };
+  // public obtieneCidUnico(){
+  //   // this.multiAR = this.userdataservice.multiAR_Cid;
+  //   this.contribuciones.postMultiaR(this.multiARString).subscribe(
+  //     (data) => {
+  //       this.cidUnico = 'on, ' + data.codigoBarra + ', ';
+  //       console.log("this.cidUnico", this.cidUnico);
+  //       this.userdataservice.cidUnico = this.cidUnico;
+  //     });
+  //   // Incorporación del pago
+  // };
 }
