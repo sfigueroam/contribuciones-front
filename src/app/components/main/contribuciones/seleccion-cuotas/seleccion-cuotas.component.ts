@@ -380,16 +380,16 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       environment.tooltipTime
     );
   }
-  // public obtieneCidUnico(){
-  //   this.openDialogResumen();
-  //   // this.multiAR = this.userdataservice.multiAR_Cid;
-  //   this.contribuciones.postMultiaR(this.multiARString2).subscribe(
-  //     (data) => {
-  //       this.cidUnico = 'on, ' + data.codigoBarra + ', ';
-  //       console.log("this.cidUnico", this.cidUnico);
-  //       this.userdataservice.cidUnico = this.cidUnico;
-  //     });
-  //   // Incorporación del pago
-  // };
+  public obtieneCidUnico(){
+    this.openDialogResumen();
+    // this.multiAR = this.userdataservice.multiAR_Cid;
+    this.contribuciones.postMultiaR(this.multiARString2).subscribe(
+      (data) => {
+        this.cidUnico = 'on, ' + data.codigoBarra + ', ';
+        console.log("this.cidUnico", this.cidUnico);
+        this.userdataservice.cidUnico = this.cidUnico;
+      });
+    // Incorporación del pago
+  };
   
 }
