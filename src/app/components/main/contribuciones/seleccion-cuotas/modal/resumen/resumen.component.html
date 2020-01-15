@@ -68,7 +68,7 @@
   <!--<app-boton-pagar [total]=total [codigos]="codigos"></app-boton-pagar>-->
   <form ngNoForm method="post" action="{{urlPagoTgr}}">
     <input type="hidden" name="listaContribuciones" value="{{this.cidUnico}}"/>
-    <input type="hidden" name="CANAL" value="{{canalRecibido}}"/>
+    <input type="hidden" name="CANAL" value="{{this.canal}}"/>
   <button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
 </form>
 </div>
