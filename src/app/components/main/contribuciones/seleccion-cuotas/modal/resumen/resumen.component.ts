@@ -31,6 +31,7 @@ export class ResumenComponent implements OnInit {
   multiARString: string;
   cidUnico: string;
   canal: string;
+  urlPagoTgr: string;
 
   constructor(
     private dialog: MdlDialogReference,
@@ -63,6 +64,7 @@ export class ResumenComponent implements OnInit {
 
   ngOnInit() {
     this.canal = this.userdataservice.canal;
+    this.urlPagoTgr = environment.pago.url;
     this.obtieneCidUnico();
   }
 
