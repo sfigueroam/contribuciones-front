@@ -30,6 +30,7 @@ export class ResumenComponent implements OnInit {
   existeVencidas: boolean;
   multiARString: string;
   cidUnico: string;
+  canal: string;
 
   constructor(
     private dialog: MdlDialogReference,
@@ -61,7 +62,8 @@ export class ResumenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.obtieneCidUnico;
+    this.canal = this.userdataservice.canal;
+    this.obtieneCidUnico();
   }
 
 
