@@ -1,5 +1,23 @@
 @import '../../../../../../../styles/colors';
 
+button.button-pay {
+    background-color: $color-success;
+    color: #fff;
+    margin-top: 0;
+    a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color-success-hover;
+      a {
+        color: #ffffff !important;
+      }
+    }
+}
+
 .close-dialog {
   text-align: right;
   cursor: pointer;
