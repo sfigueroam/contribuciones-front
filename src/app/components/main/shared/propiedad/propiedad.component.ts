@@ -34,7 +34,7 @@ export class PropiedadComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('propiedades, ngOnInit');
+    // console.log('propiedades, ngOnInit');
     this.seleccion = true;
     if (this.defaulSeleccion === false) {
       this.seleccion = false;
