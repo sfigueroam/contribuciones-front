@@ -31,6 +31,7 @@ export class ResumenComponent implements OnInit {
   cidUnico: string;
   canal: string;
   urlPagoTgr: string;
+  errorMultiAR= false;
 
   constructor(
     private dialog: MdlDialogReference,
@@ -78,7 +79,7 @@ export class ResumenComponent implements OnInit {
         console.log("this.cidUnico resumen", this.cidUnico);
       }, error => {
         console.log("error", error);
-      }
-      );
+        this.errorMultiAR = true;
+      });
   };
 }
