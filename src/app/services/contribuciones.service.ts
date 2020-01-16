@@ -155,26 +155,12 @@ export class ContribucionesService {
     }
   }
 
-  
-  
-
-  // private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
-  //   return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
-  // }
-
   private getBienRaiz(rut: number): Promise<{}> {
     const obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
     obtenerBienRaizAsociado.url = obtenerBienRaizAsociado.url + '/' + rut;
     return this.requestService.request(obtenerBienRaizAsociado);
   }
 
-  // private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
-  //   const body = {
-  //     'idRol': rol,
-  //     'listaCuotas': Array.from(cuotas.values()),
-  //   };
-  //   return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
-  // }
 // JMS: copia de captura de rol nuevo servico
   private obtieneDeuda(rol, cuotas?: any): Promise<{}> {
     const body = {
