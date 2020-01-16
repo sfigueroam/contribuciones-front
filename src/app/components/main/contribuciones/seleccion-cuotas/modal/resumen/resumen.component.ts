@@ -64,6 +64,7 @@ export class ResumenComponent implements OnInit {
   ngOnInit() {
     this.canal = this.userdataservice.canal;
     this.urlPagoTgr = environment.pago.url;
+    console.log("multiARString", this.multiARString);
     this.obtieneCidUnico();
   }
 
