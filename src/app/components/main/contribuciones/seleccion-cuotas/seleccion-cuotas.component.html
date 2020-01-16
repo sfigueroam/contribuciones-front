@@ -149,10 +149,7 @@
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
     
-      <!--<button mdl-button class="button-pay" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>-->
-      <!--<mdl-icon [mdl-badge]="cantidadSeleccionadas" mdl-badge-overlap class="mdl-28 pointer shopping-cart">view_list</mdl-icon>-->
     <div class="mdl-layout-spacer"></div>
-    <!--<app-boton-pagar [codigos]="listaContribuciones" [total]="total"></app-boton-pagar>-->
     <button class="button-pay" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
     <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}}</strong></span>
       de {{result.total}} deudas

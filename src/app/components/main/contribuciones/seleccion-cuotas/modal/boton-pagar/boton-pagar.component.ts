@@ -38,24 +38,7 @@ export class BotonPagarComponent implements OnInit {
   ngOnInit() {
     
     this.canalRecibido = this.userdataservice.canal;
-
-    // console.log("códigos para pago", this.codigos);
     this.urlPagoTgr = environment.pago.url;
 
   }
-  //JMS : prueba sin promesa
-  obtieneCidUnico(){
-    this.multiAR = this.userdataservice.multiAR_Cid;
-    this.contribucionesservice.postMultiaR(this.multiAR).subscribe(
-      (data) => {
-        this.cidUnico = 'on, ' + data.codigoBarra + ', ';
-        console.log("this.cidUnico", this.cidUnico);
-        return(this.cidUnico);
-      });
-    // Incorporación del pago
-  };
-  
- 
-  
-  
 }

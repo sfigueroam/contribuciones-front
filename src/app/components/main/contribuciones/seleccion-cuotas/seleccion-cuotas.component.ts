@@ -197,13 +197,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
                 () => {
-                  //this.user.eliminarPropiedad(p.idDireccion);
                   this.calcularTotal();
                 }
               );
-              // this.noLiqVar = this.userdataservice.deudaNoLiquidable;
-              // this.noLiqVar = cuota.
-              // console.log(this.noLiqVar);
             }
           },
           err => {
@@ -236,8 +232,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     this.condonacion = condonacion;
     this.recalcularTipo();
 
-// JMS: donde se arman los codigos que van en el boton pagar
-// JMS: acá debo armar el json que va a ir al servicio del multi ar
     let codigos = 'on, ';
 
     for (const p of this.propiedades) {
@@ -257,14 +251,10 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
     this.listaContribuciones = codigos;
     multiARObj.listaCid.splice(0, 1);
-    // console.log("objmutiar sin elemento 0", multiARObj);
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
     multiARString = JSON.stringify(multiARObj);
-    this.multiARString2 = multiARString;
     this.userdataservice.multiAR_Cid = multiARString;
-    console.log("objMultiAR ", multiARObj);
-    // console.log("multiARString", this.multiARString);
   }
 
   gotoSugeridas() {

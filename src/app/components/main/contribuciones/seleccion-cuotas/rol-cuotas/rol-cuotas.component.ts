@@ -7,7 +7,6 @@ import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
 import {TooltipDirective} from 'ng2-tooltip-directive';
-import {UserDataService} from '../../../../../user-data.service';
 
 @Component({
   selector: 'app-rol-cuotas',
@@ -38,8 +37,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
-              private mdlSnackbarService: MdlSnackbarService,
-              private userdataservice: UserDataService) {
+              private mdlSnackbarService: MdlSnackbarService,) {
         this.noLiquidablebool = false
 
   
@@ -58,24 +56,16 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        // this.noLiquidable = this.userdataservice.deudaNoLiquidable;
         console.log("rol.noLiquidable", this.rol.noLiquidable)
         this.noLiquidable = this.rol.noLiquidable;
         if (this.noLiquidable == "true"){
-          // console.log("this.noLiquidable true: ", this.noLiquidable);
           this.noLiquidablebool = true;
         }
         else{
-          // console.log("this.noLiquidable false: ", this.noLiquidable);
           this.noLiquidablebool = false;
         }
-        // console.log("no liquidable en rol-cuotas", this.noLiquidable);
       }
     );
-
-    // console.log(this.rol.rol);
-
-
   }
 
   showHelp() {
@@ -149,6 +139,4 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
     }
   }
-
-
 }

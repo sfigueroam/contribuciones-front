@@ -15,9 +15,7 @@ export class Cuota {
   day: string;
   month: string;
   year:string;
-  // noLiqFlag: boolean;
 
-  // liqParcial: CuotaDetalle;
   liqTotal: CuotaDetalle;
 
   changeSubject: Subject<any> = new Subject<any>();
@@ -35,10 +33,8 @@ export class Cuota {
     this.formFolio = init.formFolio;
     this.numeroCuota = init.numeroCuota;
     this.clienteTipo = init.clienteTipo;
-    // this.noLiqFlag = init.outNoLiq;
     this.expired = this.isExpired();
     this.liqTotal = new CuotaDetalle(init);
-    // this.liqParcial = new CuotaDetalle(init);
   }
 
   changeIntencionPago(value: boolean = !this.intencionPago) {
@@ -54,12 +50,10 @@ export class Cuota {
   private isExpired(): boolean {
     const date = new Date();
     date.setHours(0, 0, 0, 0);
-    // return (date.getTime() - this.fechaVencimiento.getTime() > 0);
     return (date.getTime() - this.fechaVcto.getTime() > 0);
   }
 
   getYear(): any {
-    // this.fechaVencimiento.getFullYear();
     this.fechaVcto.getFullYear();
   }
 }

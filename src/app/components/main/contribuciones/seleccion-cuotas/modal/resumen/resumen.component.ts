@@ -1,9 +1,8 @@
 import {Component, Inject, InjectionToken, OnInit} from '@angular/core';
 import {MdlDialogReference} from '@angular-mdl/core';
-import {CANT_PROPIEDADES} from '../../../agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
+// import {CANT_PROPIEDADES} from '../../../agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
 import {Propiedad} from '../../../../../../domain/Propiedad';
 import {environment} from '../../../../../../../environments/environment';
-import {DeviceDetectService} from '../../../../../../services/device-detect.service';
 import {filter, tap} from 'rxjs/operators';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
 import {ContribucionesService} from '../../../../../../services/contribuciones.service';
@@ -35,7 +34,6 @@ export class ResumenComponent implements OnInit {
 
   constructor(
     private dialog: MdlDialogReference,
-    private deviceDetectService: DeviceDetectService,
     private router: Router,
     private contribuciones: ContribucionesService,
     private userdataservice: UserDataService,
@@ -64,9 +62,6 @@ export class ResumenComponent implements OnInit {
 
   ngOnInit() {
     this.canal = this.userdataservice.canal;
-    // console.log("canal en resumen", this.canal)
-    // this.cidUnico = this.userdataservice.cidUnico;
-    // console.log("cidunico en resumen", this.cidUnico);
     this.urlPagoTgr = environment.pago.url;
     this.obtieneCidUnico();
   }
@@ -76,13 +71,10 @@ export class ResumenComponent implements OnInit {
     this.dialog.hide();
   }
   public obtieneCidUnico(){
-    // this.multiAR = this.userdataservice.multiAR_Cid;
     this.contribuciones.postMultiaR(this.multiARString).subscribe(
       (data) => {
         this.cidUnico = 'on, ' + data.codigoBarra + ', ';
         console.log("this.cidUnico resumen", this.cidUnico);
-        this.userdataservice.cidUnico = this.cidUnico;
       });
-    // Incorporación del pago
   };
 }

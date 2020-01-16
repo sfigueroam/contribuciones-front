@@ -7,7 +7,6 @@ import {RequestService} from './request.service';
 import {CuotaDetalle} from '../domain/CuotaDetalle';
 import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
-import {UserDataService} from '../user-data.service';
 import { Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
@@ -22,7 +21,6 @@ export class ContribucionesService {
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
-              private userdataservice: UserDataService,
               private http : HttpClient) {
 
   }
@@ -115,64 +113,11 @@ export class ContribucionesService {
       resolve(this.propiedades);
     });
   }
-
-  // async cargarRoles(): Promise<any> {
-  //   for (const propiedad of this.propiedades) {
-  //     for (const rol of propiedad.roles) {
-  //       if (!rol.isProcess) {
-  //         await this.cargarRol(rol);
-  //       }
-  //       rol.complete();
-  //     }
-  //   }
-  // }
-  
-
-
-  // private cargarRol(rol: Rol): Promise<any> {
-  //   if (rol.cuotas.length > 0) {
-  //     return new Promise((resolve, reject) => {
-  //       resolve();
-  //     });
-
-  //   } else {
-  //     return new Promise(
-  //       (resolve, reject) => this.getDeudaByRol(rol.rol, []).then(
-  //         (data: { listaDeudaRol: any[], noLiq: any }) => {
-  //           this.userdataservice.deudaNoLiquidable = data.noLiq;
-  //           const mapCuotas = new Map<string, Cuota>();
-  //           for (const deuda of data.listaDeudaRol) {
-  //             const cuota = new Cuota(deuda);
-  //             mapCuotas.set(cuota.numeroCuota, cuota);
-  //             rol.cuotas.push(cuota);
-  //             console.log("data ", data);
-  //             console.log("listaDeudaRol", data.listaDeudaRol);
-  //           }
-  //           this.getDeudaByRol(rol.rol, rol.getCuotasDeseleccionadas()).then(
-  //             (data2: { listaDeudaRol: { numeroCuota: string }[] }) => {
-  //               for (const deuda of data2.listaDeudaRol) {
-  //                 const cuota = mapCuotas.get(deuda.numeroCuota);
-  //                 cuota.liqParcial = new CuotaDetalle(deuda);
-  //               }
-  //               rol.isProcess = true;
-  //               resolve();
-  //             },
-  //             (err) => reject(err)
-  //           );
-  //         },
-  //         (err) => reject(err)
-  //       )
-  //     );
-  //   }
-  // }
   
   // JMS: copia de cargar roles
   async cargaRoles(): Promise<any> {
     for (const propiedad of this.propiedades) {
       for (const rol of propiedad.roles) {
-        // console.log("rol.cuotas", rol.cuotas)
-        // console.log("rol.cuotas.length", rol.cuotas.length);
-        // console.log("rol", rol);
         if (!rol.isProcess) {
           await this.cargaRol(rol);
         }
@@ -192,8 +137,6 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
-            // this.userdataservice.deudaNoLiquidable = data.outNoLiq;
-            // JMS
             rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
@@ -210,31 +153,14 @@ export class ContribucionesService {
         )
       )
     }
-    }
-    //         this.obtieneDeuda(rol.rol, rol.getCuotasDeseleccionadas()).then(
-    //           (data: { listaDeudas: { numeroCuota: string }[] }) => {
-    //             for (const deuda of data.listaDeudas) {
-    //               console.log("data2", data);
-    //               const cuota = mapCuotas.get(deuda.numeroCuota);
-    //               // JMS
-    //               cuota.liqTotal = new CuotaDetalle(deuda);
-    //             }
-    //             rol.isProcess = true;
-    //             resolve();
-    //           },
-    //           (err) => reject(err)
-    //         );
-    //       },
-    //       (err) => reject(err)
-    //     )
-    //   );
-    // }
+  }
+
   
   
 
-  private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
-    return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
-  }
+  // private getBienRaizId(bienRaiz: { rolId: number, rolComunaSiiCod: number }): string {
+  //   return bienRaiz.rolComunaSiiCod + '-' + bienRaiz.rolId;
+  // }
 
   private getBienRaiz(rut: number): Promise<{}> {
     const obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
@@ -242,13 +168,13 @@ export class ContribucionesService {
     return this.requestService.request(obtenerBienRaizAsociado);
   }
 
-  private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
-    const body = {
-      'idRol': rol,
-      'listaCuotas': Array.from(cuotas.values()),
-    };
-    return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
-  }
+  // private getDeudaByRol(rol, cuotas?: any): Promise<{}> {
+  //   const body = {
+  //     'idRol': rol,
+  //     'listaCuotas': Array.from(cuotas.values()),
+  //   };
+  //   return this.requestService.request(environment.servicios.recuperarDeudaRol, body);
+  // }
 // JMS: copia de captura de rol nuevo servico
   private obtieneDeuda(rol, cuotas?: any): Promise<{}> {
     const body = {
@@ -257,51 +183,15 @@ export class ContribucionesService {
     };
     const url = Object.assign({}, environment.servicios.urlApiObtieneDeuda);
     url.url = url.url + '/' + body.idRol;
-    // console.log(url);
     return this.requestService.request2(url, body);
   }
   // JMS: servicio para acceder a lambda de multi AR
-  //public obtieneMultiAR(multiARJson): Promise<{}> {
-  //  const multiARJ = multiARJson;
-  //  console.log("multiARJ", multiARJ);
-  //  const url = Object.assign({}, environment.servicios.urlApiMultiAR);
-  //  console.log("url", url)
-  //  return this.requestService.multiARrequest(url, multiARJ);
-  //}
-  // JMS: nueva forma sin promesa
   postMultiaR(multiAR): Observable <any> {
       const url = environment.servicios.urlMultiAR;
       console.log("url", url);
       return this.http.post(url, multiAR);
   }
   
-  postPago(listaContribuciones, canal): Observable <any>{
-    const url = environment.pago.url;
-    console.log("url", url);
-    const body = {
-      'listaContribuciones': listaContribuciones,
-      'canal': canal,
-    };
-    return this.http.post(url, body);
-  }
-  
-  
-//JMS : antiuua forma con promesa
-//  getMultiAR(multiARIn: string): Promise<any> {
-//      return new Promise(
-//        (resolve, reject) => this.obtieneMultiAR(multiARIn).then(
-//          (cidUnico: any[] ) => {
-//            let cidUnicoString = JSON.stringify(cidUnico);
-//            resolve(cidUnico);
-//            cidUnicoString = cidUnico["codigoBarra"];
-//            console.log("cidUnico en getmultiar", cidUnico);
-//            console.log("cid string getmultiar", cidUnicoString);
-//          },
-//          (err) => reject(err)
-//        )
-//      )
-//  }
-
   eliminarPropiedad(rut: number, correo: string, idDireccion: string): Promise<any> {
     return new Promise<any>(
       (resolve, reject) => {
