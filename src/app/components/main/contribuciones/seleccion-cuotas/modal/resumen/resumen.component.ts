@@ -84,9 +84,10 @@ export class ResumenComponent implements OnInit {
       }, error => {
         console.log("error", error);
         this.errorMultiAR = true;
+        this.modalErrorMulticid();
       });
   };
-  dialogAyudaCondonacion(): void {
+  modalErrorMulticid(): void {
     const pDialog = this.dialogService.showCustomDialog({
       component: ModalErrorMulticidComponent,
       clickOutsideToClose: true,
