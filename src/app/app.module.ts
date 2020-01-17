@@ -116,6 +116,7 @@ registerLocaleData(localeEs, 'es');
     AyudaCondonacionComponent,
     ResumenComponent,
     RecordarComponent,
+    ModalErrorMulticidComponent,
   ],
   bootstrap: [AppComponent]
 })
