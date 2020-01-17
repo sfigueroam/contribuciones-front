@@ -1,5 +1,5 @@
 import {Component, Inject, InjectionToken, OnInit} from '@angular/core';
-import {MdlDialogReference} from '@angular-mdl/core';
+import {MdlDialogService, MdlDialogReference} from '@angular-mdl/core';
 // import {CANT_PROPIEDADES} from '../../../agregar/nueva/modal/dialog-agregar-propiedad/dialog-agregar-propiedad.component';
 import {Propiedad} from '../../../../../../domain/Propiedad';
 import {environment} from '../../../../../../../environments/environment';
@@ -7,6 +7,7 @@ import {filter, tap} from 'rxjs/operators';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
 import {ContribucionesService} from '../../../../../../services/contribuciones.service';
 import {UserDataService} from '../../../../../../user-data.service';
+import {ModalErrorMulticidComponent} from '../modal-error-multicid/modal-error-multicid.component'
 
 export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 export const MULTI_AR_CODIGOS = new InjectionToken<number>('multiAR_Resumen');
@@ -38,6 +39,7 @@ export class ResumenComponent implements OnInit {
     private router: Router,
     private contribuciones: ContribucionesService,
     private userdataservice: UserDataService,
+    private dialogService: MdlDialogService,
     @Inject(LIST_PROPIEDADES) propiedades: Propiedad[],
     @Inject(MULTI_AR_CODIGOS) multiARString: string,
     @Inject(CODIGO_LIST_PROPIEDADES) codigos: string,
@@ -84,4 +86,11 @@ export class ResumenComponent implements OnInit {
         this.errorMultiAR = true;
       });
   };
+  dialogAyudaCondonacion(): void {
+    const pDialog = this.dialogService.showCustomDialog({
+      component: ModalErrorMulticidComponent,
+      clickOutsideToClose: true,
+      isModal: true
+    });
+  }
 }
