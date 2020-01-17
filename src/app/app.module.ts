@@ -44,6 +44,7 @@ import {TooltipModule} from 'ng2-tooltip-directive';
 import {UserDataService} from './user-data.service';
 import { ConclaveComponent } from './components/conclave/conclave.component';
 import { SinclaveComponent } from './components/sinclave/sinclave.component';
+import {DialogErrorMulticid} from './components/main/contribuciones/seleccion-cuotas/modal/resumen/resumen.component'
 
 registerLocaleData(localeEs, 'es');
 
@@ -77,6 +78,7 @@ registerLocaleData(localeEs, 'es');
     RecordarComponent,
     ConclaveComponent,
     SinclaveComponent,
+    DialogErrorMulticid,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +116,7 @@ registerLocaleData(localeEs, 'es');
     AyudaCondonacionComponent,
     ResumenComponent,
     RecordarComponent,
+    DialogErrorMulticid,
   ],
   bootstrap: [AppComponent]
 })

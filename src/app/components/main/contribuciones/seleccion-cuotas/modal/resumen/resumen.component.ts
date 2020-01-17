@@ -7,19 +7,22 @@ import {filter, tap} from 'rxjs/operators';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
 import {ContribucionesService} from '../../../../../../services/contribuciones.service';
 import {UserDataService} from '../../../../../../user-data.service';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 export const MULTI_AR_CODIGOS = new InjectionToken<number>('multiAR_Resumen');
 export const CODIGO_LIST_PROPIEDADES = new InjectionToken<number>('codigo_lista_propiedades');
 export const TOTAL_PROPIEDADES = new InjectionToken<number>('total_propiedades');
 export const CONDONACION_PROPIEDADES = new InjectionToken<number>('condonacion_propiedades');
 export const EXISTE_VENCIDAS = new InjectionToken<number>('existe_vencidas');
+export interface DialogData{};
 
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.component.html',
   styleUrls: ['./resumen.component.scss']
 })
+
+
 export class ResumenComponent implements OnInit {
 
   propiedades: Propiedad[];
@@ -35,6 +38,7 @@ export class ResumenComponent implements OnInit {
 
   constructor(
     private dialog: MdlDialogReference,
+    private dialogError: MatDialog,
     private router: Router,
     private contribuciones: ContribucionesService,
     private userdataservice: UserDataService,
@@ -84,4 +88,39 @@ export class ResumenComponent implements OnInit {
         this.errorMultiAR = true;
       });
   };
+  openDialog(): void {
+    const dialogRef = this.dialogError.open(DialogErrorMulticid, {
+      width: '250px',
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+}
+
+// JMS: Dialog de Victor
+  
+
+@Component({
+  selector: 'dialog-error-multisid',
+  templateUrl: 'dialog-error-multisid.html',
+})
+export class DialogErrorMulticid {
+  constructor(
+    public dialogRef: MatDialogRef<DialogErrorMulticid>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      
+    }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  
+
+
+
+  
+
 }
