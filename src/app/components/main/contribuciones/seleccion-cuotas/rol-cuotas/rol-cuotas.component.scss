@@ -95,6 +95,18 @@ mdl-icon.material-icons {
   }
 }
 
+.tgr-cuoton-grupacion {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: calc(100% - 51px);
+  width: 90%;
+  border: 3px solid $button-primary-color;
+}
+
 .deuda-no-liquidable {
   display: flex;
   align-items: center;
