@@ -53,7 +53,7 @@
         </tr>
         </thead>
         <tbody>
-          <div [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == s"></div>
+          <div [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'"></div>
           <tr *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
             <td>
               <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
