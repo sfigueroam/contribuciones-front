@@ -57,9 +57,13 @@ export class MainComponent implements OnInit, AfterViewInit {
   // this.usuariologin = this.userdataservice.nombre_usuario;
     if (this.userdataservice.nombre_usuario != ''){
         this.usuario1 = this.userdataservice.nombre_usuario.substring(0,1);
+        console.log("PL", this.usuario1);
         this.usuario2 = this.userdataservice.nombre_usuario.substring(1,100);
+        console.log("pl", this.usuario2);
         this.usuario2min = this.usuario2.toLowerCase();
+        console.log("min", this.usuario2min);
         this.usuariologin = this.usuario1.concat(this.usuario2min);
+        console.log("usr", this.usuariologin);
       }
  
     
