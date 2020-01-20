@@ -67,7 +67,7 @@ export class ResumenComponent implements OnInit {
     this.canal = this.userdataservice.canal;
     this.urlPagoTgr = environment.pago.url;
     this.multiARString = this.userdataservice.multiAR_Cid
-    console.log("multiARString", this.multiARString);
+    // console.log("multiARString", this.multiARString);
     this.obtieneCidUnico();
   }
 
