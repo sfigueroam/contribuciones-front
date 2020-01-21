@@ -21,6 +21,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   change: EventEmitter<any> = new EventEmitter();
   noLiquidable: string;
   noLiquidablebool: boolean;
+  // JMS: es cuoton
+  esCuoton: boolean = false;
+  
   
 
   expanded: boolean;
@@ -116,6 +119,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
+    if (cuota.liqTotal.esCuoton == 'S'){
+      this.esCuoton = true;
+    }
+    else{
+      this.esCuoton = false;
+    }
   }
 
   delete() {
