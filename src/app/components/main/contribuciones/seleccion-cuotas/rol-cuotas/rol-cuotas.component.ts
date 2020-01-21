@@ -56,6 +56,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.selectedIcon = CheckboxIcon.SELECTED;
     
     this.esCuoton = this.userdataservice.esCuotonServ;
+    console.log("es cuoton servicio", this.userdataservice.esCuotonServ);
 
     this.rol.completeStream.subscribe(
       () => null,

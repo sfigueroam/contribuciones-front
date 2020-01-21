@@ -248,9 +248,11 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             }
             if (c.liqTotal.esCuoton == 'S'){
               this.userdataservice.esCuotonServ = false; //cambiar a true
+              console.log("es cuoton en selec false");
             }
             else{
               this.userdataservice.esCuotonServ = true; //cambiar a false
+              console.log("es cuoton en selec true");
             }
           }
         }
