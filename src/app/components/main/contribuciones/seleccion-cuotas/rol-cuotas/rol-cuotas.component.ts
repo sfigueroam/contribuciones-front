@@ -62,11 +62,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         );
         console.log("rol.noLiquidable", this.rol.noLiquidable)
         this.noLiquidable = this.rol.noLiquidable;
+        console.log("es cuoton", this.cuota1.liqTotal.esCuoton);
           if (this.cuota1.liqTotal.esCuoton == 'S'){
             this.esCuoton = false;
+            console.log("es cuoton false");
           }
           else{
             this.esCuoton = true;
+            console.log("es cuoton true");
           }
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
