@@ -254,7 +254,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
     multiARString = JSON.stringify(multiARObj);
-    console.log(multiARString);
+    // console.log(multiARString);
     this.userdataservice.multiAR_Cid = multiARString;
   }
 

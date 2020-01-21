@@ -120,10 +120,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
     if (cuota.liqTotal.esCuoton == 'S'){
-      this.esCuoton = true;
+      this.esCuoton = false;
     }
     else{
-      this.esCuoton = false;
+      this.esCuoton = true;
     }
   }
 
