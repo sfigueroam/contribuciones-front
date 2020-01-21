@@ -17,6 +17,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   @Input()
   rol: Rol;
+  cuota1: Cuota;
   @Output()
   change: EventEmitter<any> = new EventEmitter();
   noLiquidable: string;
@@ -61,6 +62,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         );
         console.log("rol.noLiquidable", this.rol.noLiquidable)
         this.noLiquidable = this.rol.noLiquidable;
+          if (this.cuota1.liqTotal.esCuoton == 'S'){
+            this.esCuoton = false;
+          }
+          else{
+            this.esCuoton = true;
+          }
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
         }
@@ -119,12 +126,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
-    if (cuota.liqTotal.esCuoton == 'S'){
-      this.esCuoton = false;
-    }
-    else{
-      this.esCuoton = true;
-    }
   }
 
   delete() {
