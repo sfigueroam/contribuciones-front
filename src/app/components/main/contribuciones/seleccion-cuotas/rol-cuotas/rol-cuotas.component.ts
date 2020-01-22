@@ -98,7 +98,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.calculaTotalCuoton();
+    // this.calculaTotalCuoton();
   }
 
   toggle() {
@@ -141,8 +141,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           totalCuoton += c.liqTotal.montoTotalTotal;
       }
     }
-    this.montoCuoton = totalCuoton;
-    console.log("monto cuoton", this.montoCuoton);
+    // this.montoCuoton = totalCuoton;
+    console.log("monto cuoton", totalCuoton);
     return(totalCuoton);
   }
   
