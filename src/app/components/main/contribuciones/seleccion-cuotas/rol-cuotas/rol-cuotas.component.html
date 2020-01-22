@@ -52,9 +52,9 @@
           <th class="tgr-monto">Monto</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
           <!--<div [class.tgr-cuoton-agrupacion]="this.esCuoton"></div><!-- [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'" -->
-          <tr *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
+          <tr>
             <div [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'N'"></div>
             <td>
               <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
@@ -63,13 +63,10 @@
               <span>{{cuota.liqTotal.nroCuota}}</span>
             </td>
             <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVcto | date:'dd/MMM'}}</td>
-            <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal
-              :
-              cuota.liqTotal.montoTotalParcial) | number}}
+            <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal:cuota.liqTotal.montoTotalParcial) | number}}
             </td>
-            <tr *ngIf="cuota.liqTotal.esCuoton == 'N'">bloque azul</tr>
           </tr>
-            
+          <tr *ngIf="cuota.liqTotal.esCuoton == 'N'">bloque azul</tr>
         </tbody>
       </table>
     </div>
