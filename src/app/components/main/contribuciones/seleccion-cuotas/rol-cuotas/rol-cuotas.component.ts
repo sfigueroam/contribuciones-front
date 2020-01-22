@@ -98,7 +98,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.calculaTotalCuoton();
+    this.calculaTotalCuoton();
   }
 
   toggle() {
@@ -135,15 +135,15 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   // JMS: calcula el total del cuoton
   private calculaTotalCuoton(){
-    let totalCuoton
+    let totalCuoton = 0;
     for(let c of this.rol.cuotas){
       if(c.esCuoton == 'S'){
           totalCuoton += c.liqTotal.montoTotalTotal;
       }
     }
-    // this.montoCuoton = totalCuoton;
+    this.montoCuoton = totalCuoton;
     console.log("monto cuoton", totalCuoton);
-    return(totalCuoton);
+    // return(totalCuoton);
   }
   
   checkCuota(cuota: Cuota) {
