@@ -52,6 +52,15 @@
           <th class="tgr-monto">Monto</th>
         </tr>
         </thead>
+        <tfoot>
+          <tr *ngIf="cuota.liqTotal.esCuoton == 'S'">{{cuota.liqTotal.esCuoton}}
+            <td>
+              <mdl-icon>{{this.esCuoton ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
+            </td>
+            <td>bloque azul con data informativa</td>
+            <td>totalizador</td>
+          </tr>
+        </tfoot>
         <tbody (click)="checkCuota(cuota)">
         <!--<tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">-->
           <!--<div [class.tgr-cuoton-agrupacion]="this.esCuoton"></div><!-- [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'" -->
@@ -69,9 +78,6 @@
           </tr>
           <!--<tr *ngIf="cuota.liqTotal.esCuoton == 'N'">bloque azul</tr>-->
         </tbody>
-        <tfoot>
-          <tr *ngIf="cuota.liqTotal.esCuoton == 'S'">{{cuota.liqTotal.esCuoton}}</tr>
-        </tfoot>
       </table>
     </div>
     <div class="tgr-row" *ngIf="rol.cuotas.length == 0 && (!noLiquidable || noLiquidable == undefined)">
