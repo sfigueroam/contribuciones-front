@@ -11,7 +11,7 @@ import {TooltipDirective} from 'ng2-tooltip-directive';
 import {UserDataService} from '../../../../../user-data.service'
 import {ContribucionesService} from '../../../../../services/contribuciones.service';
 
-export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
+// import LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 
 @Component({
   selector: 'app-rol-cuotas',
@@ -22,8 +22,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   @Input()
   rol: Rol;
-  cuotas: Cuota[] = [];
-  // propiedades: Propiedad[] = [];
+  cuotas1: Cuota[] = [];
+  propiedades: Propiedad[] = [];
   @Output()
   change: EventEmitter<any> = new EventEmitter();
   noLiquidable: string;
@@ -31,6 +31,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   // JMS: es cuoton
   cuotaAnualCheck: boolean = true;
   montoCuoton: number = 0;
+  
   
   
 
@@ -49,13 +50,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
               private mdlSnackbarService: MdlSnackbarService,
-              private userdataservice: UserDataService,
-              @Inject(LIST_PROPIEDADES) propiedades: Propiedad[],) {
+              private userdataservice: UserDataService,) {
         this.noLiquidablebool = false
 
-  
+  // this.propiedades = propiedades;
   }
-
+  
   ngOnInit() {
 
     this.expanded = false;
@@ -84,14 +84,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     );
-    // carga toda la data de roles en este componente
-   
-    
-    
-    
-    
-    
-    this.calculaTotalCuoton();
   }
 
   showHelp() {
@@ -106,6 +98,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.calculaTotalCuoton();
   }
 
   toggle() {
@@ -142,12 +135,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   // JMS: calcula el total del cuoton
   private calculaTotalCuoton(){
-    let totalCuoton;
-
-    
-    for(let cuota of this.cuotas){
-      if(cuota.esCuoton == 'S'){
-        totalCuoton += cuota.liqTotal.montoTotalTotal;
+    let totalCuoton
+    for(let c of this.rol.cuotas){
+      if(c.esCuoton == 'S'){
+          totalCuoton += c.liqTotal.montoTotalTotal;
       }
     }
     this.montoCuoton = totalCuoton;
@@ -158,7 +149,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
   }
-  checkCuoton(cuota: Cuota){
+  checkCuoton(){
     if (this.cuotaAnualCheck){
       this.cuotaAnualCheck = false;
       // cuota.intencionPagoCuoton();
