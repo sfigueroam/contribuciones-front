@@ -143,7 +143,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     this.montoCuoton = totalCuoton;
     console.log("monto cuoton", totalCuoton);
-    // return(totalCuoton);
+    return(totalCuoton);
   }
   
   checkCuota(cuota: Cuota) {
