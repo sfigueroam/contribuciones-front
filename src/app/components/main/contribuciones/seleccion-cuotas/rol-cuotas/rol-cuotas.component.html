@@ -65,8 +65,8 @@
             <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal:cuota.liqTotal.montoTotalParcial) | number}}
             </td>
           </tr>
-          <tr *ngIf="cuota.cuoton4" (click)="checkCuoton()" (onload)="calculaTotalCuoton()">
-            <td>
+          <tr *ngIf="cuota.cuoton4" (click)="checkCuoton()">
+            <td (click)="checkCuoton(rol)">
               <mdl-icon>{{this.cuotaAnualCheck ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
             </td>
             <td> </td>
