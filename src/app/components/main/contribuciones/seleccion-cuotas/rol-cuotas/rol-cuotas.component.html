@@ -68,7 +68,7 @@
               cuota.liqTotal.montoTotalParcial) | number}}
             </td>
           </tr>
-            <td *ngIf="!esCuoton">bloque azul</td>
+            <tr *ngIf="cuota.liqTotal.esCuoton == 'N'">bloque azul</tr>
         </tbody>
       </table>
     </div>
