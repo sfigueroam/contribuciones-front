@@ -136,7 +136,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   cargaCuoton(cuota: Cuota){
     console.log("es cuoton", cuota.liqTotal.esCuoton);
           if (cuota.liqTotal.esCuoton == 'S'){
-            this.esCuoton = false;
+            this.esCuoton = true;
             console.log("es cuoton false");
           }
           else{
