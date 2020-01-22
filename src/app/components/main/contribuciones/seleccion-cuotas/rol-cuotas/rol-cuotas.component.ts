@@ -7,7 +7,6 @@ import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
 import {TooltipDirective} from 'ng2-tooltip-directive';
-import {UserDataService} from '../../../../../user-data.service';
 
 @Component({
   selector: 'app-rol-cuotas',
@@ -42,8 +41,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
-              private mdlSnackbarService: MdlSnackbarService,
-              private userdataservice: UserDataService) {
+              private mdlSnackbarService: MdlSnackbarService,) {
         this.noLiquidablebool = false
 
   
@@ -55,8 +53,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
     
-    this.esCuoton = this.userdataservice.esCuotonServ;
-    console.log("es cuoton servicio", this.userdataservice.esCuotonServ);
+    // this.esCuoton = this.userdataservice.esCuotonServ;
+    // console.log("es cuoton servicio", this.userdataservice.esCuotonServ);
 
     this.rol.completeStream.subscribe(
       () => null,
@@ -134,6 +132,17 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
+  }
+  cargaCuoton(cuota: Cuota){
+    console.log("es cuoton", cuota.liqTotal.esCuoton);
+          if (cuota.liqTotal.esCuoton == 'S'){
+            this.esCuoton = false;
+            console.log("es cuoton false");
+          }
+          else{
+            this.esCuoton = true;
+            console.log("es cuoton true");
+          }
   }
 
   delete() {

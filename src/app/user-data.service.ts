@@ -10,7 +10,7 @@ export class UserDataService {
   conex_usuario: string;
   canal: string;
   cidUnico: any;
-  esCuotonServ: boolean = false;
+  // esCuotonServ: boolean = false;
   
   constructor() { }
 

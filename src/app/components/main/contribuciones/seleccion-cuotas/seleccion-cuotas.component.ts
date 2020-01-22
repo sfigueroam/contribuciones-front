@@ -246,14 +246,14 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               codigos += c.liqTotal.codigoBarraParcial + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
             }
-            if (c.liqTotal.esCuoton == 'S'){
-              this.userdataservice.esCuotonServ = false; //cambiar a true
-              console.log("es cuoton en selec false");
-            }
-            else{
-              this.userdataservice.esCuotonServ = true; //cambiar a false
-              console.log("es cuoton en selec true");
-            }
+            // if (c.liqTotal.esCuoton == 'S'){
+            //   this.userdataservice.esCuotonServ = false; //cambiar a true
+            //   console.log("es cuoton en selec false");
+            // }
+            // else{
+            //   this.userdataservice.esCuotonServ = true; //cambiar a false
+            //   console.log("es cuoton en selec true");
+            // }
           }
         }
       }
