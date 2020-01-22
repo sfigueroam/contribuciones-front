@@ -53,7 +53,7 @@
         </tr>
         </thead>
         <tbody>
-          <!--<div [class.tgr-cuoton-agrupacion]="this.esCuoton"></div><!-- [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'" -->-->
+          <!--<div [class.tgr-cuoton-agrupacion]="this.esCuoton"></div><!-- [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'" -->
           <tr *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
             <div [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'N'"></div>
             <td>
