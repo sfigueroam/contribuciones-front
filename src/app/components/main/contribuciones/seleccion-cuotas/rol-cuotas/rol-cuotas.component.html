@@ -41,7 +41,7 @@
   <!-- DEUDA NO LIQUIDABLE - FIN -->
   <div [class.hidden]="!expanded">
     <div *ngIf="rol.cuotas.length > 0">
-      <table class="mdl-data-table mdl-js-data-table" *ngFor="let cuota of rol.cuotas">
+      <table class="mdl-data-table mdl-js-data-table">
         <thead>
         <tr>
           <th (click)="selectAllNone()">
@@ -52,18 +52,7 @@
           <th class="tgr-monto">Monto</th>
         </tr>
         </thead>
-        <tfoot>
-          <tr *ngIf="cuota.liqTotal.esCuoton == 'S'">{{cuota.liqTotal.esCuoton}}
-            <td>
-              <mdl-icon>{{this.esCuoton ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
-            </td>
-            <td>bloque azul con data informativa</td>
-            <td>totalizador</td>
-          </tr>
-        </tfoot>
-        <tbody (click)="checkCuota(cuota)">
-        <!--<tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">-->
-          <!--<div [class.tgr-cuoton-agrupacion]="this.esCuoton"></div><!-- [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'" -->
+        <tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
           <tr>
             <!--<div [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'N'"></div>-->
             <td>
@@ -76,7 +65,14 @@
             <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal:cuota.liqTotal.montoTotalParcial) | number}}
             </td>
           </tr>
-          <!--<tr *ngIf="cuota.liqTotal.esCuoton == 'N'">bloque azul</tr>-->
+          <tr *ngIf="cuota.liqTotal.esCuoton == 'N'">bloque azul
+            <td>
+              <mdl-icon>{{this.esCuoton ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
+            </td>
+            <td>bloque azul con data informativa</td>
+            <td>totalizador</td>
+          </tr>
+          
         </tbody>
       </table>
     </div>
