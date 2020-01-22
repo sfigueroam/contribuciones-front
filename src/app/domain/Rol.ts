@@ -201,10 +201,6 @@ export class Rol {
       if (cuota.expired) {
         this.expired = true;
       }
-      // JMS: Calcula el monto de la cuota anual
-      if (cuota.esCuoton == 'S'){
-        totalCuoton += cuota.liqTotal.montoTotalTotal;
-      }
 
       if (cuota.intencionPago) {
         pagoTotal += cuota.liqTotal.montoTotalTotal;
@@ -246,7 +242,6 @@ export class Rol {
     }
 
     this.pagoTotal = total;
-    this.pagoTotalCuoton = totalCuoton;
   }
 
   getCuotasDeseleccionadas(): { numeroFolio: string, fechaVencimiento: string, intencionPago: boolean }[] {

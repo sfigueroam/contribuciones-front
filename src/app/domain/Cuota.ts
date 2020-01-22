@@ -57,7 +57,7 @@ export class Cuota {
     this.changeSubject.next();
   }
   
-  intencionPagoCuoton(value: boolean =!this.intencionPago){
+  intencionPagoCuoton(value: boolean = !this.intencionPago){
     if (this.esCuoton == 'S'){
       this.intencionPago = value;
       this.changeSubject.next();

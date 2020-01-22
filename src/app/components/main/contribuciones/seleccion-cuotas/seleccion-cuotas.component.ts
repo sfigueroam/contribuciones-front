@@ -223,6 +223,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
     let multiARString;
     let total = 0;
+    let totalCuoton = 0;
     let condonacion = 0;
     let esCuotonBool = false;
     for (const p of this.propiedades) {
@@ -246,14 +247,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               codigos += c.liqTotal.codigoBarraParcial + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
             }
-            // if (c.liqTotal.esCuoton == 'S'){
-            //   this.userdataservice.esCuotonServ = false; //cambiar a true
-            //   console.log("es cuoton en selec false");
-            // }
-            // else{
-            //   this.userdataservice.esCuotonServ = true; //cambiar a false
-            //   console.log("es cuoton en selec true");
-            // }
           }
         }
       }
