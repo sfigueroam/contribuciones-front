@@ -128,13 +128,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
   }
-  checkCuoton(rol:Rol){
+  checkCuoton(cuota: Cuota){
     if (this.cuotaAnualCheck){
       this.cuotaAnualCheck = false;
+      cuota.intencionPagoCuoton();
     }
     else{
       this.cuotaAnualCheck = true;
-      this.cuota1.intencionPagoCuoton();
     }
   }
 
