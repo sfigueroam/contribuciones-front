@@ -137,6 +137,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     this.montoCuoton = totalCuoton;
     console.log("monto cuoton", this.montoCuoton);
+    return(totalCuoton);
   }
   
   checkCuota(cuota: Cuota) {
@@ -145,7 +146,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuoton(cuota: Cuota){
     if (this.cuotaAnualCheck){
       this.cuotaAnualCheck = false;
-      cuota.intencionPagoCuoton();
+      // cuota.intencionPagoCuoton();
     }
     else{
       this.cuotaAnualCheck = true;
