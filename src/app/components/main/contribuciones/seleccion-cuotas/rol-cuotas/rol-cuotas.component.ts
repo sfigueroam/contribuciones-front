@@ -18,13 +18,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   @Input()
   rol: Rol;
-  cuota1: Cuota;
+  cuotas: Cuota[] = [];
   @Output()
   change: EventEmitter<any> = new EventEmitter();
   noLiquidable: string;
   noLiquidablebool: boolean;
   // JMS: es cuoton
   cuotaAnualCheck: boolean = true;
+  montoCuoton: number = 0;
   
   
 
@@ -77,6 +78,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     );
+    this.calculaTotalCuoton();
   }
 
   showHelp() {
@@ -125,6 +127,17 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // JMS: calcula el total del cuoton
+  private calculaTotalCuoton(){
+    let totalCuoton;
+    for(let cuota of this.cuotas){
+      if(cuota.esCuoton == 'S'){
+        totalCuoton += cuota.liqTotal.montoTotalTotal;
+      }
+    }
+    this.montoCuoton = totalCuoton;
+  }
+  
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
   }

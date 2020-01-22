@@ -55,7 +55,7 @@
         <tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
           <tr>
             <td [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'">
-              <mdl-icon ng-disabled="cuota.cuoton4">{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
+              <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
             </td>
             <td [class.tgr-tr--late]="cuota.expired">
               <span>{{cuota.liqTotal.nroCuota}}</span>
@@ -70,7 +70,7 @@
             </td>
             <td> </td>
             <td>bloque azul con data informativa</td>
-            <td>totalizador</td>
+            <td>{{this.montoCuoton}}</td>
           </tr>
           
         </tbody>

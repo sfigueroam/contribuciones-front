@@ -147,13 +147,6 @@ export class ContribucionesService {
               rol.cuotas.push(cuota);
               cuota = mapCuotas.get(deuda.numeroCuota);
               cuota.liqTotal = new CuotaDetalle(deuda);
-              // JMS: establese que viene cuoton y setea la variable en true para disponibilizarla en otros componentes
-              if (cuota.liqTotal.esCuoton == 'S'){
-                this.userdataservice.vieneCuoton = true;
-              }
-              else {
-                this.userdataservice.vieneCuoton = false;
-              }
             }
             rol.isProcess = true;
             resolve();
