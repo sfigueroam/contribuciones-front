@@ -151,7 +151,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     cuota.changeIntencionPago();
   }
   checkCuoton(rol: Rol){
+    console.log("rol", rol);
     for(let c of rol.cuotas){
+      console.log("cuotas", c);
       if(c.esCuoton == 'S'){
           c.intencionPago = false;
       }
