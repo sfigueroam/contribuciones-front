@@ -41,7 +41,7 @@
   <!-- DEUDA NO LIQUIDABLE - FIN -->
   <div [class.hidden]="!expanded">
     <div *ngIf="rol.cuotas.length > 0">
-      <table class=*ngFor="let cuota of rol.cuotas" "mdl-data-table mdl-js-data-table">
+      <table class="mdl-data-table mdl-js-data-table" *ngFor="let cuota of rol.cuotas">
         <thead>
         <tr>
           <th (click)="selectAllNone()">
