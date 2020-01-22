@@ -54,8 +54,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
-    this.esCuoton = this.userdataservice.vieneCuoton;
-    console.log("esCuoton", this.esCuoton);
+    // this.esCuoton = this.userdataservice.vieneCuoton;
+    // console.log("esCuoton", this.esCuoton);
     
     // this.esCuoton = this.userdataservice.esCuotonServ;
     // console.log("es cuoton servicio", this.userdataservice.esCuotonServ);
@@ -127,6 +127,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
+  }
+  checkCuoton(){
+    if (this.esCuoton){
+      this.esCuoton = false;
+    }
+    else{
+      this.esCuoton = true;
+    }
   }
 
   delete() {
