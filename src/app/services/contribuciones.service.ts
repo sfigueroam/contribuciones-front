@@ -9,6 +9,7 @@ import {UtilService} from './util.service';
 import {Direccion} from '../domain/Direccion';
 import { Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {UserDataService} from '../user-data.service'
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class ContribucionesService {
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
-              private http : HttpClient) {
+              private http : HttpClient,
+              private userdataservice: UserDataService) {
 
   }
 
@@ -145,6 +147,13 @@ export class ContribucionesService {
               rol.cuotas.push(cuota);
               cuota = mapCuotas.get(deuda.numeroCuota);
               cuota.liqTotal = new CuotaDetalle(deuda);
+              // JMS: establese que viene cuoton y setea la variable en true para disponibilizarla en otros componentes
+              if (cuota.liqTotal.esCuoton == 'S'){
+                this.userdataservice.vieneCuoton = true;
+              }
+              else {
+                this.userdataservice.vieneCuoton = false;
+              }
             }
             rol.isProcess = true;
             resolve();
