@@ -1,4 +1,5 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren, Inject, InjectionToken} from '@angular/core';
+import {Propiedad} from '../../../../../domain/Propiedad';
 import {Rol} from '../../../../../domain/Rol';
 import {Cuota} from '../../../../../domain/Cuota';
 import {TipoCuota} from '../../../../../domain/TipoCuota';
@@ -8,6 +9,9 @@ import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
 import {TooltipDirective} from 'ng2-tooltip-directive';
 import {UserDataService} from '../../../../../user-data.service'
+import {ContribucionesService} from '../../../../../services/contribuciones.service';
+
+export const LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 
 @Component({
   selector: 'app-rol-cuotas',
@@ -19,6 +23,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   @Input()
   rol: Rol;
   cuotas: Cuota[] = [];
+  // propiedades: Propiedad[] = [];
   @Output()
   change: EventEmitter<any> = new EventEmitter();
   noLiquidable: string;
@@ -44,7 +49,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
               private mdlSnackbarService: MdlSnackbarService,
-              private userdataservice: UserDataService) {
+              private userdataservice: UserDataService,
+              @Inject(LIST_PROPIEDADES) propiedades: Propiedad[],) {
         this.noLiquidablebool = false
 
   
@@ -78,6 +84,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     );
+    // carga toda la data de roles en este componente
+   
+    
+    
+    
+    
+    
     this.calculaTotalCuoton();
   }
 
@@ -130,6 +143,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   // JMS: calcula el total del cuoton
   private calculaTotalCuoton(){
     let totalCuoton;
+
+    
     for(let cuota of this.cuotas){
       if(cuota.esCuoton == 'S'){
         totalCuoton += cuota.liqTotal.montoTotalTotal;
