@@ -15,6 +15,10 @@ export class Cuota {
   day: string;
   month: string;
   year:string;
+  cuoton4: boolean;
+  esCuoton: string;
+  nroCuotaTotal: string;
+  nroCuota: string;
 
   liqTotal: CuotaDetalle;
 
@@ -35,6 +39,17 @@ export class Cuota {
     this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
     this.liqTotal = new CuotaDetalle(init);
+    this.esCuoton = init.esCuoton;
+    this.nroCuotaTotal = init.nroCuota;
+    this.nroCuota = this.nroCuotaTotal.substring(0,1);
+    
+    
+    if (this.esCuoton == 'S' && this.nroCuota == '4'){
+      this.cuoton4 = true;
+    }
+    else{
+      this.cuoton4 = false;
+    }
   }
 
   changeIntencionPago(value: boolean = !this.intencionPago) {
