@@ -159,6 +159,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           c.intencionPago = false;
         }
       }
+      this.cuotaAnualCheck = false;
     }
   }
 
