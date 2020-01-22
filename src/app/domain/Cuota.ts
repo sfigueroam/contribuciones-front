@@ -56,6 +56,13 @@ export class Cuota {
     this.intencionPago = value;
     this.changeSubject.next();
   }
+  
+  intencionPagoCuoton(value: boolean =!this.intencionPago){
+    if (this.esCuoton == 'S'){
+      this.intencionPago = value;
+      this.changeSubject.next();
+    }
+  }
 
   private formatDate(fecha) {
     const fec = fecha.split('-');

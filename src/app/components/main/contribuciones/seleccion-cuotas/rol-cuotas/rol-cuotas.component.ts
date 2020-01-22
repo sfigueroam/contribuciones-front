@@ -24,7 +24,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   noLiquidable: string;
   noLiquidablebool: boolean;
   // JMS: es cuoton
-  esCuoton: boolean = false;
+  cuotaAnualCheck: boolean = true;
   
   
 
@@ -128,12 +128,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
   }
-  checkCuoton(){
-    if (this.esCuoton){
-      this.esCuoton = false;
+  checkCuoton(rol:Rol){
+    if (this.cuotaAnualCheck){
+      this.cuotaAnualCheck = false;
     }
     else{
-      this.esCuoton = true;
+      this.cuotaAnualCheck = true;
+      this.cuota1.intencionPagoCuoton();
     }
   }
 
