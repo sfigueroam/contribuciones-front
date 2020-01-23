@@ -50,7 +50,7 @@
           <th class="mdl-data-table__cell--non-numeric tgr-cuota">Cuota</th>
           <th class="mdl-data-table__cell--non-numeric tgr-vence">Vence</th>
           <th class="tgr-monto">Monto</th>
-          <div class="tgr-cuoton-agrupacion" *ngIf="cuotaAnualCheck"></div>
+          <!--<div class="tgr-cuoton-agrupacion" *ngIf="cuotaAnualCheck"></div>-->
         </tr>
         </thead>
         <!--<tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">-->
@@ -79,7 +79,7 @@
               </span>
             </td>
             <td>{{calculaTotalCuoton(rol)}}</td>
-          <!--<div class="tgr-cuoton-agrupacion" *ngIf="cuotaAnualCheck"></div>-->
+          <div class="tgr-cuoton-agrupacion" *ngIf="cuota.cuoton4"></div>
           </tr>
           <!--<div class="tgr-cuoton-agrupacion" *ngIf="cuota.liqTotal.esCuoton"></div>-->
         </tbody>
