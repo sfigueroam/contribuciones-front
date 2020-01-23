@@ -29,7 +29,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   noLiquidable: string;
   noLiquidablebool: boolean;
   // JMS: es cuoton
-  cuotaAnualCheck: boolean = true;
+  cuotaAnualCheck: boolean;
   montoCuoton: number = 0;
   
   
@@ -61,11 +61,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
-    // this.esCuoton = this.userdataservice.vieneCuoton;
-    // console.log("esCuoton", this.esCuoton);
-    
-    // this.esCuoton = this.userdataservice.esCuotonServ;
-    // console.log("es cuoton servicio", this.userdataservice.esCuotonServ);
+    this.cuotaAnualCheck = true;
 
     this.rol.completeStream.subscribe(
       () => null,
@@ -98,7 +94,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.calculaTotalCuoton();
   }
 
   toggle() {
@@ -149,17 +144,43 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
+    if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == false){
+      this.cuotaAnualCheck = true;
+    }
+    if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == true){
+      this.cuotaAnualCheck = false;
+    }
   }
   checkCuoton(rol: Rol){
     if(rol != undefined){
-      console.log("rol", rol);
-      for(let c of rol.cuotas){
-        console.log("cuotas", c);
-        if(c.esCuoton == 'S'){
-          c.intencionPago = false;
+      if(this.cuotaAnualCheck = true){
+        console.log("rol", rol);
+        for(let c of rol.cuotas){
+          console.log("cuotas", rol.cuotas);
+          if(c.esCuoton == 'S'){
+            console.log("cuota: ", c.nroCuota);
+            console.log("esCuoton: ", c.esCuoton);
+            c.intencionPago = false;
+            console.log("intencion pago despues: ", c.intencionPago);
+          }
         }
+        this.cuotaAnualCheck = false;
+        console.log("cuota anual", this.cuotaAnualCheck);
       }
-      this.cuotaAnualCheck = false;
+      else{
+        console.log("rol", rol);
+        for(let c of rol.cuotas){
+          console.log("cuotas", rol.cuotas);
+          if(c.esCuoton == 'S'){
+            console.log("cuota: ", c.nroCuota);
+            console.log("esCuoton: ", c.esCuoton);
+            c.intencionPago = true;
+            console.log("intencion pago despues: ", c.intencionPago);
+          }
+        }
+        this.cuotaAnualCheck = true;
+        console.log("cuota anual", this.cuotaAnualCheck);
+      }
     }
   }
 
