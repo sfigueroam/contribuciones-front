@@ -144,11 +144,11 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     cuota.changeIntencionPago();
     console.log("cuota individual valor salida", cuota.intencionPago);
     if(cuota.esCuoton == 'S' && !this.cuotaAnualCheck){
-      // this.cuotaAnualCheck = true;
+      this.cuotaAnualCheck = true;
       this.checkCuoton(rol);
     }
     if(cuota.esCuoton == 'S' && this.cuotaAnualCheck){
-      // this.cuotaAnualCheck = false;
+      this.cuotaAnualCheck = false;
       this.checkCuoton(rol);
     }
   }
