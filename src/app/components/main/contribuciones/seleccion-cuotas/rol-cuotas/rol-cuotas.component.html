@@ -79,7 +79,8 @@
             </td>
             <td>{{calculaTotalCuoton(rol)}}</td>
           </tr>
-          <div class="tgr-cuoton-agrupacion" *ngIf="cuota.liqTotal.esCuoton"></div>
+          <!--<div class="tgr-cuoton-agrupacion" *ngIf="cuota.liqTotal.esCuoton"></div>-->
+          <div class="tgr-cuoton-agrupacion" *ngIf="cuotaAnualCheck"></div>
         </tbody>
       </table>
     </div>
