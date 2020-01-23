@@ -90,9 +90,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       environment.tooltipTime
     );
   }
+  
+  ngAfterViewChecked(){
+    this.cuotaAnualCheck = true;
+  }
 
   ngAfterViewInit() {
-    this.cuotaAnualCheck = true;
   }
 
   toggle() {
