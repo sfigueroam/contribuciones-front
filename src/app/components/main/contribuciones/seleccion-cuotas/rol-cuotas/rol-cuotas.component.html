@@ -66,12 +66,14 @@
             <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal:cuota.liqTotal.montoTotalParcial) | number}}
             </td>
           </tr>
-          <tr *ngIf="cuota.cuoton4">
+          <tr class="tgr-bloque-cuota-anual" *ngIf="cuota.cuoton4">
             <td (click)="checkCuoton(rol)">
               <mdl-icon>{{cuotaAnualCheck ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
             </td>
-            <td> </td>
-            <td>bloque azul con data informativa</td>
+            <td colspan="2">
+              <span>Cuota Anual 2020</span> <br>
+              El valor total mantendrá <br> se mantendrá en las primeras <br> cuotas sin reajustar.
+            </td>
             <td>{{calculaTotalCuoton(rol)}}</td>
           </tr>
           
