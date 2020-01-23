@@ -29,7 +29,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   noLiquidable: string;
   noLiquidablebool: boolean;
   // JMS: es cuoton
-  cuotaAnualCheck: boolean = true;
+  cuotaAnualCheck: boolean;
   montoCuoton: number = 0;
   
   
