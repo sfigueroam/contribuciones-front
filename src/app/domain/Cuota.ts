@@ -20,7 +20,7 @@ export class Cuota {
   esCuoton: string;
   nroCuotaTotal: string;
   nroCuota: string;
-  rutrol;
+  rutRol;
 
   liqTotal: CuotaDetalle;
 
@@ -35,7 +35,7 @@ export class Cuota {
     this.day = this.fechaVencimientoOriginal.substring(8,10);
     this.fechaVctoStr = this.day + "-" + this.month + "-" + this.year;
     this.fechaVcto = this.formatDate(this.fechaVctoStr);
-    this.rutrol = init.rutrol;
+    this.rutRol = init.rutRol;
 
     this.formFolio = init.formFolio;
     this.numeroCuota = init.numeroCuota;
