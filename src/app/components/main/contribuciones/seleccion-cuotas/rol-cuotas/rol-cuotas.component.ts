@@ -144,14 +144,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
-    if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == false){
-      console.log("cuota anual false a true cambio cuota individual", this.cuotaAnualCheck);
-      this.cuotaAnualCheck = true;
-    }
-    if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == true){
-      console.log("cuota anual true a false cambio cuota individual", this.cuotaAnualCheck);
-      this.cuotaAnualCheck = false;
-    }
+    // if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == false){
+    //   console.log("cuota anual false a true cambio cuota individual", this.cuotaAnualCheck);
+    //   this.cuotaAnualCheck = true;
+    // }
+    // if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == true){
+    //   console.log("cuota anual true a false cambio cuota individual", this.cuotaAnualCheck);
+    //   this.cuotaAnualCheck = false;
+    // }
   }
   checkCuoton(rol: Rol){
     if(rol != undefined){
