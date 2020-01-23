@@ -70,6 +70,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           () => this.reloadChecked()
         );
         this.noLiquidable = this.rol.noLiquidable;
+        // JMS: inicio de check
+        this.cuotaAnualCheck = true;
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
         }
@@ -89,10 +91,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       },
       environment.tooltipTime
     );
-  }
-  
-  ngAfterViewChecked(){
-    this.cuotaAnualCheck = true;
   }
 
   ngAfterViewInit() {
