@@ -152,6 +152,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
   
   checkCuoton(rol: Rol){
+    console.log("entra a checkcuoton", this.checkCuoton);
+    console.log("rol", rol);
     if(rol != undefined){
       if(this.cuotaAnualCheck){
         this.cuotaAnualCheck = false;
