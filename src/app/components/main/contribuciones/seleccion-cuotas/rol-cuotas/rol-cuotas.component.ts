@@ -166,7 +166,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
             console.log("intencion pago despues (falso): ", c.intencionPago);
           }
         }
-        this.cuotaAnualCheck = false;
+        // this.cuotaAnualCheck = false;
         console.log("cuota anual false", this.cuotaAnualCheck);
       }
       else{
@@ -180,7 +180,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
             console.log("intencion pago despues (verdadero): ", c.intencionPago);
           }
         }
-        this.cuotaAnualCheck = true;
+        // this.cuotaAnualCheck = true;
         console.log("cuota anual true", this.cuotaAnualCheck);
       }
     }
