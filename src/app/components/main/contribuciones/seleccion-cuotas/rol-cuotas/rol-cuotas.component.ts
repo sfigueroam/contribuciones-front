@@ -186,6 +186,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         console.log("cuota anual true", this.cuotaAnualCheck);
       }
     }
+    else{
+      console.log("rol indefinido");
+    }
   }
 
   delete() {
