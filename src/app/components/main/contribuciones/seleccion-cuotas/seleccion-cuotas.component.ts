@@ -223,7 +223,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
     let multiARString;
     let total = 0;
+    let totalCuoton = 0;
     let condonacion = 0;
+    let esCuotonBool = false;
     for (const p of this.propiedades) {
       total += p.total;
       condonacion += p.condonacion;
@@ -254,7 +256,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
     multiARString = JSON.stringify(multiARObj);
-    console.log(multiARString);
+    // console.log(multiARString);
     this.userdataservice.multiAR_Cid = multiARString;
   }
 

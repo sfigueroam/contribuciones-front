@@ -1,4 +1,5 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren, Inject, InjectionToken} from '@angular/core';
+import {Propiedad} from '../../../../../domain/Propiedad';
 import {Rol} from '../../../../../domain/Rol';
 import {Cuota} from '../../../../../domain/Cuota';
 import {TipoCuota} from '../../../../../domain/TipoCuota';
@@ -7,6 +8,10 @@ import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
 import {TooltipDirective} from 'ng2-tooltip-directive';
+import {UserDataService} from '../../../../../user-data.service'
+import {ContribucionesService} from '../../../../../services/contribuciones.service';
+
+// import LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 
 @Component({
   selector: 'app-rol-cuotas',
@@ -17,10 +22,17 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   @Input()
   rol: Rol;
+  cuotas1: Cuota[] = [];
+  propiedades: Propiedad[] = [];
   @Output()
   change: EventEmitter<any> = new EventEmitter();
   noLiquidable: string;
   noLiquidablebool: boolean;
+  // JMS: es cuoton
+  cuotaAnualCheck: boolean = true;
+  montoCuoton: number = 0;
+  
+  
   
 
   expanded: boolean;
@@ -37,12 +49,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
-              private mdlSnackbarService: MdlSnackbarService,) {
+              private mdlSnackbarService: MdlSnackbarService,
+              private userdataservice: UserDataService,) {
         this.noLiquidablebool = false
 
-  
+  // this.propiedades = propiedades;
   }
-
+  
   ngOnInit() {
 
     this.expanded = false;
@@ -56,7 +69,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        console.log("rol.noLiquidable", this.rol.noLiquidable)
         this.noLiquidable = this.rol.noLiquidable;
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
@@ -114,8 +126,50 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // JMS: calcula el total del cuoton
+  private calculaTotalCuoton(rol: Rol){
+    let totalCuoton = 0;
+    for(let c of rol.cuotas){
+      if(c.esCuoton == 'S'){
+          totalCuoton += c.liqTotal.montoTotalTotal;
+      }
+    }
+    this.montoCuoton = totalCuoton;
+    return(totalCuoton);
+  }
+  
+  
   checkCuota(cuota: Cuota) {
     cuota.changeIntencionPago();
+    // if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == false){
+    //   console.log("cuota anual false a true cambio cuota individual", this.cuotaAnualCheck);
+    //   this.cuotaAnualCheck = true;
+    // }
+    // if(cuota.esCuoton == 'S' && this.cuotaAnualCheck == true){
+    //   console.log("cuota anual true a false cambio cuota individual", this.cuotaAnualCheck);
+    //   this.cuotaAnualCheck = false;
+    // }
+  }
+  checkCuoton(rol: Rol){
+    if(rol != undefined){
+      if(this.cuotaAnualCheck){
+        this.cuotaAnualCheck = false;
+        for(let c of rol.cuotas){
+          if(c.esCuoton == 'S'){
+            c.intencionPago = false;
+          }
+        }
+      }
+      else{
+        this.cuotaAnualCheck = true;
+        for(let c of rol.cuotas){
+          // console.log("cuotas(f)", rol.cuotas);
+          if(c.esCuoton == 'S'){
+            c.intencionPago = true;
+          }
+        }
+      }
+    }
   }
 
   delete() {

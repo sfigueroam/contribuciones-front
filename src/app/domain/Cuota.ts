@@ -15,6 +15,11 @@ export class Cuota {
   day: string;
   month: string;
   year:string;
+  cuoton4: boolean = false;;
+  cuoton3: boolean = false;
+  esCuoton: string;
+  nroCuotaTotal: string;
+  nroCuota: string;
 
   liqTotal: CuotaDetalle;
 
@@ -35,11 +40,28 @@ export class Cuota {
     this.clienteTipo = init.clienteTipo;
     this.expired = this.isExpired();
     this.liqTotal = new CuotaDetalle(init);
+    this.esCuoton = init.esCuoton;
+    this.nroCuotaTotal = init.nroCuota;
+    this.nroCuota = this.nroCuotaTotal.substring(0,1);
+
+    if (this.esCuoton == 'S' && this.nroCuota == '4'){
+      this.cuoton4 = true;
+    }
+    if (this.esCuoton == 'S' && this.nroCuota == '3'){
+      this.cuoton3 = true;
+    }
   }
 
   changeIntencionPago(value: boolean = !this.intencionPago) {
     this.intencionPago = value;
     this.changeSubject.next();
+  }
+  
+  intencionPagoCuoton(value: boolean = !this.intencionPago){
+    if (this.esCuoton == 'S'){
+      this.intencionPago = value;
+      this.changeSubject.next();
+    }
   }
 
   private formatDate(fecha) {

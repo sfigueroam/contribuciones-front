@@ -52,26 +52,36 @@
           <th class="tgr-monto">Monto</th>
         </tr>
         </thead>
+<<<<<<< HEAD
         <tbody>
           <div class="tgr-cuoton-agrupacion"></div> <!-- [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'" -->
           <tr *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">
             <td>
+=======
+        <!--<tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">-->
+        <tbody *ngFor="let cuota of rol.cuotas">
+          <!--<tr [class.tgr-cuoton-agrupacion]="cuota.liqTotal.esCuoton == 'S'">-->
+          <tr>
+            <td (click)="checkCuota(cuota)">
+>>>>>>> 12cf9eccf927bab81e02aeaf2f7eb3e49819a84a
               <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
             </td>
             <td [class.tgr-tr--late]="cuota.expired">
-              <!--<span>{{cuota.numeroCuota}}</span>-->
               <span>{{cuota.liqTotal.nroCuota}}</span>
             </td>
             <td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVcto | date:'dd/MMM'}}</td>
-            <!--<td [class.tgr-tr--late]="cuota.isExpired()">{{cuota.fechaVencimiento | date:'dd/MMM'}}</td>-->
-            <!--<td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal-->
-            <!--  :-->
-            <!--  cuota.liqParcial.montoTotalParcial) | number}}-->
-            <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal
-              :
-              cuota.liqTotal.montoTotalParcial) | number}}
+            <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal:cuota.liqTotal.montoTotalParcial) | number}}
             </td>
           </tr>
+          <tr *ngIf="cuota.cuoton4">
+            <td (click)="checkCuoton(rol)">
+              <mdl-icon>{{cuotaAnualCheck ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
+            </td>
+            <td> </td>
+            <td>bloque azul con data informativa</td>
+            <td>{{calculaTotalCuoton(rol)}}</td>
+          </tr>
+          
         </tbody>
       </table>
     </div>

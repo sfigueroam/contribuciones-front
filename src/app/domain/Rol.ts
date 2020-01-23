@@ -39,6 +39,9 @@ export class Rol {
   expired = false;
   pagoTotal = true;
 
+  // JMS: monto pago total cuoton
+  pagoTotalCuoton: number;
+  
   public constructor(init?: Partial<Rol>) {
     Object.assign(this, init);
     if (!this.cuotas) {
@@ -189,7 +192,7 @@ export class Rol {
     let pagoParcial = 0;
     let pagoTotal = 0;
     let condonacion = 0;
-
+    let totalCuoton = 0;
     let totalExpirados = 0;
     let totalExpiradosIntencionPago = 0;
     let total = true;
