@@ -55,6 +55,7 @@
         <!--<tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">-->
         <tbody *ngFor="let cuota of rol.cuotas">
           <tr>
+            <div class="tgr-cuoton-agrupacion" *ngIf="cuota.liqTotal.esCuoton"></div>
             <td (click)="checkCuota(rol, cuota)">
               <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
             </td>
@@ -65,7 +66,6 @@
             <td [class.tgr-tr--late]="cuota.isExpired()">$ {{(rol.pagoTotal ? cuota.liqTotal.montoTotalTotal:cuota.liqTotal.montoTotalParcial) | number}}
             </td>
           </tr>
-          <div class="tgr-cuoton-agrupacion" *ngIf="cuota.liqTotal.esCuoton"></div>
           <tr class="tgr-bloque-cuota-anual" *ngIf="cuota.cuoton4">
             <td (click)="checkCuoton(rol)">
               <mdl-icon>{{cuotaAnualCheck ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
