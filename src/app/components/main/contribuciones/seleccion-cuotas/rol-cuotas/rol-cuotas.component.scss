@@ -102,18 +102,22 @@ mdl-icon.material-icons {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  height: 245px;
-  width: 90%;
+  height: 300px;
+  width: 99%;
   border: 3px solid $button-primary-color;
+  z-index: -999;
+  @media (max-width: 479px) {
+    height: 244px;
+  }
 }
 
 .tgr-bloque-cuota-anual {
   background-color: $button-primary-color;
   td {
-    color: #ffffff;
+    color: #ffffff !important;
     &:nth-of-type(2) {
       text-align: left;
-      span {
+      span:first-of-type {
         font-weight: 700;
         font-size: 14px;
       }
