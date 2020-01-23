@@ -61,7 +61,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
-    // this.cuotaAnualCheck = true;
 
     this.rol.completeStream.subscribe(
       () => null,
@@ -70,7 +69,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        console.log("rol.noLiquidable", this.rol.noLiquidable)
         this.noLiquidable = this.rol.noLiquidable;
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
@@ -137,7 +135,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
     }
     this.montoCuoton = totalCuoton;
-    console.log("monto cuoton", totalCuoton);
     return(totalCuoton);
   }
   
@@ -154,40 +151,24 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     // }
   }
   checkCuoton(rol: Rol){
-    console.log("estado del checkbox antes de ingresar", this.cuotaAnualCheck);
     if(rol != undefined){
       if(this.cuotaAnualCheck){
         this.cuotaAnualCheck = false;
-        console.log("cambio cuota anual entra si es verdadero", this.cuotaAnualCheck);
         for(let c of rol.cuotas){
-          // console.log("cuotas(v)", rol.cuotas);
           if(c.esCuoton == 'S'){
-            console.log("cuota(v): ", c.nroCuota);
-            console.log("esCuoton(v): ", c.esCuoton);
             c.intencionPago = false;
-            console.log("intencion pago despues (falso): ", c.intencionPago);
           }
         }
-        
-        console.log("cuota anual false", this.cuotaAnualCheck);
       }
       else{
         this.cuotaAnualCheck = true;
-        console.log("cambio cuota anual entra si es falso", this.cuotaAnualCheck);
         for(let c of rol.cuotas){
           // console.log("cuotas(f)", rol.cuotas);
           if(c.esCuoton == 'S'){
-            console.log("cuota(f): ", c.nroCuota);
-            console.log("esCuoton(f): ", c.esCuoton);
             c.intencionPago = true;
-            console.log("intencion pago despues (verdadero): ", c.intencionPago);
           }
         }
-        console.log("cuota anual true", this.cuotaAnualCheck);
       }
-    }
-    else{
-      console.log("rol indefinido");
     }
   }
 
