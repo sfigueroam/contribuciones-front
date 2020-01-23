@@ -92,6 +92,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.cuotaAnualCheck = true;
   }
 
   toggle() {
