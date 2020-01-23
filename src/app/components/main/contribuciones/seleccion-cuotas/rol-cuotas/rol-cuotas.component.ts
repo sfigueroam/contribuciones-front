@@ -156,6 +156,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuoton(rol: Rol){
     if(rol != undefined){
       if(this.cuotaAnualCheck = true){
+        console.log("cambio cuota anual entra si es verdadero", this.cuotaAnualCheck);
         for(let c of rol.cuotas){
           // console.log("cuotas(v)", rol.cuotas);
           if(c.esCuoton == 'S'){
@@ -169,6 +170,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         console.log("cuota anual false", this.cuotaAnualCheck);
       }
       else{
+        console.log("cambio cuota anual entra si es falso", this.cuotaAnualCheck);
         for(let c of rol.cuotas){
           // console.log("cuotas(f)", rol.cuotas);
           if(c.esCuoton == 'S'){
