@@ -239,6 +239,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     for (const p of this.propiedades) {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
+          if (c.cuoton4){
+            this.abreModalCuotaAnual();
+          }
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
@@ -357,6 +360,14 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
   }
 
+  abreModalCuotaAnual(): void{
+    const pDialog = this.dialogService.showCustomDialog({
+      component: AyudaCondonacionComponent,
+      clickOutsideToClose: true,
+      isModal: true
+    });
+  }
+  
   private showHelp() {
     const direccionCuotasList = this.direccionCuotasComponentList.toArray();
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {

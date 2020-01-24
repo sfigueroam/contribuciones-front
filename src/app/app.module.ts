@@ -45,6 +45,7 @@ import {UserDataService} from './user-data.service';
 import { ConclaveComponent } from './components/conclave/conclave.component';
 import { SinclaveComponent } from './components/sinclave/sinclave.component';
 import { ModalErrorMulticidComponent } from './components/main/contribuciones/seleccion-cuotas/modal/modal-error-multicid/modal-error-multicid.component';
+import { ModalCuotaAnualComponent } from './components/main/contribuciones/seleccion-cuotas/modal/modal-cuota-anual/modal-cuota-anual.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -79,6 +80,7 @@ registerLocaleData(localeEs, 'es');
     ConclaveComponent,
     SinclaveComponent,
     ModalErrorMulticidComponent,
+    ModalCuotaAnualComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,6 +119,7 @@ registerLocaleData(localeEs, 'es');
     ResumenComponent,
     RecordarComponent,
     ModalErrorMulticidComponent,
+    ModalCuotaAnualComponent,
   ],
   bootstrap: [AppComponent]
 })
