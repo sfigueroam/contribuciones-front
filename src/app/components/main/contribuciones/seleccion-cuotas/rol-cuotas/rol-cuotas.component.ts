@@ -114,8 +114,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   private reloadChecked(): void {
     if (this.rol.allChecked()) {
       this.selectedIcon = CheckboxIcon.SELECTED;
+      this.cuotaAnualCheck = true;
     } else if (this.rol.noneChecked()) {
       this.selectedIcon = CheckboxIcon.UNSELECTED;
+      this.cuotaAnualCheck = false;
     } else {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
     }
