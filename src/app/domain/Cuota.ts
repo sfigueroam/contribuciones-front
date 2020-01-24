@@ -15,12 +15,13 @@ export class Cuota {
   day: string;
   month: string;
   year:string;
-  cuoton4: boolean = false;;
+  cuoton4: boolean = false;
   cuoton3: boolean = false;
+  cuoton2: boolean = false;
+  cuoton1: boolean = false;
   esCuoton: string;
   nroCuotaTotal: string;
   nroCuota: string;
-  rutRol;
 
   liqTotal: CuotaDetalle;
 
@@ -35,7 +36,6 @@ export class Cuota {
     this.day = this.fechaVencimientoOriginal.substring(8,10);
     this.fechaVctoStr = this.day + "-" + this.month + "-" + this.year;
     this.fechaVcto = this.formatDate(this.fechaVctoStr);
-    this.rutRol = init.rutRol;
 
     this.formFolio = init.formFolio;
     this.numeroCuota = init.numeroCuota;
@@ -51,6 +51,12 @@ export class Cuota {
     }
     if (this.esCuoton == 'S' && this.nroCuota == '3'){
       this.cuoton3 = true;
+    }
+    if (this.esCuoton == 'S' && this.nroCuota == '2'){
+      this.cuoton2 = true;
+    }
+    if (this.esCuoton == 'S' && this.nroCuota == '1'){
+      this.cuoton1 = true;
     }
   }
 
