@@ -125,7 +125,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // prueba de deteccion de dispositivo
+    // JMS: abre modal de cuota anual
+    this.abreModalCuotaAnual();
+    
     this.canal = '';
     this.reg = '';
     this.providerConex = this.cookieService.get("providerCookie")
