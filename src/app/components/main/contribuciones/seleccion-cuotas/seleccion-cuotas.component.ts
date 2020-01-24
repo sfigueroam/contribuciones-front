@@ -221,6 +221,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       }
     );
   // JMS: evalua la ejecucion del modal
+  console.log("llama a funcion abreModalCuotaAnual ")
   this.abreModalCuotaAnual();
 
   }
@@ -370,7 +371,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  abreModalCuotaAnual(): void{
+  abreModalCuotaAnual(){
     for (const propiedad of this.propiedades){
       for (const rol of propiedad.roles){
         for (const cuota of rol.cuotas){
