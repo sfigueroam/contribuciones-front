@@ -74,9 +74,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           () => this.reloadChecked()
         );
         this.noLiquidable = this.rol.noLiquidable;
-        // JMS: inicio de check
-        this.cuotaAnualCheck = true;
-        this.bloqueAzul = true;
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
         }
