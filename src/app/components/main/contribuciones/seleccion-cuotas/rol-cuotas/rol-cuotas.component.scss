@@ -110,6 +110,16 @@ mdl-icon.material-icons {
   }
 }
 
+.borde-cuota3 {
+  border-left: 3px solid $button-primary-color;
+  border-right: 3px solid $button-primary-color;
+}
+.borde-cuota4 {
+  border-left: 3px solid $button-primary-color;
+  border-right: 3px solid $button-primary-color;
+  border-bottom: 3px solid $button-primary-color;;
+}
+
 .tgr-bloque-cuota-anual {
   background-color: $button-primary-color;
   td {
