@@ -220,10 +220,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades', environment.snackbarTime);
       }
     );
-  // JMS: evalua la ejecucion del modal
-  console.log("llama a funcion abreModalCuotaAnual ")
-  this.abreModalCuotaAnual();
-
   }
   
 
@@ -368,6 +364,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     const direccionCuotasList = this.direccionCuotasComponentList.toArray();
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
       direccionCuotasList[0].abrirPrimerRol();
+      console.log("abre primer rol");
+      this.abreModalCuotaAnual();
     }
   }
 
