@@ -125,8 +125,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   selectAllNone(): void {
     if (this.selectedIcon === CheckboxIcon.SELECTED) {
       this.rol.seleccionar(TipoCuota.NINGUNA);
+      this.cuotaAnualCheck = false;
     } else {
       this.rol.seleccionar(TipoCuota.TODAS);
+      this.cuotaAnualCheck = true;
     }
   }
 
