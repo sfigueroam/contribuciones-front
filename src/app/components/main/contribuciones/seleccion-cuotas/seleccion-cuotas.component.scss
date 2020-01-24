@@ -462,3 +462,21 @@ p.cantidad-deudas-seleccionadas {
   height: 8px;
 }
 
+.tgr-actions__content {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  margin-top: 10px;
+  @media (max-width: 479px) {
+    margin-top: 0;
+    flex-direction: column-reverse;
+  }
+  p.cantidad-deudas-seleccionadas,
+  button.button-pay {
+    display: flex;
+    @media (max-width: 479px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

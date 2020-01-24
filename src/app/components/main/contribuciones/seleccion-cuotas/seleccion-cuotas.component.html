@@ -148,12 +148,10 @@
     <p>Estamos calculando tu monto a pagar</p>
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
-    
-    <div class="mdl-layout-spacer"></div>
-    <button class="button-pay" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
     <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}}</strong></span>
       de {{result.total}} deudas
       seleccionadas</p>
+    <button class="button-pay" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
   </div>
 </div>
 
