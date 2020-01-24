@@ -111,7 +111,7 @@ mdl-icon.material-icons {
 }
 
 .borde-cuota1 {
-  border-top: 3px solid $button-primary-color;;
+  border-top: 3px solid $button-primary-color;
   border-left: 5px solid $button-primary-color;
   border-right: 5px solid $button-primary-color;
 }
@@ -123,11 +123,12 @@ mdl-icon.material-icons {
 .borde-cuota4 {
   border-left: 5px solid $button-primary-color;
   border-right: 5px solid $button-primary-color;
-  border-bottom: 3px solid $button-primary-color;;
+  border-bottom: 3px solid $button-primary-color;
 }
 
 .tgr-bloque-cuota-anual {
   background-color: $button-primary-color;
+  border: 1px solid $button-primary-color;
   td {
     color: #ffffff !important;
     &:nth-of-type(2) {
