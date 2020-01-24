@@ -126,7 +126,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // JMS: abre modal de cuota anual
-    this.abreModalCuotaAnual();
     
     this.canal = '';
     this.reg = '';
@@ -221,6 +220,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         this.mdlSnackbarService.showToast('Ocurrió un error al cargar las propiedades', environment.snackbarTime);
       }
     );
+  // JMS: evalua la ejecucion del modal
+  this.abreModalCuotaAnual();
 
   }
   
