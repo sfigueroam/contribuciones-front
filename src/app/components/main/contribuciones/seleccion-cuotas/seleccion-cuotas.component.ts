@@ -243,9 +243,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     for (const p of this.propiedades) {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
-          if (c.cuoton4){
-            this.modalCuotaAnualVar = true;
-          }
+          // if (c.cuoton4){
+          //   this.modalCuotaAnualVar = true;
+          // }
           if (c.intencionPago) {
             if (r.condonacion > 0) {
               codigos += c.liqTotal.codigoBarraTotal + ', ';
@@ -265,9 +265,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     multiARString = JSON.stringify(multiARObj);
     // console.log(multiARString);
     this.userdataservice.multiAR_Cid = multiARString;
-    if (this.modalCuotaAnualVar){
-      this.abreModalCuotaAnual();
-    }
+    // if (this.modalCuotaAnualVar){
+    //   this.abreModalCuotaAnual();
+    // }
   }
 
   gotoSugeridas() {
@@ -368,11 +368,22 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   abreModalCuotaAnual(): void{
-    const pDialog = this.dialogService.showCustomDialog({
-      component: ModalCuotaAnualComponent,
-      clickOutsideToClose: true,
-      isModal: true
-    });
+    for (const propiedad of this.propiedades){
+      for (const rol of propiedad.roles){
+        for (const cuota of rol.cuotas){
+          if (cuota.cuoton4){
+            this.modalCuotaAnualVar = true;
+          }
+        }
+      }
+    }
+    if (this.modalCuotaAnualVar){
+      const pDialog = this.dialogService.showCustomDialog({
+        component: ModalCuotaAnualComponent,
+        clickOutsideToClose: true,
+        isModal: true
+      });
+    }
   }
   
   private showHelp() {
