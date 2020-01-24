@@ -73,12 +73,16 @@
             <td colspan="2">
               <span>
                 Cuota Anual 2020
-              </span> <br>
+              </span>
               <span class="mdl-cell--hide-phone">
-                El valor total se <br> mantendrá en las primeras <br> cuotas sin reajustar.
+                El valor total de las primeras <br>cuotas se mantendrá sin reajustar.
               </span>
             </td>
-            <td>{{calculaTotalCuoton(rol)}}</td>
+            <td class="monto-bloque">
+              <span>Total Año</span>
+              <span></span>
+              $ {{calculaTotalCuoton(rol)}}
+            </td>
           <!--<div class="tgr-cuoton-agrupacion" *ngIf="cuota.cuoton4"></div>-->
           </tr>
           <!--<div class="tgr-cuoton-agrupacion" *ngIf="cuota.liqTotal.esCuoton"></div>-->
