@@ -6,7 +6,7 @@ import {filter, tap} from 'rxjs/operators';
 @Component({
   selector: 'app-modal-cuota-anual',
   templateUrl: './modal-cuota-anual.component.html',
-  styleUrls: ['./modal-cuota-anual.component.css']
+  styleUrls: ['./modal-cuota-anual.component.scss']
 })
 export class ModalCuotaAnualComponent implements OnInit {
 
