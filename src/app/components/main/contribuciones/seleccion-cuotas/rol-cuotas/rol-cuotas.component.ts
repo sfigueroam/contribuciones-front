@@ -28,8 +28,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   change: EventEmitter<any> = new EventEmitter();
   noLiquidable: string;
   noLiquidablebool: boolean;
+  
   // JMS: es cuoton
   cuotaAnualCheck: boolean = true;
+  // JMS: variable para activar el bloque azul de la cuota anual
+  bloqueAzul: boolean = false;
+  
   montoCuoton: number = 0;
   
   
@@ -72,6 +76,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.noLiquidable = this.rol.noLiquidable;
         // JMS: inicio de check
         this.cuotaAnualCheck = true;
+        this.bloqueAzul = true;
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
         }
@@ -142,6 +147,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   
   cambioCheckbox(){
     this.cuotaAnualCheck = false;
+    this.bloqueAzul = false;
   }
   
   checkCuota(rol: Rol, cuota: Cuota) {
@@ -155,6 +161,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if(rol != undefined){
       if(this.cuotaAnualCheck){
         this.cuotaAnualCheck = false;
+        this.bloqueAzul = false;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = false;
@@ -163,6 +170,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
       else{
         this.cuotaAnualCheck = true;
+        this.bloqueAzul = true;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = true;
