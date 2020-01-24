@@ -110,7 +110,13 @@ mdl-icon.material-icons {
   }
 }
 
-.borde-cuota3 {
+.borde-cuota1 {
+  border-top: 3px solid $button-primary-color;;
+  border-left: 3px solid $button-primary-color;
+  border-right: 3px solid $button-primary-color;
+}
+.borde-cuota3,
+.borde-cuota2 {
   border-left: 3px solid $button-primary-color;
   border-right: 3px solid $button-primary-color;
 }

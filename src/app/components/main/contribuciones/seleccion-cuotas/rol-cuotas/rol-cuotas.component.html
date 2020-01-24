@@ -55,7 +55,7 @@
         </thead>
         <!--<tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">-->
         <tbody *ngFor="let cuota of rol.cuotas">
-          <tr [class.borde-cuota3]="cuota.cuoton3 == true && cuotaAnualCheck" [class.borde-cuota4]="cuota.cuoton4 == true && cuotaAnualCheck">
+          <tr [class.borde-cuota1]="cuota.cuoton1 == true && cuotaAnualCheck" [class.borde-cuota2]="cuota.cuoton2 == true && cuotaAnualCheck" [class.borde-cuota3]="cuota.cuoton3 == true && cuotaAnualCheck" [class.borde-cuota4]="cuota.cuoton4 == true && cuotaAnualCheck">
             <td (click)="checkCuota(rol, cuota)">
               <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
             </td>
