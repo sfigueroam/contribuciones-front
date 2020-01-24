@@ -11,6 +11,7 @@ import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 import {DeviceDetectService} from '../../../../services/device-detect.service';
 import {AyudaCondonacionComponent} from './modal/ayuda-condonacion/ayuda-condonacion.component';
+import {ModalCuotaAnualComponent} from './modal/modal-cuota-anual/modal-cuota-anual.component';
 import {
   MULTI_AR_CODIGOS,
   CODIGO_LIST_PROPIEDADES,
@@ -78,6 +79,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   providerConex: string;
   multiARString2: string;
   cidUnico: string;
+  
+  // JMS: Modal ayuda info de cuota anual
+  modalCuotaAnualVar: boolean = false;
   
   // JMS: arrglo de multiAR
   // multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
@@ -240,7 +244,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
           if (c.cuoton4){
-            this.abreModalCuotaAnual();
+            this.modalCuotaAnualVar = true;
           }
           if (c.intencionPago) {
             if (r.condonacion > 0) {
@@ -261,6 +265,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     multiARString = JSON.stringify(multiARObj);
     // console.log(multiARString);
     this.userdataservice.multiAR_Cid = multiARString;
+    if (this.modalCuotaAnualVar){
+      this.abreModalCuotaAnual();
+    }
   }
 
   gotoSugeridas() {
@@ -362,7 +369,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
 
   abreModalCuotaAnual(): void{
     const pDialog = this.dialogService.showCustomDialog({
-      component: AyudaCondonacionComponent,
+      component: ModalCuotaAnualComponent,
       clickOutsideToClose: true,
       isModal: true
     });
