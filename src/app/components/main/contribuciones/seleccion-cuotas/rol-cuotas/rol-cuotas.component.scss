@@ -6,9 +6,22 @@
 .mdl-data-table {
   width: 100%;
 }
-.mdl-data-table td, .mdl-data-table th {
+.mdl-data-table td,
+.mdl-data-table th, {
   text-align: center;
+  &:nth-of-type(4) {
+    padding-right: 26px;
+    padding-left: 0;
+    text-align: right;
+  }
 }
+
+.monto-bloque {
+  padding-right: 26px;
+  padding-left: 0;
+  text-align: right;
+}
+
 .tgr-tr--late {
   color: $color-expired;
 }
@@ -129,6 +142,9 @@ mdl-icon.material-icons {
 .tgr-bloque-cuota-anual {
   background-color: $button-primary-color;
   border: 1px solid $button-primary-color;
+  &:hover {
+    background-color: $button-primary-color;
+  }
   td {
     color: #ffffff !important;
     &:nth-of-type(2) {
