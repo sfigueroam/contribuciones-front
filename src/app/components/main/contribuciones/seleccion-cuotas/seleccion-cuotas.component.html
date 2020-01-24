@@ -141,17 +141,16 @@
   </div>
 </div>
 
-
 <div class="tgr-actions tgr-mini-footer" *ngIf="propiedades.length > 0; else footeractions">
   <div *ngIf="!complete" class="tgr-loading2">
     <mdl-spinner single-color active></mdl-spinner>
     <p>Estamos calculando tu monto a pagar</p>
   </div>
   <div *ngIf="complete" class="tgr-actions__content">
-    <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}}</strong></span>
+    <p class="cantidad-deudas-seleccionadas"><span><strong>{{result.seleccionadas}} &nbsp;</strong></span>
       de {{result.total}} deudas
       seleccionadas</p>
-    <button class="button-pay" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">Ir a Pagar $ {{total | number}}</button>
+    <button class="button-pay" mdl-button (click)="openDialogResumen()" [disabled]="total <= 0">CONTINUAR PAGO</button>
   </div>
 </div>
 
