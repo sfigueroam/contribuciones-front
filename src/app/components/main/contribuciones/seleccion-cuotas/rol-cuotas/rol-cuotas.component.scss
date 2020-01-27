@@ -161,10 +161,12 @@ mdl-icon.material-icons {
   left: 0;
   height: 99px;
   width: 100%;
-  opacity: .2;
-  background-color: #B5B5B5;
   z-index: 9999;
-  @media (max-width: 479px) {
+  @media (max-width: 360px) {
+    bottom: 50px;
+    height: 95px;
+  }
+  @media (min-width: 361px) and (max-width: 479px) {
     bottom: 53px;
   }
 }
