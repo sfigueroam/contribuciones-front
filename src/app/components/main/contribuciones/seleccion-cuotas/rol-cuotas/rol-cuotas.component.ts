@@ -125,6 +125,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     this.change.emit();
     this.seleccioncuotas.recalcularTipo();
+    console.log("calcula total");
     this.seleccioncuotas.calcularTotal();
   }
 
@@ -137,6 +138,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.cuotaAnualCheck = true;
     }
     this.seleccioncuotas.recalcularTipo();
+    console.log("calcula total");
     this.seleccioncuotas.calcularTotal();
   }
 
@@ -186,6 +188,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
     }
     this.seleccioncuotas.recalcularTipo();
+    console.log("calcula total");
     this.seleccioncuotas.calcularTotal();
   }
 

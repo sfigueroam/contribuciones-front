@@ -232,6 +232,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let esCuotonBool = false;
     for (const p of this.propiedades) {
       total += p.total;
+      console.log("total en funcion", total);
       condonacion += p.condonacion;
     }
     this.total = total;
