@@ -155,9 +155,19 @@ mdl-icon.material-icons {
   }
 }
 
+.td-deshabilitado {
+  background-color: #F6F6F6;
+  td {
+    color: #B5B5B5 !important;
+    mdl-icon {
+      color: #b5b5b5 !important;
+    }
+  }
+}
+
 .bloquear-click-td {
   position: absolute;
-  bottom: 89px;
+  bottom: 109px;
   left: 0;
   height: 99px;
   width: 100%;
