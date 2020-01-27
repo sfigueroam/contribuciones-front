@@ -240,7 +240,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     // this.condonacion = condonacion;
     // this.recalcularTipo();
 
-    let codigos = 'on, ';
+    // let codigos = 'on, ';
 
     for (const p of this.propiedades) {
       for (const r of p.roles) {
@@ -250,28 +250,34 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
           // }
           if (c.intencionPago) {
             if (r.condonacion > 0) {
-              codigos += c.liqTotal.codigoBarraTotal + ', ';
+              // codigos += c.liqTotal.codigoBarraTotal + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
+              total += c.liqTotal.montoTotalTotal;
+              console.log("total en funcion", total);
+             condonacion += p.condonacion;
             } else {
-              codigos += c.liqTotal.codigoBarraParcial + ', ';
+              // codigos += c.liqTotal.codigoBarraParcial + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
+              total += c.liqTotal.montoTotalParcial;
+              console.log("total en funcion", total);
+              condonacion += p.condonacion;
             }
           }
         }
       }
     }
     // JMS: cambio en posicion del calculo del total
-    this.recalcularTipo();
-    for (const p of this.propiedades) {
-       total += p.total;
-       console.log("total en funcion", total);
-       condonacion += p.condonacion;
-    }
+
+    // for (const p of this.propiedades) {
+    //   total += p.total;
+    //   console.log("total en funcion", total);
+    //   condonacion += p.condonacion;
+    // }
     this.total = total;
     this.condonacion = condonacion;
+    this.recalcularTipo();
     
     
-    this.listaContribuciones = codigos;
     multiARObj.listaCid.splice(0, 1);
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
