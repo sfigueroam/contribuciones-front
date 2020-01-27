@@ -155,6 +155,15 @@ mdl-icon.material-icons {
   }
 }
 
+.bloquear-click-td {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
 .tgr-bloque-cuota-anual {
   background-color: $button-primary-color;
   border: 3px solid $button-primary-color;
