@@ -381,7 +381,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     const direccionCuotasList = this.direccionCuotasComponentList.toArray();
     if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
       direccionCuotasList[0].abrirPrimerRol();
-      console.log("abre primer rol");
       this.abreModalCuotaAnual();
     }
   }
