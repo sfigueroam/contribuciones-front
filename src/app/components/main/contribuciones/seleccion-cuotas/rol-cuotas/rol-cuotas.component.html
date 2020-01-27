@@ -56,7 +56,7 @@
         <!--<tbody *ngFor="let cuota of rol.cuotas" (click)="checkCuota(cuota)">-->
         <tbody *ngFor="let cuota of rol.cuotas">
           <div class="bloquear-click-td" *ngIf="cuota.cuoton3 == true || cuota.cuoton4 == true"></div>
-          <tr [class.borde-cuota1]="cuota.cuoton1 == true && cuotaAnualCheck" [class.borde-cuota2]="cuota.cuoton2 == true && cuotaAnualCheck" [class.borde-cuota3]="cuota.cuoton3 == true && cuotaAnualCheck" [class.borde-cuota4]="cuota.cuoton4 == true && cuotaAnualCheck" [class.td-deshabilitado]="cuota.cuoton3 == true && cuota.cuoton4">
+          <tr [class.borde-cuota1]="cuota.cuoton1 == true && cuotaAnualCheck" [class.borde-cuota2]="cuota.cuoton2 == true && cuotaAnualCheck" [class.borde-cuota3]="cuota.cuoton3 == true && cuotaAnualCheck" [class.borde-cuota4]="cuota.cuoton4 == true && cuotaAnualCheck" [class.td-deshabilitado]="cuota.cuoton3 == true" [class.td-deshabilitado]="cuota.cuoton4 == true">
             <td (click)="checkCuota(rol, cuota)">
               <mdl-icon>{{cuota.intencionPago ? 'check_box' : 'check_box_outline_blank'}}</mdl-icon>
             </td>
