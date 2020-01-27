@@ -71,32 +71,30 @@ var RolCuotasComponent = /** @class */ (function () {
     };
     RolCuotasComponent.prototype.reloadChecked = function () {
         if (this.rol.allChecked()) {
-            this.selectedIcon = CheckboxIcon_1.CheckboxIcon.SELECTED;
             this.cuotaAnualCheck = true;
+            this.selectedIcon = CheckboxIcon_1.CheckboxIcon.SELECTED;
         }
         else if (this.rol.noneChecked()) {
-            this.selectedIcon = CheckboxIcon_1.CheckboxIcon.UNSELECTED;
             this.cuotaAnualCheck = false;
+            this.selectedIcon = CheckboxIcon_1.CheckboxIcon.UNSELECTED;
         }
         else {
             this.selectedIcon = CheckboxIcon_1.CheckboxIcon.INDETERMINATE;
         }
         this.change.emit();
         this.seleccioncuotas.recalcularTipo();
-        console.log("calcula total");
         this.seleccioncuotas.calcularTotal();
     };
     RolCuotasComponent.prototype.selectAllNone = function () {
         if (this.selectedIcon === CheckboxIcon_1.CheckboxIcon.SELECTED) {
-            this.rol.seleccionar(TipoCuota_1.TipoCuota.NINGUNA);
             this.cuotaAnualCheck = false;
+            this.rol.seleccionar(TipoCuota_1.TipoCuota.NINGUNA);
         }
         else {
-            this.rol.seleccionar(TipoCuota_1.TipoCuota.TODAS);
             this.cuotaAnualCheck = true;
+            this.rol.seleccionar(TipoCuota_1.TipoCuota.TODAS);
         }
         this.seleccioncuotas.recalcularTipo();
-        console.log("calcula total");
         this.seleccioncuotas.calcularTotal();
     };
     // JMS: calcula el total del cuoton
@@ -105,7 +103,12 @@ var RolCuotasComponent = /** @class */ (function () {
         for (var _i = 0, _a = rol.cuotas; _i < _a.length; _i++) {
             var c = _a[_i];
             if (c.esCuoton == 'S') {
-                totalCuoton += c.liqTotal.montoTotalTotal;
+                if (rol.condonacion > 0) {
+                    totalCuoton += c.liqTotal.montoTotalTotal;
+                }
+                else {
+                    totalCuoton += c.liqTotal.montoTotalParcial;
+                }
             }
         }
         this.montoCuoton = totalCuoton;
@@ -125,7 +128,7 @@ var RolCuotasComponent = /** @class */ (function () {
         if (rol != undefined) {
             if (this.cuotaAnualCheck) {
                 this.cuotaAnualCheck = false;
-                this.bloqueAzul = false;
+                // this.bloqueAzul = false;
                 for (var _i = 0, _a = rol.cuotas; _i < _a.length; _i++) {
                     var c = _a[_i];
                     if (c.esCuoton == 'S') {
@@ -135,7 +138,7 @@ var RolCuotasComponent = /** @class */ (function () {
             }
             else {
                 this.cuotaAnualCheck = true;
-                this.bloqueAzul = true;
+                // this.bloqueAzul = true;
                 for (var _b = 0, _c = rol.cuotas; _b < _c.length; _b++) {
                     var c = _c[_b];
                     if (c.esCuoton == 'S') {
@@ -144,8 +147,8 @@ var RolCuotasComponent = /** @class */ (function () {
                 }
             }
         }
+        this.reloadChecked();
         this.seleccioncuotas.recalcularTipo();
-        console.log("calcula total");
         this.seleccioncuotas.calcularTotal();
     };
     RolCuotasComponent.prototype["delete"] = function () {

@@ -3,6 +3,7 @@ exports.__esModule = true;
 var ResumenCuotas_1 = require("./ResumenCuotas");
 var rxjs_1 = require("rxjs");
 var internal_compatibility_1 = require("rxjs/internal-compatibility");
+// JMS: tratar de ocupar el calcular total de seleccion cuotas
 var Propiedad = /** @class */ (function () {
     function Propiedad() {
         this.isComplete = false;
