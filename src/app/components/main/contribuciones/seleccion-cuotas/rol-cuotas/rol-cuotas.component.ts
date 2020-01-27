@@ -121,7 +121,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.selectedIcon = CheckboxIcon.UNSELECTED;
       this.cuotaAnualCheck = false;
     } else {
-      this.selectedIcon = CheckboxIcon.INDETERMINATE;
+      // this.selectedIcon = CheckboxIcon.INDETERMINATE;
+      this.selectedIcon = CheckboxIcon.SELECTED;
     }
     this.change.emit();
     this.seleccioncuotas.recalcularTipo();
