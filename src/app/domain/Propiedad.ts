@@ -3,6 +3,7 @@ import {TipoCuota} from './TipoCuota';
 import {ResumenCuotas} from './ResumenCuotas';
 import {Observable, Subject} from 'rxjs';
 import {isNumeric} from 'rxjs/internal-compatibility';
+// JMS: tratar de ocupar el calcular total de seleccion cuotas
 
 export class Propiedad {
 

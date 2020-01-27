@@ -115,14 +115,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   private reloadChecked(): void {
     if (this.rol.allChecked()) {
-      this.selectedIcon = CheckboxIcon.SELECTED;
       this.cuotaAnualCheck = true;
-    } else if (this.rol.noneChecked()) {
-      this.selectedIcon = CheckboxIcon.UNSELECTED;
-      this.cuotaAnualCheck = false;
-    } else {
-      // this.selectedIcon = CheckboxIcon.INDETERMINATE;
       this.selectedIcon = CheckboxIcon.SELECTED;
+    } else if (this.rol.noneChecked()) {
+      this.cuotaAnualCheck = false;
+      this.selectedIcon = CheckboxIcon.UNSELECTED;
+    } else {
+      this.selectedIcon = CheckboxIcon.INDETERMINATE;
     }
     this.change.emit();
     this.seleccioncuotas.recalcularTipo();
@@ -131,11 +130,11 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
 
   selectAllNone(): void {
     if (this.selectedIcon === CheckboxIcon.SELECTED) {
-      this.rol.seleccionar(TipoCuota.NINGUNA);
       this.cuotaAnualCheck = false;
+      this.rol.seleccionar(TipoCuota.NINGUNA);
     } else {
-      this.rol.seleccionar(TipoCuota.TODAS);
       this.cuotaAnualCheck = true;
+      this.rol.seleccionar(TipoCuota.TODAS);
     }
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
@@ -174,7 +173,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if(rol != undefined){
       if(this.cuotaAnualCheck){
         this.cuotaAnualCheck = false;
-        this.bloqueAzul = false;
+        // this.bloqueAzul = false;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = false;
@@ -183,7 +182,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
       else{
         this.cuotaAnualCheck = true;
-        this.bloqueAzul = true;
+        // this.bloqueAzul = true;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = true;
@@ -192,7 +191,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
     }
     this.seleccioncuotas.recalcularTipo();
-    console.log("calcula total");
     this.seleccioncuotas.calcularTotal();
   }
 
