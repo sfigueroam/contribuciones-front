@@ -164,6 +164,9 @@ mdl-icon.material-icons {
   opacity: .2;
   background-color: #ff4081;
   z-index: 9999;
+  @media (max-width: 479px) {
+    bottom: 53px;
+  }
 }
 
 .tgr-bloque-cuota-anual {
