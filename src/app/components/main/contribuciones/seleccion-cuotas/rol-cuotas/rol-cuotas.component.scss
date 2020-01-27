@@ -157,12 +157,13 @@ mdl-icon.material-icons {
 
 .bloquear-click-td {
   position: absolute;
-  top: 0;
+  bottom: 89px;
   left: 0;
-  height: 100%;
+  height: 99px;
   width: 100%;
-  opacity: 0.2;
-  background-color: pink;
+  opacity: .2;
+  background-color: #ff4081;
+  z-index: 9999;
 }
 
 .tgr-bloque-cuota-anual {
