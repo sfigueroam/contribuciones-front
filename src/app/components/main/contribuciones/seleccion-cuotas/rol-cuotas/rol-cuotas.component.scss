@@ -134,7 +134,7 @@ mdl-icon.material-icons {
   border-right: 5px solid $button-primary-color;
 }
 .borde-cuota3 {
-  background-color: #F6F6F6;
+  background-color: #EEEEEE;
   td {
     color: #B5B5B5 !important;
     mdl-icon {
@@ -143,7 +143,7 @@ mdl-icon.material-icons {
   }
 }
 .borde-cuota4 {
-  background-color: #F6F6F6;
+  background-color: #EEEEEE;
   border-left: 5px solid $button-primary-color;
   border-right: 5px solid $button-primary-color;
   border-bottom: 3px solid $button-primary-color;
@@ -155,8 +155,9 @@ mdl-icon.material-icons {
   }
 }
 
-.td-deshabilitado {
-  background-color: #F6F6F6;
+.td-deshabilitado3,
+.td-deshabilitado4{
+  background-color: #EEEEEE;
   td {
     color: #B5B5B5 !important;
     mdl-icon {
