@@ -125,6 +125,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     this.change.emit();
     this.seleccioncuotas.recalcularTipo();
+    this.seleccioncuotas.calcularTotal();
   }
 
   selectAllNone(): void {
@@ -136,6 +137,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.cuotaAnualCheck = true;
     }
     this.seleccioncuotas.recalcularTipo();
+    this.seleccioncuotas.calcularTotal();
   }
 
   // JMS: calcula el total del cuoton
@@ -184,6 +186,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
     }
     this.seleccioncuotas.recalcularTipo();
+    this.seleccioncuotas.calcularTotal();
   }
 
   delete() {

@@ -222,8 +222,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     );
   }
   
-
-  private calcularTotal() {
+// JMS: se llama desde rol-cuotas
+  public calcularTotal() {
     let multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
     let multiARString;
     let total = 0;
@@ -290,7 +290,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     for (const propiedad of this.propiedades) {
       const resumen = propiedad.resumen();
       resultados.total += resumen.total;
-      console.log("seleccion-cuotas resultado.total", resumen);
       resultados.seleccionadas += resumen.seleccionadas;
       resultados.vencidas += resumen.vencidas;
       resultados.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
