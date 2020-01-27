@@ -125,7 +125,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     this.change.emit();
     this.seleccioncuotas.recalcularTipo();
-    console.log("calcula total");
     this.seleccioncuotas.calcularTotal();
   }
 
@@ -138,7 +137,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.cuotaAnualCheck = true;
     }
     this.seleccioncuotas.recalcularTipo();
-    console.log("calcula total");
     this.seleccioncuotas.calcularTotal();
   }
 
@@ -148,9 +146,11 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     for(let c of rol.cuotas){
       if(c.esCuoton == 'S' && rol.condonacion > 0){
           totalCuoton += c.liqTotal.montoTotalTotal;
+          console.log("total cuoton con condonacion", totalCuoton);
       }
       else{
         totalCuoton += c.liqTotal.montoTotalParcial;
+        console.log("total cuoton sin condonacion", totalCuoton);
       }
     }
     this.montoCuoton = totalCuoton;
