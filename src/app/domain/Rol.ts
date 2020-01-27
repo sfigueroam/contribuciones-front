@@ -188,7 +188,7 @@ export class Rol {
     return cuotas;
   }
 
-  private calcularTotal() {
+  public calcularTotal() {
     let pagoParcial = 0;
     let pagoTotal = 0;
     let condonacion = 0;

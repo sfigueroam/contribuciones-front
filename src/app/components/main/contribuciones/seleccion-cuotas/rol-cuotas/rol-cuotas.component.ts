@@ -192,6 +192,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
+    this.rol.calcularTotal();
   }
 
   delete() {
