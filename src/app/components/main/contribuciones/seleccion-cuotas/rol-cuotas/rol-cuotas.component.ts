@@ -85,10 +85,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
     );
   }
-  
-  onChange() {
-    this.seleccioncuotas.recalcularTipo();
-  }
 
   showHelp() {
     this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip' + this.rol.rol);
@@ -128,6 +124,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
     }
     this.change.emit();
+    this.seleccioncuotas.recalcularTipo();
   }
 
   selectAllNone(): void {
@@ -138,6 +135,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.rol.seleccionar(TipoCuota.TODAS);
       this.cuotaAnualCheck = true;
     }
+    this.seleccioncuotas.recalcularTipo();
   }
 
   // JMS: calcula el total del cuoton
@@ -152,10 +150,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     return(totalCuoton);
   }
   
-  cambioCheckbox(){
-    this.cuotaAnualCheck = false;
-    this.bloqueAzul = false;
-  }
+  // cambioCheckbox(){
+  //   this.cuotaAnualCheck = false;
+  //   this.bloqueAzul = false;
+  // }
   
   checkCuota(rol: Rol, cuota: Cuota) {
     cuota.changeIntencionPago();
@@ -185,6 +183,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    this.seleccioncuotas.recalcularTipo();
   }
 
   delete() {
