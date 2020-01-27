@@ -10,6 +10,7 @@ import {environment} from '../../../../../../environments/environment';
 import {TooltipDirective} from 'ng2-tooltip-directive';
 import {UserDataService} from '../../../../../user-data.service'
 import {ContribucionesService} from '../../../../../services/contribuciones.service';
+import {SeleccionCuotasComponent} from '../seleccion-cuotas.component'
 
 // import LIST_PROPIEDADES = new InjectionToken<number>('lista_propiedades');
 
@@ -54,7 +55,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
               private mdlSnackbarService: MdlSnackbarService,
-              private userdataservice: UserDataService,) {
+              private userdataservice: UserDataService,
+              private seleccioncuotas: SeleccionCuotasComponent,) {
         this.noLiquidablebool = false
 
   // this.propiedades = propiedades;
@@ -82,6 +84,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     );
+  }
+  
+  onChange() {
+    this.seleccioncuotas.recalcularTipo();
   }
 
   showHelp() {

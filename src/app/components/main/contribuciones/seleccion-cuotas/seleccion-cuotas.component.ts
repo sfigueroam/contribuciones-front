@@ -285,7 +285,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     this.recalcularTipo();
   }
 
-  private recalcularTipo() {
+  public recalcularTipo() {
     const resultados = new ResumenCuotas();
     for (const propiedad of this.propiedades) {
       const resumen = propiedad.resumen();
