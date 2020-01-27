@@ -145,10 +145,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     let totalCuoton = 0;
     for(let c of rol.cuotas){
       if(c.esCuoton == 'S' && rol.condonacion > 0){
+          console.log("cuota", c.nroCuotaTotal);
+          console.log("valor a sumar con condonacion", c.liqTotal.montoTotalTotal);
           totalCuoton += c.liqTotal.montoTotalTotal;
           console.log("total cuoton con condonacion", totalCuoton);
       }
       else{
+        console.log("cuota", c.nroCuotaTotal);
+        console.log("valor a sumar con condonacion", c.liqTotal.montoTotalParcial);
         totalCuoton += c.liqTotal.montoTotalParcial;
         console.log("total cuoton sin condonacion", totalCuoton);
       }
