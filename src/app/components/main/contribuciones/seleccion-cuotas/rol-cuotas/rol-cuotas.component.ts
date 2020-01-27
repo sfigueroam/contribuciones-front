@@ -146,8 +146,11 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   private calculaTotalCuoton(rol: Rol){
     let totalCuoton = 0;
     for(let c of rol.cuotas){
-      if(c.esCuoton == 'S'){
+      if(c.esCuoton == 'S' && rol.condonacion > 0){
           totalCuoton += c.liqTotal.montoTotalTotal;
+      }
+      else{
+        totalCuoton += c.liqTotal.montoTotalParcial;
       }
     }
     this.montoCuoton = totalCuoton;

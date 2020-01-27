@@ -254,13 +254,13 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
               total += c.liqTotal.montoTotalTotal;
               console.log("total en funcion", total);
-             condonacion += p.condonacion;
+              condonacion += c.liqTotal.condonaTotal;
             } else {
               // codigos += c.liqTotal.codigoBarraParcial + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
               total += c.liqTotal.montoTotalParcial;
               console.log("total en funcion", total);
-              condonacion += p.condonacion;
+              condonacion += c.liqTotal.condonaParcial;
             }
           }
         }
@@ -274,6 +274,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     //   condonacion += p.condonacion;
     // }
     this.total = total;
+    console.log("this.total", this.total);
     this.condonacion = condonacion;
     this.recalcularTipo();
     
