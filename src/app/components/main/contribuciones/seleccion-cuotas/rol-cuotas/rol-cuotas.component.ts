@@ -86,9 +86,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     );
   }
   
-  onChange() {
-    this.reloadChecked();
-  }
 
   showHelp() {
     this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip' + this.rol.rol);
@@ -115,7 +112,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.mdlSnackbarService.showToast('Por favor espera un momento, estamos cargando la información de tus cuotas', environment.snackbarTime);
     }
   }
-
 
   private reloadChecked(): void {
     if (this.rol.allChecked()) {
@@ -194,6 +190,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    this.reloadChecked();
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
   }
