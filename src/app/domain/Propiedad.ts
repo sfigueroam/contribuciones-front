@@ -77,6 +77,7 @@ export class Propiedad {
     for (const rol of this.roles) {
       const resumenRol = rol.resumen();
       result.total += resumenRol.total;
+      console.log("resumen de cuotas en propiedad.ts", resumenRol);
       result.seleccionadas += resumenRol.seleccionadas;
       result.vencidas += resumenRol.vencidas;
       result.vencidasSeleccionadas += resumenRol.vencidasSeleccionadas;

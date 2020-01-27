@@ -290,6 +290,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     for (const propiedad of this.propiedades) {
       const resumen = propiedad.resumen();
       resultados.total += resumen.total;
+      console.log("seleccion-cuotas resultado.total", resumen);
       resultados.seleccionadas += resumen.seleccionadas;
       resultados.vencidas += resumen.vencidas;
       resultados.vencidasSeleccionadas += resumen.vencidasSeleccionadas;
