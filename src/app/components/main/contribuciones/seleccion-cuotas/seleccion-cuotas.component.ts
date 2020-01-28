@@ -250,6 +250,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         condonacion = r.condonacion;
         console.log("condonacion de roles en seleccion", condonacion);
       }
+      total = total + p.total;
+      condonacion = condonacion + p.condonacion;
     }
 
     for (const p of this.propiedades) {
