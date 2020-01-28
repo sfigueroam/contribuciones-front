@@ -231,15 +231,15 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let condonacion = 0;
     // let esCuotonBool = false;
     // JMS: cambio en posicion del calculo del total
-    for (const p of this.propiedades) {
-      total += p.total;
-      console.log("total en funcion", total);
-      condonacion += p.condonacion;
-      console.log("condo en funcion", condonacion);
-    }
-    this.total = total;
-    this.condonacion = condonacion;
-    this.recalcularTipo();
+    // for (const p of this.propiedades) {
+    //   total += p.total;
+    //   console.log("total en funcion", total);
+    //   condonacion += p.condonacion;
+    //   console.log("condo en funcion", condonacion);
+    // }
+    // // this.total = total;
+    // // this.condonacion = condonacion;
+    // // this.recalcularTipo();
 
     // let codigos = 'on, ';
 
@@ -267,14 +267,15 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     }
     // JMS: cambio en posicion del calculo del total
 
-    // for (const p of this.propiedades) {
-    //   total += p.total;
-    //   console.log("total en funcion", total);
-    //   condonacion += p.condonacion;
-    // }
-    // this.total = total;
-    // this.condonacion = condonacion;
-    // this.recalcularTipo();
+    for (const p of this.propiedades) {
+      total += p.total;
+      console.log("total en funcion", total);
+      condonacion += p.condonacion;
+      console.log("condo en funcion", total);
+    }
+    this.total = total;
+    this.condonacion = condonacion;
+    this.recalcularTipo();
     
     
     multiARObj.listaCid.splice(0, 1);
