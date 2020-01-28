@@ -231,28 +231,28 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let condonacion = 0;
     let esCuotonBool = false;
     // JMS: cambio en posicion del calculo del total
-    // for (const p of this.propiedades) {
-    //   total += p.total;
-    //   console.log("total en funcion", total);
-    //   condonacion += p.condonacion;
-    //   console.log("condonacion", condonacion);
-    // }
-    // this.total = total;
-    // this.condonacion = condonacion;
-    // this.recalcularTipo();
+    for (const p of this.propiedades) {
+      total += p.total;
+      console.log("total en funcion", total);
+      condonacion += p.condonacion;
+      console.log("condonacion", condonacion);
+    }
+    this.total = total;
+    this.condonacion = condonacion;
+    this.recalcularTipo();
 
     // let codigos = 'on, ';
     
-    for(const p of this.propiedades){
-      for(const r of p.roles){
-        total = r.total;
-        console.log("total de roles en seleccion", total);
-        condonacion = r.condonacion;
-        console.log("condonacion de roles en seleccion", condonacion);
-      }
-      total = total + p.total;
-      condonacion = condonacion + p.condonacion;
-    }
+    // for(const p of this.propiedades){
+    //   for(const r of p.roles){
+    //     total = r.total;
+    //     console.log("total de roles en seleccion", total);
+    //     condonacion = r.condonacion;
+    //     console.log("condonacion de roles en seleccion", condonacion);
+    //   }
+    //   total = total + p.total;
+    //   condonacion = condonacion + p.condonacion;
+    // }
 
     for (const p of this.propiedades) {
       for (const r of p.roles) {
@@ -287,9 +287,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     //   console.log("total en funcion", total);
     //   condonacion += p.condonacion;
     // }
-    this.total = total;
-    this.condonacion = condonacion;
-    this.recalcularTipo();
+    // this.total = total;
+    // this.condonacion = condonacion;
+    // this.recalcularTipo();
     
     
     multiARObj.listaCid.splice(0, 1);
