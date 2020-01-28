@@ -172,12 +172,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   
   checkCuota(rol: Rol, cuota: Cuota) {
     cuota.changeIntencionPago();
-    if(cuota.esCuoton == 'S' && !cuota.intencionPago && this.cuotaAnualCheck){
-      this.checkCuoton(rol);
-      // if(!cuota.intencionPago){
-      //   this.userdataservice.pagoTotal = false;
-      // }
-    }
+    // if(cuota.esCuoton == 'S' && !cuota.intencionPago && this.cuotaAnualCheck){
+    //   this.checkCuoton(rol);
+    //   // if(!cuota.intencionPago){
+    //   //   this.userdataservice.pagoTotal = false;
+    //   // }
+    // }
   }
   
   checkCuoton(rol: Rol){
@@ -203,12 +203,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    // if (this.selectedIcon === CheckboxIcon.INDETERMINATE){
-    //   rol.pagoTotal = false;
-    // }
-    // if (this.selectedIcon === CheckboxIcon.SELECTED){
-    //   rol.pagoTotal = true;
-    // }
+    if (this.selectedIcon === CheckboxIcon.INDETERMINATE){
+      rol.pagoTotal = false;
+    }
+    if (this.selectedIcon === CheckboxIcon.SELECTED){
+      rol.pagoTotal = true;
+    }
 
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
