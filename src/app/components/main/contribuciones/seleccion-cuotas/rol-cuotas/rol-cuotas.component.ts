@@ -171,16 +171,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   // }
   
   checkCuota(rol: Rol, cuota: Cuota) {
-    cuota.changeIntencionPago();
-    // if(cuota.esCuoton == 'S' && !cuota.intencionPago && this.cuotaAnualCheck){
-    //   this.checkCuoton(rol);
-    //   // if(!cuota.intencionPago){
-    //   //   this.userdataservice.pagoTotal = false;
-    //   // }
-    // }
     if(cuota.esCuoton == 'S' && this.cuotaAnualCheck){
       this.checkCuoton(rol);
     }
+    else{
+      cuota.changeIntencionPago();
+    }
+
   }
   
   checkCuoton(rol: Rol){
@@ -192,7 +189,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           if(c.esCuoton == 'S'){
             // jms: nuevo
             console.log("cuota", c.nroCuota);
-            this.selectedIcon = CheckboxIcon.SELECTED;
+            // this.selectedIcon = CheckboxIcon.SELECTED;
             c.changeIntencionPago();
             // c.intencionPago = false;
             // rol.pagoTotal = false;
@@ -205,7 +202,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             console.log("cuota", c.nroCuota);
-            this.selectedIcon = CheckboxIcon.UNSELECTED;
+            // this.selectedIcon = CheckboxIcon.UNSELECTED;
             // c.intencionPago = true;
             c.changeIntencionPago();
           }
