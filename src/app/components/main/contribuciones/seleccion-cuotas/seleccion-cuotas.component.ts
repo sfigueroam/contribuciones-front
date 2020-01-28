@@ -412,7 +412,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         for (const cuota of rol.cuotas){
           if (cuota.cuoton4){
             this.modalCuotaAnualVar = true;
-            console.log("variable de modal", this.modalCuotaAnualVar)
+            // console.log("variable de modal", this.modalCuotaAnualVar)
           }
         }
       }
