@@ -241,11 +241,11 @@ export class Rol {
 
     if (total) {
       this.total = pagoTotal;
-      console.log("pagoTotal", pagoTotal);
+      // console.log("pagoTotal", pagoTotal);
       this.condonacion = condonacion;
     } else {
       this.total = pagoParcial;
-      console.log("pagoParcial", pagoParcial);
+      // console.log("pagoParcial", pagoParcial);
       this.condonacion = 0;
     }
 

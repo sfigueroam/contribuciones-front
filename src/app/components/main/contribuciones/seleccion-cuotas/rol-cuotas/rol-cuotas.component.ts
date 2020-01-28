@@ -200,7 +200,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         console.log("cuota anual check false", this.cuotaAnualCheck);
         this.cuotaAnualCheck = true;
         for(let c of rol.cuotas){
-          if(c.esCuoton == 'S'){
+          if(c.esCuoton == 'S' && !c.intencionPago){
             console.log("cuota", c.nroCuota);
             // this.selectedIcon = CheckboxIcon.UNSELECTED;
             // c.intencionPago = true;
