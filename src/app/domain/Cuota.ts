@@ -61,7 +61,9 @@ export class Cuota {
   }
 
   changeIntencionPago(value: boolean = !this.intencionPago) {
+    console.log("value", value);
     this.intencionPago = value;
+    console.log("intencion de pago", this.intencionPago);
     this.changeSubject.next();
   }
   

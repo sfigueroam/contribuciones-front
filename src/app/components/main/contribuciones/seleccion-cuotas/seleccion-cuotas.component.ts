@@ -264,14 +264,14 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             console.log("pago total ", r.pagoTotal);
             if (r.pagoTotal){
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
-              console.log("monto total a sumar", c.liqTotal.montoTotalTotal)
+              // console.log("monto total a sumar", c.liqTotal.montoTotalTotal)
               total += c.liqTotal.montoTotalTotal;
-              console.log("condonacion total a sumar", c.liqTotal.condonaTotal)
+              // console.log("condonacion total a sumar", c.liqTotal.condonaTotal)
               condonacion += c.liqTotal.condonaTotal;
             }
             else{
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
-              console.log("monto parcial a sumar", c.liqTotal.montoTotalParcial)
+              // console.log("monto parcial a sumar", c.liqTotal.montoTotalParcial)
               total += c.liqTotal.montoTotalParcial;
               condonacion = 0;
             }
