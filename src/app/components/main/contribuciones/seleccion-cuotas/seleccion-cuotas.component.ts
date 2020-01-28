@@ -231,11 +231,12 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let condonacion = 0;
     let esCuotonBool = false;
     // JMS: cambio en posicion del calculo del total
-    // for (const p of this.propiedades) {
-    //   total += p.total;
-    //   console.log("total en funcion", total);
-    //   condonacion += p.condonacion;
-    // }
+    for (const p of this.propiedades) {
+      total += p.total;
+      console.log("total en funcion", total);
+      condonacion += p.condonacion;
+      console.log("condonacion", condonacion);
+    }
     // this.total = total;
     // this.condonacion = condonacion;
     // this.recalcularTipo();
@@ -254,15 +255,15 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
               // total += c.liqTotal.montoTotalTotal;
               // condonacion += c.liqTotal.condonaTotal;
-              total += p.total;
-              condonacion += p.condonacion;
+              // total += p.total;
+              // condonacion += p.condonacion;
             } else {
               // codigos += c.liqTotal.codigoBarraParcial + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
               // total += c.liqTotal.montoTotalParcial;
               // condonacion += c.liqTotal.condonaParcial;
-              total += p.total;
-              condonacion += p.condonacion;
+              // total += p.total;
+              // condonacion += p.condonacion;
             }
           }
         }
