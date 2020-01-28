@@ -175,13 +175,15 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if(cuota.esCuoton == 'S' && !cuota.intencionPago && this.cuotaAnualCheck){
       this.checkCuoton(rol);
     }
+    if(!cuota.intencionPago){
+      this.userdataservice.pagoTotal = false;
+    }
   }
   
   checkCuoton(rol: Rol){
     if(rol != undefined){
       if(this.cuotaAnualCheck){
         this.cuotaAnualCheck = false;
-        // this.bloqueAzul = false;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = false;
@@ -192,7 +194,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       }
       else{
         this.cuotaAnualCheck = true;
-        // this.bloqueAzul = true;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = true;
