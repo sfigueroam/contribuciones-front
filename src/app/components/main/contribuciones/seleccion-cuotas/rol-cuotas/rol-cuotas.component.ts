@@ -188,6 +188,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           if(c.esCuoton == 'S'){
             c.intencionPago = false;
             rol.pagoTotal = false;
+            this.selectedIcon = CheckboxIcon.INDETERMINATE;
           }
         }
       }
@@ -203,6 +204,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     }
     if (this.selectedIcon === CheckboxIcon.INDETERMINATE){
       rol.pagoTotal = false;
+    }
+    if (this.selectedIcon === CheckboxIcon.SELECTED){
+      rol.pagoTotal = true;
     }
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
