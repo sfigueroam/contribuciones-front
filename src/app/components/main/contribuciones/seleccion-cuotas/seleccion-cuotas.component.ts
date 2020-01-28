@@ -261,6 +261,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             //   total += c.liqTotal.montoTotalParcial;
             //   condonacion += c.liqTotal.condonaParcial;
             // }
+            console.log("pago total servicio", this.userdataservice.pagoTotal);
             if (this.userdataservice.pagoTotal){
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
               console.log("monto total a sumar", c.liqTotal.montoTotalTotal)
