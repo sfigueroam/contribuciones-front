@@ -185,7 +185,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = false;
-            console.log("pago total serv false", this.userdataservice.pagoTotal);
+            console.log("pago total serv false checkcuoton", this.userdataservice.pagoTotal);
             this.userdataservice.pagoTotal = false;
           }
         }
@@ -196,6 +196,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = true;
+            this.userdataservice.pagoTotal = true;
           }
         }
       }

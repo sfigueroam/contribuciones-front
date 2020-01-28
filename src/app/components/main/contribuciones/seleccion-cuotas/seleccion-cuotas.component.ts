@@ -356,8 +356,10 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
     } else if (result.tipo() === TipoCuota.TODAS) {
       this.selectedIcon = CheckboxIcon.SELECTED;
+      this.userdataservice.pagoTotal = true;
     } else {
       this.selectedIcon = CheckboxIcon.UNSELECTED;
+      this.userdataservice.pagoTotal = false;
     }
   }
 
@@ -381,8 +383,10 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   seleccionarTodas() {
     if (this.selectedIcon === CheckboxIcon.INDETERMINATE || this.selectedIcon === CheckboxIcon.UNSELECTED) {
       this.seleccionar(TipoCuota.TODAS);
+      this.userdataservice.pagoTotal = true;
     } else {
       this.seleccionar(TipoCuota.NINGUNA);
+      this.userdataservice.pagoTotal = false;
     }
   }
 
