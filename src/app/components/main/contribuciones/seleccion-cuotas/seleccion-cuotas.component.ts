@@ -269,7 +269,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             else{
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
               total += c.liqTotal.montoTotalParcial;
-              condonacion += c.liqTotal.condonaParcial;
+              condonacion = 0;
             }
               
           }

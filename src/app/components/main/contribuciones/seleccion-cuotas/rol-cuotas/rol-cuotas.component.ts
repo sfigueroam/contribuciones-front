@@ -182,6 +182,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = false;
+            this.userdataservice.pagoTotal = false;
           }
         }
       }
