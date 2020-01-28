@@ -170,6 +170,11 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
   
   checkCuoton(rol: Rol){
+    this.seleccioncuotas.recalcularTipo();
+    this.rol.calcularTotal();
+    console.log("ejecuto calcular total de rol");
+    this.seleccioncuotas.calcularTotal();
+    console.log("ejecuto calcular total de seleccion de cuotas");
     if(rol != undefined){
       if(this.cuotaAnualCheck){
         this.cuotaAnualCheck = false;
@@ -190,11 +195,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    this.seleccioncuotas.recalcularTipo();
-    this.seleccioncuotas.calcularTotal();
-    console.log("ejecuto calcular total de seleccion de cuotas");
-    this.rol.calcularTotal();
-    console.log("ejecuto calcular total de rol");
+
   }
 
   delete() {
