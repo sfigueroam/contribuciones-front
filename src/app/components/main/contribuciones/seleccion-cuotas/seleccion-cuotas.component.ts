@@ -252,13 +252,17 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             if (r.condonacion > 0) {
               // codigos += c.liqTotal.codigoBarraTotal + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
-              total += c.liqTotal.montoTotalTotal;
-              condonacion += c.liqTotal.condonaTotal;
+              // total += c.liqTotal.montoTotalTotal;
+              // condonacion += c.liqTotal.condonaTotal;
+              total += p.total;
+              condonacion += p.condonacion;
             } else {
               // codigos += c.liqTotal.codigoBarraParcial + ', ';
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
-              total += c.liqTotal.montoTotalParcial;
-              condonacion += c.liqTotal.condonaParcial;
+              // total += c.liqTotal.montoTotalParcial;
+              // condonacion += c.liqTotal.condonaParcial;
+              total += p.total;
+              condonacion += p.condonacion;
             }
           }
         }
