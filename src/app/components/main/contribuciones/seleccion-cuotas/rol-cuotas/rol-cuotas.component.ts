@@ -122,6 +122,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     } else if (this.rol.noneChecked()) {
       this.cuotaAnualCheck = false;
       this.selectedIcon = CheckboxIcon.UNSELECTED;
+      this.userdataservice.pagoTotal = false;
     } else {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
     }

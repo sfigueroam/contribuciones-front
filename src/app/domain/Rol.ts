@@ -3,6 +3,7 @@ import {TipoCuota} from './TipoCuota';
 import {Observable, Subject} from 'rxjs';
 import {ResumenCuotas} from './ResumenCuotas';
 import {LeadingZeroPipe} from '../pipes/leading-zero.pipe';
+import {UserDataService} from '../user-data.service'
 
 export class Rol {
 
@@ -18,6 +19,7 @@ export class Rol {
   rolId: number;
   subrolId: number;
   cuotas: Cuota[];
+  PagoTotalServ: UserDataService[];
   // JMS
   noLiquidable: string;
 
