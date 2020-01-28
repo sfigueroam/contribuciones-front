@@ -234,9 +234,9 @@ export class Rol {
     }
 
     total = total || (totalExpirados === totalExpiradosIntencionPago);
-    console.log("total", total);
-    console.log("totalexpirados", totalExpirados);
-    console.log("totalExpiradosIntencionPago", totalExpiradosIntencionPago);
+    // console.log("total", total);
+    // console.log("totalexpirados", totalExpirados);
+    // console.log("totalExpiradosIntencionPago", totalExpiradosIntencionPago);
 
     if (total) {
       this.total = pagoTotal;
