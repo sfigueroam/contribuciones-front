@@ -186,6 +186,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.cuotaAnualCheck = false;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
+            // jms: nuevo
+            c.changeIntencionPago();
             c.intencionPago = false;
             rol.pagoTotal = false;
           }
@@ -196,6 +198,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = true;
+            c.changeIntencionPago();
           }
         }
       }

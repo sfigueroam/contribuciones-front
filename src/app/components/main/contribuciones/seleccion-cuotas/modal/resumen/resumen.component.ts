@@ -32,7 +32,7 @@ export class ResumenComponent implements OnInit {
   cidUnico: string;
   canal: string;
   urlPagoTgr: string;
-  errorMultiAR= false;
+  errorMultiAR= true;
 
   constructor(
     private dialog: MdlDialogReference,
@@ -64,6 +64,7 @@ export class ResumenComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.canal = this.userdataservice.canal;
     this.urlPagoTgr = environment.pago.url;
     this.multiARString = this.userdataservice.multiAR_Cid
@@ -78,11 +79,9 @@ export class ResumenComponent implements OnInit {
   public obtieneCidUnico(){
     this.contribuciones.postMultiaR(this.multiARString).subscribe(
       (data) => {
-        // console.log("data", data);
         this.cidUnico = 'on, ' + data.codigoBarra + ', ';
-        // console.log("this.cidUnico resumen", this.cidUnico);
+        this.errorMultiAR = false;
       }, error => {
-        // console.log("error", error);
         this.errorMultiAR = true;
         this.modalErrorMulticid();
       });
