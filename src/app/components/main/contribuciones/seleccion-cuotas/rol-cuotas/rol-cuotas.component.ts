@@ -67,6 +67,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
+    this.userdataservice.pagoTotal = true;
 
     this.rol.completeStream.subscribe(
       () => null,
@@ -117,6 +118,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if (this.rol.allChecked()) {
       this.cuotaAnualCheck = true;
       this.selectedIcon = CheckboxIcon.SELECTED;
+      // this.userdataservice.pagoTotal = true;
     } else if (this.rol.noneChecked()) {
       this.cuotaAnualCheck = false;
       this.selectedIcon = CheckboxIcon.UNSELECTED;
@@ -132,9 +134,11 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if (this.selectedIcon === CheckboxIcon.SELECTED) {
       this.cuotaAnualCheck = false;
       this.rol.seleccionar(TipoCuota.NINGUNA);
+      this.userdataservice.pagoTotal = false;
     } else {
       this.cuotaAnualCheck = true;
       this.rol.seleccionar(TipoCuota.TODAS);
+      this.userdataservice.pagoTotal = true;
     }
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();

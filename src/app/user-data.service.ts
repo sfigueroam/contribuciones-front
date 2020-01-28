@@ -11,6 +11,7 @@ export class UserDataService {
   canal: string;
   cidUnico: any;
   vieneCuoton: boolean = false;
+  pagoTotal: boolean = false;
   
   constructor() { }
 
