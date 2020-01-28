@@ -67,7 +67,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
-    this.userdataservice.pagoTotal = true;
+    // this.userdataservice.pagoTotal = true;
 
     this.rol.completeStream.subscribe(
       () => null,
@@ -123,7 +123,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
       this.cuotaAnualCheck = false;
       this.selectedIcon = CheckboxIcon.UNSELECTED;
       console.log("pago total serv false", this.userdataservice.pagoTotal);
-      this.userdataservice.pagoTotal = false;
+      // this.userdataservice.pagoTotal = false;
     } else {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
     }
@@ -136,13 +136,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if (this.selectedIcon === CheckboxIcon.SELECTED) {
       this.cuotaAnualCheck = false;
       this.rol.seleccionar(TipoCuota.NINGUNA);
-      console.log("pago total serv false", this.userdataservice.pagoTotal);
-      this.userdataservice.pagoTotal = false;
+      // console.log("pago total serv false", this.userdataservice.pagoTotal);
+      // this.userdataservice.pagoTotal = false;
     } else {
       this.cuotaAnualCheck = true;
       this.rol.seleccionar(TipoCuota.TODAS);
-      console.log("pago total serv true", this.userdataservice.pagoTotal);
-      this.userdataservice.pagoTotal = true;
+      // console.log("pago total serv true", this.userdataservice.pagoTotal);
+      // this.userdataservice.pagoTotal = true;
     }
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
@@ -187,8 +187,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = false;
-            console.log("pago total serv false checkcuoton", this.userdataservice.pagoTotal);
-            this.userdataservice.pagoTotal = false;
+            // console.log("pago total serv false checkcuoton", this.userdataservice.pagoTotal);
+            // this.userdataservice.pagoTotal = false;
           }
         }
       }
@@ -197,7 +197,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             c.intencionPago = true;
-            this.userdataservice.pagoTotal = true;
+            // this.userdataservice.pagoTotal = true;
           }
         }
       }

@@ -261,8 +261,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             //   total += c.liqTotal.montoTotalParcial;
             //   condonacion += c.liqTotal.condonaParcial;
             // }
-            console.log("pago total servicio", this.userdataservice.pagoTotal);
-            if (this.userdataservice.pagoTotal){
+            console.log("pago total ", r.pagoTotal);
+            if (r.pagoTotal){
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
               console.log("monto total a sumar", c.liqTotal.montoTotalTotal)
               total += c.liqTotal.montoTotalTotal;
@@ -356,10 +356,10 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
     } else if (result.tipo() === TipoCuota.TODAS) {
       this.selectedIcon = CheckboxIcon.SELECTED;
-      this.userdataservice.pagoTotal = true;
+      // this.userdataservice.pagoTotal = true;
     } else {
       this.selectedIcon = CheckboxIcon.UNSELECTED;
-      this.userdataservice.pagoTotal = false;
+      // this.userdataservice.pagoTotal = false;
     }
   }
 
@@ -383,10 +383,10 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   seleccionarTodas() {
     if (this.selectedIcon === CheckboxIcon.INDETERMINATE || this.selectedIcon === CheckboxIcon.UNSELECTED) {
       this.seleccionar(TipoCuota.TODAS);
-      this.userdataservice.pagoTotal = true;
+      // this.userdataservice.pagoTotal = true;
     } else {
       this.seleccionar(TipoCuota.NINGUNA);
-      this.userdataservice.pagoTotal = false;
+      // this.userdataservice.pagoTotal = false;
     }
   }
 

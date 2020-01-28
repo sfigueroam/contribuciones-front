@@ -40,6 +40,7 @@ export class Rol {
 
   expired = false;
   pagoTotal = true;
+  
 
   // JMS: monto pago total cuoton
   pagoTotalCuoton: number;
