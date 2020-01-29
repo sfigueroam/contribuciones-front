@@ -83,6 +83,7 @@
   <div *ngIf="obteniendoDatos" class="tgr-container">
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--6-col m-0auto pay-title sel-cuotas-subtitle">
+        <!--<p>Estamos recuperando tus propiedades</p>-->
       </div>
     </div>
   </div>
@@ -129,6 +130,7 @@
       vencidas de un ROL</strong> para conseguir un mayor beneficio a través de la Condonación por Pago Total.
     </p>
 
+    <!-- *ngIf="condonacion > 0" -->
     <div class="tgr-condonacion" *ngIf="existeVencidas">
       <button type="button" class="mdl-button mdl-js-button mdl-button--raised ayuda-condonacion"
               (click)="dialogAyudaCondonacion()">
