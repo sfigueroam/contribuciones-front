@@ -183,12 +183,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuoton(rol: Rol){
     if(rol != undefined){
       if(this.cuotaAnualCheck){
-        console.log("cuota anual check true", this.cuotaAnualCheck);
+        // console.log("cuota anual check true", this.cuotaAnualCheck);
         this.cuotaAnualCheck = false;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
             // jms: nuevo
-            console.log("cuota", c.nroCuota);
+            // console.log("cuota", c.nroCuota);
             // this.selectedIcon = CheckboxIcon.SELECTED;
             c.changeIntencionPago();
             // c.intencionPago = false;
@@ -197,11 +197,11 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         }
       }
       else{
-        console.log("cuota anual check false", this.cuotaAnualCheck);
+        // console.log("cuota anual check false", this.cuotaAnualCheck);
         this.cuotaAnualCheck = true;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S' && !c.intencionPago){
-            console.log("cuota", c.nroCuota);
+            // console.log("cuota", c.nroCuota);
             // this.selectedIcon = CheckboxIcon.UNSELECTED;
             // c.intencionPago = true;
             c.changeIntencionPago();

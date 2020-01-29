@@ -83,9 +83,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   // JMS: Modal ayuda info de cuota anual
   modalCuotaAnualVar: boolean = false;
   
-  // JMS: arrglo de multiAR
-  // multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
-  
   @ViewChildren(TooltipDirective) tooltipDirective;
 
 
@@ -125,7 +122,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // JMS: abre modal de cuota anual
     
     this.canal = '';
     this.reg = '';
@@ -193,8 +189,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         
         this.contribuciones.cargaRoles().then(
           () => {
-            // console.log(propiedades);
-            
+
             this.complete = true;
             this.abrirPrimerRol();
             this.calcularTotal();
@@ -227,7 +222,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let multiARObj = {listaCid:[{idMoneda:0,codigoBarra:'',montoTotal:0}],usuario:'',montoTotalPagar:''}; 
     let multiARString;
     let total = 0;
-    // let totalCuoton = 0;
     let condonacion = 0;
     // let esCuotonBool = false;
     // JMS: cambio en posicion del calculo del total
@@ -241,37 +235,18 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     // this.condonacion = condonacion;
     // this.recalcularTipo();
 
-    // let codigos = 'on, ';
 
     for (const p of this.propiedades) {
       for (const r of p.roles) {
         for (const c of r.cuotas) {
-          // if (c.cuoton4){
-          //   this.modalCuotaAnualVar = true;
-          // }
           if (c.intencionPago) {
-            // if (r.condonacion > 0) {
-            //   // codigos += c.liqTotal.codigoBarraTotal + ', ';
-            //   multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
-            //   total += c.liqTotal.montoTotalTotal;
-            //   condonacion += c.liqTotal.condonaTotal;
-            // } else {
-            //   // codigos += c.liqTotal.codigoBarraParcial + ', ';
-            //   multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
-            //   total += c.liqTotal.montoTotalParcial;
-            //   condonacion += c.liqTotal.condonaParcial;
-            // }
-            console.log("pago total ", r.pagoTotal);
             if (r.pagoTotal){
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraTotal, montoTotal:c.liqTotal.montoTotalTotal});
-              // console.log("monto total a sumar", c.liqTotal.montoTotalTotal)
               total += c.liqTotal.montoTotalTotal;
-              // console.log("condonacion total a sumar", c.liqTotal.condonaTotal)
               condonacion += c.liqTotal.condonaTotal;
             }
             else{
               multiARObj.listaCid.push({idMoneda:0, codigoBarra:c.liqTotal.codigoBarraParcial, montoTotal:c.liqTotal.montoTotalParcial});
-              // console.log("monto parcial a sumar", c.liqTotal.montoTotalParcial)
               total += c.liqTotal.montoTotalParcial;
               condonacion = 0;
             }
@@ -280,14 +255,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    // JMS: cambio en posicion del calculo del total
 
-    // for (const p of this.propiedades) {
-    //   total += p.total;
-    //   console.log("total en funcion", total);
-    //   condonacion += p.condonacion;
-    //   console.log("condo en funcion", total);
-    // }
     this.total = total;
     this.condonacion = condonacion;
     this.recalcularTipo();
@@ -297,11 +265,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     multiARObj.usuario = this.canal;
     multiARObj.montoTotalPagar = total.toString();
     multiARString = JSON.stringify(multiARObj);
-    // console.log(multiARString);
     this.userdataservice.multiAR_Cid = multiARString;
-    // if (this.modalCuotaAnualVar){
-    //   this.abreModalCuotaAnual();
-    // }
+
   }
 
   gotoSugeridas() {

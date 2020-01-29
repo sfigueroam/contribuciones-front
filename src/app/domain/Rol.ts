@@ -227,25 +227,15 @@ export class Rol {
       } else {
         total = false;
       }
-      // if (cuota.intencionPago && cuota.liqParcial) {
-      //   pagoParcial += cuota.liqParcial.montoTotalParcial;
-      // } else {
-      //   total = false;
-      // }
     }
 
     total = total || (totalExpirados === totalExpiradosIntencionPago);
-    // console.log("total", total);
-    // console.log("totalexpirados", totalExpirados);
-    // console.log("totalExpiradosIntencionPago", totalExpiradosIntencionPago);
 
     if (total) {
       this.total = pagoTotal;
-      // console.log("pagoTotal", pagoTotal);
       this.condonacion = condonacion;
     } else {
       this.total = pagoParcial;
-      // console.log("pagoParcial", pagoParcial);
       this.condonacion = 0;
     }
 
