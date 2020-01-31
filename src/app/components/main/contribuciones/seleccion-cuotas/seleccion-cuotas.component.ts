@@ -135,7 +135,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       if (this.providerConex == "ClaveUnica"){
         this.reg = 'CU';
       }
-    
       if (this.deviceDetectService.device.mobile){
         this.canal = '30M' + this.reg; 
       }
@@ -151,8 +150,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       // console.log(this.canal);
       // console.log(this.providerConex);
       this.userdataservice.canal = this.canal;
-
-    console.log('ngOnInit', this.complete);
 
     this.complete = false;
     this.seleccionada = TipoCuota.TODAS;
