@@ -118,12 +118,9 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if (this.rol.allChecked()) {
       this.cuotaAnualCheck = true;
       this.selectedIcon = CheckboxIcon.SELECTED;
-      // this.userdataservice.pagoTotal = true;
     } else if (this.rol.noneChecked()) {
       this.cuotaAnualCheck = false;
       this.selectedIcon = CheckboxIcon.UNSELECTED;
-      // console.log("pago total serv false", this.userdataservice.pagoTotal);
-      // this.userdataservice.pagoTotal = false;
     } else {
       this.selectedIcon = CheckboxIcon.INDETERMINATE;
     }
@@ -136,19 +133,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     if (this.selectedIcon === CheckboxIcon.SELECTED) {
       this.cuotaAnualCheck = false;
       this.rol.seleccionar(TipoCuota.NINGUNA);
-      // console.log("pago total serv false", this.userdataservice.pagoTotal);
-      // this.userdataservice.pagoTotal = false;
     } else {
       this.cuotaAnualCheck = true;
       this.rol.seleccionar(TipoCuota.TODAS);
-      // console.log("pago total serv true", this.userdataservice.pagoTotal);
-      // this.userdataservice.pagoTotal = true;
     }
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
   }
 
-  // JMS: calcula el total del cuoton
   private calculaTotalCuoton(rol: Rol){
     let totalCuoton = 0;
     for(let c of rol.cuotas){
@@ -165,11 +157,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     return(totalCuoton);
   }
   
-  // cambioCheckbox(){
-  //   this.cuotaAnualCheck = false;
-  //   this.bloqueAzul = false;
-  // }
-  
   checkCuota(rol: Rol, cuota: Cuota) {
     if(cuota.esCuoton == 'S' && this.cuotaAnualCheck){
       this.checkCuoton(rol);
@@ -183,39 +170,22 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   checkCuoton(rol: Rol){
     if(rol != undefined){
       if(this.cuotaAnualCheck){
-        // console.log("cuota anual check true", this.cuotaAnualCheck);
         this.cuotaAnualCheck = false;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S'){
-            // jms: nuevo
-            // console.log("cuota", c.nroCuota);
-            // this.selectedIcon = CheckboxIcon.SELECTED;
             c.changeIntencionPago();
-            // c.intencionPago = false;
-            // rol.pagoTotal = false;
           }
         }
       }
       else{
-        // console.log("cuota anual check false", this.cuotaAnualCheck);
         this.cuotaAnualCheck = true;
         for(let c of rol.cuotas){
           if(c.esCuoton == 'S' && !c.intencionPago){
-            // console.log("cuota", c.nroCuota);
-            // this.selectedIcon = CheckboxIcon.UNSELECTED;
-            // c.intencionPago = true;
             c.changeIntencionPago();
           }
         }
       }
     }
-    // if (this.selectedIcon === CheckboxIcon.INDETERMINATE){
-    //   rol.pagoTotal = false;
-    // }
-    // if (this.selectedIcon === CheckboxIcon.SELECTED){
-    //   rol.pagoTotal = true;
-    // }
-
     this.seleccioncuotas.recalcularTipo();
     this.seleccioncuotas.calcularTotal();
     this.rol.calcularTotal();

@@ -174,7 +174,9 @@ export class Rol {
       } else if (tipo === TipoCuota.VENCIDAS) {
         cuota.intencionPago = cuota.expired;
       } else if (tipo === TipoCuota.NO_VENCIDAS) {
-        cuota.intencionPago = !cuota.expired;
+        if (!cuota.cuoton3 && !cuota.cuoton4){
+          cuota.intencionPago = !cuota.expired;
+        }
       }
     }
     this.calcularTotal();
