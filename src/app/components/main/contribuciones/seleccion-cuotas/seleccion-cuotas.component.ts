@@ -127,36 +127,29 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     this.reg = '';
     this.providerConex = this.cookieService.get("providerCookie")
       if (this.providerConex == "") {
-        console.log(this.reg);
         this.reg = 'SC';
       }
       if (this.providerConex == "ClaveTesoreria"){
-        console.log(this.reg);
         this.reg = 'CT';
       }
       if (this.providerConex == "ClaveUnica"){
-        console.log(this.reg);
         this.reg = 'CU';
       }
     
       if (this.deviceDetectService.device.mobile){
-        console.log("mobile");
         this.canal = '30M' + this.reg; 
       }
       if (this.deviceDetectService.device.tablet){
-        console.log("tablet");
         this.canal = '30T' + this.reg; 
       }
       if (this.deviceDetectService.device.smartTv){
-        console.log("smarttv");
         this.canal = '30S' + this.reg;
       }
       if (this.deviceDetectService.device.desktop){
-        console.log("desktop");
         this.canal = '30D' + this.reg;
       }
-      console.log(this.canal);
-      console.log(this.providerConex);
+      // console.log(this.canal);
+      // console.log(this.providerConex);
       this.userdataservice.canal = this.canal;
 
     console.log('ngOnInit', this.complete);
@@ -223,18 +216,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
     let multiARString;
     let total = 0;
     let condonacion = 0;
-    // let esCuotonBool = false;
-    // JMS: cambio en posicion del calculo del total
-    // for (const p of this.propiedades) {
-    //   total += p.total;
-    //   console.log("total en funcion", total);
-    //   condonacion += p.condonacion;
-    //   console.log("condo en funcion", condonacion);
-    // }
-    // this.total = total;
-    // this.condonacion = condonacion;
-    // this.recalcularTipo();
-
 
     for (const p of this.propiedades) {
       for (const r of p.roles) {
