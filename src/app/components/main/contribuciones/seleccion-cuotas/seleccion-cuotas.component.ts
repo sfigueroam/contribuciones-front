@@ -280,6 +280,9 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   seleccionar(tipo: TipoCuota): void {
     for (const propiedad of this.propiedades) {
       console.log('tipoCuota', tipo);
+      if (tipo == 'Vencidas'){
+        console.log('aca ejecutar el ninguna');
+      }
       propiedad.seleccionar(tipo);
     }
     this.recalcularTipo();

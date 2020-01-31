@@ -44,7 +44,7 @@
           Ninguna
         </button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                [class.active]="seleccionada == tipo.VENCIDAS" (click)="seleccionar(tipo.VENCIDAS)">
+                [class.active]="seleccionada == tipo.VENCIDAS"(click)="seleccionar(tipo.NINGUNA)" (click)="seleccionar(tipo.VENCIDAS)">
           Vencidas
         </button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
