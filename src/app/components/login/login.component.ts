@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.cognito.login(route.snapshot.fragment).then(
       value => {
         this.identity = value;
-        console.log("jwt cognito", this.identity);
+        // console.log("jwt cognito", this.identity);
         
         this.provider_array = value.identities[0];
         this.provider = this.provider_array.providerName;

@@ -46,7 +46,6 @@ export class CognitoService {
       // if (temp.tipo === 'RUN') {
       //   return temp.numero;
       // }
-      console.log("rut", temp.numero);
       return temp.numero;
     }
     // if (this.identity.hasOwnProperty('cognito:username')) {
