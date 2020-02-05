@@ -38,6 +38,7 @@ export class UserService {
     this.rut = +rut;
     this.dv = PitUtils.dv(this.rut);
     this.solicitarEmail = false;
+    console.log("rut en user: ", this.rut, "-", this.dv)
   }
 
   getBienesRaices(): Promise<Propiedad[]> {
