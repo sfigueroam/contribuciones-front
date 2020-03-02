@@ -62,7 +62,7 @@ export class CognitoService {
 
   createExpirationCookie(): void {
     const now = new Date();
-    const exp = now.getTime() + (this.identity['exp'] - this.identity['iat']) * 10;
+    const exp = now.getTime() + (this.identity['exp'] - this.identity['iat']) * 1000;
     this.exp = new Date(exp);
     console.log('Fecha en la que expirará el JWT', this.exp);
     if (environment.cognito.allowCookies) {
