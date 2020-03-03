@@ -42,15 +42,9 @@ export class CognitoService {
 
   private username(): string {
     if (this.identity.hasOwnProperty('custom:rut')) {
-      const temp = JSON.parse(this.identity['custom:rut']);
-      // if (temp.tipo === 'RUN') {
-      //   return temp.numero;
-      // }
-      return temp.numero;
+      return JSON.parse(this.identity['custom:rut']).numero;
     }
-    // if (this.identity.hasOwnProperty('cognito:username')) {
-    //   return this.identity['cognito:username'].split('-')[0];
-    // }
+    
     return null;
   }
 
