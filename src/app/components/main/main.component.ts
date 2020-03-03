@@ -55,7 +55,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   
    this.logged = this.user.isLogged();
   // this.usuariologin = this.userdataservice.nombre_usuario;
-    if (this.userdataservice.nombre_usuario != ''){
+    if (this.userdataservice.nombre_usuario && this.userdataservice.nombre_usuario != ''){
         this.usuario1 = this.userdataservice.nombre_usuario.substring(0,1);
         this.usuario2 = this.userdataservice.nombre_usuario.substring(1,100);
         this.usuario2min = this.usuario2.toLowerCase();
