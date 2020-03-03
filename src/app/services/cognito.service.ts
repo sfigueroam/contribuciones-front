@@ -41,6 +41,10 @@ export class CognitoService {
   }
 
   private username(): string {
+    if (this.identity.hasOwnProperty('custom:rut')) {
+      return JSON.parse(this.identity['custom:rut']).numero;
+    }
+
     if (this.identity.hasOwnProperty('custom:clave-unica:run')) {
       const temp = JSON.parse(this.identity['custom:clave-unica:run']);
       if (temp.tipo === 'RUN') {
