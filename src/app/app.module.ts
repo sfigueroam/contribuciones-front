@@ -40,7 +40,6 @@ import {ResumenComponent} from './components/main/contribuciones/seleccion-cuota
 import {BotonPagarComponent} from './components/main/contribuciones/seleccion-cuotas/modal/boton-pagar/boton-pagar.component';
 import {OrderModule} from 'ngx-order-pipe';
 import {RecordarComponent} from './components/main/contribuciones/agregar/nueva/modal/recordar/recordar.component';
-import {TooltipModule} from 'ng2-tooltip-directive';
 import {UserDataService} from './user-data.service';
 import { ConclaveComponent } from './components/conclave/conclave.component';
 import { SinclaveComponent } from './components/sinclave/sinclave.component';
@@ -94,8 +93,7 @@ registerLocaleData(localeEs, 'es');
     NgxCaptchaModule,
     DeviceDetectorModule.forRoot(),
     LightboxModule,
-    OrderModule,
-    TooltipModule,
+    OrderModule
   ],
   providers: [
     [UserDataService],

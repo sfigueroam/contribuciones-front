@@ -23,7 +23,6 @@ import {
 } from './modal/resumen/resumen.component';
 import {CheckboxIcon} from '../../../../domain/CheckboxIcon';
 import {DireccionCuotasComponent} from './direccion-cuotas/direccion-cuotas.component';
-import {TooltipDirective} from 'ng2-tooltip-directive';
 import { CookieService } from 'ngx-cookie-service';
 import {UserDataService} from '../../../../user-data.service';
 
@@ -82,8 +81,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   
   // JMS: Modal ayuda info de cuota anual
   modalCuotaAnualVar: boolean = false;
-  
-  @ViewChildren(TooltipDirective) tooltipDirective;
 
 
   constructor(private router: Router,
@@ -106,19 +103,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-  }
-
-  openHelp() {
-    if (this.user.isFirst && environment.viewTooltip) {
-      setTimeout(
-        () => {
-          if (this.propiedades.length > 0) {
-            this.showHelp();
-          }
-        },
-        300
-      );
-    }
   }
 
   ngOnInit() {
@@ -175,7 +159,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
       (propiedades) => {
         this.propiedades = propiedades;
         // console.log("propiedades", propiedades);
-        this.openHelp();
+        //this.openHelp();
         
         this.contribuciones.cargaRoles().then(
           () => {
@@ -363,22 +347,5 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
         isModal: true
       });
     }
-  }
-  
-  private showHelp() {
-    const direccionCuotasList = this.direccionCuotasComponentList.toArray();
-    if (direccionCuotasList !== undefined && direccionCuotasList.length > 0) {
-      console.log('direccionCuotasList[0].showHelp();');
-      direccionCuotasList[0].showHelp();
-    }
-    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip-buttonAdd');
-    this.someTooltip.show();
-    this.user.isFirst = false;
-    setTimeout(
-      () => {
-        this.someTooltip.hide();
-      },
-      environment.tooltipTime
-    );
   }
 }
