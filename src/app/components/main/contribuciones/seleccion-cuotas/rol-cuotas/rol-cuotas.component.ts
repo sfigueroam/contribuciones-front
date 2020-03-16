@@ -7,7 +7,6 @@ import {CheckboxIcon} from '../../../../../domain/CheckboxIcon';
 import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
-import {TooltipDirective} from 'ng2-tooltip-directive';
 import {UserDataService} from '../../../../../user-data.service'
 import {ContribucionesService} from '../../../../../services/contribuciones.service';
 import {SeleccionCuotasComponent} from '../seleccion-cuotas.component'
@@ -49,8 +48,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   
 
   someTooltip: any;
-  @ViewChildren(TooltipDirective) tooltipDirective;
-
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
@@ -87,17 +84,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     );
   }
   
-
-  showHelp() {
-    this.someTooltip = this.tooltipDirective.find(elem => elem.id === 'helpTooltip' + this.rol.rol);
-    this.someTooltip.show();
-    setTimeout(
-      () => {
-        this.someTooltip.hide();
-      },
-      environment.tooltipTime
-    );
-  }
 
   ngAfterViewInit() {
   }

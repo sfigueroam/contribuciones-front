@@ -30,7 +30,7 @@
     "jwt-decode": "^2.2.0",
     "match-sorter": "^2.3.0",
     "material-design-icons": "^3.0.1",
-    "ng2-tooltip-directive": "^2.8.17",
+
     "ngx-barcode": "^0.2.4",
     "ngx-captcha": "^5.0.0",
     "ngx-cookie-service": "^2.0.0",
