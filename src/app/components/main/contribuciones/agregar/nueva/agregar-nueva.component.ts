@@ -88,13 +88,13 @@ export class AgregarNuevaComponent implements OnInit, AfterViewInit {
   paginacion: number;
 
 
-  @ViewChild('captchaElem') captchaElem: InvisibleReCaptchaComponent;
+  @ViewChild('captchaElem', {static: false}) captchaElem: InvisibleReCaptchaComponent;
   recaptcha2: TgrReCaptcha;
   recaptcha3: TgrReCaptcha;
 
 
-  @ViewChild('autocompleteSelectComuna') selectComuna: MdlSelectComponent;
-  @ViewChild('autocompleteSelectTipoPropiedades') selectTipo: MdlSelectComponent;
+  @ViewChild('autocompleteSelectComuna', {static: false}) selectComuna: MdlSelectComponent;
+  @ViewChild('autocompleteSelectTipoPropiedades', {static: false}) selectTipo: MdlSelectComponent;
 
   public recaptcha: any = null;
   private totalRoles = 0;

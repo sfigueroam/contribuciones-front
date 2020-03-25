@@ -26,7 +26,6 @@ import {CookieService} from 'ngx-cookie-service';
 import {ObtenerComponent} from './components/main/certificados/obtener/obtener.component';
 import {CertificadoDeudaComponent} from './components/main/certificados/obtener/certificado-deuda/certificado-deuda.component';
 import {HistorialPagoComponent} from './components/main/certificados/obtener/historial-pago/historial-pago.component';
-import {NgxBarcodeModule} from 'ngx-barcode';
 import {AsociarCorreoComponent} from './components/dialogs/asociar-correo/asociar-correo.component';
 import {NgxCaptchaModule} from 'ngx-captcha';
 import {LineaTiempoComponent} from './components/main/contribuciones/linea-tiempo/linea-tiempo.component';
@@ -45,6 +44,7 @@ import { ConclaveComponent } from './components/conclave/conclave.component';
 import { SinclaveComponent } from './components/sinclave/sinclave.component';
 import { ModalErrorMulticidComponent } from './components/main/contribuciones/seleccion-cuotas/modal/modal-error-multicid/modal-error-multicid.component';
 import { ModalCuotaAnualComponent } from './components/main/contribuciones/seleccion-cuotas/modal/modal-cuota-anual/modal-cuota-anual.component';
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 registerLocaleData(localeEs, 'es');
 
@@ -89,11 +89,11 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     MdlModule,
     MdlSelectModule,
-    NgxBarcodeModule,
     NgxCaptchaModule,
     DeviceDetectorModule.forRoot(),
     LightboxModule,
-    OrderModule
+    OrderModule,
+    NgxBarcodeModule
   ],
   providers: [
     [UserDataService],
