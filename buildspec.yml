@@ -23,7 +23,7 @@ phases:
     - sed -i "s;BUILD_NEWRELIC_APPLICATION_ID;${BUILD_NEWRELIC_APPLICATION_ID};g" ${CODEBUILD_SRC_DIR}/src/environments/environment.prod.ts
 
     - npm install
-    - npm install -g @angular/cli
+    - npm install -g @angular/cli@8.3.25
 
   build:
     commands:
