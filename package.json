@@ -12,9 +12,9 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-mdl/core": "^9.0.0",
-    "@angular-mdl/popover": "^9.0.0",
-    "@angular-mdl/select": "^9.0.0",
+    "@angular-mdl/core": "8.0.0",
+    "@angular-mdl/popover": "8.0.0",
+    "@angular-mdl/select": "8.0.0",
     "@angular/animations": "^8.2.14",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "^8.2.14",
