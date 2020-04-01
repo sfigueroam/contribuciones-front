@@ -62,6 +62,7 @@ export class Rol {
       const rolIdConst = new LeadingZeroPipe().transform(this.rolId, 5);
       const subRolIdConst = new LeadingZeroPipe().transform(this.subrolId, 3);
       const rol = this.rolComunaSiiCod + '' + rolIdConst + '' + subRolIdConst;
+      console.log('rol en rol ts', this.rol)
       this.rol = +rol;
     }
   }
