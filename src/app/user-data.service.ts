@@ -13,8 +13,19 @@ export class UserDataService {
   vieneCuoton: boolean = false;
   pagoTotal: boolean = false;
   
+  mensajeCovid;
+  
   constructor() { }
 
     
+
+setMensaje(){
+  this.mensajeCovid = true;
+}
+
+getMensaje(){
+  return this.mensajeCovid;
+}
+
 
 }

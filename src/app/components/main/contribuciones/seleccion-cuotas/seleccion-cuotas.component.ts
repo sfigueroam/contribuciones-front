@@ -51,6 +51,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   total: number;
   condonacion: number;
   complete: boolean;
+  
+  cargaExitosa: boolean ;
 
   rolesSugeridos = 0;
   ocultarAlertaSugeridas = false;
@@ -168,6 +170,8 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.abrirPrimerRol();
             this.calcularTotal();
             this.obteniendoDatos = false;
+            console.log('mensaje de que si hay con covid', this.userdataservice.getMensaje());
+            this.cargaExitosa = true;
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
                 () => {

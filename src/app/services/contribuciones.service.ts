@@ -141,6 +141,7 @@ export class ContribucionesService {
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             rol.beneficioCovid = true;
             //aca voy a llamar al servicio del seba
+            this.userdataservice.setMensaje();
             rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
