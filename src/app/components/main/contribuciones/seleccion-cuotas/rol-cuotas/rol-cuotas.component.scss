@@ -226,14 +226,14 @@ mdl-icon.material-icons {
   height: 27px;
   &.success {
     .material-icons {
-      color: $color-alert-success-dark;
+      color: $color-alert-success--dark;
     }
     .info {
       margin-left: 10px;
       p {
         margin-bottom: 0;
         strong {
-          color: $color-alert-success-dark;
+          color: $color-alert-success--dark;
         }
       }
     }
