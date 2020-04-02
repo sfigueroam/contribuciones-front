@@ -20,7 +20,7 @@ export class UserDataService {
     
 
 setMensaje(){
-  this.mensajeCovid = true;
+  this.mensajeCovid = false;
 }
 
 getMensaje(){

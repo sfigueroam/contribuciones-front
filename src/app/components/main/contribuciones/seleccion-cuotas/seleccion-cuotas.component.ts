@@ -170,8 +170,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.abrirPrimerRol();
             this.calcularTotal();
             this.obteniendoDatos = false;
-            console.log('mensaje de que si hay con covid', this.userdataservice.getMensaje());
-            this.cargaExitosa = true;
+            this.cargaExitosa = this.userdataservice.getMensaje();
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
                 () => {
