@@ -220,10 +220,10 @@ mdl-icon.material-icons {
 
 .tgr-row-message {
   display: flex;
-  align-items: inherit;
+  align-items: center;
   padding: 12px 6px 10px 16px;
   border-bottom: 1px solid #ddd;
-  height: 27px;
+  min-height: 27px;
   &.success {
     .material-icons {
       color: $color-alert-success--dark;
@@ -232,6 +232,7 @@ mdl-icon.material-icons {
       margin-left: 10px;
       p {
         margin-bottom: 0;
+        line-height: 18px;
         strong {
           color: $color-alert-success--dark;
         }
