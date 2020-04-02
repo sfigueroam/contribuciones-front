@@ -139,6 +139,7 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
+            rol.beneficioCovid = true;
             rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
