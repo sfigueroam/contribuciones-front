@@ -22,6 +22,7 @@ export class Rol {
   PagoTotalServ: UserDataService[];
   // JMS
   noLiquidable: string;
+  beneficioCovid:boolean;
 
   isComplete = false;
 
