@@ -218,6 +218,28 @@ mdl-icon.material-icons {
   }
 }
 
+.tgr-row-message {
+  display: flex;
+  align-items: inherit;
+  padding: 12px 6px 10px 16px;
+  border-bottom: 1px solid #ddd;
+  height: 27px;
+  &.success {
+    .material-icons {
+      color: $color-alert-success-dark;
+    }
+    .info {
+      margin-left: 10px;
+      p {
+        margin-bottom: 0;
+        strong {
+          color: $color-alert-success-dark;
+        }
+      }
+    }
+  }
+}
+
 .deuda-no-liquidable {
   display: flex;
   align-items: center;

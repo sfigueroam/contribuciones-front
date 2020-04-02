@@ -20,12 +20,12 @@
   </div>
 </div>
 
-<div *ngIf = "cargaExitosa">
-  Beneficio por contingencia COVID-19
-  Los roles indicados con el beneficio podrán postergar el plazo de la primera cuota que vence el 30
-   próximo de Abril.
-   Si decides no pagar, el monto sera distribuido en partes iguales y sin intereses en las 3 cuotas restantes
-   de este año (Junio, Septiembre y Noviembre)
+<div class="mdl-grid" *ngIf = "cargaExitosa">
+  <div class="mdl-cell mdl-cell--6-col m-0auto tgr-alert success">
+    <p class="title"><strong>Beneficio por contingencia COVID-19</strong></p>
+    <p class="content">Si tienes roles indicados con el beneficio, podrás postergar el pago de la primera cuota que vence el próximo 30 de abril.</p>
+    <p class="content">Si decides no pagar, el monto será distribuido en partes iguales y sin intereses en las 3 cuotas restantes de este año (junio, septiembre y noviembre).</p>
+  </div>
 </div>
 
 <div class="mdl-grid" *ngIf="propiedades.length > 0; else bodySinDeuda">

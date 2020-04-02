@@ -12,6 +12,27 @@
   }
 }
 
+.tgr-alert {
+  padding: 15px;
+  &.success {
+    background-color: $color-alert-success--light;
+    color: $color-alert-success--dark;
+    border: 2px solid $color-alert-success--dark;
+    border-radius: 5px;
+    .title {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+    .content {
+      font-size: 14px;
+      line-height: 20px;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
 .select-fee {
   margin: 6px auto 14px auto;
   .mdl-button-group{
