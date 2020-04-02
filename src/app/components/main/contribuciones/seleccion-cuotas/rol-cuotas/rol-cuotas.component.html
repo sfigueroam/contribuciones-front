@@ -31,7 +31,9 @@
     </div>
   </mdl-card-title>
   
-  
+  <div *ngIf = "beneficioBool">
+    Rol con Beneficio
+  </div>
   
   <!-- DEUDA NO LIQUIDABLE - INICIO -->
   <div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidablebool">
