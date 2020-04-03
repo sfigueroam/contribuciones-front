@@ -180,7 +180,7 @@ export class ContribucionesService {
   
   
   consultaBeneficioCovid(rol): Observable <any> {
-      const urlTramite = 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/contingencia/contribuciones/' + rol
+      const urlTramite = environment.endpoints.base + '/servicios-recaudacion/v1/contingencia/contribuciones/' + rol
       return this.http.get(urlTramite);
   }
   
