@@ -140,8 +140,10 @@ export class ContribucionesService {
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             rol.beneficioCovid = true;
-            const resultado = this.getBeneficioCovid(rol.rol);
-            console.log('resultado consulta covid', resultado)
+            
+          this.getBeneficioCovid(rol.rol)
+            
+            
             this.userdataservice.setMensaje();
             rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
@@ -167,12 +169,23 @@ export class ContribucionesService {
     return this.requestService.request(obtenerBienRaizAsociado);
   }
   
+  async getBeneficioCovid(rol){
+    try{
+      const beneficio = await this.consultaBeneficioCovid(rol).toPromise();
+      console.log('resultado de la consulta', beneficio);
+    }catch{
+      console.log('la consulta no se realizo correctamente');
+    }
+  }
   
-  private getBeneficioCovid(rol): Promise<{}>{
-     const urlTramite = 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/contingencia/contribuciones/' + rol;
-     console.log('url a consultar', urlTramite)
+  
+  consultaBeneficioCovid(rol): Observable <any> {
+      const urlTramite = 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/contingencia/contribuciones/' + rol
       return this.http.get(urlTramite);
   }
+  
+  
+
 
 // JMS: copia de captura de rol nuevo servico
   private obtieneDeuda(rol, cuotas?: any): Promise<{}> {
