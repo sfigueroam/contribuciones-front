@@ -169,7 +169,7 @@ export class ContribucionesService {
   
   
   private getBeneficioCovid(rol): Promise<{}>{
-     const urlTramite = environment.endpoints.base + '/servicios-recaudacion/v1/contingencia/contribuciones/' + rol;
+     const urlTramite = 'https://9l70yekz53.execute-api.us-east-1.amazonaws.com/dev/servicios-recaudacion/v1/contingencia/contribuciones/' + rol;
      console.log('url a consultar', urlTramite)
       return this.http.get(urlTramite);
   }
