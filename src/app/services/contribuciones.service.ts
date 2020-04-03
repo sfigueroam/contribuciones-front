@@ -142,7 +142,6 @@ export class ContribucionesService {
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             
             this.permisoCovid(rol.rol);
-            console.log(this.permisoCovid)
             // let aux = 1
             // if(data['existeRol'] == 'SI'){
             //     this.userdataservice.setMensaje();
@@ -207,9 +206,27 @@ export class ContribucionesService {
   
  async permisoCovid(rol){
     
-        try{
+  try{
   this.estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
-  console.log('estado del rol',this.estadoBeneficioCovid)
+  let aux = 1
+  if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
+      this.userdataservice.setMensaje();
+      rol.beneficioCovid = true;
+      console.log('entre al rol que existe')
+  }else if(this.estadoBeneficioCovid['existeRol'] == 'NO'){
+      console.log('Rol sin beneficio');
+      rol.beneficioCovid = false;
+  }else if(aux == 1){
+      this.userdataservice.setMensaje();
+      aux += 1;
+            }
+  
+  
+  
+  
+  if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
+    
+  }
   this.userdataservice.setMensaje();
     } catch(error){
       console.log('error al obtener dato de la api')
