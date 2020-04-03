@@ -139,15 +139,23 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
-            rol.beneficioCovid = true;
+            
             
          this.getBeneficioCovid(rol.rol).subscribe(
            data =>{
              console.log('data del servicio',data);
+             if(data['existeRol'] == 'SI'){
+               rol.beneficioCovid = true;
+              this.userdataservice.setMensaje();
+               console.log('entre al rol que existe')
+             }else{
+               console.log('Rol sin beneficio');
+               rol.beneficioCovid = false;
+             }
            })
          // console.log('el resultado de la consulta es', resultado)
             
-            this.userdataservice.setMensaje();
+           
             rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
