@@ -169,23 +169,12 @@ export class ContribucionesService {
     return this.requestService.request(obtenerBienRaizAsociado);
   }
   
-  async getBeneficioCovid(rol){
-    try{
-      const beneficio = await this.consultaBeneficioCovid(rol).toPromise();
-      console.log('resultado de la consulta', beneficio);
-    }catch{
-      console.log('la consulta no se realizo correctamente');
-    }
+  getBeneficioCovid(rol): Observable<any> {
+  const url = environment.servicios.beneficioCovid + rol
+  console.log('esta es la url a consultar beneficio covid ', url)
+  return this.http.get(url)
   }
   
-  
-  consultaBeneficioCovid(rol): Observable <any> {
-      const urlTramite = environment.endpoints.base + '/servicios-recaudacion/v1/contingencia/contribuciones/' + rol
-      return this.http.get(urlTramite);
-  }
-  
-  
-
 
 // JMS: copia de captura de rol nuevo servico
   private obtieneDeuda(rol, cuotas?: any): Promise<{}> {

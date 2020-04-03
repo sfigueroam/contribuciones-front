@@ -118,6 +118,8 @@ export const environment = {
     }, 
     urlMultiAR: endpoints.base + '/servicios-recaudacion/v1/liquidacion/ingresamultiar',
     
+    beneficioCovid: endpoints.base + '/servicios-recaudacion/v1/contingencia/contribuciones/',
+
     // urlApiMultiAR: {
     //   url: endpoints.base + '/servicios-recaudacion/v1/liquidacion/ingresamultiar', 
     //   method: 'POST' 
