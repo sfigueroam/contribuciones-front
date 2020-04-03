@@ -20,6 +20,7 @@ export class UserDataService {
     
 
 setMensaje(){
+  console.log('entre a setear el mensaje');
   this.mensajeCovid = true;
 }
 
