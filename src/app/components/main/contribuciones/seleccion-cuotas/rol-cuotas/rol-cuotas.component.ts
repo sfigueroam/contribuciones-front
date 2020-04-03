@@ -61,8 +61,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit() {
-    
-    console.log('roles en rol-cuota',this.rol)
+
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
