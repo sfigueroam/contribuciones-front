@@ -24,7 +24,7 @@ setMensaje(){
   this.mensajeCovid = true;
 }
 
-getMensaje(){
+ getMensaje(){
   return this.mensajeCovid;
 }
 

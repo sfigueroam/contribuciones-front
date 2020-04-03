@@ -79,7 +79,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.noLiquidable = this.rol.noLiquidable;
      
         this.beneficioBool = this.rol.beneficioCovid;
-          console.log('estado del benefidcio rol', this.rol.beneficioCovid )
+          console.log('estado del benefidcio rol', this.beneficioBool)
         if (this.noLiquidable == "true"){
           this.noLiquidablebool = true;
         }

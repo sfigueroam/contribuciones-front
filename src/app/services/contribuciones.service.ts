@@ -19,6 +19,7 @@ export class ContribucionesService {
   propiedades: Propiedad[];
   noLiquidable: boolean;
   cidUnicoOut: any[];
+    estadoBeneficioCovid: any;
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
@@ -140,23 +141,36 @@ export class ContribucionesService {
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             
-            
-         this.getBeneficioCovid(rol.rol).subscribe(
-           data =>{
-             console.log('data del servicio',data);
-             let aux = 1
-             if(data['existeRol'] == 'SI'){
-                this.userdataservice.setMensaje();
-               rol.beneficioCovid = true;
-               console.log('entre al rol que existe')
-             }else if(data['existeRol'] == 'NO'){
-               console.log('Rol sin beneficio');
-               rol.beneficioCovid = false;
-             }else if(aux == 1){
-               this.userdataservice.setMensaje();
-               aux += 1;
-             }
-           })
+            this.permisoCovid(rol.rol);
+            console.log(this.permisoCovid)
+            // let aux = 1
+            // if(data['existeRol'] == 'SI'){
+            //     this.userdataservice.setMensaje();
+            //   rol.beneficioCovid = true;
+            //   console.log('entre al rol que existe')
+            // }else if(data['existeRol'] == 'NO'){
+            //   console.log('Rol sin beneficio');
+            //   rol.beneficioCovid = false;
+            // }else if(aux == 1){
+            //   this.userdataservice.setMensaje();
+            //   aux += 1;
+            // }
+        // this.getBeneficioCovid(rol.rol).subscribe(
+        //   data =>{
+        //     console.log('data del servicio',data);
+        //     let aux = 1
+        //     if(data['existeRol'] == 'SI'){
+        //         this.userdataservice.setMensaje();
+        //       rol.beneficioCovid = true;
+        //       console.log('entre al rol que existe')
+        //     }else if(data['existeRol'] == 'NO'){
+        //       console.log('Rol sin beneficio');
+        //       rol.beneficioCovid = false;
+        //     }else if(aux == 1){
+        //       this.userdataservice.setMensaje();
+        //       aux += 1;
+        //     }
+        //   })
          
             
            
@@ -188,6 +202,19 @@ export class ContribucionesService {
   const url = environment.servicios.beneficioCovid + rol
   console.log('esta es la url a consultar beneficio covid ', url)
   return this.http.get(url)
+  }
+  
+  
+ async permisoCovid(rol){
+    
+        try{
+  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
+  console.log('estado del rol',this.estadoBeneficioCovid)
+  this.userdataservice.setMensaje();
+    } catch(error){
+      console.log('error al obtener dato de la api')
+    }
+    
   }
   
 
