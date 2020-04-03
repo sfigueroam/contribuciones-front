@@ -140,7 +140,8 @@ export class ContribucionesService {
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             rol.beneficioCovid = true;
-            //aca voy a llamar al servicio del seba
+            const resultado = this.getBeneficioCovid(rol.rol);
+            console.log('resultado consulta covid', resultado)
             this.userdataservice.setMensaje();
             rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
@@ -164,6 +165,13 @@ export class ContribucionesService {
     const obtenerBienRaizAsociado = Object.assign({}, environment.servicios.obtenerBienRaizAsociado);
     obtenerBienRaizAsociado.url = obtenerBienRaizAsociado.url + '/' + rut;
     return this.requestService.request(obtenerBienRaizAsociado);
+  }
+  
+  
+  private getBeneficioCovid(rol): Promise<{}>{
+     const urlTramite = environment.endpoints.base + '/servicios-recaudacion/v1/contingencia/contribuciones/' + rol;
+     console.log('url a consultar', urlTramite)
+      return this.http.get(urlTramite);
   }
 
 // JMS: copia de captura de rol nuevo servico
