@@ -141,8 +141,8 @@ export class ContribucionesService {
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             rol.beneficioCovid = true;
             
-          this.getBeneficioCovid(rol.rol)
-            
+         const resultado = this.getBeneficioCovid(rol.rol)
+          console.log('el resultado de la consulta es', resultado)
             
             this.userdataservice.setMensaje();
             rol.noLiquidable = data.outNoLiq;
