@@ -138,7 +138,6 @@ export class ContribucionesService {
 
     } else {
       let resultado = await this.permisoCovid(rol.rol)
-      console.log('rol a consultar', rol);
       rol.cuotas.forEach(element =>{
         console.log('log dde cuotas en servicio', element);
       })
