@@ -141,6 +141,7 @@ export class ContribucionesService {
       console.log('resultado cargaRol',resultado)
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
+        this.userdataservice.setMensaje();
         console.log('entre a setear arriba el true')
       }else{
         console.log('entre a setear arriba el false')
