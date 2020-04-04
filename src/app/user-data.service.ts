@@ -12,16 +12,23 @@ export class UserDataService {
   cidUnico: any;
   vieneCuoton: boolean = false;
   pagoTotal: boolean = false;
-  
+  contador = 0;
   mensajeCovid;
   
   constructor() { }
 
     
+setRolBeneficio(){
+  this.contador += 1;
+}
 
-setMensaje(){
+getEstadoRolBeneficio(){
+  return this.contador
+}
+
+setMensaje(a:boolean){
   console.log('entre a setear el mensaje');
-  this.mensajeCovid = true;
+  this.mensajeCovid = a;
 }
 
  getMensaje(){

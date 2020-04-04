@@ -141,11 +141,19 @@ export class ContribucionesService {
       console.log('resultado cargaRol',resultado)
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
-        this.userdataservice.setMensaje();
+        this.userdataservice.setMensaje(true);
+        this.userdataservice.setRolBeneficio();
         console.log('entre a setear arriba el true')
       }else{
         console.log('entre a setear arriba el false')
+        console.log('valor rolbeneficio',this.userdataservice.getEstadoRolBeneficio());
+        if(this.userdataservice.getEstadoRolBeneficio() != 0){
+          rol.beneficioCovid = false;
+        }else{
+        this.userdataservice.setMensaje(false);
         rol.beneficioCovid = false;
+        }
+
       }
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
@@ -155,35 +163,7 @@ export class ContribucionesService {
             
             
             console.log('rol ha consultar', rol.rol)
-            // let aux = 1
-            // if(data['existeRol'] == 'SI'){
-            //     this.userdataservice.setMensaje();
-            //   rol.beneficioCovid = true;
-            //   console.log('entre al rol que existe')
-            // }else if(data['existeRol'] == 'NO'){
-            //   console.log('Rol sin beneficio');
-            //   rol.beneficioCovid = false;
-            // }else if(aux == 1){
-            //   this.userdataservice.setMensaje();
-            //   aux += 1;
-            // }
-        // this.getBeneficioCovid(rol.rol).subscribe(
-        //   data =>{
-        //     console.log('data del servicio',data);
-        //     let aux = 1
-        //     if(data['existeRol'] == 'SI'){
-        //         this.userdataservice.setMensaje();
-        //       rol.beneficioCovid = true;
-        //       console.log('entre al rol que existe')
-        //     }else if(data['existeRol'] == 'NO'){
-        //       console.log('Rol sin beneficio');
-        //       rol.beneficioCovid = false;
-        //     }else if(aux == 1){
-        //       this.userdataservice.setMensaje();
-        //       aux += 1;
-        //     }
-        //   })
-         
+
             
            
             rol.noLiquidable = data.outNoLiq;
