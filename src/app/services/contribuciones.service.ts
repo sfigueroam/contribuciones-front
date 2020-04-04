@@ -204,12 +204,12 @@ export class ContribucionesService {
   async getBeneficioCovid(rol) {
   const url = environment.servicios.beneficioCovid + rol
   console.log('esta es la url a consultar beneficio covid ', url)
-  return await this.http.get(url)
+  return this.http.get(url)
   }
   
   
  async permisoCovid(rol){
-    
+    console.log('entre a la funcion async')
   try{
   this.estadoBeneficioCovid = await this.getBeneficioCovid(rol)
   console.log('console despues del await', this.estadoBeneficioCovid)
