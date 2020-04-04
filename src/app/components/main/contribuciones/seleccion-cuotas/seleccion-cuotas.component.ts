@@ -171,7 +171,6 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.calcularTotal();
             this.obteniendoDatos = false;
             this.cargaExitosa = this.userdataservice.getMensaje();
-            console.log('el resultado de mensaje carga exitosa', this.cargaExitosa)
             for (const p of this.propiedades) {
               p.changeStream.subscribe(
                 () => {

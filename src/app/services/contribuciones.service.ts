@@ -138,15 +138,11 @@ export class ContribucionesService {
 
     } else {
       let resultado = await this.permisoCovid(rol.rol)
-      console.log('resultado cargaRol',resultado)
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
         this.userdataservice.setMensaje(true);
         this.userdataservice.setRolBeneficio();
-        console.log('entre a setear arriba el true')
       }else{
-        console.log('entre a setear arriba el false')
-        console.log('valor rolbeneficio',this.userdataservice.getEstadoRolBeneficio());
         if(this.userdataservice.getEstadoRolBeneficio() != 0){
           rol.beneficioCovid = false;
         }else{
@@ -158,14 +154,6 @@ export class ContribucionesService {
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
-            
-            //let resultado = this.permisoCovid(rol.rol);
-            
-            
-            console.log('rol ha consultar', rol.rol)
-
-            
-           
             rol.noLiquidable = data.outNoLiq;
             const mapCuotas = new Map<string, Cuota>();
             for (const deuda of data.listaDeudas) {
@@ -192,7 +180,6 @@ export class ContribucionesService {
   
   getBeneficioCovid(rol): Observable <any> {
   const url = environment.servicios.beneficioCovid + rol
-  console.log('esta es la url a consultar beneficio covid ', url)
   return this.http.get(url)
   }
   
@@ -224,7 +211,6 @@ export class ContribucionesService {
     console.log('entre a la funcion async')
   try{
   let estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
-  console.log('estado beneficio despues await',estadoBeneficioCovid);
     return estadoBeneficioCovid
     } catch(error){
       console.log(error)
