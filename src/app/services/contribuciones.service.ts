@@ -145,7 +145,7 @@ export class ContribucionesService {
             
             let resultado = this.permisoCovid(rol.rol)
             console.log('rol ha consultar', rol.rol)
-            console.log('resultado de la primera llamada', this.estadoBeneficioCovid);
+            console.log('resultado de la primera llamada', resultado);
             // let aux = 1
             // if(data['existeRol'] == 'SI'){
             //     this.userdataservice.setMensaje();
@@ -201,17 +201,25 @@ export class ContribucionesService {
     return this.requestService.request(obtenerBienRaizAsociado);
   }
   
-  getBeneficioCovid(rol): Observable <any> {
-  const url = environment.servicios.beneficioCovid + rol
-  console.log('esta es la url a consultar beneficio covid ', url)
-  return this.http.get(url)
-  }
+  // getBeneficioCovid(rol): Observable <any> {
+  // const url = environment.servicios.beneficioCovid + rol
+  // console.log('esta es la url a consultar beneficio covid ', url)
+  // return this.http.get(url)
+  // }
+  
+  
+  getBeneficioCovid(rol) {
+  return new Promise(resolve => {
+    resolve('hola')
+  });
+}
+  
   
   
  async permisoCovid(rol){
     console.log('entre a la funcion async')
   try{
-  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
+  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol)
   console.log('console despues del await', this.estadoBeneficioCovid)
   let aux = 1
   if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
