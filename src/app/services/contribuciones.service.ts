@@ -147,12 +147,7 @@ export class ContribucionesService {
         //this.userdataservice.setMensaje(true);
         //this.userdataservice.setRolBeneficio();
       }else{
-        if(this.userdataservice.getEstadoRolBeneficio() != 0){
           rol.beneficioCovid = false;
-        }else{
-        //this.userdataservice.setMensaje(false);
-        rol.beneficioCovid = false;
-        }
 
       }
       return new Promise(
