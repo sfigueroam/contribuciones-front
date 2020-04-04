@@ -14,12 +14,16 @@ export class UserDataService {
   pagoTotal: boolean = false;
   contador = 0;
   mensajeCovid;
+ 
   
   constructor() { }
 
     
 setRolBeneficio(){
   this.contador += 1;
+}
+setContador(){
+  this.contador = 0;
 }
 
 getEstadoRolBeneficio(){

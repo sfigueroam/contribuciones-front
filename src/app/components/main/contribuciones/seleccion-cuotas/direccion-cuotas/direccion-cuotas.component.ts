@@ -4,6 +4,7 @@ import {MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
 import {UserService} from '../../../../../services/user.service';
 import {environment} from '../../../../../../environments/environment';
 import {RolCuotasComponent} from '../rol-cuotas/rol-cuotas.component';
+import { UserDataService } from 'src/app/user-data.service';
 
 @Component({
   selector: 'app-direccion-cuotas',
@@ -26,7 +27,8 @@ export class DireccionCuotasComponent implements OnInit {
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
-              private mdlSnackbarService: MdlSnackbarService) {
+              private mdlSnackbarService: MdlSnackbarService,
+              private userdataservice: UserDataService) {
   }
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class DireccionCuotasComponent implements OnInit {
         'CANCELAR',
         'ELIMINAR').subscribe(
         () => {
+          this.userdataservice.setContador();
           this.user.eliminarPropiedad(this.propiedad.idDireccion).then(
             () => this.mdlSnackbarService.showToast('Dirección eliminada.', environment.snackbarTime),
             err => {
