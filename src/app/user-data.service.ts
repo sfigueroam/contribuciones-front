@@ -31,7 +31,6 @@ getEstadoRolBeneficio(){
 }
 
 setMensaje(a:boolean){
-  console.log('entre a setear el mensaje');
   this.mensajeCovid = a;
 }
 

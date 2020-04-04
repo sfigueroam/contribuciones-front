@@ -184,31 +184,8 @@ export class ContribucionesService {
   }
   
   
-  
-  sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-  
-  
-//   getBeneficioCovid(rol) : Promise <any> {
-//     console.log('entre a la promesa')
-//   return new Promise<any>(resolve => {
-//     const url = environment.servicios.beneficioCovid + rol
-//     console.log('esta es la url a consultar beneficio covid ', url)
-//     this.http.get(url).toPromise().then(function (result){
-//       console.log('resultado this hppt get',result)
-//       resolve(result)
-//     }).catch(function(error){
-//       console.log('error', error)
-//     })
-    
-//   });
-// }
-  
-  
-  
+
  async permisoCovid(rol){
-    console.log('entre a la funcion async')
   try{
   let estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
     return estadoBeneficioCovid
