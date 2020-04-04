@@ -211,7 +211,10 @@ export class ContribucionesService {
  async permisoCovid(rol){
     console.log('entre a la funcion async')
   try{
-  this.estadoBeneficioCovid = this.getBeneficioCovid(rol)
+  this.estadoBeneficioCovid = this.getBeneficioCovid(rol).subscribe(
+    data =>{
+      console.log('datos permisos Covid', this.estadoBeneficioCovid)
+    })
   console.log('console despues del await', this.estadoBeneficioCovid)
   let aux = 1
   if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
