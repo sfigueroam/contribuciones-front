@@ -80,6 +80,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
   providerConex: string;
   multiARString2: string;
   cidUnico: string;
+  mensajeCambiante;
   
   // JMS: Modal ayuda info de cuota anual
   modalCuotaAnualVar: boolean = false;
@@ -170,6 +171,12 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.abrirPrimerRol();
             this.calcularTotal();
             this.obteniendoDatos = false;
+            this.userdataservice.actualizarMensaje.suscribe(
+              (mensaje) => {
+                this.mensajeCambiante = this.userdataservice.getMensaje();
+                console.log('cambio el mensaje!', this.mensajeCambiante);
+                
+              })
             this.cargaExitosa = this.userdataservice.getMensaje();
             for (const p of this.propiedades) {
               p.changeStream.subscribe(

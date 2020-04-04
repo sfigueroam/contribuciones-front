@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class UserDataService {
   pagoTotal: boolean = false;
   contador = 0;
   mensajeCovid;
+  actualizarMensaje: EventEmitter  = new EventEmitter();
  
   
   constructor() { }
@@ -32,6 +34,7 @@ getEstadoRolBeneficio(){
 
 setMensaje(a:boolean){
   this.mensajeCovid = a;
+  this.actualizarMensaje.emit(this.mensajeCovid);
 }
 
  getMensaje(){

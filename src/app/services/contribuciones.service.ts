@@ -144,13 +144,13 @@ export class ContribucionesService {
       })
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
-        this.userdataservice.setMensaje(true);
-        this.userdataservice.setRolBeneficio();
+        //this.userdataservice.setMensaje(true);
+        //this.userdataservice.setRolBeneficio();
       }else{
         if(this.userdataservice.getEstadoRolBeneficio() != 0){
           rol.beneficioCovid = false;
         }else{
-        this.userdataservice.setMensaje(false);
+        //this.userdataservice.setMensaje(false);
         rol.beneficioCovid = false;
         }
 

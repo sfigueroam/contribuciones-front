@@ -61,7 +61,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit() {
-
+    
     this.expanded = false;
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
@@ -75,10 +75,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           () => this.reloadChecked()
         );
         this.rol.cuotas.forEach(element => {
-          console.log(element);
         if(element['nroCuotaTotal'] == "1-2019"){
           console.log('viene la cuota uno del año 2019!')
+          this.userdataservice.setMensaje(true);
           this.beneficioBool = this.rol.beneficioCovid;
+        }else{
+          
         }
         })
         this.noLiquidable = this.rol.noLiquidable;
