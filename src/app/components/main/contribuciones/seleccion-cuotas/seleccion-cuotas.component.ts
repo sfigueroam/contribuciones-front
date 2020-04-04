@@ -171,7 +171,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.abrirPrimerRol();
             this.calcularTotal();
             this.obteniendoDatos = false;
-            this.userdataservice.actualizarMensaje.suscribe(
+            this.userdataservice.actualizarMensaje.subscribe(
               (mensaje) => {
                 this.mensajeCambiante = this.userdataservice.getMensaje();
                 console.log('cambio el mensaje!', this.mensajeCambiante);
