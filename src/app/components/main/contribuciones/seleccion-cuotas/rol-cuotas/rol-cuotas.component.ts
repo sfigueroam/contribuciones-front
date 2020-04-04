@@ -74,7 +74,12 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-
+        this.rol.cuotas.forEach(element => {
+          console.log(element);
+        if(element['nroCuotaTotal'] == "1-2019"){
+          console.log('viene la cuota uno del año 2019!')
+        }
+        })
         this.noLiquidable = this.rol.noLiquidable;
         this.beneficioBool = this.rol.beneficioCovid;
         if (this.noLiquidable == "true"){
