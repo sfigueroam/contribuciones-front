@@ -144,13 +144,9 @@ export class ContribucionesService {
             //let resultado = this.permisoCovid(rol.rol);
             
             //let resultado = this.permisoCovid(rol.rol)
-            this.getBeneficioCovid(rol.rol).then(response =>{
-              console.log(response)
-              this.estadoBeneficioCovid = response;
-            })
-            this.sleep(2000);
+            let resultado = this.permisoCovid(rol.rol);
             console.log('rol ha consultar', rol.rol)
-            console.log('resultado de la primera llamada', this.estadoBeneficioCovid);
+            console.log('resultado de la primera llamada', resultado)
             // let aux = 1
             // if(data['existeRol'] == 'SI'){
             //     this.userdataservice.setMensaje();
