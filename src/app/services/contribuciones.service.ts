@@ -145,7 +145,7 @@ export class ContribucionesService {
             
             let resultado = this.permisoCovid(rol.rol)
             console.log('rol ha consultar', rol.rol)
-            console.log('resultado de la primera llamada', resultado);
+            console.log('resultado de la primera llamada', this.estadoBeneficioCovid);
             // let aux = 1
             // if(data['existeRol'] == 'SI'){
             //     this.userdataservice.setMensaje();
@@ -209,8 +209,11 @@ export class ContribucionesService {
   
   
   getBeneficioCovid(rol) {
+    console.log('entre a la promesa')
   return new Promise(resolve => {
-    resolve('hola')
+    const url = environment.servicios.beneficioCovid + rol
+    console.log('esta es la url a consultar beneficio covid ', url)
+    resolve(this.http.get(url))
   });
 }
   
