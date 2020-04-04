@@ -130,20 +130,27 @@ export class ContribucionesService {
   }
   
   // JMS: Copia de servicio que obtiene la cuota uno a uno
-    private cargaRol(rol: Rol): Promise<any> {
+    private async cargaRol(rol: Rol): Promise<any> {
     if (rol.cuotas.length > 0) {
       return new Promise((resolve, reject) => {
         resolve();
       });
 
     } else {
+      let resultado = await this.permisoCovid(rol.rol)
+      console.log(resultado);
+      if(resultado['existeRol'] == 'SI'){
+        rol.beneficioCovid = true;
+      }else{
+        rol.beneficioCovid = false;
+      }
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             
             //let resultado = this.permisoCovid(rol.rol);
             
-            let resultado = this.permisoCovid(rol.rol)
+            
             console.log('rol ha consultar', rol.rol)
             console.log('resultado de la primera llamada', resultado)
             // let aux = 1
