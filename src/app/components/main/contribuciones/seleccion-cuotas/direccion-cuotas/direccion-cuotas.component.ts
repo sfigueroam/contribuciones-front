@@ -52,7 +52,8 @@ export class DireccionCuotasComponent implements OnInit {
         'CANCELAR',
         'ELIMINAR').subscribe(
         () => {
-          this.userdataservice.setContador();
+          //this.userdataservice.setContador();
+          this.userdataservice.setMensaje(false);
           this.user.eliminarPropiedad(this.propiedad.idDireccion).then(
             () => this.mdlSnackbarService.showToast('Dirección eliminada.', environment.snackbarTime),
             err => {
