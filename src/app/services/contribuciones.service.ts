@@ -148,6 +148,7 @@ export class ContribucionesService {
               console.log(response)
               this.estadoBeneficioCovid = response;
             })
+            this.sleep(2000);
             console.log('rol ha consultar', rol.rol)
             console.log('resultado de la primera llamada', this.estadoBeneficioCovid);
             // let aux = 1
@@ -205,11 +206,11 @@ export class ContribucionesService {
     return this.requestService.request(obtenerBienRaizAsociado);
   }
   
-  // getBeneficioCovid(rol): Observable <any> {
-  // const url = environment.servicios.beneficioCovid + rol
-  // console.log('esta es la url a consultar beneficio covid ', url)
-  // return this.http.get(url)
-  // }
+  getBeneficioCovid(rol): Observable <any> {
+  const url = environment.servicios.beneficioCovid + rol
+  console.log('esta es la url a consultar beneficio covid ', url)
+  return this.http.get(url)
+  }
   
   
   
@@ -218,28 +219,27 @@ export class ContribucionesService {
 }
   
   
-  getBeneficioCovid(rol) : Promise <any> {
-    console.log('entre a la promesa')
-  return new Promise<any>(resolve => {
-    const url = environment.servicios.beneficioCovid + rol
-    console.log('esta es la url a consultar beneficio covid ', url)
-    this.http.get(url).toPromise().then(function (result){
-      console.log('resultado this hppt get',result)
-      resolve(result)
-    }).catch(function(error){
-      console.log('error', error)
-    })
+//   getBeneficioCovid(rol) : Promise <any> {
+//     console.log('entre a la promesa')
+//   return new Promise<any>(resolve => {
+//     const url = environment.servicios.beneficioCovid + rol
+//     console.log('esta es la url a consultar beneficio covid ', url)
+//     this.http.get(url).toPromise().then(function (result){
+//       console.log('resultado this hppt get',result)
+//       resolve(result)
+//     }).catch(function(error){
+//       console.log('error', error)
+//     })
     
-  });
-}
+//   });
+// }
   
   
   
  async permisoCovid(rol){
     console.log('entre a la funcion async')
   try{
-  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol)
-  await this.sleep(2000);
+  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
   console.log('console despues del await', this.estadoBeneficioCovid)
   let aux = 1
   if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
