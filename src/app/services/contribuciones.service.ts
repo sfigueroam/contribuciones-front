@@ -144,7 +144,9 @@ export class ContribucionesService {
             //let resultado = this.permisoCovid(rol.rol);
             
             //let resultado = this.permisoCovid(rol.rol)
-            let resultado = this.permisoCovid(rol.rol);
+            let resultado = this.permisoCovid(rol.rol).then(response =>{
+              console.log(response);
+            });
             console.log('rol ha consultar', rol.rol)
             console.log('resultado de la primera llamada', resultado)
             // let aux = 1
@@ -235,21 +237,21 @@ export class ContribucionesService {
  async permisoCovid(rol){
     console.log('entre a la funcion async')
   try{
-  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
-  console.log('console despues del await', this.estadoBeneficioCovid)
+  let estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
+  console.log('console despues del await', estadoBeneficioCovid)
   let aux = 1
-  if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
+  if(estadoBeneficioCovid['existeRol'] == 'SI'){
       rol.beneficioCovid = true;
       console.log('entre al rol que existe')
-  }else if(this.estadoBeneficioCovid['existeRol'] == 'NO'){
+  }else if(estadoBeneficioCovid['existeRol'] == 'NO'){
       console.log('Rol sin beneficio');
       rol.beneficioCovid = false;
-  }else if(aux == 1 && this.estadoBeneficioCovid['existeRol'] == 'SI'){
+  }else if(aux == 1 && estadoBeneficioCovid['existeRol'] == 'SI'){
     console.log('entre al aux')
       this.userdataservice.setMensaje();
       aux += 1;
     }
-    return this.estadoBeneficioCovid
+    return estadoBeneficioCovid
     
     } catch(error){
       return error
