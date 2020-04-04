@@ -143,7 +143,10 @@ export class ContribucionesService {
             
             //let resultado = this.permisoCovid(rol.rol);
             
-            let resultado = this.permisoCovid(rol.rol)
+            //let resultado = this.permisoCovid(rol.rol)
+            this.permisoCovid(rol.rol).then(response =>{
+              console.log(response)
+            })
             console.log('rol ha consultar', rol.rol)
             console.log('resultado de la primera llamada', this.estadoBeneficioCovid);
             // let aux = 1
