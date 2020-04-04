@@ -138,6 +138,7 @@ export class ContribucionesService {
 
     } else {
       let resultado = await this.permisoCovid(rol.rol)
+      console.log('resultado cargaRol',resultado)
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
         console.log('entre a setear arriba el true')
