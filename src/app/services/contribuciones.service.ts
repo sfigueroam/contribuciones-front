@@ -142,6 +142,7 @@ export class ContribucionesService {
           (data: { listaDeudas: any[], outNoLiq: any }) => {
             
             let resultado = this.permisoCovid(rol.rol);
+            console.log('rol ha consultar', rol.rol)
             console.log('resultado de la primera llamada', resultado['existeRol']);
             // let aux = 1
             // if(data['existeRol'] == 'SI'){
@@ -155,22 +156,22 @@ export class ContribucionesService {
             //   this.userdataservice.setMensaje();
             //   aux += 1;
             // }
-        // this.getBeneficioCovid(rol.rol).subscribe(
-        //   data =>{
-        //     console.log('data del servicio',data);
-        //     let aux = 1
-        //     if(data['existeRol'] == 'SI'){
-        //         this.userdataservice.setMensaje();
-        //       rol.beneficioCovid = true;
-        //       console.log('entre al rol que existe')
-        //     }else if(data['existeRol'] == 'NO'){
-        //       console.log('Rol sin beneficio');
-        //       rol.beneficioCovid = false;
-        //     }else if(aux == 1){
-        //       this.userdataservice.setMensaje();
-        //       aux += 1;
-        //     }
-        //   })
+        this.getBeneficioCovid(rol.rol).subscribe(
+          data =>{
+            console.log('data del servicio',data);
+            let aux = 1
+            if(data['existeRol'] == 'SI'){
+                this.userdataservice.setMensaje();
+              rol.beneficioCovid = true;
+              console.log('entre al rol que existe')
+            }else if(data['existeRol'] == 'NO'){
+              console.log('Rol sin beneficio');
+              rol.beneficioCovid = false;
+            }else if(aux == 1){
+              this.userdataservice.setMensaje();
+              aux += 1;
+            }
+          })
          
             
            
@@ -218,11 +219,12 @@ export class ContribucionesService {
       console.log('Rol sin beneficio');
       rol.beneficioCovid = false;
   }else if(aux == 1){
+    console.log('entre al aux')
       this.userdataservice.setMensaje();
       aux += 1;
     }
-  this.userdataservice.setMensaje();
     } catch(error){
+      console.log(error)
       console.log('error al obtener dato de la api')
     }
     
