@@ -138,6 +138,7 @@ export class ContribucionesService {
 
     } else {
       let resultado = await this.permisoCovid(rol.rol)
+      console.log('rol a consultar', rol);
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
         this.userdataservice.setMensaje(true);
