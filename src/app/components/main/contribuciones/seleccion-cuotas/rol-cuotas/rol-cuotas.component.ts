@@ -74,9 +74,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        this.rol.cuotas.forEach(element => {
-          console.log(element);
-        })
+
         this.noLiquidable = this.rol.noLiquidable;
         this.beneficioBool = this.rol.beneficioCovid;
         if (this.noLiquidable == "true"){

@@ -139,6 +139,12 @@ export class ContribucionesService {
     } else {
       let resultado = await this.permisoCovid(rol.rol)
       console.log('rol a consultar', rol);
+      rol.cuotas.forEach(element =>{
+        console.log(element);
+        if(element['nroCuotaTotal'] == "1-2019"){
+          console.log('viene la cuota uno del año 2019!')
+        }
+      })
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
         this.userdataservice.setMensaje(true);
