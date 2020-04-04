@@ -215,6 +215,7 @@ export class ContribucionesService {
     console.log('esta es la url a consultar beneficio covid ', url)
     this.http.get(url).toPromise().then(function (result){
       console.log('resultado this hppt get',result)
+      resolve(result)
     }).catch(function(error){
       console.log('error', error)
     })
