@@ -158,22 +158,22 @@ export class ContribucionesService {
             //   this.userdataservice.setMensaje();
             //   aux += 1;
             // }
-        this.getBeneficioCovid(rol.rol).subscribe(
-          data =>{
-            console.log('data del servicio',data);
-            let aux = 1
-            if(data['existeRol'] == 'SI'){
-                this.userdataservice.setMensaje();
-              rol.beneficioCovid = true;
-              console.log('entre al rol que existe')
-            }else if(data['existeRol'] == 'NO'){
-              console.log('Rol sin beneficio');
-              rol.beneficioCovid = false;
-            }else if(aux == 1){
-              this.userdataservice.setMensaje();
-              aux += 1;
-            }
-          })
+        // this.getBeneficioCovid(rol.rol).subscribe(
+        //   data =>{
+        //     console.log('data del servicio',data);
+        //     let aux = 1
+        //     if(data['existeRol'] == 'SI'){
+        //         this.userdataservice.setMensaje();
+        //       rol.beneficioCovid = true;
+        //       console.log('entre al rol que existe')
+        //     }else if(data['existeRol'] == 'NO'){
+        //       console.log('Rol sin beneficio');
+        //       rol.beneficioCovid = false;
+        //     }else if(aux == 1){
+        //       this.userdataservice.setMensaje();
+        //       aux += 1;
+        //     }
+        //   })
          
             
            
