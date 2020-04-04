@@ -208,16 +208,16 @@ export class ContribucionesService {
   // }
   
   
-  getBeneficioCovid(rol) {
+  getBeneficioCovid(rol) : Promise <any> {
     console.log('entre a la promesa')
-  return new Promise(resolve => {
+  return new Promise<any>(resolve => {
     const url = environment.servicios.beneficioCovid + rol
     console.log('esta es la url a consultar beneficio covid ', url)
-    this.http.request(url).suscribe(data=>{
-      console.log('data post request',data)
-    }
-    
-    )
+    this.http.get(url).then(function (result){
+      console.log('resultado this hppt get',result)
+    }).catch(function(error){
+      console.log('error', error)
+    })
     
   });
 }
