@@ -201,7 +201,7 @@ export class ContribucionesService {
     return this.requestService.request(obtenerBienRaizAsociado);
   }
   
-  async getBeneficioCovid(rol) {
+  getBeneficioCovid(rol): Observable <any> {
   const url = environment.servicios.beneficioCovid + rol
   console.log('esta es la url a consultar beneficio covid ', url)
   return this.http.get(url)
