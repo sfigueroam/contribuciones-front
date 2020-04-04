@@ -211,7 +211,7 @@ export class ContribucionesService {
  async permisoCovid(rol){
     console.log('entre a la funcion async')
   try{
-  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol)
+  this.estadoBeneficioCovid = this.getBeneficioCovid(rol)
   console.log('console despues del await', this.estadoBeneficioCovid)
   let aux = 1
   if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
@@ -220,7 +220,7 @@ export class ContribucionesService {
   }else if(this.estadoBeneficioCovid['existeRol'] == 'NO'){
       console.log('Rol sin beneficio');
       rol.beneficioCovid = false;
-  }else if(aux == 1){
+  }else if(aux == 1 && this.estadoBeneficioCovid['existeRol'] == 'SI'){
     console.log('entre al aux')
       this.userdataservice.setMensaje();
       aux += 1;
