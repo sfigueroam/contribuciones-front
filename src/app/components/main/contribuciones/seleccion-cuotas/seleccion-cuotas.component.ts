@@ -173,7 +173,7 @@ export class SeleccionCuotasComponent implements OnInit, AfterViewInit {
             this.obteniendoDatos = false;
             this.userdataservice.actualizarMensaje.subscribe(
               (mensaje) => {
-                this.mensajeCambiante = this.userdataservice.getMensaje();
+                this.cargaExitosa = this.userdataservice.getMensaje();
                 console.log('cambio el mensaje!', this.mensajeCambiante);
                 
               })
