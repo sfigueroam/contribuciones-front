@@ -19,7 +19,7 @@ export class ContribucionesService {
   propiedades: Propiedad[];
   noLiquidable: boolean;
   cidUnicoOut: any[];
-    estadoBeneficioCovid: any;
+  estadoBeneficioCovid: any;
 
   constructor(private requestService: RequestService, 
               private util: UtilService,
@@ -145,7 +145,7 @@ export class ContribucionesService {
             
             let resultado = this.permisoCovid(rol.rol)
             console.log('rol ha consultar', rol.rol)
-            console.log('resultado de la primera llamada', resultado['existeRol']);
+            console.log('resultado de la primera llamada', this.estadoBeneficioCovid);
             // let aux = 1
             // if(data['existeRol'] == 'SI'){
             //     this.userdataservice.setMensaje();
@@ -211,10 +211,7 @@ export class ContribucionesService {
  async permisoCovid(rol){
     console.log('entre a la funcion async')
   try{
-  this.estadoBeneficioCovid = this.getBeneficioCovid(rol).subscribe(
-    data =>{
-      console.log('datos permisos Covid', this.estadoBeneficioCovid)
-    })
+  this.estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
   console.log('console despues del await', this.estadoBeneficioCovid)
   let aux = 1
   if(this.estadoBeneficioCovid['existeRol'] == 'SI'){
