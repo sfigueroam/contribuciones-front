@@ -15,7 +15,7 @@ export class UserDataService {
   pagoTotal: boolean = false;
   contador = 0;
   mensajeCovid;
-  actualizarMensaje: EventEmitter  = new EventEmitter<boolean>();
+  actualizarMensaje = new EventEmitter<boolean>();
  
   
   constructor() { }
