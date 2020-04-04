@@ -138,10 +138,11 @@ export class ContribucionesService {
 
     } else {
       let resultado = await this.permisoCovid(rol.rol)
-      console.log(resultado);
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
+        console.log('entre a setear arriba el true')
       }else{
+        console.log('entre a setear arriba el false')
         rol.beneficioCovid = false;
       }
       return new Promise(
@@ -152,7 +153,6 @@ export class ContribucionesService {
             
             
             console.log('rol ha consultar', rol.rol)
-            console.log('resultado de la primera llamada', resultado)
             // let aux = 1
             // if(data['existeRol'] == 'SI'){
             //     this.userdataservice.setMensaje();
