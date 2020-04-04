@@ -242,25 +242,13 @@ export class ContribucionesService {
     console.log('entre a la funcion async')
   try{
   let estadoBeneficioCovid = await this.getBeneficioCovid(rol).toPromise();
-  console.log('console despues del await', estadoBeneficioCovid)
-  let aux = 1
-  if(estadoBeneficioCovid['existeRol'] == 'SI'){
-      rol.beneficioCovid = true;
-      console.log('entre al rol que existe')
-  }else if(estadoBeneficioCovid['existeRol'] == 'NO'){
-      console.log('Rol sin beneficio');
-      rol.beneficioCovid = false;
-  }else if(aux == 1 && estadoBeneficioCovid['existeRol'] == 'SI'){
-    console.log('entre al aux')
-      this.userdataservice.setMensaje();
-      aux += 1;
-    }
+  console.log('estado beneficio despues await',estadoBeneficioCovid);
     return estadoBeneficioCovid
-    
     } catch(error){
-      return error
       console.log(error)
       console.log('error al obtener dato de la api')
+      return error
+
     }
     
   }
