@@ -74,23 +74,17 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        console.log('rol a consultar', this.rol);
-        this.beneficioBool = this.rol.beneficioCovid;
-        if(this.beneficioBool){
-          console.log('entre a setear el mensaje covid');
+
+        this.rol.cuotas.forEach(element => {
+        if(element['nroCuotaTotal'] == '1-2020'){
+          if(this.rol.beneficioCovid){
           this.userdataservice.setMensaje(true);
-        }
-        //this.rol.cuotas.forEach(element => {
-        // if(element['nroCuotaTotal'] != undefined || element['nroCuotaTotal'] != '' ){
-        //   if(this.rol.beneficioCovid){
-        //   console.log('viene la cuota uno del año 2019! y el covid es true')
-        //   this.userdataservice.setMensaje(true);
-        //   this.beneficioBool = this.rol.beneficioCovid;
-        //   }
-        // }else{
+          this.beneficioBool = this.rol.beneficioCovid;
+          }
+        }else{
           
-        // }
-        // })
+        }
+        })
         this.noLiquidable = this.rol.noLiquidable;
  
         if (this.noLiquidable == "true"){
