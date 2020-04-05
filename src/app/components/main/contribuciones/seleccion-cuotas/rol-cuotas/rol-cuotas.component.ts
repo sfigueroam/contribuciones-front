@@ -76,7 +76,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         );
 
         this.rol.cuotas.forEach(element => {
-        if(element['nroCuotaTotal'] == '4-2019'){
+        if(element['nroCuotaTotal'] == '4-2009'){
           if(this.rol.beneficioCovid){
           this.userdataservice.setMensaje(true);
           this.beneficioBool = this.rol.beneficioCovid;
