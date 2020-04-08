@@ -23,6 +23,7 @@ export class Rol {
   // JMS
   noLiquidable: string;
   beneficioCovid:boolean;
+  beneficioBam:boolean;
   BAM: number;
 
   isComplete = false;

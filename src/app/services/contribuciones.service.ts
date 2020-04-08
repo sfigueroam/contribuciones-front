@@ -141,17 +141,27 @@ export class ContribucionesService {
       // rol.cuotas.forEach(element =>{
       //   console.log('log dde cuotas en servicio', element);
       // })
-      console.log('resultado de la consulta', resultado);
+      console.log('resultado de la consulta', resultado['porcentajeBeneficio']);
       
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
+        console.log('dentro de existe rol si',resultado['porcentajeBeneficio'])
+        if(resultado['porcentajeBeneficio'] != 100){
+          console.log('distinto de 100');
+          rol.beneficioBam = true;
+          rol.BAM = resultado.porcentajeBeneficio;
+        }
+        
       }else if(resultado['existeRol'] == 'NO'){
           rol.beneficioCovid = false;
-      }else if(resultado['porcentajeBeneficio'] != 0){  //aca va la condicion de resultado BAM
-        //rol.BAM = resultado['BAM'];
-        console.log('entre a setear el porcentaje ')
-        rol.BAM  = resultado['porcentajeBeneficio'];
+          rol.beneficioBam = false;
+          rol.BAM = 0;
       }
+      // else if(resultado['porcentajeBeneficio'] != '0'){  //aca va la condicion de resultado BAM
+      //   //rol.BAM = resultado['BAM'];
+      //   console.log('entre a setear el porcentaje ')
+      //   rol.BAM  = resultado['porcentajeBeneficio'];
+      // }
 
 
       return new Promise(
