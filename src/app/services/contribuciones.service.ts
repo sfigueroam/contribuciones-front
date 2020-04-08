@@ -147,7 +147,8 @@ export class ContribucionesService {
           rol.beneficioCovid = false;
       }else if(resultado['porcentajeBeneficio'] != 0){  //aca va la condicion de resultado BAM
         //rol.BAM = resultado['BAM'];
-        rol.BAM  = resultado['BAM'];
+        console.log('entre a setear el porcentaje ')
+        rol.BAM  = resultado['porcentajeBeneficio'];
       }
 
 
