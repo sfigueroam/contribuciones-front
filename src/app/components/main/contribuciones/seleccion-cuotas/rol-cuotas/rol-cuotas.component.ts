@@ -95,6 +95,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           if(this.rol.beneficioBam){
             this.userdataservice.setMensaje(true)
             this.soloBam = true;
+            this.bamPorcentaje = this.rol.BAM;
           }
         }
         
