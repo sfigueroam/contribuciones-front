@@ -83,11 +83,13 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           if(this.rol.beneficioCovid){
           this.userdataservice.setMensaje(true);
           this.beneficioBool = this.rol.beneficioCovid;
+          console.log('entre a setear beneficio bool', this.beneficioBool);
           }
           if(this.rol.beneficioBam && this.rol.beneficioCovid){
+            console.log('entre a solo beneficio covid sin beneficioBam')
             this.userdataservice.setMensaje(true)
-          this.ambosBeneficios = true;
-          this.beneficioBool = false; // ocultar solo el covid
+            this.ambosBeneficios = true;
+            this.beneficioBool = false; // ocultar solo el covid
         }
         }else{
           this.beneficioBool = false;
