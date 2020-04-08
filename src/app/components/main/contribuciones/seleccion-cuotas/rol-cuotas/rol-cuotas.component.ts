@@ -84,9 +84,10 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           this.userdataservice.setMensaje(true);
           this.beneficioBool = this.rol.beneficioCovid;
           console.log('entre a setear beneficio bool', this.beneficioBool);
+          console.log('imprimir el rol.beneficioBam', this.rol.beneficioBam)
           }
-          if(this.rol.beneficioBam && this.rol.beneficioCovid){
-            console.log('entre a solo beneficio covid sin beneficioBam')
+          if(this.rol.beneficioBam != undefined && this.rol.beneficioCovid){
+            console.log('entre a beneficio doble')
             this.userdataservice.setMensaje(true)
             this.ambosBeneficios = true;
             this.beneficioBool = false; // ocultar solo el covid
@@ -104,7 +105,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         
         
         })
-
+        console.log('soloBam,ambosBeneficios, beneficioBool', this.soloBam,this.ambosBeneficios,this.beneficioBool)
         
         this.noLiquidable = this.rol.noLiquidable;
  
