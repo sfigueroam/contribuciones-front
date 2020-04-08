@@ -141,6 +141,8 @@ export class ContribucionesService {
       // rol.cuotas.forEach(element =>{
       //   console.log('log dde cuotas en servicio', element);
       // })
+      console.log('resultado de la consulta', resultado);
+      
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
       }else if(resultado['existeRol'] == 'NO'){
