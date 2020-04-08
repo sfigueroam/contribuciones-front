@@ -29,8 +29,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   noLiquidable: string;
   noLiquidablebool: boolean;
   beneficioBool:boolean;
-  beneficioSoloBam:boolean;
-  bamPorcentaje:number;
+  ambosBeneficios:boolean;
+  bamPorcentaje:string;
   
   // JMS: es cuoton
   cuotaAnualCheck: boolean = true;
@@ -51,6 +51,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   
 
   someTooltip: any;
+  soloBam: boolean;
 
   constructor(private user: UserService,
               private dialogService: MdlDialogService,
@@ -79,19 +80,29 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         console.log('rol a consultar en rol Cuotas', this.rol)
         this.rol.cuotas.forEach(element => {
         if(element['nroCuotaTotal'] == '1-2020'){
-          if(this.rol.beneficioCovid == true && this.rol.BAM != 0){
+          if(this.rol.beneficioCovid){
           this.userdataservice.setMensaje(true);
-          this.bamPorcentaje = this.rol.BAM;
           this.beneficioBool = this.rol.beneficioCovid;
-          }else if(this.rol.beneficioCovid == false && this.rol.BAM != 0){
-            this.userdataservice.setMensaje(true);
-            this.beneficioSoloBam = true;
-            this.bamPorcentaje = this.rol.BAM;
           }
-        }else{
-          
+          if(this.rol.beneficioBam && this.rol.beneficioCovid){
+            this.userdataservice.setMensaje(true)
+          this.ambosBeneficios = true;
+          this.beneficioBool = false; // ocultar solo el covid
         }
+        }else{
+          console.log('no trae 1-2020')
+          this.beneficioBool = false;
+          if(this.rol.beneficioBam){
+            this.soloBam = true;
+          }
+        }
+        
+     
+        
+        
         })
+
+        
         this.noLiquidable = this.rol.noLiquidable;
  
         if (this.noLiquidable == "true"){

@@ -138,25 +138,20 @@ export class ContribucionesService {
 
     } else {
       let resultado = await this.permisoCovid(rol.rol)
-      // rol.cuotas.forEach(element =>{
-      //   console.log('log dde cuotas en servicio', element);
-      // })
-      console.log('log de prueba')
-      console.log('resultado de la consulta', resultado['porcentajeBeneficio']);
-      
       if(resultado['existeRol'] == 'SI'){
-        rol.beneficioCovid = true;
-        console.log('dentro de existe rol si',resultado['porcentajeBeneficio'])
-        if(resultado['porcentajeBeneficio'] != '0'){
-          console.log('distinto de 100');
-          rol.beneficioBam = true;
-          rol.BAM = resultado.porcentajeBeneficio;
-        }
-        
+        resultado['beneficios'].forEach(element =>{
+          if(element['beneficio'] =="COVID19"){
+            rol.beneficioCovid = true;
+          }else if(element['beneficio'] == "ADULTO_MAYOR"){
+            rol.beneficioBam = true
+            rol.BAM = element['porcentaje'];
+          }
+        })
+
       }else if(resultado['existeRol'] == 'NO'){
           rol.beneficioCovid = false;
           rol.beneficioBam = false;
-          rol.BAM = 0;
+          rol.BAM = '0';
       }
       // else if(resultado['porcentajeBeneficio'] != '0'){  //aca va la condicion de resultado BAM
       //   //rol.BAM = resultado['BAM'];

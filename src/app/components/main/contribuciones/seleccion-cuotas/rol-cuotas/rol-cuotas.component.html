@@ -31,24 +31,33 @@
     </div>
   </mdl-card-title>
   
-  
-    <!-- ROL con beneficio solo BAM - INICIO -->
-  <div class="tgr-row-message success" *ngIf = "beneficioSoloBam">
+      <!-- ROL con Solo BAM INICIO -->
+  <div class="tgr-row-message success" *ngIf = "soloBam">
     <span class="material-icons">check_circle</span>
     <div class="info">
-      <p><strong>ROL con beneficio BAM de {{bamPorcentaje}}</strong></p>
+      <p><strong> ROL con beneficio  BAM de {{bamPorcentaje}} %</strong></p>
+    </div>
+  </div>
+  <!-- ROL con solo BAM- FIN -->
+  
+  
+    <!-- ROL con beneficio Bam Covid- INICIO -->
+  <div class="tgr-row-message success" *ngIf = "ambosBeneficios">
+    <span class="material-icons">check_circle</span>
+    <div class="info">
+      <p><strong> ROL con beneficio por Contingencia COVID-19, ROL con beneficio BAM de {{bamPorcentaje}}</strong></p>
     </div>
   </div>
   <!-- ROL con beneficio COVID-10 Y BAM - FIN -->
   
-  <!-- ROL con beneficio COVID-10 y BAM - INICIO -->
+  <!-- ROL con beneficio COVID-10 - INICIO -->
   <div class="tgr-row-message success" *ngIf = "beneficioBool">
     <span class="material-icons">check_circle</span>
     <div class="info">
-      <p><strong>ROL con beneficio por Contingencia COVID-19, Beneficio BAM</strong></p>
+      <p><strong>ROL con beneficio por Contingencia COVID-19</strong></p>
     </div>
   </div>
-  <!-- ROL con beneficio COVID-10 Y BAM - FIN -->
+  <!-- ROL con beneficio COVID-10 - FIN -->
   
   <!-- DEUDA NO LIQUIDABLE - INICIO -->
   <div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidablebool">

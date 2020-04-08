@@ -24,7 +24,7 @@ export class Rol {
   noLiquidable: string;
   beneficioCovid:boolean;
   beneficioBam:boolean;
-  BAM: number;
+  BAM: string;
 
   isComplete = false;
 
