@@ -93,6 +93,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
             this.beneficioBool = false; // ocultar solo el covid
         }
         }else{
+          console.log('balsamente entre al else');
           this.beneficioBool = false;
           if(this.rol.beneficioBam){
             this.userdataservice.setMensaje(true)
