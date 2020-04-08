@@ -69,7 +69,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
     this.icon = this.rol.icon();
     this.selectedIcon = CheckboxIcon.SELECTED;
     // this.userdataservice.pagoTotal = true;
-
+    
     this.rol.completeStream.subscribe(
       () => null,
       (err) => console.log(err),
@@ -77,6 +77,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
+        console.log('rol a cosultar:', this.rol)
         this.rol.cuotas.forEach(element => {
         if(element['nroCuotaTotal'] == '1-2019'){
           if(this.rol.beneficioCovid){
