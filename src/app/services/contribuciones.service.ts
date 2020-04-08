@@ -141,6 +141,7 @@ export class ContribucionesService {
       // rol.cuotas.forEach(element =>{
       //   console.log('log dde cuotas en servicio', element);
       // })
+      console.log('log de prueba')
       console.log('resultado de la consulta', resultado['porcentajeBeneficio']);
       
       if(resultado['existeRol'] == 'SI'){
