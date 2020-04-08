@@ -153,12 +153,6 @@ export class ContribucionesService {
           rol.beneficioBam = false;
           rol.BAM = '0';
       }
-      // else if(resultado['porcentajeBeneficio'] != '0'){  //aca va la condicion de resultado BAM
-      //   //rol.BAM = resultado['BAM'];
-      //   console.log('entre a setear el porcentaje ')
-      //   rol.BAM  = resultado['porcentajeBeneficio'];
-      // }
-
 
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(

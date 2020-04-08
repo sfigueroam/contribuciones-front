@@ -77,7 +77,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        console.log('rol a consultar en rol Cuotas', this.rol)
         this.rol.cuotas.forEach(element => {
         if(element['nroCuotaTotal'] == '1-2020'){
           if(this.rol.beneficioCovid){
@@ -90,7 +89,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           this.beneficioBool = false; // ocultar solo el covid
         }
         }else{
-          console.log('no trae 1-2020')
           this.beneficioBool = false;
           if(this.rol.beneficioBam){
             this.userdataservice.setMensaje(true)
