@@ -91,21 +91,14 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
             this.userdataservice.setMensaje(true)
             this.ambosBeneficios = true;
             this.beneficioBool = false; // ocultar solo el covid
-        }
-        }else{
-          console.log('balsamente entre al else');
-          this.beneficioBool = false;
-          if(this.rol.beneficioBam){
+        }}})
+        if(this.rol.beneficioCovid == undefined){
+            console.log('entre a solo BAM');
             this.userdataservice.setMensaje(true)
             this.soloBam = true;
             this.bamPorcentaje = this.rol.BAM;
           }
-        }
         
-     
-        
-        
-        })
         console.log('soloBam,ambosBeneficios, beneficioBool', this.soloBam,this.ambosBeneficios,this.beneficioBool)
         
         this.noLiquidable = this.rol.noLiquidable;
