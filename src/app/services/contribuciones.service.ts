@@ -147,7 +147,7 @@ export class ContribucionesService {
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
         console.log('dentro de existe rol si',resultado['porcentajeBeneficio'])
-        if(resultado['porcentajeBeneficio'] != 100){
+        if(resultado['porcentajeBeneficio'] != '0'){
           console.log('distinto de 100');
           rol.beneficioBam = true;
           rol.BAM = resultado.porcentajeBeneficio;
