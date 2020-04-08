@@ -93,6 +93,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           console.log('no trae 1-2020')
           this.beneficioBool = false;
           if(this.rol.beneficioBam){
+            this.userdataservice.setMensaje(true)
             this.soloBam = true;
           }
         }
