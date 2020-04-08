@@ -29,6 +29,8 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
   noLiquidable: string;
   noLiquidablebool: boolean;
   beneficioBool:boolean;
+  beneficioSoloBam:boolean;
+  bamPorcentaje:number;
   
   // JMS: es cuoton
   cuotaAnualCheck: boolean = true;
@@ -74,12 +76,17 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-
+        console.log('rol a consultar en rol Cuotas', this.rol)
         this.rol.cuotas.forEach(element => {
         if(element['nroCuotaTotal'] == '1-2020'){
-          if(this.rol.beneficioCovid){
+          if(this.rol.beneficioCovid == true && this.rol.BAM != 0){
           this.userdataservice.setMensaje(true);
+          this.bamPorcentaje = this.rol.BAM;
           this.beneficioBool = this.rol.beneficioCovid;
+          }else if(this.rol.beneficioCovid == false && this.rol.BAM != 0){
+            this.userdataservice.setMensaje(true);
+            this.beneficioSoloBam = true;
+            this.bamPorcentaje = this.rol.BAM;
           }
         }else{
           

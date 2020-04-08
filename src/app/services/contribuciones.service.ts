@@ -138,17 +138,19 @@ export class ContribucionesService {
 
     } else {
       let resultado = await this.permisoCovid(rol.rol)
-      rol.cuotas.forEach(element =>{
-        console.log('log dde cuotas en servicio', element);
-      })
+      // rol.cuotas.forEach(element =>{
+      //   console.log('log dde cuotas en servicio', element);
+      // })
       if(resultado['existeRol'] == 'SI'){
         rol.beneficioCovid = true;
-        //this.userdataservice.setMensaje(true);
-        //this.userdataservice.setRolBeneficio();
-      }else{
+      }else if(resultado['existeRol'] == 'NO'){
           rol.beneficioCovid = false;
-
+      }else if(resultado['porcentajeBeneficio'] != 0){  //aca va la condicion de resultado BAM
+        //rol.BAM = resultado['BAM'];
+        rol.BAM  = resultado['BAM'];
       }
+
+
       return new Promise(
         (resolve, reject) => this.obtieneDeuda(rol.rol, []).then(
           (data: { listaDeudas: any[], outNoLiq: any }) => {
