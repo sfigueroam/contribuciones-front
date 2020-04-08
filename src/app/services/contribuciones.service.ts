@@ -139,8 +139,6 @@ export class ContribucionesService {
     } else {
       let resultado = await this.permisoCovid(rol.rol)
       if(resultado['existeRol'] == 'SI'){
-        console.log('entre a existeRol si con el resultado beneficios', JSON.stringify(resultado['beneficios']))
-        console.log('imprimir beneficios 2', resultado['beneficios'])
         resultado['beneficios'].forEach(element =>{
           if(element['beneficio'] =="COVID19"){
             rol.beneficioCovid = true;
