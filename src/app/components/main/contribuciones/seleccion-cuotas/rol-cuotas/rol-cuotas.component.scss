@@ -273,15 +273,9 @@ mdl-icon.material-icons {
   .info {
     margin-left: 10px;
     p {
+      margin-bottom: 0;
       line-height: 20px;
-      &:first-of-type {
-        color: $color-covid;
-        margin-bottom: 4px;
-      }
-      &:last-of-type {
-        color: $color-dark-gray;
-        margin-bottom: 0;
-      }
+      color: $color-covid;
     }
   }
 }
