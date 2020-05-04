@@ -60,11 +60,21 @@
   <!-- ROL con beneficio COVID-10 - FIN -->
   
   <!-- DEUDA NO LIQUIDABLE - INICIO -->
+  <!-- ANTES DEL BENEFICIO COVID19 -->
+  <!--<div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidablebool">-->
+  <!--  <i class="material-icons">warning</i>-->
+  <!--  <div class="info">-->
+  <!--    <p><strong>Este ROL posee deudas no liquidables.</strong></p>-->
+  <!--    <p>Acércate a la oficina de TGR más cercana para regularizar.</p>-->
+  <!--  </div>-->
+  <!--</div>-->
+  
+  <!-- DURANTE EL BENEFICIO COVID19 -->
   <div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidablebool">
-    <i class="material-icons">warning</i>
+    <img src="../../../../../assets/virus-covid-contribuciones.svg">
     <div class="info">
-      <p><strong>Este ROL posee deudas no liquidables.</strong></p>
-      <p>Acércate a la oficina de TGR más cercana para regularizar.</p>
+      <p><strong>Este ROL estaba afecto al Beneficio COVID-19 <br> o es una Deuda no liquidable</strong></p>
+      <p>Por Beneficio COVID-19, su cuota de abril fue postergada automáticamente. Dicho valor será distribuido en los meses de junio, septiembre y noviembre de este año.</p>
     </div>
   </div>
   <!-- DEUDA NO LIQUIDABLE - FIN -->
