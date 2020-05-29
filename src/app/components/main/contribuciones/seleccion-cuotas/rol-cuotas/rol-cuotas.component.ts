@@ -95,7 +95,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
               this.bamPorcentaje = this.rol.BAM
             }
         }}})
-        if(this.rol.beneficioCovid == undefined){
+        if(this.rol.beneficioBam != undefined){
             this.userdataservice.setMensaje(true)
             this.soloBam = true;
             try{
