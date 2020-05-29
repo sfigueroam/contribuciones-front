@@ -276,6 +276,9 @@ mdl-icon.material-icons {
       margin-bottom: 0;
       line-height: 20px;
       color: $color-covid;
+      strong {
+        color: $color-covid;
+      }
     }
   }
 }
