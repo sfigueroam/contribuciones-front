@@ -96,7 +96,7 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         // }
           
         }})
-        if(this.rol.beneficioBam != undefined){
+        if(this.rol.beneficioBam){
             this.userdataservice.setMensaje(true)
             this.soloBam = true;
             try{
