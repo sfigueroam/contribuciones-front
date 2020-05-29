@@ -77,7 +77,6 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
         this.rol.changeStream.subscribe(
           () => this.reloadChecked()
         );
-        console.log('este es el rol donde se setean beneficios', this.rol)
         this.rol.cuotas.forEach(element => {
         if(element['nroCuotaTotal'] == '1-2020'){
           if(this.rol.beneficioCovid){
