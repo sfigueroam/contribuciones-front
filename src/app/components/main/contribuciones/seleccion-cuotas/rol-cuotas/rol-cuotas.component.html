@@ -61,21 +61,21 @@
   
   <!-- DEUDA NO LIQUIDABLE - INICIO -->
   <!-- ANTES DEL BENEFICIO COVID19 -->
-  <!--<div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidablebool">-->
-  <!--  <i class="material-icons">warning</i>-->
-  <!--  <div class="info">-->
-  <!--    <p><strong>Este ROL posee deudas no liquidables.</strong></p>-->
-  <!--    <p>Acércate a la oficina de TGR más cercana para regularizar.</p>-->
-  <!--  </div>-->
-  <!--</div>-->
-  
-  <!-- DURANTE EL BENEFICIO COVID19 -->
   <div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidablebool">
-    <img src="../../../../../assets/virus-covid-contribuciones.svg">
+    <i class="material-icons">warning</i>
     <div class="info">
-      <p>Por beneficio COVID-19, su cuota de abril fue postergada automáticamente para pago distribuido en los meses de junio, septiembre y noviembre de este año.</p>
+      <p><strong>Este ROL posee deudas no liquidables.</strong></p>
+      <p>Para más información contáctanos a través de nuestros canales de atención.</p>
     </div>
   </div>
+  
+  <!-- DURANTE EL BENEFICIO COVID19 -->
+  <!--<div class="mdl-card-title deuda-no-liquidable" *ngIf="noLiquidablebool">-->
+  <!--  <img src="../../../../../assets/virus-covid-contribuciones.svg">-->
+  <!--  <div class="info">-->
+  <!--    <p>Por beneficio COVID-19, su cuota de abril fue postergada automáticamente para pago distribuido en los meses de junio, septiembre y noviembre de este año.</p>-->
+  <!--  </div>-->
+  <!--</div>-->
   <!-- DEUDA NO LIQUIDABLE - FIN -->
   <div [class.hidden]="!expanded">
     <div *ngIf="rol.cuotas.length > 0">
