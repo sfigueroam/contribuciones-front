@@ -240,27 +240,27 @@ mdl-icon.material-icons {
 }
 
 // DEUDA NO LIQUIDABLE ANTES DEL COVID-19
-// .deuda-no-liquidable {
-//   display: flex;
-//   align-items: center;
-//   padding: 12px 6px 10px 16px;
-//   border-bottom: 1px solid #ddd;
-//   .material-icons {
-//     color: $color-warning-warmer;
-//   }
-//   .info {
-//     margin-left: 10px;
-//     p {
-//       margin-bottom: 0;
-//       strong {
-//         color: $color-warning-warmer;
-//       }
-//     }
-//   }
-// }
+.deuda-no-liquidable {
+  display: flex;
+  align-items: center;
+  padding: 12px 6px 10px 16px;
+  border-bottom: 1px solid #ddd;
+  .material-icons {
+    color: $color-warning-warmer;
+  }
+  .info {
+    margin-left: 10px;
+    p {
+      margin-bottom: 0;
+      strong {
+        color: $color-warning-warmer;
+      }
+    }
+  }
+}
 
 // DEUDA NO LIQUIDABLE DURANTE EL COVID-19
-.deuda-no-liquidable {
+.deuda-no-liquidable.virus {
   display: flex;
   align-items: flex-start;
   padding: 12px 16px 10px 16px;

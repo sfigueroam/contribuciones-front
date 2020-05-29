@@ -14,20 +14,34 @@
 
 .tgr-alert {
   padding: 15px;
+  &.covid {
+    background-color: $color-white;
+    color: $gray-75;
+    border: 2px solid $color-covid;
+    border-left: 8px solid $color-covid;
+    .title {
+      color: $color-covid;
+      img {
+        width: 22px;
+        height: auto;
+        margin-right: 8px;
+      }
+    }
+  }
   &.success {
     background-color: $color-alert-success--light;
     color: $color-alert-success--dark;
     border: 2px solid $color-alert-success--dark;
     border-radius: 5px;
-    .title {
-      font-size: 14px;
-    }
-    .content {
-      font-size: 14px;
-      line-height: 20px;
-      &:last-of-type {
-        margin-bottom: 0;
-      }
+  }
+  .title {
+    font-size: 14px;
+  }
+  .content {
+    font-size: 14px;
+    line-height: 20px;
+    &:last-of-type {
+      margin-bottom: 0;
     }
   }
 }
