@@ -84,17 +84,19 @@ export class RolCuotasComponent implements OnInit, AfterViewInit {
           this.userdataservice.setMensaje(true);
           this.beneficioBool = this.rol.beneficioCovid;
           }
-          if(this.rol.beneficioBam != undefined && this.rol.beneficioCovid){
-            this.userdataservice.setMensaje(true)
-            this.ambosBeneficios = true;
-            this.beneficioBool = false; // ocultar solo el covid
-            try{
-              this.bamPorcentaje = parseInt(this.rol.BAM) + ''
-            } 
-            catch(e) {
-              this.bamPorcentaje = this.rol.BAM
-            }
-        }}})
+        //   if(this.rol.beneficioBam != undefined && this.rol.beneficioCovid){
+        //     this.userdataservice.setMensaje(true)
+        //     this.ambosBeneficios = true;
+        //     this.beneficioBool = false; // ocultar solo el covid
+        //     try{
+        //       this.bamPorcentaje = parseInt(this.rol.BAM) + ''
+        //     } 
+        //     catch(e) {
+        //       this.bamPorcentaje = this.rol.BAM
+        //     }
+        // }
+          
+        }})
         if(this.rol.beneficioBam != undefined){
             this.userdataservice.setMensaje(true)
             this.soloBam = true;
