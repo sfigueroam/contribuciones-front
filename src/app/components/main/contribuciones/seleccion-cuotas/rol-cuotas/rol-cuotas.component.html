@@ -32,8 +32,8 @@
   </mdl-card-title>
   
       <!-- ROL con Solo BAM INICIO -->
-  <div class="tgr-row-message success" *ngIf = "soloBam">
-    <span class="material-icons">check_circle</span>
+  <div class="mdl-card-title deuda-no-liquidable virus" *ngIf = "soloBam">
+    <img src="../../../../../assets/virus-covid-contribuciones.svg">
     <div class="info">
       <p> ROL con beneficio <strong>Adulto Mayor ({{bamPorcentaje}}%)</strong></p>
     </div>
@@ -42,10 +42,10 @@
   
   
      <!--ROL con beneficio Bam Covid- INICIO -->
-  <div class="tgr-row-message success" *ngIf = "ambosBeneficios">
-    <span class="material-icons">check_circle</span>
+  <div class="mdl-card-title deuda-no-liquidable virus" *ngIf = "ambosBeneficios">
+    <img src="../../../../../assets/virus-covid-contribuciones.svg">
     <div class="info">
-      <p> ROL con beneficios <strong>Contingencia COVID-19 y Adulto Mayor ({{bamPorcentaje}}%)</strong></p>
+      <p>ROL con beneficios <strong>COVID-19 (para la cuota <strong>de abril 1-2020)</strong> y Adulto Mayor ({{bamPorcentaje}}%)</strong></p>
     </div>
   </div>
    <!--ROL con beneficio COVID-19 Y BAM - FIN -->
@@ -54,7 +54,7 @@
   <div class="mdl-card-title deuda-no-liquidable virus" *ngIf = "beneficioBool">
     <img src="../../../../../assets/virus-covid-contribuciones.svg">
     <div class="info">
-      <p>Por beneficio <strong>COVID-19</strong>, su cuota de abril <strong>(1-2020) fue postergada automáticamente</strong>para pago distribuido en junio, septiembre y noviembre. El primer tercio se verá reflejado con vencimiento 30 de junio 2020.</p>
+       <p>ROL con beneficio <strong> COVID-19</strong> (para la cuota <strong>de abril 1-2020)</strong></p>
     </div>
   </div>
   <!-- ROL con beneficio COVID-10 - FIN -->
